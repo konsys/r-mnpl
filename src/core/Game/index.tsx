@@ -6,6 +6,8 @@ import { Board } from "../../components/Board/Board";
 import { Dices } from "../../components/Dices/Dices";
 import { Chat } from "../../components/Chat/Chat";
 import { Token } from "../../components/Token/Token";
+import "../../styles/theme.scss";
+import "./style.scss";
 
 export interface PlayerToken {
   userId: number;
@@ -45,6 +47,7 @@ const randDice = () => {
   setTimeout(() => (diceClass1 = "r" + diceValue1), 20);
   setTimeout(() => (diceClass2 = "r" + diceValue2), 20);
 };
+
 const turn = () => {
   isGenerators = true;
   tableActionVisible = false;
