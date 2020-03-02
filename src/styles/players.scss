@@ -1,0 +1,63 @@
+/**
+* PLAYERS
+*/
+.table {
+  &-body {
+    &-players {
+      &-card[mnpl-action_player] {
+        position: relative;
+        transform: scale(1.075);
+        z-index: 2;
+        &-body {
+          &-avatar {
+            > div {
+              border-width: 0;
+              padding: 0;
+              > div {
+                border-width: 0;
+              }
+            }
+          }
+        }
+        &-body {
+          &-nick {
+            ._ignore,
+            ._muted {
+              color: rgba(255, 255, 255, 0.45);
+            }
+          }
+        }
+      }
+      &-card[mnpl-leaved] {
+        &-body {
+          background: #24292c;
+          > * {
+            opacity: 0.333;
+          }
+          &-money {
+            margin-top: 5px;
+            height: 30px;
+            background: url(//d30y9cdsu7xlg0.cloudfront.net/png/187199-200.png) center/contain no-repeat;
+            -webkit-filter: invert(1);
+            filter: invert(1);
+            color: transparent;
+          }
+        }
+      }
+      &-card[mnpl-pressed] {
+        transform: scale(0.95);
+        &[mnpl-action_player] {
+          transform: scale(1.02125);
+        }
+      }
+
+      &-card[mnpl-opened] {
+        z-index: 3;
+        &-menu {
+          opacity: 1;
+          pointer-events: auto;
+        }
+      }
+    }
+  }
+}

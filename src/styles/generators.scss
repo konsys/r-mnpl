@@ -1,0 +1,1074 @@
+.TableGeneratorDices._preview {
+  position: relative;
+  top: 25px;
+  left: 25px;
+}
+
+.TableGeneratorDices._preview .TableGeneratorDices-one {
+  transform: scale(0.96) rotateX(-30deg) rotateY(30deg) rotateZ(90deg) !important;
+}
+
+.TableGeneratorDices-one {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  transform-style: preserve-3d;
+  transform: rotateX(0) rotateY(0) rotateZ(0);
+}
+
+.TableGeneratorDices-one:nth-child(2) {
+  top: 50px;
+  left: 125px;
+}
+
+.TableGeneratorDices-one:nth-child(3) {
+  top: 140px;
+  left: -10px;
+}
+
+.TableGeneratorDices-one span {
+  position: absolute;
+  margin: 50px 0 0 50px;
+  display: block;
+  font-size: 1.25em;
+  padding: 5px;
+}
+
+.TableGeneratorDices-one .side {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.TableGeneratorDices-one .side .dot {
+  position: absolute;
+  width: 23px;
+  height: 23px;
+  border-radius: 99999px;
+}
+
+.TableGeneratorDices-one .side .dot.center {
+  margin: 38px 0 0 38px;
+}
+
+.TableGeneratorDices-one .side .dot.dtop {
+  margin-top: 10px;
+}
+
+.TableGeneratorDices-one .side .dot.dleft {
+  margin-left: 67px;
+}
+
+.TableGeneratorDices-one .side .dot.dright {
+  margin-left: 10px;
+}
+
+.TableGeneratorDices-one .side .dot.dbottom {
+  margin-top: 67px;
+}
+
+.TableGeneratorDices-one .side .dot.center.dleft {
+  margin: 38px 0 0 10px;
+}
+
+.TableGeneratorDices-one .side .dot.center.dright {
+  margin: 38px 0 0 67px;
+}
+
+.TableGeneratorDices-one .cover,
+.TableGeneratorDices-one .inner {
+  background: #e0e0e0;
+  box-shadow: none;
+}
+
+.TableGeneratorDices-one .cover {
+  border-radius: 0;
+}
+
+.TableGeneratorDices-one .cover.x {
+  transform: rotateY(90deg);
+}
+
+.TableGeneratorDices-one .cover.z {
+  transform: rotateX(90deg);
+}
+
+.TableGeneratorDices-one .front {
+  transform: translateZ(50px);
+}
+
+.TableGeneratorDices-one .front.inner {
+  transform: translateZ(49px);
+}
+
+.TableGeneratorDices-one .back {
+  transform: rotateX(-180deg) translateZ(50px);
+}
+
+.TableGeneratorDices-one .back.inner {
+  transform: rotateX(-180deg) translateZ(49px);
+}
+
+.TableGeneratorDices-one .right {
+  transform: rotateY(90deg) translateZ(50px);
+}
+
+.TableGeneratorDices-one .right.inner {
+  transform: rotateY(90deg) translateZ(49px);
+}
+
+.TableGeneratorDices-one .left {
+  transform: rotateY(-90deg) translateZ(50px);
+}
+
+.TableGeneratorDices-one .left.inner {
+  transform: rotateY(-90deg) translateZ(49px);
+}
+
+.TableGeneratorDices-one .top {
+  transform: rotateX(90deg) translateZ(50px);
+}
+
+.TableGeneratorDices-one .top.inner {
+  transform: rotateX(90deg) translateZ(49px);
+}
+
+.TableGeneratorDices-one .bottom {
+  transform: rotateX(-90deg) translateZ(50px);
+}
+
+.TableGeneratorDices-one .bottom.inner {
+  transform: rotateX(-90deg) translateZ(49px);
+}
+
+.TableGeneratorDices-one._skin_-100 .side,
+.TableGeneratorDices-one._skin_324 .side,
+.TableGeneratorDices-one._skin_655 .side {
+  background: #fff;
+  box-shadow: inset 0 0 20px #ccc;
+}
+
+.TableGeneratorDices-one._skin_-100 .side .dot,
+.TableGeneratorDices-one._skin_324 .side .dot,
+.TableGeneratorDices-one._skin_655 .side .dot {
+  background-color: #333;
+  box-shadow: inset 2px 0 5px #000;
+}
+
+.TableGeneratorDices-one._skin_speed .side {
+  background-color: #da4553;
+}
+
+.TableGeneratorDices-one._skin_speed .side .dot {
+  background-color: #434a54;
+}
+
+.TableGeneratorDices-one._skin_speed .back:before,
+.TableGeneratorDices-one._skin_speed .left:before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform: rotate(45deg);
+  background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSIzNiIgZmlsbD0iIzQzNGE1NCI+PHBhdGggZD0iTTYwLjkuOEgxNC44Yy0yLjUgMC00LjUgMS02LjIgM0M3LjcgNC45IDcgNi4yIDYuNCA3LjdIMWExIDEgMCAwIDAtMSAxdjguNWMwIC42LjQgMSAxIDEgLjUgMCAxLS40IDEtMVY5LjdoMy43QzQuMyAxNC44IDQuNCAyMSA1LjEgMjQuOWMuNSAyLjggMi44IDQuOCA1LjUgNS4yIDAtLjMtLjEtLjYtLjEtLjkgMC00LjUgMy42LTguMSA4LjEtOC4xczguMSAzLjYgOC4xIDguMWMwIC4zIDAgLjctLjEgMUg0NmMwLS4zLS4xLS43LS4xLTEgMC00LjUgMy42LTguMSA4LjEtOC4xczguMSAzLjYgOC4xIDguMXYuNWMxLjEtLjYgMS45LTEuOCAxLjktMy4yVjMuOGMwLTEuNy0xLjQtMy0zLjEtM3ptLTM5IDE0LjdjLTMuMiAwLTUuMiAxLjQtNi45IDIuNi0zLjEgMi4xLTMuNiAyLjItNi41IDIuMUg2LjdjLS4xLTQuMy40LTkuNCAyLjItMTNoMTN2OC4zem0xMC4xIDBoLTguMlY3LjJIMzJ2OC4zem0xMC4yIDBIMzRWNy4yaDguMnY4LjN6bTEwLjIgMGgtOC4yVjcuMmg4LjJ2OC4zem05LjYgMGgtNy42VjcuMkg2MnY4LjN6Ii8+PHBhdGggZD0iTTE4LjcgMjMuMWMtMy40IDAtNi4xIDIuNy02LjEgNi4xIDAgMy4zIDIuNyA2LjEgNi4xIDYuMSAzLjQgMCA2LjEtMi43IDYuMS02LjEtLjEtMy40LTIuOC02LjEtNi4xLTYuMXptMzUuMyAwYy0zLjQgMC02LjEgMi43LTYuMSA2LjEgMCAzLjMgMi43IDYuMSA2LjEgNi4xIDMuMyAwIDYuMS0yLjcgNi4xLTYuMSAwLTMuNC0yLjctNi4xLTYuMS02LjF6Ii8+PC9zdmc+)
+    7px center/80% auto no-repeat;
+}
+
+.TableGeneratorDices-one._skin_speed .back .dot,
+.TableGeneratorDices-one._skin_speed .left .dot {
+  display: none;
+}
+
+.TableGeneratorDices-one._skin_speed .bottom:before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform: rotate(45deg);
+  background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MDAgNTAwIj48cGF0aCBmaWxsPSIjNDM0YTU0IiBkPSJNMTExLjAyIDU0Ljk1YzQuNzMtMTMuOTIgOS4xMS0yNy45NSAxNC4wOC00MS43OCAzLjA4IDEuMjYgMy44MSA0Ljc2IDUuMzEgNy40IDM4Ljc0IDc3LjU4IDc3LjU0IDE1NS4xNCAxMTYuMjcgMjMyLjczLjg2IDEuNzggMi4wNSAzLjM2IDMuMzIgNC44NyAyLjAxLTIuMjIgMy40MS00Ljg4IDQuNjgtNy41NyAzNy45NS03NiA3NS45Mi0xNTEuOTkgMTEzLjkxLTIyNy45OCAxLjcxLTMuMjIgMi45Mi02Ljc5IDUuNDMtOS41MSAxLjM5IDEuMTEgMS45NyAyLjgyIDIuNTMgNC40NCAzNC4yMyAxMDMuMDUgNjguNjEgMjA2LjA1IDEwMi45MyAzMDkuMDcgNS4wNSAxNi4xNCAxMC40OCAzMi4xNiAxNS44NCA0OC4yIDEuMDEgMi45OCAyLjI1IDUuODggMy41MiA4Ljc1LTE5LjQ5IDkuOC0zOC4zNyAyMC43OC01Ni42MiAzMi43Mi0xNS43MyAxMC4yMy0zMC42MiAyMS43My00NC40IDM0LjQ2LTEuMjQtMS4zOS0yLjI0LTIuOTgtMi41Ni00LjgzLTExLjc3LTQ2Ljk2LTIzLjY3LTkzLjg5LTM1LjQ4LTE0MC44NS0yLjA3LTcuNDgtMy40LTE1LjE5LTYuMDUtMjIuNS0xLjA0Ljk1LTIuMDkgMS45My0yLjcgMy4yMy0zMS40NiA2Mi45NS02Mi45IDEyNS45My05NC4zOCAxODguODgtMS45MSAzLjU5LTMuMzUgNy40OC01Ljc2IDEwLjc4LTIuMTUuNzctMi43OS0xLjU4LTMuNjYtMi45OS0zMS43NS02My41My02My40Ny0xMjcuMDctOTUuMjMtMTkwLjYtMS41Ny0zLjAxLTIuNzgtNi4yNy00Ljk0LTguOTMtMS42NC41MS0xLjc3IDIuMzgtMi4yNCAzLjc2LTEyLjkyIDUxLjY3LTI2LjA3IDEwMy4yOC0zOSAxNTQuOTUtLjg1IDMuMTUtMS4yMyA2LjY3LTMuNjMgOS4xMi0yNS4yOC0yMy42Ni01NC44Ni00Mi4xLTg1LTU4Ljg3LTUuMjktMy4wNi0xMS4wNC01LjI4LTE2LjEtOC43NCA4LjktMjUuMDUgMTYuODQtNTAuNDQgMjUuNDQtNzUuNjEgNy42Ny0yMC45OCAxNC4yOC00Mi4zMiAyMS40OS02My40NiAyMS02My4wNSA0Mi4wNS0xMjYuMDggNjMtMTg5LjE0eiIvPjwvc3ZnPg==)
+    center/66.7% no-repeat;
+}
+
+.TableGeneratorDices-one._skin_speed .bottom .dot {
+  display: none;
+}
+
+.TableGeneratorDices-one._skin_mini .side {
+  background-color: #37bc9d;
+}
+
+.TableGeneratorDices-one._skin_mini .side .dot {
+  background-color: #fff;
+}
+
+.TableGeneratorDices-one._skin_mini .back:before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSIjZmZmIiBkPSJNMzkgMTRoMjJjMS4xIDAgMS44Mi0uODggMS42LTEuOTZsLTEuMi02LjA4QTIuNTUgMi41NSAwIDAgMCA1OSA0SDQxYy0xLjEgMC0yLjE4Ljg4LTIuNCAxLjk2bC0xLjIgNi4wOEExLjU4IDEuNTggMCAwIDAgMzkgMTR6bTYxIDMxLjVjMC0zLjAyLTIuNDgtNS41LTUuNS01LjVoLTYuNThsLTQuNzctMTIuNGMtMS4xOC0zLjA4LTQuNzUtNi4zNC03LjkyLTcuMjVDNzUuMjMgMjAuMzUgNjcgMTggNTAgMThzLTI1LjIzIDIuMzUtMjUuMjMgMi4zNWMtMy4xNy45LTYuNzQgNC4xNy03LjkyIDcuMjVMMTIuMDggNDBINS41QzIuNDggNDAgMCA0Mi40OCAwIDQ1LjVTMi40OCA1MSA1LjUgNTFoMi4zNWwtMS43IDQuNEEzOC43MiAzOC43MiAwIDAgMCA0IDY3djI2YzAgMy44NSAzLjE1IDcgNyA3czctMy4xNSA3LTd2LTRoNjR2NGMwIDMuODUgMy4xNSA3IDcgN3M3LTMuMTUgNy03VjY3YzAtMy4zLS45Ny04LjUyLTIuMTUtMTEuNmwtMS43LTQuNGgyLjM1YzMuMDMgMCA1LjUtMi40OCA1LjUtNS41em0tODIuMyAxLjYybDUuNi0xNS4yNEEzLjA5IDMuMDkgMCAwIDEgMjYgMzBoNDhjMS4xIDAgMi4zMS44NCAyLjcgMS44OGw1LjYgMTUuMjRjLjQgMS4wNC0uMiAxLjg4LTEuMyAxLjg4SDE5Yy0xLjEgMC0xLjY5LS44NC0xLjMtMS44OHpNMTcuNSA3MmE1LjUgNS41IDAgMSAxIDAtMTEgNS41IDUuNSAwIDAgMSAwIDExem02NSAwYTUuNSA1LjUgMCAxIDEgMC0xMSA1LjUgNS41IDAgMCAxIDAgMTF6Ii8+PC9zdmc+)
+    center/55% auto no-repeat;
+}
+
+.TableGeneratorDices-one._skin_mini .back .dot {
+  display: none;
+}
+
+.TableGeneratorDices-one._skin_mini .bottom:before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOSIgaGVpZ2h0PSIxMyI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTIuOTggNi41M0wuNSA0LjAzbDEuMjYtMS4yOCAyLjUgMi40OUw2LjggMi43NSA4LjA2IDQgNS41MyA2LjUzbDIuNSAyLjUyLTEuMjQgMS4yNi0yLjUzLTIuNS0yLjUgMi40OEwuNTIgOS4wM2wyLjQ2LTIuNXptMTUuMzIgNkg5Ljh2LTEuNzhsMy4wNS0zLjA4Yy45LS45MyAxLjUtMS41NyAxLjc3LTEuOTIuMjgtLjM2LjQ3LS43LjYtMSAuMTItLjMuMTgtLjYyLjE4LS45NCAwLS40OS0uMTQtLjg1LS40LTEuMDlhMS41NiAxLjU2IDAgMCAwLTEuMDgtLjM2Yy0uNDcgMC0uOTMuMTEtMS4zNy4zMy0uNDQuMjEtLjkuNTItMS4zOC45MmwtMS40LTEuNjVjLjYtLjUxIDEuMS0uODcgMS40OS0xLjA4LjM5LS4yMS44Mi0uMzcgMS4yOC0uNDlBNi42IDYuNiAwIDAgMSAxNC4xLjIyYy43NiAwIDEuNDMuMTQgMi4wMS40MmEzLjA5IDMuMDkgMCAwIDEgMS44MyAyLjg3YzAgLjU2LS4xIDEuMDgtLjI5IDEuNTctLjIuNS0uNSAxLS45MSAxLjVhMjAuNCAyMC40IDAgMCAxLTIuMTggMi4yTDEzIDEwLjI2di4xMWg1LjI5djIuMTZ6Ii8+PC9zdmc+)
+    center/60% no-repeat;
+}
+
+.TableGeneratorDices-one._skin_mini .bottom .dot {
+  display: none;
+}
+
+.TableGeneratorDices-one._skin_60 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/wood-texture.jpg);
+  background-size: 600px;
+  background-position: top center;
+}
+
+.TableGeneratorDices-one._skin_60 .side .dot {
+  background-color: rgba(51, 51, 51, 0.75);
+  box-shadow: inset 2px 0 5px #000;
+}
+
+.TableGeneratorDices-one._skin_61 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/oldNewspaper-texture.jpg);
+  background-size: 800px;
+  background-position: -60px -210px;
+}
+
+.TableGeneratorDices-one._skin_61 .side .dot {
+  background-color: #333;
+  box-shadow: inset 2px 0 5px #000;
+}
+
+.TableGeneratorDices-one._skin_62 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/metal-texture.jpg);
+  background-position: center;
+}
+
+.TableGeneratorDices-one._skin_62 .side .dot {
+  background-color: #fff;
+  box-shadow: inset 2px 0 3px #000;
+}
+
+.TableGeneratorDices-one._skin_63 .side {
+  background-color: #000;
+  box-shadow: inset 0 0 5px rgba(255, 204, 51, 0.5);
+}
+
+.TableGeneratorDices-one._skin_63 .side .dot {
+  background-color: #fc3;
+  box-shadow: inset 2px 0 3px #000;
+}
+
+.TableGeneratorDices-one._skin_64 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/sunset-texture.jpg);
+  background-position: center;
+}
+
+.TableGeneratorDices-one._skin_64 .side .dot {
+  background-color: #fff;
+  box-shadow: inset 2px 0 3px #000;
+}
+
+.TableGeneratorDices-one._skin_65 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/blueMarble-texture.jpg);
+  background-position: top center;
+}
+
+.TableGeneratorDices-one._skin_65 .side .dot {
+  background-color: #fdfefe;
+  box-shadow: inset 2px 0 3px #000;
+}
+
+.TableGeneratorDices-one._skin_66 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/trigon-texture.jpg);
+  background-position: center;
+}
+
+.TableGeneratorDices-one._skin_66 .side .dot {
+  background-color: #fff;
+  box-shadow: inset 2px 0 3px #000;
+}
+
+.TableGeneratorDices-one._skin_67 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/sakura-texture.jpg);
+  background-position: right;
+}
+
+.TableGeneratorDices-one._skin_67 .side .dot {
+  background-color: #333;
+  box-shadow: inset 2px 0 5px #000;
+}
+
+.TableGeneratorDices-one._skin_68 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/colorStripes-texture.jpg);
+  background-size: 360px;
+  background-position: center;
+}
+
+.TableGeneratorDices-one._skin_68 .side .dot {
+  background-color: #333;
+  box-shadow: inset 2px 0 5px #000;
+}
+
+.TableGeneratorDices-one._skin_69 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/supernova-texture.jpg);
+  background-position: center;
+}
+
+.TableGeneratorDices-one._skin_69 .side .dot {
+  background-color: #fff;
+  box-shadow: inset 2px 0 3px #000;
+}
+
+.TableGeneratorDices-one._skin_118 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/milkcoffee-texture.jpg);
+  background-position: center;
+  box-shadow: inset 0 0 1px #000;
+}
+
+.TableGeneratorDices-one._skin_118 .side .dot {
+  background-color: rgba(0, 0, 0, 0.33);
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.TableGeneratorDices-one._skin_119 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/knitted-texture.jpg);
+  background-position: center;
+}
+
+.TableGeneratorDices-one._skin_119 .side .dot {
+  background-color: #cecece;
+  border: 1px solid #818181;
+}
+
+.TableGeneratorDices-one._skin_120 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/emerald-texture.jpg);
+  background-position: center;
+}
+
+.TableGeneratorDices-one._skin_120 .side .dot {
+  background-color: #fff;
+  border: 1px solid #555;
+}
+
+.TableGeneratorDices-one._skin_121 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/circles-texture.jpg);
+  background-position: center;
+}
+
+.TableGeneratorDices-one._skin_121 .side .dot {
+  background-color: transparent;
+  border: 4px solid #1aa3f1;
+  box-shadow: 0 0 20px #9fd9fd;
+}
+
+.TableGeneratorDices-one._skin_122 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/velvet-texture.jpg);
+  background-position: center;
+}
+
+.TableGeneratorDices-one._skin_122 .side .dot {
+  background-color: #fff;
+  box-shadow: inset 2px 0 3px #000;
+}
+
+.TableGeneratorDices-one._skin_123 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/flame-texture.jpg);
+  background-position: center;
+}
+
+.TableGeneratorDices-one._skin_123 .side .dot {
+  background-color: #fff;
+  box-shadow: inset 2px 0 3px #000;
+}
+
+.TableGeneratorDices-one._skin_124 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/graphpaper-texture.jpg);
+  background-position: center;
+}
+
+.TableGeneratorDices-one._skin_124 .side .dot {
+  background-color: #fff;
+  border: 1px solid #333;
+}
+
+.TableGeneratorDices-one._skin_125 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/mosaic-texture.jpg);
+  background-position: center;
+}
+
+.TableGeneratorDices-one._skin_125 .side .dot {
+  background-color: #fff;
+  border: 1px solid #333;
+}
+
+.TableGeneratorDices-one._skin_126 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/mountain-texture.jpg);
+  background-position: center;
+}
+
+.TableGeneratorDices-one._skin_126 .side .dot {
+  background-color: #fff;
+  border: 1px solid #555;
+}
+
+.TableGeneratorDices-one._skin_127 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/leaves-texture.jpg);
+  background-position: center;
+}
+
+.TableGeneratorDices-one._skin_127 .side .dot {
+  background-color: #333;
+}
+
+.TableGeneratorDices-one._skin_128 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/dragon-texture.jpg);
+  background-position: center;
+}
+
+.TableGeneratorDices-one._skin_128 .side .dot {
+  background-color: #fff;
+  border: 2px solid #1368b1;
+  box-shadow: inset 0 0 2px #1368b1;
+}
+
+.TableGeneratorDices-one._skin_142 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/tracery-texture.jpg);
+  background-position: center;
+}
+
+.TableGeneratorDices-one._skin_142 .side .dot {
+  background-color: #fff;
+  border: 1px solid #555;
+}
+
+.TableGeneratorDices-one._skin_160 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/lightning-texture.jpg);
+  background-position: center;
+}
+
+.TableGeneratorDices-one._skin_160 .side .dot {
+  background-color: #fff;
+  border: 1px solid #555;
+}
+
+.TableGeneratorDices-one._skin_161 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/noise-texture.jpg);
+  background-position: center;
+}
+
+.TableGeneratorDices-one._skin_161 .side .dot {
+  background-color: #fff;
+  border: 1px solid #555;
+}
+
+.TableGeneratorDices-one._skin_162 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/night-texture.jpg);
+  background-position: center;
+}
+
+.TableGeneratorDices-one._skin_162 .side .dot {
+  background-color: #fff;
+  border: 1px solid #555;
+}
+
+.TableGeneratorDices-one._skin_163 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/ice-texture.jpg);
+  background-position: center;
+}
+
+.TableGeneratorDices-one._skin_163 .side .dot {
+  background-color: #fff;
+  border: 1px solid #555;
+}
+
+.TableGeneratorDices-one._skin_164 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/geometry-texture.jpg);
+  background-position: center;
+}
+
+.TableGeneratorDices-one._skin_164 .side .dot {
+  background-color: #fff;
+  border: 1px solid #555;
+}
+
+.TableGeneratorDices-one._skin_165 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/sphere-texture.jpg);
+  background-position: center;
+}
+
+.TableGeneratorDices-one._skin_165 .side .dot {
+  background-color: #fff;
+  border: 1px solid #555;
+}
+
+.TableGeneratorDices-one._skin_166 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/fissure-texture.jpg);
+  background-position: center;
+}
+
+.TableGeneratorDices-one._skin_166 .side .dot {
+  background-color: #fff;
+  border: 1px solid #555;
+}
+
+.TableGeneratorDices-one._skin_167 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/music-texture.jpg);
+  background-position: center;
+}
+
+.TableGeneratorDices-one._skin_167 .side .dot {
+  background-color: #fff;
+  border: 1px solid #555;
+}
+
+.TableGeneratorDices-one._skin_168 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/racer-texture.jpg);
+  background-position: center;
+}
+
+.TableGeneratorDices-one._skin_168 .side .dot {
+  background-color: #fff;
+  border: 1px solid #555;
+}
+
+.TableGeneratorDices-one._skin_169 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/spiderman-texture.jpg);
+  background-position: center;
+}
+
+.TableGeneratorDices-one._skin_169 .side .dot {
+  background-color: #fff;
+  border: 1px solid #555;
+}
+
+.TableGeneratorDices-one._skin_171 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/fantasy-texture.jpg);
+  background-position: center;
+}
+
+.TableGeneratorDices-one._skin_171 .side .dot {
+  background-color: #fff;
+  border: 1px solid #555;
+}
+
+.TableGeneratorDices-one._skin_291 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/underTheWater-texture.png);
+}
+
+.TableGeneratorDices-one._skin_291 .side .dot {
+  background-color: #fff;
+  border: 1px solid #555;
+}
+
+.TableGeneratorDices-one._skin_292 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/graphite-texture.png);
+}
+
+.TableGeneratorDices-one._skin_292 .side .dot {
+  transform: translate(2px, 2px);
+  width: 19px;
+  height: 19px;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.TableGeneratorDices-one._skin_293 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/hypno-texture.png);
+}
+
+.TableGeneratorDices-one._skin_293 .side .dot {
+  background-color: #000;
+}
+
+.TableGeneratorDices-one._skin_294 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/particles-texture.png);
+}
+
+.TableGeneratorDices-one._skin_294 .side .dot {
+  background-color: #fff;
+  border: 1px solid #555;
+}
+
+.TableGeneratorDices-one._skin_295 .side {
+  background-color: #111;
+  box-shadow: #111 0 0 2px;
+}
+
+.TableGeneratorDices-one._skin_295 .side .dot {
+  background-color: #111;
+  border: 5px solid #0f4068;
+  transform: translate(-3px, -3px);
+  width: 29px;
+  height: 29px;
+}
+
+.TableGeneratorDices-one._skin_295 .side .dot:before {
+  content: "";
+  display: block;
+  border: 3px solid #3896e0;
+  border-radius: 99999px;
+  width: 13px;
+  height: 13px;
+}
+
+.TableGeneratorDices-one._skin_296 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/neon-texture.png);
+}
+
+.TableGeneratorDices-one._skin_296 .side .dot {
+  background-color: #fff;
+  border: 1px solid #555;
+}
+
+.TableGeneratorDices-one._skin_297 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/pixels-texture.png);
+}
+
+.TableGeneratorDices-one._skin_297 .side .dot {
+  background-color: #fff;
+  border: 2px solid #111;
+}
+
+.TableGeneratorDices-one._skin_298 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/graffiti-texture.png);
+}
+
+.TableGeneratorDices-one._skin_298 .side .dot {
+  transform: translate(-1px, -1px);
+  width: 25px;
+  height: 25px;
+  background-color: #fff;
+  border: 3px solid #111;
+}
+
+.TableGeneratorDices-one._skin_299 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/sport-texture.png);
+}
+
+.TableGeneratorDices-one._skin_299 .side .dot {
+  background-color: #fff;
+  border: 1px solid #555;
+}
+
+.TableGeneratorDices-one._skin_300 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/direction-texture.png);
+}
+
+.TableGeneratorDices-one._skin_300 .side .dot {
+  background-color: #fff;
+  border: 1px solid #555;
+}
+
+.TableGeneratorDices-one._skin_301 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/fireVsIce-texture.png);
+}
+
+.TableGeneratorDices-one._skin_301 .side .dot {
+  background-color: #fff;
+  border: 1px solid #555;
+}
+
+.TableGeneratorDices-one._skin_302 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/figures-texture.png);
+}
+
+.TableGeneratorDices-one._skin_302 .side .dot {
+  background-color: #fff;
+  border: 1px solid #555;
+}
+
+.TableGeneratorDices-one._skin_303 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/disarray-texture.png);
+}
+
+.TableGeneratorDices-one._skin_303 .side .dot {
+  background-color: #fff;
+  border: 1px solid #333;
+  box-shadow: #555 0 0 3px;
+}
+
+.TableGeneratorDices-one._skin_453 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/confetti-texture.png);
+}
+
+.TableGeneratorDices-one._skin_453 .side .dot {
+  transform: translate(-2px, -2px);
+  width: 27px;
+  height: 27px;
+  background-color: #04203b;
+  border: 4px solid #eef3e5;
+}
+
+.TableGeneratorDices-one._skin_478 .side,
+.TableGeneratorDices-one._skin_771 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/dicesbox5/danger-texture.png);
+}
+
+.TableGeneratorDices-one._skin_478 .side .dot,
+.TableGeneratorDices-one._skin_771 .side .dot {
+  background-color: #fff;
+  border: 1px solid #555;
+}
+
+.TableGeneratorDices-one._skin_479 .side,
+.TableGeneratorDices-one._skin_772 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/dicesbox5/panno-texture.png);
+}
+
+.TableGeneratorDices-one._skin_479 .side .dot,
+.TableGeneratorDices-one._skin_772 .side .dot {
+  background-color: #fff;
+  border: 1px solid #555;
+}
+
+.TableGeneratorDices-one._skin_480 .side,
+.TableGeneratorDices-one._skin_773 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/dicesbox5/strip-texture.png);
+}
+
+.TableGeneratorDices-one._skin_480 .side .dot,
+.TableGeneratorDices-one._skin_773 .side .dot {
+  background-color: #fff;
+  border: 1px solid #555;
+}
+
+.TableGeneratorDices-one._skin_481 .side,
+.TableGeneratorDices-one._skin_774 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/dicesbox5/mainentance-texture.png);
+}
+
+.TableGeneratorDices-one._skin_481 .side .dot,
+.TableGeneratorDices-one._skin_774 .side .dot {
+  transform: translate(-1px, -1px);
+  width: 25px;
+  height: 25px;
+  background-color: #fff;
+  border: 3px solid #222;
+}
+
+.TableGeneratorDices-one._skin_482 .side,
+.TableGeneratorDices-one._skin_775 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/dicesbox5/fade-texture.png);
+}
+
+.TableGeneratorDices-one._skin_482 .side .dot,
+.TableGeneratorDices-one._skin_775 .side .dot {
+  background-color: #fff;
+  border: 1px solid #555;
+}
+
+.TableGeneratorDices-one._skin_483 .side,
+.TableGeneratorDices-one._skin_776 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/dicesbox5/birds-texture.png);
+}
+
+.TableGeneratorDices-one._skin_483 .side .dot,
+.TableGeneratorDices-one._skin_776 .side .dot {
+  transform: translate(-1px, -1px);
+  width: 25px;
+  height: 25px;
+  background-color: #402817;
+  border: 3px solid #c2653f;
+  box-shadow: #000 0 0 10px;
+}
+
+.TableGeneratorDices-one._skin_484 .side,
+.TableGeneratorDices-one._skin_777 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/dicesbox5/paintSpots-texture.png);
+}
+
+.TableGeneratorDices-one._skin_484 .side .dot,
+.TableGeneratorDices-one._skin_777 .side .dot {
+  background-color: #fff;
+  border: 1px solid #555;
+}
+
+.TableGeneratorDices-one._skin_485 .side,
+.TableGeneratorDices-one._skin_778 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/dicesbox5/polygons-texture.png);
+}
+
+.TableGeneratorDices-one._skin_485 .side .dot,
+.TableGeneratorDices-one._skin_778 .side .dot {
+  background-color: #fff;
+  border: 1px solid #555;
+}
+
+.TableGeneratorDices-one._skin_486 .side,
+.TableGeneratorDices-one._skin_779 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/dicesbox5/despair-texture.png);
+}
+
+.TableGeneratorDices-one._skin_486 .side .dot,
+.TableGeneratorDices-one._skin_779 .side .dot {
+  transform: translate(-1px, -1px);
+  width: 25px;
+  height: 25px;
+  background-color: #fff;
+  border: 3px solid #555;
+}
+
+.TableGeneratorDices-one._skin_487 .side,
+.TableGeneratorDices-one._skin_780 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/dicesbox5/retrowave-texture.png);
+}
+
+.TableGeneratorDices-one._skin_487 .side .dot,
+.TableGeneratorDices-one._skin_780 .side .dot {
+  transform: translate(-0.5px, -0.5px);
+  width: 24px;
+  height: 24px;
+  background-color: #06f2dd;
+  border: 2px solid #556cc1;
+}
+
+.TableGeneratorDices-one._skin_488 .side,
+.TableGeneratorDices-one._skin_781 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/dicesbox5/box-texture.png);
+}
+
+.TableGeneratorDices-one._skin_488 .side .dot,
+.TableGeneratorDices-one._skin_781 .side .dot {
+  background-color: #fff;
+  border: 1px solid #555;
+}
+
+.TableGeneratorDices-one._skin_489 .side,
+.TableGeneratorDices-one._skin_782 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/dicesbox5/vangogh-texture.png);
+}
+
+.TableGeneratorDices-one._skin_489 .side .dot,
+.TableGeneratorDices-one._skin_782 .side .dot {
+  background-color: #fff;
+  border: 1px solid #555;
+}
+
+.TableGeneratorDices-one._skin_490 .side,
+.TableGeneratorDices-one._skin_783 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/dicesbox5/plumage-texture.png);
+}
+
+.TableGeneratorDices-one._skin_490 .side .dot,
+.TableGeneratorDices-one._skin_783 .side .dot {
+  transform: translate(-1px, -1px);
+  width: 25px;
+  height: 25px;
+  background-color: #fff;
+  border: 3px solid #555;
+}
+
+.TableGeneratorDices-one._skin_540 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/celebration-texture.png);
+}
+
+.TableGeneratorDices-one._skin_540 .side .dot {
+  background-color: #fff;
+  border: 1px solid #555;
+}
+
+.TableGeneratorDices-one._skin_606 .side {
+  background: red;
+}
+
+.TableGeneratorDices-one._skin_606 .side .dot {
+  display: none;
+}
+
+.TableGeneratorDices-one._skin_702 .side {
+  background-image: url(//m1.dogecdn.wtf/dices/waves-texture.svg);
+  background-size: cover;
+}
+
+.TableGeneratorDices-one._skin_702 .side .dot {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.333);
+  background-color: #fff;
+  border: none;
+}
+
+.TableGeneratorDices-one._skin_732 .side {
+  background: center/cover;
+}
+
+.TableGeneratorDices-one._skin_732 .side.front {
+  background-image: url(//m1.dogecdn.wtf/dices/snowflakes-texture-1.svg);
+}
+
+.TableGeneratorDices-one._skin_732 .side.top {
+  background-image: url(//m1.dogecdn.wtf/dices/snowflakes-texture-2.svg);
+}
+
+.TableGeneratorDices-one._skin_732 .side.right {
+  background-image: url(//m1.dogecdn.wtf/dices/snowflakes-texture-3.svg);
+}
+
+.TableGeneratorDices-one._skin_732 .side.left {
+  background-image: url(//m1.dogecdn.wtf/dices/snowflakes-texture-4.svg);
+}
+
+.TableGeneratorDices-one._skin_732 .side.bottom {
+  background-image: url(//m1.dogecdn.wtf/dices/snowflakes-texture-5.svg);
+}
+
+.TableGeneratorDices-one._skin_732 .side.back {
+  background-image: url(//m1.dogecdn.wtf/dices/snowflakes-texture-6.svg);
+}
+
+.TableGeneratorDices-one._skin_732 .side .dot {
+  display: none;
+}
+
+.TableGeneratorDices-one._skin_733 .side,
+.TableGeneratorDices-one._skin_743 .side {
+  background: url(//m1.dogecdn.wtf/dices/dicesbox6/veteli-texture.svg) center/cover;
+}
+
+.TableGeneratorDices-one._skin_733 .side .dot,
+.TableGeneratorDices-one._skin_743 .side .dot {
+  transform: translate(1px, 1px);
+  width: 21px;
+  height: 21px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+  background: #fff !important;
+  border: none !important;
+}
+
+.TableGeneratorDices-one._skin_734 .side,
+.TableGeneratorDices-one._skin_744 .side {
+  background: url(//m1.dogecdn.wtf/dices/dicesbox6/eina-texture.svg) center/cover;
+}
+
+.TableGeneratorDices-one._skin_734 .side .dot,
+.TableGeneratorDices-one._skin_744 .side .dot {
+  transform: translate(1px, 1px);
+  width: 21px;
+  height: 21px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+  background: #fff !important;
+  border: none !important;
+}
+
+.TableGeneratorDices-one._skin_735 .side,
+.TableGeneratorDices-one._skin_745 .side {
+  background: url(//m1.dogecdn.wtf/dices/dicesbox6/kierspe-texture.svg) center/cover;
+}
+
+.TableGeneratorDices-one._skin_735 .side .dot,
+.TableGeneratorDices-one._skin_745 .side .dot {
+  transform: translate(1px, 1px);
+  width: 21px;
+  height: 21px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+  background: #fff !important;
+  border: none !important;
+}
+
+.TableGeneratorDices-one._skin_736 .side,
+.TableGeneratorDices-one._skin_746 .side {
+  background: url(//m1.dogecdn.wtf/dices/dicesbox6/delft-texture.svg) center/cover;
+}
+
+.TableGeneratorDices-one._skin_736 .side .dot,
+.TableGeneratorDices-one._skin_746 .side .dot {
+  transform: translate(1px, 1px);
+  width: 21px;
+  height: 21px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.333);
+  background: #fff !important;
+  border: none !important;
+}
+
+.TableGeneratorDices-one._skin_737 .side,
+.TableGeneratorDices-one._skin_747 .side {
+  background: url(//m1.dogecdn.wtf/dices/dicesbox6/colatina-texture.svg) center/cover;
+}
+
+.TableGeneratorDices-one._skin_737 .side .dot,
+.TableGeneratorDices-one._skin_747 .side .dot {
+  transform: translate(1px, 1px);
+  width: 21px;
+  height: 21px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+  background: #fff !important;
+  border: none !important;
+}
+
+.TableGeneratorDices-one._skin_738 .side,
+.TableGeneratorDices-one._skin_748 .side {
+  background: url(//m1.dogecdn.wtf/dices/dicesbox6/bendigo-texture.svg) center/cover;
+}
+
+.TableGeneratorDices-one._skin_738 .side .dot,
+.TableGeneratorDices-one._skin_748 .side .dot {
+  transform: translate(1px, 1px);
+  width: 21px;
+  height: 21px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+  background: #fff !important;
+  border: none !important;
+}
+
+.TableGeneratorDices-one._skin_739 .side,
+.TableGeneratorDices-one._skin_749 .side {
+  background: url(//m1.dogecdn.wtf/dices/dicesbox6/atami-texture.svg) center/cover;
+}
+
+.TableGeneratorDices-one._skin_739 .side .dot,
+.TableGeneratorDices-one._skin_749 .side .dot {
+  transform: translate(1px, 1px);
+  width: 21px;
+  height: 21px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+  background: #fff !important;
+  border: none !important;
+}
+
+.TableGeneratorDices-one._skin_740 .side,
+.TableGeneratorDices-one._skin_750 .side {
+  background: url(//m1.dogecdn.wtf/dices/dicesbox6/ferrol-texture.svg) center/cover;
+}
+
+.TableGeneratorDices-one._skin_740 .side .dot,
+.TableGeneratorDices-one._skin_750 .side .dot {
+  transform: translate(1px, 1px);
+  width: 21px;
+  height: 21px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.333);
+  background: #fff !important;
+  border: none !important;
+}
+
+.TableGeneratorDices-one._skin_741 .side,
+.TableGeneratorDices-one._skin_751 .side {
+  background: url(//m1.dogecdn.wtf/dices/dicesbox6/avignon-texture.svg) center/cover;
+}
+
+.TableGeneratorDices-one._skin_741 .side .dot,
+.TableGeneratorDices-one._skin_751 .side .dot {
+  transform: translate(1px, 1px);
+  width: 21px;
+  height: 21px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+  background: #fff !important;
+  border: none !important;
+}
+
+.TableGeneratorDices-one._skin_770 .side .dot {
+  display: none;
+}
+
+.TableGeneratorDices._animated .TableGeneratorDices-one {
+  transition: transform 0.5s;
+}
