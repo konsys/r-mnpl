@@ -22,7 +22,7 @@ export const Field = (props: FieldProps) => {
     imgSrc
   } = props;
 
-  return (
+  const field = (
     <div
       mnpl-corner={mnplCorner}
       mnpl-line={mnplLine}
@@ -50,4 +50,8 @@ export const Field = (props: FieldProps) => {
       {!mnplSpecial && <div className="table-body-board-fields-one-level" />}
     </div>
   );
+
+  console.log(11111, mnplSpecial, mnplGroup);
+
+  return <>{field}</>;
 };
