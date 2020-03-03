@@ -194,7 +194,6 @@ export const Game = (props: Props) => (
                 }
                 turn={turn}
               />
-
               <Arbitr />
               <Ticket />
               <Chat />
@@ -204,9 +203,8 @@ export const Game = (props: Props) => (
               <Token param={player1} />
               <Token param={player2} />
             </div>
-            <div className="table-body-board-generators">
-              <Dices cl1={diceClass1} cl2={diceClass2} />
-            </div>
+
+            <Dices cl1={diceClass1} cl2={diceClass2} />
             <Contract />
             <TableHelper />
           </div>

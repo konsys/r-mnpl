@@ -1,0 +1,184 @@
+.TableFieldcard {
+  position: absolute;
+  box-shadow: #000 0 0 25px;
+  width: 205px;
+  font-size: 12px;
+  overflow: hidden;
+  z-index: 13;
+}
+body:not([theme]) .TableFieldcard {
+  color: #656d78;
+}
+body[theme="dark"] .TableFieldcard {
+  color: #e2e2e3;
+}
+.TableFieldcard ._bg {
+  display: inline-block;
+}
+body:not([theme]) .TableFieldcard ._bg {
+  background-color: #fff;
+}
+body[theme="dark"] .TableFieldcard ._bg {
+  background-color: #25262b;
+}
+.TableFieldcard-top {
+  padding: 10px 15px;
+  color: #fff;
+}
+.TableFieldcard-top-main {
+  font-size: 17px;
+  font-weight: 600;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.TableFieldcard-top-sub {
+  margin-top: -2px;
+  font-size: 11px;
+  opacity: 0.75;
+}
+.TableFieldcard-top._mnpl_color_0 {
+  background-color: #da4553;
+}
+.TableFieldcard-top._mnpl_color_1 {
+  background-color: #ec87c1;
+}
+.TableFieldcard-top._mnpl_color_2 {
+  background-color: #e0b439;
+}
+.TableFieldcard-top._mnpl_color_3 {
+  background-color: #37bc9d;
+}
+.TableFieldcard-top._mnpl_color_4 {
+  background-color: #4b89dc;
+}
+.TableFieldcard-top._mnpl_color_5 {
+  background-color: #8cc152;
+}
+.TableFieldcard-top._mnpl_color_6 {
+  background-color: #4fc1e9;
+}
+.TableFieldcard-top._mnpl_color_7 {
+  background-color: #967bdc;
+}
+.TableFieldcard-top._mnpl_color_8 {
+  background-color: #656d78;
+}
+.TableFieldcard-top._mnpl_color_9 {
+  background-color: #7f1f0f;
+}
+.TableFieldcard-buttons {
+  display: flex;
+  margin: 10px 15px;
+}
+.TableFieldcard-buttons > div {
+  flex: 1 1 auto;
+  border-radius: 5px;
+  padding: 6px 0;
+  color: #fff;
+  font-size: 12px;
+  text-align: center;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+}
+.TableFieldcard-buttons > div:not(:first-child) {
+  margin-left: 7px;
+}
+.TableFieldcard-buttons ._level_up,
+.TableFieldcard-buttons ._unmortgage {
+  background-color: #a0d468;
+}
+.TableFieldcard-buttons ._level_up:hover,
+.TableFieldcard-buttons ._unmortgage:hover {
+  background-color: #8cc152;
+}
+.TableFieldcard-buttons ._drop,
+.TableFieldcard-buttons ._level_down,
+.TableFieldcard-buttons ._mortgage,
+.TableFieldcard-buttons ._mortgaged_reject {
+  background-color: #ed5564;
+}
+.TableFieldcard-buttons ._drop:hover,
+.TableFieldcard-buttons ._level_down:hover,
+.TableFieldcard-buttons ._mortgage:hover,
+.TableFieldcard-buttons ._mortgaged_reject:hover {
+  background-color: #da4553;
+}
+.TableFieldcard-data {
+  margin: 10px 15px;
+}
+.TableFieldcard-data > div:not(:first-child) {
+  margin-top: 10px;
+}
+.TableFieldcard-data-rich {
+  line-height: 14px;
+}
+.TableFieldcard-data-rich > div:not(:first-child) {
+  margin-top: 4px;
+}
+.TableFieldcard-data-rows > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 19px;
+}
+.TableFieldcard-data-rows > div:not(:first-child) {
+  margin-top: 2px;
+}
+.TableFieldcard-data-rows > div ._title {
+  flex-grow: 999;
+}
+.TableFieldcard-data-rows > div ._title ._star_big,
+.TableFieldcard-data-rows > div ._title ._star_small {
+  display: inline-block;
+}
+.TableFieldcard-data-rows > div ._title ._star_big:before,
+.TableFieldcard-data-rows > div ._title ._star_small:before {
+  content: "★";
+}
+.TableFieldcard-data-rows > div ._title ._star_big:not(:first-child),
+.TableFieldcard-data-rows > div ._title ._star_small:not(:first-child) {
+  margin-left: 2px;
+}
+body:not([theme]) .TableFieldcard-data-rows > div ._title ._star_small {
+  color: #656d78;
+}
+body[theme="dark"] .TableFieldcard-data-rows > div ._title ._star_small {
+  color: #e2e2e3;
+}
+.TableFieldcard-data-rows > div ._title ._star_big {
+  color: #f6bb43;
+  font-size: 18px;
+}
+.TableFieldcard-data-rows > div ._value {
+  font-size: 14px;
+  font-weight: 600;
+}
+.TableFieldcard-data-rows > div ._value._type_money:after {
+  content: "k";
+  font-weight: 400;
+}
+body:not([theme]) .TableFieldcard-data-rows > div ._value._type_money:after {
+  color: #a7adb5;
+}
+body[theme="dark"] .TableFieldcard-data-rows > div ._value._type_money:after {
+  color: #a1a1a4;
+}
+.TableFieldcard-data-rows > div ._value._type_x {
+  display: flex;
+  align-items: center;
+}
+.TableFieldcard-data-rows > div ._value._type_x svg {
+  display: inline;
+  margin-right: 3px;
+  height: 19px;
+}
+body:not([theme]) .TableFieldcard-data-rows > div ._value._type_x svg path {
+  fill: #656d78;
+}
+body[theme="dark"] .TableFieldcard-data-rows > div ._value._type_x svg path {
+  fill: #e2e2e3;
+}
