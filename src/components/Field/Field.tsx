@@ -51,7 +51,5 @@ export const Field = (props: FieldProps) => {
     </div>
   );
 
-  console.log(11111, mnplSpecial, mnplGroup);
-
   return <>{field}</>;
 };

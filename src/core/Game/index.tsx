@@ -1,4 +1,4 @@
-import React, { CSSProperties } from "react";
+import React, { CSSProperties, useState } from "react";
 import { RouteComponentProps } from "@reach/router";
 import "./style.scss";
 import { Players } from "../../components/Players/Players";
@@ -15,132 +15,126 @@ import { Dices } from "../../components/Dices/Dices";
 import { GameLoading } from "../../components/GameLoading/GameLoading";
 
 export interface PlayerToken {
-  userId: number;
+  userId?: number;
   mnplPosition: number;
   mnplJailed: number;
   mnplSamePos: number;
-  mnplIndex: number;
-  style: CSSProperties;
-  class?: string;
 }
 
 interface Props extends RouteComponentProps {}
 
-let tableActionVisible = true;
-let isGenerators = true;
-
-let diceClass1 = "";
-let diceClass2 = "";
-
 let diceValue1 = 1;
 let diceValue2 = 1;
 
-let player1Top = 18.3;
-let player1Left = 18.3;
-
-const resetDice = () => {
-  setTimeout(() => {
-    tableActionVisible = true;
-    isGenerators = false;
-    diceClass1 = "r0";
-    diceClass2 = "r0";
-  }, 2000);
-};
-const randDice = () => {
-  diceValue1 = random(0, 6);
-  diceValue2 = random(0, 6);
-  setTimeout(() => (diceClass1 = "r" + diceValue1), 20);
-  setTimeout(() => (diceClass2 = "r" + diceValue2), 20);
-};
-
-const turn = () => {
-  isGenerators = true;
-  tableActionVisible = false;
-  randDice();
-  player1Left = (diceValue1 + diceValue2 + 1) * 55;
-
-  setTimeout(() => {
-    player1.style.top = `${player1Top}px`;
-    player1.style.left = `${player1Left}px`;
-    player1.style.transitionDuration = `1000ms;`;
-  }, 2000);
-
-  resetDice();
-};
-
-function random(min: number, max: number) {
+const random = (min: number, max: number) => {
   return Math.ceil(min + Math.random() * (max - min));
-}
-
-const player1: PlayerToken = {
-  userId: 1243457,
-  mnplPosition: 0,
-  mnplJailed: 0,
-  mnplSamePos: 2,
-  mnplIndex: 0,
-  style: {
-    top: `${player1Top}px`,
-    left: `${player1Left}px`,
-    transitionDuration: "3000ms"
-  },
-  class: "_animated"
 };
 
-const player2: PlayerToken = {
-  userId: 429935,
-  mnplPosition: 0,
-  mnplJailed: 0,
-  mnplSamePos: 2,
-  mnplIndex: 1,
-  style: { top: "51.7px", left: "51.7px" },
-  class: "_animated"
-};
+// ST00011|Name=Волго-Вятский филиал АО "Ростехинвентаризация - Федеральное БТИ"|
+// PersonalAcc=40702810442000023477|
+// BankName=Волго-Вятский банк ПАО Сбербанк г.Нижний Новгород|
+// BIC=042202603|
+// CorrespAcc=30101810900000000603|
+// PayeeINN=9729030514|
+// Contract=12/1-000219/20|
+// LastName=СЫСУЕВ|
+// FirstName=КОНСТАНТИН|
+// MiddleName=АЛЕКСАНДРОВИЧ|
+// PayerAddress=Российская Федерация|
+// Sum=1174541
 
-export const Game = (props: Props) => (
-  //
-  <>
-    <div className="wrapper" style={{ width: "100%", height: "100%" }}>
-      <div className="table _shakehack">
-        <div className="table-body">
-          <Players />
-          <div className="table-body-board">
-            <Board />
-            <div className="table-body-board-center">
-              <M1tv />
-              {tableActionVisible && (
-                <TableAction
-                  title={"Покупаем?"}
-                  sum={5}
-                  text={
-                    "Если вы откажетесь от покупки, то поле будет выставлено на общий аукцион."
-                  }
-                  actions={[
-                    // { title: `Купить за 2,800k`, onClick: turn },
-                    // { title: `На аукцион`, onClick: turn },
-                    { title: `Бросить кубики`, onClick: turn }
-                  ]}
-                />
+export const Game = (props: Props) => {
+  const [isGenerators, setIsGenerators] = useState(false);
+  const [diceValue1, setDiceValue1] = useState(0);
+  const [diceValue2, setDiceValue2] = useState(0);
+  const [tableActionVisible, setTableActionVisible] = useState(true);
+  const [generatorOneClass, setGeneratorOneClass] = useState("");
+  const [generatorTwoClass, setGeneratorTwoClass] = useState("");
+
+  const [player1, setPlayer1] = useState({
+    userId: 1243457,
+    mnplPosition: 0,
+    mnplJailed: 0,
+    mnplSamePos: 2
+  });
+  const [player2, setPlayer2] = useState({
+    userId: 1243457,
+    mnplPosition: 0,
+    mnplJailed: 0,
+    mnplSamePos: 2
+  });
+
+  const resetDice = () => {
+    setTimeout(() => {
+      setTableActionVisible(true);
+      setIsGenerators(false);
+      setGeneratorOneClass("r0");
+      setGeneratorTwoClass("r0");
+    }, 2000);
+  };
+
+  const randDice = () => {
+    setDiceValue1(random(0, 6));
+    setDiceValue2(random(0, 6));
+    setTimeout(() => setGeneratorOneClass("r" + diceValue1), 20);
+    setTimeout(() => setGeneratorTwoClass("r" + diceValue2), 20);
+  };
+
+  const turn = () => {
+    setIsGenerators(true);
+    setTableActionVisible(false);
+    randDice();
+    setTimeout(() => {
+      setPlayer1({
+        userId: 1243457,
+        mnplPosition: 1,
+        mnplJailed: 0,
+        mnplSamePos: 2
+      });
+    }, 2000);
+    resetDice();
+  };
+
+  return (
+    <>
+      <div className="wrapper" style={{ width: "100%", height: "100%" }}>
+        <div className="table _shakehack">
+          <div className="table-body">
+            <Players />
+            <div className="table-body-board">
+              <Board />
+              <div className="table-body-board-center">
+                <M1tv />
+                {tableActionVisible && (
+                  <TableAction
+                    title={"Покупаем?"}
+                    text={
+                      "Если вы откажетесь от покупки, то поле будет выставлено на общий аукцион."
+                    }
+                    actions={[{ title: `Бросить кубики`, onClick: turn }]}
+                  />
+                )}
+                <Arbitr />
+                <Ticket />
+                <Chat />
+              </div>
+              <div className="table-body-board-tokens">
+                <Token param={player1} />
+                <Token param={player2} />
+              </div>
+              {isGenerators && (
+                <Dices cl1={generatorOneClass} cl2={generatorTwoClass} />
               )}
-              <Arbitr />
-              <Ticket />
-              <Chat />
+              <Contract />
+              <TableHelper />
             </div>
-
-            <div className="table-body-board-tokens">
-              <Token param={player1} />
-              <Token param={player2} />
-            </div>
-
-            {isGenerators && <Dices cl1={diceClass1} cl2={diceClass2} />}
-            <Contract />
-            <TableHelper />
           </div>
-        </div>
 
-        <div id="placeholder_gameover"></div>
+          <div id="placeholder_gameover"></div>
+        </div>
+        <div className="table-jokes"></div>
       </div>
-      <div className="table-jokes"></div>
-    </div>
-    <GameLoading />
-  </>
-);
+      <GameLoading />
+    </>
+  );
+};
