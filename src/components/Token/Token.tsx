@@ -1,15 +1,16 @@
 import React from "react";
 
 export const Token = (props: any) => {
-  console.log("TOKEN", props.param.mnplPosition);
+  const { position, isJailed } = props;
+  let left = 35;
+  let top = 35;
+  left = position * 55;
   return (
     <>
       <div
-        mnpl-userid={props.param.userId}
-        mnpl-position={props.param.mnplPosition}
-        mnpl-jailed={props.param.mnplJailed}
-        mnpl-samepos={props.param.mnplSamePos}
-        style={{ top: "35px", left: "35px" }}
+        mnpl-position={position}
+        mnpl-jailed={isJailed}
+        style={{ top: `${top}px`, left: `${left}px` }}
         className="_animated"
       />
     </>

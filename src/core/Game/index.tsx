@@ -15,15 +15,13 @@ import { Dices } from "../../components/Dices/Dices";
 import { GameLoading } from "../../components/GameLoading/GameLoading";
 
 export interface PlayerToken {
-  userId?: number;
-  mnplPosition: number;
-  mnplJailed: number;
-  mnplSamePos: number;
+  position: number;
+  isJailed: number;
 }
 
 interface Props extends RouteComponentProps {}
 
-let diceValue1 = 1;
+const tokenOne = { userId: 1243457, mnplJailed: 0, mnplSamePos: 2 };
 let diceValue2 = 1;
 
 const random = (min: number, max: number) => {
@@ -45,8 +43,8 @@ const random = (min: number, max: number) => {
 
 export const Game = (props: Props) => {
   const [isGenerators, setIsGenerators] = useState(false);
-  const [diceValue1, setDiceValue1] = useState(0);
-  const [diceValue2, setDiceValue2] = useState(0);
+  const [diceValue1, setDiceValue1] = useState(1);
+  const [diceValue2, setDiceValue2] = useState(1);
   const [tableActionVisible, setTableActionVisible] = useState(true);
   const [generatorOneClass, setGeneratorOneClass] = useState("");
   const [generatorTwoClass, setGeneratorTwoClass] = useState("");
@@ -119,8 +117,8 @@ export const Game = (props: Props) => {
                 <Chat />
               </div>
               <div className="table-body-board-tokens">
-                <Token param={player1} />
-                <Token param={player2} />
+                <Token param={player1} position={diceValue1 + diceValue2} />
+                <Token param={player2} position={1} />
               </div>
               {isGenerators && (
                 <Dices cl1={generatorOneClass} cl2={generatorTwoClass} />
