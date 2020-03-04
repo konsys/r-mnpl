@@ -1,26 +1,20 @@
 import React from "react";
 import { ActionPanel } from "../ActionPanel/ActionPanel";
 
+interface TableActions {
+  title: string;
+  onClick: () => void;
+}
 interface Props {
   title: string;
   text: string;
   sum: number;
-  turn: () => void;
+  actions: TableActions[];
 }
 
 // const turnAction = "";
 
 export const TableAction = (props: Props) => (
-  // <div className="TableAction">
-  //   <div className="TableAction-top">
-  //     <div className="TableAction-top-title">{props.title}</div>
-  //     <div className="TableAction-top-text">
-  //       <div>{props.text}</div>
-  //     </div>
-  //   </div>
-  //   <ActionPanel text={`Бросить кубики ${props.sum}`} onClick={props.turn} />
-  // </div>
-
   <div className="TableAction">
     <div className="TableAction-top">
       <div className="TableAction-top-title">{props.title}</div>
@@ -29,8 +23,9 @@ export const TableAction = (props: Props) => (
       </div>
     </div>
     <div className="TableAction-buttons">
-      <ActionPanel text={`Купить за 2,800k`} onClick={props.turn} />
-      <ActionPanel text={`На аукцион`} onClick={props.turn} />
+      {props.actions.map(action => (
+        <ActionPanel text={action.title} onClick={action.onClick} />
+      ))}
     </div>
   </div>
 );

@@ -4,7 +4,7 @@ export const Ticket = (props: any) => (
     <div className="table-body-board-ticket" style={{ display: "none" }}>
       <div className="table-body-board-ticket-side">
         <div>
-          <img src="//m1.dogecdn.wtf/tickets/m1cup-2018.svg" />
+          <img alt="" src="//m1.dogecdn.wtf/tickets/m1cup-2018.svg" />
         </div>
         <div className="_button">
           <input
