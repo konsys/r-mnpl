@@ -18,8 +18,9 @@ export const TableAction = (props: Props) => (
   //       <div>{props.text}</div>
   //     </div>
   //   </div>
-  //   <ActionPanel text={`Бросить кубики ${props.sum}`} turn={props.turn} />
+  //   <ActionPanel text={`Бросить кубики ${props.sum}`} onClick={props.turn} />
   // </div>
+
   <div className="TableAction">
     <div className="TableAction-top">
       <div className="TableAction-top-title">{props.title}</div>

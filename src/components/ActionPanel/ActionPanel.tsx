@@ -5,9 +5,7 @@ export interface ActionPanelProps {
   onClick: () => void;
 }
 export const ActionPanel = (props: ActionPanelProps) => (
-  <div className="TableAction-buttons">
-    <div className="_action" onClick={props.onClick}>
-      {props.text}
-    </div>
+  <div className="_action1" onClick={props.onClick}>
+    {props.text}
   </div>
 );
