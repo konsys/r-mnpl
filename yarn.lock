@@ -3806,6 +3806,18 @@ ee-first@1.1.1:
   resolved "https://registry.yarnpkg.com/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
   integrity sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
 
+effector-react@^20.6.2:
+  version "20.6.2"
+  resolved "https://registry.yarnpkg.com/effector-react/-/effector-react-20.6.2.tgz#e0b824bbbe26198f76606de6a14f5759870b1ed0"
+  integrity sha512-tWg22y4iH3Y1kzuM6oFevxWxIIQuywCb6XBLp2qvG0WC2W6IwHU+qBN7F72Q3fy/jP8Qy9Ki0jLcqb35+757MQ==
+
+effector@^20.12.1:
+  version "20.12.1"
+  resolved "https://registry.yarnpkg.com/effector/-/effector-20.12.1.tgz#499d941b802f16c71c895d09e4098145a2653709"
+  integrity sha512-jeyAlQOPBb9UDr4l1tKdwcJxAdwQ7WeUqbtbC1Z/rFNyRBdmWYw80jFtt8gQhFxrANyM6WX8S0tMjVRVWI2Kag==
+  dependencies:
+    symbol-observable "^1.2.0"
+
 electron-to-chromium@^1.3.341, electron-to-chromium@^1.3.363:
   version "1.3.364"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.364.tgz#524bd0cf9c45ba49c508fd3b731a07efbf310b1c"
@@ -4042,7 +4054,7 @@ eslint-plugin-jsx-a11y@6.2.3:
     has "^1.0.3"
     jsx-ast-utils "^2.2.1"
 
-eslint-plugin-react-hooks@^1.6.1:
+eslint-plugin-react-hooks@^1.7.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-1.7.0.tgz#6210b6d5a37205f0b92858f895a4e827020a7d04"
   integrity sha512-iXTCFcOmlWvw4+TOE8CLWj6yX1GwzT0Y6cUfHHZqWnSk144VmVIRcVGtUAzrLES7C798lmvnt02C7rxaOX1HNA==
@@ -10048,6 +10060,11 @@ svgo@^1.0.0, svgo@^1.2.2:
     stable "^0.1.8"
     unquote "~1.1.1"
     util.promisify "~1.0.0"
+
+symbol-observable@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.2.0.tgz#c22688aed4eab3cdc2dfeacbb561660560a00804"
+  integrity sha512-e900nM8RRtGhlV36KGEU9k65K3mPb1WV70OdjfxlG2EAuM1noi/E/BaW/uMhL7bPEssK8QV57vN3esixjUvcXQ==
 
 symbol-tree@^3.2.2:
   version "3.2.4"

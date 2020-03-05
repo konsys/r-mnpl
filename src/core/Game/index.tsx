@@ -1,4 +1,4 @@
-import React, { CSSProperties, useState } from "react";
+import React, { useState } from "react";
 import { RouteComponentProps } from "@reach/router";
 import "./style.scss";
 import { Players } from "../../components/Players/Players";
@@ -13,6 +13,8 @@ import { TableAction } from "../../components/TableAction/TableAction";
 import { Board } from "../../components/Board/Board";
 import { Dices } from "../../components/Dices/Dices";
 import { GameLoading } from "../../components/GameLoading/GameLoading";
+import { createStore, createEvent } from "effector";
+import { useStore } from "effector-react";
 
 export interface PlayerToken {
   position: number;
@@ -21,8 +23,8 @@ export interface PlayerToken {
 
 interface Props extends RouteComponentProps {}
 
-const tokenOne = { userId: 1243457, mnplJailed: 0, mnplSamePos: 2 };
-let diceValue2 = 1;
+// const tokenOne = { userId: 1243457, mnplJailed: 0, mnplSamePos: 2 };
+// let diceValue2 = 1;
 
 const random = (min: number, max: number) => {
   return Math.ceil(min + Math.random() * (max - min));
@@ -41,56 +43,49 @@ const random = (min: number, max: number) => {
 // PayerAddress=Российская Федерация|
 // Sum=1174541
 
+const diceRandStandart = createEvent();
+const diceRandPremium = createEvent();
+const resetDices = createEvent();
+
+const dices = createStore({
+  dice1: 0,
+  dice2: 0,
+  dice3: 0
+})
+  .on(diceRandStandart, () => {
+    return {
+      dice1: random(0, 6),
+      dice2: random(0, 6),
+      dice3: 0
+    };
+  })
+  .on(diceRandPremium, () => {
+    return {
+      dice1: random(0, 6),
+      dice2: random(0, 6),
+      dice3: random(0, 6)
+    };
+  })
+  .reset(resetDices);
+
 export const Game = (props: Props) => {
   const [isGenerators, setIsGenerators] = useState(false);
-  const [diceValue1, setDiceValue1] = useState(1);
-  const [diceValue2, setDiceValue2] = useState(1);
   const [tableActionVisible, setTableActionVisible] = useState(true);
-  const [generatorOneClass, setGeneratorOneClass] = useState("");
-  const [generatorTwoClass, setGeneratorTwoClass] = useState("");
 
-  const [player1, setPlayer1] = useState({
-    userId: 1243457,
-    mnplPosition: 0,
-    mnplJailed: 0,
-    mnplSamePos: 2
-  });
-  const [player2, setPlayer2] = useState({
-    userId: 1243457,
-    mnplPosition: 0,
-    mnplJailed: 0,
-    mnplSamePos: 2
-  });
+  const [token1Position, setToken1Position] = useState(0);
+  const [token2Position] = useState(0);
 
-  const resetDice = () => {
-    setTimeout(() => {
-      setTableActionVisible(true);
-      setIsGenerators(false);
-      setGeneratorOneClass("r0");
-      setGeneratorTwoClass("r0");
-    }, 2000);
-  };
-
-  const randDice = () => {
-    setDiceValue1(random(0, 6));
-    setDiceValue2(random(0, 6));
-    setTimeout(() => setGeneratorOneClass("r" + diceValue1), 20);
-    setTimeout(() => setGeneratorTwoClass("r" + diceValue2), 20);
-  };
+  const data = useStore(dices);
 
   const turn = () => {
     setIsGenerators(true);
-    setTableActionVisible(false);
-    randDice();
-    setTimeout(() => {
-      setPlayer1({
-        userId: 1243457,
-        mnplPosition: 1,
-        mnplJailed: 0,
-        mnplSamePos: 2
-      });
-    }, 2000);
-    resetDice();
+    diceRandStandart();
+
+    dices.watch(v => {
+      const posSum = token1Position + v.dice1 + v.dice2;
+      const pos1 = posSum > 40 ? posSum - 40 : posSum;
+      setToken1Position(pos1);
+    });
   };
 
   return (
@@ -117,11 +112,15 @@ export const Game = (props: Props) => {
                 <Chat />
               </div>
               <div className="table-body-board-tokens">
-                <Token param={player1} position={diceValue1 + diceValue2} />
-                <Token param={player2} position={1} />
+                <Token userId={1} position={token1Position} isJailed={0} />
+                <Token userId={2} position={token2Position} isJailed={0} />
               </div>
               {isGenerators && (
-                <Dices cl1={generatorOneClass} cl2={generatorTwoClass} />
+                <Dices
+                  value1={data.dice1}
+                  value2={data.dice2}
+                  value3={data.dice3}
+                />
               )}
               <Contract />
               <TableHelper />
