@@ -64,9 +64,6 @@ diceTurn.watch(v => {
         isJailed
       }
     };
-
-    // console.log(234234234, v);
-
     changePosition(res);
   }
 });
