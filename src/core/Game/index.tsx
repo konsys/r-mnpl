@@ -13,8 +13,10 @@ import { TableAction } from "../../components/TableAction/TableAction";
 import { Board } from "../../components/Board/Board";
 import { Dices } from "../../components/Dices/Dices";
 import { GameLoading } from "../../components/GameLoading/GameLoading";
-import { createStore, createEvent } from "effector";
+import { dices, diceRandStandart, resetDices } from "./DicesStore";
+
 import { useStore } from "effector-react";
+import { calcPosition } from "./TokensStore";
 
 export interface PlayerToken {
   position: number;
@@ -23,69 +25,22 @@ export interface PlayerToken {
 
 interface Props extends RouteComponentProps {}
 
-// const tokenOne = { userId: 1243457, mnplJailed: 0, mnplSamePos: 2 };
-// let diceValue2 = 1;
-
-const random = (min: number, max: number) => {
-  return Math.ceil(min + Math.random() * (max - min));
-};
-
-// ST00011|Name=Волго-Вятский филиал АО "Ростехинвентаризация - Федеральное БТИ"|
-// PersonalAcc=40702810442000023477|
-// BankName=Волго-Вятский банк ПАО Сбербанк г.Нижний Новгород|
-// BIC=042202603|
-// CorrespAcc=30101810900000000603|
-// PayeeINN=9729030514|
-// Contract=12/1-000219/20|
-// LastName=СЫСУЕВ|
-// FirstName=КОНСТАНТИН|
-// MiddleName=АЛЕКСАНДРОВИЧ|
-// PayerAddress=Российская Федерация|
-// Sum=1174541
-
-const diceRandStandart = createEvent();
-const diceRandPremium = createEvent();
-const resetDices = createEvent();
-
-const dices = createStore({
-  dice1: 0,
-  dice2: 0,
-  dice3: 0
-})
-  .on(diceRandStandart, () => {
-    return {
-      dice1: random(0, 6),
-      dice2: random(0, 6),
-      dice3: 0
-    };
-  })
-  .on(diceRandPremium, () => {
-    return {
-      dice1: random(0, 6),
-      dice2: random(0, 6),
-      dice3: random(0, 6)
-    };
-  })
-  .reset(resetDices);
-
 export const Game = (props: Props) => {
   const [isGenerators, setIsGenerators] = useState(false);
   const [tableActionVisible, setTableActionVisible] = useState(true);
 
-  const [token1Position, setToken1Position] = useState(0);
-  const [token2Position] = useState(0);
-
-  const data = useStore(dices);
+  const diceStore = useStore(dices);
 
   const turn = () => {
+    setTableActionVisible(false);
+    resetDices();
     setIsGenerators(true);
-    diceRandStandart();
-
-    dices.watch(v => {
-      const posSum = token1Position + v.dice1 + v.dice2;
-      const pos1 = posSum > 40 ? posSum - 40 : posSum;
-      setToken1Position(pos1);
-    });
+    calcPosition();
+    setTimeout(() => diceRandStandart());
+    setTimeout(() => {
+      setIsGenerators(false);
+      setTableActionVisible(true);
+    }, 2000);
   };
 
   return (
@@ -112,14 +67,13 @@ export const Game = (props: Props) => {
                 <Chat />
               </div>
               <div className="table-body-board-tokens">
-                <Token userId={1} position={token1Position} isJailed={0} />
-                <Token userId={2} position={token2Position} isJailed={0} />
+                <Token id={1} />
               </div>
               {isGenerators && (
                 <Dices
-                  value1={data.dice1}
-                  value2={data.dice2}
-                  value3={data.dice3}
+                  value1={diceStore.dice1}
+                  value2={diceStore.dice2}
+                  value3={diceStore.dice3}
                 />
               )}
               <Contract />

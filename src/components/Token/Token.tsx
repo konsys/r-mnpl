@@ -1,53 +1,31 @@
-import React, { useState } from "react";
+import React from "react";
+import { useStore } from "effector-react";
+import { tokens } from "../../core/Game/TokensStore";
 
 interface Props {
-  position: number;
-  userId: number;
-  isJailed: 0 | 1;
+  id: number;
 }
 
 export const Token = (props: Props) => {
-  const { position, isJailed } = props;
-  const [left, setLeft] = useState(0);
-  const [top, setTop] = useState(0);
-  let left1 = 0;
-  let top1 = 0;
+  const tokenStore = useStore(tokens);
 
-  if (position >= 0 && position <= 11) {
-    left1 = left + (position + 1) * 55;
-    if (props.userId < 2) {
-      console.log("TOKEN1", position, left1, top1);
-    }
-  } else if (position >= 12 && position <= 21) {
-    const curPos = position - 12;
-    top1 = top + curPos * 55;
-    if (props.userId < 2) {
-      console.log("TOKEN2", position, curPos, left1, top1);
-    }
-  } else if (position >= 22 && position <= 31) {
-    const curPos = position - 22;
-    left1 = left - curPos * 55;
-    if (props.userId < 2) {
-      console.log("TOKEN3", position, curPos, left1, top1);
-    }
-  } else if (position >= 32 && position <= 40) {
-    const curPos = position - 32;
-    top1 = top - curPos * 55;
-    if (props.userId < 2) {
-      console.log("TOKEN4", position, curPos, left1, top1);
-    }
-  }
-
-  setLeft(left1);
-  setTop(top1);
-
+  const token = tokenStore[props.id];
   return (
     <>
-      <div
-        mnpl-jailed={isJailed}
-        style={{ top: `${top1}px`, left: `${left1}px` }}
-        className="_animated"
-      />
+      {token && (
+        <div
+          mnpl-jailed={token.isJailed}
+          style={{
+            left: `${token.left}px`,
+            top: `${token.top}px`
+          }}
+          className="_animated"
+        />
+      )}
     </>
   );
 };
+
+// for i in {1..10000}; do
+// curl 'https://all.me/api/v2/magazines/5cda7a4085a52b00011ec3d5/subscription' -H 'authority: all.me' -H 'pragma: no-cache' -H 'cache-control: no-cache' -H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDgwODBjZjM4MTk2ODAwMDFiM2EzMDIiLCJpYXQiOjE1Nzk4NTUyMzQsImV4cCI6NDE3MTg1NTIzNCwiYXVkIjoiMSJ9.fGIu7IAKsVD_FB9b3gdNR_1yGz9gufG96XVV8IlOJjs' -H 'sec-fetch-dest: empty' -H 'user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36' -H 'dnt: 1' -H 'content-type: application/json' -H 'accept: */*' -H 'origin: https://all.me' -H 'sec-fetch-site: same-origin' -H 'sec-fetch-mode: cors' -H 'referer: https://all.me/id410579' -H 'accept-language: ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7,la;q=0.6' -H 'cookie: _ga=GA1.2.1306285492.1579855228; _ym_uid=1579855228883828240; _ym_d=1579855228; G_ENABLED_IDPS=google; _gid=GA1.2.1126818679.1583488453; uid=5d8080cf3819680001b3a302; psid=s%3AeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDgwODBjZjM4MTk2ODAwMDFiM2EzMDIiLCJpYXQiOjE1ODM0ODg0NTMsImV4cCI6NDE3NTQ4ODQ1MywiYXVkIjoiMSJ9.7OI93d2JqZxE-485159FFURrOAjE6hSdrEeq67ywn9I.65Jxaqdl8o2l%2F7wY8EUZdx%2FO%2B8po3LXgIHAkQHE5%2FD4; _ym_visorc_47673058=w; _ym_isad=1; G_AUTHUSER_H=0; _gat=1' --data-binary '{}' --compressed
+// done
