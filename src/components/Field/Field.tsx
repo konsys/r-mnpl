@@ -32,7 +32,7 @@ export const Field = (props: FieldProps) => {
     >
       {price && (
         <div className="table-body-board-fields-one-label">
-          <div>{price}</div>
+          <div>{props.id - 1}</div>
         </div>
       )}
 
@@ -45,7 +45,10 @@ export const Field = (props: FieldProps) => {
             </div>
           </>
         )}
-        <div className="_logo" style={{ backgroundImage: `url(${imgSrc}` }} />
+        <div
+          className="_logo"
+          style={{ backgroundImage: `url(${null && imgSrc}` }}
+        />
       </div>
       {!mnplSpecial && <div className="table-body-board-fields-one-level" />}
     </div>

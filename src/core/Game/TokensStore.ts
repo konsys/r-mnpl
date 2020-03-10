@@ -2,7 +2,7 @@ import { createStore, createEvent, sample } from "effector";
 import { dices, diceRandStandart } from "./DicesStore";
 
 export const calcPosition = () => {};
-
+const tableLength = 635;
 export interface TokenParams {
   id: number;
   step: number;
@@ -17,53 +17,60 @@ export interface TokenStore {
 }
 
 const defaultToken: TokenStore = {
-  1: { id: 1, step: 0, position: 0, left: 0, top: 0, isJailed: 0 }
+  1: { id: 1, step: 0, position: 0, left: 35, top: 35, isJailed: 0 }
 };
 
 const diceTurn = sample(dices, diceRandStandart, v => v);
 
 diceTurn.watch(v => {
   const tokenState = tokens.getState();
-
   const currentToken = tokenState[v.userId];
 
   if (typeof currentToken !== "undefined") {
-    const { position, left, top, step, isJailed } = currentToken;
+    const { position, step, isJailed } = currentToken;
 
-    let left1 = 0;
-    let top1 = 0;
-    let curPos = 0;
+    let left = 0;
+    let top = 0;
 
     const posSum = v.sum + position;
-    let position1 = posSum > 40 ? 40 - posSum : posSum;
+    let newPosition = posSum >= 40 ? 40 - posSum : posSum;
 
-    if (position1 >= 0 && position1 <= 11) {
-      left1 = left + (position + 1) * 55;
-      curPos = position1;
-      // console.log("TOKEN1", position, left, top);
-    } else if (position1 >= 12 && position1 <= 21) {
-      curPos = position - 12;
-      top1 = top + curPos * 55;
-      // console.log("TOKEN2", position, curPos, left, top);
-    } else if (position1 >= 22 && position1 <= 31) {
-      curPos = position - 22;
-      left1 = left - curPos * 55;
-      // console.log("TOKEN3", position, curPos, left, top);
-    } else if (position1 >= 32 && position1 <= 40) {
-      curPos = position - 32;
-      top1 = top - curPos * 55;
-      // console.log("TOKEN4", position, curPos, left, top);
+    if (newPosition >= 0 && newPosition <= 10) {
+      left = newPosition === 0 ? 35 : (newPosition + 1) * 55;
+      top = 35;
+      if (newPosition === 10) {
+        left += 40;
+        top -= 15;
+      }
+    } else if (newPosition >= 11 && newPosition <= 20) {
+      top = (newPosition - 9) * 55;
+      left = tableLength;
+      if (newPosition === 20) {
+        top += 22;
+        left -= 5;
+      }
+    } else if (newPosition >= 21 && newPosition <= 30) {
+      left = tableLength + 28 - (newPosition - 19) * 55;
+      top = tableLength;
+      if (newPosition === 30) {
+        top -= 10;
+        left += 5;
+      }
+    } else if (newPosition >= 31 && newPosition <= 40) {
+      top = tableLength + 28 - (newPosition - 29) * 55;
+      left = 35;
     }
     const res = {
       [v.userId]: {
         id: v.userId,
         step: step + 1,
-        position: curPos,
-        left: left1,
-        top: top1,
+        position: newPosition,
+        left,
+        top,
         isJailed
       }
     };
+
     changePosition(res);
   }
 });
@@ -76,4 +83,4 @@ export const tokens = createStore(defaultToken)
   .on(changePosition, (_, v) => v)
   .reset(resetTokens);
 
-tokens.watch(v => console.log("TOKENS", v));
+tokens.watch(v => console.log("TOKENS", v[1]));

@@ -32,15 +32,15 @@ export const Game = (props: Props) => {
   const diceStore = useStore(dices);
 
   const turn = () => {
-    setTableActionVisible(false);
     resetDices();
+    setTableActionVisible(false);
     setIsGenerators(true);
     calcPosition();
     setTimeout(() => diceRandStandart());
     setTimeout(() => {
       setIsGenerators(false);
       setTableActionVisible(true);
-    }, 2000);
+    }, 1000);
   };
 
   return (
