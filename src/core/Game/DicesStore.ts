@@ -12,10 +12,10 @@ export const dices = createStore({
   sum: 0
 })
   .on(diceRandStandart, () => {
-    // const dice1 = random(0, 6);
-    // const dice2 = random(0, 6);
-    const dice1 = 4;
-    const dice2 = 4;
+    const dice1 = random(0, 6);
+    const dice2 = random(0, 6);
+    // const dice1 = 4;
+    // const dice2 = 4;
     return {
       userId: 1,
       dice1,

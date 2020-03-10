@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { RouteComponentProps } from "@reach/router";
 import "./style.scss";
 import { Players } from "../../components/Players/Players";
@@ -14,9 +14,9 @@ import { Board } from "../../components/Board/Board";
 import { Dices } from "../../components/Dices/Dices";
 import { GameLoading } from "../../components/GameLoading/GameLoading";
 import { dices, diceRandStandart, resetDices } from "./DicesStore";
-
 import { useStore } from "effector-react";
-import { calcPosition } from "./TokensStore";
+// import openSocket from "socket.io-client";
+import { useWebSocket } from "../../lib/UseWebSocket/UseWebSocket";
 
 export interface PlayerToken {
   position: number;
@@ -26,6 +26,15 @@ export interface PlayerToken {
 interface Props extends RouteComponentProps {}
 
 export const Game = (props: Props) => {
+  const [status] = useWebSocket("ws://localhost:3001", msg => console.log(msg));
+
+  useEffect(() => {
+    console.log(333333, status);
+    if (status === "open") {
+      // sendMessage({ type: "ready", msg: "ewqfe" });
+    }
+  }, [status]);
+
   const [isGenerators, setIsGenerators] = useState(false);
   const [tableActionVisible, setTableActionVisible] = useState(true);
 
@@ -35,12 +44,12 @@ export const Game = (props: Props) => {
     resetDices();
     setTableActionVisible(false);
     setIsGenerators(true);
-    calcPosition();
+
     setTimeout(() => diceRandStandart());
     setTimeout(() => {
       setIsGenerators(false);
       setTableActionVisible(true);
-    }, 1000);
+    }, 2000);
   };
 
   return (
