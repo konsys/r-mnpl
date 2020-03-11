@@ -10,18 +10,15 @@ export const Token = (props: Props) => {
   const tokenStore = useStore(tokens);
 
   const token = tokenStore[props.id];
-  return (
-    <>
-      {token && (
-        <div
-          mnpl-jailed={token.isJailed}
-          style={{
-            left: `${token.left}px`,
-            top: `${token.top}px`
-          }}
-          className="_animated"
-        />
-      )}
-    </>
+  const result = token && (
+    <div
+      mnpl-jailed={token.isJailed}
+      style={{
+        left: `${token.left}px`,
+        top: `${token.top}px`
+      }}
+      className="_animated"
+    />
   );
+  return <>{result}</>;
 };

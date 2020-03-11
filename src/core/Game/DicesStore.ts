@@ -3,6 +3,13 @@ import { mnplSocket } from "./index";
 
 export const resetDices = createEvent();
 
+export interface DiceStore {
+  userId: number;
+  dice1: number;
+  dice2: number;
+  dice3: number;
+  sum: number;
+}
 export const rollDicesFX = createEffect("rollDices", {
   handler: async ({ name }) => {
     await mnplSocket.emit("rollDices", { rollDices: name });
@@ -11,13 +18,14 @@ export const rollDicesFX = createEffect("rollDices", {
 
 export const setDices = createEvent<any>();
 
-export const dices = createStore({
+const init: DiceStore = {
   userId: 0,
   dice1: 0,
   dice2: 0,
   dice3: 0,
   sum: 0
-})
+};
+export const dices = createStore(init)
   .on(setDices, (_, data) => {
     return {
       userId: 1,
