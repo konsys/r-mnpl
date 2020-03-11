@@ -16,7 +16,8 @@ import { GameLoading } from "../../components/GameLoading/GameLoading";
 import { dices, diceRandStandart, resetDices } from "./DicesStore";
 import { useStore } from "effector-react";
 // import openSocket from "socket.io-client";
-import { useWebSocket } from "../../lib/UseWebSocket/UseWebSocket";
+// import { useWebSocket } from "../../lib/UseWebSocket/UseWebSocket";
+import openSocket from "socket.io-client";
 
 export interface PlayerToken {
   position: number;
@@ -26,14 +27,16 @@ export interface PlayerToken {
 interface Props extends RouteComponentProps {}
 
 export const Game = (props: Props) => {
-  const [status] = useWebSocket("ws://localhost:3001", msg => console.log(msg));
+  // const [status, sendMessage] = useWebSocket("ws://localhost:3001");
 
   useEffect(() => {
-    console.log(333333, status);
-    if (status === "open") {
-      // sendMessage({ type: "ready", msg: "ewqfe" });
-    }
-  }, [status]);
+    const socket = openSocket("http://localhost:3001");
+    socket.on("event", (timestamp: any) => console.log(timestamp));
+    socket.emit("rollDices", 1000);
+
+    console.log(222, socket.connected);
+    console.log(222, socket.disconnected);
+  }, []);
 
   const [isGenerators, setIsGenerators] = useState(false);
   const [tableActionVisible, setTableActionVisible] = useState(true);
