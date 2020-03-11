@@ -9,7 +9,7 @@ export const Dices = (props: Props) => {
   return (
     <div className="table-body-board-generators">
       <div className="dices">
-        <div className={"r" + props.value1 + " diceBody"}>
+        <div className={`r${props.value1} diceBody`}>
           <div className="diceFace diceValue1">
             <div className="dot center" />
           </div>
@@ -45,7 +45,7 @@ export const Dices = (props: Props) => {
           </div>
         </div>
 
-        <div className={"r" + props.value2 + " diceBody"}>
+        <div className={`r${props.value2} diceBody`}>
           <div className="diceFace diceValue1">
             <div className="dot center" />
           </div>

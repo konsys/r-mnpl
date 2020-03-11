@@ -32,7 +32,7 @@ diceTurn.watch((v: any) => {
     let top = 0;
 
     const posSum = v.sum + position;
-    let newPosition = posSum >= 40 ? 40 - posSum : posSum;
+    let newPosition = posSum >= 40 ? posSum - 40 : posSum;
 
     if (newPosition >= 0 && newPosition <= 10) {
       left = newPosition === 0 ? 35 : (newPosition + 1) * 55;
@@ -59,6 +59,7 @@ diceTurn.watch((v: any) => {
       top = tableLength + 28 - (newPosition - 29) * 55;
       left = 35;
     }
+
     const res = {
       [v.userId]: {
         id: v.userId,
@@ -70,7 +71,7 @@ diceTurn.watch((v: any) => {
       }
     };
 
-    setTimeout(() => changePosition(res), 2000);
+    changePosition(res);
   }
 });
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { RouteComponentProps } from "@reach/router";
 import "./style.scss";
 import { Players } from "../../components/Players/Players";
@@ -16,6 +16,13 @@ import { GameLoading } from "../../components/GameLoading/GameLoading";
 import { dices, resetDices, rollDicesFX, setDices } from "./DicesStore";
 import { useStore } from "effector-react";
 import openSocket from "socket.io-client";
+import {
+  hideActionModal,
+  showActionModal,
+  visibilityStore,
+  showDices,
+  hideDices
+} from "./VisibilityStore";
 
 export interface PlayerToken {
   position: number;
@@ -34,19 +41,17 @@ export const Game = (props: Props) => {
     });
   }, []);
 
-  const [isGenerators, setIsGenerators] = useState(false);
-  const [tableActionVisible, setTableActionVisible] = useState(true);
-
   const diceStore = useStore(dices);
+  const visibility = useStore(visibilityStore);
 
   const turn = async () => {
     resetDices();
-    setTableActionVisible(false);
-    setIsGenerators(true);
+    hideActionModal();
+    showDices();
     setTimeout(() => rollDicesFX({ name: "rollDices" }));
     setTimeout(() => {
-      setIsGenerators(false);
-      setTableActionVisible(true);
+      hideDices();
+      showActionModal();
     }, 2000);
   };
 
@@ -60,7 +65,7 @@ export const Game = (props: Props) => {
               <Board />
               <div className="table-body-board-center">
                 <M1tv />
-                {tableActionVisible && (
+                {visibility.tableActionModal && (
                   <TableAction
                     title={"Покупаем?"}
                     text={
@@ -76,7 +81,7 @@ export const Game = (props: Props) => {
               <div className="table-body-board-tokens">
                 <Token id={1} />
               </div>
-              {isGenerators && (
+              {visibility.dicesVisibility && (
                 <Dices
                   value1={diceStore.dice1}
                   value2={diceStore.dice2}

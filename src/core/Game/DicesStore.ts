@@ -28,5 +28,3 @@ export const dices = createStore({
     };
   })
   .reset(resetDices);
-
-// dices.watch(v => console.log(1111, v));
