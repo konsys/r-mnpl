@@ -13,29 +13,25 @@ import { TableAction } from "../../components/TableAction/TableAction";
 import { Board } from "../../components/Board/Board";
 import { Dices } from "../../components/Dices/Dices";
 import { GameLoading } from "../../components/GameLoading/GameLoading";
-import { dices, diceRandStandart, resetDices } from "./DicesStore";
+import { dices, resetDices, rollDicesFX, setDices } from "./DicesStore";
 import { useStore } from "effector-react";
-// import openSocket from "socket.io-client";
-// import { useWebSocket } from "../../lib/UseWebSocket/UseWebSocket";
 import openSocket from "socket.io-client";
 
 export interface PlayerToken {
   position: number;
   isJailed: number;
 }
-
+export const mnplSocket = openSocket("http://localhost:3001");
 interface Props extends RouteComponentProps {}
 
 export const Game = (props: Props) => {
-  // const [status, sendMessage] = useWebSocket("ws://localhost:3001");
-
   useEffect(() => {
-    const socket = openSocket("http://localhost:3001");
-    socket.on("event", (timestamp: any) => console.log(timestamp));
-    socket.emit("rollDices", 1000);
-
-    console.log(222, socket.connected);
-    console.log(222, socket.disconnected);
+    mnplSocket.on("rollDices", (rollDices: any) => {
+      const dices = rollDices.data.events.find(
+        (v: any) => v.type === "rollDices"
+      );
+      setDices(dices);
+    });
   }, []);
 
   const [isGenerators, setIsGenerators] = useState(false);
@@ -43,12 +39,11 @@ export const Game = (props: Props) => {
 
   const diceStore = useStore(dices);
 
-  const turn = () => {
+  const turn = async () => {
     resetDices();
     setTableActionVisible(false);
     setIsGenerators(true);
-
-    setTimeout(() => diceRandStandart());
+    setTimeout(() => rollDicesFX({ name: "rollDices" }));
     setTimeout(() => {
       setIsGenerators(false);
       setTableActionVisible(true);

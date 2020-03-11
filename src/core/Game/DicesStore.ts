@@ -1,8 +1,15 @@
-import { createStore, createEvent } from "effector";
+import { createStore, createEvent, createEffect } from "effector";
+import { mnplSocket } from "./index";
 
-export const diceRandStandart = createEvent();
-export const diceRandPremium = createEvent();
 export const resetDices = createEvent();
+
+export const rollDicesFX = createEffect("rollDices", {
+  handler: async ({ name }) => {
+    await mnplSocket.emit("rollDices", { rollDices: name });
+  }
+});
+
+export const setDices = createEvent<any>();
 
 export const dices = createStore({
   userId: 0,
@@ -11,32 +18,15 @@ export const dices = createStore({
   dice3: 0,
   sum: 0
 })
-  .on(diceRandStandart, () => {
-    const dice1 = random(0, 6);
-    const dice2 = random(0, 6);
-    // const dice1 = 4;
-    // const dice2 = 4;
+  .on(setDices, (_, data) => {
     return {
       userId: 1,
-      dice1,
-      dice2,
-      dice3: 0,
-      sum: dice1 + dice2
-    };
-  })
-  .on(diceRandPremium, () => {
-    const dice1 = random(0, 6);
-    const dice2 = random(0, 6);
-    return {
-      userId: 1,
-      dice1,
-      dice2,
-      dice3: random(0, 6),
-      sum: dice1 + dice2
+      dice1: data.dices[0],
+      dice2: data.dices[1],
+      dice3: data.dices[2],
+      sum: data.meanPosition
     };
   })
   .reset(resetDices);
 
-const random = (min: number, max: number) => {
-  return Math.ceil(min + Math.random() * (max - min));
-};
+// dices.watch(v => console.log(1111, v));

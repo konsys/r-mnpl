@@ -1,5 +1,5 @@
 import { createStore, createEvent, sample } from "effector";
-import { dices, diceRandStandart } from "./DicesStore";
+import { dices, setDices } from "./DicesStore";
 
 const tableLength = 635;
 export interface TokenParams {
@@ -19,7 +19,7 @@ const defaultToken: TokenStore = {
   1: { id: 1, step: 0, position: 0, left: 35, top: 35, isJailed: 0 }
 };
 
-const diceTurn = sample(dices, diceRandStandart, v => v);
+const diceTurn = sample(dices, setDices, v => v);
 
 diceTurn.watch((v: any) => {
   const tokenState = tokens.getState();
@@ -70,7 +70,7 @@ diceTurn.watch((v: any) => {
       }
     };
 
-    changePosition(res);
+    setTimeout(() => changePosition(res), 2000);
   }
 });
 
@@ -82,4 +82,4 @@ export const tokens = createStore(defaultToken)
   .on(changePosition, (_, v) => v)
   .reset(resetTokens);
 
-// tokens.watch(v => console.log("TOKENS", v[1]));
+tokens.watch(v => console.log("TOKENS", v[1]));
