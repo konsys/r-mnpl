@@ -26,6 +26,7 @@ const init: DiceStore = {
   dice3: 0,
   meanPosition: 0
 };
+
 export const dices = createStore(init)
   .on(setDices, (_, data) => ({
     userId: 1,
