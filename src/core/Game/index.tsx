@@ -20,8 +20,8 @@ import {
   hideActionModal,
   showActionModal,
   visibilityStore,
-  showDices,
-  hideDices
+  hideDices,
+  showDices
 } from "./VisibilityStore";
 
 export interface PlayerToken {
@@ -37,6 +37,7 @@ export const Game = (props: Props) => {
       const dices = rollDices.data.events.find(
         (v: any) => v.type === "rollDices"
       );
+
       setDices(dices);
     });
   }, []);
@@ -46,13 +47,13 @@ export const Game = (props: Props) => {
 
   const turn = async () => {
     resetDices();
-    hideActionModal();
     showDices();
+    hideActionModal();
     setTimeout(() => rollDicesFX({ name: "rollDices" }));
     setTimeout(() => {
       hideDices();
       showActionModal();
-    }, 2000);
+    }, 1000);
   };
 
   return (

@@ -8,9 +8,7 @@ export interface TokenParams {
   step: number;
   position: number;
   left: number;
-  prevLeft: number;
   top: number;
-  prevTop: number;
   isJailed: 0 | 1;
 }
 
@@ -24,9 +22,7 @@ const defaultToken: TokenStore = {
     step: 0,
     position: 0,
     left: 0,
-    prevLeft: 0,
     top: 0,
-    prevTop: 0,
     isJailed: 0
   }
 };
@@ -40,12 +36,10 @@ diceTurn.watch((v: DiceStore) => {
   if (typeof currentToken !== "undefined") {
     const { position, step, isJailed } = currentToken;
 
-    let prevLeft = 0;
     let left = 0;
-    let prevTop = 0;
     let top = 0;
 
-    const posSum = v.sum + position;
+    const posSum = v.meanPosition + position;
     let newPosition = posSum >= 40 ? posSum - 40 : posSum;
 
     if (newPosition >= 0 && newPosition <= 10) {
@@ -79,33 +73,31 @@ diceTurn.watch((v: DiceStore) => {
         id: v.userId,
         step: step + 1,
         position: newPosition,
-        prevLeft,
-        prevTop,
         left,
         top,
         isJailed
       }
     };
 
-    const testArray = Array(Math.abs(prevLeft - left)).fill(0);
+    // const testArray = Array(Math.abs(prevLeft - left)).fill(0);
 
-    for (let i of testArray) {
-      left = prevLeft + 1;
-      res = {
-        [v.userId]: {
-          id: v.userId,
-          step: step + 1,
-          position: newPosition,
-          prevLeft,
-          prevTop,
-          left,
-          top,
-          isJailed
-        }
-      };
-      changePosition(res);
-    }
-    // changePosition(res);
+    // for (let i of Array(1000)) {
+    //   left = prevLeft + 1;
+    //   res = {
+    //     [v.userId]: {
+    //       id: v.userId,
+    //       step: step + 1,
+    //       position: newPosition,
+    //       prevLeft,
+    //       prevTop,
+    //       left,
+    //       top,
+    //       isJailed
+    //     }
+    //   };
+    //   changePosition(res);
+    // }
+    changePosition(res);
   }
 });
 
@@ -118,3 +110,4 @@ export const tokens = createStore(defaultToken)
   .reset(resetTokens);
 
 tokens.watch(v => console.log("TOKENS", v[1]));
+dices.watch(v => console.log("DICES", v));
