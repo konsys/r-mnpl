@@ -116,5 +116,5 @@ export const tokens = createStore(init)
   .on(changePosition, (_, v) => v)
   .reset(resetTokens);
 
-// tokens.watch(v => console.log("TOKENS", v[1]));
+tokens.watch(v => console.log("TOKENS", v[1]));
 dices.watch(v => console.log("DICES", v));
