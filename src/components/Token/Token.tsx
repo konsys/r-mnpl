@@ -10,16 +10,20 @@ export const Token = (props: Props) => {
   const tokenStore = useStore(tokens);
 
   const token: TokenParams = tokenStore[props.id];
-  const result = token && (
-    <div
-      mnpl-jailed={token.isJailed}
-      style={{
-        left: `${token.left}px`,
-        top: `${token.top}px`,
-        transition: token.transition
-      }}
-      className="_animated"
-    />
-  );
+  const result =
+    token &&
+    token.moves.map(v => (
+      <div
+        mnpl-jailed={token.isJailed}
+        style={{
+          left: `${v.left}px`,
+          top: `${v.top}px`,
+          transitionDuration: `${v.duration}s`,
+          transitionProperty: "left top"
+          // transition: `${v.direction} ${v.duration}s ease`
+        }}
+        className="_animated"
+      />
+    ));
   return <>{result}</>;
 };
