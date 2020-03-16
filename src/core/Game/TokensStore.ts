@@ -33,7 +33,7 @@ const init: TokenStore = {
   1: {
     userId: 1,
     step: 0,
-    position: 1,
+    position: 0,
     moves: [
       {
         left: 35,
@@ -50,22 +50,28 @@ const createTurnsArray = (position: number, stopPosition: number): number[] => {
   let currentPosition = position;
   while (currentPosition !== stopPosition) {
     currentPosition++;
-    if (currentPosition > 40) {
-      currentPosition = 1;
+    if (currentPosition > 39) {
+      currentPosition = 0;
     }
     usedFields.push(currentPosition);
   }
-  return usedFields.slice(0, usedFields.length - 1);
+  return usedFields;
 };
 
-for (let i = 1; i < 40; i++) {
+for (let i = 0; i < 40; i++) {
   let currentline = 1;
   let left = 0;
   let top = 0;
-  if (i >= 1 && i <= 10) {
+  if (i >= 0 && i <= 10) {
     currentline = 1;
-    left = FIELD_SIZE * (i - 1);
+    left = FIELD_SIZE * (i + 1);
     top = MARGIN_CENTER;
+    if (i === 10) {
+      left += 45;
+      top -= 25;
+    } else if (i === 0) {
+      left -= 25;
+    }
     fieldPositions.push({
       positionNumber: i,
       left,
@@ -74,7 +80,10 @@ for (let i = 1; i < 40; i++) {
   } else if (i >= 11 && i <= 20) {
     currentline = 2;
     left = TABLE_SIZE - MARGIN_CENTER;
-    top = FIELD_SIZE * (i - 11) + MARGIN_CENTER;
+    top = FIELD_SIZE * (i - 9);
+    if (i === 20) {
+      top += 25;
+    }
     fieldPositions.push({
       positionNumber: i,
       left,
@@ -82,17 +91,20 @@ for (let i = 1; i < 40; i++) {
     });
   } else if (i >= 21 && i <= 30) {
     currentline = 3;
-    left = TABLE_SIZE - MARGIN_CENTER - FIELD_SIZE * (i - 21);
+    left = TABLE_SIZE - FIELD_SIZE * (i - 19);
     top = TABLE_SIZE - MARGIN_CENTER;
+    if (i === 30) {
+      left -= 25;
+    }
     fieldPositions.push({
       positionNumber: i,
       left,
       top
     });
-  } else if (i >= 31 && i <= 40) {
+  } else if (i >= 31 && i <= 39) {
     currentline = 4;
     left = MARGIN_CENTER;
-    top = TABLE_SIZE - (MARGIN_CENTER + FIELD_SIZE * (i - 31));
+    top = TABLE_SIZE - FIELD_SIZE * (i - 29);
     fieldPositions.push({
       positionNumber: i,
       left,
@@ -110,6 +122,7 @@ diceTurn.watch(async (v: DiceStore) => {
   if (typeof currentToken !== "undefined") {
     const { position, step, isJailed } = currentToken;
 
+    console.log("meanPosition", v.meanPosition);
     let stopPosition =
       v.meanPosition + position >= 40
         ? v.meanPosition + position - 40
@@ -119,6 +132,7 @@ diceTurn.watch(async (v: DiceStore) => {
 
     let moves: TableMove[] = [];
     for (let fieldNumber of usedFields) {
+      console.log("fieldNumber", fieldNumber, fieldPositions[fieldNumber]);
       moves.push({
         duration: 0.1,
         left: fieldPositions[fieldNumber].left,
@@ -126,8 +140,8 @@ diceTurn.watch(async (v: DiceStore) => {
       });
     }
 
-    console.log(111111, position, stopPosition);
-    console.log(222222, moves);
+    console.log("position", position, "stopPosition", stopPosition);
+    console.log("moves", moves);
 
     let res: TokenStore = {
       [v.userId]: {
@@ -150,6 +164,3 @@ export const changePosition = createEvent<TokenStore>();
 export const tokens = createStore(init)
   .on(changePosition, (_, v) => v)
   .reset(resetTokens);
-
-// tokens.watch(v => console.log("TOKENS", v[1]));
-// dices.watch(v => console.log("DICES", v));
