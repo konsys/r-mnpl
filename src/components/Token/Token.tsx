@@ -14,25 +14,21 @@ export const Token = (props: Props) => {
   // tokenStore1.watch(v => console.log(222222, v));
 
   const token: TokenParams = tokenStore[props.id];
-  let d: any;
   const result =
     token &&
-    token.moves.map(v => {
-      d = (
-        <div
-          mnpl-jailed={token.isJailed}
-          style={{
-            left: `${v.left}px`,
-            top: `${v.top}px`,
-            transitionDuration: `${v.duration}s`,
-            transitionProperty: "left top"
-            // transition: "ease-out"
-            // transition: `${v.direction} ${v.duration}s ease`
-          }}
-          className="_animated"
-        />
-      );
-    });
+    token.moves.map((v, k) => (
+      <div
+        key={k}
+        mnpl-jailed={token.isJailed}
+        style={{
+          left: `${v.left}px`,
+          top: `${v.top}px`,
+          transitionDuration: `${v.duration}s`,
+          transitionProperty: "left top"
+        }}
+        className="_animated"
+      />
+    ));
 
-  return <>{d}</>;
+  return <>{result}</>;
 };
