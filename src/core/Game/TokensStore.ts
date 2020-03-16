@@ -10,6 +10,7 @@ interface fieldPositions {
 const TABLE_SIZE = 665;
 const MARGIN_CENTER = 35;
 const FIELD_SIZE = 55;
+const DURATION = 1;
 const fieldPositions: fieldPositions[] = [];
 
 export interface TokenParams {
@@ -122,7 +123,6 @@ diceTurn.watch(async (v: DiceStore) => {
   if (typeof currentToken !== "undefined") {
     const { position, step, isJailed } = currentToken;
 
-    console.log("meanPosition", v.meanPosition);
     let stopPosition =
       v.meanPosition + position >= 40
         ? v.meanPosition + position - 40
@@ -132,16 +132,12 @@ diceTurn.watch(async (v: DiceStore) => {
 
     let moves: TableMove[] = [];
     for (let fieldNumber of usedFields) {
-      console.log("fieldNumber", fieldNumber, fieldPositions[fieldNumber]);
       moves.push({
-        duration: 0.1,
+        duration: DURATION,
         left: fieldPositions[fieldNumber].left,
         top: fieldPositions[fieldNumber].top
       });
     }
-
-    console.log("position", position, "stopPosition", stopPosition);
-    console.log("moves", moves);
 
     let res: TokenStore = {
       [v.userId]: {

@@ -1,6 +1,7 @@
 import React from "react";
 import { useStore } from "effector-react";
 import { tokens, TokenParams } from "../../core/Game/TokensStore";
+import { TokenElement } from "./TokenElement";
 // import { sample } from "effector";
 // import { rollDicesFX } from "../../core/Game/DicesStore";
 
@@ -14,19 +15,16 @@ export const Token = (props: Props) => {
   // tokenStore1.watch(v => console.log(222222, v));
 
   const token: TokenParams = tokenStore[props.id];
+  console.log(token);
   const result =
     token &&
     token.moves.map((v, k) => (
-      <div
+      <TokenElement
         key={k}
-        mnpl-jailed={token.isJailed}
-        style={{
-          left: `${v.left}px`,
-          top: `${v.top}px`,
-          transitionDuration: `${v.duration}s`,
-          transitionProperty: "left top"
-        }}
-        className="_animated"
+        isJailed={false}
+        left={v.left}
+        top={v.top}
+        duration={v.duration}
       />
     ));
 
