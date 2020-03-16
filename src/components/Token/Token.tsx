@@ -15,18 +15,23 @@ export const Token = (props: Props) => {
   // tokenStore1.watch(v => console.log(222222, v));
 
   const token: TokenParams = tokenStore[props.id];
-  console.log(token);
   const result =
     token &&
-    token.moves.map((v, k) => (
-      <TokenElement
-        key={k}
-        isJailed={false}
-        left={v.left}
-        top={v.top}
-        duration={v.duration}
-      />
-    ));
+    token.moves.map((v, k) =>
+      setTimeout(
+        () => (
+          <TokenElement
+            key={k}
+            isJailed={false}
+            left={v.left}
+            top={v.top}
+            duration={v.duration}
+          />
+        ),
+        1000
+      )
+    );
 
+  console.log(result);
   return <>{result}</>;
 };
