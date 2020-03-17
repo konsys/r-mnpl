@@ -1,4 +1,10 @@
-import { createStore, createEvent, sample } from "effector";
+import {
+  createStore,
+  createEvent,
+  sample,
+  createEffect,
+  createDomain
+} from "effector";
 import { dices, setDices, DiceStore } from "./DicesStore";
 
 interface fieldPositions {
@@ -10,26 +16,30 @@ interface fieldPositions {
 const TABLE_SIZE = 665;
 const MARGIN_CENTER = 35;
 const FIELD_SIZE = 55;
-const DURATION = 1;
+const DURATION = 100;
 const fieldPositions: fieldPositions[] = [];
 
 export interface TokenParams {
   userId: number;
   step: number;
   position: number;
-  moves: TableMove[];
-  isJailed: 0 | 1;
+  moves: TokenMove[];
+  isJailed: 0 | 1 | 2 | 3;
 }
 
 export interface TokenStore {
   [key: number]: TokenParams;
 }
 
-export interface TableMove {
+export interface TokenMove {
+  userId: number;
   duration: number;
   top: number;
   left: number;
 }
+
+const TokenDomain = createDomain("Token domain");
+
 const init: TokenStore = {
   1: {
     userId: 1,
@@ -37,6 +47,7 @@ const init: TokenStore = {
     position: 0,
     moves: [
       {
+        userId: 1,
         left: 35,
         top: 35,
         duration: 0
@@ -44,6 +55,13 @@ const init: TokenStore = {
     ],
     isJailed: 0
   }
+};
+
+const initPosition: TokenMove = {
+  userId: 1,
+  left: MARGIN_CENTER,
+  top: MARGIN_CENTER,
+  duration: DURATION
 };
 
 const createTurnsArray = (position: number, stopPosition: number): number[] => {
@@ -130,9 +148,23 @@ diceTurn.watch(async (v: DiceStore) => {
 
     const usedFields = createTurnsArray(position, stopPosition);
 
-    let moves: TableMove[] = [];
+    let moves: TokenMove[] = [];
+    let t = DURATION;
     for (let fieldNumber of usedFields) {
+      setTimeout(
+        () =>
+          changeTokenPosition({
+            userId: 1,
+            duration: DURATION,
+            left: fieldPositions[fieldNumber].left,
+            top: fieldPositions[fieldNumber].top
+          }),
+        t
+      );
+      t += DURATION;
+
       moves.push({
+        userId: 1,
         duration: DURATION,
         left: fieldPositions[fieldNumber].left,
         top: fieldPositions[fieldNumber].top
@@ -157,6 +189,28 @@ export const resetTokens = createEvent();
 
 export const changePosition = createEvent<TokenStore>();
 
-export const tokens = createStore(init)
+export const tokens = createStore<TokenStore>(init)
   .on(changePosition, (_, v) => v)
   .reset(resetTokens);
+
+export const changeTokenPosition = TokenDomain.effect<
+  TokenMove,
+  TokenMove,
+  Error
+>();
+
+function moveTokenByTimeout<T>(token: T): Promise<T> {
+  return new Promise<T>(resolve => setTimeout(() => resolve(token), 1000));
+}
+
+export const tokenPosition = TokenDomain.store<TokenMove>(initPosition)
+  .on(changeTokenPosition.done, (_, v) => v.result)
+  .reset(resetTokens);
+
+changeTokenPosition.use(moveTokenByTimeout);
+
+// const wait = (ms: number) => {
+//   return new Promise(resolve => {
+//     setTimeout(resolve, ms);
+//   });
+// };

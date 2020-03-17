@@ -26,7 +26,7 @@ import {
 
 export interface PlayerToken {
   position: number;
-  isJailed: number;
+  isJailed: 0 | 1 | 2 | 3;
 }
 export const mnplSocket = openSocket("http://localhost:3001");
 interface Props extends RouteComponentProps {}
@@ -80,7 +80,7 @@ export const Game = (props: Props) => {
                 <Chat />
               </div>
               <div className="table-body-board-tokens">
-                <Token id={1} />
+                <Token userId={1} />
               </div>
               {visibility.dicesVisibility && (
                 <Dices

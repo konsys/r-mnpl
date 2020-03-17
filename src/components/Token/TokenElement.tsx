@@ -8,7 +8,7 @@ interface Props {
   left: number;
   top: number;
   duration: number;
-  isJailed: boolean;
+  isJailed: 0 | 1 | 2 | 3;
 }
 
 export const TokenElement = (props: Props) => {

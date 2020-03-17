@@ -1,37 +1,49 @@
 import React from "react";
 import { useStore } from "effector-react";
-import { tokens, TokenParams } from "../../core/Game/TokensStore";
+import {
+  tokens,
+  TokenParams,
+  tokenPosition,
+  TokenMove
+} from "../../core/Game/TokensStore";
 import { TokenElement } from "./TokenElement";
 // import { sample } from "effector";
 // import { rollDicesFX } from "../../core/Game/DicesStore";
 
 interface Props {
-  id: number;
+  userId: number;
 }
 
 export const Token = (props: Props) => {
-  let tokenStore = useStore(tokens);
+  let tokenStore = useStore(tokenPosition);
   // const tokenStore1 = sample(tokens, rollDicesFX.done, v => v);
   // tokenStore1.watch(v => console.log(222222, v));
 
-  const token: TokenParams = tokenStore[props.id];
-  const result =
-    token &&
-    token.moves.map((v, k) =>
-      setTimeout(
-        () => (
-          <TokenElement
-            key={k}
-            isJailed={false}
-            left={v.left}
-            top={v.top}
-            duration={v.duration}
-          />
-        ),
-        1000
-      )
-    );
+  const token: TokenMove = tokenStore;
+  const result = token && (
+    <TokenElement
+      isJailed={0}
+      left={token.left}
+      top={token.top}
+      duration={token.duration}
+    />
+  );
 
-  console.log(result);
-  return <>{result}</>;
+  // console.log("->", token.left, token.top);
+  return (
+    <>
+      {
+        <div
+          mnpl-jailed={false}
+          style={{
+            left: `${token.left}px`,
+            top: `${token.top}px`,
+            transitionDuration: `${0.11}s`,
+            transitionProperty: "left top linear"
+          }}
+          className="_animated"
+        />
+      }
+    </>
+  );
 };
