@@ -16,7 +16,7 @@ interface fieldPositions {
 const TABLE_SIZE = 665;
 const MARGIN_CENTER = 35;
 const FIELD_SIZE = 55;
-const DURATION = 100;
+const DURATION = 500;
 const fieldPositions: fieldPositions[] = [];
 
 export interface TokenParams {
@@ -151,16 +151,13 @@ diceTurn.watch(async (v: DiceStore) => {
     let moves: TokenMove[] = [];
     let t = DURATION;
     for (let fieldNumber of usedFields) {
-      setTimeout(
-        () =>
-          changeTokenPosition({
-            userId: 1,
-            duration: DURATION,
-            left: fieldPositions[fieldNumber].left,
-            top: fieldPositions[fieldNumber].top
-          }),
-        t
-      );
+      changeTokenPosition({
+        userId: 1,
+        duration: DURATION,
+        left: fieldPositions[fieldNumber].left,
+        top: fieldPositions[fieldNumber].top
+      });
+
       t += DURATION;
 
       moves.push({
@@ -200,7 +197,7 @@ export const changeTokenPosition = TokenDomain.effect<
 >();
 
 function moveTokenByTimeout<T>(token: T): Promise<T> {
-  return new Promise<T>(resolve => setTimeout(() => resolve(token), 1000));
+  return new Promise<T>(resolve => setTimeout(() => resolve(token), 2000));
 }
 
 export const tokenPosition = TokenDomain.store<TokenMove>(initPosition)

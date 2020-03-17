@@ -53,7 +53,7 @@ export const Game = (props: Props) => {
     setTimeout(() => {
       hideDices();
       showActionModal();
-    }, 1000);
+    }, 2000);
   };
 
   return (

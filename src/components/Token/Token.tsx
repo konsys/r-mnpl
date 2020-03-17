@@ -7,17 +7,12 @@ import {
   TokenMove
 } from "../../core/Game/TokensStore";
 import { TokenElement } from "./TokenElement";
-// import { sample } from "effector";
-// import { rollDicesFX } from "../../core/Game/DicesStore";
-
 interface Props {
   userId: number;
 }
 
 export const Token = (props: Props) => {
   let tokenStore = useStore(tokenPosition);
-  // const tokenStore1 = sample(tokens, rollDicesFX.done, v => v);
-  // tokenStore1.watch(v => console.log(222222, v));
 
   const token: TokenMove = tokenStore;
   const result = token && (
@@ -34,12 +29,12 @@ export const Token = (props: Props) => {
     <>
       {
         <div
-          mnpl-jailed={false}
+          mnpl-jailed={0}
           style={{
             left: `${token.left}px`,
             top: `${token.top}px`,
-            transitionDuration: `${0.11}s`,
-            transitionProperty: "left top linear"
+            transitionDuration: `${1}s`,
+            transitionProperty: "left top ease"
           }}
           className="_animated"
         />
