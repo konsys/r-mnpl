@@ -1,10 +1,4 @@
-import {
-  createStore,
-  createEvent,
-  sample,
-  createEffect,
-  createDomain
-} from "effector";
+import { createStore, createEvent, sample, createDomain } from "effector";
 import { dices, setDices, DiceStore } from "./DicesStore";
 
 interface fieldPositions {
@@ -23,7 +17,6 @@ export interface TokenParams {
   userId: number;
   step: number;
   position: number;
-  moves: TokenMove[];
   isJailed: 0 | 1 | 2 | 3;
 }
 
@@ -46,14 +39,6 @@ const init: TokenStore = {
     userId: 1,
     step: 0,
     position: 0,
-    moves: [
-      {
-        userId: 1,
-        left: 35,
-        top: 35,
-        duration: 0
-      }
-    ],
     isJailed: 0
   }
 };
@@ -70,12 +55,6 @@ const createTurnsArray = (position: number, stopPosition: number): number[] => {
   let currentPosition = position;
   while (currentPosition !== stopPosition) {
     currentPosition++;
-    // console.log(
-    //   "curreentposition",
-    //   currentPosition,
-    //   "stopPosition",
-    //   stopPosition
-    // );
     if (currentPosition > 39) {
       currentPosition = 0;
     }
@@ -85,11 +64,9 @@ const createTurnsArray = (position: number, stopPosition: number): number[] => {
 };
 
 for (let i = 0; i < 40; i++) {
-  let currentline = 1;
   let left = 0;
   let top = 0;
   if (i >= 0 && i <= 10) {
-    currentline = 1;
     left = FIELD_SIZE * (i + 1);
     top = MARGIN_CENTER;
     if (i === 10) {
@@ -104,7 +81,6 @@ for (let i = 0; i < 40; i++) {
       top
     });
   } else if (i >= 11 && i <= 20) {
-    currentline = 2;
     left = TABLE_SIZE - MARGIN_CENTER;
     top = FIELD_SIZE * (i - 9);
     if (i === 20) {
@@ -116,7 +92,6 @@ for (let i = 0; i < 40; i++) {
       top
     });
   } else if (i >= 21 && i <= 30) {
-    currentline = 3;
     left = TABLE_SIZE - FIELD_SIZE * (i - 19);
     top = TABLE_SIZE - MARGIN_CENTER;
     if (i === 30) {
@@ -128,7 +103,6 @@ for (let i = 0; i < 40; i++) {
       top
     });
   } else if (i >= 31 && i <= 39) {
-    currentline = 4;
     left = MARGIN_CENTER;
     top = TABLE_SIZE - FIELD_SIZE * (i - 29);
     fieldPositions.push({
@@ -152,34 +126,24 @@ diceTurn.watch(async (v: DiceStore) => {
     let stopPosition = posSum >= 40 ? posSum - 40 : posSum;
     stopPosition = stopPosition >= 40 ? stopPosition - 40 : stopPosition;
 
-    console.log("stopPOSITION", position, v.meanPosition, posSum, stopPosition);
-
     const usedFields = createTurnsArray(position, stopPosition);
 
-    let moves: TokenMove[] = [];
-    let t = DURATION + 1000;
-    let it = 0;
+    let lastIndex = 0;
     for (let field of usedFields) {
-      if (cornerFields.indexOf(field) > -1 || it === usedFields.length - 1) {
-        setTimeout(
-          () =>
-            changeTokenPosition({
-              userId: 1,
-              duration: DURATION,
-              left: fieldPositions[field].left,
-              top: fieldPositions[field].top
-            }),
-          t
+      if (
+        cornerFields.indexOf(field) > -1 ||
+        lastIndex === usedFields.length - 1
+      ) {
+        setTimeout(() =>
+          changeTokenPosition({
+            userId: 1,
+            duration: DURATION,
+            left: fieldPositions[field].left,
+            top: fieldPositions[field].top
+          })
         );
-        t += DURATION + 1000;
       }
-      it++;
-      moves.push({
-        userId: 1,
-        duration: DURATION,
-        left: fieldPositions[field].left,
-        top: fieldPositions[field].top
-      });
+      lastIndex++;
     }
 
     let res: TokenStore = {
@@ -187,7 +151,6 @@ diceTurn.watch(async (v: DiceStore) => {
         userId: v.userId,
         step: step + 1,
         position: stopPosition,
-        moves,
         isJailed
       }
     };
