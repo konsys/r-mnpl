@@ -18,11 +18,12 @@ const fields: FieldProps[] = [
   },
   {
     id: 3,
-    imgSrc: "https://m1.dogecdn.wtf/fields/special/chance.png",
+    imgSrc: "https://m1.dogecdn.wtf/fields/special/tax_income.png",
     mnplLine: 0,
-    name: "chance",
+    name: "tax_income",
     mnplSpecial: 1
   },
+
   {
     id: 4,
     price: 600,
@@ -33,10 +34,11 @@ const fields: FieldProps[] = [
   },
   {
     id: 5,
-    imgSrc: "https://m1.dogecdn.wtf/fields/special/tax_income.png",
+    price: 800,
+    imgSrc: "https://m1.dogecdn.wtf/fields/brands/1_perfumery/hugo_boss.svg",
+    mnplGroup: 1,
     mnplLine: 0,
-    name: "tax_income",
-    mnplSpecial: 1
+    name: "hugo_boss"
   },
   {
     id: 6,

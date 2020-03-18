@@ -1,15 +1,15 @@
 import React from "react";
 import { useStore } from "effector-react";
-import { tokenPosition, TokenMove } from "../../core/Game/TokensStore";
+import { tokenPosition, tokens } from "../../core/Game/TokensStore";
 interface Props {
   userId: number;
 }
 
 export const Token = (props: Props) => {
-  let tokenStore = useStore(tokenPosition);
-
-  const token: TokenMove = tokenStore;
-
+  let token = useStore(tokenPosition);
+  let currToken = useStore(tokens);
+  let t = currToken[props.userId];
+  console.log(11111, currToken);
   return (
     <>
       {token && props.userId === token.userId && (
@@ -22,7 +22,9 @@ export const Token = (props: Props) => {
             transitionProperty: "left top ease"
           }}
           className="_animated"
-        />
+        >
+          {t.fieldId}
+        </div>
       )}
       }
     </>

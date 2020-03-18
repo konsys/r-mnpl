@@ -16,7 +16,7 @@ const fieldPositions: fieldPositions[] = [];
 export interface TokenParams {
   userId: number;
   step: number;
-  position: number;
+  fieldId: number;
   isJailed: 0 | 1 | 2 | 3;
 }
 
@@ -38,7 +38,7 @@ const init: TokenStore = {
   1: {
     userId: 1,
     step: 0,
-    position: 0,
+    fieldId: 0,
     isJailed: 0
   }
 };
@@ -120,13 +120,13 @@ diceTurn.watch(async (v: DiceStore) => {
   const currentToken = tokenState[v.userId];
 
   if (typeof currentToken !== "undefined") {
-    const { position, step, isJailed } = currentToken;
+    const { fieldId, step, isJailed } = currentToken;
 
-    const posSum = v.meanPosition + position;
+    const posSum = v.meanPosition + fieldId;
     let stopPosition = posSum >= 40 ? posSum - 40 : posSum;
     stopPosition = stopPosition >= 40 ? stopPosition - 40 : stopPosition;
 
-    const usedFields = createTurnsArray(position, stopPosition);
+    const usedFields = createTurnsArray(fieldId, stopPosition);
 
     let lastIndex = 0;
     let timeout = 1000;
@@ -145,7 +145,6 @@ diceTurn.watch(async (v: DiceStore) => {
             }),
           timeout
         );
-        console.log(11111, timeout, lastIndex);
         timeout += 1000;
       }
       lastIndex++;
@@ -155,7 +154,7 @@ diceTurn.watch(async (v: DiceStore) => {
       [v.userId]: {
         userId: v.userId,
         step: step + 1,
-        position: stopPosition,
+        fieldId: stopPosition,
         isJailed
       }
     };
