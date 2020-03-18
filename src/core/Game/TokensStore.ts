@@ -129,19 +129,24 @@ diceTurn.watch(async (v: DiceStore) => {
     const usedFields = createTurnsArray(position, stopPosition);
 
     let lastIndex = 0;
+    let timeout = 1000;
     for (let field of usedFields) {
       if (
         cornerFields.indexOf(field) > -1 ||
         lastIndex === usedFields.length - 1
       ) {
-        setTimeout(() =>
-          changeTokenPosition({
-            userId: 1,
-            duration: DURATION,
-            left: fieldPositions[field].left,
-            top: fieldPositions[field].top
-          })
+        setTimeout(
+          () =>
+            changeTokenPosition({
+              userId: 1,
+              duration: DURATION,
+              left: fieldPositions[field].left,
+              top: fieldPositions[field].top
+            }),
+          timeout
         );
+        console.log(11111, timeout, lastIndex);
+        timeout += 1000;
       }
       lastIndex++;
     }
