@@ -1,12 +1,6 @@
 import React from "react";
 import { useStore } from "effector-react";
-import {
-  tokens,
-  TokenParams,
-  tokenPosition,
-  TokenMove
-} from "../../core/Game/TokensStore";
-import { TokenElement } from "./TokenElement";
+import { tokenPosition, TokenMove } from "../../core/Game/TokensStore";
 interface Props {
   userId: number;
 }
@@ -15,29 +9,21 @@ export const Token = (props: Props) => {
   let tokenStore = useStore(tokenPosition);
 
   const token: TokenMove = tokenStore;
-  const result = token && (
-    <TokenElement
-      isJailed={0}
-      left={token.left}
-      top={token.top}
-      duration={token.duration}
-    />
-  );
 
-  // console.log("->", token.left, token.top);
   return (
     <>
-      {
+      {token && props.userId === token.userId && (
         <div
           mnpl-jailed={0}
           style={{
             left: `${token.left}px`,
             top: `${token.top}px`,
-            transitionDuration: `${1}s`,
+            transitionDuration: `${0.8}s`,
             transitionProperty: "left top ease"
           }}
           className="_animated"
         />
+      )}
       }
     </>
   );

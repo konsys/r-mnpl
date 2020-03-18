@@ -16,7 +16,7 @@ interface fieldPositions {
 const TABLE_SIZE = 665;
 const MARGIN_CENTER = 35;
 const FIELD_SIZE = 55;
-const DURATION = 500;
+const DURATION = 100;
 const fieldPositions: fieldPositions[] = [];
 
 export interface TokenParams {
@@ -27,6 +27,7 @@ export interface TokenParams {
   isJailed: 0 | 1 | 2 | 3;
 }
 
+const cornerFields = [0, 10, 20, 30];
 export interface TokenStore {
   [key: number]: TokenParams;
 }
@@ -69,6 +70,12 @@ const createTurnsArray = (position: number, stopPosition: number): number[] => {
   let currentPosition = position;
   while (currentPosition !== stopPosition) {
     currentPosition++;
+    // console.log(
+    //   "curreentposition",
+    //   currentPosition,
+    //   "stopPosition",
+    //   stopPosition
+    // );
     if (currentPosition > 39) {
       currentPosition = 0;
     }
@@ -141,30 +148,37 @@ diceTurn.watch(async (v: DiceStore) => {
   if (typeof currentToken !== "undefined") {
     const { position, step, isJailed } = currentToken;
 
-    let stopPosition =
-      v.meanPosition + position >= 40
-        ? v.meanPosition + position - 40
-        : v.meanPosition + position;
+    const posSum = v.meanPosition + position;
+    let stopPosition = posSum >= 40 ? posSum - 40 : posSum;
+    stopPosition = stopPosition >= 40 ? stopPosition - 40 : stopPosition;
+
+    console.log("stopPOSITION", position, v.meanPosition, posSum, stopPosition);
 
     const usedFields = createTurnsArray(position, stopPosition);
 
     let moves: TokenMove[] = [];
-    let t = DURATION;
-    for (let fieldNumber of usedFields) {
-      changeTokenPosition({
-        userId: 1,
-        duration: DURATION,
-        left: fieldPositions[fieldNumber].left,
-        top: fieldPositions[fieldNumber].top
-      });
-
-      t += DURATION;
-
+    let t = DURATION + 1000;
+    let it = 0;
+    for (let field of usedFields) {
+      if (cornerFields.indexOf(field) > -1 || it === usedFields.length - 1) {
+        setTimeout(
+          () =>
+            changeTokenPosition({
+              userId: 1,
+              duration: DURATION,
+              left: fieldPositions[field].left,
+              top: fieldPositions[field].top
+            }),
+          t
+        );
+        t += DURATION + 1000;
+      }
+      it++;
       moves.push({
         userId: 1,
         duration: DURATION,
-        left: fieldPositions[fieldNumber].left,
-        top: fieldPositions[fieldNumber].top
+        left: fieldPositions[field].left,
+        top: fieldPositions[field].top
       });
     }
 
@@ -197,7 +211,7 @@ export const changeTokenPosition = TokenDomain.effect<
 >();
 
 function moveTokenByTimeout<T>(token: T): Promise<T> {
-  return new Promise<T>(resolve => setTimeout(() => resolve(token), 2000));
+  return new Promise<T>(resolve => setTimeout(() => resolve(token), 800));
 }
 
 export const tokenPosition = TokenDomain.store<TokenMove>(initPosition)
@@ -205,9 +219,3 @@ export const tokenPosition = TokenDomain.store<TokenMove>(initPosition)
   .reset(resetTokens);
 
 changeTokenPosition.use(moveTokenByTimeout);
-
-// const wait = (ms: number) => {
-//   return new Promise(resolve => {
-//     setTimeout(resolve, ms);
-//   });
-// };
