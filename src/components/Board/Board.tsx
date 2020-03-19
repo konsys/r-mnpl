@@ -1,7 +1,7 @@
 import React from "react";
 import { Field, FieldProps } from "../Field/Field";
 
-const fields: FieldProps[] = [
+export const boardFields: FieldProps[] = [
   {
     id: 1,
     imgSrc: "https://m1.dogecdn.wtf/fields/special/start.png",
@@ -315,7 +315,7 @@ const fields: FieldProps[] = [
 
 export const Board = () => (
   <div id="ui-fields" className="table-body-board-fields">
-    {fields.map(field => {
+    {boardFields.map(field => {
       return (
         <Field
           key={field.id}

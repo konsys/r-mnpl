@@ -1,5 +1,6 @@
 import React from "react";
 import { useStore } from "effector-react";
+import { boardFields } from "../Board/Board";
 import { tokenPosition, tokens } from "../../core/Game/TokensStore";
 interface Props {
   userId: number;
@@ -8,8 +9,8 @@ interface Props {
 export const Token = (props: Props) => {
   let token = useStore(tokenPosition);
   let currToken = useStore(tokens);
-  let t = currToken[props.userId];
-  console.log(11111, currToken);
+  let tokenParams = currToken[props.userId];
+
   return (
     <>
       {token && props.userId === token.userId && (
@@ -23,7 +24,7 @@ export const Token = (props: Props) => {
           }}
           className="_animated"
         >
-          {t.fieldId}
+          {boardFields.find(v => v.id - 1 === tokenParams.fieldId)?.name}
         </div>
       )}
       }
