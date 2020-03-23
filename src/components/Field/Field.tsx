@@ -1,6 +1,6 @@
 import React from "react";
-export interface FieldProps {
-  id: number;
+export interface BoardField {
+  fieldPosition: number;
   imgSrc?: string;
   name: string;
   mnplSpecial?: number;
@@ -11,7 +11,7 @@ export interface FieldProps {
   isJail?: boolean;
 }
 
-export const Field = (props: FieldProps) => {
+export const Field = (props: BoardField) => {
   const {
     mnplCorner,
     mnplLine,

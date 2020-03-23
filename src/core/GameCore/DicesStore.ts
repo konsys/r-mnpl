@@ -1,7 +1,8 @@
-import { createStore, createEvent, createEffect } from "effector";
 import { mnplSocket } from "./index";
+import { GameDomain } from "./GameModel";
 
-export const resetDices = createEvent();
+const DiceDomain = GameDomain.createDomain("DiceDomain");
+export const resetDices = DiceDomain.createEvent();
 
 export interface DiceStore {
   userId: number;
@@ -11,13 +12,13 @@ export interface DiceStore {
   meanPosition: number;
 }
 
-export const rollDicesFX = createEffect("rollDices", {
+export const rollDicesFX = DiceDomain.createEffect("rollDices", {
   handler: async ({ name }) => {
     mnplSocket.emit("rollDices", { rollDices: name });
   }
 });
 
-export const setDices = createEvent<any>();
+export const setDices = DiceDomain.createEvent<any>();
 
 const init: DiceStore = {
   userId: 1,
@@ -27,7 +28,7 @@ const init: DiceStore = {
   meanPosition: 0
 };
 
-export const dices = createStore(init)
+export const dices = DiceDomain.createStore(init)
   .on(setDices, (_, data) => ({
     userId: 1,
     dice1: data.dices[0],

@@ -10,7 +10,6 @@ import { Ticket } from "../../components/Ticket/ticket";
 import { Arbitr } from "../../components/Arbitr/Arbitr";
 import { M1tv } from "../../components/M1tv/M1tv";
 import { TableAction } from "../../components/TableAction/TableAction";
-import { Board } from "../../components/Board/Board";
 import { Dices } from "../../components/Dices/Dices";
 import { GameLoading } from "../../components/GameLoading/GameLoading";
 import { dices, resetDices, rollDicesFX, setDices } from "./DicesStore";
@@ -23,6 +22,7 @@ import {
   hideDices,
   showDices
 } from "./VisibilityStore";
+import { BoardCore } from "../BoardCore/BoardCore";
 
 export interface PlayerToken {
   position: number;
@@ -63,7 +63,7 @@ export const Game = (props: Props) => {
           <div className="table-body">
             <Players />
             <div className="table-body-board">
-              <Board />
+              <BoardCore />
               <div className="table-body-board-center">
                 <M1tv />
                 {visibility.tableActionModal && (

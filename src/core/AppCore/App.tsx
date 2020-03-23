@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.scss";
 import { Router, Link } from "@reach/router";
-import { Game } from "../Game";
+import { Game } from "../GameCore";
 
 function App() {
   return (

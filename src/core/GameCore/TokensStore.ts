@@ -1,5 +1,6 @@
-import { createStore, createEvent, sample, createDomain } from "effector";
+import { createStore, createEvent, sample } from "effector";
 import { dices, setDices, DiceStore } from "./DicesStore";
+import { GameDomain } from "./GameModel";
 
 interface fieldPositions {
   positionNumber: number;
@@ -25,6 +26,8 @@ export interface TokenStore {
   [key: number]: TokenParams;
 }
 
+// type TokenStore = Record<Options, OptionRequirement>
+
 export interface TokenMove {
   userId: number;
   duration: number;
@@ -32,7 +35,7 @@ export interface TokenMove {
   left: number;
 }
 
-const TokenDomain = createDomain("Token domain");
+const TokenDomain = GameDomain.createDomain("TokenDomain");
 
 const init: TokenStore = {
   1: {
