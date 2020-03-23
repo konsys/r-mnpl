@@ -1,5 +1,6 @@
 import React from "react";
 import { Field, BoardField } from "../Field/Field";
+import nanoid from "nanoid";
 
 export const boardFields: BoardField[] = [
   {
@@ -321,7 +322,7 @@ export const Board = (prop: Prop) => (
     {prop.fields.map(field => {
       return (
         <Field
-          key={field.fieldPosition}
+          key={nanoid(4)}
           fieldPosition={field.fieldPosition}
           price={field.price}
           imgSrc={field.imgSrc}
