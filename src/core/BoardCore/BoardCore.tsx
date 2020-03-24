@@ -5,7 +5,7 @@ import { BoardField } from "../../components/Field/Field";
 import { client } from "../../http/client";
 import { useStore } from "effector-react";
 
-const URL = `/boardField/initial`;
+const URL = `/board-fields/initial`;
 
 async function fetchInitFields(params?: any): Promise<BoardField[]> {
   return await (await client.get(URL, params)).data;
