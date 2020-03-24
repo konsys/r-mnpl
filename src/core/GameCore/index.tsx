@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { RouteComponentProps } from "@reach/router";
 import "./style.scss";
-import { Players } from "../../components/Players/Players";
 import { Chat } from "../../components/Chat/Chat";
 import { Contract } from "../../components/Contract/Contract";
 import { TableHelper } from "../../components/TableHelper/TableHelper";
@@ -23,6 +22,7 @@ import {
   showDices
 } from "./VisibilityStore";
 import { BoardCore } from "../BoardCore/BoardCore";
+import { UsersCore } from "../UsersCore/UsersCore";
 
 export interface PlayerToken {
   position: number;
@@ -61,7 +61,7 @@ export const Game = (props: Props) => {
       <div className="wrapper" style={{ width: "100%", height: "100%" }}>
         <div className="table _shakehack">
           <div className="table-body">
-            <Players />
+            <UsersCore />
             <div className="table-body-board">
               <BoardCore />
               <div className="table-body-board-center">
