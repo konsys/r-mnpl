@@ -9,6 +9,7 @@ export interface DiceStore {
   dice1: number;
   dice2: number;
   dice3: number;
+  dicesSum: number;
   meanPosition: number;
 }
 
@@ -25,6 +26,7 @@ const init: DiceStore = {
   dice1: 0,
   dice2: 0,
   dice3: 0,
+  dicesSum: 0,
   meanPosition: 0
 };
 
@@ -34,6 +36,9 @@ export const dices = DiceDomain.createStore(init)
     dice1: data.dices[0],
     dice2: data.dices[1],
     dice3: data.dices[2],
+    dicesSum: data.dices.reduce((acc: number, v: number) => acc + v, 0),
     meanPosition: data.meanPosition
   }))
   .reset(resetDices);
+
+dices.watch(v => console.log(1111, v));

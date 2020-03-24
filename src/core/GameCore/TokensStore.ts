@@ -124,11 +124,7 @@ diceTurn.watch(async (v: DiceStore) => {
 
   if (typeof currentToken !== "undefined") {
     const { fieldId, step, isJailed } = currentToken;
-
-    const posSum = v.meanPosition + fieldId;
-    let stopPosition = posSum >= 40 ? posSum - 40 : posSum;
-    stopPosition = stopPosition >= 40 ? stopPosition - 40 : stopPosition;
-
+    const stopPosition = v.meanPosition;
     const usedFields = createTurnsArray(fieldId, stopPosition);
 
     let lastIndex = 0;
