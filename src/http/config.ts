@@ -21,8 +21,4 @@ export function logVersion() {
     "font-size: 15px; font-weight: bold",
     "font-size: 15px; color: #007aff"
   ];
-
-  console.log(`%c BUILD: %c${config.versionBuild}`, styles[0], styles[1]);
-  console.log(`%c HASH:  %c${config.versionHash}`, styles[0], styles[1]);
-  console.log(`%c TIME:  %c${config.buildTime}`, styles[0], styles[1]);
 }
