@@ -29,7 +29,11 @@ import { BoardCore } from "../BoardCore/BoardCore";
 import { UsersCore } from "../UsersCore/UsersCore";
 import { rollDicesHandler } from "./handlers/SocketHandlers";
 import nanoid from "nanoid";
-import { setGameIdEvent, resetGameEvent, gameStore } from "./models/GameStore";
+import {
+  setBoardIdEvent,
+  resetBoardEvent,
+  boardStore
+} from "./models/BoardStore";
 
 export const mnplSocket = openSocket("http://localhost:3001");
 
@@ -38,19 +42,19 @@ interface Props extends RouteComponentProps {}
 export const Game = (props: Props) => {
   const dicesState = useStore(dicesStore);
   const visibilityState = useStore(visibilityStore);
-  const gameState = useStore(gameStore);
+  const boardState = useStore(boardStore);
 
   useEffect(() => {
-    setGameIdEvent(nanoid(12));
+    setBoardIdEvent(nanoid(12));
     mnplSocket.on("rollDices", rollDicesHandler);
-    return () => resetGameEvent();
+    return () => resetBoardEvent();
   }, []);
 
   const rollDices = async () => {
     resetDicesEvent();
     showDicesEvent();
     hideActionModalEvent();
-    setTimeout(() => rollDicesEffect(gameState));
+    setTimeout(() => rollDicesEffect(boardState));
     setTimeout(() => {
       hideDicesEvent();
       showActionModalEvent();

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Board } from "../../components/Board/Board";
-import { GameDomain } from "../GameCore/models/GameStore";
+import { GameDomain } from "../GameCore/models/BoardStore";
 import { BoardField } from "../../components/Field/Field";
 import { client } from "../../http/client";
 import { useStore } from "effector-react";

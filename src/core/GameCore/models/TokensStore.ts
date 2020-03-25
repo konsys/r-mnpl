@@ -1,6 +1,6 @@
 import { sample } from "effector";
 import { dicesStore, setDicesEvent, IDiceStore } from "./DicesStore";
-import { GameDomain } from "./GameStore";
+import { GameDomain } from "./BoardStore";
 export interface PlayerToken {
   position: number;
   isJailed: 0 | 1 | 2 | 3;
