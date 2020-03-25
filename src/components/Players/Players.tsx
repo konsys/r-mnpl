@@ -12,6 +12,7 @@ export interface IUser {
   updatedAt?: Date;
   isActive: boolean;
   isBlocked: boolean;
+  team?: string;
 }
 interface Prop {
   users: IUser[];
@@ -21,14 +22,14 @@ export const Players = (prop: Prop) => (
   <>
     <div key={nanoid(4)} className="table-body-players">
       {prop.users.map((v: IUser, k: number) => {
-        const actionPlayer = k === 1 ? "1" : "0";
+        const actionPlayer = k === 0 ? "1" : "0";
         return (
           <div
             key={nanoid(4)}
             className="table-body-players-card"
             id={"player_card_" + v.userId}
-            mnpl-order="0"
-            mnpl-team="undefined"
+            mnpl-order={k}
+            mnpl-team={v.team}
             mnpl-action_player={actionPlayer}
           >
             <Avatar
