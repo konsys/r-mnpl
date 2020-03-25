@@ -15,10 +15,3 @@ export const configs = {
 
 // @ts-ignore
 export const config = configs[process.env.NODE_ENV];
-
-export function logVersion() {
-  const styles = [
-    "font-size: 15px; font-weight: bold",
-    "font-size: 15px; color: #007aff"
-  ];
-}
