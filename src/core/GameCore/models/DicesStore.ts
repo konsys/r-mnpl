@@ -1,4 +1,4 @@
-import { mnplSocket } from "./index";
+import { mnplSocket } from "../index";
 import { GameDomain } from "./GameModel";
 
 const DiceDomain = GameDomain.domain("DiceDomain");

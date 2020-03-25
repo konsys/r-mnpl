@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Board } from "../../components/Board/Board";
-import { GameDomain } from "../GameCore/GameModel";
+import { GameDomain } from "../GameCore/models/GameModel";
 import { BoardField } from "../../components/Field/Field";
 import { client } from "../../http/client";
 import { useStore } from "effector-react";
@@ -28,6 +28,5 @@ export const BoardCore = () => {
     return () => resetFields();
   }, []);
   const data = useStore(fieldsStore);
-  console.log(232132, typeof data);
   return getInitFields.done ? <Board fields={data} /> : <>wait</>;
 };

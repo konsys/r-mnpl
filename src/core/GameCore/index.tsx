@@ -14,9 +14,8 @@ import { GameLoading } from "../../components/GameLoading/GameLoading";
 import {
   dicesStore,
   resetDicesEvent,
-  rollDicesEffect,
-  setDicesEvent
-} from "./DicesStore";
+  rollDicesEffect
+} from "./models/DicesStore";
 import { useStore } from "effector-react";
 import openSocket from "socket.io-client";
 import {
@@ -25,9 +24,10 @@ import {
   visibilityStore,
   hideDicesEvent,
   showDicesEvent
-} from "./VisibilityStore";
+} from "./models/VisibilityStore";
 import { BoardCore } from "../BoardCore/BoardCore";
 import { UsersCore } from "../UsersCore/UsersCore";
+import { rollDicesHandler } from "./handlers/SocketHandlers";
 
 export interface PlayerToken {
   position: number;
@@ -38,17 +38,11 @@ interface Props extends RouteComponentProps {}
 
 export const Game = (props: Props) => {
   useEffect(() => {
-    mnplSocket.on("rollDices", (rollDices: any) => {
-      const dices = rollDices.data.events.find(
-        (v: any) => v.type === "rollDices"
-      );
-
-      setDicesEvent(dices);
-    });
+    mnplSocket.on("rollDices", rollDicesHandler);
   }, []);
 
-  const diceStore = useStore(dicesStore);
-  const visibility = useStore(visibilityStore);
+  const dicesState = useStore(dicesStore);
+  const visibilityState = useStore(visibilityStore);
 
   const turn = async () => {
     resetDicesEvent();
@@ -71,7 +65,7 @@ export const Game = (props: Props) => {
               <BoardCore />
               <div className="table-body-board-center">
                 <M1tv />
-                {visibility.tableActionModal && (
+                {visibilityState.tableActionModal && (
                   <TableAction
                     title={"Покупаем?"}
                     text={
@@ -87,11 +81,11 @@ export const Game = (props: Props) => {
               <div className="table-body-board-tokens">
                 <Token userId={1} />
               </div>
-              {visibility.dicesVisibility && (
+              {visibilityState.dicesVisibility && (
                 <Dices
-                  value1={diceStore.dice1}
-                  value2={diceStore.dice2}
-                  value3={diceStore.dice3}
+                  value1={dicesState.dice1}
+                  value2={dicesState.dice2}
+                  value3={dicesState.dice3}
                 />
               )}
               <Contract />
