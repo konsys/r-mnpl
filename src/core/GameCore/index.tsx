@@ -28,23 +28,26 @@ import {
 import { BoardCore } from "../BoardCore/BoardCore";
 import { UsersCore } from "../UsersCore/UsersCore";
 import { rollDicesHandler } from "./handlers/SocketHandlers";
+import nanoid from "nanoid";
+import { setGameIdEvent, resetGameEvent } from "./models/GameStore";
 
-export interface PlayerToken {
-  position: number;
-  isJailed: 0 | 1 | 2 | 3;
-}
+const gameId = nanoid(8);
+
 export const mnplSocket = openSocket("http://localhost:3001");
+
 interface Props extends RouteComponentProps {}
 
 export const Game = (props: Props) => {
   useEffect(() => {
+    setGameIdEvent(gameId);
     mnplSocket.on("rollDices", rollDicesHandler);
+    return () => resetGameEvent();
   }, []);
 
   const dicesState = useStore(dicesStore);
   const visibilityState = useStore(visibilityStore);
 
-  const turn = async () => {
+  const moveDices = async () => {
     resetDicesEvent();
     showDicesEvent();
     hideActionModalEvent();
@@ -71,7 +74,7 @@ export const Game = (props: Props) => {
                     text={
                       "Если вы откажетесь от покупки, то поле будет выставлено на общий аукцион."
                     }
-                    actions={[{ title: `Бросить кубики`, onClick: turn }]}
+                    actions={[{ title: `Бросить кубики`, onClick: moveDices }]}
                   />
                 )}
                 <Arbitr />

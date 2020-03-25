@@ -15,6 +15,7 @@ export interface IDiceStore {
 
 export const rollDicesEffect = DiceDomain.effect("rollDices", {
   handler: async ({ name }) => {
+    console.log("rollDicesEffect", name);
     mnplSocket.emit("rollDices", { rollDices: name });
   }
 });
@@ -32,7 +33,7 @@ const init: IDiceStore = {
 
 export const dicesStore = DiceDomain.store(init)
   .on(setDicesEvent, (_, data) => ({
-    userId: 1,
+    userId: data.userId,
     dice1: data.dices[0],
     dice2: data.dices[1],
     dice3: data.dices[2],

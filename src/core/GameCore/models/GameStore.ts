@@ -7,6 +7,6 @@ interface GameModel {
 }
 
 const gameStore = GameDomain.store<GameModel>({ gameId: "" });
-const resetGameEvent = GameDomain.event<void>();
-const setGameIdEvent = GameDomain.event<string>();
+export const resetGameEvent = GameDomain.event<void>();
+export const setGameIdEvent = GameDomain.event<string>();
 gameStore.on(setGameIdEvent, v => v).reset(resetGameEvent);

@@ -1,7 +1,10 @@
 import { sample } from "effector";
 import { dicesStore, setDicesEvent, IDiceStore } from "./DicesStore";
 import { GameDomain } from "./GameStore";
-
+export interface PlayerToken {
+  position: number;
+  isJailed: 0 | 1 | 2 | 3;
+}
 interface fieldPositions {
   positionNumber: number;
   left: number;
