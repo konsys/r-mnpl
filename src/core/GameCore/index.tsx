@@ -11,7 +11,12 @@ import { M1tv } from "../../components/M1tv/M1tv";
 import { TableAction } from "../../components/TableAction/TableAction";
 import { Dices } from "../../components/Dices/Dices";
 import { GameLoading } from "../../components/GameLoading/GameLoading";
-import { dices, resetDices, rollDicesFX, setDices } from "./DicesStore";
+import {
+  dicesStore,
+  resetDices,
+  rollDicesEffect,
+  setDicesEvent
+} from "./DicesStore";
 import { useStore } from "effector-react";
 import openSocket from "socket.io-client";
 import {
@@ -38,18 +43,18 @@ export const Game = (props: Props) => {
         (v: any) => v.type === "rollDices"
       );
 
-      setDices(dices);
+      setDicesEvent(dices);
     });
   }, []);
 
-  const diceStore = useStore(dices);
+  const diceStore = useStore(dicesStore);
   const visibility = useStore(visibilityStore);
 
   const turn = async () => {
     resetDices();
     showDices();
     hideActionModal();
-    setTimeout(() => rollDicesFX({ name: "rollDices" }));
+    setTimeout(() => rollDicesEffect({ name: "rollDices" }));
     setTimeout(() => {
       hideDices();
       showActionModal();

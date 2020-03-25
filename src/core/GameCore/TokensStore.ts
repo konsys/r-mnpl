@@ -1,5 +1,5 @@
-import { createStore, createEvent, sample } from "effector";
-import { dices, setDices, DiceStore } from "./DicesStore";
+import { sample } from "effector";
+import { dicesStore, setDicesEvent, IDiceStore } from "./DicesStore";
 import { GameDomain } from "./GameModel";
 
 interface fieldPositions {
@@ -116,9 +116,9 @@ for (let i = 0; i < 40; i++) {
   }
 }
 
-const diceTurn = sample(dices, setDices, v => v);
+const diceTurn = sample(dicesStore, setDicesEvent, v => v);
 
-diceTurn.watch(async (v: DiceStore) => {
+diceTurn.watch(async (v: IDiceStore) => {
   const tokenState = tokens.getState();
   const currentToken = tokenState[v.userId];
 
@@ -162,11 +162,11 @@ diceTurn.watch(async (v: DiceStore) => {
   }
 });
 
-export const resetTokens = createEvent();
+export const resetTokens = TokenDomain.event();
 
-export const changePosition = createEvent<TokenStore>();
+export const changePosition = TokenDomain.event<TokenStore>();
 
-export const tokens = createStore<TokenStore>(init)
+export const tokens = TokenDomain.store<TokenStore>(init)
   .on(changePosition, (_, v) => v)
   .reset(resetTokens);
 
