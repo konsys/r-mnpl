@@ -1,6 +1,6 @@
 import { sample } from "effector";
 import { dicesStore, setDicesEvent, IDiceStore } from "./DicesStore";
-import { GameDomain } from "./GameModel";
+import { GameDomain } from "./GameStore";
 
 interface fieldPositions {
   positionNumber: number;

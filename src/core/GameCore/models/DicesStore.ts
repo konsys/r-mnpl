@@ -1,5 +1,5 @@
 import { mnplSocket } from "../index";
-import { GameDomain } from "./GameModel";
+import { GameDomain } from "./GameStore";
 
 const DiceDomain = GameDomain.domain("DiceDomain");
 export const resetDicesEvent = DiceDomain.event();

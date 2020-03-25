@@ -1,4 +1,4 @@
-import { GameDomain } from "./GameModel";
+import { GameDomain } from "./GameStore";
 
 const VisibilityDomain = GameDomain.domain("VisibilityDomain");
 export const showDicesEvent = VisibilityDomain.event();
