@@ -1,8 +1,8 @@
 import { mnplSocket } from "./index";
 import { GameDomain } from "./GameModel";
 
-const DiceDomain = GameDomain.createDomain("DiceDomain");
-export const resetDices = DiceDomain.createEvent();
+const DiceDomain = GameDomain.domain("DiceDomain");
+export const resetDicesEvent = DiceDomain.event();
 
 export interface IDiceStore {
   userId: number;
@@ -39,4 +39,4 @@ export const dicesStore = DiceDomain.store(init)
     dicesSum: data.dices.reduce((acc: number, v: number) => acc + v, 0),
     meanPosition: data.meanPosition
   }))
-  .reset(resetDices);
+  .reset(resetDicesEvent);

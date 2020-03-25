@@ -1,10 +1,11 @@
-import { createStore, createEvent } from "effector";
+import { GameDomain } from "./GameModel";
 
-export const showDices = createEvent();
-export const hideDices = createEvent();
-export const showActionModal = createEvent();
-export const hideActionModal = createEvent();
-export const resetVisibility = createEvent();
+const VisibilityDomain = GameDomain.domain("VisibilityDomain");
+export const showDicesEvent = VisibilityDomain.event();
+export const hideDicesEvent = VisibilityDomain.event();
+export const showActionModalEvent = VisibilityDomain.event();
+export const hideActionModalEvent = VisibilityDomain.event();
+export const resetVisibilityEvent = VisibilityDomain.event();
 
 export interface VisibilityStore {
   dicesVisibility: boolean;
@@ -15,9 +16,9 @@ const init = {
   tableActionModal: true
 };
 
-export const visibilityStore = createStore(init)
-  .on(showDices, data => ({ ...data, dicesVisibility: true }))
-  .on(hideDices, data => ({ ...data, dicesVisibility: false }))
-  .on(showActionModal, data => ({ ...data, tableActionModal: true }))
-  .on(hideActionModal, data => ({ ...data, tableActionModal: false }))
-  .reset(resetVisibility);
+export const visibilityStore = VisibilityDomain.store(init)
+  .on(showDicesEvent, data => ({ ...data, dicesVisibility: true }))
+  .on(hideDicesEvent, data => ({ ...data, dicesVisibility: false }))
+  .on(showActionModalEvent, data => ({ ...data, tableActionModal: true }))
+  .on(hideActionModalEvent, data => ({ ...data, tableActionModal: false }))
+  .reset(resetVisibilityEvent);

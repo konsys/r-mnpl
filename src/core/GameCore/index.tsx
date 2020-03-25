@@ -13,18 +13,18 @@ import { Dices } from "../../components/Dices/Dices";
 import { GameLoading } from "../../components/GameLoading/GameLoading";
 import {
   dicesStore,
-  resetDices,
+  resetDicesEvent,
   rollDicesEffect,
   setDicesEvent
 } from "./DicesStore";
 import { useStore } from "effector-react";
 import openSocket from "socket.io-client";
 import {
-  hideActionModal,
-  showActionModal,
+  hideActionModalEvent,
+  showActionModalEvent,
   visibilityStore,
-  hideDices,
-  showDices
+  hideDicesEvent,
+  showDicesEvent
 } from "./VisibilityStore";
 import { BoardCore } from "../BoardCore/BoardCore";
 import { UsersCore } from "../UsersCore/UsersCore";
@@ -51,13 +51,13 @@ export const Game = (props: Props) => {
   const visibility = useStore(visibilityStore);
 
   const turn = async () => {
-    resetDices();
-    showDices();
-    hideActionModal();
+    resetDicesEvent();
+    showDicesEvent();
+    hideActionModalEvent();
     setTimeout(() => rollDicesEffect({ name: "rollDices" }));
     setTimeout(() => {
-      hideDices();
-      showActionModal();
+      hideDicesEvent();
+      showActionModalEvent();
     }, 2000);
   };
 
