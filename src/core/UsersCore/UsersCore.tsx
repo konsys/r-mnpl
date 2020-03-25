@@ -3,34 +3,32 @@ import { GameDomain } from "../GameCore/GameModel";
 import { client } from "../../http/client";
 import { useStore } from "effector-react";
 import { IUser, Players } from "../../components/Players/Players";
-import { Board } from "../../components/Board/Board";
-import { BoardField } from "../../components/Field/Field";
 
 const URL = `/users`;
 
-async function fetchUsers(params?: any): Promise<BoardField[]> {
+async function fetchUsers(params?: any): Promise<IUser[]> {
   return await (await client.get(URL, params)).data;
 }
 
 const UsersDomain = GameDomain.domain("UsersDomain");
 
-export const reseyUsers = UsersDomain.event();
-export const getUsers = UsersDomain.effect<any, BoardField[], Error>({
+export const resetUsers = UsersDomain.event();
+export const getUsersFX = UsersDomain.effect<void, IUser[], Error>({
   handler: fetchUsers
 });
 
-export const usersStore = UsersDomain.store<BoardField[]>([])
-  .on(getUsers.done, (_, { result }) => result)
-  .on(getUsers.fail, err => console.log("error", err))
-  .reset(reseyUsers);
+export const usersStore = UsersDomain.store<IUser[]>([])
+  .on(getUsersFX.done, (_, { result }) => result)
+  .on(getUsersFX.fail, err => console.log("error", err))
+  .reset(resetUsers);
 
 export const UsersCore = () => {
   useEffect(() => {
-    getUsers({ isActive: true });
-    return () => reseyUsers();
+    getUsersFX();
+    return () => resetUsers();
   }, []);
   const data = useStore(usersStore);
-  return getUsers.done ? <Board fields={data} /> : <>wait</>;
+  return getUsersFX.done ? <Players users={data} /> : <>wait</>;
 };
 
 usersStore.watch(v => console.log(33333, v));

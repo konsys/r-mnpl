@@ -28,5 +28,6 @@ export const BoardCore = () => {
     return () => resetFields();
   }, []);
   const data = useStore(fieldsStore);
+  console.log(232132, typeof data);
   return getInitFields.done ? <Board fields={data} /> : <>wait</>;
 };

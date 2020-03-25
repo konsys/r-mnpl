@@ -40,5 +40,3 @@ export const dices = DiceDomain.createStore(init)
     meanPosition: data.meanPosition
   }))
   .reset(resetDices);
-
-dices.watch(v => console.log(1111, v));
