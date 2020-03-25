@@ -1,5 +1,5 @@
 import { mnplSocket } from "../index";
-import { GameDomain } from "./GameStore";
+import { GameDomain, IGameModel } from "./GameStore";
 
 const DiceDomain = GameDomain.domain("DiceDomain");
 export const resetDicesEvent = DiceDomain.event();
@@ -13,10 +13,14 @@ export interface IDiceStore {
   meanPosition: number;
 }
 
-export const rollDicesEffect = DiceDomain.effect("rollDices", {
-  handler: async () => {
-    console.log("rollDicesEffect");
-    mnplSocket.emit("rollDices");
+export const rollDicesEffect = DiceDomain.effect<
+  IGameModel,
+  Promise<SocketIOClient.Socket>,
+  Error
+>("rollDices", {
+  handler: async (game: IGameModel) => {
+    console.log("rollDicesEffect", game);
+    return mnplSocket.emit("rollDices", game);
   }
 });
 

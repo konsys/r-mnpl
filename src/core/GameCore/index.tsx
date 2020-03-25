@@ -46,7 +46,7 @@ export const Game = (props: Props) => {
     return () => resetGameEvent();
   }, []);
 
-  const moveDices = async () => {
+  const rollDices = async () => {
     resetDicesEvent();
     showDicesEvent();
     hideActionModalEvent();
@@ -73,7 +73,7 @@ export const Game = (props: Props) => {
                     text={
                       "Если вы откажетесь от покупки, то поле будет выставлено на общий аукцион."
                     }
-                    actions={[{ title: `Бросить кубики`, onClick: moveDices }]}
+                    actions={[{ title: `Бросить кубики`, onClick: rollDices }]}
                   />
                 )}
                 <Arbitr />

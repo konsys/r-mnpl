@@ -2,11 +2,11 @@ import { createDomain } from "effector";
 
 export const GameDomain = createDomain("GameDomain");
 
-interface GameModel {
+export interface IGameModel {
   gameId: string;
 }
 
-export const gameStore = GameDomain.store<GameModel>({ gameId: "" });
+export const gameStore = GameDomain.store<IGameModel>({ gameId: "" });
 export const resetGameEvent = GameDomain.event<void>();
 export const setGameIdEvent = GameDomain.event<string>();
 gameStore.on(setGameIdEvent, (_, gameId) => ({ gameId })).reset(resetGameEvent);
