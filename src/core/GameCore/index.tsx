@@ -14,8 +14,7 @@ import { GameLoading } from "../../components/GameLoading/GameLoading";
 import {
   dicesStore,
   resetDicesEvent,
-  rollDicesEffect,
-  rollDicesSample
+  rollDicesEffect
 } from "./models/DicesStore";
 import { useStore } from "effector-react";
 import openSocket from "socket.io-client";
@@ -30,29 +29,28 @@ import { BoardCore } from "../BoardCore/BoardCore";
 import { UsersCore } from "../UsersCore/UsersCore";
 import { rollDicesHandler } from "./handlers/SocketHandlers";
 import nanoid from "nanoid";
-import { setGameIdEvent, resetGameEvent } from "./models/GameStore";
-
-const gameId = nanoid(12);
+import { setGameIdEvent, resetGameEvent, gameStore } from "./models/GameStore";
 
 export const mnplSocket = openSocket("http://localhost:3001");
 
 interface Props extends RouteComponentProps {}
 
 export const Game = (props: Props) => {
+  const dicesState = useStore(dicesStore);
+  const visibilityState = useStore(visibilityStore);
+  const gameState = useStore(gameStore);
+
   useEffect(() => {
-    setGameIdEvent(gameId);
+    setGameIdEvent(nanoid(12));
     mnplSocket.on("rollDices", rollDicesHandler);
     return () => resetGameEvent();
   }, []);
-
-  const dicesState = useStore(dicesStore);
-  const visibilityState = useStore(visibilityStore);
 
   const moveDices = async () => {
     resetDicesEvent();
     showDicesEvent();
     hideActionModalEvent();
-    setTimeout(() => rollDicesSample({ gameId: "" }));
+    setTimeout(() => rollDicesEffect(gameState));
     setTimeout(() => {
       hideDicesEvent();
       showActionModalEvent();
