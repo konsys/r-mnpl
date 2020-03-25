@@ -10,3 +10,5 @@ const gameStore = GameDomain.store<GameModel>({ gameId: "" });
 export const resetGameEvent = GameDomain.event<void>();
 export const setGameIdEvent = GameDomain.event<string>();
 gameStore.on(setGameIdEvent, v => v).reset(resetGameEvent);
+
+gameStore.watch(v => console.log("gameStore", v));

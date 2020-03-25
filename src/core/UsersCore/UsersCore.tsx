@@ -12,23 +12,21 @@ async function fetchUsers(params?: any): Promise<IUser[]> {
 
 const UsersDomain = GameDomain.domain("UsersDomain");
 
-export const resetUsers = UsersDomain.event();
-export const getUsersFX = UsersDomain.effect<void, IUser[], Error>({
+export const resetUsersEvent = UsersDomain.event();
+export const getUsersEffect = UsersDomain.effect<void, IUser[], Error>({
   handler: fetchUsers
 });
 
 export const usersStore = UsersDomain.store<IUser[]>([])
-  .on(getUsersFX.done, (_, { result }) => result)
-  .on(getUsersFX.fail, err => console.log("error", err))
-  .reset(resetUsers);
+  .on(getUsersEffect.done, (_, { result }) => result)
+  .on(getUsersEffect.fail, err => console.log("error", err))
+  .reset(resetUsersEvent);
 
 export const UsersCore = () => {
   useEffect(() => {
-    getUsersFX();
-    return () => resetUsers();
+    getUsersEffect();
+    return () => resetUsersEvent();
   }, []);
   const data = useStore(usersStore);
-  return getUsersFX.done ? <Players users={data} /> : <>wait</>;
+  return getUsersEffect.done ? <Players users={data} /> : <>wait</>;
 };
-
-usersStore.watch(v => console.log(33333, v));
