@@ -1,5 +1,7 @@
 import { mnplSocket } from "../index";
 import { GameDomain } from "./GameStore";
+import { sample } from "effector";
+import { gameStore } from "../../GameCore/models/GameStore";
 
 const DiceDomain = GameDomain.domain("DiceDomain");
 export const resetDicesEvent = DiceDomain.event();
@@ -14,11 +16,13 @@ export interface IDiceStore {
 }
 
 export const rollDicesEffect = DiceDomain.effect("rollDices", {
-  handler: async ({ name }) => {
-    console.log("rollDicesEffect", name);
-    mnplSocket.emit("rollDices", { rollDices: name });
+  handler: async () => {
+    console.log("rollDicesEffect");
+    mnplSocket.emit("rollDices");
   }
 });
+
+export const rollDicesSample = sample(gameStore, rollDicesEffect, v => v);
 
 export const setDicesEvent = DiceDomain.event<any>();
 

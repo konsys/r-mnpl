@@ -1,6 +1,6 @@
-import { sample } from "effector";
+import { sample, combine } from "effector";
 import { dicesStore, setDicesEvent, IDiceStore } from "./DicesStore";
-import { GameDomain } from "./GameStore";
+import { GameDomain, gameStore } from "./GameStore";
 export interface PlayerToken {
   position: number;
   isJailed: 0 | 1 | 2 | 3;
@@ -119,8 +119,9 @@ for (let i = 0; i < 40; i++) {
   }
 }
 
-const diceTurn = sample(dicesStore, setDicesEvent, v => v);
+const game = combine(dicesStore, gameStore, (dices, game) => game.gameId);
 
+const diceTurn = sample(dicesStore, setDicesEvent, v => v);
 diceTurn.watch(async (v: IDiceStore) => {
   const tokenState = tokens.getState();
   const currentToken = tokenState[v.userId];

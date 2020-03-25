@@ -6,9 +6,9 @@ interface GameModel {
   gameId: string;
 }
 
-const gameStore = GameDomain.store<GameModel>({ gameId: "" });
+export const gameStore = GameDomain.store<GameModel>({ gameId: "" });
 export const resetGameEvent = GameDomain.event<void>();
 export const setGameIdEvent = GameDomain.event<string>();
-gameStore.on(setGameIdEvent, v => v).reset(resetGameEvent);
+gameStore.on(setGameIdEvent, (_, gameId) => ({ gameId })).reset(resetGameEvent);
 
 gameStore.watch(v => console.log("gameStore", v));
