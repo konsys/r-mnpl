@@ -34,6 +34,7 @@ import {
   resetBoardEvent,
   boardStore
 } from "./models/BoardStore";
+import { SocketActions } from "./models/ActionsModel";
 
 export const mnplSocket = openSocket("http://localhost:3001");
 
@@ -46,7 +47,7 @@ export const Game = (props: Props) => {
 
   useEffect(() => {
     setBoardIdEvent(nanoid(12));
-    mnplSocket.on("rollDices", rollDicesHandler);
+    mnplSocket.on(SocketActions.BOARD_MESSAGE, rollDicesHandler);
     return () => resetBoardEvent();
   }, []);
 

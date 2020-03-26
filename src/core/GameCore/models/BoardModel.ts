@@ -104,7 +104,7 @@ interface PauseData {
   inactive: number;
 }
 
-export interface BoardSocketMessage {
+export interface BoardMessage {
   code: ResponceCode;
   data: BoardEventData;
 }
