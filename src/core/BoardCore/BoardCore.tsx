@@ -30,3 +30,5 @@ export const BoardCore = () => {
   const data = useStore(fieldsStore);
   return getInitFields.done ? <Board fields={data} /> : <>wait</>;
 };
+
+// fieldsStore.watch(v => console.log(234234, v));

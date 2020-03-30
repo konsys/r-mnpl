@@ -27,7 +27,7 @@ import {
 } from "./models/VisibilityStore";
 import { BoardCore } from "../BoardCore/BoardCore";
 import { UsersCore } from "../UsersCore/UsersCore";
-import { rollDicesHandler } from "./handlers/SocketHandlers";
+import { boardMessageHandler } from "./handlers/SocketHandlers";
 import nanoid from "nanoid";
 import {
   setBoardIdEvent,
@@ -47,7 +47,7 @@ export const Game = (props: Props) => {
 
   useEffect(() => {
     setBoardIdEvent(nanoid(12));
-    mnplSocket.on(SocketActions.BOARD_MESSAGE, rollDicesHandler);
+    mnplSocket.on(SocketActions.BOARD_MESSAGE, boardMessageHandler);
     return () => resetBoardEvent();
   }, []);
 

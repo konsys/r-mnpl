@@ -1,7 +1,20 @@
 import { setDicesEvent } from "../models/DicesStore";
+import { BoardMessage, BoardEventType, RollDices } from "../models/BoardModel";
 
-export const rollDicesHandler = (rollDices: any) => {
-  const dices = rollDices.data.events.find((v: any) => v.type === "rollDices");
-
+export const rollDicesHandler = (dices: RollDices) => {
+  console.log(222222, dices);
   setDicesEvent(dices);
+};
+
+export const boardMessageHandler = (message: BoardMessage) => {
+  const events = message.data.events.type;
+  events.map(v => {
+    switch (v.type) {
+      case BoardEventType.ROLL_DICES:
+        rollDicesHandler(v);
+        break;
+    }
+
+    return v;
+  });
 };

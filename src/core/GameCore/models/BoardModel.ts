@@ -3,39 +3,108 @@ enum ResponceCode {
   error = 1
 }
 
-export enum BoardEventType {
-  ROLL_DEICES = "rollDices",
-  CAN_BUY = "canBuy"
-}
-
-export type EventRollDices = {
-  type: BoardEventType.ROLL_DEICES;
-  userId: number;
-  dices: number[];
-  meanPosition: number;
-  _id: string;
+export type Contract = {
+  fromUserId: number;
+  toUserId: number;
+  outFields: number[];
+  outMoney: number;
+  inFields: number[];
+  inMoney: number;
+  _id: "CWRlgfKGAm4=";
 };
 
-export type EventCanBuy = {
-  type: BoardEventType.CAN_BUY;
+export enum BoardEventType {
+  ROLL_DICES = "rollDices",
+  CAN_BUY = "canBuy",
+  AUCTION_ACCEPT = "auctionAccept",
+  AUCTION_DECLINE = "auctionDeclne",
+  BUY = "buy",
+  PAY_RENT_SUCCESS = "payRentSuccess",
+  PAY_RENT_FAIL = "payRentFail",
+  LEVEL_UP = "levelUp",
+  LEVEL_DOWN = "levelDown",
+  CONTRACT_ACCEPTED = "contractAccepted",
+  MORTGAGE = "mortgage"
+}
+export interface BoardAction {
+  type: BoardEventType;
   userId: number;
+  _id: string;
+}
+
+export interface Motrgage extends BoardAction {
+  type: BoardEventType.MORTGAGE;
+  field: number;
+}
+
+export interface AuctionDecline extends BoardAction {
+  type: BoardEventType.AUCTION_DECLINE;
+}
+export interface AuctionAccept extends BoardAction {
+  type: BoardEventType.AUCTION_ACCEPT;
+  bet: number;
+}
+export interface LevelUp extends BoardAction {
+  type: BoardEventType.LEVEL_UP;
+  field: number;
+}
+export interface LevelDown extends BoardAction {
+  type: BoardEventType.LEVEL_DOWN;
+  field: number;
+}
+export interface PayRentSuccess extends BoardAction {
+  type: BoardEventType.PAY_RENT_SUCCESS;
   field: number;
   money: number;
-  _id: string;
+  toUserId: number;
+}
+
+export interface PayRentFail extends BoardAction {
+  type: BoardEventType.PAY_RENT_FAIL;
+  field: number;
+  money: number;
+  toUserId: number;
+}
+
+export interface TypeBuy extends BoardAction {
+  type: BoardEventType.BUY;
+  field: number;
+  money: number;
+}
+
+export interface RollDices extends BoardAction {
+  type: BoardEventType.ROLL_DICES;
+  dices: number[];
+  meanPosition: number;
+}
+
+export interface CanBuy extends BoardAction {
+  type: BoardEventType.CAN_BUY;
+  field: number;
+  money: number;
+}
+
+export type BoardActionTypes = {
+  type: Array<
+    | Motrgage
+    | AuctionDecline
+    | AuctionAccept
+    | LevelUp
+    | LevelDown
+    | PayRentSuccess
+    | PayRentFail
+    | TypeBuy
+    | RollDices
+    | CanBuy
+  >;
 };
 
 interface BoardEventData {
   id: number;
-  events: Array<EventRollDices | EventCanBuy>;
-  status: BoardStatus;
-}
-
-export enum BoardFieldActions {
-  BUY = "buy",
-  TO_AUCTION = "toAuction",
-  LEVEL_DOWN = "levelDown",
-  CONTRACT = "contract",
-  MORTGAGE = "mortgage"
+  events: BoardActionTypes;
+  // TODO Remove ? after events completed
+  boardStatus?: BoardStatus;
+  contract?: Contract;
 }
 
 interface IUser {
@@ -79,7 +148,6 @@ interface MoveStatus {
   playerOwnerOfMove: number;
   round: number;
   actionPlayer: number;
-  actionType: BoardFieldActions[];
   currentMove: CurrentMove;
 }
 
@@ -111,13 +179,10 @@ export interface BoardMessage {
 
 interface UsersEntity {
   userId: number;
-  name: string;
   vip: boolean;
-  isActive: boolean;
-  registrationType?: string;
+  name: string;
   team?: string;
   avatar?: string;
-  createdAt?: Date;
-  updatedAt?: Date;
+  isActive: boolean;
   isBlocked?: boolean;
 }
