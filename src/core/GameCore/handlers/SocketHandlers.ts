@@ -1,7 +1,14 @@
 import { setDicesEvent } from "../models/DicesStore";
-import { BoardMessage, BoardEventType, RollDices } from "../models/BoardModel";
+import {
+  BoardMessage,
+  BoardEventType,
+  RollDices,
+  CanBuy
+} from "../models/BoardModel";
 
 export const rollDicesHandler = (dices: RollDices) => setDicesEvent(dices);
+
+export const canBuyHandler = (dices: CanBuy) => dices;
 
 export const boardMessageHandler = (message: BoardMessage) => {
   const events = message.data.events.type;
@@ -9,6 +16,10 @@ export const boardMessageHandler = (message: BoardMessage) => {
     switch (v.type) {
       case BoardEventType.ROLL_DICES:
         rollDicesHandler(v);
+        break;
+
+      case BoardEventType.CAN_BUY:
+        canBuyHandler(v);
         break;
     }
 

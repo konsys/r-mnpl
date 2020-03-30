@@ -33,12 +33,17 @@ const init: IDiceStore = {
 };
 
 export const dicesStore = DiceDomain.store(init)
-  .on(setDicesEvent, (_, data) => ({
-    userId: data.userId,
-    dice1: data.dices[0],
-    dice2: data.dices[1],
-    dice3: data.dices[2],
-    dicesSum: data.dices.reduce((acc: number, v: number) => acc + v, 0),
-    meanPosition: data.meanPosition
-  }))
+  .on(setDicesEvent, (prev, data) => {
+    console.log(data);
+    if (data && Array.isArray(data.dices) && data.dices.length === 3) {
+      return {
+        userId: data.userId,
+        dice1: data.dices[0],
+        dice2: data.dices[1],
+        dice3: data.dices[2],
+        dicesSum: data.dices.reduce((acc: number, v: number) => acc + v, 0),
+        meanPosition: data.meanPosition
+      };
+    } else return prev;
+  })
   .reset(resetDicesEvent);
