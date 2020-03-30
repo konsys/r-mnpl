@@ -25,7 +25,7 @@ export const Token = (props: Props) => {
           }}
           className="_animated"
         >
-          {fields.find(v => v.fieldPosition - 1 === tokenParams.fieldId)?.name}
+          {fields.find(v => v.fieldPosition === tokenParams.fieldId)?.name}
         </div>
       )}
     </>
