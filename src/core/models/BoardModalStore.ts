@@ -1,4 +1,5 @@
 import { GameDomain } from "./BoardStore";
+import { rollDices } from "./DicesStore";
 
 const BoardModalDomain = GameDomain.domain("ModalDomain");
 export const resetBoardModalEvent = BoardModalDomain.event();
@@ -8,7 +9,7 @@ interface ActionButtons {
   onClick: () => void;
 }
 
-export interface IModalMStore {
+export interface IModalStore {
   isVisible: boolean;
   userId: number;
   title: string;
@@ -16,9 +17,21 @@ export interface IModalMStore {
   actionButtons?: ActionButtons[];
 }
 
-const init: IModalMStore = { userId: 0, title: "", text: "", isVisible: false };
+const init: IModalStore = {
+  isVisible: true,
+  userId: 1,
+  title: "Покупаем?",
+  text:
+    "Если вы откажетесь от покупки, то поле будет выставлено на общий аукцион.",
+  actionButtons: [
+    {
+      title: "Бросить кубики",
+      onClick: () => rollDices
+    }
+  ]
+};
 
-export const setBoardModalEvent = BoardModalDomain.event<IModalMStore>();
+export const setBoardModalEvent = BoardModalDomain.event<IModalStore>();
 
 export const boardModalStore = BoardModalDomain.store(init)
   .on(setBoardModalEvent, (_, data) => data)

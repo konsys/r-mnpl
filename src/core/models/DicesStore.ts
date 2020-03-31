@@ -1,5 +1,11 @@
 import { mnplSocket } from "../GameCore/index";
 import { GameDomain, IBoardModel } from "./BoardStore";
+import {
+  showDicesEvent,
+  hideActionModalEvent,
+  hideDicesEvent,
+  showActionModalEvent
+} from "./VisibilityStore";
 
 const DiceDomain = GameDomain.domain("DiceDomain");
 export const resetDicesEvent = DiceDomain.event();
@@ -46,3 +52,14 @@ export const dicesStore = DiceDomain.store(init)
     } else return prev;
   })
   .reset(resetDicesEvent);
+
+export const rollDices = async () => {
+  resetDicesEvent();
+  showDicesEvent();
+  hideActionModalEvent();
+  setTimeout(() => rollDicesEffect({}));
+  setTimeout(() => {
+    hideDicesEvent();
+    showActionModalEvent();
+  }, 2000);
+};

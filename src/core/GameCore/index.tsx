@@ -34,7 +34,7 @@ import {
   resetBoardEvent,
   boardStore
 } from "../models/BoardStore";
-import { SocketActions } from "../models/ActionsTypes";
+import { SocketActions } from "../models/types/ActionsTypes";
 
 export const mnplSocket = openSocket("http://localhost:3001");
 
