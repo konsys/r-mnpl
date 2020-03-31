@@ -72,15 +72,7 @@ export const Game = (props: Props) => {
               <BoardCore />
               <div className="table-body-board-center">
                 <M1tv />
-                {visibilityState.tableActionModal && (
-                  <TableAction
-                    title={"Покупаем?"}
-                    text={
-                      "Если вы откажетесь от покупки, то поле будет выставлено на общий аукцион."
-                    }
-                    actions={[{ title: `Бросить кубики`, onClick: rollDices }]}
-                  />
-                )}
+                {visibilityState.tableActionModal && <TableAction />}
                 <Arbitr />
                 <Ticket />
                 <Chat />

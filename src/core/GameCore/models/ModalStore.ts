@@ -1,5 +1,4 @@
-import { mnplSocket } from "../index";
-import { GameDomain, IBoardModel } from "./BoardStore";
+import { GameDomain } from "./BoardStore";
 
 const ModalDomain = GameDomain.domain("ModalDomain");
 export const resetModalEvent = ModalDomain.event();
@@ -9,7 +8,7 @@ interface ActionButtons {
   onClick: () => void;
 }
 
-interface IModalMStore {
+export interface IModalMStore {
   userId: number;
   title: string;
   text: string;

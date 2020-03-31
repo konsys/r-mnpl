@@ -1,4 +1,5 @@
 import { setDicesEvent } from "../models/DicesStore";
+import { IModalMStore, setModalEvent } from "../models/ModalStore";
 import {
   BoardMessage,
   BoardEventType,
@@ -8,7 +9,21 @@ import {
 
 export const rollDicesHandler = (dices: RollDices) => setDicesEvent(dices);
 
-export const canBuyHandler = (buy: CanBuy) => console.log("TODO CanBuy", buy);
+export const canBuyHandler = (b: CanBuy) => {
+  const modal: IModalMStore = {
+    userId: b.userId,
+    title: "Покупаем?",
+    text:
+      "Если вы откажетесь от покупки, то поле будет выставлено на общий аукцион.",
+    actionButtons: [
+      {
+        title: "Бросить кубики",
+        onClick: () => console.log("click")
+      }
+    ]
+  };
+  setModalEvent(modal);
+};
 
 export const boardMessageHandler = (message: BoardMessage) => {
   const events = message.data.events.type;
