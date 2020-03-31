@@ -14,7 +14,7 @@ export interface IDiceStore {
 }
 
 export const rollDicesEffect = DiceDomain.effect<
-  IBoardModel,
+  any,
   Promise<SocketIOClient.Socket>,
   Error
 >("rollDices", {

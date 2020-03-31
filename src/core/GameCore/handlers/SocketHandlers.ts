@@ -1,5 +1,12 @@
 import { setDicesEvent } from "../models/DicesStore";
 import { IModalMStore, setBoardModalEvent } from "../models/BoardModalStore";
+import { resetDicesEvent, rollDicesEffect } from "../models/DicesStore";
+import {
+  showDicesEvent,
+  hideActionModalEvent,
+  hideDicesEvent,
+  showActionModalEvent
+} from "../models/VisibilityStore";
 import {
   BoardMessage,
   BoardEventType,
@@ -7,9 +14,20 @@ import {
   CanBuy
 } from "../models/BoardModel";
 
-export const rollDicesHandler = (dices: RollDices) => setDicesEvent(dices);
+const rollDicesHandler = (dices: RollDices) => {
+  //  setDicesEvent({
+  resetDicesEvent();
+  showDicesEvent();
+  hideActionModalEvent();
+  setTimeout(() => rollDicesEffect({}));
+  setTimeout(() => {
+    hideDicesEvent();
+    showActionModalEvent();
+  }, 2000);
+  //  })
+};
 
-export const canBuyHandler = (b: CanBuy) => {
+const canBuyHandler = (b: CanBuy) => {
   const modal: IModalMStore = {
     userId: b.userId,
     title: "Покупаем?",
@@ -18,7 +36,7 @@ export const canBuyHandler = (b: CanBuy) => {
     actionButtons: [
       {
         title: "Бросить кубики",
-        onClick: () => console.log("click")
+        onClick: () => rollDicesHandler
       }
     ]
   };
