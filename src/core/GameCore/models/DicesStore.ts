@@ -34,7 +34,6 @@ const init: IDiceStore = {
 
 export const dicesStore = DiceDomain.store(init)
   .on(setDicesEvent, (prev, data) => {
-    console.log(data);
     if (data && Array.isArray(data.dices) && data.dices.length === 3) {
       return {
         userId: data.userId,

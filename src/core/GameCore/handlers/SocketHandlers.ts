@@ -8,7 +8,7 @@ import {
 
 export const rollDicesHandler = (dices: RollDices) => setDicesEvent(dices);
 
-export const canBuyHandler = (dices: CanBuy) => dices;
+export const canBuyHandler = (buy: CanBuy) => console.log("TODO CanBuy", buy);
 
 export const boardMessageHandler = (message: BoardMessage) => {
   const events = message.data.events.type;
