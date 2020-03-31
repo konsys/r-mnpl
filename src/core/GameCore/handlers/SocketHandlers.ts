@@ -2,13 +2,23 @@ import { IModalStore, setBoardModalEvent } from "../../models/BoardModalStore";
 import {
   BoardMessage,
   BoardEventType,
-  RollDices,
-  CanBuy
+  CanBuy,
+  RollDices
 } from "../../models/types/BoardTypes";
+import { setDicesEvent } from "../../models/DicesStore";
 
-export const rollDicesHandler = async (dices: RollDices) => {
+export const rollDicesHandler = async (d: RollDices) => {
   console.log(2342543534, rollDicesHandler);
-  // await rollDices();
+  const modal: RollDices = {
+    type: BoardEventType.ROLL_DICES,
+    isVisible: true,
+    userId: d.userId,
+    dices: d.dices,
+    meanPosition: d.meanPosition,
+    dicesSum: d.dices[0] + d.dices[1] + d.dices[2],
+    _id: d._id
+  };
+  setDicesEvent(modal);
 };
 
 export const canBuyHandler = (b: CanBuy) => {

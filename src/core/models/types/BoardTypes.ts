@@ -75,6 +75,9 @@ export interface TypeBuy extends BoardAction {
 export interface RollDices extends BoardAction {
   type: BoardEventType.ROLL_DICES;
   dices: number[];
+  isVisible: boolean;
+  userId: number;
+  dicesSum: number;
   meanPosition: number;
 }
 

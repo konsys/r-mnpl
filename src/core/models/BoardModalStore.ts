@@ -1,5 +1,5 @@
 import { GameDomain } from "./BoardStore";
-import { rollDices } from "./DicesStore";
+import { rollDicesEffect } from "../models/DicesStore";
 
 const BoardModalDomain = GameDomain.domain("ModalDomain");
 export const resetBoardModalEvent = BoardModalDomain.event();
@@ -26,7 +26,10 @@ const init: IModalStore = {
   actionButtons: [
     {
       title: "Бросить кубики",
-      onClick: () => rollDices()
+      onClick: () => {
+        console.log(23424234);
+        rollDicesEffect({});
+      }
     }
   ]
 };
