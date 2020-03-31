@@ -9,27 +9,19 @@ interface ActionButtons {
   onClick: () => void;
 }
 
-interface IDiceStore {
+interface IModalMStore {
   userId: number;
   title: string;
   text: string;
   actionButtons?: ActionButtons[];
 }
 
-const init: IDiceStore = { userId: 0, title: "", text: "" };
+const init: IModalMStore = { userId: 0, title: "", text: "" };
 
-export const rollDicesEffect = ModalDomain.effect<
-  IBoardModel,
-  Promise<SocketIOClient.Socket>,
-  Error
->("rollDices", {
-  handler: async (game: IBoardModel) => mnplSocket.emit("rollDices", game)
-});
+export const setModalEvent = ModalDomain.event<IModalMStore>();
 
-export const setModalEvent = ModalDomain.event<IDiceStore>();
-
-export const dicesStore = ModalDomain.store(init)
-  .on(setModalEvent, (prev, data) => {
+export const modalStore = ModalDomain.store(init)
+  .on(setModalEvent, (_, data) => {
     console.log("setModalEvent", data);
   })
   .reset(resetModalEvent);
