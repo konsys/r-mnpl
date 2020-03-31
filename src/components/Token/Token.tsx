@@ -1,6 +1,6 @@
 import React from "react";
 import { useStore } from "effector-react";
-import { tokenPosition, tokens } from "../../core/GameCore/models/TokensStore";
+import { tokenPosition, tokens } from "../../core/models/TokensStore";
 import { fieldsStore } from "../../core/BoardCore/BoardCore";
 interface Props {
   userId: number;

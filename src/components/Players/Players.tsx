@@ -15,13 +15,13 @@ export interface IUser {
   team?: string;
 }
 interface Prop {
-  users: IUser[];
+  players: IUser[];
 }
 
 export const Players = (prop: Prop) => (
   <>
     <div key={nanoid(4)} className="table-body-players">
-      {prop.users.map((v: IUser, k: number) => {
+      {prop.players.map((v: IUser, k: number) => {
         const actionPlayer = k === 0 ? "1" : "0";
         return (
           <div

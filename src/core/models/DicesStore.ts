@@ -1,4 +1,4 @@
-import { mnplSocket } from "../index";
+import { mnplSocket } from "../GameCore/index";
 import { GameDomain, IBoardModel } from "./BoardStore";
 
 const DiceDomain = GameDomain.domain("DiceDomain");

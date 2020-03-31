@@ -1,5 +1,5 @@
 import { GameDomain } from "./BoardStore";
-import { IUser } from "../../../components/Players/Players";
+import { IUser } from "../../components/Players/Players";
 
 const UserDomain = GameDomain.domain("UserDomain");
 export const resetUserEvent = UserDomain.event();
@@ -14,7 +14,7 @@ const init: IUser = {
 
 export const setUserEvent = UserDomain.event<IUser>();
 
-export const modalStore = UserDomain.store(init)
+export const userStore = UserDomain.store(init)
   .on(setUserEvent, (_, data) => {
     console.log("setUserEvent", data);
   })

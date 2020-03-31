@@ -15,7 +15,7 @@ import {
   dicesStore,
   resetDicesEvent,
   rollDicesEffect
-} from "../GameCore/models/DicesStore";
+} from "../models/DicesStore";
 import { useStore } from "effector-react";
 import openSocket from "socket.io-client";
 import {
@@ -24,17 +24,17 @@ import {
   visibilityStore,
   hideDicesEvent,
   showDicesEvent
-} from "../GameCore/models/VisibilityStore";
+} from "../models/VisibilityStore";
 import { BoardCore } from "../BoardCore/BoardCore";
-import { UsersCore } from "../UsersCore/UsersCore";
+import { UsersCore } from "./PlayersCore";
 import { boardMessageHandler } from "../GameCore/handlers/SocketHandlers";
 import nanoid from "nanoid";
 import {
   setBoardIdEvent,
   resetBoardEvent,
   boardStore
-} from "../GameCore/models/BoardStore";
-import { SocketActions } from "../GameCore/models/ActionsModel";
+} from "../models/BoardStore";
+import { SocketActions } from "../models/ActionsModel";
 
 export const mnplSocket = openSocket("http://localhost:3001");
 
