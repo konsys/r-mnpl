@@ -12,7 +12,7 @@ import {
   BoardEventType,
   RollDices,
   CanBuy
-} from "../../models/BoardModel";
+} from "../../models/BoardTypes";
 
 const rollDices = async () => {
   // resetDicesEvent();
