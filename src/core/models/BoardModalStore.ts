@@ -26,7 +26,7 @@ const init: IModalStore = {
   actionButtons: [
     {
       title: "Бросить кубики",
-      onClick: () => rollDices
+      onClick: () => rollDices()
     }
   ]
 };

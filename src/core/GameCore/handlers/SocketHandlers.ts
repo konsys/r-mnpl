@@ -1,12 +1,4 @@
-import { setDicesEvent } from "../../models/DicesStore";
 import { IModalStore, setBoardModalEvent } from "../../models/BoardModalStore";
-import { resetDicesEvent, rollDicesEffect } from "../../models/DicesStore";
-import {
-  showDicesEvent,
-  hideActionModalEvent,
-  hideDicesEvent,
-  showActionModalEvent
-} from "../../models/VisibilityStore";
 import {
   BoardMessage,
   BoardEventType,
@@ -14,20 +6,9 @@ import {
   CanBuy
 } from "../../models/types/BoardTypes";
 
-const rollDices = async () => {
-  resetDicesEvent();
-  showDicesEvent();
-  hideActionModalEvent();
-  setTimeout(() => rollDicesEffect({}));
-  setTimeout(() => {
-    hideDicesEvent();
-    showActionModalEvent();
-  }, 2000);
-};
-
 export const rollDicesHandler = async (dices: RollDices) => {
-  console.log(2342543534);
-  await rollDices();
+  console.log(2342543534, rollDicesHandler);
+  // await rollDices();
 };
 
 export const canBuyHandler = (b: CanBuy) => {

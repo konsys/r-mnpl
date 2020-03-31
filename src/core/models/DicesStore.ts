@@ -1,16 +1,11 @@
 import { mnplSocket } from "../GameCore/index";
 import { GameDomain, IBoardModel } from "./BoardStore";
-import {
-  showDicesEvent,
-  hideActionModalEvent,
-  hideDicesEvent,
-  showActionModalEvent
-} from "./VisibilityStore";
 
 const DiceDomain = GameDomain.domain("DiceDomain");
 export const resetDicesEvent = DiceDomain.event();
 
 export interface IDiceStore {
+  isVisible: boolean;
   userId: number;
   dice1: number;
   dice2: number;
@@ -30,6 +25,7 @@ export const rollDicesEffect = DiceDomain.effect<
 export const setDicesEvent = DiceDomain.event<any>();
 
 const init: IDiceStore = {
+  isVisible: false,
   userId: 1,
   dice1: 0,
   dice2: 0,
@@ -38,10 +34,11 @@ const init: IDiceStore = {
   meanPosition: 0
 };
 
-export const dicesStore = DiceDomain.store(init)
+export const dicesStore = DiceDomain.store<any>(init)
   .on(setDicesEvent, (prev, data) => {
     if (data && Array.isArray(data.dices) && data.dices.length === 3) {
       return {
+        isVisible: data.isVisible,
         userId: data.userId,
         dice1: data.dices[0],
         dice2: data.dices[1],
@@ -53,13 +50,14 @@ export const dicesStore = DiceDomain.store(init)
   })
   .reset(resetDicesEvent);
 
-export const rollDices = async () => {
-  resetDicesEvent();
-  showDicesEvent();
-  hideActionModalEvent();
-  setTimeout(() => rollDicesEffect({}));
-  setTimeout(() => {
-    hideDicesEvent();
-    showActionModalEvent();
-  }, 2000);
+export const rollDices = () => {
+  // resetDicesEvent();
+  // showDicesEvent();
+  // hideActionModalEvent();
+  // rollDicesEffect(null);
+  // setTimeout(() => rollDicesEffect({}));
+  // setTimeout(() => {
+  //   hideDicesEvent();
+  //   showActionModalEvent();
+  // }, 2000);
 };

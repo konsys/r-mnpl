@@ -9,6 +9,7 @@ export const BoardModal = () => {
   const user = useStore(userStore);
 
   console.log("modalStore", modal);
+  console.log("userStore", modal.actionButtons);
   return (
     <>
       {modal.isVisible && user.userId === modal.userId && (
