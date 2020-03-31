@@ -8,7 +8,7 @@ import { Token } from "../../components/Token/Token";
 import { Ticket } from "../../components/Ticket/ticket";
 import { Arbitr } from "../../components/Arbitr/Arbitr";
 import { M1tv } from "../../components/M1tv/M1tv";
-import { TableAction } from "../../components/TableAction/TableAction";
+import { BoardModal } from "../../components/BoardModal/BoardModal";
 import { Dices } from "../../components/Dices/Dices";
 import { GameLoading } from "../../components/GameLoading/GameLoading";
 import {
@@ -72,7 +72,7 @@ export const Game = (props: Props) => {
               <BoardCore />
               <div className="table-body-board-center">
                 <M1tv />
-                {visibilityState.tableActionModal && <TableAction />}
+                {visibilityState.tableActionModal && <BoardModal />}
                 <Arbitr />
                 <Ticket />
                 <Chat />

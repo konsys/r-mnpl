@@ -1,5 +1,5 @@
 import { setDicesEvent } from "../models/DicesStore";
-import { IModalMStore, setModalEvent } from "../models/ModalStore";
+import { IModalMStore, setBoardModalEvent } from "../models/BoardModalStore";
 import {
   BoardMessage,
   BoardEventType,
@@ -22,7 +22,7 @@ export const canBuyHandler = (b: CanBuy) => {
       }
     ]
   };
-  setModalEvent(modal);
+  setBoardModalEvent(modal);
 };
 
 export const boardMessageHandler = (message: BoardMessage) => {

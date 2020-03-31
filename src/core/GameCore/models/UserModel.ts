@@ -1,19 +1,21 @@
 import { GameDomain } from "./BoardStore";
-
-export interface IUserMStore {
-  userId: number;
-  name: string;
-}
+import { IUser } from "../../../components/Players/Players";
 
 const UserDomain = GameDomain.domain("UserDomain");
 export const resetUserEvent = UserDomain.event();
 
-const init: IUserMStore = { userId: 1, name: "rjycnfynby" };
+const init: IUser = {
+  userId: 1,
+  name: "Konstantin",
+  vip: true,
+  isActive: true,
+  isBlocked: false
+};
 
-export const setModalEvent = ModalDomain.event<IModalMStore>();
+export const setUserEvent = UserDomain.event<IUser>();
 
-export const modalStore = ModalDomain.store(init)
-  .on(setModalEvent, (_, data) => {
-    console.log("setModalEvent", data);
+export const modalStore = UserDomain.store(init)
+  .on(setUserEvent, (_, data) => {
+    console.log("setUserEvent", data);
   })
-  .reset(resetModalEvent);
+  .reset(resetUserEvent);
