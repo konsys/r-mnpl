@@ -54,13 +54,15 @@ export const Game = (props: Props) => {
               <div className="table-body-board-tokens">
                 <Token userId={1} />
               </div>
-              {dicesState.isVisible && (
-                <Dices
-                  value1={dicesState.dice1}
-                  value2={dicesState.dice2}
-                  value3={dicesState.dice3}
-                />
-              )}
+              {dicesState.isVisible &&
+                Array.isArray(dicesState.dices) &&
+                dicesState.dices.length > 2 && (
+                  <Dices
+                    value1={dicesState.dices[0]}
+                    value2={dicesState.dices[1]}
+                    value3={dicesState.dices[2]}
+                  />
+                )}
               <Contract />
               <TableHelper />
             </div>
