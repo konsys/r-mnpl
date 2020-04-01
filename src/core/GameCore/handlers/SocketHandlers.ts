@@ -1,7 +1,7 @@
 import { IModalStore, setBoardModalEvent } from "../../models/BoardModalStore";
 import {
   BoardMessage,
-  BoardEventType,
+  BoardActionType,
   CanBuy,
   RollDices
 } from "../../models/types/BoardTypes";
@@ -10,7 +10,7 @@ import { setDicesEvent } from "../../models/DicesStore";
 export const rollDicesHandler = async (d: RollDices) => {
   console.log(2342543534, rollDicesHandler);
   const modal: RollDices = {
-    type: BoardEventType.ROLL_DICES,
+    type: BoardActionType.ROLL_DICES,
     isVisible: true,
     userId: d.userId,
     dices: d.dices,
@@ -42,11 +42,11 @@ export const boardMessageHandler = (message: BoardMessage) => {
   const events = message.data.events.type;
   events.map(v => {
     switch (v.type) {
-      case BoardEventType.ROLL_DICES:
+      case BoardActionType.ROLL_DICES:
         rollDicesHandler(v);
         break;
 
-      case BoardEventType.CAN_BUY:
+      case BoardActionType.CAN_BUY:
         canBuyHandler(v);
         break;
     }

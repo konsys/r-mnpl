@@ -56,7 +56,7 @@ export const Game = (props: Props) => {
               </div>
               {dicesState.isVisible &&
                 Array.isArray(dicesState.dices) &&
-                dicesState.dices.length > 2 && (
+                dicesState.dices.length === 3 && (
                   <Dices
                     value1={dicesState.dices[0]}
                     value2={dicesState.dices[1]}

@@ -27,7 +27,6 @@ const init: IModalStore = {
     {
       title: "Бросить кубики",
       onClick: () => {
-        console.log(23424234);
         rollDicesEffect({});
       }
     }

@@ -1,6 +1,6 @@
 import { mnplSocket } from "../GameCore/index";
 import { GameDomain, IBoardModel } from "./BoardStore";
-import { RollDices, BoardEventType } from "../models/types/BoardTypes";
+import { RollDices, BoardActionType } from "../models/types/BoardTypes";
 
 const DiceDomain = GameDomain.domain("DiceDomain");
 export const resetDicesEvent = DiceDomain.event();
@@ -10,13 +10,16 @@ export const rollDicesEffect = DiceDomain.effect<
   Promise<SocketIOClient.Socket>,
   Error
 >("rollDices", {
-  handler: async (game: IBoardModel) => mnplSocket.emit("rollDices", game)
+  handler: async (game: IBoardModel) => {
+    console.log("efwefwef");
+    return mnplSocket.emit("rollDices", game);
+  }
 });
 
 export const setDicesEvent = DiceDomain.event<RollDices>();
 
 const init: RollDices = {
-  type: BoardEventType.ROLL_DICES,
+  type: BoardActionType.ROLL_DICES,
   isVisible: false,
   userId: 1,
   dices: [1, 1, 0],
