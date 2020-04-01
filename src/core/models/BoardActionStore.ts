@@ -9,11 +9,11 @@ interface ICurrentAction {
 const boardActionDomain = GameDomain.domain("boardActionDomain");
 export const resetBoardActionEvent = boardActionDomain.event();
 
-export const setBoardActionEvent = boardActionDomain.event<ICurrentAction>();
+export const setCurrentActionEvent = boardActionDomain.event<ICurrentAction | null>();
 
 export const boardActionsStore = boardActionDomain
   .store<ICurrentAction>({ action: null, userId: 0 })
-  .on(setBoardActionEvent, (_, data) => {
+  .on(setCurrentActionEvent, (_, data) => {
     console.log("setBoardActionEvent", data);
   })
   .reset(resetBoardActionEvent);

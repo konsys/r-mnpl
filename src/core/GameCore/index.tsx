@@ -20,7 +20,9 @@ import { boardMessageHandler } from "./handlers/SocketHandlers";
 import nanoid from "nanoid";
 import { setBoardIdEvent, resetBoardEvent } from "../models/BoardStore";
 import { SocketActions } from "../models/types/ActionsTypes";
-import { boardModalStore } from "../models/BoardModalStore";
+import { userStore } from "../models/UserModel";
+import { boardActionsStore } from "../models/BoardActionStore";
+import { BoardActionType } from "../models/types/BoardTypes";
 
 export const mnplSocket = openSocket("http://localhost:3001");
 
@@ -28,7 +30,8 @@ interface Props extends RouteComponentProps {}
 
 export const Game = (props: Props) => {
   const dicesState = useStore(dicesStore);
-  const modalState = useStore(boardModalStore);
+  const actionState = useStore(boardActionsStore);
+  const userState = useStore(userStore);
 
   useEffect(() => {
     setBoardIdEvent(nanoid(12));
@@ -46,7 +49,10 @@ export const Game = (props: Props) => {
               <BoardCore />
               <div className="table-body-board-center">
                 <M1tv />
-                {modalState.isVisible && <BoardModal />}
+                {userState.userId === actionState.userId &&
+                  actionState.action === BoardActionType.SHOW_MODAL && (
+                    <BoardModal />
+                  )}
                 <Arbitr />
                 <Ticket />
                 <Chat />
@@ -54,7 +60,7 @@ export const Game = (props: Props) => {
               <div className="table-body-board-tokens">
                 <Token userId={1} />
               </div>
-              {dicesState.isVisible &&
+              {actionState.action === BoardActionType.ROLL_DICES &&
                 Array.isArray(dicesState.dices) &&
                 dicesState.dices.length === 3 && (
                   <Dices

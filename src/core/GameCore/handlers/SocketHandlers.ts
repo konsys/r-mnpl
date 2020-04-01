@@ -6,25 +6,33 @@ import {
   RollDices
 } from "../../models/types/BoardTypes";
 import { setDicesEvent } from "../../models/DicesStore";
+import { setCurrentActionEvent } from "../../models/BoardActionStore";
 
-export const rollDicesHandler = async (d: RollDices) => {
-  console.log(2342543534, rollDicesHandler);
+export const rollDicesHandler = async (act: RollDices) => {
+  setCurrentActionEvent({
+    action: BoardActionType.ROLL_DICES,
+    userId: act.userId
+  });
+
   const modal: RollDices = {
     type: BoardActionType.ROLL_DICES,
-    isVisible: true,
-    userId: d.userId,
-    dices: d.dices,
-    meanPosition: d.meanPosition,
-    dicesSum: d.dices[0] + d.dices[1] + d.dices[2],
-    _id: d._id
+    userId: act.userId,
+    dices: act.dices,
+    meanPosition: act.meanPosition,
+    dicesSum: act.dices[0] + act.dices[1] + act.dices[2],
+    _id: act._id
   };
   setDicesEvent(modal);
+  return setCurrentActionEvent(null);
 };
 
-export const canBuyHandler = (b: CanBuy) => {
+export const canBuyHandler = (act: CanBuy) => {
+  setCurrentActionEvent({
+    action: BoardActionType.ROLL_DICES,
+    userId: act.userId
+  });
   const modal: IModalStore = {
-    isVisible: true,
-    userId: b.userId,
+    userId: act.userId,
     title: "Покупаем?",
     text:
       "Если вы откажетесь от покупки, то поле будет выставлено на общий аукцион.",
@@ -36,6 +44,7 @@ export const canBuyHandler = (b: CanBuy) => {
     ]
   };
   setBoardModalEvent(modal);
+  return setCurrentActionEvent(null);
 };
 
 export const boardMessageHandler = (message: BoardMessage) => {

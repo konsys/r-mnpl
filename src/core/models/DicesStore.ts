@@ -20,7 +20,6 @@ export const setDicesEvent = DiceDomain.event<RollDices>();
 
 const init: RollDices = {
   type: BoardActionType.ROLL_DICES,
-  isVisible: false,
   userId: 1,
   dices: [1, 1, 0],
   dicesSum: 2,

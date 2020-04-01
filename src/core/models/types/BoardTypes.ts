@@ -24,7 +24,8 @@ export enum BoardActionType {
   LEVEL_UP = "levelUp",
   LEVEL_DOWN = "levelDown",
   CONTRACT_ACCEPTED = "contractAccepted",
-  MORTGAGE = "mortgage"
+  MORTGAGE = "mortgage",
+  SHOW_MODAL = "showModal"
 }
 export interface BoardAction {
   type: BoardActionType;
@@ -75,7 +76,6 @@ export interface TypeBuy extends BoardAction {
 export interface RollDices extends BoardAction {
   type: BoardActionType.ROLL_DICES;
   dices: number[];
-  isVisible: boolean;
   userId: number;
   dicesSum: number;
   meanPosition: number;

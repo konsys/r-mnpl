@@ -10,7 +10,6 @@ interface ActionButtons {
 }
 
 export interface IModalStore {
-  isVisible: boolean;
   userId: number;
   title: string;
   text: string;
@@ -18,7 +17,6 @@ export interface IModalStore {
 }
 
 const init: IModalStore = {
-  isVisible: true,
   userId: 1,
   title: "Бросить кубики",
   text: "Мы болеем за вас",
