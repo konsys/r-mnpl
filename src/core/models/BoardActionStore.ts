@@ -6,13 +6,15 @@ interface ICurrentAction {
   userId: number;
 }
 
-const boardActionDomain = GameDomain.domain("boardActionDomain");
-export const resetBoardActionEvent = boardActionDomain.event();
+const BoardActionDomain = GameDomain.domain("BoardActionDomain");
+export const resetBoardActionEvent = BoardActionDomain.event();
 
-export const setCurrentActionEvent = boardActionDomain.event<ICurrentAction | null>();
+export const setCurrentActionEvent = BoardActionDomain.event<ICurrentAction | null>();
 
-export const boardActionsStore = boardActionDomain
-  .store<ICurrentAction>({ action: null, userId: 0 })
+export const boardActionsStore = BoardActionDomain.store<ICurrentAction>({
+  action: null,
+  userId: 0
+})
   .on(setCurrentActionEvent, (_, data) => {
     console.log("setBoardActionEvent", data);
   })
