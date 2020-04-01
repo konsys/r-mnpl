@@ -1,12 +1,37 @@
-import { IModalStore, setBoardModalEvent } from "../../models/BoardModalStore";
+import { setBoardModalEvent } from "../../models/BoardModalStore";
 import {
   BoardMessage,
   BoardActionType,
   CanBuy,
-  RollDices
+  RollDices,
+  ShowModal
 } from "../../models/types/BoardTypes";
-import { setDicesEvent } from "../../models/DicesStore";
+import { setDicesEvent, rollDicesEffect } from "../../models/DicesStore";
 import { setCurrentActionEvent } from "../../models/BoardActionStore";
+import nanoid from "nanoid";
+
+export const showModalHandler = async (act: ShowModal) => {
+  setCurrentActionEvent({
+    action: BoardActionType.ROLL_DICES,
+    userId: act.userId
+  });
+  const modal: ShowModal = {
+    type: BoardActionType.SHOW_MODAL,
+    userId: 1,
+    title: "Бросить кубики",
+    text: "Мы болеем за вас",
+    actionButtons: [
+      {
+        title: "Бросить кубики",
+        onClick: () => {
+          rollDicesEffect({});
+        }
+      }
+    ],
+    _id: nanoid(4)
+  };
+  setBoardModalEvent(modal);
+};
 
 export const rollDicesHandler = async (act: RollDices) => {
   setCurrentActionEvent({
@@ -31,7 +56,8 @@ export const canBuyHandler = (act: CanBuy) => {
     action: BoardActionType.ROLL_DICES,
     userId: act.userId
   });
-  const modal: IModalStore = {
+  const modal: ShowModal = {
+    type: BoardActionType.SHOW_MODAL,
     userId: act.userId,
     title: "Покупаем?",
     text:
@@ -41,7 +67,8 @@ export const canBuyHandler = (act: CanBuy) => {
         title: "Бросить кубики",
         onClick: () => rollDicesHandler
       }
-    ]
+    ],
+    _id: nanoid(4)
   };
   setBoardModalEvent(modal);
   return setCurrentActionEvent(null);

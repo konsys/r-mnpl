@@ -81,6 +81,19 @@ export interface RollDices extends BoardAction {
   meanPosition: number;
 }
 
+export interface ShowModal extends BoardAction {
+  type: BoardActionType.SHOW_MODAL;
+  userId: number;
+  title: string;
+  text: string;
+  actionButtons?: ActionButtons[];
+}
+
+interface ActionButtons {
+  title: string;
+  onClick: () => void;
+}
+
 export interface CanBuy extends BoardAction {
   type: BoardActionType.CAN_BUY;
   field: number;
