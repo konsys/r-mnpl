@@ -1,15 +1,18 @@
 import { GameDomain } from "./BoardStore";
-import { IUser } from "../../components/Players/Players";
+import { BoardActionType } from "../models/types/BoardTypes";
 
-interface ICurrentAction {}
+interface ICurrentAction {
+  action: BoardActionType | null;
+  userId: number;
+}
 
 const boardActionDomain = GameDomain.domain("boardActionDomain");
 export const resetBoardActionEvent = boardActionDomain.event();
 
-export const setBoardActionEvent = boardActionDomain.event<IUser>();
+export const setBoardActionEvent = boardActionDomain.event<ICurrentAction>();
 
 export const boardActionsStore = boardActionDomain
-  .store(null)
+  .store<ICurrentAction>({ action: null, userId: 0 })
   .on(setBoardActionEvent, (_, data) => {
     console.log("setBoardActionEvent", data);
   })

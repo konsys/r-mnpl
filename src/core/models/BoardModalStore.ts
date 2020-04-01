@@ -20,9 +20,8 @@ export interface IModalStore {
 const init: IModalStore = {
   isVisible: true,
   userId: 1,
-  title: "Покупаем?",
-  text:
-    "Если вы откажетесь от покупки, то поле будет выставлено на общий аукцион.",
+  title: "Бросить кубики",
+  text: "Мы болеем за вас",
   actionButtons: [
     {
       title: "Бросить кубики",
@@ -35,6 +34,6 @@ const init: IModalStore = {
 
 export const setBoardModalEvent = BoardModalDomain.event<IModalStore>();
 
-export const boardModalStore = BoardModalDomain.store(init)
+export const boardModalStore = BoardModalDomain.store<IModalStore>(init)
   .on(setBoardModalEvent, (_, data) => data)
   .reset(resetBoardModalEvent);
