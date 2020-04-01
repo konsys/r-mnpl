@@ -12,14 +12,14 @@ import nanoid from "nanoid";
 
 export const showModalHandler = async (act: ShowModal) => {
   setCurrentActionEvent({
-    action: BoardActionType.ROLL_DICES,
+    action: BoardActionType.SHOW_MODAL,
     userId: act.userId
   });
   const modal: ShowModal = {
     type: BoardActionType.SHOW_MODAL,
-    userId: 1,
-    title: "Бросить кубики",
-    text: "Мы болеем за вас",
+    userId: act.userId,
+    title: act.title,
+    text: act.text,
     actionButtons: [
       {
         title: "Бросить кубики",
@@ -28,7 +28,7 @@ export const showModalHandler = async (act: ShowModal) => {
         }
       }
     ],
-    _id: nanoid(4)
+    _id: act._id
   };
   setBoardModalEvent(modal);
 };
@@ -78,6 +78,10 @@ export const boardMessageHandler = (message: BoardMessage) => {
   const events = message.data.events.type;
   events.map(v => {
     switch (v.type) {
+      case BoardActionType.SHOW_MODAL:
+        showModalHandler(v);
+        break;
+
       case BoardActionType.ROLL_DICES:
         rollDicesHandler(v);
         break;

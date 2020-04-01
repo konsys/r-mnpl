@@ -112,6 +112,7 @@ export type BoardActionTypes = {
     | TypeBuy
     | RollDices
     | CanBuy
+    | ShowModal
   >;
 };
 

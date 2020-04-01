@@ -6,8 +6,6 @@ import { useStore } from "effector-react";
 export const BoardModal = () => {
   const modal = useStore(boardModalStore);
 
-  console.log("modalStore", modal);
-  console.log("userStore", modal.actionButtons);
   return (
     <>
       <div className="TableAction">

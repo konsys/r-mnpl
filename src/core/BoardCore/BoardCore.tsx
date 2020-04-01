@@ -19,7 +19,7 @@ export const getInitFields = BoardDomain.effect<void, BoardField[], Error>({
 
 export const fieldsStore = BoardDomain.store<BoardField[]>([])
   .on(getInitFields.done, (_, { result }) => result)
-  .on(getInitFields.fail, err => console.log("error", err))
+  .on(getInitFields.fail, err => console.error("error", err))
   .reset(resetFields);
 
 export const BoardCore = () => {

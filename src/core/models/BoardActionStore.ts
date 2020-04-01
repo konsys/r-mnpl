@@ -11,11 +11,11 @@ export const resetBoardActionEvent = BoardActionDomain.event();
 
 export const setCurrentActionEvent = BoardActionDomain.event<ICurrentAction | null>();
 
-export const boardActionsStore = BoardActionDomain.store<ICurrentAction>({
-  action: null,
-  userId: 0
-})
-  .on(setCurrentActionEvent, (_, data) => {
-    console.log("setBoardActionEvent", data);
-  })
+export const boardActionsStore = BoardActionDomain.store<ICurrentAction | null>(
+  {
+    action: null,
+    userId: 0
+  }
+)
+  .on(setCurrentActionEvent, (_, data) => (data ? data : null))
   .reset(resetBoardActionEvent);
