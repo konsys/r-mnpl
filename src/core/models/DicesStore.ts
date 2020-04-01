@@ -10,10 +10,7 @@ export const rollDicesEffect = DiceDomain.effect<
   Promise<SocketIOClient.Socket>,
   Error
 >("rollDices", {
-  handler: async (game: IBoardModel) => {
-    console.log("efwefwef");
-    return mnplSocket.emit("rollDices", game);
-  }
+  handler: async (game: IBoardModel) => mnplSocket.emit("rollDices", game)
 });
 
 export const setDicesEvent = DiceDomain.event<RollDices>();

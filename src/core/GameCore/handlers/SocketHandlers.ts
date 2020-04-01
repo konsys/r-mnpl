@@ -11,6 +11,8 @@ import { setCurrentActionEvent } from "../../models/BoardActionStore";
 import nanoid from "nanoid";
 
 export const showModalHandler = async (act: ShowModal) => {
+  console.log("showModalHandler", act);
+
   setCurrentActionEvent({
     action: BoardActionType.SHOW_MODAL,
     userId: act.userId
@@ -64,8 +66,12 @@ export const canBuyHandler = (act: CanBuy) => {
       "Если вы откажетесь от покупки, то поле будет выставлено на общий аукцион.",
     actionButtons: [
       {
-        title: "Бросить кубики",
-        onClick: () => rollDicesHandler
+        title: "Купить",
+        onClick: () => console.log("BUY")
+      },
+      {
+        title: "На аукцион",
+        onClick: () => console.log("TO AUCTION")
       }
     ],
     _id: nanoid(4)

@@ -2,7 +2,7 @@ import { GameDomain } from "./BoardStore";
 import { BoardActionType } from "../models/types/BoardTypes";
 
 interface ICurrentAction {
-  action: BoardActionType | null;
+  action: BoardActionType;
   userId: number;
 }
 
@@ -12,10 +12,7 @@ export const resetBoardActionEvent = BoardActionDomain.event();
 export const setCurrentActionEvent = BoardActionDomain.event<ICurrentAction | null>();
 
 export const boardActionsStore = BoardActionDomain.store<ICurrentAction | null>(
-  {
-    action: null,
-    userId: 0
-  }
+  null
 )
-  .on(setCurrentActionEvent, (_, data) => (data ? data : null))
+  .on(setCurrentActionEvent, (_, data) => data)
   .reset(resetBoardActionEvent);
