@@ -11,8 +11,8 @@ export const rollDicesModal = (act: ShowModal): ShowModal => ({
     {
       title: "Бросить кубики",
       onClick: () => {
-        rollDicesEffect({});
         setCurrentActionEvent(null);
+        rollDicesEffect({});
       }
     }
   ],
