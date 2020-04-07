@@ -58,7 +58,7 @@ export const Game = (props: Props) => {
                 <Chat />
               </div>
               <div className="table-body-board-tokens">
-                <Token userId={1} />
+                <Token userId={userState.userId} />
               </div>
               {actionState?.action === BoardActionType.ROLL_DICES &&
                 Array.isArray(dicesState.dices) &&

@@ -5,7 +5,7 @@ import { BoardField } from "../../components/Field/Field";
 import { client } from "../../http/client";
 import { useStore } from "effector-react";
 
-const URL = `/board-fields/initial`;
+const URL = `/fields/initial`;
 
 async function fetchInitFields(params?: any): Promise<BoardField[]> {
   return await (await client.get(URL, params)).data;
@@ -14,12 +14,12 @@ async function fetchInitFields(params?: any): Promise<BoardField[]> {
 const BoardDomain = GameDomain.domain("BoardDomain");
 export const resetFields = BoardDomain.event();
 export const getInitFields = BoardDomain.effect<void, BoardField[], Error>({
-  handler: fetchInitFields
+  handler: fetchInitFields,
 });
 
 export const fieldsStore = BoardDomain.store<BoardField[]>([])
   .on(getInitFields.done, (_, { result }) => result)
-  .on(getInitFields.fail, err => console.error("error", err))
+  .on(getInitFields.fail, (err) => console.error("error", err))
   .reset(resetFields);
 
 export const BoardCore = () => {
