@@ -1,5 +1,5 @@
 import { GameDomain } from "./BoardStore";
-import { ShowModal, BoardActionType } from "../core/models/types/BoardTypes";
+import { ShowModal, BoardActionType } from "../types/BoardTypes";
 import nanoid from "nanoid";
 
 const BoardModalDomain = GameDomain.domain("ModalDomain");

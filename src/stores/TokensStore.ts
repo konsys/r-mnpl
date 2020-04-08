@@ -1,7 +1,7 @@
 import { sample } from "effector";
 import { dicesStore, setDicesEvent } from "./DicesStore";
 import { GameDomain } from "./BoardStore";
-import { RollDices } from "../core/models/types/BoardTypes";
+import { RollDices } from "../types/BoardTypes";
 export interface PlayerToken {
   position: number;
   isJailed: 0 | 1 | 2 | 3;

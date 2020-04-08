@@ -1,5 +1,5 @@
-import { setCurrentActionEvent } from "../stores/BoardActionStore";
-import { RollDices, BoardActionType } from "../core/models/types/BoardTypes";
+import { setCurrentActionEvent } from "../stores/ActionStore";
+import { RollDices, BoardActionType } from "../types/BoardTypes";
 import { setDicesEvent } from "../stores/DicesStore";
 
 export const rollDicesHandler = async (act: RollDices) => {

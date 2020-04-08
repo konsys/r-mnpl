@@ -1,6 +1,6 @@
 import { rollDicesModal } from "./Modals";
-import { ShowModal, BoardActionType } from "../core/models/types/BoardTypes";
-import { setCurrentActionEvent } from "../stores/BoardActionStore";
+import { ShowModal, BoardActionType } from "../types/BoardTypes";
+import { setCurrentActionEvent } from "../stores/ActionStore";
 import { setBoardModalEvent } from "../stores/BoardModalStore";
 
 export const showModalHandler = async (act: ShowModal) => {

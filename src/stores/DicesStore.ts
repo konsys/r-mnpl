@@ -1,6 +1,6 @@
 import { mnplSocket } from "../core/GameCore/index";
 import { GameDomain, IBoardModel } from "./BoardStore";
-import { RollDices, BoardActionType } from "../core/models/types/BoardTypes";
+import { RollDices, BoardActionType } from "../types/BoardTypes";
 
 const DiceDomain = GameDomain.domain("DiceDomain");
 export const resetDicesEvent = DiceDomain.event();
