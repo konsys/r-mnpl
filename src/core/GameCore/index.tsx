@@ -16,11 +16,12 @@ import { useStore } from "effector-react";
 import openSocket from "socket.io-client";
 import { BoardCore } from "../BoardCore/BoardCore";
 import { UsersCore } from "../PlayersCore/PlayersCore";
-import nanoid from "nanoid";
-import { setBoardIdEvent, resetBoardEvent } from "../../stores/BoardStore";
 import { SocketActions } from "../models/types/ActionsTypes";
 import { userStore } from "../../stores/UserStore";
-import { boardActionsStore } from "../../stores/BoardActionStore";
+import {
+  boardActionsStore,
+  resetBoardActionEvent,
+} from "../../stores/BoardActionStore";
 import { BoardActionType } from "../models/types/BoardTypes";
 import { boardMessageHandler } from "../../actionHandlers/SocketHandlers";
 
@@ -34,9 +35,8 @@ export const Game = (props: Props) => {
   const userState = useStore(userStore);
 
   useEffect(() => {
-    setBoardIdEvent(nanoid(12));
     mnplSocket.on(SocketActions.BOARD_MESSAGE, boardMessageHandler);
-    return () => resetBoardEvent();
+    return () => resetBoardActionEvent();
   }, []);
 
   return (
