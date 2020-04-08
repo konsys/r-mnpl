@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { GameDomain } from "../../stores/BoardStore";
+import { GameDomain } from "../../stores/GameStore";
 import { client } from "../../http/client";
 import { useStore } from "effector-react";
 import { IUser, Players } from "../../components/Players/Players";

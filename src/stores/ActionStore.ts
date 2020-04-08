@@ -1,4 +1,4 @@
-import { GameDomain } from "./BoardStore";
+import { GameDomain } from "./GameStore";
 import { BoardActionType } from "../types/BoardTypes";
 
 interface ICurrentAction {

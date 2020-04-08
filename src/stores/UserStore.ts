@@ -1,4 +1,4 @@
-import { GameDomain } from "./BoardStore";
+import { GameDomain } from "./GameStore";
 import { IUser } from "../components/Players/Players";
 
 const UserDomain = GameDomain.domain("UserDomain");

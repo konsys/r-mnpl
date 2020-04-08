@@ -1,5 +1,5 @@
 import { mnplSocket } from "../core/GameCore/index";
-import { GameDomain, IBoardModel } from "./BoardStore";
+import { GameDomain, IBoardModel } from "./GameStore";
 import { RollDices, BoardActionType } from "../types/BoardTypes";
 
 const DiceDomain = GameDomain.domain("DiceDomain");

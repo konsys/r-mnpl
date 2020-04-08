@@ -1,4 +1,4 @@
-import { GameDomain } from "./BoardStore";
+import { GameDomain } from "./GameStore";
 import { ShowModal, BoardActionType } from "../types/BoardTypes";
 import nanoid from "nanoid";
 

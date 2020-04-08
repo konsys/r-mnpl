@@ -1,6 +1,6 @@
 import { sample } from "effector";
 import { dicesStore, setDicesEvent } from "./DicesStore";
-import { GameDomain } from "./BoardStore";
+import { GameDomain } from "./GameStore";
 import { RollDices } from "../types/BoardTypes";
 export interface PlayerToken {
   position: number;
