@@ -23,7 +23,7 @@ import {
   resetBoardActionEvent,
 } from "../../stores/ActionStore";
 import { BoardActionType } from "../../types/BoardTypes";
-import { boardMessageHandler } from "../../actionHandlers/SocketHandlers";
+import { boardMessageHandler } from "../../handlers/SocketHandlers";
 
 export const mnplSocket = openSocket("http://localhost:3001");
 
