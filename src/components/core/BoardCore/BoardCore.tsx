@@ -1,32 +1,17 @@
 import React, { useEffect } from "react";
 import { Board } from "../../views/Board/Board";
-import { MainDomain } from "../../../stores/MainStore";
-import { BoardField } from "../../views/Field/Field";
-import { client } from "../../../http/client";
 import { useStore } from "effector-react";
-
-const URL = `/fields/initial`;
-
-async function fetchInitFields(params?: any): Promise<BoardField[]> {
-  return await (await client.get(URL, params)).data;
-}
-
-const BoardDomain = MainDomain.domain("BoardDomain");
-export const resetFields = BoardDomain.event();
-export const getInitFields = BoardDomain.effect<void, BoardField[], Error>({
-  handler: fetchInitFields,
-});
-
-export const fieldsStore = BoardDomain.store<BoardField[]>([])
-  .on(getInitFields.done, (_, { result }) => result)
-  .on(getInitFields.fail, (err) => console.error("error", err))
-  .reset(resetFields);
+import {
+  getInitFieldsEffect,
+  resetFieldsEvent,
+  fieldsStore,
+} from "../../../stores/FieldsStore";
 
 export const BoardCore = () => {
   useEffect(() => {
-    getInitFields();
-    return () => resetFields();
+    getInitFieldsEffect();
+    return () => resetFieldsEvent();
   }, []);
   const data = useStore(fieldsStore);
-  return getInitFields.done ? <Board fields={data} /> : <>wait</>;
+  return getInitFieldsEffect.done ? <Board fields={data} /> : <>wait</>;
 };
