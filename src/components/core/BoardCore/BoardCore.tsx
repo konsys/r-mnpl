@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
+import { Board } from "../../views/Board/Board";
+import { GameDomain } from "../../../stores/GameStore";
+import { BoardField } from "../../views/Field/Field";
+import { client } from "../../../http/client";
 import { useStore } from "effector-react";
-import { client } from "../../http/client";
-import { BoardField } from "../../components/views/Field/Field";
-import { GameDomain } from "../../stores/GameStore";
-import { Board } from "../../components/views/Board/Board";
 
 const URL = `/fields/initial`;
 

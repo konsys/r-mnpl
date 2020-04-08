@@ -1,7 +1,7 @@
 import React from "react";
 import { useStore } from "effector-react";
-import { tokenPosition, tokens } from "../../stores/TokensStore";
-import { fieldsStore } from "../../core/BoardCore/BoardCore";
+import { tokenPosition, tokens } from "../../../stores/TokensStore";
+import { fieldsStore } from "../../../core/BoardCore/BoardCore";
 interface Props {
   userId: number;
 }

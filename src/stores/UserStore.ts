@@ -1,5 +1,5 @@
 import { GameDomain } from "./GameStore";
-import { IUser } from "../components/Players/Players";
+import { IUser } from "../components/views/Players/Players";
 
 const UserDomain = GameDomain.domain("UserDomain");
 export const resetUserEvent = UserDomain.event();

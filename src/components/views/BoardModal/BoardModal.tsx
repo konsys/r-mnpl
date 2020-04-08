@@ -1,7 +1,7 @@
 import React from "react";
 import { useStore } from "effector-react";
-import { boardModalStore } from "../../stores/BoardModalStore";
-import { ActionPanel } from "../views/ActionPanel/ActionPanel";
+import { boardModalStore } from "../../../stores/BoardModalStore";
+import { ActionPanel } from "../ActionPanel/ActionPanel";
 
 export const BoardModal = () => {
   const modal = useStore(boardModalStore);

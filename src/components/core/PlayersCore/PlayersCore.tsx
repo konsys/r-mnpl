@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import { client } from "../../http/client";
+import { GameDomain } from "../../../stores/GameStore";
+import { client } from "../../../http/client";
 import { useStore } from "effector-react";
-import { IUser, Players } from "../../components/views/Players/Players";
-import { GameDomain } from "../../stores/GameStore";
+import { IUser, Players } from "../../views/Players/Players";
 
 const URL = `/users`;
 

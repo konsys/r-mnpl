@@ -1,4 +1,4 @@
-import { mnplSocket } from "../core/GameCore/index";
+import { mnplSocket } from "../components/core/GameCore/index";
 import { GameDomain, IBoardModel } from "./GameStore";
 import { RollDices, BoardActionType } from "../types/BoardTypes";
 
