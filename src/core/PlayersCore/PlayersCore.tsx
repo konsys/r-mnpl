@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { client } from "../../http/client";
 import { useStore } from "effector-react";
 import { IUser, Players } from "../../components/views/Players/Players";
-import { GameDomain } from "../../stores/GameStore";
+import { MainDomain } from "../../stores/MainStore";
 
 const URL = `/users`;
 
@@ -10,7 +10,7 @@ async function fetchPlayers(params?: any): Promise<IUser[]> {
   return await (await client.get(URL, params)).data;
 }
 
-const PlayersDomain = GameDomain.domain("PlayersDomain");
+const PlayersDomain = MainDomain.domain("PlayersDomain");
 
 export const resetPLayersEvent = PlayersDomain.event();
 export const getPlayersEffect = PlayersDomain.effect<void, IUser[], Error>({

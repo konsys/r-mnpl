@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useStore } from "effector-react";
 import { client } from "../../http/client";
 import { BoardField } from "../../components/views/Field/Field";
-import { GameDomain } from "../../stores/GameStore";
+import { MainDomain } from "../../stores/MainStore";
 import { Board } from "../../components/views/Board/Board";
 
 const URL = `/fields/initial`;
@@ -11,7 +11,7 @@ async function fetchInitFields(params?: any): Promise<BoardField[]> {
   return await (await client.get(URL, params)).data;
 }
 
-const BoardDomain = GameDomain.domain("BoardDomain");
+const BoardDomain = MainDomain.domain("BoardDomain");
 export const resetFields = BoardDomain.event();
 export const getInitFields = BoardDomain.effect<void, BoardField[], Error>({
   handler: fetchInitFields,

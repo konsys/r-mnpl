@@ -1,8 +1,8 @@
 import { mnplSocket } from "../components/core/GameCore/index";
-import { GameDomain, IBoardModel } from "./GameStore";
+import { MainDomain, IBoardModel } from "./MainStore";
 import { RollDices, BoardActionType } from "../types/BoardTypes";
 
-const DiceDomain = GameDomain.domain("DiceDomain");
+const DiceDomain = MainDomain.domain("DiceDomain");
 export const resetDicesEvent = DiceDomain.event();
 
 export const rollDicesEffect = DiceDomain.effect<
@@ -25,18 +25,6 @@ const init: RollDices = {
   _id: "",
 };
 
-export const dicesStore = DiceDomain.store<any>(init)
+export const dicesStore = DiceDomain.store<RollDices>(init)
   .on(setDicesEvent, (_, data) => data)
   .reset(resetDicesEvent);
-
-// const rollDices = () => {
-// resetDicesEvent();
-// showDicesEvent();
-// hideActionModalEvent();
-// rollDicesEffect(null);
-// setTimeout(() => rollDicesEffect({}));
-// setTimeout(() => {
-//   hideDicesEvent();
-//   showActionModalEvent();
-// }, 2000);
-// };

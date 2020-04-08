@@ -1,4 +1,4 @@
-import { GameDomain } from "./GameStore";
+import { MainDomain } from "./MainStore";
 import { BoardActionType } from "../types/BoardTypes";
 
 interface ICurrentAction {
@@ -6,7 +6,7 @@ interface ICurrentAction {
   userId: number;
 }
 
-const ActionDomain = GameDomain.domain("BoardActionDomain");
+const ActionDomain = MainDomain.domain("BoardActionDomain");
 export const resetBoardActionEvent = ActionDomain.event();
 
 export const setCurrentActionEvent = ActionDomain.event<ICurrentAction | null>();
