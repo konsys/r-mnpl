@@ -16,13 +16,13 @@ import { useStore } from "effector-react";
 import openSocket from "socket.io-client";
 import { BoardCore } from "../BoardCore/BoardCore";
 import { UsersCore } from "../PlayersCore/PlayersCore";
-import { boardMessageHandler } from "./handlers/SocketHandlers";
 import nanoid from "nanoid";
 import { setBoardIdEvent, resetBoardEvent } from "../../stores/BoardStore";
 import { SocketActions } from "../models/types/ActionsTypes";
 import { userStore } from "../../stores/UserStore";
 import { boardActionsStore } from "../../stores/BoardActionStore";
 import { BoardActionType } from "../models/types/BoardTypes";
+import { boardMessageHandler } from "../../actionHandlers/SocketHandlers";
 
 export const mnplSocket = openSocket("http://localhost:3001");
 

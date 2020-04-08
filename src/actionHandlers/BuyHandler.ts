@@ -1,11 +1,11 @@
-import {
-  CanBuy,
-  BoardActionType,
-  ShowModal,
-} from "../../models/types/BoardTypes";
-import { setCurrentActionEvent } from "../../../stores/BoardActionStore";
 import nanoid from "nanoid";
-import { setBoardModalEvent } from "../../../stores/BoardModalStore";
+import { setBoardModalEvent } from "../stores/BoardModalStore";
+import { setCurrentActionEvent } from "../stores/BoardActionStore";
+import {
+  ShowModal,
+  BoardActionType,
+  CanBuy,
+} from "../core/models/types/BoardTypes";
 
 export const canBuyHandler = (act: CanBuy) => {
   setCurrentActionEvent({

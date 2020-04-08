@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { RouteComponentProps } from "@reach/router";
 import openSocket from "socket.io-client";
-import { boardMessageHandler } from "../GameCore/handlers/SocketHandlers";
 import nanoid from "nanoid";
 import { setBoardIdEvent, resetBoardEvent } from "../../stores/BoardStore";
 import { SocketActions } from "../models/types/ActionsTypes";
+import { boardMessageHandler } from "../../actionHandlers/SocketHandlers";
 
 export const mnplSocket = openSocket("http://localhost:3001");
 
@@ -17,5 +17,5 @@ export const Game = (props: Props) => {
     return () => resetBoardEvent();
   }, []);
 
-  return <></>;
+  return <>GAME</>;
 };
