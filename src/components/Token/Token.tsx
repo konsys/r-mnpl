@@ -1,6 +1,6 @@
 import React from "react";
 import { useStore } from "effector-react";
-import { tokenPosition, tokens } from "../../core/models/TokensStore";
+import { tokenPosition, tokens } from "../../stores/TokensStore";
 import { fieldsStore } from "../../core/BoardCore/BoardCore";
 interface Props {
   userId: number;
@@ -21,11 +21,11 @@ export const Token = (props: Props) => {
             left: `${token.left}px`,
             top: `${token.top}px`,
             transitionDuration: `${0.8}s`,
-            transitionProperty: "left top ease"
+            transitionProperty: "left top ease",
           }}
           className="_animated"
         >
-          {fields.find(v => v.fieldPosition === tokenParams.fieldId)?.name}
+          {fields.find((v) => v.fieldPosition === tokenParams.fieldId)?.name}
         </div>
       )}
     </>

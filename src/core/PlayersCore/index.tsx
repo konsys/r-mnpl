@@ -3,7 +3,7 @@ import { RouteComponentProps } from "@reach/router";
 import openSocket from "socket.io-client";
 import { boardMessageHandler } from "../GameCore/handlers/SocketHandlers";
 import nanoid from "nanoid";
-import { setBoardIdEvent, resetBoardEvent } from "../models/BoardStore";
+import { setBoardIdEvent, resetBoardEvent } from "../../stores/BoardStore";
 import { SocketActions } from "../models/types/ActionsTypes";
 
 export const mnplSocket = openSocket("http://localhost:3001");

@@ -1,6 +1,6 @@
 import { ShowModal, BoardActionType } from "../../models/types/BoardTypes";
-import { rollDicesEffect } from "../../models/DicesStore";
-import { setCurrentActionEvent } from "../../models/BoardActionStore";
+import { rollDicesEffect } from "../../../stores/DicesStore";
+import { setCurrentActionEvent } from "../../../stores/BoardActionStore";
 
 export const rollDicesModal = (act: ShowModal): ShowModal => ({
   type: BoardActionType.SHOW_MODAL,

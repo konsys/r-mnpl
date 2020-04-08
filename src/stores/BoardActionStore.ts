@@ -1,5 +1,5 @@
 import { GameDomain } from "./BoardStore";
-import { BoardActionType } from "../models/types/BoardTypes";
+import { BoardActionType } from "../core/models/types/BoardTypes";
 
 interface ICurrentAction {
   action: BoardActionType;

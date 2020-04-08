@@ -1,5 +1,5 @@
 import { GameDomain } from "./BoardStore";
-import { ShowModal, BoardActionType } from "./types/BoardTypes";
+import { ShowModal, BoardActionType } from "../core/models/types/BoardTypes";
 import nanoid from "nanoid";
 
 const BoardModalDomain = GameDomain.domain("ModalDomain");
@@ -11,7 +11,7 @@ const init: ShowModal = {
   title: "",
   text: "",
   actionButtons: [],
-  _id: nanoid(4)
+  _id: nanoid(4),
 };
 
 export const setBoardModalEvent = BoardModalDomain.event<ShowModal>();

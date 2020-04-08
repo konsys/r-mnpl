@@ -1,5 +1,5 @@
 import { GameDomain } from "./BoardStore";
-import { IUser } from "../../components/Players/Players";
+import { IUser } from "../components/Players/Players";
 
 const UserDomain = GameDomain.domain("UserDomain");
 export const resetUserEvent = UserDomain.event();
@@ -9,7 +9,7 @@ const init: IUser = {
   name: "Konstantin",
   vip: true,
   isActive: true,
-  isBlocked: false
+  isBlocked: false,
 };
 
 export const setUserEvent = UserDomain.event<IUser>();

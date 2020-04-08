@@ -1,16 +1,16 @@
 import {
   CanBuy,
   BoardActionType,
-  ShowModal
+  ShowModal,
 } from "../../models/types/BoardTypes";
-import { setCurrentActionEvent } from "../../models/BoardActionStore";
+import { setCurrentActionEvent } from "../../../stores/BoardActionStore";
 import nanoid from "nanoid";
-import { setBoardModalEvent } from "../../models/BoardModalStore";
+import { setBoardModalEvent } from "../../../stores/BoardModalStore";
 
 export const canBuyHandler = (act: CanBuy) => {
   setCurrentActionEvent({
     action: BoardActionType.ROLL_DICES,
-    userId: act.userId
+    userId: act.userId,
   });
   const modal: ShowModal = {
     type: BoardActionType.SHOW_MODAL,
@@ -21,14 +21,14 @@ export const canBuyHandler = (act: CanBuy) => {
     actionButtons: [
       {
         title: "Купить",
-        onClick: () => console.log("BUY")
+        onClick: () => console.log("BUY"),
       },
       {
         title: "На аукцион",
-        onClick: () => console.log("TO AUCTION")
-      }
+        onClick: () => console.log("TO AUCTION"),
+      },
     ],
-    _id: nanoid(4)
+    _id: nanoid(4),
   };
   setBoardModalEvent(modal);
   return setCurrentActionEvent(null);

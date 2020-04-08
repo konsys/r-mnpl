@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { GameDomain } from "../models/BoardStore";
+import { GameDomain } from "../../stores/BoardStore";
 import { client } from "../../http/client";
 import { useStore } from "effector-react";
 import { IUser, Players } from "../../components/Players/Players";
@@ -14,12 +14,12 @@ const PlayersDomain = GameDomain.domain("PlayersDomain");
 
 export const resetPLayersEvent = PlayersDomain.event();
 export const getPlayersEffect = PlayersDomain.effect<void, IUser[], Error>({
-  handler: fetchPlayers
+  handler: fetchPlayers,
 });
 
 export const playersStore = PlayersDomain.store<IUser[]>([])
   .on(getPlayersEffect.done, (_, { result }) => result)
-  .on(getPlayersEffect.fail, err => console.log("error", err))
+  .on(getPlayersEffect.fail, (err) => console.log("error", err))
   .reset(resetPLayersEvent);
 
 export const UsersCore = () => {

@@ -1,7 +1,7 @@
 import { sample } from "effector";
 import { dicesStore, setDicesEvent } from "./DicesStore";
 import { GameDomain } from "./BoardStore";
-import { RollDices } from "./types/BoardTypes";
+import { RollDices } from "../core/models/types/BoardTypes";
 export interface PlayerToken {
   position: number;
   isJailed: 0 | 1 | 2 | 3;
@@ -46,15 +46,15 @@ const init: TokenStore = {
     userId: 1,
     step: 0,
     fieldId: 0,
-    isJailed: 0
-  }
+    isJailed: 0,
+  },
 };
 
 const initPosition: TokenMove = {
   userId: 1,
   left: MARGIN_CENTER,
   top: MARGIN_CENTER,
-  duration: DURATION
+  duration: DURATION,
 };
 
 const createTurnsArray = (position: number, stopPosition: number): number[] => {
@@ -85,7 +85,7 @@ for (let i = 0; i < 40; i++) {
     fieldPositions.push({
       positionNumber: i,
       left,
-      top
+      top,
     });
   } else if (i >= 11 && i <= 20) {
     left = TABLE_SIZE - MARGIN_CENTER;
@@ -96,7 +96,7 @@ for (let i = 0; i < 40; i++) {
     fieldPositions.push({
       positionNumber: i,
       left,
-      top
+      top,
     });
   } else if (i >= 21 && i <= 30) {
     left = TABLE_SIZE - FIELD_SIZE * (i - 19);
@@ -107,7 +107,7 @@ for (let i = 0; i < 40; i++) {
     fieldPositions.push({
       positionNumber: i,
       left,
-      top
+      top,
     });
   } else if (i >= 31 && i <= 39) {
     left = MARGIN_CENTER;
@@ -115,11 +115,11 @@ for (let i = 0; i < 40; i++) {
     fieldPositions.push({
       positionNumber: i,
       left,
-      top
+      top,
     });
   }
 }
-const diceTurn = sample(dicesStore, setDicesEvent, v => v);
+const diceTurn = sample(dicesStore, setDicesEvent, (v) => v);
 diceTurn.watch(async (v: RollDices) => {
   const tokenState = tokens.getState();
   const currentToken = tokenState[v.userId];
@@ -142,7 +142,7 @@ diceTurn.watch(async (v: RollDices) => {
               userId: 1,
               duration: DURATION,
               left: fieldPositions[field].left,
-              top: fieldPositions[field].top
+              top: fieldPositions[field].top,
             }),
           timeout
         );
@@ -156,8 +156,8 @@ diceTurn.watch(async (v: RollDices) => {
         userId: v.userId,
         step: step + 1,
         fieldId: stopPosition,
-        isJailed
-      }
+        isJailed,
+      },
     };
 
     setTimeout(() => changePosition(res), 1200);
@@ -179,7 +179,7 @@ export const changeTokenPosition = TokenDomain.effect<
 >();
 
 function moveTokenByTimeout<T>(token: T): Promise<T> {
-  return new Promise<T>(resolve => setTimeout(() => resolve(token), 800));
+  return new Promise<T>((resolve) => setTimeout(() => resolve(token), 800));
 }
 
 export const tokenPosition = TokenDomain.store<TokenMove>(initPosition)
