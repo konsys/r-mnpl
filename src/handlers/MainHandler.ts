@@ -4,22 +4,17 @@ import { rollDicesHandler } from "./DicesHandler";
 import { canBuyHandler } from "./BuyHandler";
 
 export const boardMessageHandler = (message: BoardMessage) => {
-  const events = message.data.events.type;
-  events.map((v) => {
-    switch (v.type) {
-      case BoardActionType.SHOW_MODAL:
-        showModalHandler(v, BoardActionType.SHOW_MODAL);
-        break;
+  console.log(11111111111, message.data);
+  const event = message.data.event.action;
 
-      case BoardActionType.ROLL_DICES:
-        rollDicesHandler(v);
-        break;
+  switch (event.type) {
+    case BoardActionType.SHOW_MODAL:
+      return showModalHandler(event, BoardActionType.SHOW_MODAL);
 
-      case BoardActionType.CAN_BUY:
-        canBuyHandler(v);
-        break;
-    }
+    case BoardActionType.ROLL_DICES:
+      return rollDicesHandler(event);
 
-    return v;
-  });
+    case BoardActionType.CAN_BUY:
+      return canBuyHandler(event);
+  }
 };
