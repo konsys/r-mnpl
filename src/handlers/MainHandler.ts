@@ -8,7 +8,7 @@ export const boardMessageHandler = (message: BoardMessage) => {
   events.map((v) => {
     switch (v.type) {
       case BoardActionType.SHOW_MODAL:
-        showModalHandler(v);
+        showModalHandler(v, BoardActionType.SHOW_MODAL);
         break;
 
       case BoardActionType.ROLL_DICES:

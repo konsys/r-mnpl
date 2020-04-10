@@ -1,6 +1,6 @@
 enum ResponceCode {
   ok = 0,
-  error = 1
+  error = 1,
 }
 
 export type Contract = {
@@ -25,7 +25,7 @@ export enum BoardActionType {
   LEVEL_DOWN = "levelDown",
   CONTRACT_ACCEPTED = "contractAccepted",
   MORTGAGE = "mortgage",
-  SHOW_MODAL = "showModal"
+  SHOW_MODAL = "showModal",
 }
 export interface BoardAction {
   type: BoardActionType;

@@ -2,7 +2,7 @@ import { setCurrentActionEvent } from "../stores/ActionStore";
 import { rollDicesEffect } from "../stores/DicesStore";
 import { BoardActionType, ShowModal } from "../types/BoardTypes";
 
-export const rollDicesModal = (act: ShowModal): ShowModal => ({
+const rollDicesModalContent = (act: ShowModal): ShowModal => ({
   type: BoardActionType.SHOW_MODAL,
   userId: act.userId,
   title: act.title,
@@ -19,7 +19,7 @@ export const rollDicesModal = (act: ShowModal): ShowModal => ({
   _id: act._id,
 });
 
-export const canBuyModal = (act: ShowModal): ShowModal => ({
+const canBuyModalContent = (act: ShowModal): ShowModal => ({
   type: BoardActionType.SHOW_MODAL,
   userId: act.userId,
   title: act.title,
@@ -42,3 +42,16 @@ export const canBuyModal = (act: ShowModal): ShowModal => ({
   ],
   _id: act._id,
 });
+
+export const modalTypes = (type: BoardActionType, content: ShowModal) => {
+  switch (type) {
+    case BoardActionType.ROLL_DICES:
+      return rollDicesModalContent(content);
+
+    case BoardActionType.CAN_BUY:
+      return canBuyModalContent(content);
+
+    default:
+      return rollDicesModalContent(content);
+  }
+};

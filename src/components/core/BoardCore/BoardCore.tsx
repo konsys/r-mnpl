@@ -3,7 +3,7 @@ import { Board } from "../../views/Board/Board";
 import { useStore } from "effector-react";
 import { getInitFieldsEffect, fieldsStore } from "../../../stores/FieldsStore";
 import { SocketActions } from "../../../types/ActionsTypes";
-import { boardMessageHandler } from "../../../handlers/SocketHandlers";
+import { boardMessageHandler } from "../../../handlers/MainHandler";
 import openSocket from "socket.io-client";
 import { clearNode } from "effector";
 import { BoardDomain } from "../../../stores/MainStore";
