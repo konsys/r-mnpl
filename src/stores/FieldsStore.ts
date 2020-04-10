@@ -1,10 +1,10 @@
-import { MainDomain } from "./MainStore";
+import { BoardDomain } from "./MainStore";
 import { BoardField } from "../components/views/Field/Field";
 import { fetchInitFields } from "../components/core/BoardCore/Api";
 
-const BoardDomain = MainDomain.domain("BoardDomain");
-export const resetFieldsEvent = BoardDomain.event();
-export const getInitFieldsEffect = BoardDomain.effect<
+const FieldsDomain = BoardDomain.domain("BoardDomain");
+export const resetFieldsEvent = FieldsDomain.event();
+export const getInitFieldsEffect = FieldsDomain.effect<
   void,
   BoardField[],
   Error
@@ -12,7 +12,7 @@ export const getInitFieldsEffect = BoardDomain.effect<
   handler: fetchInitFields,
 });
 
-export const fieldsStore = BoardDomain.store<BoardField[]>([])
+export const fieldsStore = FieldsDomain.store<BoardField[]>([])
   .on(getInitFieldsEffect.done, (_, { result }) => result)
   .on(getInitFieldsEffect.fail, (err) => console.error("error", err))
   .reset(resetFieldsEvent);

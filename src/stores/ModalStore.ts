@@ -1,8 +1,8 @@
-import { MainDomain } from "./MainStore";
+import { BoardDomain } from "./MainStore";
 import { ShowModal, BoardActionType } from "../types/BoardTypes";
 import nanoid from "nanoid";
 
-const ModalDomain = MainDomain.domain("ModalDomain");
+const ModalDomain = BoardDomain.domain("ModalDomain");
 export const resetModalEvent = ModalDomain.event();
 
 const init: ShowModal = {

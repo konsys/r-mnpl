@@ -1,8 +1,8 @@
 import { mnplSocket } from "../components/core/GameCore/index";
-import { MainDomain } from "./MainStore";
+import { BoardDomain } from "./MainStore";
 import { RollDices, BoardActionType } from "../types/BoardTypes";
 
-const DiceDomain = MainDomain.domain("DiceDomain");
+const DiceDomain = BoardDomain.domain("DiceDomain");
 export const resetDicesEvent = DiceDomain.event();
 
 export const rollDicesEffect = DiceDomain.effect<

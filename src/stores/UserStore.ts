@@ -1,7 +1,7 @@
-import { MainDomain } from "./MainStore";
+import { BoardDomain } from "./MainStore";
 import { IUser } from "../components/views/Players/Players";
 
-const UserDomain = MainDomain.domain("UserDomain");
+const UserDomain = BoardDomain.domain("UserDomain");
 export const resetUserEvent = UserDomain.event();
 
 const init: IUser = {

@@ -1,8 +1,8 @@
-import { MainDomain } from "./MainStore";
+import { BoardDomain } from "./MainStore";
 import { IUser } from "../components/views/Players/Players";
 import { fetchPlayers } from "../components/core/PlayersCore/Api";
 
-const PlayersDomain = MainDomain.domain("PlayersDomain");
+const PlayersDomain = BoardDomain.domain("PlayersDomain");
 
 export const resetPLayersEvent = PlayersDomain.event();
 export const getPlayersEffect = PlayersDomain.effect<void, IUser[], Error>({

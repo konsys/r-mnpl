@@ -1,6 +1,6 @@
 import { sample } from "effector";
 import { dicesStore, setDicesEvent } from "./DicesStore";
-import { MainDomain } from "./MainStore";
+import { BoardDomain } from "./MainStore";
 import { RollDices } from "../types/BoardTypes";
 export interface PlayerToken {
   position: number;
@@ -39,7 +39,7 @@ export interface TokenMove {
   left: number;
 }
 
-const TokenDomain = MainDomain.createDomain("TokenDomain");
+const TokenDomain = BoardDomain.createDomain("TokenDomain");
 
 const init: TokenStore = {
   1: {

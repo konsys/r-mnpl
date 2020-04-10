@@ -1,4 +1,4 @@
-import { MainDomain } from "./MainStore";
+import { BoardDomain } from "./MainStore";
 import { BoardActionType } from "../types/BoardTypes";
 
 interface ICurrentAction {
@@ -6,11 +6,11 @@ interface ICurrentAction {
   userId: number;
 }
 
-const ActionDomain = MainDomain.domain("BoardActionDomain");
-export const resetBoardActionEvent = ActionDomain.event();
+const ActionDomain = BoardDomain.domain("BoardActionDomain");
+export const resetActionEvent = ActionDomain.event();
 
 export const setCurrentActionEvent = ActionDomain.event<ICurrentAction | null>();
 
-export const boardActionsStore = ActionDomain.store<ICurrentAction | null>(null)
+export const actionsStore = ActionDomain.store<ICurrentAction | null>(null)
   .on(setCurrentActionEvent, (_, data) => data)
-  .reset(resetBoardActionEvent);
+  .reset(resetActionEvent);

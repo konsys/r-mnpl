@@ -18,10 +18,7 @@ import { BoardCore } from "../BoardCore/BoardCore";
 import { UsersCore } from "../PlayersCore/PlayersCore";
 import { SocketActions } from "../../../types/ActionsTypes";
 import { userStore } from "../../../stores/UserStore";
-import {
-  boardActionsStore,
-  resetBoardActionEvent,
-} from "../../../stores/ActionStore";
+import { actionsStore, resetActionEvent } from "../../../stores/ActionStore";
 import { BoardActionType } from "../../../types/BoardTypes";
 import { boardMessageHandler } from "../../../handlers/SocketHandlers";
 
@@ -31,12 +28,12 @@ interface Props extends RouteComponentProps {}
 
 export const Game = (props: Props) => {
   const dicesState = useStore(dicesStore);
-  const actionState = useStore(boardActionsStore);
+  const actionState = useStore(actionsStore);
   const userState = useStore(userStore);
 
   useEffect(() => {
     mnplSocket.on(SocketActions.BOARD_MESSAGE, boardMessageHandler);
-    return () => resetBoardActionEvent();
+    return () => resetActionEvent();
   }, []);
 
   return (
