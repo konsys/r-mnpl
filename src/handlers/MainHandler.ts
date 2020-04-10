@@ -5,15 +5,17 @@ import { canBuyHandler } from "./BuyHandler";
 
 export const boardMessageHandler = (message: BoardMessage) => {
   const event = message.data.event.action;
-  console.log(11111111111, event.type);
-  switch (event.type) {
-    case BoardActionType.SHOW_MODAL:
-      return showModalHandler(event, BoardActionType.SHOW_MODAL);
+  console.log(11111111111, event);
+  if (event) {
+    switch (event.type) {
+      case BoardActionType.SHOW_MODAL:
+        return showModalHandler(event, BoardActionType.SHOW_MODAL);
 
-    case BoardActionType.ROLL_DICES:
-      return rollDicesHandler(event);
+      case BoardActionType.ROLL_DICES:
+        return rollDicesHandler(event);
 
-    case BoardActionType.CAN_BUY:
-      return canBuyHandler(event);
+      case BoardActionType.CAN_BUY:
+        return canBuyHandler(event);
+    }
   }
 };
