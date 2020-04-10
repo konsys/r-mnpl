@@ -4,9 +4,8 @@ import { rollDicesHandler } from "./DicesHandler";
 import { canBuyHandler } from "./BuyHandler";
 
 export const boardMessageHandler = (message: BoardMessage) => {
-  console.log(11111111111, message.data);
   const event = message.data.event.action;
-
+  console.log(11111111111, event.type);
   switch (event.type) {
     case BoardActionType.SHOW_MODAL:
       return showModalHandler(event, BoardActionType.SHOW_MODAL);
