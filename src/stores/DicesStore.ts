@@ -1,6 +1,6 @@
-import { mnplSocket } from "../components/core/GameCore/index";
 import { BoardDomain } from "./MainStore";
 import { RollDices, BoardActionType } from "../types/BoardTypes";
+import { boardSocket } from "../components/core/BoardCore/BoardCore";
 
 const DiceDomain = BoardDomain.domain("DiceDomain");
 export const resetDicesEvent = DiceDomain.event();
@@ -10,7 +10,7 @@ export const rollDicesEffect = DiceDomain.effect<
   Promise<SocketIOClient.Socket>,
   Error
 >(BoardActionType.ROLL_DICES, {
-  handler: async () => mnplSocket.emit(BoardActionType.ROLL_DICES),
+  handler: async () => boardSocket.emit(BoardActionType.ROLL_DICES),
 });
 
 export const setDicesEvent = DiceDomain.event<RollDices>();

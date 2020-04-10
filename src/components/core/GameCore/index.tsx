@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { RouteComponentProps } from "@reach/router";
 import "./style.scss";
 import { Chat } from "../../views/Chat/Chat";
@@ -13,16 +13,11 @@ import { Dices } from "../../views/Dices/Dices";
 import { GameLoading } from "../../views/GameLoading/GameLoading";
 import { dicesStore } from "../../../stores/DicesStore";
 import { useStore } from "effector-react";
-import openSocket from "socket.io-client";
 import { BoardCore } from "../BoardCore/BoardCore";
 import { UsersCore } from "../PlayersCore/PlayersCore";
-import { SocketActions } from "../../../types/ActionsTypes";
 import { userStore } from "../../../stores/UserStore";
-import { actionsStore, resetActionEvent } from "../../../stores/ActionStore";
+import { actionsStore } from "../../../stores/ActionStore";
 import { BoardActionType } from "../../../types/BoardTypes";
-import { boardMessageHandler } from "../../../handlers/SocketHandlers";
-
-export const mnplSocket = openSocket("http://localhost:3001");
 
 interface Props extends RouteComponentProps {}
 
@@ -30,11 +25,6 @@ export const Game = (props: Props) => {
   const dicesState = useStore(dicesStore);
   const actionState = useStore(actionsStore);
   const userState = useStore(userStore);
-
-  useEffect(() => {
-    mnplSocket.on(SocketActions.BOARD_MESSAGE, boardMessageHandler);
-    return () => resetActionEvent();
-  }, []);
 
   return (
     <>
