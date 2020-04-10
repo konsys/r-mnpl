@@ -3,7 +3,7 @@ import { ShowModal, BoardActionType } from "../types/BoardTypes";
 import nanoid from "nanoid";
 
 const ModalDomain = BoardDomain.domain("ModalDomain");
-export const resetModalEvent = ModalDomain.event();
+export const reshowModalEvent = ModalDomain.event();
 
 const init: ShowModal = {
   type: BoardActionType.SHOW_MODAL,
@@ -14,8 +14,8 @@ const init: ShowModal = {
   _id: nanoid(4),
 };
 
-export const setModalEvent = ModalDomain.event<ShowModal>();
+export const showModalEvent = ModalDomain.event<ShowModal>();
 
 export const modalStore = ModalDomain.store<ShowModal>(init)
-  .on(setModalEvent, (_, data) => data)
-  .reset(resetModalEvent);
+  .on(showModalEvent, (_, data) => data)
+  .reset(reshowModalEvent);

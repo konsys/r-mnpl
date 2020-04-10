@@ -1,5 +1,5 @@
 import nanoid from "nanoid";
-import { setModalEvent } from "../stores/ModalStore";
+import { showModalEvent } from "../stores/ModalStore";
 import { setCurrentActionEvent } from "../stores/ActionStore";
 import { ShowModal, BoardActionType, CanBuy } from "../types/BoardTypes";
 
@@ -26,6 +26,6 @@ export const canBuyHandler = (act: CanBuy) => {
     ],
     _id: nanoid(4),
   };
-  setModalEvent(modal);
+  showModalEvent(modal);
   return setCurrentActionEvent(null);
 };

@@ -36,7 +36,8 @@ export const Game = (props: Props) => {
               <BoardCore />
               <div className="table-body-board-center">
                 <M1tv />
-                {userState.userId === actionState?.userId &&
+                {actionState &&
+                  userState.userId === actionState.userId &&
                   actionState.action === BoardActionType.SHOW_MODAL && (
                     <BoardModal />
                   )}
