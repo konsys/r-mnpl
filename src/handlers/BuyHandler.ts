@@ -1,13 +1,9 @@
 import nanoid from "nanoid";
 import { showModalEvent } from "../stores/ModalStore";
 import { setCurrentActionEvent } from "../stores/ActionStore";
-import { ShowModal, BoardActionType, CanBuy } from "../types/BoardTypes";
+import { ShowModal, BoardActionType, BoardAction } from "../types/BoardTypes";
 
-export const canBuyHandler = (act: CanBuy) => {
-  setCurrentActionEvent({
-    action: BoardActionType.ROLL_DICES,
-    userId: act.userId,
-  });
+export const canBuyHandler = (act: BoardAction) => {
   const modal: ShowModal = {
     type: BoardActionType.SHOW_MODAL,
     userId: act.userId,

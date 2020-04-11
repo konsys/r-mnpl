@@ -31,62 +31,28 @@ export interface BoardAction {
   type: BoardActionType;
   userId: number;
   _id: string;
+  bet?: number;
+  field?: number;
+  money?: number;
+  toUserId?: number;
 }
 
-export interface Motrgage extends BoardAction {
-  type: BoardActionType.MORTGAGE;
-  field: number;
-}
-
-export interface AuctionDecline extends BoardAction {
-  type: BoardActionType.AUCTION_DECLINE;
-}
-export interface AuctionAccept extends BoardAction {
-  type: BoardActionType.AUCTION_ACCEPT;
-  bet: number;
-}
-export interface LevelUp extends BoardAction {
-  type: BoardActionType.LEVEL_UP;
-  field: number;
-}
-export interface LevelDown extends BoardAction {
-  type: BoardActionType.LEVEL_DOWN;
-  field: number;
-}
-export interface PayRentSuccess extends BoardAction {
-  type: BoardActionType.PAY_RENT_SUCCESS;
-  field: number;
-  money: number;
-  toUserId: number;
-}
-
-export interface PayRentFail extends BoardAction {
-  type: BoardActionType.PAY_RENT_FAIL;
-  field: number;
-  money: number;
-  toUserId: number;
-}
-
-export interface TypeBuy extends BoardAction {
-  type: BoardActionType.BUY;
-  field: number;
-  money: number;
-}
-
-export interface RollDices extends BoardAction {
+export interface RollDices {
   type: BoardActionType.ROLL_DICES;
   dices: number[];
   userId: number;
   dicesSum: number;
   meanPosition: number;
+  _id: string;
 }
 
-export interface ShowModal extends BoardAction {
+export interface ShowModal {
   type: BoardActionType.SHOW_MODAL;
   userId: number;
   title: string;
   text: string;
   actionButtons?: ActionButtons[];
+  _id: string;
 }
 
 interface ActionButtons {
@@ -94,25 +60,8 @@ interface ActionButtons {
   onClick: () => void;
 }
 
-export interface CanBuy extends BoardAction {
-  type: BoardActionType.CAN_BUY;
-  field: number;
-  money: number;
-}
-
 export interface IBoardEvent {
-  action:
-    | Motrgage
-    | AuctionDecline
-    | AuctionAccept
-    | LevelUp
-    | LevelDown
-    | PayRentSuccess
-    | PayRentFail
-    | TypeBuy
-    | RollDices
-    | CanBuy
-    | ShowModal;
+  action: BoardAction | RollDices | ShowModal;
 }
 
 interface BoardEventData {

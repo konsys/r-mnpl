@@ -1,21 +1,14 @@
-import { BoardMessage, BoardActionType } from "../types/BoardTypes";
-import { showModalHandler } from "./ModalHandler";
-import { rollDicesHandler } from "./DicesHandler";
-import { canBuyHandler } from "./BuyHandler";
+import { BoardMessage } from "../types/BoardTypes";
+import { setCurrentActionEvent } from "../stores/ActionStore";
 
 export const boardMessageHandler = (message: BoardMessage) => {
   const event = message.data.event.action;
-  console.log(11111111111, event);
-  if (event) {
-    switch (event.type) {
-      case BoardActionType.SHOW_MODAL:
-        return showModalHandler(event, BoardActionType.SHOW_MODAL);
+  // console.log("MESSAGE", event);
 
-      case BoardActionType.ROLL_DICES:
-        return rollDicesHandler(event);
-
-      case BoardActionType.CAN_BUY:
-        return canBuyHandler(event);
-    }
-  }
+  setCurrentActionEvent({
+    action: event.type,
+    userId: event.userId,
+    actionId: event._id,
+    event: message.data.event,
+  });
 };
