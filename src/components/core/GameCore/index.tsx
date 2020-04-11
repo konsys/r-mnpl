@@ -39,7 +39,7 @@ export const Game = (props: Props) => {
                 {actionState &&
                   userState.userId === actionState.event.action.userId &&
                   actionState.event.action.type ===
-                    BoardActionType.SHOW_MODAL && <BoardModal />}
+                    BoardActionType.SHOW_DICES_MODAL && <BoardModal />}
                 <Arbitr />
                 <Ticket />
                 <Chat />

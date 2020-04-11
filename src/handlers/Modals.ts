@@ -1,9 +1,25 @@
-import { setCurrentActionEvent } from "../stores/ActionStore";
 import { rollDicesEffect } from "../stores/DicesStore";
 import { BoardActionType, ShowModal } from "../types/BoardTypes";
+import { actionsStore } from "../stores/ActionStore";
+import { showModalEvent } from "../stores/ModalStore";
 
-const rollDicesModalContent = (act: ShowModal): ShowModal => ({
-  type: BoardActionType.SHOW_MODAL,
+actionsStore.watch((v) => {
+  const action = v.event.action;
+  switch (action.type) {
+    case BoardActionType.SHOW_DICES_MODAL:
+      showModalEvent({
+        type: BoardActionType.SHOW_DICES_MODAL,
+        _id: action._id,
+        userId: action.userId,
+        text: "111",
+        title: "222",
+      });
+      break;
+  }
+});
+
+const rollDicesModal = (act: ShowModal): ShowModal => ({
+  type: BoardActionType.SHOW_DICES_MODAL,
   userId: act.userId,
   title: act.title,
   text: act.text,
@@ -18,37 +34,24 @@ const rollDicesModalContent = (act: ShowModal): ShowModal => ({
   _id: act._id,
 });
 
-const canBuyModalContent = (act: ShowModal): ShowModal => ({
-  type: BoardActionType.SHOW_MODAL,
-  userId: act.userId,
-  title: act.title,
-  text: act.text,
-  actionButtons: [
-    {
-      title: "Купить",
-      onClick: () => {
-        rollDicesEffect({});
-      },
-    },
-    {
-      title: "На аукцион",
-      onClick: () => {
-        rollDicesEffect({});
-      },
-    },
-  ],
-  _id: act._id,
-});
-
-export const modalTypes = (type: BoardActionType, content: ShowModal) => {
-  switch (type) {
-    case BoardActionType.ROLL_DICES:
-      return rollDicesModalContent(content);
-
-    case BoardActionType.CAN_BUY:
-      return canBuyModalContent(content);
-
-    default:
-      return rollDicesModalContent(content);
-  }
-};
+// const canBuyModalContent = (act: ShowModal): ShowModal => ({
+//   type: BoardActionType.SHOW_DICES_MODAL,
+//   userId: act.userId,
+//   title: act.title,
+//   text: act.text,
+//   actionButtons: [
+//     {
+//       title: "Купить",
+//       onClick: () => {
+//         rollDicesEffect({});
+//       },
+//     },
+//     {
+//       title: "На аукцион",
+//       onClick: () => {
+//         rollDicesEffect({});
+//       },
+//     },
+//   ],
+//   _id: act._id,
+// });

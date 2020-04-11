@@ -26,7 +26,7 @@ export enum BoardActionType {
   LEVEL_DOWN = "levelDown",
   CONTRACT_ACCEPTED = "contractAccepted",
   MORTGAGE = "mortgage",
-  SHOW_MODAL = "showModal",
+  SHOW_DICES_MODAL = "showDicesModal",
 }
 export interface BoardAction {
   type: BoardActionType;
@@ -48,7 +48,7 @@ export interface RollDices {
 }
 
 export interface ShowModal {
-  type: BoardActionType.SHOW_MODAL;
+  type: BoardActionType.SHOW_DICES_MODAL;
   userId: number;
   title: string;
   text: string;

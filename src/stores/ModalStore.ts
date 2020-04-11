@@ -11,7 +11,7 @@ const ModalDomain = BoardDomain.domain("ModalDomain");
 export const reshowModalEvent = ModalDomain.event();
 
 const init: ShowModal = {
-  type: BoardActionType.SHOW_MODAL,
+  type: BoardActionType.SHOW_DICES_MODAL,
   userId: 0,
   title: "",
   text: "",
