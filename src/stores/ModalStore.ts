@@ -1,16 +1,12 @@
 import { BoardDomain } from "./MainStore";
-import { ShowModal, BoardActionType } from "../types/BoardTypes";
+import { ShowDicesModal, BoardActionType } from "../types/BoardTypes";
 import nanoid from "nanoid";
 
 const ModalDomain = BoardDomain.domain("ModalDomain");
 
-// actionsStore.watch((action: ICurrentAction) => {
+export const resetModalEvent = ModalDomain.event();
 
-//   action.
-// })
-export const reshowModalEvent = ModalDomain.event();
-
-const init: ShowModal = {
+const init: ShowDicesModal = {
   type: BoardActionType.SHOW_DICES_MODAL,
   userId: 0,
   title: "",
@@ -19,8 +15,8 @@ const init: ShowModal = {
   _id: nanoid(4),
 };
 
-export const showModalEvent = ModalDomain.event<ShowModal>();
+export const showModalEvent = ModalDomain.event<ShowDicesModal>();
 
-export const modalStore = ModalDomain.store<ShowModal>(init)
+export const modalStore = ModalDomain.store<ShowDicesModal>(init)
   .on(showModalEvent, (_, data) => data)
-  .reset(reshowModalEvent);
+  .reset(resetModalEvent);

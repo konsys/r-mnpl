@@ -1,5 +1,7 @@
 import { BoardDomain } from "./MainStore";
 import { BoardActionType, IBoardEvent } from "../types/BoardTypes";
+import { showModalEvent } from "./ModalStore";
+import { rollDicesModal } from "../handlers/Modals";
 
 export interface ICurrentAction {
   actionId: string;
@@ -26,4 +28,20 @@ export const actionsStore = ActionDomain.store<ICurrentAction>({
   .on(setCurrentActionEvent, (_, data) => data)
   .reset(resetActionEvent);
 
-actionsStore.watch((v) => console.log("actionsStore", v));
+actionsStore.watch((v) => {
+  const action = v.event.action;
+  console.log(234242342, action);
+  switch (action.type) {
+    case BoardActionType.SHOW_DICES_MODAL:
+      showModalEvent(
+        rollDicesModal({
+          type: BoardActionType.SHOW_DICES_MODAL,
+          _id: action._id,
+          userId: action.userId,
+          text: "asdasd",
+          title: "222",
+        })
+      );
+      break;
+  }
+});

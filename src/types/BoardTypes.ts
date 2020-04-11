@@ -47,7 +47,7 @@ export interface RollDices {
   _id: string;
 }
 
-export interface ShowModal {
+export interface ShowDicesModal {
   type: BoardActionType.SHOW_DICES_MODAL;
   userId: number;
   title: string;
@@ -62,7 +62,7 @@ interface ActionButtons {
 }
 
 export interface IBoardEvent {
-  action: BoardAction | RollDices | ShowModal;
+  action: ShowDicesModal | BoardAction | RollDices;
 }
 
 interface BoardEventData {

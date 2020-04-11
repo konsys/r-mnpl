@@ -1,9 +1,13 @@
 import nanoid from "nanoid";
 import { showModalEvent } from "../stores/ModalStore";
-import { ShowModal, BoardActionType, BoardAction } from "../types/BoardTypes";
+import {
+  ShowDicesModal,
+  BoardActionType,
+  BoardAction,
+} from "../types/BoardTypes";
 
 export const canBuyHandler = (act: BoardAction) => {
-  const modal: ShowModal = {
+  const modal: ShowDicesModal = {
     type: BoardActionType.SHOW_DICES_MODAL,
     userId: act.userId,
     title: "Покупаем?",
