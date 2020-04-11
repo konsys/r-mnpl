@@ -11,7 +11,6 @@ const rollDicesModalContent = (act: ShowModal): ShowModal => ({
     {
       title: "Бросить кубики",
       onClick: () => {
-        setCurrentActionEvent(null);
         rollDicesEffect({});
       },
     },
@@ -28,14 +27,12 @@ const canBuyModalContent = (act: ShowModal): ShowModal => ({
     {
       title: "Купить",
       onClick: () => {
-        setCurrentActionEvent(null);
         rollDicesEffect({});
       },
     },
     {
       title: "На аукцион",
       onClick: () => {
-        setCurrentActionEvent(null);
         rollDicesEffect({});
       },
     },

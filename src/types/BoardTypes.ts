@@ -10,10 +10,11 @@ export type Contract = {
   outMoney: number;
   inFields: number[];
   inMoney: number;
-  _id: "CWRlgfKGAm4=";
+  _id: string;
 };
 
 export enum BoardActionType {
+  VOID = "void",
   ROLL_DICES = "rollDices",
   CAN_BUY = "canBuy",
   AUCTION_ACCEPT = "auctionAccept",
@@ -39,8 +40,8 @@ export interface BoardAction {
 
 export interface RollDices {
   type: BoardActionType.ROLL_DICES;
-  dices: number[];
   userId: number;
+  dices: number[];
   dicesSum: number;
   meanPosition: number;
   _id: string;

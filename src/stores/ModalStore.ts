@@ -3,6 +3,11 @@ import { ShowModal, BoardActionType } from "../types/BoardTypes";
 import nanoid from "nanoid";
 
 const ModalDomain = BoardDomain.domain("ModalDomain");
+
+// actionsStore.watch((action: ICurrentAction) => {
+
+//   action.
+// })
 export const reshowModalEvent = ModalDomain.event();
 
 const init: ShowModal = {

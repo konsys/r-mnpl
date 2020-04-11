@@ -6,8 +6,6 @@ export const boardMessageHandler = (message: BoardMessage) => {
   // console.log("MESSAGE", event);
 
   setCurrentActionEvent({
-    action: event.type,
-    userId: event.userId,
     actionId: event._id,
     event: message.data.event,
   });

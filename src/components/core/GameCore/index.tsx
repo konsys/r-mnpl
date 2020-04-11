@@ -37,10 +37,9 @@ export const Game = (props: Props) => {
               <div className="table-body-board-center">
                 <M1tv />
                 {actionState &&
-                  userState.userId === actionState.userId &&
-                  actionState.action === BoardActionType.SHOW_MODAL && (
-                    <BoardModal />
-                  )}
+                  userState.userId === actionState.event.action.userId &&
+                  actionState.event.action.type ===
+                    BoardActionType.SHOW_MODAL && <BoardModal />}
                 <Arbitr />
                 <Ticket />
                 <Chat />
@@ -48,7 +47,7 @@ export const Game = (props: Props) => {
               <div className="table-body-board-tokens">
                 <Token userId={userState.userId} />
               </div>
-              {actionState?.action === BoardActionType.ROLL_DICES &&
+              {actionState.event.action.type === BoardActionType.ROLL_DICES &&
                 Array.isArray(dicesState.dices) &&
                 dicesState.dices.length === 3 && (
                   <Dices
