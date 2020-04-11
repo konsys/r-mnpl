@@ -1,6 +1,5 @@
 import { BoardDomain } from "./MainStore";
 import { ShowDicesModal, BoardActionType } from "../types/BoardTypes";
-import nanoid from "nanoid";
 
 const ModalDomain = BoardDomain.domain("ModalDomain");
 
@@ -12,7 +11,7 @@ const init: ShowDicesModal = {
   title: "",
   text: "",
   actionButtons: [],
-  _id: nanoid(4),
+  _id: "",
 };
 
 export const showModalEvent = ModalDomain.event<ShowDicesModal>();
