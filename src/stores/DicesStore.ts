@@ -1,5 +1,5 @@
 import { BoardDomain } from "./MainStore";
-import { RollDices, BoardActionType } from "../types/BoardTypes";
+import { BoardAction, BoardActionType } from "../types/BoardTypes";
 import { boardSocket } from "../components/core/BoardCore/BoardCore";
 
 const DiceDomain = BoardDomain.domain("DiceDomain");
@@ -13,9 +13,9 @@ export const rollDicesEffect = DiceDomain.effect<
   handler: async () => boardSocket.emit(BoardActionType.ROLL_DICES),
 });
 
-export const setDicesEvent = DiceDomain.event<RollDices>();
+export const setDicesEvent = DiceDomain.event<BoardAction>();
 
-const init: RollDices = {
+const init: BoardAction = {
   type: BoardActionType.ROLL_DICES,
   userId: 1,
   dices: [1, 1, 0],
@@ -24,6 +24,6 @@ const init: RollDices = {
   _id: "",
 };
 
-export const dicesStore = DiceDomain.store<RollDices>(init)
+export const dicesStore = DiceDomain.store<BoardAction>(init)
   .on(setDicesEvent, (_, data) => data)
   .reset(resetDicesEvent);

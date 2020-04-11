@@ -1,7 +1,7 @@
 import { sample } from "effector";
 import { dicesStore, setDicesEvent } from "./DicesStore";
 import { BoardDomain } from "./MainStore";
-import { RollDices } from "../types/BoardTypes";
+import { BoardAction } from "../types/BoardTypes";
 export interface PlayerToken {
   position: number;
   isJailed: 0 | 1 | 2 | 3;
@@ -120,13 +120,13 @@ for (let i = 0; i < 40; i++) {
   }
 }
 const diceTurn = sample(dicesStore, setDicesEvent, (v) => v);
-diceTurn.watch(async (v: RollDices) => {
+diceTurn.watch(async (v: BoardAction) => {
   const tokenState = tokens.getState();
   const currentToken = tokenState[v.userId];
 
   if (typeof currentToken !== "undefined") {
     const { fieldId, step, isJailed } = currentToken;
-    const stopPosition = v.meanPosition;
+    const stopPosition = v.meanPosition ? v.meanPosition : 0;
     const usedFields = createTurnsArray(fieldId, stopPosition);
 
     let lastIndex = 0;

@@ -1,11 +1,11 @@
 import { BoardDomain } from "./MainStore";
-import { ShowDicesModal, BoardActionType } from "../types/BoardTypes";
+import { BoardAction, BoardActionType } from "../types/BoardTypes";
 
 const ModalDomain = BoardDomain.domain("ModalDomain");
 
 export const resetModalEvent = ModalDomain.event();
 
-const init: ShowDicesModal = {
+const init: BoardAction = {
   type: BoardActionType.SHOW_DICES_MODAL,
   userId: 0,
   title: "",
@@ -14,8 +14,8 @@ const init: ShowDicesModal = {
   _id: "",
 };
 
-export const showModalEvent = ModalDomain.event<ShowDicesModal>();
+export const showModalEvent = ModalDomain.event<BoardAction>();
 
-export const modalStore = ModalDomain.store<ShowDicesModal>(init)
+export const modalStore = ModalDomain.store<BoardAction>(init)
   .on(showModalEvent, (_, data) => data)
   .reset(resetModalEvent);

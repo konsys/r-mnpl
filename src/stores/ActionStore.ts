@@ -38,8 +38,8 @@ actionsStore.watch((v) => {
           type: BoardActionType.SHOW_DICES_MODAL,
           _id: action._id,
           userId: action.userId,
-          text: "asdasd",
-          title: "222",
+          text: action.text,
+          title: action.title,
         })
       );
       break;

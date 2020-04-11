@@ -36,24 +36,12 @@ export interface BoardAction {
   field?: number;
   money?: number;
   toUserId?: number;
-}
-
-export interface RollDices {
-  type: BoardActionType.ROLL_DICES;
-  userId: number;
-  dices: number[];
-  dicesSum: number;
-  meanPosition: number;
-  _id: string;
-}
-
-export interface ShowDicesModal {
-  type: BoardActionType.SHOW_DICES_MODAL;
-  userId: number;
-  title: string;
-  text: string;
+  dices?: number[];
+  dicesSum?: number;
+  meanPosition?: number;
+  title?: string;
+  text?: string;
   actionButtons?: ActionButtons[];
-  _id: string;
 }
 
 interface ActionButtons {
@@ -62,7 +50,7 @@ interface ActionButtons {
 }
 
 export interface IBoardEvent {
-  action: ShowDicesModal | BoardAction | RollDices;
+  action: BoardAction;
 }
 
 interface BoardEventData {

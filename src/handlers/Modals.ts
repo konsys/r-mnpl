@@ -1,7 +1,7 @@
 import { rollDicesEffect } from "../stores/DicesStore";
-import { BoardActionType, ShowDicesModal } from "../types/BoardTypes";
+import { BoardActionType, BoardAction } from "../types/BoardTypes";
 
-export const rollDicesModal = (act: ShowDicesModal): ShowDicesModal => ({
+export const rollDicesModal = (act: BoardAction): BoardAction => ({
   type: BoardActionType.SHOW_DICES_MODAL,
   userId: act.userId,
   title: act.title,
@@ -17,7 +17,7 @@ export const rollDicesModal = (act: ShowDicesModal): ShowDicesModal => ({
   _id: act._id,
 });
 
-// const canBuyModalContent = (act: ShowDicesModal): ShowDicesModal => ({
+// const canBuyModalContent = (act: BoardAction): BoardAction => ({
 //   type: BoardActionType.SHOW_DICES_MODAL,
 //   userId: act.userId,
 //   title: act.title,

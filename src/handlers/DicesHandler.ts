@@ -1,14 +1,14 @@
-import { setCurrentActionEvent } from "../stores/ActionStore";
-import { RollDices, BoardActionType } from "../types/BoardTypes";
+import { BoardActionType, BoardAction } from "../types/BoardTypes";
 import { setDicesEvent } from "../stores/DicesStore";
 
-export const rollDicesHandler = async (act: RollDices) => {
-  const modal: RollDices = {
+export const rollDicesHandler = async (act: BoardAction) => {
+  const modal: BoardAction = {
     type: BoardActionType.ROLL_DICES,
     userId: act.userId,
     dices: act.dices,
     meanPosition: act.meanPosition,
-    dicesSum: act.dices[0] + act.dices[1] + act.dices[2],
+    dicesSum:
+      act && act.dices?.length && act.dices[0] + act.dices[1] + act.dices[2],
     _id: act._id,
   };
   setDicesEvent(modal);
