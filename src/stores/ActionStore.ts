@@ -45,7 +45,6 @@ actionsStore.watch((v) => {
       );
       break;
     case BoardActionType.ROLL_DICES:
-      console.log("actionTT", action);
       rollDicesHandler(action);
       break;
   }

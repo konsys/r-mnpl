@@ -15,7 +15,5 @@ const init: IUser = {
 export const setUserEvent = UserDomain.event<IUser>();
 
 export const userStore = UserDomain.store(init)
-  .on(setUserEvent, (_, data) => {
-    console.log("setUserEvent", data);
-  })
+  .on(setUserEvent, (_, data) => data)
   .reset(resetUserEvent);

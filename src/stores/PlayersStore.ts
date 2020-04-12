@@ -11,5 +11,5 @@ export const getPlayersEffect = PlayersDomain.effect<void, IUser[], Error>({
 
 export const playersStore = PlayersDomain.store<IUser[]>([])
   .on(getPlayersEffect.done, (_, { result }) => result)
-  .on(getPlayersEffect.fail, (err) => console.log("error", err))
+  .on(getPlayersEffect.fail, (err) => console.error("error", err))
   .reset(resetPLayersEvent);

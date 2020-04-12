@@ -1,7 +1,10 @@
 import { BoardActionType, BoardAction } from "../types/BoardTypes";
 import { setDicesEvent } from "../stores/DicesStore";
+import { actionsStore } from "../stores/ActionStore";
 
 export const rollDicesHandler = async (act: BoardAction) => {
+  const action = actionsStore.getState();
+  console.log("action", action);
   const modal: BoardAction = {
     type: BoardActionType.ROLL_DICES,
     userId: act.userId,
