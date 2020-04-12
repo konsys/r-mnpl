@@ -1,16 +1,16 @@
 import { BoardDomain } from "./MainStore";
-import { BoardAction, BoardActionType } from "../types/BoardTypes";
+import { BoardAction, BoardActionType, IActionId } from "../types/BoardTypes";
 import { boardSocket } from "../components/core/BoardCore/BoardCore";
 
 const DiceDomain = BoardDomain.domain("DiceDomain");
 export const resetDicesEvent = DiceDomain.event();
 
 export const rollDicesEffect = DiceDomain.effect<
-  any,
+  IActionId,
   Promise<SocketIOClient.Socket>,
   Error
 >(BoardActionType.ROLL_DICES, {
-  handler: async () => boardSocket.emit(BoardActionType.ROLL_DICES),
+  handler: async (data) => boardSocket.emit(BoardActionType.ROLL_DICES, data),
 });
 
 export const setDicesEvent = DiceDomain.event<BoardAction>();

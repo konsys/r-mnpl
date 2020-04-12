@@ -1,5 +1,5 @@
-import { rollDicesEffect } from "../stores/DicesStore";
 import { BoardActionType, BoardAction } from "../types/BoardTypes";
+import { dicesModalEffect } from "../stores/ModalStore";
 
 export const rollDicesModal = (act: BoardAction): BoardAction => ({
   type: BoardActionType.SHOW_DICES_MODAL,
@@ -10,7 +10,9 @@ export const rollDicesModal = (act: BoardAction): BoardAction => ({
     {
       title: "Бросить кубики",
       onClick: () => {
-        rollDicesEffect({});
+        dicesModalEffect({
+          actionId: act._id,
+        });
       },
     },
   ],
