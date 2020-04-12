@@ -4,11 +4,13 @@ import { dicesStore } from "../../../stores/DicesStore";
 
 export const Dices = () => {
   const d = useStore(dicesStore);
-
+  const dice1 = (d.dices?.length === 3 && d.dices[0]) || 1;
+  const dice2 = (d.dices?.length === 3 && d.dices[1]) || 1;
+  const dice3 = (d.dices?.length === 3 && d.dices[2]) || 0;
   return (
     <div className="table-body-board-generators">
       <div className="dices">
-        <div className={`r${d.dices?.length && d.dices[0]} diceBody`}>
+        <div className={`r${dice1} diceBody`}>
           <div className="diceFace dice1">
             <div className="dot center" />
           </div>
@@ -44,7 +46,7 @@ export const Dices = () => {
           </div>
         </div>
 
-        <div className={`r${d.dices?.length && d.dices[1]} diceBody`}>
+        <div className={`r${dice2} diceBody`}>
           <div className="diceFace dice1">
             <div className="dot center" />
           </div>
@@ -79,8 +81,8 @@ export const Dices = () => {
             <div className="dot center dright" />
           </div>
         </div>
-        {d.dices?.length && d.dices[2] && (
-          <div className={`r${d.dices[2]} diceBody`}>
+        {dice3 && (
+          <div className={`r${dice3} diceBody`}>
             <div className="diceFace dice1">
               <div className="dot center" />
             </div>

@@ -13,13 +13,13 @@ export const rollDicesEffect = DiceDomain.effect<
   handler: async () => boardSocket.emit(BoardActionType.ROLL_DICES),
 });
 
-export const setDicesEvent = DiceDomain.effect<BoardAction, BoardAction>();
+export const setDicesEvent = DiceDomain.event<BoardAction>();
 
 const init: BoardAction = {
   type: BoardActionType.ROLL_DICES,
   userId: 1,
   dices: [1, 1, 0],
-  dicesSum: 2,
+  dicesSum: 0,
   meanPosition: 0,
   _id: "",
 };
