@@ -1,6 +1,10 @@
 import React from "react";
 import { useStore } from "effector-react";
-import { tokenPosition, tokens } from "../../../stores/TokensStore";
+import {
+  tokenPosition,
+  tokens,
+  tokenTransitionTime,
+} from "../../../stores/TokensStore";
 import { fieldsStore } from "../../../stores/FieldsStore";
 interface Props {
   userId: number;
@@ -20,7 +24,7 @@ export const Token = (props: Props) => {
           style={{
             left: `${token.left}px`,
             top: `${token.top}px`,
-            transitionDuration: `${0.8}s`,
+            transitionDuration: `${tokenTransitionTime}ms`,
             transitionProperty: "left top ease",
           }}
           className="_animated"

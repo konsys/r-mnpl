@@ -2,6 +2,8 @@ import { sample } from "effector";
 import { dicesStore, setDicesEvent } from "./DicesStore";
 import { BoardDomain } from "./MainStore";
 import { BoardAction } from "../types/BoardTypes";
+
+export const tokenTransitionTime = 800;
 export interface PlayerToken {
   position: number;
   isJailed: 0 | 1 | 2 | 3;
