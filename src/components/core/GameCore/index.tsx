@@ -11,7 +11,6 @@ import { M1tv } from "../../views/M1tv/M1tv";
 import { BoardModal } from "../../views/BoardModal/BoardModal";
 import { Dices } from "../../views/Dices/Dices";
 import { GameLoading } from "../../views/GameLoading/GameLoading";
-import { dicesStore } from "../../../stores/DicesStore";
 import { useStore } from "effector-react";
 import { BoardCore } from "../BoardCore/BoardCore";
 import { UsersCore } from "../PlayersCore/PlayersCore";
@@ -22,7 +21,6 @@ import { BoardActionType } from "../../../types/BoardTypes";
 interface Props extends RouteComponentProps {}
 
 export const Game = (props: Props) => {
-  const dicesState = useStore(dicesStore);
   const actionState = useStore(actionsStore);
   const userState = useStore(userStore);
 
@@ -47,15 +45,7 @@ export const Game = (props: Props) => {
               <div className="table-body-board-tokens">
                 <Token userId={userState.userId} />
               </div>
-              {actionState.event.action.type === BoardActionType.ROLL_DICES &&
-                Array.isArray(dicesState.dices) &&
-                dicesState.dices.length === 3 && (
-                  <Dices
-                    value1={dicesState.dices[0]}
-                    value2={dicesState.dices[1]}
-                    value3={dicesState.dices[2]}
-                  />
-                )}
+              <Dices />
               <Contract />
               <TableHelper />
             </div>

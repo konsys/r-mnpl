@@ -13,7 +13,7 @@ export const rollDicesEffect = DiceDomain.effect<
   handler: async () => boardSocket.emit(BoardActionType.ROLL_DICES),
 });
 
-export const setDicesEvent = DiceDomain.event<BoardAction>();
+export const setDicesEvent = DiceDomain.effect<BoardAction, BoardAction>();
 
 const init: BoardAction = {
   type: BoardActionType.ROLL_DICES,
@@ -27,3 +27,5 @@ const init: BoardAction = {
 export const dicesStore = DiceDomain.store<BoardAction>(init)
   .on(setDicesEvent, (_, data) => data)
   .reset(resetDicesEvent);
+
+dicesStore.watch((v) => console.log(234242342, v));

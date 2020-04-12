@@ -2,6 +2,7 @@ import { BoardDomain } from "./MainStore";
 import { BoardActionType, IBoardEvent } from "../types/BoardTypes";
 import { showModalEvent } from "./ModalStore";
 import { rollDicesModal } from "../handlers/Modals";
+import { rollDicesHandler } from "../handlers/DicesHandler";
 
 export interface ICurrentAction {
   actionId: string;
@@ -30,7 +31,7 @@ export const actionsStore = ActionDomain.store<ICurrentAction>({
 
 actionsStore.watch((v) => {
   const action = v.event.action;
-  console.log(234242342, action);
+
   switch (action.type) {
     case BoardActionType.SHOW_DICES_MODAL:
       showModalEvent(
@@ -42,6 +43,10 @@ actionsStore.watch((v) => {
           title: action.title,
         })
       );
+      break;
+    case BoardActionType.ROLL_DICES:
+      console.log("actionTT", action);
+      rollDicesHandler(action);
       break;
   }
 });

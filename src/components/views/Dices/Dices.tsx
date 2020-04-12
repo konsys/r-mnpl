@@ -1,15 +1,14 @@
 import React from "react";
+import { useStore } from "effector-react";
+import { dicesStore } from "../../../stores/DicesStore";
 
-interface Props {
-  value1: number;
-  value2: number;
-  value3: number | null;
-}
-export const Dices = (props: Props) => {
+export const Dices = () => {
+  const d = useStore(dicesStore);
+
   return (
     <div className="table-body-board-generators">
       <div className="dices">
-        <div className={`r${props.value1} diceBody`}>
+        <div className={`r${d.dices?.length && d.dices[0]} diceBody`}>
           <div className="diceFace dice1">
             <div className="dot center" />
           </div>
@@ -45,7 +44,7 @@ export const Dices = (props: Props) => {
           </div>
         </div>
 
-        <div className={`r${props.value2} diceBody`}>
+        <div className={`r${d.dices?.length && d.dices[1]} diceBody`}>
           <div className="diceFace dice1">
             <div className="dot center" />
           </div>
@@ -80,8 +79,8 @@ export const Dices = (props: Props) => {
             <div className="dot center dright" />
           </div>
         </div>
-        {props.value3 && (
-          <div className={`r${props.value3} diceBody`}>
+        {d.dices?.length && d.dices[2] && (
+          <div className={`r${d.dices[2]} diceBody`}>
             <div className="diceFace dice1">
               <div className="dot center" />
             </div>
