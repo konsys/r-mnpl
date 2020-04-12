@@ -15,4 +15,5 @@ export const rollDicesHandler = async (act: BoardAction) => {
     _id: act._id,
   };
   setDicesEvent(modal);
+  // setTimeout(() => setDicesEvent({ ...modal, dices: [1, 1, 0] }), 2000);
 };

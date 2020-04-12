@@ -17,7 +17,6 @@ import { UsersCore } from "../PlayersCore/PlayersCore";
 import { userStore } from "../../../stores/UserStore";
 import { actionsStore } from "../../../stores/ActionStore";
 import { BoardActionType } from "../../../types/BoardTypes";
-
 interface Props extends RouteComponentProps {}
 
 export const Game = (props: Props) => {
