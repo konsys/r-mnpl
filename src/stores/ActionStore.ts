@@ -3,6 +3,7 @@ import { BoardActionType, IBoardEvent } from "../types/BoardTypes";
 import { showModalEvent } from "./ModalStore";
 import { rollDicesModal } from "../handlers/Modals";
 import { rollDicesHandler } from "../handlers/DicesHandler";
+import { resetDicesEvent } from "./DicesStore";
 
 export interface ICurrentAction {
   actionId: string;
@@ -34,6 +35,7 @@ actionsStore.watch((v) => {
 
   switch (action.type) {
     case BoardActionType.SHOW_DICES_MODAL:
+      resetDicesEvent();
       showModalEvent(
         rollDicesModal({
           type: BoardActionType.SHOW_DICES_MODAL,
