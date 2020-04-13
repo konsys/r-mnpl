@@ -5,7 +5,6 @@ import { BoardAction, BoardActionType, IActionId } from "../types/BoardTypes";
 import { boardSocket } from "../components/core/BoardCore/BoardCore";
 import { actionsStore } from "./ActionStore";
 
-export const tokenTransitionTime = 800;
 export interface PlayerToken {
   position: number;
   isJailed: 0 | 1 | 2 | 3;
@@ -21,6 +20,8 @@ const MARGIN_CENTER = 35;
 const FIELD_SIZE = 55;
 const DURATION = 100;
 const fieldPositions: fieldPositions[] = [];
+
+export const TRANSITION_LINE_TIMEOUT = 700;
 
 export interface TokenParams {
   userId: number;
@@ -43,8 +44,6 @@ export interface TokenMove {
   top: number;
   left: number;
 }
-
-export const TRANSITION_LINE_TIMEOUT = 800;
 
 const TokenDomain = BoardDomain.createDomain("TokenDomain");
 
@@ -190,7 +189,9 @@ export const changeTokenPosition = TokenDomain.effect<
 >();
 
 function moveTokenByTimeout<T>(token: T): Promise<T> {
-  return new Promise<T>((resolve) => setTimeout(() => resolve(token), 800));
+  return new Promise<T>((resolve) =>
+    setTimeout(() => resolve(token), TRANSITION_LINE_TIMEOUT)
+  );
 }
 
 export const tokenPosition = TokenDomain.store<TokenMove>(initPosition)
@@ -209,6 +210,9 @@ export const rollDicesEffect = TokenDomain.effect<
 
 export const onTransitionEnd = async (v: TokenMove) => {
   const actionState = actionsStore.getState();
-  rollDicesEffect({ actionId: actionState.actionId });
+  setTimeout(
+    () => rollDicesEffect({ actionId: actionState.actionId }),
+    TRANSITION_LINE_TIMEOUT
+  );
   // rollDicesEffect.done.watch((v) => console.log(23424234, v, actionState));
 };

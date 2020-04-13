@@ -3,8 +3,8 @@ import { useStore } from "effector-react";
 import {
   tokenPosition,
   tokensStore,
-  tokenTransitionTime,
   TokenMove,
+  TRANSITION_LINE_TIMEOUT,
 } from "../../../stores/TokensStore";
 import { fieldsStore } from "../../../stores/FieldsStore";
 interface Props {
@@ -27,7 +27,7 @@ export const Token = (props: Props) => {
           style={{
             left: `${token.left}px`,
             top: `${token.top}px`,
-            transitionDuration: `${tokenTransitionTime}ms`,
+            transitionDuration: `${TRANSITION_LINE_TIMEOUT}ms`,
             transitionProperty: "left top ease",
           }}
           className="_animated"
