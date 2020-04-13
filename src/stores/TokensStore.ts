@@ -27,7 +27,7 @@ export interface TokenParams {
   step: number;
   fieldId: number;
   isJailed: 0 | 1 | 2 | 3;
-  lineSize: number;
+  usedLines: number;
 }
 
 const cornerFields = [0, 10, 20, 30];
@@ -54,7 +54,7 @@ const init: TokenStore = {
     step: 0,
     fieldId: 0,
     isJailed: 0,
-    lineSize: 1,
+    usedLines: 1,
   },
 };
 
@@ -139,11 +139,13 @@ diceTurn.watch(async (v: BoardAction) => {
 
     let lastIndex = 0;
     let timeout = TRANSITION_LINE_TIMEOUT;
+    let usedLines = 0;
     for (let field of usedFields) {
       if (
         cornerFields.indexOf(field) > -1 ||
         lastIndex === usedFields.length - 1
       ) {
+        usedLines++;
         setTimeout(
           () =>
             changeTokenPosition({
@@ -165,7 +167,7 @@ diceTurn.watch(async (v: BoardAction) => {
         step: step + 1,
         fieldId: stopPosition,
         isJailed,
-        lineSize: usedFields.length,
+        usedLines,
       },
     };
 
@@ -205,9 +207,8 @@ export const rollDicesEffect = TokenDomain.effect<
   handler: async (data) => boardSocket.emit(BoardActionType.ROLL_DICES, data),
 });
 
-const actionState = actionsStore.getState();
-
 export const onTransitionEnd = async (v: TokenMove) => {
+  const actionState = actionsStore.getState();
   rollDicesEffect({ actionId: actionState.actionId });
   rollDicesEffect.done.watch((v) => console.log(23424234, v, actionState));
 };
