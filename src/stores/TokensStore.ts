@@ -210,5 +210,5 @@ export const rollDicesEffect = TokenDomain.effect<
 export const onTransitionEnd = async (v: TokenMove) => {
   const actionState = actionsStore.getState();
   rollDicesEffect({ actionId: actionState.actionId });
-  rollDicesEffect.done.watch((v) => console.log(23424234, v, actionState));
+  // rollDicesEffect.done.watch((v) => console.log(23424234, v, actionState));
 };
