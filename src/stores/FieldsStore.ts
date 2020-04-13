@@ -1,4 +1,4 @@
-import { BoardDomain } from "./MainStore";
+import { BoardDomain } from "./BoardDomain";
 import { BoardField } from "../components/views/Field/Field";
 import { fetchInitFields } from "../components/core/BoardCore/Api";
 

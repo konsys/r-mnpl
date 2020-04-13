@@ -1,4 +1,4 @@
-import { BoardDomain } from "./MainStore";
+import { BoardDomain } from "./BoardDomain";
 import { BoardActionType, IBoardEvent } from "../types/BoardTypes";
 import { showModalEvent } from "./ModalStore";
 import { rollDicesModal } from "../handlers/Modals";

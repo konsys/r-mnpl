@@ -1,4 +1,4 @@
-import { BoardDomain } from "./MainStore";
+import { BoardDomain } from "./BoardDomain";
 import { BoardAction, BoardActionType, IActionId } from "../types/BoardTypes";
 import { boardSocket } from "../components/core/BoardCore/BoardCore";
 

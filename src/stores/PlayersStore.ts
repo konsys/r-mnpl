@@ -1,4 +1,4 @@
-import { BoardDomain } from "./MainStore";
+import { BoardDomain } from "./BoardDomain";
 import { IUser } from "../components/views/Players/Players";
 import { fetchPlayers } from "../components/core/PlayersCore/Api";
 

@@ -1,8 +1,9 @@
 import { sample } from "effector";
 import { dicesStore, setDicesEvent } from "./DicesStore";
-import { BoardDomain } from "./MainStore";
+import { BoardDomain } from "./BoardDomain";
 import { BoardAction, BoardActionType, IActionId } from "../types/BoardTypes";
 import { boardSocket } from "../components/core/BoardCore/BoardCore";
+import { actionsStore } from "./ActionStore";
 
 export const tokenTransitionTime = 800;
 export interface PlayerToken {
@@ -26,6 +27,7 @@ export interface TokenParams {
   step: number;
   fieldId: number;
   isJailed: 0 | 1 | 2 | 3;
+  lineSize: number;
 }
 
 const cornerFields = [0, 10, 20, 30];
@@ -52,6 +54,7 @@ const init: TokenStore = {
     step: 0,
     fieldId: 0,
     isJailed: 0,
+    lineSize: 1,
   },
 };
 
@@ -162,6 +165,7 @@ diceTurn.watch(async (v: BoardAction) => {
         step: step + 1,
         fieldId: stopPosition,
         isJailed,
+        lineSize: usedFields.length,
       },
     };
 
@@ -201,6 +205,9 @@ export const rollDicesEffect = TokenDomain.effect<
   handler: async (data) => boardSocket.emit(BoardActionType.ROLL_DICES, data),
 });
 
-export const onTransitionEnd = (v: TokenMove) => {
-  console.log(23424234, v);
+const actionState = actionsStore.getState();
+
+export const onTransitionEnd = async (v: TokenMove) => {
+  rollDicesEffect({ actionId: actionState.actionId });
+  rollDicesEffect.done.watch((v) => console.log(23424234, v, actionState));
 };

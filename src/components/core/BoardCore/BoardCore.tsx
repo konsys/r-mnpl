@@ -6,7 +6,7 @@ import { SocketActions } from "../../../types/ActionsTypes";
 import { boardMessageHandler } from "../../../handlers/MainHandler";
 import openSocket from "socket.io-client";
 import { clearNode } from "effector";
-import { BoardDomain } from "../../../stores/MainStore";
+import { BoardDomain } from "../../../stores/BoardDomain";
 
 export const boardSocket = openSocket("http://localhost:3001");
 
