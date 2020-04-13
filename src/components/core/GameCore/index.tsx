@@ -17,6 +17,7 @@ import { UsersCore } from "../PlayersCore/PlayersCore";
 import { userStore } from "../../../stores/UserStore";
 import { actionsStore } from "../../../stores/ActionStore";
 import { BoardActionType } from "../../../types/BoardTypes";
+import { onTransitionEnd } from "../../../stores/TokensStore";
 interface Props extends RouteComponentProps {}
 
 export const Game = (props: Props) => {
@@ -42,7 +43,10 @@ export const Game = (props: Props) => {
                 <Chat />
               </div>
               <div className="table-body-board-tokens">
-                <Token userId={userState.userId} />
+                <Token
+                  userId={userState.userId}
+                  onTransitionEnd={onTransitionEnd}
+                />
               </div>
               <Dices />
               <Contract />
