@@ -30,7 +30,7 @@ export enum BoardActionType {
   LEVEL_DOWN = "levelDown",
   CONTRACT_ACCEPTED = "contractAccepted",
   MORTGAGE = "mortgage",
-  SHOW_DICES_MODAL = "showDicesModal",
+  ROLL_DICES_MODAL = "showDicesModal",
 }
 
 export interface BoardAction {

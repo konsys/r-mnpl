@@ -24,7 +24,7 @@ export const Game = (props: Props) => {
   const actionState = useStore(actionsStore);
   const userState = useStore(userStore);
   const isModal =
-    actionState.event.action.type === BoardActionType.SHOW_DICES_MODAL ||
+    actionState.event.action.type === BoardActionType.ROLL_DICES_MODAL ||
     actionState.event.action.type === BoardActionType.CAN_BUY;
   return (
     <>

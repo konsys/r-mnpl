@@ -4,7 +4,7 @@ import { BoardActionType, BoardAction } from "../types/BoardTypes";
 
 export const canBuyHandler = (act: BoardAction) => {
   const modal: BoardAction = {
-    type: BoardActionType.SHOW_DICES_MODAL,
+    type: BoardActionType.ROLL_DICES_MODAL,
     userId: act.userId,
     title: "Покупаем?",
     text:

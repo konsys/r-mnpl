@@ -7,7 +7,7 @@ const ModalDomain = BoardDomain.domain("ModalDomain");
 export const resetModalEvent = ModalDomain.event();
 
 const init: BoardAction = {
-  type: BoardActionType.SHOW_DICES_MODAL,
+  type: BoardActionType.ROLL_DICES_MODAL,
   userId: 0,
   title: "",
   text: "",
@@ -23,7 +23,7 @@ export const dicesModalEffect = ModalDomain.effect<
   Error
 >(BoardActionType.ROLL_DICES, {
   handler: async (data) =>
-    boardSocket.emit(BoardActionType.SHOW_DICES_MODAL, data),
+    boardSocket.emit(BoardActionType.ROLL_DICES_MODAL, data),
 });
 
 export const canBuyModalEffect = ModalDomain.effect<

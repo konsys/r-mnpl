@@ -34,7 +34,7 @@ actionsStore.watch((v) => {
   const action = v.event.action;
 
   switch (action.type) {
-    case BoardActionType.SHOW_DICES_MODAL:
+    case BoardActionType.ROLL_DICES_MODAL:
       resetDicesEvent();
       showModalEvent(
         rollDicesModal({
