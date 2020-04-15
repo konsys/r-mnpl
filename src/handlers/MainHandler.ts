@@ -6,7 +6,7 @@ export const boardMessageHandler = (message: BoardMessage) => {
   const event = message.data.event.action;
 
   if (action.actionId !== event._id) {
-    console.log("MESSAGE", event);
+    // console.log("MESSAGE", event);
     setCurrentActionEvent({
       actionId: event._id,
       isCompleted: false,
