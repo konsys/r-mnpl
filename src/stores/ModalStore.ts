@@ -29,3 +29,5 @@ export const dicesModalEffect = ModalDomain.effect<
 export const modalStore = ModalDomain.store<BoardAction>(init)
   .on(showModalEvent, (_, data) => data)
   .reset(resetModalEvent);
+
+modalStore.watch((v) => console.log("modalStoreWatch", v));

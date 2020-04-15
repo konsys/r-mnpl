@@ -32,6 +32,7 @@ export enum BoardActionType {
   MORTGAGE = "mortgage",
   SHOW_DICES_MODAL = "showDicesModal",
 }
+
 export interface BoardAction {
   type: BoardActionType;
   userId: number;

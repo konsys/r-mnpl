@@ -1,9 +1,9 @@
-import { BoardActionType, BoardAction } from "../types/BoardTypes";
+import { BoardAction } from "../types/BoardTypes";
 import { dicesModalEffect } from "../stores/ModalStore";
 
 export const rollDicesModal = (act: BoardAction): BoardAction => {
   return {
-    type: BoardActionType.SHOW_DICES_MODAL,
+    type: act.type,
     userId: act.userId,
     title: act.title,
     text: act.text,
@@ -21,24 +21,24 @@ export const rollDicesModal = (act: BoardAction): BoardAction => {
   };
 };
 
-// const canBuyModalContent = (act: BoardAction): BoardAction => ({
-//   type: BoardActionType.SHOW_DICES_MODAL,
-//   userId: act.userId,
-//   title: act.title,
-//   text: act.text,
-//   actionButtons: [
-//     {
-//       title: "Купить",
-//       onClick: () => {
-//         rollDicesEffect({});
-//       },
-//     },
-//     {
-//       title: "На аукцион",
-//       onClick: () => {
-//         rollDicesEffect({});
-//       },
-//     },
-//   ],
-//   _id: act._id,
-// });
+export const canBuyModal = (act: BoardAction): BoardAction => ({
+  type: act.type,
+  userId: act.userId,
+  title: act.title,
+  text: act.text,
+  actionButtons: [
+    {
+      title: "Купить",
+      onClick: () => {
+        // rollDicesEffect({});
+      },
+    },
+    {
+      title: "На аукцион",
+      onClick: () => {
+        // rollDicesEffect({});
+      },
+    },
+  ],
+  _id: act._id,
+});

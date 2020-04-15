@@ -1,7 +1,7 @@
 import { BoardDomain } from "./BoardDomain";
 import { BoardActionType, IBoardEvent } from "../types/BoardTypes";
 import { showModalEvent } from "./ModalStore";
-import { rollDicesModal } from "../handlers/Modals";
+import { rollDicesModal, canBuyModal } from "../handlers/Modals";
 import { rollDicesHandler } from "../handlers/DicesHandler";
 import { resetDicesEvent } from "./DicesStore";
 
@@ -38,7 +38,7 @@ actionsStore.watch((v) => {
       resetDicesEvent();
       showModalEvent(
         rollDicesModal({
-          type: BoardActionType.SHOW_DICES_MODAL,
+          type: action.type,
           _id: action._id,
           userId: action.userId,
           text: action.text,
@@ -46,8 +46,14 @@ actionsStore.watch((v) => {
         })
       );
       break;
+
     case BoardActionType.ROLL_DICES:
       rollDicesHandler(action);
+      break;
+
+    case BoardActionType.CAN_BUY:
+      console.log(11111111111111111, action);
+      showModalEvent(canBuyModal(action));
       break;
   }
 });

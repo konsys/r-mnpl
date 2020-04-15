@@ -23,7 +23,9 @@ interface Props extends RouteComponentProps {}
 export const Game = (props: Props) => {
   const actionState = useStore(actionsStore);
   const userState = useStore(userStore);
-
+  const isModal =
+    actionState.event.action.type === BoardActionType.SHOW_DICES_MODAL ||
+    actionState.event.action.type === BoardActionType.CAN_BUY;
   return (
     <>
       <div className="wrapper" style={{ width: "100%", height: "100%" }}>
@@ -36,8 +38,7 @@ export const Game = (props: Props) => {
                 <M1tv />
                 {actionState &&
                   userState.userId === actionState.event.action.userId &&
-                  actionState.event.action.type ===
-                    BoardActionType.SHOW_DICES_MODAL && <BoardModal />}
+                  isModal && <BoardModal />}
                 <Arbitr />
                 <Ticket />
                 <Chat />
