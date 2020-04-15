@@ -52,7 +52,6 @@ actionsStore.watch((v) => {
       break;
 
     case BoardActionType.CAN_BUY:
-      console.log(11111111111111111, action);
       showModalEvent(canBuyModal(action));
       break;
   }

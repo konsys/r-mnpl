@@ -1,5 +1,5 @@
 import { BoardAction } from "../types/BoardTypes";
-import { dicesModalEffect } from "../stores/ModalStore";
+import { dicesModalEffect, canBuyModalEffect } from "../stores/ModalStore";
 
 export const rollDicesModal = (act: BoardAction): BoardAction => {
   return {
@@ -30,7 +30,9 @@ export const canBuyModal = (act: BoardAction): BoardAction => ({
     {
       title: "Купить",
       onClick: () => {
-        // rollDicesEffect({});
+        canBuyModalEffect({
+          actionId: act._id,
+        });
       },
     },
     {

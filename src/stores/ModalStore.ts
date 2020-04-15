@@ -26,6 +26,14 @@ export const dicesModalEffect = ModalDomain.effect<
     boardSocket.emit(BoardActionType.SHOW_DICES_MODAL, data),
 });
 
+export const canBuyModalEffect = ModalDomain.effect<
+  IActionId,
+  Promise<SocketIOClient.Socket>,
+  Error
+>(BoardActionType.CAN_BUY, {
+  handler: async (data) => boardSocket.emit(BoardActionType.CAN_BUY, data),
+});
+
 export const modalStore = ModalDomain.store<BoardAction>(init)
   .on(showModalEvent, (_, data) => data)
   .reset(resetModalEvent);
