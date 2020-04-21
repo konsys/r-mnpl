@@ -12,9 +12,12 @@ export const getInitFieldsEffect = FieldsDomain.effect<
   handler: fetchInitFields,
 });
 
+export const setFieldsEvent = FieldsDomain.event<BoardField[]>();
+
 export const fieldsStore = FieldsDomain.store<BoardField[]>([])
   .on(getInitFieldsEffect.done, (_, { result }) => result)
   .on(getInitFieldsEffect.fail, (err) => console.error("error", err))
+  .on(setFieldsEvent, (_, state) => state)
   .reset(resetFieldsEvent);
 
-fieldsStore.watch((v) => console.log(1111111111111, v));
+// fieldsStore.watch((v) => console.log(1111111111111, v));

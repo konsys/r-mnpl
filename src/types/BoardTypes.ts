@@ -61,8 +61,7 @@ export interface IBoardEvent {
 interface BoardEventData {
   id: number;
   event: IBoardEvent;
-  // TODO Remove ? after events completed
-  boardStatus?: BoardStatus;
+  boardStatus: BoardStatus;
   contract?: Contract;
 }
 
@@ -89,7 +88,8 @@ interface UserGameStatus {
   userId: number;
 }
 
-interface BoardFIeld {
+export interface FieldStatus {
+  fieldId: number;
   owner: number;
   level: number;
   mortgaged: boolean;
@@ -110,10 +110,10 @@ interface MoveStatus {
   currentMove: CurrentMove;
 }
 
-interface BoardStatus {
+export interface BoardStatus {
   players: IUser[];
   moveStatus: MoveStatus;
-  fields: BoardFIeld[];
+  fields: FieldStatus[];
   timers: BoardTimers;
 }
 

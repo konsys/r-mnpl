@@ -1,4 +1,6 @@
 import React from "react";
+import { FieldStatus } from "../../../types/BoardTypes";
+
 export interface BoardField {
   fieldPosition: number;
   imgSrc?: string;
@@ -9,6 +11,7 @@ export interface BoardField {
   mnplCorner?: number;
   mnplLine?: number;
   isJail?: boolean;
+  status?: FieldStatus;
 }
 
 export const Field = (props: BoardField) => {
@@ -19,7 +22,7 @@ export const Field = (props: BoardField) => {
     mnplSpecial,
     isJail,
     price,
-    imgSrc
+    imgSrc,
   } = props;
 
   const field = (

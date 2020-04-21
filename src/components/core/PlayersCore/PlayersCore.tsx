@@ -3,14 +3,14 @@ import { useStore } from "effector-react";
 import { Players } from "../../views/Players/Players";
 import {
   getPlayersEffect,
-  resetPLayersEvent,
+  resetPlayersEvent,
   playersStore,
 } from "../../../stores/PlayersStore";
 
 export const UsersCore = () => {
   useEffect(() => {
     getPlayersEffect();
-    return () => resetPLayersEvent();
+    return () => resetPlayersEvent();
   }, []);
   const data = useStore(playersStore);
   return getPlayersEffect.done ? <Players players={data} /> : <>wait</>;
