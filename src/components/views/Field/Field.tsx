@@ -2,6 +2,7 @@ import React from "react";
 import { FieldStatus } from "../../../types/BoardTypes";
 
 export interface BoardField {
+  fieldId?: number;
   fieldPosition: number;
   imgSrc?: string;
   name: string;

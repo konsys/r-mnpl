@@ -2,6 +2,10 @@ import { BoardDomain } from "./BoardDomain";
 import { BoardField } from "../components/views/Field/Field";
 import { fetchInitFields } from "../components/core/BoardCore/Api";
 
+export interface IFieldsStore {
+  version: number;
+  fields: BoardField[];
+}
 const FieldsDomain = BoardDomain.domain("BoardDomain");
 export const resetFieldsEvent = FieldsDomain.event();
 export const getInitFieldsEffect = FieldsDomain.effect<
@@ -12,12 +16,19 @@ export const getInitFieldsEffect = FieldsDomain.effect<
   handler: fetchInitFields,
 });
 
-export const setFieldsEvent = FieldsDomain.event<BoardField[]>();
+export const setFieldsEvent = FieldsDomain.event<IFieldsStore>();
 
-export const fieldsStore = FieldsDomain.store<BoardField[]>([])
-  .on(getInitFieldsEffect.done, (_, { result }) => result)
-  .on(getInitFieldsEffect.fail, (err) => console.error("error", err))
-  .on(setFieldsEvent, (_, state) => state)
+export const fieldsStore = FieldsDomain.store<IFieldsStore>({
+  fields: [],
+  version: 0,
+})
+  .on(getInitFieldsEffect.done, (_, data) => ({
+    fields: data.result,
+    version: 1,
+  }))
+
+  .on(getInitFieldsEffect.fail, (err: any) => console.error("error", err))
+  .on(setFieldsEvent, (_, state: IFieldsStore) => state)
   .reset(resetFieldsEvent);
 
-// fieldsStore.watch((v) => console.log(1111111111111, v));
+fieldsStore.watch((v) => console.log(1111111111111, v));
