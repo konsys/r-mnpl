@@ -24,6 +24,7 @@ export const Field = (props: BoardField) => {
     isJail,
     price,
     imgSrc,
+    status,
   } = props;
 
   const field = (
@@ -32,6 +33,7 @@ export const Field = (props: BoardField) => {
       mnpl-line={mnplLine}
       mnpl-group={mnplGroup}
       mnpl-special={mnplSpecial}
+      mnpl-owner={status && status.userId}
       className="table-body-board-fields-one"
     >
       {price && (

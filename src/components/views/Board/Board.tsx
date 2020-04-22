@@ -7,7 +7,8 @@ interface Prop {
 }
 export const Board = (prop: Prop) => (
   <div id="ui-fields" className="table-body-board-fields">
-    {prop.fields.map(field => {
+    {console.log(111111, prop)}
+    {prop.fields.map((field) => {
       return (
         <Field
           key={nanoid(4)}
@@ -20,6 +21,7 @@ export const Board = (prop: Prop) => (
           mnplSpecial={field.mnplSpecial}
           mnplCorner={field.mnplCorner}
           isJail={field.isJail}
+          status={field.status}
         />
       );
     })}

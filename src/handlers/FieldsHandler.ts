@@ -17,6 +17,5 @@ export const fieldsHandler = (fields: FieldStatus[]) => {
     }
     return null;
   });
-  setFieldsEvent(store);
-  // console.log(22222222, fields);
+  setFieldsEvent({ ...store, version: ++store.version });
 };
