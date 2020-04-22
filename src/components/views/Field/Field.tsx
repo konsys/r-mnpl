@@ -1,5 +1,7 @@
 import React from "react";
 import { FieldStatus } from "../../../types/BoardTypes";
+import { useStore } from "effector-react";
+import { playersStore } from "../../../stores/PlayersStore";
 export interface BoardField {
   fieldId?: number;
   fieldPosition: number;
@@ -15,6 +17,8 @@ export interface BoardField {
 }
 
 export const Field = (props: BoardField) => {
+  const players = useStore(playersStore);
+
   const {
     mnplCorner,
     mnplLine,
@@ -32,7 +36,9 @@ export const Field = (props: BoardField) => {
       mnpl-line={mnplLine}
       mnpl-group={mnplGroup}
       mnpl-special={mnplSpecial}
-      mnpl-owner={status && status.playerId}
+      mnpl-owner={
+        status && players.find((v) => v.userId === status.userId)?.moveOrder
+      }
       className="table-body-board-fields-one"
     >
       {price && (

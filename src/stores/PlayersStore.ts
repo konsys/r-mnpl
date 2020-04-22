@@ -13,3 +13,5 @@ export const playersStore = PlayersDomain.store<IPlayer[]>([])
   .on(getPlayersEffect.done, (_, { result }) => result)
   .on(getPlayersEffect.fail, (err) => console.error("error", err))
   .reset(resetPlayersEvent);
+
+playersStore.watch((v) => console.log("playersStoreWatch", v));

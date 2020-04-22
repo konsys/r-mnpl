@@ -27,8 +27,6 @@ interface Prop {
 export const Players = (prop: Prop) => {
   const action = useStore(actionsStore);
 
-  console.log("moveOrder", action);
-
   return (
     <>
       <div key={nanoid(4)} className="table-body-players">
