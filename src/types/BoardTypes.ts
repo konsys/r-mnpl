@@ -90,7 +90,7 @@ interface UserGameStatus {
 
 export interface FieldStatus {
   fieldId: number;
-  userId: number;
+  owner: number;
   level: number;
   mortgaged: boolean;
 }
