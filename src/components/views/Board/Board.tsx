@@ -7,7 +7,6 @@ interface Prop {
 }
 export const Board = (prop: Prop) => (
   <div id="ui-fields" className="table-body-board-fields">
-    {console.log(111111, prop)}
     {prop.fields.map((field) => {
       return (
         <Field

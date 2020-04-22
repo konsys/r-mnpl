@@ -9,6 +9,7 @@ export const fieldsHandler = (fields: FieldStatus[]) => {
       (messageField) => messageField.fieldId === storeField.fieldId
     );
 
+    console.log(111111111, f);
     if (index) {
       store.fields[index] = {
         ...storeField,
