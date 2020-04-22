@@ -10,7 +10,6 @@ const init: IUser = {
   vip: true,
   isActive: true,
   isBlocked: false,
-  playerId: 0,
 };
 
 export const setUserEvent = UserDomain.event<IUser>();

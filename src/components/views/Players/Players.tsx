@@ -15,11 +15,13 @@ export interface IUser {
   isActive: boolean;
   isBlocked: boolean;
   team?: string;
-  // Порядковые номер начиная с 0 в игре
-  playerId: number;
+}
+
+export interface IPlayer extends IUser {
+  moveOrder: 0 | 1 | 2 | 3;
 }
 interface Prop {
-  players: IUser[];
+  players: IPlayer[];
 }
 
 export const Players = (prop: Prop) => {
@@ -27,13 +29,13 @@ export const Players = (prop: Prop) => {
   return (
     <>
       <div key={nanoid(4)} className="table-body-players">
-        {prop.players.map((v: IUser, k: number) => {
+        {prop.players.map((v: IPlayer) => {
           return (
             <div
               key={nanoid(4)}
               className="table-body-players-card"
               id={"player_card_" + v.userId}
-              mnpl-order={k}
+              mnpl-order={v.moveOrder}
               mnpl-team={v.team}
               mnpl-action_player={action.event.action.userId}
             >
