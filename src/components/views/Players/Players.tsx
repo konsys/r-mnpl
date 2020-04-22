@@ -26,26 +26,31 @@ interface Prop {
 
 export const Players = (prop: Prop) => {
   const action = useStore(actionsStore);
+
+  console.log("moveOrder", action);
+
   return (
     <>
       <div key={nanoid(4)} className="table-body-players">
-        {prop.players.map((v: IPlayer) => {
+        {prop.players.map((player: IPlayer) => {
           return (
             <div
               key={nanoid(4)}
               className="table-body-players-card"
-              id={"player_card_" + v.userId}
-              mnpl-order={v.moveOrder}
-              mnpl-team={v.team}
-              mnpl-action_player={action.event.action.userId}
+              id={"player_card_" + player.userId}
+              mnpl-order={player.moveOrder}
+              mnpl-team={player.team}
+              mnpl-action_player={
+                action.event.action.userId === player.userId ? 1 : 0
+              }
             >
               <Avatar
                 key={nanoid(4)}
-                name={v.name}
+                name={player.name}
                 money={15000}
                 remainTime={53}
-                img={v.avatar ? v.avatar : ""}
-                isVip={v.vip}
+                img={player.avatar ? player.avatar : ""}
+                isVip={player.vip}
               />
 
               <div className="table-body-players-card-menu">
