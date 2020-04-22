@@ -33,7 +33,7 @@ export const Field = (props: BoardField) => {
       mnpl-line={mnplLine}
       mnpl-group={mnplGroup}
       mnpl-special={mnplSpecial}
-      mnpl-owner={status && status.owner}
+      mnpl-owner={status && status.playerId}
       className="table-body-board-fields-one"
     >
       {price && (

@@ -15,7 +15,8 @@ export interface IUser {
   isActive: boolean;
   isBlocked: boolean;
   team?: string;
-  playerOrder: number;
+  // Порядковые номер начиная с 0 в игре
+  playerId: number;
 }
 interface Prop {
   players: IUser[];
