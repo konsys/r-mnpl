@@ -17,7 +17,7 @@ const init: BoardAction = {
 
 export const showModalEvent = ModalDomain.event<BoardAction>();
 
-export const dicesModalEffect = ModalDomain.effect<
+export const dicesRolledEffect = ModalDomain.effect<
   IActionId,
   Promise<SocketIOClient.Socket>,
   Error
@@ -26,12 +26,21 @@ export const dicesModalEffect = ModalDomain.effect<
     boardSocket.emit(BoardActionType.ROLL_DICES_MODAL, data),
 });
 
-export const canBuyModalEffect = ModalDomain.effect<
+export const fieldBoughtEffect = ModalDomain.effect<
   IActionId,
   Promise<SocketIOClient.Socket>,
   Error
 >(BoardActionType.CAN_BUY, {
   handler: async (data) => boardSocket.emit(BoardActionType.CAN_BUY, data),
+});
+
+export const fieldAuctionEffect = ModalDomain.effect<
+  IActionId,
+  Promise<SocketIOClient.Socket>,
+  Error
+>(BoardActionType.CAN_BUY, {
+  handler: async (data) =>
+    boardSocket.emit(BoardActionType.AUCTION_START, data),
 });
 
 export const modalStore = ModalDomain.store<BoardAction>(init)

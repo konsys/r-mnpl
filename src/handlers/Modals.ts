@@ -1,5 +1,9 @@
 import { BoardAction } from "../types/BoardTypes";
-import { dicesModalEffect, canBuyModalEffect } from "../stores/ModalStore";
+import {
+  dicesRolledEffect,
+  fieldBoughtEffect,
+  fieldAuctionEffect,
+} from "../stores/ModalStore";
 
 export const rollDicesModal = (act: BoardAction): BoardAction => {
   return {
@@ -11,7 +15,7 @@ export const rollDicesModal = (act: BoardAction): BoardAction => {
       {
         title: "Бросить кубики",
         onClick: () => {
-          dicesModalEffect({
+          dicesRolledEffect({
             actionId: act._id,
           });
         },
@@ -31,7 +35,7 @@ export const canBuyModal = (act: BoardAction): BoardAction => ({
     {
       title: "Купить",
       onClick: () => {
-        canBuyModalEffect({
+        fieldBoughtEffect({
           actionId: act._id,
         });
       },
@@ -40,7 +44,9 @@ export const canBuyModal = (act: BoardAction): BoardAction => ({
     {
       title: "На аукцион",
       onClick: () => {
-        // rollDicesEffect({});
+        fieldAuctionEffect({
+          actionId: act._id,
+        });
       },
       disabled: false,
     },
