@@ -15,6 +15,7 @@ export const rollDicesModal = (act: BoardAction): BoardAction => {
             actionId: act._id,
           });
         },
+        disabled: false,
       },
     ],
     _id: act._id,
@@ -34,12 +35,14 @@ export const canBuyModal = (act: BoardAction): BoardAction => ({
           actionId: act._id,
         });
       },
+      disabled: false,
     },
     {
       title: "На аукцион",
       onClick: () => {
         // rollDicesEffect({});
       },
+      disabled: false,
     },
   ],
   _id: act._id,

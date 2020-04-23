@@ -6,7 +6,7 @@ export interface ActionPanelProps {
   onClick: () => void;
 }
 export const ActionPanel = (props: ActionPanelProps) => (
-  <div className="_action1" onClick={props.onClick} disabled={true}>
+  <div className="_action1" onClick={props.onClick}>
     {props.text}
   </div>
 );
