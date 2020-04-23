@@ -38,7 +38,7 @@ export const fieldAuctionEffect = ModalDomain.effect<
   IActionId,
   Promise<SocketIOClient.Socket>,
   Error
->(BoardActionType.CAN_BUY, {
+>(BoardActionType.AUCTION_START, {
   handler: async (data) =>
     boardSocket.emit(BoardActionType.AUCTION_START, data),
 });
