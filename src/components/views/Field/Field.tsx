@@ -17,7 +17,7 @@ export interface BoardField {
 }
 
 export const Field = (props: BoardField) => {
-  const players = useStore(playersStore);
+  const players = useStore(playersStore).players;
 
   const {
     mnplCorner,

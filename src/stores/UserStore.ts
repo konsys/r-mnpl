@@ -1,5 +1,5 @@
 import { BoardDomain } from "./BoardDomain";
-import { IUser } from "../components/views/Players/Players";
+import { IUser } from "../types/BoardTypes";
 
 const UserDomain = BoardDomain.domain("UserDomain");
 export const resetUserEvent = UserDomain.event();

@@ -3,23 +3,8 @@ import { Avatar } from "../Avatar/Avatar";
 import nanoid from "nanoid";
 import { useStore } from "effector-react";
 import { actionsStore } from "../../../stores/ActionStore";
+import { IPlayer } from "../../../types/BoardTypes";
 
-export interface IUser {
-  userId: number;
-  vip: boolean;
-  registrationType?: string;
-  name: string;
-  avatar?: string;
-  createdAt?: Date;
-  updatedAt?: Date;
-  isActive: boolean;
-  isBlocked: boolean;
-  team?: string;
-}
-
-export interface IPlayer extends IUser {
-  moveOrder: 0 | 1 | 2 | 3;
-}
 interface Prop {
   players: IPlayer[];
 }

@@ -1,5 +1,5 @@
 import { client } from "../../../http/client";
-import { IPlayer } from "../../views/Players/Players";
+import { IPlayer } from "../../../types/BoardTypes";
 
 const URL = `/users`;
 

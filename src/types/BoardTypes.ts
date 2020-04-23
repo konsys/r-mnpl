@@ -65,11 +65,6 @@ interface BoardEventData {
   contract?: Contract;
 }
 
-interface IUser {
-  userData: UsersEntity;
-  userGameStatus: UserGameStatus;
-}
-
 interface UserGameStatus {
   gameId: string;
   doublesRolledAsCombo: number;
@@ -144,4 +139,21 @@ interface UsersEntity {
   avatar?: string;
   isActive: boolean;
   isBlocked?: boolean;
+}
+
+export interface IUser {
+  userId: number;
+  vip: boolean;
+  registrationType?: string;
+  name: string;
+  avatar?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+  isActive: boolean;
+  isBlocked: boolean;
+  team?: string;
+}
+
+export interface IPlayer extends IUser {
+  moveOrder: 0 | 1 | 2 | 3;
 }

@@ -13,5 +13,5 @@ export const UsersCore = () => {
     return () => resetPlayersEvent();
   }, []);
   const data = useStore(playersStore);
-  return getPlayersEffect.done ? <Players players={data} /> : <>wait</>;
+  return getPlayersEffect.done ? <Players players={data.players} /> : <>wait</>;
 };
