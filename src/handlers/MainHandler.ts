@@ -9,6 +9,7 @@ export const boardMessageHandler = (message: BoardMessage) => {
   const event = message.data.event.action;
 
   if (action.actionId !== event._id) {
+    // console.log(11111111, message.data.boardStatus.players);
     fieldsHandler(message.data.boardStatus.fields);
     playersHandler(message.data.boardStatus.players);
     setCurrentActionEvent({

@@ -65,24 +65,6 @@ interface BoardEventData {
   contract?: Contract;
 }
 
-interface UserGameStatus {
-  gameId: string;
-  doublesRolledAsCombo: number;
-  jailed: boolean;
-  unjailAttempts: number;
-  position: number;
-  money: number;
-  creditPayRound: boolean;
-  creditNextTakeRound: number;
-  score: number;
-  frags: string;
-  additionalTime: number;
-  timeReduceLevel: number;
-  creditToPay: number;
-  canUseCredit: boolean;
-  userId: number;
-}
-
 export interface FieldStatus {
   fieldId: number;
   userId: number;
@@ -106,7 +88,7 @@ interface MoveStatus {
 }
 
 export interface BoardStatus {
-  players: IUser[];
+  players: IPlayer[];
   moveStatus: MoveStatus;
   fields: FieldStatus[];
   timers: BoardTimers;
@@ -154,6 +136,24 @@ export interface IUser {
   team?: string;
 }
 
-export interface IPlayer extends IUser {
+export interface IPlayer extends UserGameStatus {
   moveOrder: 0 | 1 | 2 | 3;
+}
+interface UserGameStatus extends IUser {
+  gameId: string;
+  isActing: boolean;
+  doublesRolledAsCombo: number;
+  jailed: boolean;
+  unjailAttempts: number;
+  position: number;
+  money: number;
+  creditPayRound: boolean;
+  creditNextTakeRound: number;
+  score: number;
+  frags: string;
+  additionalTime: number;
+  timeReduceLevel: number;
+  creditToPay: number;
+  canUseCredit: boolean;
+  userId: number;
 }

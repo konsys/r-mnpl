@@ -23,6 +23,7 @@ export const playersStore = PlayersDomain.store<IPlayersStore>({
     version: 1,
   }))
   .on(getPlayersEffect.fail, (err: any) => console.error("error", err))
+  .on(setPlayersEvent, (_, state) => state)
   .reset(resetPlayersEvent);
 
 playersStore.watch((v) => console.log("playersStoreWatch", v));
