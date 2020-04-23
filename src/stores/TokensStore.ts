@@ -26,7 +26,7 @@ export const TRANSITION_LINE_TIMEOUT = 700;
 export interface TokenParams {
   userId: number;
   step: number;
-  fieldId: number;
+  meanPosition: number;
   isJailed: 0 | 1 | 2 | 3;
   usedLines: number;
 }
@@ -51,7 +51,7 @@ const init: TokenStore = {
   1: {
     userId: 1,
     step: 0,
-    fieldId: 0,
+    meanPosition: 0,
     isJailed: 0,
     usedLines: 1,
   },
@@ -132,9 +132,9 @@ diceTurn.watch(async (v: BoardAction) => {
   const currentToken = tokenState[v.userId];
 
   if (typeof currentToken !== "undefined") {
-    const { fieldId, step, isJailed } = currentToken;
+    const { meanPosition, step, isJailed } = currentToken;
     const stopPosition = v.meanPosition ? v.meanPosition : 0;
-    const usedFields = createTurnsArray(fieldId, stopPosition);
+    const usedFields = createTurnsArray(meanPosition, stopPosition);
 
     let lastIndex = 0;
     let timeout = TRANSITION_LINE_TIMEOUT;
@@ -164,7 +164,7 @@ diceTurn.watch(async (v: BoardAction) => {
       [v.userId]: {
         userId: v.userId,
         step: step + 1,
-        fieldId: stopPosition,
+        meanPosition: stopPosition,
         isJailed,
         usedLines,
       },

@@ -33,8 +33,9 @@ export const Token = (props: Props) => {
           className="_animated"
         >
           {
-            fields.fields.find((v) => v.fieldPosition === tokenParams.fieldId)
-              ?.name
+            fields.fields.find(
+              (v) => v.fieldPosition === tokenParams.meanPosition
+            )?.name
           }
         </div>
       )}

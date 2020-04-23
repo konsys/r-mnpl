@@ -7,8 +7,7 @@ import { playersHandler } from "./PlayersHandler";
 export const boardMessageHandler = (message: BoardMessage) => {
   const action = actionsStore.getState();
   const event = message.data.event.action;
-
-  if (action.actionId !== event._id) {
+  if (action && event && action.actionId !== event._id) {
     fieldsHandler(message.data.boardStatus.fields);
     playersHandler(message.data.boardStatus.players);
     setCurrentActionEvent({

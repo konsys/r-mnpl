@@ -148,7 +148,7 @@ interface UserGameStatus extends IUser {
   doublesRolledAsCombo: number;
   jailed: boolean;
   unjailAttempts: number;
-  position: number;
+  meanPosition: number;
   money: number;
   creditPayRound: boolean;
   creditNextTakeRound: number;
