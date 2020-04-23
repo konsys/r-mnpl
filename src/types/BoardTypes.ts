@@ -51,6 +51,7 @@ export interface BoardAction {
 
 interface ActionButtons {
   title: string;
+  disabled: boolean;
   onClick: () => void;
 }
 

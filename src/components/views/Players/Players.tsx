@@ -30,7 +30,7 @@ export const Players = (prop: Prop) => {
               <Avatar
                 key={nanoid(4)}
                 name={player.name}
-                money={15000}
+                money={player.money}
                 remainTime={53}
                 img={player.avatar ? player.avatar : ""}
                 isVip={player.vip}

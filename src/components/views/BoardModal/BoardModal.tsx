@@ -17,7 +17,12 @@ export const BoardModal = () => {
         </div>
         <div className="TableAction-buttons">
           {modal.actionButtons?.map((action, k) => (
-            <ActionPanel key={k} text={action.title} onClick={action.onClick} />
+            <ActionPanel
+              key={k}
+              text={action.title}
+              disabled={action.disabled}
+              onClick={action.onClick}
+            />
           ))}
         </div>
       </div>
