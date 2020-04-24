@@ -30,9 +30,9 @@ const TokenDomain = BoardDomain.createDomain("TokenDomain");
 export const resetTokens = TokenDomain.event();
 export const setTokenPositionEvent = TokenDomain.event<TokenStore>();
 
-const init: TokenStore = {
+const initTokens: TokenStore = {
   version: 0,
-  tokens: [{ jailed: 0, meanPosition: 0, userId: 0, usedLines: 0, step: 0 }],
+  tokens: [{ jailed: 0, meanPosition: 0, userId: 1, usedLines: 0, step: 0 }],
 };
 
 const initPosition: TokenMove = {
@@ -120,12 +120,14 @@ for (let i = 0; i < 40; i++) {
   }
 }
 const diceTurn = sample(dicesStore, setDicesEvent, (v) => v);
+
 diceTurn.watch(async (action: BoardAction) => {
   const tokenState = tokensStore.getState();
   const currentToken = tokenState.tokens.find(
     (v) => v.userId === action.userId
   );
 
+  console.log(22222222222, action, tokenState);
   if (typeof currentToken !== "undefined") {
     const { meanPosition, step, jailed } = currentToken;
     const stopPosition = action.meanPosition ? action.meanPosition : 0;
@@ -178,11 +180,9 @@ diceTurn.watch(async (action: BoardAction) => {
   }
 });
 
-export const tokensStore = TokenDomain.store<TokenStore>(init)
+export const tokensStore = TokenDomain.store<TokenStore>(initTokens)
   .on(setTokenPositionEvent, (_, v) => v)
   .reset(resetTokens);
-
-tokensStore.watch((v) => console.log(1111111111111111, v));
 
 export const changeTokenPosition = TokenDomain.effect<
   TokenMove,
@@ -204,5 +204,4 @@ export const rollDicesCompletedEffect = TokenDomain.effect<
   handler: async (data) => boardSocket.emit(BoardActionType.ROLL_DICES, data),
 });
 
-tokensStore.watch((v) => console.log("TSTORE", v));
-tokensStore.watch((v) => console.log("TSTORE", v));
+tokensStore.watch((v) => console.log("TSTORE", v.tokens));
