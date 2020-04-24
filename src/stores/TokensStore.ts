@@ -1,14 +1,28 @@
 import { sample } from "effector";
 import { dicesStore, setDicesEvent } from "./DicesStore";
 import { BoardDomain } from "./BoardDomain";
-import { BoardAction, BoardActionType, IActionId } from "../types/BoardTypes";
+import {
+  BoardAction,
+  BoardActionType,
+  IActionId,
+  IPlayer,
+} from "../types/BoardTypes";
 import { boardSocket } from "../components/core/BoardCore/BoardCore";
 import { actionsStore } from "./ActionStore";
-import { IToken, TokenStore, TokenMove } from "../types/BoardTypes";
+import { TokenMove } from "../types/BoardTypes";
+import { playersStore, setPlayersEvent } from "./PlayersStore";
+import {
+  MARGIN_CENTER,
+  DURATION,
+  TRANSITION_LINE_TIMEOUT,
+  CORNER_FIELDS,
+  FIELD_SIZE,
+  TABLE_SIZE,
+} from "../utils/boardParams";
 
-export interface PlayerToken {
-  position: number;
-  jailed: number;
+interface ITokenPostion {
+  version: number;
+  [key: number]: number;
 }
 interface fieldPositions {
   positionNumber: number;
@@ -16,24 +30,10 @@ interface fieldPositions {
   top: number;
 }
 
-const TABLE_SIZE = 665;
-const MARGIN_CENTER = 35;
-const FIELD_SIZE = 55;
-const DURATION = 100;
 const fieldPositions: fieldPositions[] = [];
-
-export const TRANSITION_LINE_TIMEOUT = 700;
-
-const cornerFields = [0, 10, 20, 30];
 
 const TokenDomain = BoardDomain.createDomain("TokenDomain");
 export const resetTokens = TokenDomain.event();
-export const setTokenPositionEvent = TokenDomain.event<TokenStore>();
-
-const initTokens: TokenStore = {
-  version: 0,
-  tokens: [{ jailed: 0, meanPosition: 0, userId: 1 }],
-};
 
 const initPosition: TokenMove = {
   userId: 1,
@@ -122,76 +122,66 @@ for (let i = 0; i < 40; i++) {
 const diceTurn = sample(dicesStore, setDicesEvent, (v) => v);
 
 diceTurn.watch(async (action: BoardAction) => {
-  const tokenState = tokensStore.getState();
-  const currentToken = tokenState.tokens.find(
-    (v) => v.userId === action.userId
-  );
+  const playersState = playersStore.getState();
 
-  console.log(22222222222, action, tokenState);
-  if (typeof currentToken !== "undefined") {
-    const { meanPosition, jailed } = currentToken;
-    const stopPosition = action.meanPosition ? action.meanPosition : 0;
-    const usedFields = createTurnsArray(meanPosition, stopPosition);
+  playersState.players.map((currentPlayer, playerIndex) => {
+    if (typeof currentPlayer !== "undefined") {
+      const stopPosition = action.meanPosition ? action.meanPosition : 0;
 
-    let lastIndex = 0;
-    let timeout = TRANSITION_LINE_TIMEOUT;
-    let usedLines = 0;
-    for (let field of usedFields) {
-      if (
-        cornerFields.indexOf(field) > -1 ||
-        lastIndex === usedFields.length - 1
-      ) {
-        usedLines++;
+      const usedFields = createTurnsArray(
+        currentPlayer.prevPosition,
+        stopPosition
+      );
 
-        setTimeout(
-          () =>
-            changeTokenPosition({
-              userId: 1,
-              duration: DURATION,
-              left: fieldPositions[field].left,
-              top: fieldPositions[field].top,
-            }),
-          timeout
-        );
-        timeout += TRANSITION_LINE_TIMEOUT;
+      let lastIndex = 0;
+      let timeout = TRANSITION_LINE_TIMEOUT;
+      for (let field of usedFields) {
+        if (
+          CORNER_FIELDS.indexOf(field) > -1 ||
+          lastIndex === usedFields.length - 1
+        ) {
+          setTimeout(
+            () =>
+              moveTokenEffect({
+                userId: 1,
+                duration: DURATION,
+                left: fieldPositions[field].left,
+                top: fieldPositions[field].top,
+              }),
+            timeout
+          );
+          timeout += TRANSITION_LINE_TIMEOUT;
+        }
+        lastIndex++;
       }
-      lastIndex++;
-    }
 
-    let res: IToken = {
-      userId: action.userId,
-      meanPosition: stopPosition,
-      jailed,
-    };
-    const tokenIndex = tokenState.tokens.findIndex(
-      (v) => v.userId === action.userId
-    );
-    tokenState.tokens[tokenIndex] = res;
-    setTimeout(
-      () =>
-        setTokenPositionEvent({
-          version: ++tokenState.version,
-          tokens: tokenState.tokens,
-        }),
-      TRANSITION_LINE_TIMEOUT
-    );
-  }
+      let res: IPlayer = {
+        userId: action.userId,
+        prevPosition: currentPlayer.meanPosition,
+        meanPosition: stopPosition,
+        ...playersState.players[playerIndex],
+      };
+
+      playersState.players[playerIndex] = res;
+
+      setTimeout(
+        () =>
+          setPlayersEvent({
+            version: ++playersState.version,
+            players: playersState.players,
+          }),
+        TRANSITION_LINE_TIMEOUT
+      );
+    }
+  });
 });
 
-export const tokensStore = TokenDomain.store<TokenStore>(initTokens)
-  .on(setTokenPositionEvent, (_, v) => v)
-  .reset(resetTokens);
-
-export const changeTokenPosition = TokenDomain.effect<
-  TokenMove,
-  TokenMove,
-  Error
->({
+export const moveTokenEffect = TokenDomain.effect<TokenMove, TokenMove, Error>({
   handler: moveTokenByTimeout,
 });
 
-export const tokenPositionStore = TokenDomain.store<TokenMove>(initPosition)
-  .on(changeTokenPosition.done, (_, v) => v.result)
+export const tokenMoveStore = TokenDomain.store<TokenMove>(initPosition)
+  .on(moveTokenEffect.done, (_, v) => v.result)
   .reset(resetTokens);
 
 export const rollDicesCompletedEffect = TokenDomain.effect<

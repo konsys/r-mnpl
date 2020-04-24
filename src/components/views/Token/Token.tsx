@@ -1,22 +1,20 @@
 import React from "react";
 import { useStore } from "effector-react";
-import {
-  tokenPositionStore,
-  tokensStore,
-  TRANSITION_LINE_TIMEOUT,
-} from "../../../stores/TokensStore";
+import { tokenMoveStore } from "../../../stores/TokensStore";
 import { fieldsStore } from "../../../stores/FieldsStore";
 import { TokenMove } from "../../../types/BoardTypes";
+import { playersStore } from "../../../stores/PlayersStore";
+import { TRANSITION_LINE_TIMEOUT } from "../../../utils/boardParams";
 interface Props {
   userId: number;
   onTransitionEnd: (token: TokenMove) => void;
 }
 
 export const Token = (props: Props) => {
-  let token = useStore(tokenPositionStore);
-  let currToken = useStore(tokensStore);
+  let token = useStore(tokenMoveStore);
+  let currPlayer = useStore(playersStore);
   let fields = useStore(fieldsStore);
-  let tokenParams = currToken.tokens.find((v) => v.userId === props.userId);
+  let playerParams = currPlayer.players.find((v) => v.userId === props.userId);
 
   return (
     <>
@@ -34,7 +32,8 @@ export const Token = (props: Props) => {
         >
           {
             fields.fields.find(
-              (v) => tokenParams && v.fieldPosition === tokenParams.meanPosition
+              (v) =>
+                playerParams && v.fieldPosition === playerParams.meanPosition
             )?.name
           }
         </div>
