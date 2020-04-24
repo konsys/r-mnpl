@@ -5,7 +5,7 @@ import { boardSocket } from "../components/core/BoardCore/BoardCore";
 const DiceDomain = BoardDomain.domain("DiceDomain");
 export const resetDicesEvent = DiceDomain.event();
 
-export const rollDicesEffect = DiceDomain.effect<
+export const rollDicesCompletedEffect = DiceDomain.effect<
   IActionId,
   Promise<SocketIOClient.Socket>,
   Error

@@ -160,3 +160,22 @@ interface UserGameStatus extends IUser {
   canUseCredit: boolean;
   userId: number;
 }
+
+export interface TokenStore {
+  version: number;
+  tokens: IToken[];
+}
+
+export interface TokenMove {
+  userId: number;
+  duration: number;
+  top: number;
+  left: number;
+}
+export interface IToken {
+  userId: number;
+  step: number;
+  meanPosition: number;
+  jailed: number;
+  usedLines: number;
+}

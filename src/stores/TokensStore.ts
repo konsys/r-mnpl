@@ -4,6 +4,7 @@ import { BoardDomain } from "./BoardDomain";
 import { BoardAction, BoardActionType, IActionId } from "../types/BoardTypes";
 import { boardSocket } from "../components/core/BoardCore/BoardCore";
 import { actionsStore } from "./ActionStore";
+import { IToken, TokenStore, TokenMove } from "../types/BoardTypes";
 
 export interface PlayerToken {
   position: number;
@@ -23,40 +24,15 @@ const fieldPositions: fieldPositions[] = [];
 
 export const TRANSITION_LINE_TIMEOUT = 700;
 
-export interface TokenParams {
-  userId: number;
-  step: number;
-  meanPosition: number;
-  jailed: number;
-  usedLines: number;
-}
-
 const cornerFields = [0, 10, 20, 30];
-export interface TokenStore {
-  [key: number]: TokenParams;
-}
-
-// type TokenStore = Record<Options, OptionRequirement>
-
-export interface TokenMove {
-  userId: number;
-  duration: number;
-  top: number;
-  left: number;
-}
 
 const TokenDomain = BoardDomain.createDomain("TokenDomain");
 export const resetTokens = TokenDomain.event();
 export const setTokenPositionEvent = TokenDomain.event<TokenStore>();
 
 const init: TokenStore = {
-  1: {
-    userId: 1,
-    step: 0,
-    meanPosition: 0,
-    jailed: 0,
-    usedLines: 1,
-  },
+  version: 0,
+  tokens: [{ jailed: 0, meanPosition: 0, userId: 0, usedLines: 0, step: 0 }],
 };
 
 const initPosition: TokenMove = {
@@ -75,15 +51,15 @@ function moveTokenByTimeout<T>(token: T): Promise<T> {
 export const onTransitionEnd = async (v: TokenMove) => {
   const actionState = actionsStore.getState();
   setTimeout(
-    () => rollDicesEffect({ actionId: actionState.actionId }),
+    () => rollDicesCompletedEffect({ actionId: actionState.actionId }),
     TRANSITION_LINE_TIMEOUT
   );
-  // rollDicesEffect.done.watch((v) => console.log(23424234, v, actionState));
 };
 
 const createTurnsArray = (position: number, stopPosition: number): number[] => {
   const usedFields = [];
   let currentPosition = position;
+
   while (currentPosition !== stopPosition) {
     currentPosition++;
     if (currentPosition > 39) {
@@ -144,13 +120,15 @@ for (let i = 0; i < 40; i++) {
   }
 }
 const diceTurn = sample(dicesStore, setDicesEvent, (v) => v);
-diceTurn.watch(async (v: BoardAction) => {
+diceTurn.watch(async (action: BoardAction) => {
   const tokenState = tokensStore.getState();
-  const currentToken = tokenState[v.userId];
+  const currentToken = tokenState.tokens.find(
+    (v) => v.userId === action.userId
+  );
 
   if (typeof currentToken !== "undefined") {
     const { meanPosition, step, jailed } = currentToken;
-    const stopPosition = v.meanPosition ? v.meanPosition : 0;
+    const stopPosition = action.meanPosition ? action.meanPosition : 0;
     const usedFields = createTurnsArray(meanPosition, stopPosition);
 
     let lastIndex = 0;
@@ -162,6 +140,7 @@ diceTurn.watch(async (v: BoardAction) => {
         lastIndex === usedFields.length - 1
       ) {
         usedLines++;
+
         setTimeout(
           () =>
             changeTokenPosition({
@@ -177,23 +156,33 @@ diceTurn.watch(async (v: BoardAction) => {
       lastIndex++;
     }
 
-    let res: TokenStore = {
-      [v.userId]: {
-        userId: v.userId,
-        step: step + 1,
-        meanPosition: stopPosition,
-        jailed,
-        usedLines,
-      },
+    let res: IToken = {
+      userId: action.userId,
+      step: step + 1,
+      meanPosition: stopPosition,
+      jailed,
+      usedLines,
     };
-
-    setTimeout(() => setTokenPositionEvent(res), TRANSITION_LINE_TIMEOUT);
+    const tokenIndex = tokenState.tokens.findIndex(
+      (v) => v.userId === action.userId
+    );
+    tokenState.tokens[tokenIndex] = res;
+    setTimeout(
+      () =>
+        setTokenPositionEvent({
+          version: ++tokenState.version,
+          tokens: tokenState.tokens,
+        }),
+      TRANSITION_LINE_TIMEOUT
+    );
   }
 });
 
 export const tokensStore = TokenDomain.store<TokenStore>(init)
   .on(setTokenPositionEvent, (_, v) => v)
   .reset(resetTokens);
+
+tokensStore.watch((v) => console.log(1111111111111111, v));
 
 export const changeTokenPosition = TokenDomain.effect<
   TokenMove,
@@ -207,10 +196,13 @@ export const tokenPositionStore = TokenDomain.store<TokenMove>(initPosition)
   .on(changeTokenPosition.done, (_, v) => v.result)
   .reset(resetTokens);
 
-export const rollDicesEffect = TokenDomain.effect<
+export const rollDicesCompletedEffect = TokenDomain.effect<
   IActionId,
   Promise<SocketIOClient.Socket>,
   Error
 >(BoardActionType.ROLL_DICES, {
   handler: async (data) => boardSocket.emit(BoardActionType.ROLL_DICES, data),
 });
+
+tokensStore.watch((v) => console.log("TSTORE", v));
+tokensStore.watch((v) => console.log("TSTORE", v));

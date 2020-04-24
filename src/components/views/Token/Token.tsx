@@ -3,10 +3,10 @@ import { useStore } from "effector-react";
 import {
   tokenPositionStore,
   tokensStore,
-  TokenMove,
   TRANSITION_LINE_TIMEOUT,
 } from "../../../stores/TokensStore";
 import { fieldsStore } from "../../../stores/FieldsStore";
+import { TokenMove } from "../../../types/BoardTypes";
 interface Props {
   userId: number;
   onTransitionEnd: (token: TokenMove) => void;
@@ -16,7 +16,8 @@ export const Token = (props: Props) => {
   let token = useStore(tokenPositionStore);
   let currToken = useStore(tokensStore);
   let fields = useStore(fieldsStore);
-  let tokenParams = currToken[props.userId];
+  let tokenParams = currToken.tokens.find((v) => v.userId === props.userId);
+
   return (
     <>
       {token && props.userId === token.userId && (
@@ -33,7 +34,7 @@ export const Token = (props: Props) => {
         >
           {
             fields.fields.find(
-              (v) => v.fieldPosition === tokenParams.meanPosition
+              (v) => tokenParams && v.fieldPosition === tokenParams.meanPosition
             )?.name
           }
         </div>
