@@ -32,7 +32,7 @@ export const setTokenPositionEvent = TokenDomain.event<TokenStore>();
 
 const initTokens: TokenStore = {
   version: 0,
-  tokens: [{ jailed: 0, meanPosition: 0, userId: 1, step: 0 }],
+  tokens: [{ jailed: 0, meanPosition: 0, userId: 1 }],
 };
 
 const initPosition: TokenMove = {
@@ -129,7 +129,7 @@ diceTurn.watch(async (action: BoardAction) => {
 
   console.log(22222222222, action, tokenState);
   if (typeof currentToken !== "undefined") {
-    const { meanPosition, step, jailed } = currentToken;
+    const { meanPosition, jailed } = currentToken;
     const stopPosition = action.meanPosition ? action.meanPosition : 0;
     const usedFields = createTurnsArray(meanPosition, stopPosition);
 
@@ -160,7 +160,6 @@ diceTurn.watch(async (action: BoardAction) => {
 
     let res: IToken = {
       userId: action.userId,
-      step: step + 1,
       meanPosition: stopPosition,
       jailed,
     };

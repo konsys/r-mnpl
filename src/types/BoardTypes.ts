@@ -174,7 +174,6 @@ export interface TokenMove {
 }
 export interface IToken {
   userId: number;
-  step: number;
   meanPosition: number;
   jailed: number;
 }
