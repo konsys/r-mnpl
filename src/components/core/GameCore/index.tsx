@@ -20,12 +20,15 @@ import { BoardActionType } from "../../../types/BoardTypes";
 import { onTransitionEnd } from "../../../stores/TokensStore";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
+import { playersStore } from "../../../stores/PlayersStore";
+import nanoid from "nanoid";
 
 interface Props extends RouteComponentProps {}
 
 export const Game = (props: Props) => {
   const actionState = useStore(actionsStore);
   const userState = useStore(userStore);
+  const playersState = useStore(playersStore);
   const isModal =
     actionState.event.action.type === BoardActionType.ROLL_DICES_MODAL ||
     actionState.event.action.type === BoardActionType.CAN_BUY;
@@ -40,17 +43,20 @@ export const Game = (props: Props) => {
               <div className="table-body-board-center">
                 <M1tv />
                 {actionState &&
-                  userState.userId === actionState.event.action.userId &&
+                  // userState.userId === actionState.event.action.userId &&
                   isModal && <BoardModal />}
                 <Arbitr />
                 <Ticket />
                 <Chat />
               </div>
               <div className="table-body-board-tokens">
-                <Token
-                  userId={userState.userId}
-                  onTransitionEnd={onTransitionEnd}
-                />
+                {playersState.players.map((player) => (
+                  <Token
+                    key={nanoid(5)}
+                    userId={player.userId}
+                    onTransitionEnd={onTransitionEnd}
+                  />
+                ))}
               </div>
               <Dices />
               <Contract />

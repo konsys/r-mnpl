@@ -18,7 +18,8 @@ export const Token = (props: Props) => {
 
   return (
     <>
-      {token && props.userId === token.userId && (
+      {console.log(1111111111, props.userId, token)}
+      {token && (
         <div
           onTransitionEnd={() => props.onTransitionEnd(token)}
           mnpl-jailed={0}

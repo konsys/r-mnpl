@@ -162,6 +162,11 @@ interface UserGameStatus extends IUser {
   userId: number;
 }
 
+interface IToken {
+  userId: number;
+  meanPosition: number;
+  jailed: number;
+}
 export interface TokenStore {
   version: number;
   tokens: IToken[];
@@ -173,8 +178,7 @@ export interface TokenMove {
   top: number;
   left: number;
 }
-export interface IToken {
-  userId: number;
-  meanPosition: number;
-  jailed: number;
+export interface TokenMoveStore {
+  version: number;
+  tokenMove: TokenMove[];
 }
