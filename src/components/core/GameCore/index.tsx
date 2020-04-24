@@ -18,6 +18,9 @@ import { userStore } from "../../../stores/UserStore";
 import { actionsStore } from "../../../stores/ActionStore";
 import { BoardActionType } from "../../../types/BoardTypes";
 import { onTransitionEnd } from "../../../stores/TokensStore";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+
 interface Props extends RouteComponentProps {}
 
 export const Game = (props: Props) => {
@@ -60,6 +63,7 @@ export const Game = (props: Props) => {
         <div className="table-jokes"></div>
       </div>
       <GameLoading />
+      <ToastContainer />
     </>
   );
 };

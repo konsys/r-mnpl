@@ -7,6 +7,7 @@ import { boardMessageHandler } from "../../../handlers/MainHandler";
 import openSocket from "socket.io-client";
 import { clearNode } from "effector";
 import { BoardDomain } from "../../../stores/BoardDomain";
+import { errorHandler } from "../../../handlers/ErrorHandler";
 
 export const boardSocket = openSocket("http://localhost:3001");
 
@@ -14,6 +15,7 @@ export const BoardCore = () => {
   useEffect(() => {
     getInitFieldsEffect();
     boardSocket.on(SocketActions.BOARD_MESSAGE, boardMessageHandler);
+    boardSocket.on(SocketActions.ERROR_MESSAGE, errorHandler);
     return () => {
       clearNode(BoardDomain, { deep: true });
     };
