@@ -1,7 +1,7 @@
 import React from "react";
 import { useStore } from "effector-react";
 import {
-  tokenPosition,
+  tokenPositionStore,
   tokensStore,
   TokenMove,
   TRANSITION_LINE_TIMEOUT,
@@ -13,11 +13,10 @@ interface Props {
 }
 
 export const Token = (props: Props) => {
-  let token = useStore(tokenPosition);
+  let token = useStore(tokenPositionStore);
   let currToken = useStore(tokensStore);
   let fields = useStore(fieldsStore);
   let tokenParams = currToken[props.userId];
-
   return (
     <>
       {token && props.userId === token.userId && (
