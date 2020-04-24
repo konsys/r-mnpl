@@ -177,5 +177,4 @@ export interface IToken {
   step: number;
   meanPosition: number;
   jailed: number;
-  usedLines: number;
 }

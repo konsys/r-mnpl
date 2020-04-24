@@ -32,7 +32,7 @@ export const setTokenPositionEvent = TokenDomain.event<TokenStore>();
 
 const initTokens: TokenStore = {
   version: 0,
-  tokens: [{ jailed: 0, meanPosition: 0, userId: 1, usedLines: 0, step: 0 }],
+  tokens: [{ jailed: 0, meanPosition: 0, userId: 1, step: 0 }],
 };
 
 const initPosition: TokenMove = {
@@ -163,7 +163,6 @@ diceTurn.watch(async (action: BoardAction) => {
       step: step + 1,
       meanPosition: stopPosition,
       jailed,
-      usedLines,
     };
     const tokenIndex = tokenState.tokens.findIndex(
       (v) => v.userId === action.userId
@@ -203,5 +202,3 @@ export const rollDicesCompletedEffect = TokenDomain.effect<
 >(BoardActionType.ROLL_DICES, {
   handler: async (data) => boardSocket.emit(BoardActionType.ROLL_DICES, data),
 });
-
-tokensStore.watch((v) => console.log("TSTORE", v.tokens));
