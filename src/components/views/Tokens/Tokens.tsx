@@ -7,7 +7,7 @@ interface Props {
   onTransitionEnd: (id: any) => void;
 }
 
-export const Token = (props: Props) => {
+export const Tokens = (props: Props) => {
   const players = useStore(playersStore);
   const token = (
     <div
