@@ -1,7 +1,12 @@
 import { sample } from "effector";
 import { dicesStore, setDicesEvent } from "./DicesStore";
 import { BoardDomain } from "./BoardDomain";
-import { BoardAction, BoardActionType, IActionId } from "../types/BoardTypes";
+import {
+  BoardAction,
+  BoardActionType,
+  IActionId,
+  TokenMoveStore,
+} from "../types/BoardTypes";
 import { boardSocket } from "../components/core/BoardCore/BoardCore";
 import { actionsStore } from "./ActionStore";
 import { TokenMove } from "../types/BoardTypes";
@@ -27,13 +32,6 @@ interface IFieldPositions {
 const TokenDomain = BoardDomain.createDomain("TokenDomain");
 export const resetTokens = TokenDomain.event();
 
-const initPosition: TokenMove = {
-  userId: 1,
-  left: MARGIN_CENTER,
-  top: MARGIN_CENTER,
-  duration: DURATION,
-};
-
 const fields = fieldPositions();
 
 export const onTransitionEnd = async (v: TokenMove) => {
@@ -48,6 +46,7 @@ const diceTurn = sample(dicesStore, setDicesEvent, (v) => v);
 
 diceTurn.watch(async (action: BoardAction) => {
   const playersState = playersStore.getState();
+  const tMove = tokenMove.getState();
 
   const newPlayersState = playersState.players.map(
     (currentPlayer, playerIndex) => {
@@ -59,6 +58,9 @@ diceTurn.watch(async (action: BoardAction) => {
           currentPlayer.prevPosition,
           stopPosition
         );
+        const tokenIndex = tMove.tokens.findIndex(
+          (v) => v.userId === currentPlayer.userId
+        );
 
         let lastIndex = 0;
         let timeout = TRANSITION_LINE_TIMEOUT;
@@ -67,13 +69,20 @@ diceTurn.watch(async (action: BoardAction) => {
             CORNER_FIELDS.indexOf(field) > -1 ||
             lastIndex === usedFields.length - 1
           ) {
+            console.log(234234, tokenIndex);
+
+            tMove.tokens[tokenIndex] = {
+              userId: currentPlayer.userId,
+              duration: DURATION,
+              left: fields[field].left,
+              top: fields[field].top,
+            };
+
             setTimeout(
               () =>
                 moveTokenEffect({
-                  userId: 1,
-                  duration: DURATION,
-                  left: fields[field].left,
-                  top: fields[field].top,
+                  version: ++tMove.version,
+                  tokens: tMove.tokens,
                 }),
               timeout
             );
@@ -103,12 +112,29 @@ diceTurn.watch(async (action: BoardAction) => {
   // newPlayersState
 });
 
-export const moveTokenEffect = TokenDomain.effect<TokenMove, TokenMove, Error>({
+export const moveTokenEffect = TokenDomain.effect<
+  TokenMoveStore,
+  TokenMoveStore,
+  Error
+>({
   handler: moveTokenByTimeout,
 });
 
-export const tokenMoveStore = TokenDomain.store<TokenMove>(initPosition)
+export const tokenMove = TokenDomain.store<TokenMoveStore>({
+  version: 0,
+  tokens: [],
+})
   .on(moveTokenEffect.done, (_, v) => v.result)
+  // Populate tokens
+  .on(setPlayersEvent, (prev, players) => ({
+    version: ++prev.version,
+    tokens: players.players.map((p) => ({
+      userId: p.userId,
+      left: MARGIN_CENTER,
+      top: MARGIN_CENTER,
+      duration: DURATION,
+    })),
+  }))
   .reset(resetTokens);
 
 export const rollDicesCompletedEffect = TokenDomain.effect<

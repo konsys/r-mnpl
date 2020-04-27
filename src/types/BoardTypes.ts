@@ -140,7 +140,7 @@ export interface IUser {
 }
 
 export interface IPlayer extends UserGameStatus {
-  moveOrder: 0 | 1 | 2 | 3;
+  moveOrder: 0 | 1 | 2 | 3 | 4;
 }
 interface UserGameStatus extends IUser {
   gameId: string;
@@ -178,7 +178,8 @@ export interface TokenMove {
   top: number;
   left: number;
 }
+
 export interface TokenMoveStore {
   version: number;
-  tokenMove: TokenMove[];
+  tokens: TokenMove[];
 }
