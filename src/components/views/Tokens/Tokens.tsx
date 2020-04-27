@@ -8,7 +8,7 @@ interface Props {
 }
 
 export const Tokens = (props: Props) => {
-  const players = useStore(playersStore);
+  const players = useStore(playersStore).players;
   // const token = (
   //   {players.players.map((p)=>())}
   // );
@@ -17,18 +17,12 @@ export const Tokens = (props: Props) => {
       {
         <div
           onTransitionEnd={() =>
-            props.onTransitionEnd(
-              players.players.length && players.players[0].userId
-            )
+            props.onTransitionEnd(players.length && players[0].userId)
           }
           mnpl-jailed={0}
           style={{
-            left: `${
-              players.players.length && players.players[0].tokenLeftPosition
-            }px`,
-            top: `${
-              players.players.length && players.players[0].tokenTopPosition
-            }px`,
+            left: `${players.length && players[0].tokenLeftPosition}px`,
+            top: `${players.length && players[0].tokenTopPosition}px`,
             transitionDuration: `${LINE_TRANSITION_TIMEOUT}ms`,
             transitionProperty: "left top ease",
           }}
