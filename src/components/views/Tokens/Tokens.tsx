@@ -14,21 +14,19 @@ export const Tokens = (props: Props) => {
   // );
   return (
     <>
-      {
+      {players.map((v) => (
         <div
-          onTransitionEnd={() =>
-            props.onTransitionEnd(players.length && players[0].userId)
-          }
+          onTransitionEnd={() => props.onTransitionEnd(v.userId)}
           mnpl-jailed={0}
           style={{
-            left: `${players.length && players[0].tokenLeftPosition}px`,
-            top: `${players.length && players[0].tokenTopPosition}px`,
+            left: `${v.tokenLeftPosition}px`,
+            top: `${v.tokenTopPosition}px`,
             transitionDuration: `${LINE_TRANSITION_TIMEOUT}ms`,
             transitionProperty: "left top ease",
           }}
           className="_animated"
         />
-      }
+      ))}
     </>
   );
 };

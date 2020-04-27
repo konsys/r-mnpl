@@ -19,22 +19,15 @@ import { BoardActionType } from "../../../types/BoardTypes";
 import { onTransitionEnd } from "../../../stores/TokensStore";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
-import { playersStore } from "../../../stores/PlayersStore";
 
 interface Props extends RouteComponentProps {}
 
 export const Game = (props: Props) => {
   const actionState = useStore(actionsStore);
-  const playersState = useStore(playersStore);
   const isModal =
     actionState.event.action.type === BoardActionType.ROLL_DICES_MODAL ||
     actionState.event.action.type === BoardActionType.CAN_BUY;
 
-  const tokens = playersState.players.map((player) => ({
-    userId: player.userId,
-    left: player.tokenLeftPosition,
-    top: player.tokenTopPosition,
-  }));
   return (
     <>
       <div className="wrapper" style={{ width: "100%", height: "100%" }}>
