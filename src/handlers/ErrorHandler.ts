@@ -10,6 +10,5 @@ export interface IGameError {
 }
 
 export const errorHandler = (error: IGameError) => {
-  console.log("ERROR ERROR ERROR ERROR ERROR", ErrorCode[error.code]);
   toast(ErrorCode[error.code]);
 };

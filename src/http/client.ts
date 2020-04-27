@@ -5,7 +5,7 @@ import { Auth, authTokenName } from "./auth.service";
 let REFRESH_REQ: Promise<any> | null;
 
 export const client = axios.create({
-  baseURL: config.baseURL
+  baseURL: config.baseURL,
 });
 
 client.interceptors.response.use(undefined, onError);
@@ -17,7 +17,6 @@ async function onError(e: AxiosError): Promise<AxiosResponse<any>> {
   switch (status) {
     case 401:
       if (code === RestErrorCodes.accessTokenExpired) {
-        console.log("Access token has expired");
         if (
           e.config.headers[authTokenName] !==
           client.defaults.headers[authTokenName]

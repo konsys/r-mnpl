@@ -17,10 +17,12 @@ export const getPlayerIndexById = (userId: number) => {
 };
 
 export const updatePlayer = (player: IPlayer): boolean => {
-  console.log(234234, player.prevPosition, player.meanPosition);
   const playersState = playersStore.getState();
   const currentPLayerIndex = getPlayerIndexById(player.userId);
-  if (!currentPLayerIndex) return false;
+
+  console.log(234234, currentPLayerIndex);
+
+  if (currentPLayerIndex === -1) return false;
 
   playersState.players[currentPLayerIndex] = player;
 
