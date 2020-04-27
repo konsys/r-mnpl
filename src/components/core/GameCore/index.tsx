@@ -14,7 +14,6 @@ import { GameLoading } from "../../views/GameLoading/GameLoading";
 import { useStore } from "effector-react";
 import { BoardCore } from "../BoardCore/BoardCore";
 import { UsersCore } from "../PlayersCore/PlayersCore";
-import { userStore } from "../../../stores/UserStore";
 import { actionsStore } from "../../../stores/ActionStore";
 import { BoardActionType } from "../../../types/BoardTypes";
 import { onTransitionEnd } from "../../../stores/TokensStore";
@@ -27,7 +26,6 @@ interface Props extends RouteComponentProps {}
 
 export const Game = (props: Props) => {
   const actionState = useStore(actionsStore);
-  const userState = useStore(userStore);
   const playersState = useStore(playersStore);
   const isModal =
     actionState.event.action.type === BoardActionType.ROLL_DICES_MODAL ||

@@ -11,17 +11,18 @@ import {
   DURATION,
   TRANSITION_LINE_TIMEOUT,
   CORNER_FIELDS,
-  FIELD_SIZE,
-  TABLE_SIZE,
 } from "../utils/boardParams";
+import {
+  createTurnsArray,
+  moveTokenByTimeout,
+  fieldPositions,
+} from "../utils/fields.utils";
 
 interface IFieldPositions {
   positionNumber: number;
   left: number;
   top: number;
 }
-
-const fieldPositions: IFieldPositions[] = [];
 
 const TokenDomain = BoardDomain.createDomain("TokenDomain");
 export const resetTokens = TokenDomain.event();
@@ -33,11 +34,7 @@ const initPosition: TokenMove = {
   duration: DURATION,
 };
 
-function moveTokenByTimeout<T>(token: T): Promise<T> {
-  return new Promise<T>((resolve) =>
-    setTimeout(() => resolve(token), TRANSITION_LINE_TIMEOUT)
-  );
-}
+const fields = fieldPositions();
 
 export const onTransitionEnd = async (v: TokenMove) => {
   const actionState = actionsStore.getState();
@@ -47,69 +44,6 @@ export const onTransitionEnd = async (v: TokenMove) => {
   );
 };
 
-const createTurnsArray = (position: number, stopPosition: number): number[] => {
-  const usedFields = [];
-  let currentPosition = position;
-
-  while (currentPosition !== stopPosition) {
-    currentPosition++;
-    if (currentPosition > 39) {
-      currentPosition = 0;
-    }
-    usedFields.push(currentPosition);
-  }
-  return usedFields;
-};
-
-for (let i = 0; i < 40; i++) {
-  let left = 0;
-  let top = 0;
-  if (i >= 0 && i <= 10) {
-    left = FIELD_SIZE * (i + 1);
-    top = MARGIN_CENTER;
-    if (i === 10) {
-      left += 45;
-      top -= 25;
-    } else if (i === 0) {
-      left -= 25;
-    }
-    fieldPositions.push({
-      positionNumber: i,
-      left,
-      top,
-    });
-  } else if (i >= 11 && i <= 20) {
-    left = TABLE_SIZE - MARGIN_CENTER;
-    top = FIELD_SIZE * (i - 9);
-    if (i === 20) {
-      top += 25;
-    }
-    fieldPositions.push({
-      positionNumber: i,
-      left,
-      top,
-    });
-  } else if (i >= 21 && i <= 30) {
-    left = TABLE_SIZE - FIELD_SIZE * (i - 19);
-    top = TABLE_SIZE - MARGIN_CENTER;
-    if (i === 30) {
-      left -= 25;
-    }
-    fieldPositions.push({
-      positionNumber: i,
-      left,
-      top,
-    });
-  } else if (i >= 31 && i <= 39) {
-    left = MARGIN_CENTER;
-    top = TABLE_SIZE - FIELD_SIZE * (i - 29);
-    fieldPositions.push({
-      positionNumber: i,
-      left,
-      top,
-    });
-  }
-}
 const diceTurn = sample(dicesStore, setDicesEvent, (v) => v);
 
 diceTurn.watch(async (action: BoardAction) => {
@@ -138,8 +72,8 @@ diceTurn.watch(async (action: BoardAction) => {
                 moveTokenEffect({
                   userId: 1,
                   duration: DURATION,
-                  left: fieldPositions[field].left,
-                  top: fieldPositions[field].top,
+                  left: fields[field].left,
+                  top: fields[field].top,
                 }),
               timeout
             );
