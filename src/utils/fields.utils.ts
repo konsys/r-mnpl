@@ -1,9 +1,4 @@
-import {
-  TRANSITION_LINE_TIMEOUT,
-  FIELD_SIZE,
-  MARGIN_CENTER,
-  TABLE_SIZE,
-} from "./boardParams";
+import { FIELD_SIZE, MARGIN_CENTER, TABLE_SIZE } from "./boardParams";
 
 export const createTurnsArray = (
   position: number,
@@ -21,12 +16,6 @@ export const createTurnsArray = (
   }
   return usedFields;
 };
-
-export function moveTokenByTimeout<T>(token: T): Promise<T> {
-  return new Promise<T>((resolve) =>
-    setTimeout(() => resolve(token), TRANSITION_LINE_TIMEOUT)
-  );
-}
 
 export interface IFieldPositions {
   positionNumber: number;

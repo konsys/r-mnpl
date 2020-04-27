@@ -3,7 +3,6 @@ import { useStore } from "effector-react";
 import { fieldsStore } from "../../../stores/FieldsStore";
 import { playersStore } from "../../../stores/PlayersStore";
 import { TRANSITION_LINE_TIMEOUT } from "../../../utils/boardParams";
-import { tokenMove } from "../../../stores/TokensStore";
 interface Props {
   userId: number;
   onTransitionEnd: (id: any) => void;
@@ -15,19 +14,15 @@ export const Token = (props: Props) => {
     (v) => v.userId === props.userId
   );
 
-  const token =
-    player &&
-    tokenMove.getState().tokens.find((v) => v.userId === props.userId);
-
   return (
     <>
-      {token && (
+      {player && (
         <div
-          onTransitionEnd={() => props.onTransitionEnd(token)}
+          onTransitionEnd={() => props.onTransitionEnd(player?.userId)}
           mnpl-jailed={0}
           style={{
-            left: `${token.left}px`,
-            top: `${token.top}px`,
+            left: `${player.tokenLeftPosition}px`,
+            top: `${player.tokenTopPosition}px`,
             transitionDuration: `${TRANSITION_LINE_TIMEOUT}ms`,
             transitionProperty: "left top ease",
           }}
