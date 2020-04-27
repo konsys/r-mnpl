@@ -8,13 +8,9 @@ interface Props {
 }
 
 export const Tokens = (props: Props) => {
-  const players = useStore(playersStore).players;
-  // const token = (
-  //   {players.players.map((p)=>())}
-  // );
   return (
     <>
-      {players.map((v) => (
+      {useStore(playersStore).players.map((v) => (
         <div
           onTransitionEnd={() => props.onTransitionEnd(v.userId)}
           mnpl-jailed={0}
