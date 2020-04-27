@@ -8,7 +8,7 @@ import { BoardDomain } from "./BoardDomain";
 import { BoardAction } from "../types/BoardTypes";
 import { actionsStore } from "./ActionStore";
 import { TokenMove } from "../types/BoardTypes";
-import { TRANSITION_LINE_TIMEOUT, CORNER_FIELDS } from "../utils/boardParams";
+import { LINE_TRANSITION_TIMEOUT, CORNER_FIELDS } from "../utils/boardParams";
 import { createTurnsArray, fieldPositions } from "../utils/fields.utils";
 import { getActingPlayer, updatePlayer } from "../utils/players.utils";
 
@@ -21,7 +21,7 @@ export const onTransitionEnd = async (v: TokenMove) => {
   const actionState = actionsStore.getState();
   setTimeout(
     () => rollDicesCompletedEffect({ actionId: actionState.actionId }),
-    TRANSITION_LINE_TIMEOUT
+    LINE_TRANSITION_TIMEOUT
   );
 };
 
@@ -40,7 +40,7 @@ diceTurn.watch(async (action: BoardAction) => {
     );
 
     let lastIndex = 0;
-    let timeout = TRANSITION_LINE_TIMEOUT;
+    let timeout = LINE_TRANSITION_TIMEOUT;
 
     for (let field of usedFields) {
       if (
@@ -56,7 +56,7 @@ diceTurn.watch(async (action: BoardAction) => {
             meanPosition: stopPosition,
           });
         }, timeout);
-        timeout += TRANSITION_LINE_TIMEOUT;
+        timeout += LINE_TRANSITION_TIMEOUT;
       }
       lastIndex++;
     }
