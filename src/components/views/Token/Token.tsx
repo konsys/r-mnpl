@@ -1,40 +1,34 @@
 import React from "react";
-import { useStore } from "effector-react";
-import { fieldsStore } from "../../../stores/FieldsStore";
-import { playersStore } from "../../../stores/PlayersStore";
 import { LINE_TRANSITION_TIMEOUT } from "../../../utils/boardParams";
+import { useStore } from "effector-react";
+import { playersStore } from "../../../stores/PlayersStore";
+
 interface Props {
-  userId: number;
   onTransitionEnd: (id: any) => void;
 }
 
 export const Token = (props: Props) => {
-  let fields = useStore(fieldsStore);
-  let player = useStore(playersStore).players.find(
-    (v) => v.userId === props.userId
+  const players = useStore(playersStore);
+  const token = (
+    <div
+      onTransitionEnd={() =>
+        props.onTransitionEnd(
+          players.players.length && players.players[0].userId
+        )
+      }
+      mnpl-jailed={0}
+      style={{
+        left: `${
+          players.players.length && players.players[0].tokenLeftPosition
+        }px`,
+        top: `${
+          players.players.length && players.players[0].tokenTopPosition
+        }px`,
+        transitionDuration: `${LINE_TRANSITION_TIMEOUT}ms`,
+        transitionProperty: "left top ease",
+      }}
+      className="_animated"
+    />
   );
-
-  return (
-    <>
-      {player && (
-        <div
-          onTransitionEnd={() => props.onTransitionEnd(player?.userId)}
-          mnpl-jailed={0}
-          style={{
-            left: `${player.tokenLeftPosition}px`,
-            top: `${player.tokenTopPosition}px`,
-            transitionDuration: `${LINE_TRANSITION_TIMEOUT}ms`,
-            transitionProperty: "left top ease",
-          }}
-          className="_animated"
-        >
-          {
-            fields.fields.find(
-              (v) => player && v.fieldPosition === player.meanPosition
-            )?.name
-          }
-        </div>
-      )}
-    </>
-  );
+  return <>{token}</>;
 };

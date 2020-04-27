@@ -31,6 +31,11 @@ export const Game = (props: Props) => {
     actionState.event.action.type === BoardActionType.ROLL_DICES_MODAL ||
     actionState.event.action.type === BoardActionType.CAN_BUY;
 
+  const tokens = playersState.players.map((player) => ({
+    userId: player.userId,
+    left: player.tokenLeftPosition,
+    top: player.tokenTopPosition,
+  }));
   return (
     <>
       <div className="wrapper" style={{ width: "100%", height: "100%" }}>
@@ -49,13 +54,11 @@ export const Game = (props: Props) => {
                 <Chat />
               </div>
               <div className="table-body-board-tokens">
-                {playersState.players.map((player, i) => (
-                  <Token
-                    key={nanoid(5)}
-                    userId={player.userId}
-                    onTransitionEnd={onTransitionEnd}
-                  />
-                ))}
+                {
+                  <Token onTransitionEnd={onTransitionEnd} />
+
+                  // ))
+                }
               </div>
               <Dices />
               <Contract />
