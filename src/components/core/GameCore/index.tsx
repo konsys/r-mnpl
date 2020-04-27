@@ -4,7 +4,7 @@ import "./style.scss";
 import { Chat } from "../../views/Chat/Chat";
 import { Contract } from "../../views/Contract/Contract";
 import { TableHelper } from "../../views/TableHelper/TableHelper";
-import { Token } from "../../views/Tokens/Tokens";
+import { Tokens } from "../../views/Tokens/Tokens";
 import { Ticket } from "../../views/Ticket/ticket";
 import { Arbitr } from "../../views/Arbitr/Arbitr";
 import { M1tv } from "../../views/M1tv/M1tv";
@@ -20,7 +20,6 @@ import { onTransitionEnd } from "../../../stores/TokensStore";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import { playersStore } from "../../../stores/PlayersStore";
-import nanoid from "nanoid";
 
 interface Props extends RouteComponentProps {}
 
