@@ -41,9 +41,9 @@ export const Field = (props: BoardField) => {
       }
       className="table-body-board-fields-one"
     >
-      {price && (
+      {price && price > 0 && (
         <div className="table-body-board-fields-one-label">
-          <div>{props.price}</div>
+          <div>{price}</div>
         </div>
       )}
 
