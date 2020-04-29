@@ -21,18 +21,11 @@ export enum BoardActionType {
   VOID = "void",
   ROLL_DICES = "rollDices",
   CAN_BUY = "canBuy",
-  AUCTION_ACCEPT = "auctionAccept",
-  AUCTION_START = "auctionStart",
-  AUCTION_DECLINE = "auctionDeclne",
   BUY = "buy",
-  PAY_RENT_SUCCESS = "payRentSuccess",
-  PAY_RENT_FAIL = "payRentFail",
-  LEVEL_UP = "levelUp",
-  LEVEL_DOWN = "levelDown",
-  CONTRACT_ACCEPT = "contractAccept",
-  CONTRACT_DECLINE = "contractDecline",
-  MORTGAGE = "mortgage",
+  AUCTION_START = "auctionStart",
   ROLL_DICES_MODAL = "showDicesModal",
+  TAX_PAYING_MODAL = "taxPayingModal",
+  TAX_PAID = "taxPaid",
 }
 
 export interface BoardAction {

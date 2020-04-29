@@ -3,6 +3,7 @@ import {
   dicesRolledEffect,
   fieldBoughtEffect,
   fieldAuctionEffect,
+  taxPaidEffect,
 } from "../stores/ModalStore";
 
 export const rollDicesModal = (act: BoardAction): BoardAction => {
@@ -53,3 +54,24 @@ export const canBuyModal = (act: BoardAction): BoardAction => ({
   ],
   _id: act._id,
 });
+
+export const taxModal = (act: BoardAction): BoardAction => {
+  return {
+    type: act.type,
+    userId: act.userId,
+    title: act.title,
+    text: act.text,
+    actionButtons: [
+      {
+        title: "Заплатить",
+        onClick: () => {
+          taxPaidEffect({
+            actionId: act._id,
+          });
+        },
+        disabled: false,
+      },
+    ],
+    _id: act._id,
+  };
+};

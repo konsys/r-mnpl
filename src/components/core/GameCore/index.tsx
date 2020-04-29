@@ -26,8 +26,8 @@ export const Game = (props: Props) => {
   const actionState = useStore(actionsStore);
   const isModal =
     actionState.event.action.type === BoardActionType.ROLL_DICES_MODAL ||
-    actionState.event.action.type === BoardActionType.CAN_BUY;
-
+    actionState.event.action.type === BoardActionType.CAN_BUY ||
+    actionState.event.action.type === BoardActionType.TAX_PAYING_MODAL;
   return (
     <>
       <div className="wrapper" style={{ width: "100%", height: "100%" }}>
@@ -39,6 +39,7 @@ export const Game = (props: Props) => {
               <div className="table-body-board-center">
                 <M1tv />
                 {actionState &&
+                  // TODO check for user credentials
                   // userState.userId === actionState.event.action.userId &&
                   isModal && <BoardModal />}
                 <Arbitr />

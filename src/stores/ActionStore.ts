@@ -1,7 +1,7 @@
 import { BoardDomain } from "./BoardDomain";
 import { BoardActionType, IBoardEvent } from "../types/BoardTypes";
 import { showModalEvent } from "./ModalStore";
-import { rollDicesModal, canBuyModal } from "../handlers/Modals";
+import { rollDicesModal, canBuyModal, taxModal } from "../handlers/Modals";
 import { rollDicesHandler } from "../handlers/DicesHandler";
 import { resetDicesEvent } from "./DicesStore";
 
@@ -51,6 +51,10 @@ actionsStore.watch((v) => {
 
     case BoardActionType.CAN_BUY:
       showModalEvent(canBuyModal(action));
+      break;
+
+    case BoardActionType.TAX_PAYING_MODAL:
+      showModalEvent(taxModal(action));
       break;
   }
 });

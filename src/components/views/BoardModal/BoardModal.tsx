@@ -5,6 +5,7 @@ import { ActionPanel } from "../ActionPanel/ActionPanel";
 
 export const BoardModal = () => {
   const modal = useStore(modalStore);
+  console.log("BoardModal", modal);
 
   return (
     <>

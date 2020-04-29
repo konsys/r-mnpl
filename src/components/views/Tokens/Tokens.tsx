@@ -10,8 +10,9 @@ interface Props {
 export const Tokens = (props: Props) => {
   return (
     <>
-      {useStore(playersStore).players.map((v) => (
+      {useStore(playersStore).players.map((v, k) => (
         <div
+          key={k}
           onTransitionEnd={() => props.onTransitionEnd(v.userId)}
           mnpl-jailed={0}
           style={{

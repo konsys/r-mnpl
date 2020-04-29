@@ -26,6 +26,14 @@ export const dicesRolledEffect = ModalDomain.effect<
     boardSocket.emit(BoardActionType.ROLL_DICES_MODAL, data),
 });
 
+export const taxPaidEffect = ModalDomain.effect<
+  IActionId,
+  Promise<SocketIOClient.Socket>,
+  Error
+>(BoardActionType.TAX_PAID, {
+  handler: async (data) => boardSocket.emit(BoardActionType.TAX_PAID, data),
+});
+
 export const fieldBoughtEffect = ModalDomain.effect<
   IActionId,
   Promise<SocketIOClient.Socket>,
@@ -47,4 +55,4 @@ export const modalStore = ModalDomain.store<BoardAction>(init)
   .on(showModalEvent, (_, data) => data)
   .reset(resetModalEvent);
 
-// modalStore.watch((v) => console.log("modalStoreWatch", v));
+modalStore.watch((v) => console.log("modalStoreWatch", v));
