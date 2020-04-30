@@ -66,6 +66,7 @@ export interface FieldStatus {
   userId: number;
   level: number;
   mortgaged: boolean;
+  updatedPrice: number;
 }
 
 interface CurrentMove {

@@ -4,6 +4,7 @@ import { setFieldsEvent } from "../stores/FieldsStore";
 
 export const fieldsHandler = (fields: FieldStatus[]) => {
   const store = fieldsStore.getState();
+  console.log(111111111111, fields);
   store.fields.map((storeField, index) => {
     const f = fields.find(
       (messageField) => messageField.fieldId === storeField.fieldId
