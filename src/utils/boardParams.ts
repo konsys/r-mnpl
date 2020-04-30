@@ -3,3 +3,6 @@ export const CORNER_FIELDS = [0, 10, 20, 30];
 export const TABLE_SIZE = 665;
 export const MARGIN_CENTER = 35;
 export const FIELD_SIZE = 55;
+
+export const FIELD_JAIL_LEFT = 605;
+export const FIELD_JAIL_TOP = 55;
