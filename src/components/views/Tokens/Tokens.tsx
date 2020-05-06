@@ -15,6 +15,7 @@ export const Tokens = (props: Props) => {
   return (
     <>
       {useStore(playersStore).players.map((v, k) => {
+        console.log(111114411, v.jailed, v.userId);
         const left = v.jailed ? FIELD_JAIL_LEFT : v.tokenLeftPosition;
         const top = v.jailed ? FIELD_JAIL_TOP : v.tokenTopPosition;
         return (

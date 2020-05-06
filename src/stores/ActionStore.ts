@@ -35,7 +35,6 @@ export const actionsStore = ActionDomain.store<ICurrentAction>({
 
 actionsStore.watch((v) => {
   const action = v.event.action;
-  console.log(22222222222222, action);
   switch (action.type) {
     case BoardActionType.ROLL_DICES_MODAL:
       resetDicesEvent();
