@@ -61,6 +61,7 @@ actionsStore.watch((v) => {
     case BoardActionType.TAX_PAYING_MODAL:
       showModalEvent(taxModal(action));
       break;
+
     case BoardActionType.UN_JAIL_MODAL:
       showModalEvent(unJailModal(action));
       break;

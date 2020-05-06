@@ -51,6 +51,15 @@ export const fieldAuctionEffect = ModalDomain.effect<
     boardSocket.emit(BoardActionType.AUCTION_START, data),
 });
 
+export const jailDepositPaidEffect = ModalDomain.effect<
+  IActionId,
+  Promise<SocketIOClient.Socket>,
+  Error
+>(BoardActionType.UN_JAIL_MODAL, {
+  handler: async (data) =>
+    boardSocket.emit(BoardActionType.UN_JAIL_MODAL, data),
+});
+
 export const modalStore = ModalDomain.store<BoardAction>(init)
   .on(showModalEvent, (_, data) => data)
   .reset(resetModalEvent);
