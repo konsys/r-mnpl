@@ -27,7 +27,8 @@ export const Game = (props: Props) => {
   const isModal =
     actionState.event.action.type === BoardActionType.ROLL_DICES_MODAL ||
     actionState.event.action.type === BoardActionType.CAN_BUY ||
-    actionState.event.action.type === BoardActionType.TAX_PAYING_MODAL;
+    actionState.event.action.type === BoardActionType.TAX_PAYING_MODAL ||
+    actionState.event.action.type === BoardActionType.UN_JAIL_MODAL;
   return (
     <>
       <div className="wrapper" style={{ width: "100%", height: "100%" }}>

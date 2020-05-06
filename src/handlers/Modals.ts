@@ -75,3 +75,33 @@ export const taxModal = (act: BoardAction): BoardAction => {
     _id: act._id,
   };
 };
+
+export const unJailModal = (act: BoardAction): BoardAction => {
+  return {
+    type: act.type,
+    userId: act.userId,
+    title: act.title,
+    text: act.text,
+    actionButtons: [
+      {
+        title: "Выйти под залог 500k",
+        onClick: () => {
+          dicesRolledEffect({
+            actionId: act._id,
+          });
+        },
+        disabled: false,
+      },
+      {
+        title: "Бросить кубики",
+        onClick: () => {
+          dicesRolledEffect({
+            actionId: act._id,
+          });
+        },
+        disabled: false,
+      },
+    ],
+    _id: act._id,
+  };
+};
