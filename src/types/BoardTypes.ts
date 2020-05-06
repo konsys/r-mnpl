@@ -25,8 +25,9 @@ export enum BoardActionType {
   AUCTION_START = "auctionStart",
   ROLL_DICES_MODAL = "showDicesModal",
   TAX_PAYING_MODAL = "taxPayingModal",
-  UN_JAIL_MODAL = "unJailModal",
   TAX_PAID = "taxPaid",
+  UN_JAIL_MODAL = "unJailModal",
+  UN_JAIL_PAID = "unJailPaid",
 }
 
 export interface BoardAction {

@@ -55,9 +55,8 @@ export const jailDepositPaidEffect = ModalDomain.effect<
   IActionId,
   Promise<SocketIOClient.Socket>,
   Error
->(BoardActionType.UN_JAIL_MODAL, {
-  handler: async (data) =>
-    boardSocket.emit(BoardActionType.UN_JAIL_MODAL, data),
+>(BoardActionType.UN_JAIL_PAID, {
+  handler: async (data) => boardSocket.emit(BoardActionType.UN_JAIL_PAID, data),
 });
 
 export const modalStore = ModalDomain.store<BoardAction>(init)
