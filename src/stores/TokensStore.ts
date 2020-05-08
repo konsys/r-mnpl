@@ -1,16 +1,16 @@
 import { sample } from "effector";
-import {
-  dicesStore,
-  setDicesEvent,
-  rollDicesCompletedEffect,
-} from "./DicesStore";
+import { rollDicesCompletedEffect } from "./DicesStore";
 import { BoardDomain } from "./BoardDomain";
-import { BoardAction } from "../types/BoardTypes";
 import { actionsStore } from "./ActionStore";
 import { TokenMove } from "../types/BoardTypes";
 import { LINE_TRANSITION_TIMEOUT, CORNER_FIELDS } from "../utils/boardParams";
 import { createTurnsArray, fieldPositions } from "../utils/fields.utils";
 import { getActingPlayer, updatePlayer } from "../utils/players.utils";
+import {
+  playersStore,
+  IPlayersStore,
+  relocatePLayerEvent,
+} from "./PlayersStore";
 
 const TokenDomain = BoardDomain.createDomain("TokenDomain");
 export const resetTokens = TokenDomain.event();
@@ -25,14 +25,15 @@ export const onTransitionEnd = async (v: TokenMove) => {
   );
 };
 
-const diceTurn = sample(dicesStore, setDicesEvent, (v) => v);
+const playersChange = sample(playersStore, relocatePLayerEvent, (v) => v);
 
-diceTurn.watch(async (action: BoardAction) => {
+playersChange.watch(async (players: IPlayersStore) => {
   const currentPlayer = getActingPlayer();
+  console.log(234234234, players);
 
   let stopPosition = 0;
-  if (currentPlayer) {
-    stopPosition = action.meanPosition ? action.meanPosition : 0;
+  if (currentPlayer && currentPlayer?.meanPosition !== stopPosition) {
+    stopPosition = currentPlayer.meanPosition ? currentPlayer.meanPosition : 0;
 
     const usedFields = createTurnsArray(
       currentPlayer.prevPosition,
@@ -60,7 +61,15 @@ diceTurn.watch(async (action: BoardAction) => {
       }
       lastIndex++;
     }
+  } else if (currentPlayer && stopPosition === 0) {
+    setTimeout(() => {
+      updatePlayer({
+        ...currentPlayer,
+        tokenLeftPosition: fields[0].left,
+        tokenTopPosition: fields[0].top,
+        prevPosition: currentPlayer.meanPosition,
+        meanPosition: stopPosition,
+      });
+    }, LINE_TRANSITION_TIMEOUT);
   }
-
-  // newPlayersState
 });
