@@ -7,11 +7,11 @@ export interface BoardField {
   fieldPosition: number;
   imgSrc?: string;
   name: string;
-  mnplSpecial?: number;
+  fieldSpecial?: number;
   price?: number;
-  mnplGroup?: number;
-  mnplCorner?: number;
-  mnplLine?: number;
+  fieldGroup?: number;
+  fieldCorner?: number;
+  fieldLine?: number;
   isJail?: boolean;
   status?: FieldStatus;
 }
@@ -20,10 +20,10 @@ export const Field = (props: BoardField) => {
   const players = useStore(playersStore).players;
 
   const {
-    mnplCorner,
-    mnplLine,
-    mnplGroup,
-    mnplSpecial,
+    fieldCorner,
+    fieldLine,
+    fieldGroup,
+    fieldSpecial,
     isJail,
     price,
     imgSrc,
@@ -32,10 +32,10 @@ export const Field = (props: BoardField) => {
 
   const field = (
     <div
-      mnpl-corner={mnplCorner}
-      mnpl-line={mnplLine}
-      mnpl-group={mnplGroup}
-      mnpl-special={mnplSpecial}
+      mnpl-corner={fieldCorner}
+      mnpl-line={fieldLine}
+      mnpl-group={fieldGroup}
+      mnpl-special={fieldSpecial}
       mnpl-owner={
         status && players.find((v) => v.userId === status.userId)?.moveOrder
       }
@@ -58,7 +58,7 @@ export const Field = (props: BoardField) => {
         )}
         <div className="_logo" style={{ backgroundImage: `url(${imgSrc}` }} />
       </div>
-      {!mnplSpecial && <div className="table-body-board-fields-one-level" />}
+      {!fieldSpecial && <div className="table-body-board-fields-one-level" />}
     </div>
   );
 

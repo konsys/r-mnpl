@@ -16,11 +16,11 @@ export const Board = (prop: Prop) => (
             field.status?.updatedPrice ? field.status.updatedPrice : field.price
           }
           imgSrc={field.imgSrc}
-          mnplGroup={field.mnplGroup}
-          mnplLine={field.mnplLine}
+          fieldGroup={field.fieldGroup}
+          fieldLine={field.fieldLine}
           name={field.name}
-          mnplSpecial={field.mnplSpecial}
-          mnplCorner={field.mnplCorner}
+          fieldSpecial={field.fieldSpecial}
+          fieldCorner={field.fieldCorner}
           isJail={field.isJail}
           status={field.status}
         />
