@@ -14,7 +14,7 @@ export interface BoardField {
   fieldLine?: number;
   isJail?: boolean;
   status?: FieldStatus;
-  fieldType: FieldType;
+  type: FieldType;
 }
 
 export const Field = (props: BoardField) => {
@@ -29,7 +29,7 @@ export const Field = (props: BoardField) => {
     price,
     imgSrc,
     status,
-    fieldType,
+    type,
   } = props;
 
   const field = (
@@ -43,10 +43,9 @@ export const Field = (props: BoardField) => {
       }
       className="table-body-board-fields-one"
     >
-      {console.log(2222222, fieldType)}
-      {(fieldType === FieldType.AUTO ||
-        fieldType === FieldType.COMPANY ||
-        fieldType === FieldType.IT) && (
+      {(type === FieldType.AUTO ||
+        type === FieldType.COMPANY ||
+        type === FieldType.IT) && (
         <div className="table-body-board-fields-one-label">
           <div>{price}</div>
         </div>
