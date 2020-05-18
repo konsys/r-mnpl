@@ -1,5 +1,5 @@
 import React from "react";
-import { FieldStatus } from "../../../types/BoardTypes";
+import { FieldStatus, FieldType } from "../../../types/BoardTypes";
 import { useStore } from "effector-react";
 import { playersStore } from "../../../stores/PlayersStore";
 export interface BoardField {
@@ -14,6 +14,7 @@ export interface BoardField {
   fieldLine?: number;
   isJail?: boolean;
   status?: FieldStatus;
+  fieldType: FieldType;
 }
 
 export const Field = (props: BoardField) => {
@@ -28,6 +29,7 @@ export const Field = (props: BoardField) => {
     price,
     imgSrc,
     status,
+    fieldType,
   } = props;
 
   const field = (
@@ -41,7 +43,10 @@ export const Field = (props: BoardField) => {
       }
       className="table-body-board-fields-one"
     >
-      {price && price > 0 && (
+      {console.log(2222222, fieldType)}
+      {(fieldType === FieldType.AUTO ||
+        fieldType === FieldType.COMPANY ||
+        fieldType === FieldType.IT) && (
         <div className="table-body-board-fields-one-label">
           <div>{price}</div>
         </div>

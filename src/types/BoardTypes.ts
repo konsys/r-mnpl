@@ -181,3 +181,15 @@ export interface TokenMoveStore {
   version: number;
   tokens: TokenMove[];
 }
+export enum FieldType {
+  CHANCE = "chance",
+  COMPANY = "company",
+  JAIL = "jail",
+  ROULETTE = "roulette",
+  CASION = "casino",
+  START = "start",
+  TAX = "tax",
+  IT = "IT",
+  AUTO = "auto",
+  TAKE_REST = "takeRest",
+}

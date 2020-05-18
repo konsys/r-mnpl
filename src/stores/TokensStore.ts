@@ -29,7 +29,6 @@ const playersChange = sample(playersStore, relocatePLayerEvent, (v) => v);
 
 playersChange.watch(async (players: IPlayersStore) => {
   const currentPlayer = getActingPlayer();
-  console.log(234234234, players);
 
   let stopPosition = 0;
   if (currentPlayer && currentPlayer?.meanPosition !== stopPosition) {

@@ -23,6 +23,7 @@ export const Board = (prop: Prop) => (
           fieldCorner={field.fieldCorner}
           isJail={field.isJail}
           status={field.status}
+          fieldType={field.fieldType}
         />
       );
     })}

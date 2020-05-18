@@ -24,8 +24,6 @@ export const updatePlayer = (
   player: IPlayer,
   srcOfChange?: string
 ): boolean => {
-  console.log("srcOfChange", srcOfChange);
-
   const playersState = playersStore.getState();
   const currentPLayerIndex = getPlayerIndexById(player.userId);
   const currentPLayer = playersState.players[currentPLayerIndex];
@@ -34,7 +32,6 @@ export const updatePlayer = (
 
   playersState.players[currentPLayerIndex] = player;
 
-  console.log(3333333, currentPLayer, player);
   if (
     player.meanPosition !== currentPLayer.meanPosition ||
     player.prevPosition !== currentPLayer.prevPosition ||

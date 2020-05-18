@@ -33,14 +33,8 @@ export const playersStore = PlayersDomain.store<IPlayersStore>({
     };
   })
   .on(getPlayersEffect.fail, (err: any) => console.error("error", err))
-  .on(setPlayersEvent, (_, state) => {
-    console.log("setPlayersEvent");
-    return state;
-  })
-  .on(relocatePLayerEvent, (_, state) => {
-    console.log("relocatePLayerEvent");
-    return state;
-  })
+  .on(setPlayersEvent, (_, state) => state)
+  .on(relocatePLayerEvent, (_, state) => state)
   .reset(resetPlayersEvent);
 
 // playersStore.watch((v) => console.log("playersStoreWatch", v));
