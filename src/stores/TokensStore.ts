@@ -2,7 +2,6 @@ import { sample } from "effector";
 import { rollDicesCompletedEffect } from "./DicesStore";
 import { BoardDomain } from "./BoardDomain";
 import { actionsStore } from "./ActionStore";
-import { TokenMove } from "../types/BoardTypes";
 import { LINE_TRANSITION_TIMEOUT, CORNER_FIELDS } from "../utils/boardParams";
 import { createTurnsArray, fieldPositions } from "../utils/fields.utils";
 import { getActingPlayer, updatePlayer } from "../utils/players.utils";
@@ -17,8 +16,10 @@ export const resetTokens = TokenDomain.event();
 
 const fields = fieldPositions();
 
-export const onTransitionEnd = async (v: TokenMove) => {
+export const onTransitionEnd = async (playerId: number, actionId: string) => {
   const actionState = actionsStore.getState();
+  console.log(2222222222222, playerId, actionId);
+  // actionId !== actionState.actionId &&
   setTimeout(
     () => rollDicesCompletedEffect({ actionId: actionState.actionId }),
     LINE_TRANSITION_TIMEOUT
