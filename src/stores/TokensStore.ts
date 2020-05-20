@@ -19,7 +19,7 @@ const fields = fieldPositions();
 export const onTransitionEnd = async (playerId: number, actionId: string) => {
   const actionState = actionsStore.getState();
 
-  // actionId !== actionState.actionId &&
+  console.log(2222222);
   setTimeout(
     () => rollDicesCompletedEffect({ actionId: actionState.actionId }),
     LINE_TRANSITION_TIMEOUT

@@ -37,4 +37,4 @@ export const playersStore = PlayersDomain.store<IPlayersStore>({
   .on(relocatePLayerEvent, (_, state) => state)
   .reset(resetPlayersEvent);
 
-// playersStore.watch((v) => onsole.log("playersStoreWatch", v));
+// playersStore.watch((v) => console.log("playersStoreWatch", v));
