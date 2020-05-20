@@ -2,6 +2,8 @@ import { BoardDomain } from "./BoardDomain";
 import { LINE_TRANSITION_TIMEOUT, CORNER_FIELDS } from "../utils/boardParams";
 import { createTurnsArray, fieldPositions } from "../utils/fields.utils";
 import { getActingPlayer, updatePlayer } from "../utils/players.utils";
+import { dicesRolledEffect } from "../stores/ModalStore";
+import { actionsStore } from "./ActionStore";
 
 const TokenDomain = BoardDomain.createDomain("TokenDomain");
 export const resetTokens = TokenDomain.event();
@@ -41,6 +43,10 @@ export const relocateToken = () => {
       }
       lastIndex++;
     }
+    // TODO Callback after token move
+    setTimeout(() => {
+      dicesRolledEffect({ actionId: actionsStore.getState().actionId });
+    }, LINE_TRANSITION_TIMEOUT * usedFields.length);
   } else if (currentPlayer && stopPosition === 0) {
     setTimeout(() => {
       updatePlayer({
@@ -50,6 +56,6 @@ export const relocateToken = () => {
         prevPosition: currentPlayer.meanPosition,
         meanPosition: stopPosition,
       });
-    }, LINE_TRANSITION_TIMEOUT);
+    });
   }
 };
