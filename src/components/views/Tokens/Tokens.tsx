@@ -22,7 +22,6 @@ export const Tokens = (props: Props) => {
           <div
             key={k}
             onTransitionEnd={() => {
-              console.log(333333);
               props.onTransitionEnd(v.userId, actionsStore.getState().actionId);
             }}
             mnpl-jailed={v.jailed}

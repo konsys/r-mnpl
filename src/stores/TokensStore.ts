@@ -18,7 +18,7 @@ const fields = fieldPositions();
 
 export const onTransitionEnd = async (playerId: number, actionId: string) => {
   const actionState = actionsStore.getState();
-  console.log(2222222222222, playerId, actionId);
+
   // actionId !== actionState.actionId &&
   setTimeout(
     () => rollDicesCompletedEffect({ actionId: actionState.actionId }),
