@@ -20,15 +20,13 @@ export const getPlayerIndexById = (userId: number) => {
   return pStore.players.findIndex((v) => v.userId === userId);
 };
 
-export const updatePlayer = (
-  player: IPlayer,
-  srcOfChange?: string
-): boolean => {
+export const updatePlayer = (player: IPlayer): boolean => {
   const playersState = playersStore.getState();
   const currentPLayerIndex = getPlayerIndexById(player.userId);
   const currentPLayer = playersState.players[currentPLayerIndex];
 
-  if (currentPLayerIndex === -1) return false;
+  console.log(222222233333333);
+  if (currentPLayerIndex === -1) throw new Error("player not found");
 
   playersState.players[currentPLayerIndex] = player;
 

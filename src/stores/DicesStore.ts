@@ -28,4 +28,4 @@ export const dicesStore = DiceDomain.store<BoardAction>(init)
   .on(setDicesEvent, (_, data) => data)
   .reset(resetDicesEvent);
 
-dicesStore.watch((v) => console.log("dicesStoreWatch", v));
+// dicesStore.watch((v) => console.log("dicesStoreWatch", v));

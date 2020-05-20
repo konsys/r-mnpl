@@ -1,7 +1,5 @@
 import { sample } from "effector";
-import { rollDicesCompletedEffect } from "./DicesStore";
 import { BoardDomain } from "./BoardDomain";
-import { actionsStore } from "./ActionStore";
 import { LINE_TRANSITION_TIMEOUT, CORNER_FIELDS } from "../utils/boardParams";
 import { createTurnsArray, fieldPositions } from "../utils/fields.utils";
 import { getActingPlayer, updatePlayer } from "../utils/players.utils";
@@ -9,6 +7,7 @@ import {
   playersStore,
   IPlayersStore,
   relocatePLayerEvent,
+  setPlayersEvent,
 } from "./PlayersStore";
 
 const TokenDomain = BoardDomain.createDomain("TokenDomain");
@@ -17,8 +16,12 @@ export const resetTokens = TokenDomain.event();
 const fields = fieldPositions();
 
 const playersChange = sample(playersStore, relocatePLayerEvent, (v) => v);
+const playersChange1 = sample(playersStore, setPlayersEvent, (v) => v);
 
-playersChange.watch(async (players: IPlayersStore) => {
+playersChange.watch((v) => console.log("relocatePLayerEvent", v));
+playersChange1.watch((v) => console.log("setPlayersEvent", v));
+
+playersStore.watch(async (players: IPlayersStore) => {
   const currentPlayer = getActingPlayer();
 
   let stopPosition = 0;
