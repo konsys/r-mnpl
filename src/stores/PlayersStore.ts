@@ -2,6 +2,8 @@ import { BoardDomain } from "./BoardDomain";
 import { fetchPlayers } from "../components/core/PlayersCore/api";
 import { IPlayer } from "../types/BoardTypes";
 import { MARGIN_CENTER } from "../types/boardParams";
+import { sample } from "effector";
+import { relocateToken } from "./TokensStore";
 
 const PlayersDomain = BoardDomain.domain("PlayersDomain");
 
@@ -38,3 +40,11 @@ export const playersStore = PlayersDomain.store<IPlayersStore>({
   .reset(resetPlayersEvent);
 
 // playersStore.watch((v) => console.log("playersStoreWatch", v));
+// playersStore.watch((v) => console.log("relocatePLayerEvent", v));
+
+export const playersChange = sample(
+  playersStore,
+  relocatePLayerEvent,
+  (v) => v
+);
+playersChange.watch((v) => relocateToken());

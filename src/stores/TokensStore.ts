@@ -1,27 +1,14 @@
-import { sample } from "effector";
 import { BoardDomain } from "./BoardDomain";
 import { LINE_TRANSITION_TIMEOUT, CORNER_FIELDS } from "../utils/boardParams";
 import { createTurnsArray, fieldPositions } from "../utils/fields.utils";
 import { getActingPlayer, updatePlayer } from "../utils/players.utils";
-import {
-  playersStore,
-  IPlayersStore,
-  relocatePLayerEvent,
-  setPlayersEvent,
-} from "./PlayersStore";
 
 const TokenDomain = BoardDomain.createDomain("TokenDomain");
 export const resetTokens = TokenDomain.event();
 
 const fields = fieldPositions();
 
-const playersChange = sample(playersStore, relocatePLayerEvent, (v) => v);
-const playersChange1 = sample(playersStore, setPlayersEvent, (v) => v);
-
-playersChange.watch((v) => console.log("relocatePLayerEvent", v));
-playersChange1.watch((v) => console.log("setPlayersEvent", v));
-
-playersStore.watch(async (players: IPlayersStore) => {
+export const relocateToken = () => {
   const currentPlayer = getActingPlayer();
 
   let stopPosition = 0;
@@ -65,4 +52,4 @@ playersStore.watch(async (players: IPlayersStore) => {
       });
     }, LINE_TRANSITION_TIMEOUT);
   }
-});
+};
