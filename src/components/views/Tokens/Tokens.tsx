@@ -6,13 +6,8 @@ import {
 } from "../../../utils/boardParams";
 import { useStore } from "effector-react";
 import { playersStore } from "../../../stores/PlayersStore";
-import { actionsStore } from "../../../stores/ActionStore";
 
-interface Props {
-  onTransitionEnd: (id: number, actionId: string) => void;
-}
-
-export const Tokens = (props: Props) => {
+export const Tokens = () => {
   return (
     <>
       {useStore(playersStore).players.map((v, k) => {
@@ -21,9 +16,6 @@ export const Tokens = (props: Props) => {
         return (
           <div
             key={k}
-            onTransitionEnd={() => {
-              props.onTransitionEnd(v.userId, actionsStore.getState().actionId);
-            }}
             mnpl-jailed={v.jailed}
             style={{
               left: `${left}px`,

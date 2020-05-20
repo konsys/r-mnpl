@@ -16,16 +16,6 @@ export const resetTokens = TokenDomain.event();
 
 const fields = fieldPositions();
 
-export const onTransitionEnd = async (playerId: number, actionId: string) => {
-  const actionState = actionsStore.getState();
-
-  console.log(2222222);
-  setTimeout(
-    () => rollDicesCompletedEffect({ actionId: actionState.actionId }),
-    LINE_TRANSITION_TIMEOUT
-  );
-};
-
 const playersChange = sample(playersStore, relocatePLayerEvent, (v) => v);
 
 playersChange.watch(async (players: IPlayersStore) => {

@@ -16,7 +16,6 @@ import { BoardCore } from "../BoardCore/BoardCore";
 import { UsersCore } from "../PlayersCore/PlayersCore";
 import { actionsStore } from "../../../stores/ActionStore";
 import { BoardActionType } from "../../../types/BoardTypes";
-import { onTransitionEnd } from "../../../stores/TokensStore";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 
@@ -47,9 +46,7 @@ export const Game = (props: Props) => {
                 <Ticket />
                 <Chat />
               </div>
-              <div className="table-body-board-tokens">
-                {<Tokens onTransitionEnd={onTransitionEnd} />}
-              </div>
+              <div className="table-body-board-tokens">{<Tokens />}</div>
               <Dices />
               <Contract />
               <TableHelper />
