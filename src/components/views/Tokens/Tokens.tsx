@@ -20,7 +20,9 @@ export const Tokens = (prop: Props) => {
         const top = player?.jailed ? FIELD_JAIL_TOP : v.top;
         return (
           <div
-            onTransitionEnd={() => prop.onTransitionEnd(v.userId)}
+            onTransitionEnd={
+              player?.jailed ? () => null : () => prop.onTransitionEnd(v.userId)
+            }
             key={k}
             mnpl-jailed={player?.jailed}
             style={{
