@@ -7,6 +7,7 @@ import {
 } from "../types/BoardTypes";
 import { boardSocket } from "../components/core/BoardCore/BoardCore";
 import { actionsStore } from "./ActionStore";
+import { getActingPlayer } from "../utils/players.utils";
 
 const ModalDomain = BoardDomain.domain("ModalDomain");
 
@@ -82,6 +83,9 @@ export const modalStore = ModalDomain.store<BoardAction>(init)
 
 // modalStore.watch((v) => console.log("modalStoreWatch", v));
 export const onTransitionEnd = (userId: number) => {
+  console.log(1111111, getActingPlayer()?.jailed);
+  // const actingPlayer = getActingPlayer();
+  // !actingPlayer?.jailed &&
   tokensMoveCompleteEffect({
     userId,
     actionId: actionsStore.getState().actionId,
