@@ -1,19 +1,15 @@
 import { BoardDomain } from "./BoardDomain";
 import { LINE_TRANSITION_TIMEOUT, CORNER_FIELDS } from "../utils/boardParams";
 import { createTurnsArray, fieldPositions } from "../utils/fields.utils";
-import { updatePlayer } from "../utils/players.utils";
-import { IPlayer } from "../types/BoardTypes";
 const TokenDomain = BoardDomain.createDomain("TokenDomain");
 export const resetTokens = TokenDomain.event();
 
 const fields = fieldPositions();
 
-export const moveTokenAfterDices = (currentPlayer: IPlayer) => {
+export const moveTokenAfterDices = (currentToken: IToken) => {
   let stopPosition = 0;
-  if (currentPlayer && currentPlayer?.tokenPosition !== stopPosition) {
-    stopPosition = currentPlayer.tokenPosition
-      ? currentPlayer.tokenPosition
-      : 0;
+  if (currentToken && currentToken?.meanPosition !== stopPosition) {
+    stopPosition = currentToken.meanPosition ? currentToken.meanPosition : 0;
 
     const usedFields = createTurnsArray(0, stopPosition);
 
@@ -26,24 +22,24 @@ export const moveTokenAfterDices = (currentPlayer: IPlayer) => {
         lastIndex === usedFields.length - 1
       ) {
         setTimeout(() => {
-          updatePlayer({
-            ...currentPlayer,
-            tokenLeftPosition: fields[field].left,
-            tokenTopPosition: fields[field].top,
-            tokenPosition: stopPosition,
+          updateToken({
+            ...currentToken,
+            left: fields[field].left,
+            top: fields[field].top,
+            meanPosition: stopPosition,
           });
         }, timeout);
         timeout += LINE_TRANSITION_TIMEOUT;
       }
       lastIndex++;
     }
-  } else if (currentPlayer && stopPosition === 0) {
+  } else if (currentToken && stopPosition === 0) {
     setTimeout(() => {
-      updatePlayer({
-        ...currentPlayer,
-        tokenLeftPosition: fields[0].left,
-        tokenTopPosition: fields[0].top,
-        tokenPosition: stopPosition,
+      updateToken({
+        ...currentToken,
+        left: fields[0].left,
+        top: fields[0].top,
+        meanPosition: stopPosition,
       });
     });
   }
@@ -58,6 +54,7 @@ interface IToken {
   left: number;
   top: number;
   userId: number;
+  jailed: number;
 }
 
 const TokensDomain = BoardDomain.domain("PlayersDomain");
@@ -77,6 +74,7 @@ export const updateToken = (token: IToken) => {
   tokens[index] = token;
   updateAllTokens(tokens);
 };
+
 export const updateAllTokens = (tokens: IToken[]) => {
   setTokensEvent({
     version: ++tokensStore.getState().version,

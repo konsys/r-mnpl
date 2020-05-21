@@ -141,8 +141,6 @@ export interface IUser {
 
 export interface IPlayer extends UserGameStatus {
   moveOrder: 0 | 1 | 2 | 3 | 4;
-  tokenLeftPosition: number;
-  tokenTopPosition: number;
 }
 interface UserGameStatus extends IUser {
   gameId: string;
@@ -150,7 +148,7 @@ interface UserGameStatus extends IUser {
   doublesRolledAsCombo: number;
   jailed: number;
   unjailAttempts: number;
-  tokenPosition: number;
+  meanPosition: number;
   money: number;
   creditPayRound: boolean;
   creditNextTakeRound: number;

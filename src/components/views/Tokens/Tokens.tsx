@@ -5,7 +5,7 @@ import {
   FIELD_JAIL_TOP,
 } from "../../../utils/boardParams";
 import { useStore } from "effector-react";
-import { playersStore } from "../../../stores/PlayersStore";
+import { tokensStore } from "../../../stores/TokensStore";
 
 interface Props {
   onTransitionEnd: (userId: number) => any;
@@ -13,9 +13,9 @@ interface Props {
 export const Tokens = (prop: Props) => {
   return (
     <>
-      {useStore(playersStore).players.map((v, k) => {
-        const left = v.jailed ? FIELD_JAIL_LEFT : v.tokenLeftPosition;
-        const top = v.jailed ? FIELD_JAIL_TOP : v.tokenTopPosition;
+      {useStore(tokensStore).tokens.map((v, k) => {
+        const left = v.jailed ? FIELD_JAIL_LEFT : v.left;
+        const top = v.jailed ? FIELD_JAIL_TOP : v.top;
         return (
           <div
             onTransitionEnd={() => prop.onTransitionEnd(v.userId)}
