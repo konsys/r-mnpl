@@ -30,12 +30,12 @@ export const updatePlayer = (player: IPlayer): boolean => {
   playersState.players[currentPLayerIndex] = player;
 
   if (
-    player.meanPosition !== currentPLayer.meanPosition ||
-    player.prevPosition !== currentPLayer.prevPosition ||
+    player.tokenPosition !== currentPLayer.tokenPosition ||
     player.tokenTopPosition !== currentPLayer.tokenTopPosition ||
     player.tokenLeftPosition !== currentPLayer.tokenLeftPosition
   ) {
     // For moving tokens
+
     relocatePLayerEvent({
       version: playersState.version < 100 ? ++playersState.version : 0,
       players: playersState.players,
@@ -56,8 +56,8 @@ export const updateAllPlayers = (players: IPlayer[]): boolean => {
   let isPlayerMoves = false;
   for (let playerIndex in playersState.players) {
     if (
-      playersState.players[playerIndex].meanPosition !==
-      players[playerIndex].meanPosition
+      playersState.players[playerIndex].tokenPosition !==
+      players[playerIndex].tokenPosition
     ) {
       isPlayerMoves = true;
     }

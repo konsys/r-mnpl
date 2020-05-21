@@ -21,7 +21,7 @@ const init: BoardAction = {
   userId: 1,
   dices: [1, 1, 0],
   dicesSum: 0,
-  meanPosition: 0,
+  tokenPosition: 0,
   _id: "",
 };
 

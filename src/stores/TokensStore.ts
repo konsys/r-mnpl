@@ -8,17 +8,14 @@ export const resetTokens = TokenDomain.event();
 
 const fields = fieldPositions();
 
-export const relocateToken = (currentPlayer: IPlayer) => {
-  // const currentPlayer = getActingPlayer();
-
+export const moveTokenAfterDices = (currentPlayer: IPlayer) => {
   let stopPosition = 0;
-  if (currentPlayer && currentPlayer?.meanPosition !== stopPosition) {
-    stopPosition = currentPlayer.meanPosition ? currentPlayer.meanPosition : 0;
+  if (currentPlayer && currentPlayer?.tokenPosition !== stopPosition) {
+    stopPosition = currentPlayer.tokenPosition
+      ? currentPlayer.tokenPosition
+      : 0;
 
-    const usedFields = createTurnsArray(
-      currentPlayer.prevPosition,
-      stopPosition
-    );
+    const usedFields = createTurnsArray(0, stopPosition);
 
     let lastIndex = 0;
     let timeout = LINE_TRANSITION_TIMEOUT;
@@ -33,8 +30,7 @@ export const relocateToken = (currentPlayer: IPlayer) => {
             ...currentPlayer,
             tokenLeftPosition: fields[field].left,
             tokenTopPosition: fields[field].top,
-            prevPosition: currentPlayer.meanPosition,
-            meanPosition: stopPosition,
+            tokenPosition: stopPosition,
           });
         }, timeout);
         timeout += LINE_TRANSITION_TIMEOUT;
@@ -47,9 +43,43 @@ export const relocateToken = (currentPlayer: IPlayer) => {
         ...currentPlayer,
         tokenLeftPosition: fields[0].left,
         tokenTopPosition: fields[0].top,
-        prevPosition: currentPlayer.meanPosition,
-        meanPosition: stopPosition,
+        tokenPosition: stopPosition,
       });
     });
   }
+};
+
+interface ITokenStore {
+  version: number;
+  tokens: IToken[];
+}
+interface IToken {
+  meanPosition: number;
+  left: number;
+  top: number;
+  userId: number;
+}
+
+const TokensDomain = BoardDomain.domain("PlayersDomain");
+export const setTokensEvent = TokensDomain.event<ITokenStore>();
+export const resetTokensEvent = TokensDomain.event<ITokenStore>();
+
+export const tokensStore = TokensDomain.store<ITokenStore>({
+  tokens: [],
+  version: 0,
+})
+  .on(setTokensEvent, (_, data) => data)
+  .reset(resetTokens);
+
+export const updateToken = (token: IToken) => {
+  const tokens = tokensStore.getState().tokens;
+  const index = tokens.findIndex((v) => v.userId === token.userId);
+  tokens[index] = token;
+  updateAllTokens(tokens);
+};
+export const updateAllTokens = (tokens: IToken[]) => {
+  setTokensEvent({
+    version: ++tokensStore.getState().version,
+    tokens,
+  });
 };

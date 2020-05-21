@@ -3,7 +3,7 @@ import { fetchPlayers } from "../components/core/PlayersCore/api";
 import { IPlayer } from "../types/BoardTypes";
 import { MARGIN_CENTER } from "../types/boardParams";
 import { sample } from "effector";
-import { relocateToken } from "./TokensStore";
+import { moveTokenAfterDices } from "./TokensStore";
 
 const PlayersDomain = BoardDomain.domain("PlayersDomain");
 
@@ -42,12 +42,14 @@ export const playersStore = PlayersDomain.store<IPlayersStore>({
 // playersStore.watch((v) => console.log("playersStoreWatch", v));
 // playersStore.watch((v) => console.log("relocatePLayerEvent", v));
 
-export const playersChange = sample(
+export const playersPositionChange = sample(
   playersStore,
   relocatePLayerEvent,
   (v) => v
 );
 
-playersChange.watch((store) => {
-  store.players.map((v) => relocateToken(v));
+playersPositionChange.watch(() => {
+  // const currentPlayer = getActingPlayer();
+  playersStore.getState().players.map((v) => moveTokenAfterDices(v));
+  // currentPlayer && moveTokenAfterDices(currentPlayer);
 });

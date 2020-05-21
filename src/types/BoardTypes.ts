@@ -44,7 +44,7 @@ export interface BoardAction {
   toUserId?: number;
   dices?: number[];
   dicesSum?: number;
-  meanPosition?: number;
+  tokenPosition?: number;
   title?: string;
   text?: string;
   actionButtons?: ActionButtons[];
@@ -150,8 +150,7 @@ interface UserGameStatus extends IUser {
   doublesRolledAsCombo: number;
   jailed: number;
   unjailAttempts: number;
-  prevPosition: number;
-  meanPosition: number;
+  tokenPosition: number;
   money: number;
   creditPayRound: boolean;
   creditNextTakeRound: number;
@@ -166,7 +165,7 @@ interface UserGameStatus extends IUser {
 
 interface IToken {
   userId: number;
-  meanPosition: number;
+  tokenPosition: number;
   jailed: number;
 }
 export interface TokenStore {
