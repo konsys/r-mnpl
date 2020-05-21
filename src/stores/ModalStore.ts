@@ -1,5 +1,10 @@
 import { BoardDomain } from "./BoardDomain";
-import { BoardAction, BoardActionType, IActionId } from "../types/BoardTypes";
+import {
+  BoardAction,
+  BoardActionType,
+  IActionId,
+  IMoveCompleted,
+} from "../types/BoardTypes";
 import { boardSocket } from "../components/core/BoardCore/BoardCore";
 
 const ModalDomain = BoardDomain.domain("ModalDomain");
@@ -28,8 +33,8 @@ export const rollDicesEffect = ModalDomain.effect<
 });
 
 // Emits after token`s move completed
-export const moveTokensCompleteEffect = ModalDomain.effect<
-  IActionId,
+export const tokensMoveCompleteEffect = ModalDomain.effect<
+  IMoveCompleted,
   Promise<SocketIOClient.Socket>,
   Error
 >(BoardActionType.PLAYER_ROLL_DICES, {
@@ -75,3 +80,9 @@ export const modalStore = ModalDomain.store<BoardAction>(init)
   .reset(resetModalEvent);
 
 // modalStore.watch((v) => console.log("modalStoreWatch", v));
+export const onTransitionEnd = (userId: number) => {
+  console.log(234234234234, userId);
+  tokensMoveCompleteEffect({
+    userId,
+  });
+};

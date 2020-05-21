@@ -25,7 +25,6 @@ export const updatePlayer = (player: IPlayer): boolean => {
   const currentPLayerIndex = getPlayerIndexById(player.userId);
   const currentPLayer = playersState.players[currentPLayerIndex];
 
-  console.log(222222233333333);
   if (currentPLayerIndex === -1) throw new Error("player not found");
 
   playersState.players[currentPLayerIndex] = player;

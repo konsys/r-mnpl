@@ -7,7 +7,10 @@ import {
 import { useStore } from "effector-react";
 import { playersStore } from "../../../stores/PlayersStore";
 
-export const Tokens = () => {
+interface Props {
+  onTransitionEnd: (userId: number) => any;
+}
+export const Tokens = (prop: Props) => {
   return (
     <>
       {useStore(playersStore).players.map((v, k) => {
@@ -15,6 +18,7 @@ export const Tokens = () => {
         const top = v.jailed ? FIELD_JAIL_TOP : v.tokenTopPosition;
         return (
           <div
+            onTransitionEnd={() => prop.onTransitionEnd(v.userId)}
             key={k}
             mnpl-jailed={v.jailed}
             style={{

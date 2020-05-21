@@ -7,6 +7,10 @@ export interface IActionId {
   actionId: string;
 }
 
+export interface IMoveCompleted {
+  userId: number;
+}
+
 export type Contract = {
   fromUserId: number;
   toUserId: number;

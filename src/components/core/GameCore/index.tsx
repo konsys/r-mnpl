@@ -18,6 +18,7 @@ import { actionsStore } from "../../../stores/ActionStore";
 import { BoardActionType } from "../../../types/BoardTypes";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
+import { onTransitionEnd } from "../../../stores/ModalStore";
 
 interface Props extends RouteComponentProps {}
 
@@ -46,7 +47,9 @@ export const Game = (props: Props) => {
                 <Ticket />
                 <Chat />
               </div>
-              <div className="table-body-board-tokens">{<Tokens />}</div>
+              <div className="table-body-board-tokens">
+                {<Tokens onTransitionEnd={onTransitionEnd} />}
+              </div>
               <Dices />
               <Contract />
               <TableHelper />
