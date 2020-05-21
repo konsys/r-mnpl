@@ -3,7 +3,7 @@ import { fetchPlayers } from "../components/core/PlayersCore/api";
 import { IPlayer } from "../types/BoardTypes";
 import { MARGIN_CENTER } from "../types/boardParams";
 import { sample } from "effector";
-import { moveTokenAfterDices, tokensStore } from "./TokensStore";
+import { moveTokenAfterDices, tokensStore, updateToken } from "./TokensStore";
 
 const PlayersDomain = BoardDomain.domain("PlayersDomain");
 
@@ -24,11 +24,16 @@ export const playersStore = PlayersDomain.store<IPlayersStore>({
 })
   .on(getPlayersEffect.done, (_, data) => {
     // Init token position
-    const players = data.result.map((v, k) => ({
-      ...v,
-      tokenLeftPosition: MARGIN_CENTER + k * 25,
-      tokenTopPosition: MARGIN_CENTER + k * 25,
-    }));
+    const players = data.result.map((v, k) => {
+      updateToken({
+        jailed: 0,
+        left: MARGIN_CENTER + k * 25,
+        top: MARGIN_CENTER + k * 25,
+        meanPosition: 0,
+        userId: v.userId,
+      });
+      return v;
+    });
     return {
       players,
       version: 1,

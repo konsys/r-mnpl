@@ -71,7 +71,7 @@ export const tokensStore = TokensDomain.store<ITokenStore>({
 export const updateToken = (token: IToken) => {
   const tokens = tokensStore.getState().tokens;
   const index = tokens.findIndex((v) => v.userId === token.userId);
-  tokens[index] = token;
+  index === -1 ? tokens.push(token) : (tokens[index] = token);
   updateAllTokens(tokens);
 };
 

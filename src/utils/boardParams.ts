@@ -6,4 +6,3 @@ export const FIELD_SIZE = 55;
 
 export const FIELD_JAIL_LEFT = 605;
 export const FIELD_JAIL_TOP = 55;
-
