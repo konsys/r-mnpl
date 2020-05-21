@@ -1,6 +1,9 @@
 import { playersStore, setPlayersEvent } from "../stores/PlayersStore";
 import { IPlayer } from "../types/BoardTypes";
 
+export const getPlayerById = (userId: number) =>
+  playersStore.getState().players.find((v) => v.userId === userId);
+
 export const getActingPlayer = () => {
   const pStore = playersStore.getState();
   return pStore.players.find((v) => v.isActing === true);
@@ -11,10 +14,8 @@ export const getActingPlayerIndex = () => {
   return pStore.players.findIndex((v) => v.isActing === true);
 };
 
-export const getPlayerIndexById = (userId: number) => {
-  const pStore = playersStore.getState();
-  return pStore.players.findIndex((v) => v.userId === userId);
-};
+export const getPlayerIndexById = (userId: number) =>
+  playersStore.getState().players.findIndex((v) => v.userId === userId);
 
 export const updatePlayer = (player: IPlayer): boolean => {
   const playersState = playersStore.getState();

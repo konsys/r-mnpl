@@ -1,19 +1,23 @@
 import { BoardDomain } from "./BoardDomain";
 import { LINE_TRANSITION_TIMEOUT, CORNER_FIELDS } from "../utils/boardParams";
 import { createTurnsArray, fieldPositions } from "../utils/fields.utils";
+import { getPlayerById } from "../utils/players.utils";
 const TokenDomain = BoardDomain.createDomain("TokenDomain");
 export const resetTokens = TokenDomain.event();
 
 const fields = fieldPositions();
 
 export const moveTokenAfterDices = (currentToken: IToken) => {
-  console.log(23424234, currentToken);
+  const player = getPlayerById(currentToken.userId);
 
-  let stopPosition = 0;
-  if (currentToken && currentToken?.meanPosition !== stopPosition) {
-    stopPosition = currentToken.meanPosition ? currentToken.meanPosition : 0;
+  let stopPosition = player?.meanPosition ? player.meanPosition : 0;
 
-    const usedFields = createTurnsArray(0, stopPosition);
+  if (player && currentToken.meanPosition !== player.meanPosition) {
+    console.log(23424234, currentToken.meanPosition);
+    const usedFields = createTurnsArray(
+      currentToken.meanPosition,
+      stopPosition
+    );
 
     let lastIndex = 0;
     let timeout = LINE_TRANSITION_TIMEOUT;
