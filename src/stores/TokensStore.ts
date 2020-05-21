@@ -2,7 +2,6 @@ import { BoardDomain } from "./BoardDomain";
 import { LINE_TRANSITION_TIMEOUT, CORNER_FIELDS } from "../utils/boardParams";
 import { createTurnsArray, fieldPositions } from "../utils/fields.utils";
 import { getActingPlayer, updatePlayer } from "../utils/players.utils";
-import { tokensMoveCompleteEffect } from "./ModalStore";
 const TokenDomain = BoardDomain.createDomain("TokenDomain");
 export const resetTokens = TokenDomain.event();
 
@@ -52,10 +51,4 @@ export const relocateToken = () => {
       });
     });
   }
-};
-export const onTransitionEnd = (userId: number) => {
-  console.log(234234234234);
-  tokensMoveCompleteEffect({
-    userId,
-  });
 };

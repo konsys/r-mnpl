@@ -7,7 +7,7 @@ export interface IActionId {
   actionId: string;
 }
 
-export interface IMoveCompleted {
+export interface IMoveCompleted extends IActionId {
   userId: number;
 }
 
