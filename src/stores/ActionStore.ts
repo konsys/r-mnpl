@@ -49,7 +49,7 @@ actionsStore.watch((v) => {
       );
       break;
 
-    case BoardActionType.PLAYER_ROLL_DICES:
+    case BoardActionType.PLAYER_TOKEN_MOVED:
       rollDicesHandler(action);
       break;
 

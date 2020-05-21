@@ -39,9 +39,9 @@ export const tokensMoveCompleteEffect = ModalDomain.effect<
   IMoveCompleted,
   Promise<SocketIOClient.Socket>,
   Error
->(BoardActionType.PLAYER_ROLL_DICES, {
+>(BoardActionType.PLAYER_TOKEN_MOVED, {
   handler: async (data) =>
-    boardSocket.emit(BoardActionType.PLAYER_ROLL_DICES, data),
+    boardSocket.emit(BoardActionType.PLAYER_TOKEN_MOVED, data),
 });
 
 export const taxPaidEffect = ModalDomain.effect<
