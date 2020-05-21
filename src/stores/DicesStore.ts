@@ -9,14 +9,15 @@ export const rollDicesCompletedEffect = DiceDomain.effect<
   IActionId,
   Promise<SocketIOClient.Socket>,
   Error
->(BoardActionType.ROLL_DICES, {
-  handler: async (data) => boardSocket.emit(BoardActionType.ROLL_DICES, data),
+>(BoardActionType.PLAYER_ROLL_DICES, {
+  handler: async (data) =>
+    boardSocket.emit(BoardActionType.PLAYER_ROLL_DICES, data),
 });
 
 export const setDicesEvent = DiceDomain.event<BoardAction>();
 
 const init: BoardAction = {
-  type: BoardActionType.ROLL_DICES,
+  type: BoardActionType.PLAYER_ROLL_DICES,
   userId: 1,
   dices: [1, 1, 0],
   dicesSum: 0,

@@ -3,7 +3,7 @@ import { setDicesEvent } from "../stores/DicesStore";
 
 export const rollDicesHandler = async (act: BoardAction) => {
   const roll: BoardAction = {
-    type: BoardActionType.ROLL_DICES,
+    type: BoardActionType.PLAYER_ROLL_DICES,
     userId: act.userId,
     dices: act.dices,
     meanPosition: act.meanPosition,

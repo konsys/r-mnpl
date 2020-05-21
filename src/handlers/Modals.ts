@@ -1,6 +1,6 @@
 import { BoardAction } from "../types/BoardTypes";
 import {
-  dicesRolledEffect,
+  rollDicesEffect,
   fieldBoughtEffect,
   fieldAuctionEffect,
   taxPaidEffect,
@@ -17,7 +17,7 @@ export const rollDicesModal = (act: BoardAction): BoardAction => {
       {
         title: "Бросить кубики",
         onClick: () => {
-          dicesRolledEffect({
+          rollDicesEffect({
             actionId: act._id,
           });
         },
@@ -96,7 +96,7 @@ export const unJailModal = (act: BoardAction): BoardAction => {
       {
         title: "Бросить кубики",
         onClick: () => {
-          dicesRolledEffect({
+          rollDicesEffect({
             actionId: act._id,
           });
         },

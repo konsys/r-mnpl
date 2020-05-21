@@ -19,7 +19,7 @@ export type Contract = {
 
 export enum BoardActionType {
   VOID = "void",
-  ROLL_DICES = "rollDices",
+  PLAYER_ROLL_DICES = "playerRollDices",
   CAN_BUY = "canBuy",
   BUY = "buy",
   AUCTION_START = "auctionStart",

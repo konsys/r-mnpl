@@ -17,13 +17,24 @@ const init: BoardAction = {
 
 export const showModalEvent = ModalDomain.event<BoardAction>();
 
-export const dicesRolledEffect = ModalDomain.effect<
+// Emits to roll dices and move tokens
+export const rollDicesEffect = ModalDomain.effect<
   IActionId,
   Promise<SocketIOClient.Socket>,
   Error
->(BoardActionType.ROLL_DICES, {
+>(BoardActionType.ROLL_DICES_MODAL, {
   handler: async (data) =>
     boardSocket.emit(BoardActionType.ROLL_DICES_MODAL, data),
+});
+
+// Emits after token`s move completed
+export const moveTokensCompleteEffect = ModalDomain.effect<
+  IActionId,
+  Promise<SocketIOClient.Socket>,
+  Error
+>(BoardActionType.PLAYER_ROLL_DICES, {
+  handler: async (data) =>
+    boardSocket.emit(BoardActionType.PLAYER_ROLL_DICES, data),
 });
 
 export const taxPaidEffect = ModalDomain.effect<
