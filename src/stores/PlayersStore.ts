@@ -25,7 +25,6 @@ export const playersStore = PlayersDomain.store<IPlayersStore>({
     // Init token position
     const players = data.result.map((v, k) => {
       updateToken({
-        jailed: v.jailed,
         left: MARGIN_CENTER + k * 25,
         top: MARGIN_CENTER + k * 25,
         meanPosition: v.meanPosition,

@@ -13,7 +13,7 @@ export const moveTokenAfterDices = (currentToken: IToken) => {
   let stopPosition = player?.meanPosition ? player.meanPosition : 0;
 
   if (player && currentToken.meanPosition !== player.meanPosition) {
-    console.log(23424234, currentToken.meanPosition);
+    console.log(23424234, player.meanPosition);
     const usedFields = createTurnsArray(
       currentToken.meanPosition,
       stopPosition
@@ -39,15 +39,6 @@ export const moveTokenAfterDices = (currentToken: IToken) => {
       }
       lastIndex++;
     }
-  } else if (currentToken && stopPosition === 0) {
-    setTimeout(() => {
-      updateToken({
-        ...currentToken,
-        left: fields[0].left,
-        top: fields[0].top,
-        meanPosition: stopPosition,
-      });
-    });
   }
 };
 
@@ -60,7 +51,6 @@ interface IToken {
   left: number;
   top: number;
   userId: number;
-  jailed: number;
 }
 
 const TokensDomain = BoardDomain.domain("PlayersDomain");
