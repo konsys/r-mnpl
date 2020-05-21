@@ -47,4 +47,7 @@ export const playersChange = sample(
   relocatePLayerEvent,
   (v) => v
 );
-playersChange.watch((v) => relocateToken());
+
+playersChange.watch((store) => {
+  store.players.map((v) => relocateToken(v));
+});

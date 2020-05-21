@@ -61,18 +61,18 @@ export const updateAllPlayers = (players: IPlayer[]): boolean => {
     ) {
       isPlayerMoves = true;
     }
-  }
 
-  if (isPlayerMoves) {
-    relocatePLayerEvent({
-      version: ++playersState.version,
-      players: players,
-    });
-  } else {
-    setPlayersEvent({
-      version: ++playersState.version,
-      players: players,
-    });
+    if (isPlayerMoves) {
+      relocatePLayerEvent({
+        version: ++playersState.version,
+        players: players,
+      });
+    } else {
+      setPlayersEvent({
+        version: ++playersState.version,
+        players: players,
+      });
+    }
   }
 
   return true;

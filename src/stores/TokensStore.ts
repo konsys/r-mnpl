@@ -1,14 +1,15 @@
 import { BoardDomain } from "./BoardDomain";
 import { LINE_TRANSITION_TIMEOUT, CORNER_FIELDS } from "../utils/boardParams";
 import { createTurnsArray, fieldPositions } from "../utils/fields.utils";
-import { getActingPlayer, updatePlayer } from "../utils/players.utils";
+import { updatePlayer } from "../utils/players.utils";
+import { IPlayer } from "../types/BoardTypes";
 const TokenDomain = BoardDomain.createDomain("TokenDomain");
 export const resetTokens = TokenDomain.event();
 
 const fields = fieldPositions();
 
-export const relocateToken = () => {
-  const currentPlayer = getActingPlayer();
+export const relocateToken = (currentPlayer: IPlayer) => {
+  // const currentPlayer = getActingPlayer();
 
   let stopPosition = 0;
   if (currentPlayer && currentPlayer?.meanPosition !== stopPosition) {
