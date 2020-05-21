@@ -7,6 +7,8 @@ export const resetTokens = TokenDomain.event();
 const fields = fieldPositions();
 
 export const moveTokenAfterDices = (currentToken: IToken) => {
+  console.log(23424234, currentToken);
+
   let stopPosition = 0;
   if (currentToken && currentToken?.meanPosition !== stopPosition) {
     stopPosition = currentToken.meanPosition ? currentToken.meanPosition : 0;

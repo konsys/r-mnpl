@@ -51,8 +51,6 @@ export const playersPositionChange = sample(
   (v) => v
 );
 
-playersPositionChange.watch(() => {
-  // const currentPlayer = getActingPlayer();
-  tokensStore.getState().tokens.map((v) => moveTokenAfterDices(v));
-  // currentPlayer && moveTokenAfterDices(currentPlayer);
-});
+playersPositionChange.watch(() =>
+  tokensStore.getState().tokens.map((v) => moveTokenAfterDices(v))
+);

@@ -23,10 +23,7 @@ export const updatePlayer = (player: IPlayer): boolean => {
 
   playersState.players[currentPLayerIndex] = player;
 
-  setPlayersEvent({
-    version: playersState.version < 100 ? ++playersState.version : 0,
-    players: playersState.players,
-  });
+  updateAllPlayers(playersState.players);
 
   return true;
 };
@@ -34,10 +31,8 @@ export const updatePlayer = (player: IPlayer): boolean => {
 export const updateAllPlayers = (players: IPlayer[]): boolean => {
   const playersState = playersStore.getState();
 
-  console.log(111111);
-
   setPlayersEvent({
-    version: ++playersState.version,
+    version: playersState.version < 100 ? ++playersState.version : 0,
     players: players,
   });
 
