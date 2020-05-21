@@ -18,6 +18,7 @@ export const Tokens = (prop: Props) => {
         const player = getPlayerById(v.userId);
         const left = player?.jailed ? FIELD_JAIL_LEFT : v.left;
         const top = player?.jailed ? FIELD_JAIL_TOP : v.top;
+        console.log(23424234, v.meanPosition);
         return (
           <div
             onTransitionEnd={

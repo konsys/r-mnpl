@@ -13,7 +13,6 @@ export const moveTokenAfterDices = (currentToken: IToken) => {
   let stopPosition = player?.meanPosition ? player.meanPosition : 0;
 
   if (player && currentToken.meanPosition !== player.meanPosition) {
-    console.log(23424234, player.meanPosition);
     const usedFields = createTurnsArray(
       currentToken.meanPosition,
       stopPosition
