@@ -1,8 +1,4 @@
-import {
-  playersStore,
-  setPlayersEvent,
-  relocatePLayerEvent,
-} from "../stores/PlayersStore";
+import { playersStore, setPlayersEvent } from "../stores/PlayersStore";
 import { IPlayer } from "../types/BoardTypes";
 
 export const getActingPlayer = () => {
@@ -23,25 +19,14 @@ export const getPlayerIndexById = (userId: number) => {
 export const updatePlayer = (player: IPlayer): boolean => {
   const playersState = playersStore.getState();
   const currentPLayerIndex = getPlayerIndexById(player.userId);
-  const currentPLayer = playersState.players[currentPLayerIndex];
-
   if (currentPLayerIndex === -1) throw new Error("player not found");
 
   playersState.players[currentPLayerIndex] = player;
 
-  if (player.meanPosition !== currentPLayer.meanPosition) {
-    // For moving tokens
-
-    relocatePLayerEvent({
-      version: playersState.version < 100 ? ++playersState.version : 0,
-      players: playersState.players,
-    });
-  } else {
-    setPlayersEvent({
-      version: playersState.version < 100 ? ++playersState.version : 0,
-      players: playersState.players,
-    });
-  }
+  setPlayersEvent({
+    version: playersState.version < 100 ? ++playersState.version : 0,
+    players: playersState.players,
+  });
 
   return true;
 };
@@ -49,27 +34,12 @@ export const updatePlayer = (player: IPlayer): boolean => {
 export const updateAllPlayers = (players: IPlayer[]): boolean => {
   const playersState = playersStore.getState();
 
-  let isPlayerMoves = false;
-  for (let playerIndex in playersState.players) {
-    if (
-      playersState.players[playerIndex].meanPosition !==
-      players[playerIndex].meanPosition
-    ) {
-      isPlayerMoves = true;
-    }
+  console.log(111111);
 
-    if (isPlayerMoves) {
-      relocatePLayerEvent({
-        version: ++playersState.version,
-        players: players,
-      });
-    } else {
-      setPlayersEvent({
-        version: ++playersState.version,
-        players: players,
-      });
-    }
-  }
+  setPlayersEvent({
+    version: ++playersState.version,
+    players: players,
+  });
 
   return true;
 };

@@ -16,7 +16,6 @@ export const getPlayersEffect = PlayersDomain.effect<void, IPlayer[], Error>({
   handler: fetchPlayers,
 });
 export const setPlayersEvent = PlayersDomain.event<IPlayersStore>();
-export const relocatePLayerEvent = PlayersDomain.event<IPlayersStore>();
 
 export const playersStore = PlayersDomain.store<IPlayersStore>({
   players: [],
@@ -26,10 +25,10 @@ export const playersStore = PlayersDomain.store<IPlayersStore>({
     // Init token position
     const players = data.result.map((v, k) => {
       updateToken({
-        jailed: 0,
+        jailed: v.jailed,
         left: MARGIN_CENTER + k * 25,
         top: MARGIN_CENTER + k * 25,
-        meanPosition: 0,
+        meanPosition: v.meanPosition,
         userId: v.userId,
       });
       return v;
@@ -41,7 +40,6 @@ export const playersStore = PlayersDomain.store<IPlayersStore>({
   })
   .on(getPlayersEffect.fail, (err: any) => console.error("error", err))
   .on(setPlayersEvent, (_, state) => state)
-  .on(relocatePLayerEvent, (_, state) => state)
   .reset(resetPlayersEvent);
 
 // playersStore.watch((v) => console.log("playersStoreWatch", v));
@@ -49,7 +47,7 @@ export const playersStore = PlayersDomain.store<IPlayersStore>({
 
 export const playersPositionChange = sample(
   playersStore,
-  relocatePLayerEvent,
+  setPlayersEvent,
   (v) => v
 );
 
