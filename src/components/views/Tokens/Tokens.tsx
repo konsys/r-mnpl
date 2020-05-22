@@ -11,6 +11,7 @@ export const Tokens = (prop: Props) => {
   return (
     <>
       {useStore(tokensStore).tokens.map((v, k) => {
+        // console.log(111111, v);
         return (
           <div
             onTransitionEnd={

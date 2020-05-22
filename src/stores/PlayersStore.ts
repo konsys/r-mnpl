@@ -1,9 +1,14 @@
 import { BoardDomain } from "./BoardDomain";
 import { fetchPlayers } from "../components/core/PlayersCore/api";
 import { IPlayer } from "../types/BoardTypes";
-import { MARGIN_CENTER } from "../types/boardParams";
 import { sample } from "effector";
-import { moveTokenAfterDices, tokensStore, updateToken } from "./TokensStore";
+import {
+  moveTokenAfterPlayerUpdate,
+  tokensStore,
+  updateToken,
+} from "./TokensStore";
+import { getPlayerById } from "../utils/players.utils";
+import { fieldPositions } from "../utils/fields.utils";
 
 const PlayersDomain = BoardDomain.domain("PlayersDomain");
 
@@ -23,11 +28,12 @@ export const playersStore = PlayersDomain.store<IPlayersStore>({
 })
   .on(getPlayersEffect.done, (_, data) => {
     // Init token position
+    const fields = fieldPositions();
     const players = data.result.map((player, k) => {
       updateToken({
         jailed: player.jailed,
-        left: MARGIN_CENTER + k * 25,
-        top: MARGIN_CENTER + k * 25,
+        left: fields[player.meanPosition].left,
+        top: fields[player.meanPosition].top,
         meanPosition: player.meanPosition,
         userId: player.userId,
       });
@@ -50,6 +56,9 @@ export const playersPositionChange = sample(
   (v) => v
 );
 
-playersPositionChange.watch(() =>
-  tokensStore.getState().tokens.map((v) => moveTokenAfterDices(v))
-);
+playersPositionChange.watch(() => {
+  tokensStore.getState().tokens.map((token) => {
+    const player = getPlayerById(token.userId);
+    return player && moveTokenAfterPlayerUpdate(token, player);
+  });
+});

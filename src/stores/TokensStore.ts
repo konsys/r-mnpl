@@ -7,28 +7,22 @@ import {
   UNJAIL_FIELD,
 } from "../utils/boardParams";
 import { createTurnsArray, fieldPositions } from "../utils/fields.utils";
-import { getPlayerById } from "../utils/players.utils";
-import { TokenStore, IToken } from "../types/BoardTypes";
+import { TokenStore, IToken, IPlayer } from "../types/BoardTypes";
 
 const TokenDomain = BoardDomain.createDomain("TokenDomain");
 export const resetTokens = TokenDomain.event();
 
 const fields = fieldPositions();
 
-export const moveTokenAfterDices = (currentToken: IToken) => {
-  const player = getPlayerById(currentToken.userId);
-
-  let stopPosition = player?.meanPosition ? player.meanPosition : 0;
-
+export const moveTokenAfterPlayerUpdate = (token: IToken, player: IPlayer) => {
+  let stopPosition = player.meanPosition ? player.meanPosition : 0;
+  console.log(234234234, token.meanPosition, player.meanPosition);
   if (
     player &&
-    currentToken.meanPosition !== player.meanPosition &&
-    currentToken.jailed === player.jailed
+    token.meanPosition !== player.meanPosition &&
+    token.jailed === player.jailed
   ) {
-    const usedFields = createTurnsArray(
-      currentToken.meanPosition,
-      stopPosition
-    );
+    const usedFields = createTurnsArray(token.meanPosition, stopPosition);
 
     let lastIndex = 0;
     let timeout = LINE_TRANSITION_TIMEOUT;
@@ -40,7 +34,7 @@ export const moveTokenAfterDices = (currentToken: IToken) => {
       ) {
         setTimeout(() => {
           updateToken({
-            ...currentToken,
+            ...token,
             left: fields[field].left,
             top: fields[field].top,
             meanPosition: stopPosition,
@@ -52,18 +46,17 @@ export const moveTokenAfterDices = (currentToken: IToken) => {
     }
   }
   // Go to jail or unjail
-  else if (player && currentToken.jailed !== player.jailed) {
+  else if (player && token.jailed !== player.jailed) {
     setTimeout(() => {
       updateToken({
-        ...currentToken,
+        ...token,
         left: player.jailed ? FIELD_JAIL_LEFT : fields[UNJAIL_FIELD].left,
         top: player.jailed ? FIELD_JAIL_TOP : fields[UNJAIL_FIELD].top,
         meanPosition: stopPosition,
         jailed: player.jailed,
       });
-    }, 100);
+    }, 0);
   }
-  console.log(234234234, currentToken.jailed, player?.jailed);
 };
 
 const TokensDomain = BoardDomain.domain("PlayersDomain");
@@ -90,3 +83,5 @@ export const updateAllTokens = (tokens: IToken[]) => {
     tokens,
   });
 };
+
+tokensStore.watch((v) => console.log("tokensStorewatch", v));
