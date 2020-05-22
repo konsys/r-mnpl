@@ -1,7 +1,15 @@
 import { BoardDomain } from "./BoardDomain";
-import { LINE_TRANSITION_TIMEOUT, CORNER_FIELDS } from "../utils/boardParams";
+import {
+  LINE_TRANSITION_TIMEOUT,
+  CORNER_FIELDS,
+  FIELD_JAIL_LEFT,
+  FIELD_JAIL_TOP,
+  UNJAIL_FIELD,
+} from "../utils/boardParams";
 import { createTurnsArray, fieldPositions } from "../utils/fields.utils";
 import { getPlayerById } from "../utils/players.utils";
+import { TokenStore, IToken } from "../types/BoardTypes";
+
 const TokenDomain = BoardDomain.createDomain("TokenDomain");
 export const resetTokens = TokenDomain.event();
 
@@ -12,7 +20,11 @@ export const moveTokenAfterDices = (currentToken: IToken) => {
 
   let stopPosition = player?.meanPosition ? player.meanPosition : 0;
 
-  if (player && currentToken.meanPosition !== player.meanPosition) {
+  if (
+    player &&
+    currentToken.meanPosition !== player.meanPosition &&
+    currentToken.jailed === player.jailed
+  ) {
     const usedFields = createTurnsArray(
       currentToken.meanPosition,
       stopPosition
@@ -39,24 +51,26 @@ export const moveTokenAfterDices = (currentToken: IToken) => {
       lastIndex++;
     }
   }
+  // Go to jail or unjail
+  else if (player && currentToken.jailed !== player.jailed) {
+    setTimeout(() => {
+      updateToken({
+        ...currentToken,
+        left: player.jailed ? FIELD_JAIL_LEFT : fields[UNJAIL_FIELD].left,
+        top: player.jailed ? FIELD_JAIL_TOP : fields[UNJAIL_FIELD].top,
+        meanPosition: stopPosition,
+        jailed: player.jailed,
+      });
+    }, 100);
+  }
+  console.log(234234234, currentToken.jailed, player?.jailed);
 };
 
-interface ITokenStore {
-  version: number;
-  tokens: IToken[];
-}
-interface IToken {
-  meanPosition: number;
-  left: number;
-  top: number;
-  userId: number;
-}
-
 const TokensDomain = BoardDomain.domain("PlayersDomain");
-export const setTokensEvent = TokensDomain.event<ITokenStore>();
-export const resetTokensEvent = TokensDomain.event<ITokenStore>();
+export const setTokensEvent = TokensDomain.event<TokenStore>();
+export const resetTokensEvent = TokensDomain.event<TokenStore>();
 
-export const tokensStore = TokensDomain.store<ITokenStore>({
+export const tokensStore = TokensDomain.store<TokenStore>({
   tokens: [],
   version: 0,
 })

@@ -147,6 +147,7 @@ interface UserGameStatus extends IUser {
   isActing: boolean;
   doublesRolledAsCombo: number;
   jailed: number;
+  justUnjailed: boolean;
   unjailAttempts: number;
   meanPosition: number;
   money: number;
@@ -161,10 +162,12 @@ interface UserGameStatus extends IUser {
   userId: number;
 }
 
-interface IToken {
+export interface IToken {
   userId: number;
-  tokenPosition: number;
+  left: number;
+  top: number;
   jailed: number;
+  meanPosition: number;
 }
 export interface TokenStore {
   version: number;
