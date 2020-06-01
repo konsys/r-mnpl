@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { RouteComponentProps } from "@reach/router";
 import "./style.scss";
 import { Chat } from "../../views/Chat/Chat";
@@ -24,14 +24,21 @@ interface Props extends RouteComponentProps {}
 
 export const Game = (props: Props) => {
   const actionState = useStore(actionsStore);
-  const isModal =
-    actionState.event.action.type === IncomeMessageType.INCOME_AUCTION_MODAL ||
-    actionState.event.action.type === IncomeMessageType.INCOME_CAN_BUY_MODAL ||
-    actionState.event.action.type ===
-      IncomeMessageType.INCOME_ROLL_DICES_MODAL ||
-    actionState.event.action.type ===
-      IncomeMessageType.INCOME_TAX_PAYING_MODAL ||
-    actionState.event.action.type === IncomeMessageType.INCOME_UN_JAIL_MODAL;
+  const actionType = actionState.event.action.type;
+  const [isModal, setIsModal] = useState<boolean>(true);
+
+  useEffect(() => {
+    setIsModal(true);
+  }, [actionState]);
+
+  const isModalAction =
+    (actionType === IncomeMessageType.INCOME_AUCTION_MODAL ||
+      actionType === IncomeMessageType.INCOME_CAN_BUY_MODAL ||
+      actionType === IncomeMessageType.INCOME_ROLL_DICES_MODAL ||
+      actionType === IncomeMessageType.INCOME_TAX_PAYING_MODAL ||
+      actionType === IncomeMessageType.INCOME_UN_JAIL_MODAL) &&
+    isModal;
+
   return (
     <>
       <div className="wrapper" style={{ width: "100%", height: "100%" }}>
@@ -42,10 +49,11 @@ export const Game = (props: Props) => {
               <BoardCore />
               <div className="table-body-board-center">
                 <M1tv />
-                {actionState &&
+                {actionState && (
                   // TODO check for user credentials
                   // userState.userId === actionState.event.action.userId &&
-                  isModal && <BoardModal />}
+                  <BoardModal isModal={isModalAction} showModal={setIsModal} />
+                )}
                 <Arbitr />
                 <Ticket />
                 <Chat />
