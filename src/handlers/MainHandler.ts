@@ -13,7 +13,6 @@ export const boardMessageHandler = (message: BoardMessage) => {
 
     setCurrentActionEvent({
       actionId: event._id,
-      isCompleted: false,
       event: message.data.event,
     });
   }

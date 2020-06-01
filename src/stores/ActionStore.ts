@@ -13,7 +13,6 @@ import { resetDicesEvent } from "./DicesStore";
 export interface ICurrentAction {
   actionId: string;
   event: IBoardEvent;
-  isCompleted: boolean;
 }
 // Current
 const ActionDomain = BoardDomain.domain("BoardActionDomain");
@@ -23,7 +22,6 @@ export const setCurrentActionEvent = ActionDomain.event<ICurrentAction>();
 
 export const actionsStore = ActionDomain.store<ICurrentAction>({
   actionId: "",
-  isCompleted: true,
   event: {
     action: {
       type: BoardActionType.VOID,
@@ -68,9 +66,3 @@ actionsStore.watch((v) => {
       break;
   }
 });
-
-export const completeAction = (actionId: string) => {
-  const action = actionsStore.getState();
-  action.actionId === actionId &&
-    setCurrentActionEvent({ ...action, isCompleted: true });
-};

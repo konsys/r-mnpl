@@ -82,11 +82,8 @@ export const modalStore = ModalDomain.store<BoardAction>(init)
 
 // modalStore.watch((v) => console.log("modalStoreWatch", v));
 export const onTransitionEnd = (userId: number) => {
-  const action = actionsStore.getState();
-  !action.isCompleted &&
-    tokensMoveCompleteEffect({
-      userId,
-      actionId: actionsStore.getState().actionId,
-    }) &&
-    completeAction(action.actionId);
+  tokensMoveCompleteEffect({
+    userId,
+    actionId: actionsStore.getState().actionId,
+  });
 };
