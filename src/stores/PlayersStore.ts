@@ -56,7 +56,7 @@ export const playersPositionChange = sample(
   (v) => v
 );
 
-playersPositionChange.watch(() => {
+playersPositionChange.watch((v) => {
   tokensStore.getState().tokens.map((token) => {
     const player = getPlayerById(token.userId);
     return player && moveTokenAfterPlayerUpdate(token, player);

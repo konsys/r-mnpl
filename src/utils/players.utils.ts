@@ -31,7 +31,7 @@ export const updatePlayer = (player: IPlayer): boolean => {
 
 export const updateAllPlayers = (players: IPlayer[]): boolean => {
   const playersState = playersStore.getState();
-
+  console.log(33333333333, playersState);
   setPlayersEvent({
     version: playersState.version < 100 ? ++playersState.version : 0,
     players: players,
