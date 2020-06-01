@@ -5,7 +5,6 @@ import { ActionPanel } from "../ActionPanel/ActionPanel";
 
 interface Props {
   isModal: boolean;
-  showModal: (show: boolean) => void;
 }
 
 export const BoardModal = (props: Props) => {
@@ -26,10 +25,7 @@ export const BoardModal = (props: Props) => {
                 key={k}
                 text={action.title}
                 disabled={action.disabled}
-                onClick={() => {
-                  props.showModal(false);
-                  action.onClick();
-                }}
+                onClick={action.onClick}
               />
             ))}
           </div>

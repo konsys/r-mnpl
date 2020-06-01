@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { RouteComponentProps } from "@reach/router";
 import "./style.scss";
 import { Chat } from "../../views/Chat/Chat";
@@ -25,19 +25,13 @@ interface Props extends RouteComponentProps {}
 export const Game = (props: Props) => {
   const actionState = useStore(actionsStore);
   const actionType = actionState.event.action.type;
-  const [isModal, setIsModal] = useState<boolean>(true);
-
-  useEffect(() => {
-    setIsModal(true);
-  }, [actionState]);
 
   const isModalAction =
-    (actionType === IncomeMessageType.INCOME_AUCTION_MODAL ||
-      actionType === IncomeMessageType.INCOME_CAN_BUY_MODAL ||
-      actionType === IncomeMessageType.INCOME_ROLL_DICES_MODAL ||
-      actionType === IncomeMessageType.INCOME_TAX_PAYING_MODAL ||
-      actionType === IncomeMessageType.INCOME_UN_JAIL_MODAL) &&
-    isModal;
+    actionType === IncomeMessageType.INCOME_AUCTION_MODAL ||
+    actionType === IncomeMessageType.INCOME_CAN_BUY_MODAL ||
+    actionType === IncomeMessageType.INCOME_ROLL_DICES_MODAL ||
+    actionType === IncomeMessageType.INCOME_TAX_PAYING_MODAL ||
+    actionType === IncomeMessageType.INCOME_UN_JAIL_MODAL;
 
   return (
     <>
@@ -52,7 +46,7 @@ export const Game = (props: Props) => {
                 {actionState && (
                   // TODO check for user credentials
                   // userState.userId === actionState.event.action.userId &&
-                  <BoardModal isModal={isModalAction} showModal={setIsModal} />
+                  <BoardModal isModal={isModalAction} />
                 )}
                 <Arbitr />
                 <Ticket />
