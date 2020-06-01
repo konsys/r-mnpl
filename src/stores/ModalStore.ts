@@ -6,7 +6,7 @@ import {
   IMoveCompleted,
 } from "../types/BoardTypes";
 import { boardSocket } from "../components/core/BoardCore/BoardCore";
-import { actionsStore, completeAction } from "./ActionStore";
+import { actionsStore } from "./ActionStore";
 
 const ModalDomain = BoardDomain.domain("ModalDomain");
 
