@@ -32,13 +32,13 @@ export enum OutcomeMessageType {
 
 export enum IncomeMessageType {
   DO_NOTHING = "doNothing",
-  INCOME_PLAYER_TOKEN_POSITION_ACTION = "void",
+  INCOME_PLAYER_TOKEN_POSITION_ACTION = "changeTokenPosition",
   INCOME_CAN_BUY_MODAL = "canBuyModal",
   INCOME_TAX_PAYING_MODAL = "taxPayingModal",
   INCOME_ROLL_DICES_MODAL = "rollDicesModal",
   INCOME_UN_JAIL_MODAL = "unJailModal",
   INCOME_AUCTION_MODAL = "auctionModal",
-  INCOME_ROLL_DICES_ACTION = "rollDices",
+  INCOME_ROLL_DICES_ACTION = "rollDicesAction",
 }
 
 // export enum BoardActionType {

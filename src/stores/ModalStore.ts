@@ -74,7 +74,7 @@ export const fieldAuctionEffect = ModalDomain.effect<
     boardSocket.emit(OutcomeMessageType.OUTCOME_AUCTION_START_CLICKED, data),
 });
 
-export const jailDepositPaidEffect = ModalDomain.effect<
+export const unjailPaidEffect = ModalDomain.effect<
   IActionId,
   Promise<SocketIOClient.Socket>,
   Error

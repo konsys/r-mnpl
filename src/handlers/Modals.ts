@@ -4,7 +4,7 @@ import {
   fieldBoughtEffect,
   fieldAuctionEffect,
   taxPaidEffect,
-  jailDepositPaidEffect,
+  unjailPaidEffect,
 } from "../stores/ModalStore";
 
 export const rollDicesModal = (act: BoardAction): BoardAction => {
@@ -87,7 +87,7 @@ export const unJailModal = (act: BoardAction): BoardAction => {
       {
         title: "Выйти под залог 500k",
         onClick: () => {
-          jailDepositPaidEffect({
+          unjailPaidEffect({
             actionId: act._id,
           });
         },
