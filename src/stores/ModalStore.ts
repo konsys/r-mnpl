@@ -6,7 +6,7 @@ import {
   IMoveCompleted,
 } from "../types/BoardTypes";
 import { boardSocket } from "../components/core/BoardCore/BoardCore";
-import { actionsStore } from "./ActionStore";
+import { actionsStore, setCurrentActionEvent } from "./ActionStore";
 
 const ModalDomain = BoardDomain.domain("ModalDomain");
 
@@ -82,8 +82,13 @@ export const modalStore = ModalDomain.store<BoardAction>(init)
 
 // modalStore.watch((v) => console.log("modalStoreWatch", v));
 export const onTransitionEnd = (userId: number) => {
-  tokensMoveCompleteEffect({
-    userId,
-    actionId: actionsStore.getState().actionId,
-  });
+  const action = actionsStore.getState();
+  console.log(11111, action);
+
+  !action.isCompleted &&
+    tokensMoveCompleteEffect({
+      userId,
+      actionId: actionsStore.getState().actionId,
+    }) &&
+    setCurrentActionEvent({ ...action, isCompleted: true });
 };

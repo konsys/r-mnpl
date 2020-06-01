@@ -16,7 +16,6 @@ const fields = fieldPositions();
 
 export const moveTokenAfterPlayerUpdate = (token: IToken, player: IPlayer) => {
   let stopPosition = player.meanPosition ? player.meanPosition : 0;
-  console.log(234234234, token.meanPosition, player.meanPosition);
   if (
     player &&
     token.meanPosition !== player.meanPosition &&
@@ -84,4 +83,4 @@ export const updateAllTokens = (tokens: IToken[]) => {
   });
 };
 
-tokensStore.watch((v) => console.log("tokensStorewatch", v));
+// tokensStore.watch((v) => console.log("tokensStorewatch", v));
