@@ -68,3 +68,9 @@ actionsStore.watch((v) => {
       break;
   }
 });
+
+export const completeAction = (actionId: string) => {
+  const action = actionsStore.getState();
+  action.actionId === actionId &&
+    setCurrentActionEvent({ ...action, isCompleted: true });
+};
