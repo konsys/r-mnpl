@@ -39,10 +39,10 @@ export const tokensMoveCompleteEffect = ModalDomain.effect<
   IMoveCompleted,
   Promise<SocketIOClient.Socket>,
   Error
->(OutcomeMessageType.OUTCOME_PLAYER_TOKEN_TRANSITION_COMPLETED, {
+>(OutcomeMessageType.INCOME_TOKEN_TRANSITION_COMPLETED, {
   handler: async (data) =>
     boardSocket.emit(
-      OutcomeMessageType.OUTCOME_PLAYER_TOKEN_TRANSITION_COMPLETED,
+      OutcomeMessageType.INCOME_TOKEN_TRANSITION_COMPLETED,
       data
     ),
 });
