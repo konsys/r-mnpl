@@ -35,6 +35,7 @@ export const actionsStore = ActionDomain.store<ICurrentAction>({
 
 actionsStore.watch((v) => {
   const action = v.event.action;
+  console.log(1111111, action);
   switch (action.type) {
     case IncomeMessageType.INCOME_ROLL_DICES_MODAL:
       resetDicesEvent();
@@ -50,7 +51,6 @@ actionsStore.watch((v) => {
       break;
 
     case IncomeMessageType.INCOME_ROLL_DICES_ACTION:
-      console.log(234234234);
       rollDicesAction(action);
       break;
 
