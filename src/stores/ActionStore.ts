@@ -9,6 +9,7 @@ import {
 } from "../handlers/Modals";
 import { rollDicesAction } from "../handlers/DicesHandler";
 import { resetDicesEvent } from "./DicesStore";
+import nanoid from "nanoid";
 
 export interface ICurrentAction {
   actionId: string;
@@ -32,6 +33,21 @@ export const actionsStore = ActionDomain.store<ICurrentAction>({
 })
   .on(setCurrentActionEvent, (_, data) => data)
   .reset(resetActionEvent);
+
+export const getCurrentAction = () => actionsStore.getState();
+
+export const doNothing = (userId: number) => {
+  setCurrentActionEvent({
+    actionId: nanoid(4),
+    event: {
+      action: {
+        _id: nanoid(),
+        userId,
+        type: IncomeMessageType.DO_NOTHING,
+      },
+    },
+  });
+};
 
 actionsStore.watch((v) => {
   const action = v.event.action;

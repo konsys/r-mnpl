@@ -6,7 +6,6 @@ import {
   taxPaidEffect,
   unjailPaidEffect,
 } from "../stores/ModalStore";
-
 export const rollDicesModal = (act: BoardAction): BoardAction => {
   return {
     type: act.type,
