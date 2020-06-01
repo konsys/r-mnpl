@@ -21,21 +21,41 @@ export type Contract = {
   _id: string;
 };
 
-export enum BoardActionType {
-  VOID = "void",
-  PLAYER_TOKEN_MOVED = "playerTokenMoved",
-  CAN_BUY = "canBuy",
-  BUY = "buy",
-  AUCTION_START = "auctionStart",
-  ROLL_DICES_MODAL = "rollDicesModal",
-  TAX_PAYING_MODAL = "taxPayingModal",
-  TAX_PAID = "taxPaid",
-  UN_JAIL_MODAL = "unJailModal",
-  UN_JAIL_PAID = "unJailPaid",
+export enum OutcomeMessageType {
+  OUTCOME_PLAYER_TOKEN_TRANSITION_COMPLETED = "changeTokenPositionCompleted",
+  OUTCOME_AUCTION_START_CLICKED = "auctionStartClicked",
+  OUTCOME_BUY_FIELD_CLICKED = "buyFieldClicked",
+  OUTCOME_TAX_PAID_CLICKED = "taxPaidCLicked",
+  OUTCOME_UN_JAIL_PAID_CLICKED = "unJailPaidClicked",
+  OUTCOME_ROLL_DICES_CLICKED = "rollDicesClicked",
 }
 
+export enum IncomeMessageType {
+  DO_NOTHING = "doNothing",
+  INCOME_PLAYER_TOKEN_POSITION_ACTION = "void",
+  INCOME_CAN_BUY_MODAL = "canBuyModal",
+  INCOME_TAX_PAYING_MODAL = "taxPayingModal",
+  INCOME_ROLL_DICES_MODAL = "rollDicesModal",
+  INCOME_UN_JAIL_MODAL = "unJailModal",
+  INCOME_AUCTION_MODAL = "auctionModal",
+  INCOME_ROLL_DICES_ACTION = "rollDices",
+}
+
+// export enum BoardActionType {
+//   VOID = "void",
+//   PLAYER_TOKEN_MOVED = "playerTokenMoved",
+//   CAN_BUY = "canBuy",
+//   BUY = "buy",
+//   AUCTION_START = "auctionStart",
+//   ROLL_DICES_MODAL_CLICKED = "rollDicesModalClicked",
+//   TAX_PAYING_MODAL = "taxPayingModal",
+//   TAX_PAID = "taxPaid",
+//   UN_JAIL_MODAL = "unJailModal",
+//   UN_JAIL_PAID = "unJailPaid",
+// }
+
 export interface BoardAction {
-  type: BoardActionType;
+  type: OutcomeMessageType | IncomeMessageType;
   userId: number;
   _id: string;
   bet?: number;

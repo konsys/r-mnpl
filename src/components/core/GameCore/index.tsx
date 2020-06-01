@@ -15,7 +15,7 @@ import { useStore } from "effector-react";
 import { BoardCore } from "../BoardCore/BoardCore";
 import { UsersCore } from "../PlayersCore/PlayersCore";
 import { actionsStore } from "../../../stores/ActionStore";
-import { BoardActionType } from "../../../types/BoardTypes";
+import { IncomeMessageType } from "../../../types/BoardTypes";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import { onTransitionEnd } from "../../../stores/ModalStore";
@@ -25,10 +25,13 @@ interface Props extends RouteComponentProps {}
 export const Game = (props: Props) => {
   const actionState = useStore(actionsStore);
   const isModal =
-    actionState.event.action.type === BoardActionType.ROLL_DICES_MODAL ||
-    actionState.event.action.type === BoardActionType.CAN_BUY ||
-    actionState.event.action.type === BoardActionType.TAX_PAYING_MODAL ||
-    actionState.event.action.type === BoardActionType.UN_JAIL_MODAL;
+    actionState.event.action.type === IncomeMessageType.INCOME_AUCTION_MODAL ||
+    actionState.event.action.type === IncomeMessageType.INCOME_CAN_BUY_MODAL ||
+    actionState.event.action.type ===
+      IncomeMessageType.INCOME_ROLL_DICES_MODAL ||
+    actionState.event.action.type ===
+      IncomeMessageType.INCOME_TAX_PAYING_MODAL ||
+    actionState.event.action.type === IncomeMessageType.INCOME_UN_JAIL_MODAL;
   return (
     <>
       <div className="wrapper" style={{ width: "100%", height: "100%" }}>

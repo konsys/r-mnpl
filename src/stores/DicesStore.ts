@@ -1,23 +1,31 @@
 import { BoardDomain } from "./BoardDomain";
-import { BoardAction, BoardActionType, IActionId } from "../types/BoardTypes";
+import {
+  BoardAction,
+  IActionId,
+  OutcomeMessageType,
+  IncomeMessageType,
+} from "../types/BoardTypes";
 import { boardSocket } from "../components/core/BoardCore/BoardCore";
 
 const DiceDomain = BoardDomain.domain("DiceDomain");
 export const resetDicesEvent = DiceDomain.event();
 
-export const rollDicesCompletedEffect = DiceDomain.effect<
+export const tokenTransitionCompleted = DiceDomain.effect<
   IActionId,
   Promise<SocketIOClient.Socket>,
   Error
->(BoardActionType.PLAYER_TOKEN_MOVED, {
+>(OutcomeMessageType.OUTCOME_PLAYER_TOKEN_TRANSITION_COMPLETED, {
   handler: async (data) =>
-    boardSocket.emit(BoardActionType.PLAYER_TOKEN_MOVED, data),
+    boardSocket.emit(
+      OutcomeMessageType.OUTCOME_PLAYER_TOKEN_TRANSITION_COMPLETED,
+      data
+    ),
 });
 
 export const setDicesEvent = DiceDomain.event<BoardAction>();
 
 const init: BoardAction = {
-  type: BoardActionType.PLAYER_TOKEN_MOVED,
+  type: IncomeMessageType.DO_NOTHING,
   userId: 1,
   dices: [1, 1, 0],
   dicesSum: 0,

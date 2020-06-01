@@ -1,5 +1,5 @@
 import { BoardDomain } from "./BoardDomain";
-import { BoardActionType, IBoardEvent } from "../types/BoardTypes";
+import { IBoardEvent, IncomeMessageType } from "../types/BoardTypes";
 import { showModalEvent } from "./ModalStore";
 import {
   rollDicesModal,
@@ -7,7 +7,7 @@ import {
   taxModal,
   unJailModal,
 } from "../handlers/Modals";
-import { rollDicesHandler } from "../handlers/DicesHandler";
+import { rollDicesAction } from "../handlers/DicesHandler";
 import { resetDicesEvent } from "./DicesStore";
 
 export interface ICurrentAction {
@@ -24,7 +24,7 @@ export const actionsStore = ActionDomain.store<ICurrentAction>({
   actionId: "",
   event: {
     action: {
-      type: BoardActionType.VOID,
+      type: IncomeMessageType.DO_NOTHING,
       userId: 0,
       _id: "",
     },
@@ -36,7 +36,7 @@ export const actionsStore = ActionDomain.store<ICurrentAction>({
 actionsStore.watch((v) => {
   const action = v.event.action;
   switch (action.type) {
-    case BoardActionType.ROLL_DICES_MODAL:
+    case IncomeMessageType.INCOME_ROLL_DICES_MODAL:
       resetDicesEvent();
       showModalEvent(
         rollDicesModal({
@@ -49,19 +49,19 @@ actionsStore.watch((v) => {
       );
       break;
 
-    case BoardActionType.PLAYER_TOKEN_MOVED:
-      rollDicesHandler(action);
+    case IncomeMessageType.INCOME_ROLL_DICES_ACTION:
+      rollDicesAction(action);
       break;
 
-    case BoardActionType.CAN_BUY:
+    case IncomeMessageType.INCOME_CAN_BUY_MODAL:
       showModalEvent(canBuyModal(action));
       break;
 
-    case BoardActionType.TAX_PAYING_MODAL:
+    case IncomeMessageType.INCOME_TAX_PAYING_MODAL:
       showModalEvent(taxModal(action));
       break;
 
-    case BoardActionType.UN_JAIL_MODAL:
+    case IncomeMessageType.INCOME_UN_JAIL_MODAL:
       showModalEvent(unJailModal(action));
       break;
   }

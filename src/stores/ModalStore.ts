@@ -1,9 +1,10 @@
 import { BoardDomain } from "./BoardDomain";
 import {
   BoardAction,
-  BoardActionType,
   IActionId,
   IMoveCompleted,
+  IncomeMessageType,
+  OutcomeMessageType,
 } from "../types/BoardTypes";
 import { boardSocket } from "../components/core/BoardCore/BoardCore";
 import { actionsStore } from "./ActionStore";
@@ -13,7 +14,7 @@ const ModalDomain = BoardDomain.domain("ModalDomain");
 export const resetModalEvent = ModalDomain.event();
 
 const init: BoardAction = {
-  type: BoardActionType.ROLL_DICES_MODAL,
+  type: IncomeMessageType.DO_NOTHING,
   userId: 0,
   title: "",
   text: "",
@@ -28,9 +29,9 @@ export const rollDicesEffect = ModalDomain.effect<
   IActionId,
   Promise<SocketIOClient.Socket>,
   Error
->(BoardActionType.ROLL_DICES_MODAL, {
+>(OutcomeMessageType.OUTCOME_ROLL_DICES_CLICKED, {
   handler: async (data) =>
-    boardSocket.emit(BoardActionType.ROLL_DICES_MODAL, data),
+    boardSocket.emit(OutcomeMessageType.OUTCOME_ROLL_DICES_CLICKED, data),
 });
 
 // Emits after token`s move completed
@@ -38,42 +39,48 @@ export const tokensMoveCompleteEffect = ModalDomain.effect<
   IMoveCompleted,
   Promise<SocketIOClient.Socket>,
   Error
->(BoardActionType.PLAYER_TOKEN_MOVED, {
+>(OutcomeMessageType.OUTCOME_PLAYER_TOKEN_TRANSITION_COMPLETED, {
   handler: async (data) =>
-    boardSocket.emit(BoardActionType.PLAYER_TOKEN_MOVED, data),
+    boardSocket.emit(
+      OutcomeMessageType.OUTCOME_PLAYER_TOKEN_TRANSITION_COMPLETED,
+      data
+    ),
 });
 
 export const taxPaidEffect = ModalDomain.effect<
   IActionId,
   Promise<SocketIOClient.Socket>,
   Error
->(BoardActionType.TAX_PAID, {
-  handler: async (data) => boardSocket.emit(BoardActionType.TAX_PAID, data),
+>(OutcomeMessageType.OUTCOME_TAX_PAID_CLICKED, {
+  handler: async (data) =>
+    boardSocket.emit(OutcomeMessageType.OUTCOME_TAX_PAID_CLICKED, data),
 });
 
 export const fieldBoughtEffect = ModalDomain.effect<
   IActionId,
   Promise<SocketIOClient.Socket>,
   Error
->(BoardActionType.CAN_BUY, {
-  handler: async (data) => boardSocket.emit(BoardActionType.CAN_BUY, data),
+>(OutcomeMessageType.OUTCOME_BUY_FIELD_CLICKED, {
+  handler: async (data) =>
+    boardSocket.emit(OutcomeMessageType.OUTCOME_BUY_FIELD_CLICKED, data),
 });
 
 export const fieldAuctionEffect = ModalDomain.effect<
   IActionId,
   Promise<SocketIOClient.Socket>,
   Error
->(BoardActionType.AUCTION_START, {
+>(OutcomeMessageType.OUTCOME_AUCTION_START_CLICKED, {
   handler: async (data) =>
-    boardSocket.emit(BoardActionType.AUCTION_START, data),
+    boardSocket.emit(OutcomeMessageType.OUTCOME_AUCTION_START_CLICKED, data),
 });
 
 export const jailDepositPaidEffect = ModalDomain.effect<
   IActionId,
   Promise<SocketIOClient.Socket>,
   Error
->(BoardActionType.UN_JAIL_PAID, {
-  handler: async (data) => boardSocket.emit(BoardActionType.UN_JAIL_PAID, data),
+>(OutcomeMessageType.OUTCOME_UN_JAIL_PAID_CLICKED, {
+  handler: async (data) =>
+    boardSocket.emit(OutcomeMessageType.OUTCOME_UN_JAIL_PAID_CLICKED, data),
 });
 
 export const modalStore = ModalDomain.store<BoardAction>(init)
