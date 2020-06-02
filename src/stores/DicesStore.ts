@@ -1,9 +1,9 @@
 import { BoardDomain } from "./BoardDomain";
 import {
-  BoardAction,
   IActionId,
   OutcomeMessageType,
   IncomeMessageType,
+  IDices,
 } from "../types/BoardTypes";
 import { boardSocket } from "../components/core/BoardCore/BoardCore";
 
@@ -22,18 +22,17 @@ export const tokenTransitionCompleted = DiceDomain.effect<
     ),
 });
 
-export const setDicesEvent = DiceDomain.event<BoardAction>();
+export const setDicesEvent = DiceDomain.event<IDices>();
 
-const init: BoardAction = {
+const init: IDices = {
   type: IncomeMessageType.DO_NOTHING,
   userId: 1,
-  dices: [1, 1, 0],
+  dices: [0, 0, 0],
   dicesSum: 0,
-  tokenPosition: 0,
   _id: "",
 };
 
-export const dicesStore = DiceDomain.store<BoardAction>(init)
+export const dicesStore = DiceDomain.store<IDices>(init)
   .on(setDicesEvent, (_, data) => data)
   .reset(resetDicesEvent);
 

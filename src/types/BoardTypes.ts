@@ -43,21 +43,23 @@ export enum IncomeMessageType {
 }
 
 export interface BoardAction {
-  type: OutcomeMessageType | IncomeMessageType;
-  userId: number;
   _id: string;
+  type: OutcomeMessageType | IncomeMessageType;
   bet?: number;
   field?: number;
   money?: number;
+  userId: number;
   toUserId?: number;
-  dices?: number[];
-  dicesSum?: number;
   tokenPosition?: number;
   title?: string;
   text?: string;
   actionButtons?: ActionButtons[];
 }
 
+export interface IDices extends BoardAction {
+  dices?: number[];
+  dicesSum?: number;
+}
 interface ActionButtons {
   title: string;
   disabled: boolean;

@@ -1,9 +1,9 @@
-import { BoardAction, IncomeMessageType } from "../types/BoardTypes";
+import { IDices } from "../types/BoardTypes";
 import { setDicesEvent } from "../stores/DicesStore";
 
-export const rollDicesAction = async (act: BoardAction) => {
-  const roll: BoardAction = {
-    type: IncomeMessageType.INCOME_ROLL_DICES_ACTION,
+export const rollDicesAction = async (act: IDices) => {
+  const roll: IDices = {
+    type: act.type,
     userId: act.userId,
     dices: act.dices,
     tokenPosition: act.tokenPosition,
