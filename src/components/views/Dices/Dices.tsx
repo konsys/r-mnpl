@@ -13,18 +13,12 @@ export const Dices = () => {
   const d3 = useRef(null);
 
   setTimeout(() => {
-    let r: any = d1.current;
-    r && (r.className = `r${dice1} diceBody`);
-  }, 0);
-
-  setTimeout(() => {
-    let r: any = d2.current;
-    r && (r.className = `r${dice2} diceBody`);
-  }, 0);
-
-  setTimeout(() => {
-    let r: any = d3.current;
-    r && (r.className = `r${dice3} diceBody`);
+    let r1: any = d1.current;
+    r1 && (r1.className = `r${dice1} diceBody`);
+    let r2: any = d2.current;
+    r2 && (r2.className = `r${dice2} diceBody`);
+    let r3: any = d3.current;
+    r3 && (r3.className = `r${dice3} diceBody`);
   }, 0);
 
   return (
