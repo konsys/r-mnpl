@@ -23,6 +23,7 @@ export const Board = (prop: Prop) => (
         isJail={field.isJail}
         status={field.status}
         type={field.type}
+        currency={field.currency}
       />
     ))}
   </div>

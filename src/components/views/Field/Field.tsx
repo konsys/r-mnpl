@@ -15,6 +15,7 @@ export interface BoardField {
   isJail?: boolean;
   status?: FieldStatus;
   type: FieldType;
+  currency?: string;
 }
 
 export const Field = (props: BoardField) => {
@@ -30,6 +31,7 @@ export const Field = (props: BoardField) => {
     imgSrc,
     status,
     type,
+    currency,
   } = props;
 
   const field = (
@@ -46,7 +48,10 @@ export const Field = (props: BoardField) => {
       {(type === FieldType.AUTO ||
         type === FieldType.COMPANY ||
         type === FieldType.IT) && (
-        <div className="table-body-board-fields-one-label">
+        <div
+          mnpl-currency={currency}
+          className="table-body-board-fields-one-label"
+        >
           <div>{price}</div>
         </div>
       )}
