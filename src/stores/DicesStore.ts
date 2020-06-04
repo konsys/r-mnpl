@@ -8,7 +8,7 @@ import {
 import { boardSocket } from "../components/core/BoardCore/BoardCore";
 
 const DiceDomain = BoardDomain.domain("DiceDomain");
-export const resetDicesEvent = DiceDomain.event();
+export const hideDicesEvent = DiceDomain.event();
 
 export const tokenTransitionCompleted = DiceDomain.effect<
   IActionId,
@@ -34,6 +34,6 @@ const init: IDices = {
 
 export const dicesStore = DiceDomain.store<IDices>(init)
   .on(setDicesEvent, (_, data) => data)
-  .reset(resetDicesEvent);
+  .reset(hideDicesEvent);
 
 // dicesStore.watch((v) => console.log("dicesStoreWatch", v));

@@ -8,7 +8,7 @@ import {
   unJailModal,
 } from "../handlers/Modals";
 import { rollDicesAction } from "../handlers/DicesHandler";
-import { resetDicesEvent } from "./DicesStore";
+import { hideDicesEvent } from "./DicesStore";
 import nanoid from "nanoid";
 
 export interface ICurrentAction {
@@ -51,9 +51,9 @@ export const doNothing = (userId: number) => {
 
 actionsStore.watch((v) => {
   const action = v.event.action;
+  hideDicesEvent();
   switch (action.type) {
     case IncomeMessageType.INCOME_ROLL_DICES_MODAL:
-      resetDicesEvent();
       showModalEvent(
         rollDicesModal({
           type: action.type,
