@@ -4,7 +4,6 @@ import {
   CORNER_FIELDS,
   FIELD_JAIL_LEFT,
   FIELD_JAIL_TOP,
-  UNJAIL_FIELD,
 } from "../utils/boardParams";
 import { createTurnsArray, fieldPositions } from "../utils/fields.utils";
 import { TokenStore, IToken, IPlayer } from "../types/BoardTypes";
@@ -14,6 +13,32 @@ export const resetTokens = TokenDomain.event();
 
 const fields = fieldPositions();
 
+const tokenTransition = (token: IToken, player: IPlayer) => {
+  let stopPosition = player.meanPosition ? player.meanPosition : 0;
+  const usedFields = createTurnsArray(token.meanPosition, stopPosition);
+
+  let lastIndex = 0;
+  let timeout = LINE_TRANSITION_TIMEOUT;
+
+  for (let field of usedFields) {
+    if (
+      CORNER_FIELDS.indexOf(field) > -1 ||
+      lastIndex === usedFields.length - 1
+    ) {
+      setTimeout(() => {
+        updateToken({
+          ...token,
+          left: fields[field].left,
+          top: fields[field].top,
+          meanPosition: stopPosition,
+        });
+      }, timeout);
+      timeout += LINE_TRANSITION_TIMEOUT;
+    }
+    lastIndex++;
+  }
+};
+
 export const moveTokenAfterPlayerUpdate = (token: IToken, player: IPlayer) => {
   let stopPosition = player.meanPosition ? player.meanPosition : 0;
   if (
@@ -21,40 +46,24 @@ export const moveTokenAfterPlayerUpdate = (token: IToken, player: IPlayer) => {
     token.meanPosition !== player.meanPosition &&
     token.jailed === player.jailed
   ) {
-    const usedFields = createTurnsArray(token.meanPosition, stopPosition);
-
-    let lastIndex = 0;
-    let timeout = LINE_TRANSITION_TIMEOUT;
-
-    for (let field of usedFields) {
-      if (
-        CORNER_FIELDS.indexOf(field) > -1 ||
-        lastIndex === usedFields.length - 1
-      ) {
-        setTimeout(() => {
-          updateToken({
-            ...token,
-            left: fields[field].left,
-            top: fields[field].top,
-            meanPosition: stopPosition,
-          });
-        }, timeout);
-        timeout += LINE_TRANSITION_TIMEOUT;
-      }
-      lastIndex++;
-    }
+    console.log(11111, token.meanPosition, player.meanPosition);
+    tokenTransition(token, player);
   }
-  // Go to jail or unjail
+  // Go to jail
   else if (player && token.jailed !== player.jailed) {
+    console.log(222222, token.meanPosition, player.meanPosition);
     setTimeout(() => {
       updateToken({
         ...token,
-        left: player.jailed ? FIELD_JAIL_LEFT : fields[UNJAIL_FIELD].left,
-        top: player.jailed ? FIELD_JAIL_TOP : fields[UNJAIL_FIELD].top,
+        left: player.jailed
+          ? FIELD_JAIL_LEFT
+          : fields[player.meanPosition].left,
+        top: player.jailed ? FIELD_JAIL_TOP : fields[player.meanPosition].top,
         meanPosition: stopPosition,
         jailed: player.jailed,
       });
     }, 0);
+    // Unjail
   }
 };
 
