@@ -7,7 +7,6 @@ import {
   OutcomeMessageType,
 } from "../types/BoardTypes";
 import { boardSocket } from "../components/core/BoardCore/BoardCore";
-import { actionsStore } from "./ActionStore";
 
 const ModalDomain = BoardDomain.domain("ModalDomain");
 
@@ -86,11 +85,3 @@ export const unjailPaidEffect = ModalDomain.effect<
 export const modalStore = ModalDomain.store<BoardAction>(init)
   .on(showModalEvent, (_, data) => data)
   .reset(resetModalEvent);
-
-// modalStore.watch((v) => console.log("modalStoreWatch", v));
-export const onTransitionEnd = (userId: number) => {
-  tokensMoveCompleteEffect({
-    userId,
-    actionId: actionsStore.getState().actionId,
-  });
-};
