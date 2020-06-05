@@ -20,51 +20,43 @@ const tokenTransition = (token: IToken, player: IPlayer) => {
   let lastIndex = 0;
   let timeout = LINE_TRANSITION_TIMEOUT;
 
-  for (let field of usedFields) {
-    if (
-      CORNER_FIELDS.indexOf(field) > -1 ||
-      lastIndex === usedFields.length - 1
-    ) {
-      setTimeout(() => {
+  if (usedFields.length && !player.jailed) {
+    for (let field of usedFields) {
+      if (
+        CORNER_FIELDS.indexOf(field) > -1 ||
+        lastIndex === usedFields.length - 1
+      ) {
+        setTimeout(() => {
+          updateToken({
+            ...token,
+            left: fields[field].left,
+            top: fields[field].top,
+            meanPosition: stopPosition,
+          });
+        }, timeout);
+        timeout += LINE_TRANSITION_TIMEOUT;
+      }
+      lastIndex++;
+    }
+  } else {
+    setTimeout(
+      () => {
         updateToken({
           ...token,
-          left: fields[field].left,
-          top: fields[field].top,
+          left: player.jailed
+            ? FIELD_JAIL_LEFT
+            : fields[player.meanPosition].left,
+          top: player.jailed ? FIELD_JAIL_TOP : fields[player.meanPosition].top,
           meanPosition: stopPosition,
         });
-      }, timeout);
-      timeout += LINE_TRANSITION_TIMEOUT;
-    }
-    lastIndex++;
+      },
+      player.jailed ? 0 : LINE_TRANSITION_TIMEOUT
+    );
   }
 };
 
 export const moveTokenAfterPlayerUpdate = (token: IToken, player: IPlayer) => {
-  let stopPosition = player.meanPosition ? player.meanPosition : 0;
-  if (
-    player &&
-    token.meanPosition !== player.meanPosition &&
-    token.jailed === player.jailed
-  ) {
-    console.log(11111, token.meanPosition, player.meanPosition);
-    tokenTransition(token, player);
-  }
-  // Go to jail
-  else if (player && token.jailed !== player.jailed) {
-    console.log(222222, token.meanPosition, player.meanPosition);
-    setTimeout(() => {
-      updateToken({
-        ...token,
-        left: player.jailed
-          ? FIELD_JAIL_LEFT
-          : fields[player.meanPosition].left,
-        top: player.jailed ? FIELD_JAIL_TOP : fields[player.meanPosition].top,
-        meanPosition: stopPosition,
-        jailed: player.jailed,
-      });
-    }, 0);
-    // Unjail
-  }
+  tokenTransition(token, player);
 };
 
 const TokensDomain = BoardDomain.domain("PlayersDomain");
