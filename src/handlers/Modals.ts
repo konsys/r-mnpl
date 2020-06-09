@@ -63,7 +63,7 @@ export const taxModal = (act: BoardAction): BoardAction => {
     text: act.text,
     actionButtons: [
       {
-        title: "Заплатить",
+        title: `Заплатить ${act.money && Math.abs(act.money)}k`,
         onClick: () => {
           taxPaidEffect({
             actionId: act._id,
