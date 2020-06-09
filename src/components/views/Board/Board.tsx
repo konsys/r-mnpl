@@ -12,7 +12,11 @@ export const Board = (prop: Prop) => (
         key={nanoid(4)}
         fieldPosition={field.fieldPosition}
         price={
-          field.status?.updatedPrice ? field.status.updatedPrice : field.price
+          field.status?.paymentMultiplier
+            ? field.status?.paymentMultiplier
+            : field.status?.updatedPrice
+            ? field.status.updatedPrice
+            : field.price
         }
         imgSrc={field.imgSrc}
         fieldGroup={field.fieldGroup}

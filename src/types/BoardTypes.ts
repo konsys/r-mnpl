@@ -83,6 +83,7 @@ export interface FieldStatus {
   level: number;
   mortgaged: boolean;
   updatedPrice: number;
+  paymentMultiplier: number;
 }
 
 interface CurrentMove {
