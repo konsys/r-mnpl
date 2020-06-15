@@ -34,42 +34,42 @@ export const Field = (props: BoardField) => {
     currency,
   } = props;
 
-  const field = (
-    <div
-      mnpl-corner={fieldCorner}
-      mnpl-line={fieldLine}
-      mnpl-group={fieldGroup}
-      mnpl-special={fieldSpecial}
-      mnpl-owner={
-        status && players.find((v) => v.userId === status.userId)?.moveOrder
-      }
-      className="table-body-board-fields-one"
-    >
-      {(type === FieldType.AUTO ||
-        type === FieldType.COMPANY ||
-        type === FieldType.IT) && (
-        <div
-          mnpl-currency={currency}
-          className="table-body-board-fields-one-label"
-        >
-          <div>{price}</div>
-        </div>
-      )}
-
-      <div className="table-body-board-fields-one-body">
-        {isJail && (
-          <>
-            <div className="_jail-visit" />
-            <div className="_jail-cell">
-              <div />
-            </div>
-          </>
+  return (
+    <>
+      <div
+        mnpl-corner={fieldCorner}
+        mnpl-line={fieldLine}
+        mnpl-group={fieldGroup}
+        mnpl-special={fieldSpecial}
+        mnpl-owner={
+          status && players.find((v) => v.userId === status.userId)?.moveOrder
+        }
+        className="table-body-board-fields-one"
+      >
+        {(type === FieldType.AUTO ||
+          type === FieldType.COMPANY ||
+          type === FieldType.IT) && (
+          <div
+            mnpl-currency={currency}
+            className="table-body-board-fields-one-label"
+          >
+            <div>{price}</div>
+          </div>
         )}
-        <div className="_logo" style={{ backgroundImage: `url(${imgSrc}` }} />
-      </div>
-      {!fieldSpecial && <div className="table-body-board-fields-one-level" />}
-    </div>
-  );
 
-  return <>{field}</>;
+        <div className="table-body-board-fields-one-body">
+          {isJail && (
+            <>
+              <div className="_jail-visit" />
+              <div className="_jail-cell">
+                <div />
+              </div>
+            </>
+          )}
+          <div className="_logo" style={{ backgroundImage: `url(${imgSrc}` }} />
+        </div>
+        {!fieldSpecial && <div className="table-body-board-fields-one-level" />}
+      </div>
+    </>
+  );
 };

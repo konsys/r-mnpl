@@ -22,5 +22,7 @@ export const BoardCore = () => {
   }, []);
 
   const data = useStore(fieldsStore);
-  return getInitFieldsEffect.done ? <Board fields={data.fields} /> : <>wait</>;
+
+  const pending = useStore(getInitFieldsEffect.pending);
+  return !pending ? <Board fields={data.fields} /> : <>wait</>;
 };

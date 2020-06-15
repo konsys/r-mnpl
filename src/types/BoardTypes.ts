@@ -35,6 +35,7 @@ export enum IncomeMessageType {
   INCOME_PLAYER_TOKEN_POSITION_ACTION = "changeTokenAction",
   INCOME_CAN_BUY_MODAL = "canBuyModal",
   INCOME_TAX_PAYING_MODAL = "taxPayingModal",
+  INCOME_UNJAIL_PAYING_MODAL = "unjailPayingModal",
   INCOME_ROLL_DICES_MODAL = "rollDicesModal",
   INCOME_UN_JAIL_MODAL = "unJailModal",
   INCOME_UN_JAIL_ACTION = "unJailAction",
