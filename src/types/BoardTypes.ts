@@ -55,6 +55,7 @@ export interface BoardAction {
   title?: string;
   text?: string;
   actionButtons?: ActionButtons[];
+  isModal: boolean;
 }
 
 export interface IDices extends BoardAction {

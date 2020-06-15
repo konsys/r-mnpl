@@ -19,6 +19,7 @@ const init: BoardAction = {
   text: "",
   actionButtons: [],
   _id: "",
+  isModal: false,
 };
 
 export const showModalEvent = ModalDomain.event<BoardAction>();

@@ -15,7 +15,6 @@ import { useStore } from "effector-react";
 import { BoardCore } from "../BoardCore/BoardCore";
 import { UsersCore } from "../PlayersCore/PlayersCore";
 import { actionsStore } from "../../../stores/ActionStore";
-import { IncomeMessageType } from "../../../types/BoardTypes";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 
@@ -23,15 +22,7 @@ interface Props extends RouteComponentProps {}
 
 export const Game = (props: Props) => {
   const actionState = useStore(actionsStore);
-  const actionType = actionState.event.action.type;
-
-  const isModalAction =
-    actionType === IncomeMessageType.INCOME_AUCTION_MODAL ||
-    actionType === IncomeMessageType.INCOME_CAN_BUY_MODAL ||
-    actionType === IncomeMessageType.INCOME_ROLL_DICES_MODAL ||
-    actionType === IncomeMessageType.INCOME_TAX_PAYING_MODAL ||
-    actionType === IncomeMessageType.INCOME_UN_JAIL_MODAL;
-
+  console.log(34535345345, actionState);
   return (
     <>
       <div className="wrapper" style={{ width: "100%", height: "100%" }}>
@@ -45,7 +36,7 @@ export const Game = (props: Props) => {
                 {actionState && (
                   // TODO check for user credentials
                   // userState.userId === actionState.event.action.userId &&
-                  <BoardModal isModal={isModalAction} />
+                  <BoardModal isModal={actionState.event.action.isModal} />
                 )}
                 <Arbitr />
                 <Ticket />

@@ -24,6 +24,7 @@ export const rollDicesModal = (act: BoardAction): BoardAction => {
       },
     ],
     _id: act._id,
+    isModal: act.isModal,
   };
 };
 
@@ -53,6 +54,7 @@ export const canBuyModal = (act: BoardAction): BoardAction => ({
     },
   ],
   _id: act._id,
+  isModal: act.isModal,
 });
 
 export const taxModal = (act: BoardAction): BoardAction => {
@@ -73,6 +75,7 @@ export const taxModal = (act: BoardAction): BoardAction => {
       },
     ],
     _id: act._id,
+    isModal: act.isModal,
   };
 };
 
@@ -103,5 +106,29 @@ export const unJailModal = (act: BoardAction): BoardAction => {
       },
     ],
     _id: act._id,
+    isModal: act.isModal,
+  };
+};
+
+export const unJailPayingModal = (act: BoardAction): BoardAction => {
+  console.log(234234234);
+  return {
+    type: act.type,
+    userId: act.userId,
+    title: act.title,
+    text: act.text,
+    actionButtons: [
+      {
+        title: `Заплатить ${act.money && Math.abs(act.money)}k`,
+        onClick: () => {
+          unjailPaidEffect({
+            actionId: act._id,
+          });
+        },
+        disabled: false,
+      },
+    ],
+    _id: act._id,
+    isModal: act.isModal,
   };
 };

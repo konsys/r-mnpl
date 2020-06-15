@@ -30,6 +30,7 @@ const init: IDices = {
   dices: [0, 0, 0],
   dicesSum: 0,
   _id: "",
+  isModal: false,
 };
 
 export const dicesStore = DiceDomain.store<IDices>(init)

@@ -10,6 +10,7 @@ export const rollDicesAction = async (act: IDices) => {
     dicesSum:
       act && act.dices?.length && act.dices[0] + act.dices[1] + act.dices[2],
     _id: act._id,
+    isModal: act.isModal,
   };
   setDicesEvent(roll);
 };

@@ -6,6 +6,7 @@ import {
   canBuyModal,
   taxModal,
   unJailModal,
+  unJailPayingModal,
 } from "../handlers/Modals";
 import { rollDicesAction } from "../handlers/DicesHandler";
 import { hideDicesEvent } from "./DicesStore";
@@ -28,6 +29,7 @@ export const actionsStore = ActionDomain.store<ICurrentAction>({
       type: IncomeMessageType.DO_NOTHING,
       userId: 0,
       _id: "",
+      isModal: false,
     },
   },
 })
@@ -44,6 +46,7 @@ export const doNothing = (userId: number) => {
         _id: nanoid(),
         userId,
         type: IncomeMessageType.DO_NOTHING,
+        isModal: false,
       },
     },
   });
@@ -61,6 +64,7 @@ actionsStore.watch((v) => {
           userId: action.userId,
           text: action.text,
           title: action.title,
+          isModal: action.isModal,
         })
       );
       break;
@@ -79,6 +83,10 @@ actionsStore.watch((v) => {
 
     case IncomeMessageType.INCOME_UN_JAIL_MODAL:
       showModalEvent(unJailModal(action));
+      break;
+
+    case IncomeMessageType.INCOME_UNJAIL_PAYING_MODAL:
+      showModalEvent(unJailPayingModal(action));
       break;
   }
 });

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Field, BoardField } from "../Field/Field";
 import nanoid from "nanoid";
 
@@ -6,10 +6,6 @@ interface Prop {
   fields: BoardField[];
 }
 export const Board = (prop: Prop) => {
-  useEffect(() => {
-    return () => {};
-  }, []);
-
   return (
     <>
       <div id="ui-fields" className="table-body-board-fields">
