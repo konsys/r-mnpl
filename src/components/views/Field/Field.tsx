@@ -18,8 +18,6 @@ export interface BoardField {
   currency?: string;
 }
 
-// export const Field = React.memo((props: BoardField) => {
-
 export const Field = (props: BoardField) => {
   const players = useStore(playersStore).players;
 

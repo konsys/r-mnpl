@@ -6,7 +6,7 @@ interface Prop {
   fieldsVersion: number;
 }
 
-export const Board = React.memo((prop: Prop) => {
+export const Board = (prop: Prop) => {
   const fields = () => (
     <div id="ui-fields" className="table-body-board-fields">
       {prop.fields.map((field, index) => (
@@ -36,4 +36,4 @@ export const Board = React.memo((prop: Prop) => {
   );
 
   return <>{fields()}</>;
-});
+};
