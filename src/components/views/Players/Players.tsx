@@ -14,11 +14,11 @@ export const Players = (prop: Prop) => {
 
   return (
     <>
-      <div key={nanoid(4)} className="table-body-players">
-        {prop.players.map((player: IPlayer) => {
+      <div className="table-body-players">
+        {prop.players.map((player: IPlayer, index) => {
           return (
             <div
-              key={nanoid(4)}
+              key={index}
               className="table-body-players-card"
               id={"player_card_" + player.userId}
               mnpl-order={player.moveOrder}
@@ -28,7 +28,7 @@ export const Players = (prop: Prop) => {
               }
             >
               <Avatar
-                key={nanoid(4)}
+                key={index}
                 name={player.name}
                 money={player.money}
                 remainTime={53}

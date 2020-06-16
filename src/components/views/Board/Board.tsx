@@ -1,18 +1,17 @@
 import React from "react";
 import { Field, BoardField } from "../Field/Field";
-import nanoid from "nanoid";
 
 interface Prop {
   fields: BoardField[];
   fieldsVersion: number;
 }
+
 export const Board = React.memo((prop: Prop) => {
-  console.log(234234234, prop.fieldsVersion);
   const fields = () => (
     <div id="ui-fields" className="table-body-board-fields">
-      {prop.fields.map((field) => (
+      {prop.fields.map((field, index) => (
         <Field
-          key={nanoid(4)}
+          key={(field && field.fieldId) || index}
           fieldPosition={field.fieldPosition}
           price={
             field.status?.paymentMultiplier

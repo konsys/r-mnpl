@@ -14,7 +14,7 @@ export const fieldsHandler = (messageFieldsStatus: FieldStatus[]) => {
 
     const currentField = store.fields[storeFieldIndex];
 
-    if (!_.isEqual(status, currentField.status)) {
+    if (currentField && !_.isEqual(status, currentField.status)) {
       store.fields[storeFieldIndex] = {
         ...store.fields[storeFieldIndex],
         status,
