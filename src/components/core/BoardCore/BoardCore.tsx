@@ -12,6 +12,8 @@ import { errorHandler } from "../../../handlers/ErrorHandler";
 export const boardSocket = openSocket("http://localhost:3001");
 
 export const BoardCore = () => {
+  const data = useStore(fieldsStore);
+
   useEffect(() => {
     getInitFieldsEffect();
     boardSocket.on(SocketActions.BOARD_MESSAGE, MessageHandler);
@@ -20,8 +22,6 @@ export const BoardCore = () => {
       clearNode(BoardDomain, { deep: true });
     };
   }, []);
-
-  const data = useStore(fieldsStore);
 
   const pending = useStore(getInitFieldsEffect.pending);
   return !pending ? <Board fields={data.fields} /> : <>wait</>;

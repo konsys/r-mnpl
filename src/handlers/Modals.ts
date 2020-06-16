@@ -111,7 +111,6 @@ export const unJailModal = (act: BoardAction): BoardAction => {
 };
 
 export const unJailPayingModal = (act: BoardAction): BoardAction => {
-  console.log(234234234);
   return {
     type: act.type,
     userId: act.userId,

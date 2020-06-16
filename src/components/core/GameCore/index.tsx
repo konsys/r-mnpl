@@ -22,7 +22,6 @@ interface Props extends RouteComponentProps {}
 
 export const Game = (props: Props) => {
   const actionState = useStore(actionsStore);
-  console.log(34535345345, actionState);
   return (
     <>
       <div className="wrapper" style={{ width: "100%", height: "100%" }}>
