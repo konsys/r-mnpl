@@ -4,8 +4,10 @@ import nanoid from "nanoid";
 
 interface Prop {
   fields: BoardField[];
+  fieldsVersion: number;
 }
 export const Board = React.memo((prop: Prop) => {
+  console.log(234234234, prop.fieldsVersion);
   const fields = () => (
     <div id="ui-fields" className="table-body-board-fields">
       {prop.fields.map((field) => (

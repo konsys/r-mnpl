@@ -3,28 +3,25 @@ import { fieldsStore } from "../stores/FieldsStore";
 import { setFieldsEvent } from "../stores/FieldsStore";
 import _ from "lodash";
 
-export const fieldsHandler = (fields: FieldStatus[]) => {
+export const fieldsHandler = (messageFieldsStatus: FieldStatus[]) => {
   const store = fieldsStore.getState();
-  const updatedStore = store;
-  updatedStore.fields.map((storeField, index) => {
-    const f = fields.find(
-      (messageField) => messageField.fieldId === storeField.fieldId
+  let toUpdateStore = false;
+
+  messageFieldsStatus.forEach((status) => {
+    const storeFieldIndex = store.fields.findIndex(
+      (storeField) => storeField.fieldId === status.fieldId
     );
 
-    if (index) {
-      updatedStore.fields[index] = {
-        ...storeField,
-        status: f,
+    const currentField = store.fields[storeFieldIndex];
+
+    if (!_.isEqual(status, currentField.status)) {
+      store.fields[storeFieldIndex] = {
+        ...store.fields[storeFieldIndex],
+        status,
       };
+      toUpdateStore = true;
     }
-    return null;
   });
 
-  console.log(234234234, updatedStore);
-
-  if (!_.isEqual(updatedStore, store)) {
-    setFieldsEvent({ ...updatedStore, version: ++updatedStore.version });
-  } else {
-    console.log(111111111);
-  }
+  toUpdateStore && setFieldsEvent({ ...store, version: ++store.version });
 };
