@@ -31,7 +31,7 @@ export const Players = (prop: Prop) => {
                 name={player.name}
                 money={player.money}
                 remainTime={53}
-                img={player.avatar ? player.avatar : ""}
+                avatar={player.avatar ? player.avatar : ""}
                 isVip={player.vip}
               />
 

@@ -1,17 +1,21 @@
 import React from "react";
+import { Params } from "../../../config/params";
 
 export interface AvatarProps {
   money: number;
   remainTime: number;
   isVip: boolean;
-  img: string;
+  avatar: string;
   name: string;
 }
 export const Avatar = (props: AvatarProps) => (
   <div className="table-body-players-card-body">
     <div className="table-body-players-card-body-avatar">
       <div>
-        <div style={{ backgroundImage: `url(${props.img})` }} />
+        {console.log(333333, props.avatar)}
+        <div
+          style={{ backgroundImage: `url(${Params.BASE_URL}${props.avatar})` }}
+        />
       </div>
     </div>
     <div className="table-body-players-card-body-nick">
