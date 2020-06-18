@@ -2,6 +2,8 @@ import { toast } from "react-toastify";
 
 export enum ErrorCode {
   "NotEnoughMoney" = 101,
+  "CompanyHasOwner" = 102,
+  "WrongTranactionId" = 103,
 }
 
 export interface IGameError {

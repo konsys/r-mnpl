@@ -7,3 +7,4 @@ export const FIELD_SIZE = 55;
 export const FIELD_JAIL_LEFT = 605;
 export const FIELD_JAIL_TOP = 55;
 export const UNJAIL_FIELD = 10;
+export const BANK_PLAYER_ID = 0;
