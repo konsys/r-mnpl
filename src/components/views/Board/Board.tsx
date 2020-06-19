@@ -3,7 +3,6 @@ import { Field, BoardField } from "../Field/Field";
 
 interface Prop {
   fields: BoardField[];
-  fieldsVersion: number;
 }
 
 export const Board = (prop: Prop) => {
@@ -13,13 +12,7 @@ export const Board = (prop: Prop) => {
         <Field
           key={(field && field.fieldId) || index}
           fieldPosition={field.fieldPosition}
-          price={
-            field.status?.paymentMultiplier
-              ? field.status?.paymentMultiplier
-              : field.status?.updatedPrice
-              ? field.status.updatedPrice
-              : field.price
-          }
+          price={field.price}
           imgSrc={field.imgSrc}
           fieldGroup={field.fieldGroup}
           fieldLine={field.fieldLine}

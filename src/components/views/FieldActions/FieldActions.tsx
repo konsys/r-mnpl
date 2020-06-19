@@ -1,15 +1,39 @@
 import React from "react";
 
-interface Prop {
-  top: number;
-  right: number;
-  rent: number;
+interface IRent {
+  baseRent: number;
+  oneStar: number;
+  twoStar: number;
+  freeStar: number;
+  fourStar: number;
+  bigStar: number;
 }
 
-export const FieldModal = (prop: Prop) => (
+interface IFieldPrice {
+  startPrice: number;
+  pledgePrice: number;
+  buyoutPrice: number;
+  branchPrice: number;
+}
+
+interface IFieldModalPosition {
+  top: number;
+  left: number;
+}
+
+interface Prop {
+  position: IFieldModalPosition;
+  fieldGroup: number;
+  name: string;
+  groupName: string;
+  rent: IRent;
+  price: IFieldPrice;
+}
+
+export const FieldActions = (prop: Prop) => (
   <div
     className="TableFieldcard"
-    style={{ top: `${prop.right}px`, right: `${prop.right}px` }}
+    style={{ top: `${prop.position.top}px`, left: `${prop.position.left}px` }}
   >
     <div className="TableFieldcard-top _mnpl_color_3">
       <div className="TableFieldcard-top-main">Вконтакте</div>

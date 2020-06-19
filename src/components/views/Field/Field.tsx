@@ -1,5 +1,5 @@
 import React from "react";
-import { FieldStatus, FieldType } from "../../../types/BoardTypes";
+import { FieldStatus, FieldType, IFieldPrice } from "../../../types/BoardTypes";
 import { useStore } from "effector-react";
 import { playersStore } from "../../../stores/PlayersStore";
 export interface BoardField {
@@ -8,7 +8,7 @@ export interface BoardField {
   imgSrc?: string;
   name: string;
   fieldSpecial?: number;
-  price?: number;
+  price?: IFieldPrice;
   fieldGroup?: number;
   fieldCorner?: number;
   fieldLine?: number;
@@ -53,7 +53,13 @@ export const Field = (props: BoardField) => {
             mnpl-currency={currency}
             className="table-body-board-fields-one-label"
           >
-            <div>{price}</div>
+            <div>
+              {price?.paymentMultiplier
+                ? price?.paymentMultiplier
+                : price?.boughtPrice
+                ? price.boughtPrice
+                : price?.startPrice}
+            </div>
           </div>
         )}
 
