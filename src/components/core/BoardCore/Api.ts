@@ -1,8 +1,8 @@
 import { client } from "../../../http/client";
-import { BoardField } from "../../views/Field/Field";
+import { IField } from "../../../types/BoardTypes";
 
 const URL = `/fields/initial`;
 
-export async function fetchInitFields(params?: any): Promise<BoardField[]> {
+export async function fetchInitFields(params?: any): Promise<IField[]> {
   return await (await client.get(URL, params)).data;
 }

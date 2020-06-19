@@ -84,8 +84,23 @@ export interface FieldStatus {
   userId: number;
   level: number;
   mortgaged: boolean;
-  price: IFieldPrice;
-  rent: IFieldRent;
+}
+
+export interface IField {
+  fieldId?: number;
+  fieldPosition: number;
+  imgSrc?: string;
+  name: string;
+  fieldSpecial?: number;
+  fieldGroup?: number;
+  fieldCorner?: number;
+  fieldLine?: number;
+  isJail?: boolean;
+  status?: FieldStatus;
+  type: FieldType;
+  currency?: string;
+  price?: IFieldPrice;
+  rent?: IFieldRent;
 }
 
 export interface IFieldRent {

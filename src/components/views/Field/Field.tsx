@@ -1,24 +1,9 @@
 import React from "react";
-import { FieldStatus, FieldType, IFieldPrice } from "../../../types/BoardTypes";
+import { FieldType, IField } from "../../../types/BoardTypes";
 import { useStore } from "effector-react";
 import { playersStore } from "../../../stores/PlayersStore";
-export interface BoardField {
-  fieldId?: number;
-  fieldPosition: number;
-  imgSrc?: string;
-  name: string;
-  fieldSpecial?: number;
-  price?: IFieldPrice;
-  fieldGroup?: number;
-  fieldCorner?: number;
-  fieldLine?: number;
-  isJail?: boolean;
-  status?: FieldStatus;
-  type: FieldType;
-  currency?: string;
-}
 
-export const Field = (props: BoardField) => {
+export const Field = (props: IField) => {
   const players = useStore(playersStore).players;
 
   const {

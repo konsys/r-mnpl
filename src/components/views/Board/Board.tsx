@@ -1,8 +1,9 @@
 import React from "react";
-import { Field, BoardField } from "../Field/Field";
+import { Field } from "../Field/Field";
+import { IField } from "../../../types/BoardTypes";
 
 interface Prop {
-  fields: BoardField[];
+  fields: IField[];
 }
 
 export const Board = (prop: Prop) => {

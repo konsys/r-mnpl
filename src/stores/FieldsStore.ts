@@ -1,18 +1,14 @@
 import { BoardDomain } from "./BoardDomain";
-import { BoardField } from "../components/views/Field/Field";
 import { fetchInitFields } from "../components/core/BoardCore/Api";
+import { IField } from "../types/BoardTypes";
 
 export interface IFieldsStore {
   version: number;
-  fields: BoardField[];
+  fields: IField[];
 }
 const FieldsDomain = BoardDomain.domain("BoardDomain");
 export const resetFieldsEvent = FieldsDomain.event();
-export const getInitFieldsEffect = FieldsDomain.effect<
-  void,
-  BoardField[],
-  Error
->({
+export const getInitFieldsEffect = FieldsDomain.effect<void, IField[], Error>({
   handler: fetchInitFields,
 });
 
