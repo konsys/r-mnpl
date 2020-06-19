@@ -85,10 +85,10 @@ export interface FieldStatus {
   level: number;
   mortgaged: boolean;
   price: IFieldPrice;
-  rent: IRent;
+  rent: IFieldRent;
 }
 
-export interface IRent {
+export interface IFieldRent {
   baseRent: number;
   oneStar: number;
   twoStar: number;

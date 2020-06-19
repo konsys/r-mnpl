@@ -1,6 +1,6 @@
 import React from "react";
 
-interface IRent {
+interface IFieldRent {
   baseRent: number;
   oneStar: number;
   twoStar: number;
@@ -26,7 +26,7 @@ interface Prop {
   fieldGroup: number;
   name: string;
   groupName: string;
-  rent: IRent;
+  rent: IFieldRent;
   price: IFieldPrice;
 }
 
