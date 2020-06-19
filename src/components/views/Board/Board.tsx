@@ -24,6 +24,7 @@ export const Board = (prop: Prop) => {
           status={field.status}
           type={field.type}
           currency={field.currency}
+          rent={field.rent}
         />
       ))}
     </div>

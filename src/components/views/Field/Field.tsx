@@ -17,6 +17,7 @@ export const Field = (props: IField) => {
     status,
     type,
     currency,
+    rent,
   } = props;
 
   return (
@@ -38,13 +39,7 @@ export const Field = (props: IField) => {
             mnpl-currency={currency}
             className="table-body-board-fields-one-label"
           >
-            <div>
-              {price?.paymentMultiplier
-                ? price?.paymentMultiplier
-                : price?.boughtPrice
-                ? price.boughtPrice
-                : price?.startPrice}
-            </div>
+            <div>{status?.userId ? rent?.baseRent : price?.startPrice}</div>
           </div>
         )}
 

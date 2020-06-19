@@ -110,6 +110,7 @@ export interface IFieldRent {
   freeStar: number;
   fourStar: number;
   bigStar: number;
+  paymentMultiplier?: number;
 }
 
 export interface IFieldPrice {
@@ -117,8 +118,6 @@ export interface IFieldPrice {
   pledgePrice: number;
   buyoutPrice: number;
   branchPrice: number;
-  paymentMultiplier?: number;
-  boughtPrice: number;
 }
 
 interface CurrentMove {

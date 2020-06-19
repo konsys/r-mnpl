@@ -17,7 +17,6 @@ import { UsersCore } from "../PlayersCore/PlayersCore";
 import { actionsStore } from "../../../stores/ActionStore";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
-import { FieldActions } from "../../views/FieldActions/FieldActions";
 
 interface Props extends RouteComponentProps {}
 
@@ -48,7 +47,7 @@ export const Game = (props: Props) => {
               <Dices />
               <Contract />
               <TableHelper />
-              <FieldActions
+              {/* <FieldActions
                 fieldGroup={3}
                 name={"vk"}
                 groupName={"Веб-сервисы"}
@@ -67,7 +66,7 @@ export const Game = (props: Props) => {
                   fourStar: 6250,
                   bigStar: 7500,
                 }}
-              />
+              /> */}
             </div>
           </div>
 
