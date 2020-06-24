@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Board } from "../../views/Board/Board";
 import { useStore } from "effector-react";
-import { getInitFieldsEffect, fieldsStore } from "../../../stores/FieldsStore";
+import { getInitFieldsEffect, IFieldsStore } from "../../../stores/FieldsStore";
 import { SocketActions } from "../../../types/ActionsTypes";
 import { MessageHandler } from "../../../handlers/MessageHandler";
 import openSocket from "socket.io-client";
@@ -11,9 +11,7 @@ import { errorHandler } from "../../../handlers/ErrorHandler";
 
 export const boardSocket = openSocket("http://localhost:3001");
 
-export const BoardCore = () => {
-  const data = useStore(fieldsStore);
-
+export const BoardCore = ({ fields, version }: IFieldsStore) => {
   useEffect(() => {
     getInitFieldsEffect();
     boardSocket.on(SocketActions.BOARD_MESSAGE, MessageHandler);
@@ -24,5 +22,6 @@ export const BoardCore = () => {
   }, []);
 
   const pending = useStore(getInitFieldsEffect.pending);
-  return !pending ? <Board fields={data.fields} /> : <>wait</>;
+  // TODO Make something with version
+  return !pending ? <Board version={version} fields={fields} /> : <>wait</>;
 };

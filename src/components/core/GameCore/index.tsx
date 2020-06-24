@@ -17,11 +17,22 @@ import { UsersCore } from "../PlayersCore/PlayersCore";
 import { actionsStore } from "../../../stores/ActionStore";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
+import { FieldActions } from "../../views/FieldActions/FieldActions";
+import { fieldsStore } from "../../../stores/FieldsStore";
+import { IFieldModalPosition } from "../../../types/BoardTypes";
+
+export const fieldsActionPosition = (): IFieldModalPosition => {
+  return {
+    left: 0,
+    top: 0,
+  };
+};
 
 interface Props extends RouteComponentProps {}
 
 export const Game = (props: Props) => {
   const actionState = useStore(actionsStore);
+  const { fields, version } = useStore(fieldsStore);
   return (
     <>
       <div className="wrapper" style={{ width: "100%", height: "100%" }}>
@@ -29,7 +40,7 @@ export const Game = (props: Props) => {
           <div className="table-body">
             <UsersCore />
             <div className="table-body-board">
-              <BoardCore />
+              <BoardCore fields={fields} version={version} />
               <div className="table-body-board-center">
                 <M1tv />
                 {actionState && (
@@ -47,26 +58,33 @@ export const Game = (props: Props) => {
               <Dices />
               <Contract />
               <TableHelper />
-              {/* <FieldActions
-                fieldGroup={3}
-                name={"vk"}
-                groupName={"Веб-сервисы"}
-                price={{
-                  branchPrice: 750,
-                  buyoutPrice: 840,
-                  pledgePrice: 700,
-                  startPrice: 1400,
-                }}
-                position={{ top: 105, left: 380 }}
-                rent={{
-                  baseRent: 100,
-                  oneStar: 500,
-                  twoStar: 1500,
-                  freeStar: 4500,
-                  fourStar: 6250,
-                  bigStar: 7500,
-                }}
-              /> */}
+              {fields.map((v, k) => {
+                return (
+                  v.fieldGroup && (
+                    <FieldActions
+                      key={k}
+                      fieldGroup={3}
+                      name={"vk"}
+                      groupName={"Веб-сервисы"}
+                      price={{
+                        branchPrice: v.price?.branchPrice || 0,
+                        buyoutPrice: v.price?.buyoutPrice || 0,
+                        pledgePrice: v.price?.pledgePrice || 0,
+                        startPrice: v.price?.startPrice || 0,
+                      }}
+                      position={{ top: k * 15, left: k * 2 + 380 }}
+                      rent={{
+                        baseRent: v.rent?.baseRent || 0,
+                        oneStar: v.rent?.oneStar || 0,
+                        twoStar: v.rent?.twoStar || 0,
+                        freeStar: v.rent?.freeStar || 0,
+                        fourStar: v.rent?.fourStar || 0,
+                        bigStar: v.rent?.bigStar || 0,
+                      }}
+                    />
+                  )
+                );
+              })}
             </div>
           </div>
 

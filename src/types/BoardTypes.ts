@@ -86,6 +86,11 @@ export interface FieldStatus {
   mortgaged: boolean;
 }
 
+export interface IFieldModalPosition {
+  top: number;
+  left: number;
+}
+
 export interface IField {
   fieldId?: number;
   fieldPosition: number;

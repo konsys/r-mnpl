@@ -3,23 +3,20 @@ import { FieldType, IField } from "../../../types/BoardTypes";
 import { useStore } from "effector-react";
 import { playersStore } from "../../../stores/PlayersStore";
 
-export const Field = (props: IField) => {
+export const Field = ({
+  fieldCorner,
+  fieldLine,
+  fieldGroup,
+  fieldSpecial,
+  isJail,
+  price,
+  imgSrc,
+  status,
+  type,
+  currency,
+  rent,
+}: IField) => {
   const players = useStore(playersStore).players;
-
-  const {
-    fieldCorner,
-    fieldLine,
-    fieldGroup,
-    fieldSpecial,
-    isJail,
-    price,
-    imgSrc,
-    status,
-    type,
-    currency,
-    rent,
-  } = props;
-
   return (
     <>
       <div

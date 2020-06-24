@@ -1,25 +1,9 @@
 import React from "react";
-
-interface IFieldRent {
-  baseRent: number;
-  oneStar: number;
-  twoStar: number;
-  freeStar: number;
-  fourStar: number;
-  bigStar: number;
-}
-
-interface IFieldPrice {
-  startPrice: number;
-  pledgePrice: number;
-  buyoutPrice: number;
-  branchPrice: number;
-}
-
-interface IFieldModalPosition {
-  top: number;
-  left: number;
-}
+import {
+  IFieldRent,
+  IFieldPrice,
+  IFieldModalPosition,
+} from "../../../types/BoardTypes";
 
 interface Prop {
   position: IFieldModalPosition;
