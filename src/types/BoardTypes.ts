@@ -98,6 +98,7 @@ export interface IField {
   name: string;
   fieldSpecial?: number;
   fieldGroup?: number;
+  fieldGroupName?: string;
   fieldCorner?: number;
   fieldLine?: number;
   isJail?: boolean;

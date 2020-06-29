@@ -17,7 +17,11 @@ interface Prop {
 export const FieldActions = (prop: Prop) => (
   <div
     className="TableFieldcard"
-    style={{ top: `${prop.position.top}px`, left: `${prop.position.left}px` }}
+    style={{
+      top: `${prop.position.top}px`,
+      left: `${prop.position.left}px`,
+      display: "none",
+    }}
   >
     <div className="TableFieldcard-top _mnpl_color_3">
       <div className="TableFieldcard-top-main">Вконтакте</div>

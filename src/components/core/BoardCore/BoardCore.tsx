@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Board } from "../../views/Board/Board";
 import { useStore } from "effector-react";
 import { getInitFieldsEffect } from "../../../stores/FieldsStore";
-import { SocketActions } from "../../../types/ActionsTypes";
+import { SocketActions } from "../../../types/SocketTypes";
 import { MessageHandler } from "../../../handlers/MessageHandler";
 import openSocket from "socket.io-client";
 import { clearNode } from "effector";
