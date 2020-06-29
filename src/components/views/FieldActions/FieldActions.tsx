@@ -24,7 +24,7 @@ export const FieldActions = (prop: Prop) => (
       display: prop.isActive ? "block" : "none",
     }}
   >
-    <div className="TableFieldcard-top _mnpl_color_3">
+    <div className={`TableFieldcard-top _mnpl_color_${prop.fieldGroup}`}>
       <div className="TableFieldcard-top-main">{prop.name}</div>
       <div className="TableFieldcard-top-sub">{prop.groupName}</div>
     </div>
