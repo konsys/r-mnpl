@@ -1,11 +1,16 @@
 import React from "react";
 import { Field } from "../Field/Field";
-import { fieldsStore } from "../../../stores/FieldsStore";
+import {
+  fieldsStore,
+  setFieldActionEvent,
+  fieldActionStore,
+} from "../../../stores/FieldsStore";
 import { useStore } from "effector-react";
 import { FieldActions } from "../FieldActions/FieldActions";
 
 export const Board = () => {
   const { fields } = useStore(fieldsStore);
+  const fieldActionId = useStore(fieldActionStore);
 
   return (
     <>
@@ -27,6 +32,7 @@ export const Board = () => {
               type={field.type}
               currency={field.currency}
               rent={field.rent}
+              onClick={() => setFieldActionEvent(field.fieldId || 0)}
             />
           ))}
         {fields &&
@@ -36,7 +42,7 @@ export const Board = () => {
                 <FieldActions
                   key={(field && field.fieldId) || index}
                   fieldGroup={field.fieldGroup}
-                  name={field.name}
+                  name={field.name + "1"}
                   groupName={field.fieldGroupName || ""}
                   price={{
                     branchPrice: field.price?.branchPrice || 0,
@@ -53,9 +59,11 @@ export const Board = () => {
                     fourStar: field.rent?.fourStar || 0,
                     bigStar: field.rent?.bigStar || 0,
                   }}
+                  isActive={field.fieldId === fieldActionId}
                 />
               )
           )}
+        3400
       </div>
     </>
   );

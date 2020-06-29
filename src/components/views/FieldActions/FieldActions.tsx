@@ -12,6 +12,7 @@ interface Prop {
   groupName: string;
   rent: IFieldRent;
   price: IFieldPrice;
+  isActive: boolean;
 }
 
 export const FieldActions = (prop: Prop) => (
@@ -20,12 +21,12 @@ export const FieldActions = (prop: Prop) => (
     style={{
       top: `${prop.position.top}px`,
       left: `${prop.position.left}px`,
-      display: "none",
+      display: prop.isActive ? "block" : "none",
     }}
   >
     <div className="TableFieldcard-top _mnpl_color_3">
-      <div className="TableFieldcard-top-main">Вконтакте</div>
-      <div className="TableFieldcard-top-sub">Веб-сервисы</div>
+      <div className="TableFieldcard-top-main">{prop.name}</div>
+      <div className="TableFieldcard-top-sub">{prop.groupName}</div>
     </div>
     <div className="_bg">
       <div className="TableFieldcard-buttons">
@@ -40,61 +41,61 @@ export const FieldActions = (prop: Prop) => (
             <div className="_title">
               <span>Базовая рента</span>
             </div>
-            <div className="_value _type_money">100</div>
+            <div className="_value _type_money">{prop.rent.baseRent}</div>
           </div>
           <div>
             <div className="_title">
               <span className="_star_small"></span>
             </div>
-            <div className="_value _type_money">500</div>
+            <div className="_value _type_money">{prop.rent.oneStar}</div>
           </div>
           <div>
             <div className="_title">
               <span className="_star_small"></span>
               <span className="_star_small"></span>
             </div>
-            <div className="_value _type_money">1,500</div>
-          </div>
-          <div>
-            <div className="_title">
-              <span className="_star_small"></span>
-              <span className="_star_small"></span>
-              <span className="_star_small"></span>
-            </div>
-            <div className="_value _type_money">4,500</div>
+            <div className="_value _type_money">{prop.rent.twoStar}</div>
           </div>
           <div>
             <div className="_title">
               <span className="_star_small"></span>
               <span className="_star_small"></span>
               <span className="_star_small"></span>
+            </div>
+            <div className="_value _type_money">{prop.rent.freeStar}</div>
+          </div>
+          <div>
+            <div className="_title">
+              <span className="_star_small"></span>
+              <span className="_star_small"></span>
+              <span className="_star_small"></span>
               <span className="_star_small"></span>
             </div>
-            <div className="_value _type_money">6,250</div>
+            <div className="_value _type_money">{prop.rent.fourStar}</div>
           </div>
           <div>
             <div className="_title">
               <span className="_star_big"></span>
             </div>
-            <div className="_value _type_money">7,500</div>
+            <div className="_value _type_money">{prop.rent.bigStar}</div>
           </div>
         </div>
         <div className="TableFieldcard-data-rows">
           <div>
             <div className="_title">Стоимость поля</div>
-            <div className="_value _type_money">1,400</div>
+            <div className="_value _type_money">{prop.price.startPrice}</div>
           </div>
           <div>
             <div className="_title">Залог поля</div>
-            <div className="_value _type_money">700</div>
+            <div className="_value _type_money">{prop.price.pledgePrice}</div>
           </div>
           <div>
             <div className="_title">Выкуп поля</div>
-            <div className="_value _type_money">840</div>
+            <div className="_value _type_money">{prop.price.buyoutPrice}</div>
           </div>
           <div>
             <div className="_title">Покупка филиала</div>
-            <div className="_value _type_money">750</div>
+            <div className="_value _type_money">{prop.price.branchPrice}</div>
           </div>
         </div>
       </div>

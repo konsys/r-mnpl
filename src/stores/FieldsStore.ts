@@ -7,6 +7,13 @@ export interface IFieldsStore {
   fields: IField[];
 }
 const FieldsDomain = BoardDomain.domain("BoardDomain");
+
+export const resetFieldActionEvent = FieldsDomain.event();
+export const setFieldActionEvent = FieldsDomain.event<number>();
+export const fieldActionStore = FieldsDomain.store<number>(0)
+  .on(setFieldActionEvent, (_, data) => data)
+  .reset(resetFieldActionEvent);
+
 export const resetFieldsEvent = FieldsDomain.event();
 export const getInitFieldsEffect = FieldsDomain.effect<void, IField[], Error>({
   handler: fetchInitFields,
@@ -22,6 +29,7 @@ export const fieldsStore = FieldsDomain.store<IFieldsStore>({
     fields: data.result,
     version: 1,
   }))
+  .reset(resetFieldsEvent)
 
   .on(getInitFieldsEffect.fail, (err: any) => console.error("error", err))
   .on(setFieldsEvent, (_, state: IFieldsStore) => state)

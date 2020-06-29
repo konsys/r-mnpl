@@ -15,6 +15,7 @@ export const Field = ({
   type,
   currency,
   rent,
+  onClick,
 }: IField) => {
   const players = useStore(playersStore).players;
   return (
@@ -28,6 +29,7 @@ export const Field = ({
           status && players.find((v) => v.userId === status.userId)?.moveOrder
         }
         className="table-body-board-fields-one"
+        onClick={onClick}
       >
         {(type === FieldType.AUTO ||
           type === FieldType.COMPANY ||
