@@ -8,11 +8,23 @@ export interface IFieldsStore {
 }
 const FieldsDomain = BoardDomain.domain("BoardDomain");
 
+const waitForNumber = async (n: number) => {
+  return Promise.resolve(n);
+};
+
 export const resetFieldActionEvent = FieldsDomain.event();
-export const setFieldActionEvent = FieldsDomain.event<number>();
+export const setFieldActionEvent = FieldsDomain.effect<number, number>({
+  handler: waitForNumber,
+});
+
 export const fieldActionStore = FieldsDomain.store<number>(0)
-  .on(setFieldActionEvent, (_, data) => data)
+  .on(setFieldActionEvent.done, (_, data) => {
+    return data.result;
+  })
+  // .on(setFieldActionEvent.pending, () => 0)
   .reset(resetFieldActionEvent);
+
+fieldActionStore.watch((v) => console.log(111111, v));
 
 export const resetFieldsEvent = FieldsDomain.event();
 export const getInitFieldsEffect = FieldsDomain.effect<void, IField[], Error>({
