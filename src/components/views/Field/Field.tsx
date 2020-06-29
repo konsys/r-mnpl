@@ -15,6 +15,7 @@ export const Field = ({
   type,
   currency,
   rent,
+  fieldPosition,
   onClick,
 }: IField) => {
   const players = useStore(playersStore).players;
@@ -51,7 +52,11 @@ export const Field = ({
               </div>
             </>
           )}
-          <div className="_logo" style={{ backgroundImage: `url(${imgSrc}` }} />
+          <div
+            className="_logo"
+            id={`field-${fieldPosition}`}
+            style={{ backgroundImage: `url(${imgSrc}` }}
+          />
         </div>
         {!fieldSpecial && <div className="table-body-board-fields-one-level" />}
       </div>

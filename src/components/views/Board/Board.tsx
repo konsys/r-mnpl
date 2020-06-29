@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Field } from "../Field/Field";
 import {
   fieldsStore,
@@ -11,6 +11,20 @@ import { FieldActions } from "../FieldActions/FieldActions";
 export const Board = () => {
   const { fields } = useStore(fieldsStore);
   const fieldActionId = useStore(fieldActionStore);
+
+  const closeFieldAction = (event: any) => {
+    (!event.target.id && setFieldActionEvent(0)) ||
+      (event.target.id &&
+        !(event.target.id.indexOf("field") > -1) &&
+        setFieldActionEvent(0));
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", closeFieldAction, false);
+    return () => {
+      document.removeEventListener("click", closeFieldAction, false);
+    };
+  }, []);
 
   return (
     <>
@@ -32,7 +46,10 @@ export const Board = () => {
               type={field.type}
               currency={field.currency}
               rent={field.rent}
-              onClick={() => setFieldActionEvent(field.fieldId || 0)}
+              onClick={() => {
+                field.fieldId && setFieldActionEvent(field.fieldId);
+                return false;
+              }}
             />
           ))}
         {fields &&
