@@ -15,7 +15,7 @@ const waitForNumber = async (n: number) => {
     setFieldActionEvent(0);
 
     return new Promise((resolve, reject) => {
-      return setTimeout(resolve, 100);
+      return setTimeout(resolve, 200);
     });
   } else {
     Promise.resolve(n);
