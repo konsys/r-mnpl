@@ -39,7 +39,16 @@ export const Field = ({
             mnpl-currency={currency}
             className="table-body-board-fields-one-label"
           >
-            <div>{status?.userId ? rent?.baseRent : price?.startPrice}</div>
+            <div>
+              {status?.userId
+                ? (status?.level === 1 && rent?.baseRent) ||
+                  (status?.level === 2 && rent?.oneStar) ||
+                  (status?.level === 3 && rent?.twoStar) ||
+                  (status?.level === 4 && rent?.freeStar) ||
+                  (status?.level === 5 && rent?.fourStar) ||
+                  (status?.level === 6 && rent?.bigStar)
+                : price?.startPrice}
+            </div>
           </div>
         )}
 
