@@ -3,49 +3,25 @@ import { IFieldRent } from "../../../types/BoardTypes";
 
 export const FieldActionAuto = (rent: IFieldRent) => {
   return (
-    <div className="TableFieldcard-data-rows">
-      <div>
-        <div className="_title">
-          <span>Базовая рента</span>
+    <>
+      <div className="TableFieldcard-data-rows">
+        <div>
+          <div className="_title">1 полe</div>
+          <div className="_value _type_money">{rent && rent.baseRent}</div>
         </div>
-        <div className="_value _type_money">{rent && rent.baseRent}</div>
-      </div>
-      <div>
-        <div className="_title">
-          <span className="_star_small"></span>
+        <div>
+          <div className="_title">2 поля</div>
+          <div className="_value _type_money">{rent && rent.oneStar}</div>
         </div>
-        <div className="_value _type_money">{rent && rent.oneStar}</div>
-      </div>
-      <div>
-        <div className="_title">
-          <span className="_star_small"></span>
-          <span className="_star_small"></span>
+        <div>
+          <div className="_title">3 поля</div>
+          <div className="_value _type_money">{rent && rent.twoStar}</div>
         </div>
-        <div className="_value _type_money">{rent && rent.twoStar}</div>
-      </div>
-      <div>
-        <div className="_title">
-          <span className="_star_small"></span>
-          <span className="_star_small"></span>
-          <span className="_star_small"></span>
+        <div>
+          <div className="_title">4 поля</div>
+          <div className="_value _type_money">{rent && rent.freeStar}</div>
         </div>
-        <div className="_value _type_money">{rent && rent.freeStar}</div>
       </div>
-      <div>
-        <div className="_title">
-          <span className="_star_small"></span>
-          <span className="_star_small"></span>
-          <span className="_star_small"></span>
-          <span className="_star_small"></span>
-        </div>
-        <div className="_value _type_money">{rent && rent.fourStar}</div>
-      </div>
-      <div>
-        <div className="_title">
-          <span className="_star_big"></span>
-        </div>
-        <div className="_value _type_money">{rent && rent.bigStar}</div>
-      </div>
-    </div>
+    </>
   );
 };
