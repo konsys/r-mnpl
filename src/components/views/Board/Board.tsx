@@ -28,7 +28,7 @@ export const Board = () => {
       case 3:
         return field.fieldPosition > 34
           ? { top: 105 + (39 - field.fieldPosition) * 55, left: 105 }
-          : { top: (39 - field.fieldPosition) * 55, left: 105 };
+          : { top: (39 - field.fieldPosition) * 55 - 110, left: 105 };
 
       default:
         return { top: 240, left: 105 };
