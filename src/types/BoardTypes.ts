@@ -107,6 +107,7 @@ export interface IField {
   currency?: string;
   price?: IFieldPrice;
   rent?: IFieldRent;
+  description?: string;
   onClick?: () => any;
 }
 

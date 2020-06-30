@@ -9,22 +9,34 @@ export interface IFieldsStore {
 const FieldsDomain = BoardDomain.domain("BoardDomain");
 
 const waitForNumber = async (n: number) => {
-  return Promise.resolve(n);
+  const store = fieldActionStore.getState();
+  if (store) {
+    console.log(22222, store);
+    setFieldActionEvent(0);
+
+    return new Promise((resolve, reject) => {
+      return setTimeout(resolve, 100);
+    });
+  } else {
+    Promise.resolve(n);
+  }
 };
 
 export const resetFieldActionEvent = FieldsDomain.event();
-export const setFieldActionEvent = FieldsDomain.effect<number, number>({
+export const setFieldActionEvent = FieldsDomain.event<number>();
+export const setFieldActionEffect = FieldsDomain.effect<number, any>({
   handler: waitForNumber,
 });
 
 export const fieldActionStore = FieldsDomain.store<number>(0)
-  .on(setFieldActionEvent.done, (_, data) => {
-    return data.result;
+  .on(setFieldActionEffect.done, (_, data) => {
+    console.log("effect", data);
+    return data.params;
   })
-  // .on(setFieldActionEvent.pending, () => 0)
+  .on(setFieldActionEvent, (_, data) => {
+    return data;
+  })
   .reset(resetFieldActionEvent);
-
-fieldActionStore.watch((v) => console.log(111111, v));
 
 export const resetFieldsEvent = FieldsDomain.event();
 export const getInitFieldsEffect = FieldsDomain.effect<void, IField[], Error>({

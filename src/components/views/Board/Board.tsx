@@ -4,6 +4,7 @@ import {
   fieldsStore,
   setFieldActionEvent,
   fieldActionStore,
+  setFieldActionEffect,
 } from "../../../stores/FieldsStore";
 import { useStore } from "effector-react";
 import { FieldActions } from "../FieldActions/FieldActions";
@@ -55,7 +56,7 @@ export const Board = () => {
               key={(field && field.fieldId) || index}
               {...field}
               onClick={() => {
-                field.fieldId && setFieldActionEvent(field.fieldId);
+                field.fieldId && setFieldActionEffect(field.fieldId);
                 return false;
               }}
             />
@@ -63,7 +64,7 @@ export const Board = () => {
         {fields &&
           fields.map(
             (field, index) =>
-              field.fieldGroup && (
+              field.rent && (
                 <FieldActions
                   key={(field && field.fieldId) || index}
                   {...field}
