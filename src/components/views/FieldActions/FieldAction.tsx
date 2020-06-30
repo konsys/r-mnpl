@@ -71,12 +71,14 @@ export const FieldActions = ({
                 {price && price.buyoutPrice}
               </div>
             </div>
-            <div>
-              <div className="_title">Покупка филиала</div>
-              <div className="_value _type_money">
-                {price && price.branchPrice}
+            {price && price.branchPrice > 0 && (
+              <div>
+                <div className="_title">Покупка филиала</div>
+                <div className="_value _type_money">
+                  {price && price.branchPrice}
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>
