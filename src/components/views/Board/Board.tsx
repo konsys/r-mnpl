@@ -7,7 +7,7 @@ import {
   setFieldActionEffect,
 } from "../../../stores/FieldsStore";
 import { useStore } from "effector-react";
-import { FieldActions } from "../FieldActions/FieldActions";
+import { FieldActions } from "../FieldActions/FieldAction";
 import { IField, IFieldModalPosition } from "../../../types/BoardTypes";
 import { FIELD_WIDTH } from "../../../types/boardParams";
 
@@ -68,9 +68,9 @@ export const Board = () => {
             />
           ))}
         {fields &&
-          fields.map(
-            (field, index) =>
-              field.rent && (
+          fields.map((field, index) => {
+            return (
+              field.fieldGroupName && (
                 <FieldActions
                   key={(field && field.fieldId) || index}
                   {...field}
@@ -78,7 +78,8 @@ export const Board = () => {
                   isActive={field.fieldId === fieldActionId}
                 />
               )
-          )}
+            );
+          })}
       </div>
     </>
   );
