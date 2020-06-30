@@ -44,7 +44,13 @@ export const Game = (props: Props) => {
                 {actionState && (
                   // TODO check for user credentials
                   // userState.userId === actionState.event.action.userId &&
-                  <BoardModal isModal={actionState.event.action.isModal} />
+                  <BoardModal
+                    isModal={
+                      (actionState.event.action &&
+                        actionState.event.action.isModal) ||
+                      false
+                    }
+                  />
                 )}
                 <Arbitr />
                 <Ticket />

@@ -1,4 +1,4 @@
-import { FIELD_SIZE, MARGIN_CENTER, TABLE_SIZE } from "./boardParams";
+import { FIELD_WIDTH, MARGIN_CENTER, TABLE_SIZE } from "./boardParams";
 
 export const createTurnsArray = (
   position: number,
@@ -30,7 +30,7 @@ export const fieldPositions = () => {
     let left = 0;
     let top = 0;
     if (i >= 0 && i <= 10) {
-      left = FIELD_SIZE * (i + 1);
+      left = FIELD_WIDTH * (i + 1);
       top = MARGIN_CENTER;
       if (i === 10) {
         left += 45;
@@ -45,7 +45,7 @@ export const fieldPositions = () => {
       });
     } else if (i >= 11 && i <= 20) {
       left = TABLE_SIZE - MARGIN_CENTER;
-      top = FIELD_SIZE * (i - 9);
+      top = FIELD_WIDTH * (i - 9);
       if (i === 20) {
         top += 25;
       }
@@ -55,7 +55,7 @@ export const fieldPositions = () => {
         top,
       });
     } else if (i >= 21 && i <= 30) {
-      left = TABLE_SIZE - FIELD_SIZE * (i - 19);
+      left = TABLE_SIZE - FIELD_WIDTH * (i - 19);
       top = TABLE_SIZE - MARGIN_CENTER;
       if (i === 30) {
         left -= 25;
@@ -67,7 +67,7 @@ export const fieldPositions = () => {
       });
     } else if (i >= 31 && i <= 39) {
       left = MARGIN_CENTER;
-      top = TABLE_SIZE - FIELD_SIZE * (i - 29);
+      top = TABLE_SIZE - FIELD_WIDTH * (i - 29);
       fieldPositions.push({
         positionNumber: i,
         left,
