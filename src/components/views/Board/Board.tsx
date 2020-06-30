@@ -10,6 +10,7 @@ import { useStore } from "effector-react";
 import { FieldActions } from "../FieldActions/FieldAction";
 import { IField, IFieldModalPosition } from "../../../types/BoardTypes";
 import { FIELD_WIDTH } from "../../../types/boardParams";
+import { mortgageFieldEffect } from "../../../stores/ModalStore";
 
 export const Board = () => {
   const { fields } = useStore(fieldsStore);
@@ -53,6 +54,14 @@ export const Board = () => {
     };
   }, []);
 
+  const onMortgage = (fieldId: number) => {
+    // mortgageFieldEffect
+    console.log("onMortgage");
+    mortgageFieldEffect({
+      fieldId,
+    });
+  };
+
   return (
     <>
       <div id="ui-fields" className="table-body-board-fields">
@@ -76,6 +85,7 @@ export const Board = () => {
                   {...field}
                   position={getFieldActionPosition(field)}
                   isActive={field.fieldId === fieldActionId}
+                  onMortgage={() => onMortgage(field.fieldId || 0)}
                 />
               )
             );

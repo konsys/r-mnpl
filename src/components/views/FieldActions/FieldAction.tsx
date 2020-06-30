@@ -7,10 +7,12 @@ import {
 import { FieldActionCompany } from "./FieldActionCompany";
 import { FieldActionAuto } from "./FieldActionAuto";
 import { FieldActionIT } from "./FieldActionIT";
+import { getActingPlayer } from "../../../utils/players.utils";
 
 export interface IFieldAction extends IField {
   position: IFieldModalPosition;
   isActive: boolean;
+  onMortgage: () => void;
 }
 
 export const FieldActions = ({
@@ -23,7 +25,10 @@ export const FieldActions = ({
   name,
   description,
   type,
+  status,
+  onMortgage,
 }: IFieldAction) => {
+  const player = getActingPlayer();
   return (
     <div
       className="TableFieldcard"
@@ -39,7 +44,11 @@ export const FieldActions = ({
       </div>
       <div className="_bg">
         <div className="TableFieldcard-buttons">
-          <div className="_mortgage">Заложить</div>
+          {player?.userId === status?.userId && (
+            <div className="_mortgage" onClick={onMortgage}>
+              Заложить
+            </div>
+          )}
         </div>
         <div className="TableFieldcard-data">
           <div className="TableFieldcard-data-rich">

@@ -7,6 +7,10 @@ export interface IActionId {
   actionId: string;
 }
 
+export interface IFieldId {
+  fieldId: number;
+}
+
 export interface IMoveCompleted extends IActionId {
   userId: number;
 }
@@ -28,6 +32,7 @@ export enum OutcomeMessageType {
   OUTCOME_TAX_PAID_CLICKED = "taxPaidCLicked",
   OUTCOME_UN_JAIL_PAID_CLICKED = "unJailPaidClicked",
   OUTCOME_ROLL_DICES_CLICKED = "rollDicesClicked",
+  OUTCOME_MORTGAGE_FIELD_CLICKED = "mortgageFieldClicked",
 }
 
 export enum IncomeMessageType {

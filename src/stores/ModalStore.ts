@@ -5,6 +5,7 @@ import {
   IMoveCompleted,
   IncomeMessageType,
   OutcomeMessageType,
+  IFieldId,
 } from "../types/BoardTypes";
 import { boardSocket } from "../components/core/BoardCore/BoardCore";
 
@@ -81,6 +82,16 @@ export const unjailPaidEffect = ModalDomain.effect<
 >(OutcomeMessageType.OUTCOME_UN_JAIL_PAID_CLICKED, {
   handler: async (data) =>
     boardSocket.emit(OutcomeMessageType.OUTCOME_UN_JAIL_PAID_CLICKED, data),
+});
+
+// Emits to mortgage field
+export const mortgageFieldEffect = ModalDomain.effect<
+  IFieldId,
+  Promise<SocketIOClient.Socket>,
+  Error
+>(OutcomeMessageType.OUTCOME_MORTGAGE_FIELD_CLICKED, {
+  handler: async (data) =>
+    boardSocket.emit(OutcomeMessageType.OUTCOME_MORTGAGE_FIELD_CLICKED, data),
 });
 
 export const modalStore = ModalDomain.store<BoardAction>(init)
