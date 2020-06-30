@@ -1,6 +1,12 @@
 import React from "react";
-import { IFieldModalPosition, IField } from "../../../types/BoardTypes";
+import {
+  IFieldModalPosition,
+  IField,
+  FieldType,
+} from "../../../types/BoardTypes";
 import { FieldActionCompany } from "./FieldActionCompany";
+import { FieldActionAuto } from "./FieldActionAuto";
+import { FieldActionIT } from "./FieldActionIT";
 
 export interface IFieldAction extends IField {
   position: IFieldModalPosition;
@@ -16,8 +22,8 @@ export const FieldActions = ({
   isActive,
   name,
   description,
+  type,
 }: IFieldAction) => {
-  console.log(1111111, rent);
   return (
     <div
       className="TableFieldcard"
@@ -39,7 +45,13 @@ export const FieldActions = ({
           <div className="TableFieldcard-data-rich">
             <div>{description}</div>
           </div>
-          {rent && <FieldActionCompany {...rent} />}
+          {(rent && type === FieldType.COMPANY && (
+            <FieldActionCompany {...rent} />
+          )) ||
+            (rent && type === FieldType.AUTO && (
+              <FieldActionAuto {...rent} />
+            )) ||
+            (rent && type === FieldType.IT && <FieldActionIT {...rent} />)}
           <div className="TableFieldcard-data-rows">
             <div>
               <div className="_title">Стоимость поля</div>
