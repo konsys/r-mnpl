@@ -59,6 +59,7 @@ export const Board = () => {
       fieldId,
     });
 
+  console.log(22222, fieldActionId);
   return (
     <>
       <div id="ui-fields" className="table-body-board-fields">
