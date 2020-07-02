@@ -69,7 +69,7 @@ export const Field = ({
           />
         </div>
         {!fieldSpecial && <div className="table-body-board-fields-one-level" />}
-        {status?.mortgaged && (
+        {status && status.mortgaged > 0 && (
           <div className="table-body-board-fields-one-mortgaged">
             <div className="">
               <span>{status?.mortgaged} </span>
