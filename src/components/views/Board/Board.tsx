@@ -10,7 +10,10 @@ import { useStore } from "effector-react";
 import { FieldActions } from "../FieldActions/FieldAction";
 import { IField, IFieldModalPosition } from "../../../types/types";
 import { FIELD_WIDTH } from "../../../params/boardParams";
-import { mortgageFieldEffect } from "../../../stores/ModalStore";
+import {
+  mortgageFieldEffect,
+  unMortgageFieldEffect,
+} from "../../../stores/ModalStore";
 
 export const Board = () => {
   const { fields } = useStore(fieldsStore);
@@ -61,6 +64,13 @@ export const Board = () => {
     closeFieldActionEvent();
   };
 
+  const onUnMortgage = (fieldId: number) => {
+    unMortgageFieldEffect({
+      fieldId,
+    });
+    closeFieldActionEvent();
+  };
+
   return (
     <>
       <div id="ui-fields" className="table-body-board-fields">
@@ -85,6 +95,7 @@ export const Board = () => {
                   position={getFieldActionPosition(field)}
                   isActive={field.fieldId === fieldActionId}
                   onMortgage={() => onMortgage(field.fieldId || 0)}
+                  onUnMortgage={() => onUnMortgage(field.fieldId || 0)}
                 />
               )
             );

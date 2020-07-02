@@ -9,6 +9,7 @@ export interface IFieldAction extends IField {
   position: IFieldModalPosition;
   isActive: boolean;
   onMortgage: () => void;
+  onUnMortgage: () => void;
 }
 
 export const FieldActions = ({
@@ -23,6 +24,7 @@ export const FieldActions = ({
   type,
   status,
   onMortgage,
+  onUnMortgage,
 }: IFieldAction) => {
   const player = getActingPlayer();
   return (
@@ -40,9 +42,14 @@ export const FieldActions = ({
       </div>
       <div className="_bg">
         <div className="TableFieldcard-buttons">
-          {player?.userId === status?.userId && (
+          {player?.userId === status?.userId && !!!status?.mortgaged && (
             <div className="_mortgage" onClick={onMortgage}>
               Заложить
+            </div>
+          )}
+          {player?.userId === status?.userId && !!status?.mortgaged && (
+            <div className="_unmortgage" onClick={onUnMortgage}>
+              Выкупить
             </div>
           )}
         </div>

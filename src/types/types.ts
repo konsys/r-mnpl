@@ -33,6 +33,7 @@ export enum OutcomeMessageType {
   OUTCOME_UN_JAIL_PAID_CLICKED = "unJailPaidClicked",
   OUTCOME_ROLL_DICES_CLICKED = "rollDicesClicked",
   OUTCOME_MORTGAGE_FIELD_CLICKED = "mortgageFieldClicked",
+  OUTCOME_UN_MORTGAGE_FIELD_CLICKED = "unMortgageFieldClicked",
 }
 
 export enum IncomeMessageType {

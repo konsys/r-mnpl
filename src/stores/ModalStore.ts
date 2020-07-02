@@ -94,6 +94,18 @@ export const mortgageFieldEffect = ModalDomain.effect<
     boardSocket.emit(OutcomeMessageType.OUTCOME_MORTGAGE_FIELD_CLICKED, data),
 });
 
+export const unMortgageFieldEffect = ModalDomain.effect<
+  IFieldId,
+  Promise<SocketIOClient.Socket>,
+  Error
+>(OutcomeMessageType.OUTCOME_UN_MORTGAGE_FIELD_CLICKED, {
+  handler: async (data) =>
+    boardSocket.emit(
+      OutcomeMessageType.OUTCOME_UN_MORTGAGE_FIELD_CLICKED,
+      data
+    ),
+});
+
 export const modalStore = ModalDomain.store<BoardAction>(init)
   .on(showModalEvent, (_, data) => data)
   .reset(resetModalEvent);
