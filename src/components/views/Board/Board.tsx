@@ -41,7 +41,7 @@ export const Board = () => {
   };
 
   const closeFieldAction = (event: any) => {
-    (!event.target.id && setFieldActionEvent(0)) ||
+    (!event.target && !event.target.id && setFieldActionEvent(0)) ||
       (event.target.id &&
         !(event.target.id.indexOf("field") > -1) &&
         setFieldActionEvent(0));
@@ -59,7 +59,7 @@ export const Board = () => {
       fieldId,
     });
 
-  console.log(22222, fieldActionId);
+  console.log("fieldActionIdfieldActionId", fieldActionId);
   return (
     <>
       <div id="ui-fields" className="table-body-board-fields">

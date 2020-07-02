@@ -13,7 +13,8 @@ const waitForNumber = async (n: number): Promise<number> => {
   if (n === store) {
     return n;
   }
-  if (store) {
+
+  if (store > 0) {
     setFieldActionEvent(0);
 
     return new Promise((resolve, reject) => {
@@ -31,7 +32,7 @@ export const setFieldActionEffect = FieldsDomain.effect<number, number>({
 
 export const fieldActionStore = FieldsDomain.store<number>(0)
   .on(setFieldActionEffect.done, (_, data) => {
-    console.log(11111, data);
+    console.log("setFieldActionEffect", data);
     return data.result;
   })
   .on(setFieldActionEvent, (_, data) => data)
