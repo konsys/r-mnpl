@@ -4,6 +4,11 @@ import { setFieldsEvent } from "../stores/FieldsStore";
 import _ from "lodash";
 
 export const fieldsHandler = (messageFieldsStatus: FieldStatus[]) => {
+  // statusFieldsIterate(messageFieldsStatus);
+  allFieldsIterate(messageFieldsStatus);
+};
+
+export const statusFieldsIterate = (messageFieldsStatus: FieldStatus[]) => {
   const store = fieldsStore.getState();
   let toUpdateStore = false;
 
@@ -24,4 +29,33 @@ export const fieldsHandler = (messageFieldsStatus: FieldStatus[]) => {
   });
 
   toUpdateStore && setFieldsEvent({ ...store, version: ++store.version });
+};
+
+export const allFieldsIterate = (messageFieldsStatus: FieldStatus[]) => {
+  const store = fieldsStore.getState();
+  // let toUpdateStore = false;
+
+  store.fields.forEach((storeField, index) => {
+    const messageFieldStatus = messageFieldsStatus.find(
+      (messageField) => messageField.fieldId === storeField.fieldId
+    );
+
+    if (messageFieldStatus) {
+      console.log(11111);
+      store.fields[index] = {
+        ...store.fields[index],
+        status: messageFieldStatus,
+      };
+      // toUpdateStore = true;
+    } else {
+      console.log(2222);
+      store.fields[index] = {
+        ...store.fields[index],
+        status: undefined,
+      };
+    }
+  });
+
+  // toUpdateStore &&
+  setFieldsEvent({ ...store, version: ++store.version });
 };
