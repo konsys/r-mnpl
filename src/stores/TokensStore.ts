@@ -6,7 +6,7 @@ import {
   FIELD_JAIL_TOP,
 } from "../utils/boardParams";
 import { createTurnsArray, fieldPositions } from "../utils/fields.utils";
-import { TokenStore, IToken, IPlayer } from "../types/BoardTypes";
+import { TokenStore, IToken, IPlayer } from "../types/types";
 
 const TokenDomain = BoardDomain.createDomain("TokenDomain");
 export const resetTokens = TokenDomain.event();

@@ -17,7 +17,7 @@ import { UsersCore } from "../PlayersCore/PlayersCore";
 import { actionsStore } from "../../../stores/ActionStore";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
-import { IFieldModalPosition } from "../../../types/BoardTypes";
+import { IFieldModalPosition } from "../../../types/types";
 
 export const fieldsActionPosition = (): IFieldModalPosition => {
   return {

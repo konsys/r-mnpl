@@ -1,4 +1,4 @@
-import { BoardMessage } from "../types/BoardTypes";
+import { BoardMessage } from "../types/types";
 import { setCurrentActionEvent } from "../stores/ActionStore";
 
 import { fieldsHandler } from "./FieldsHandler";

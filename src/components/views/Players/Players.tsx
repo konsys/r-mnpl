@@ -2,7 +2,7 @@ import React from "react";
 import { Avatar } from "../Avatar/Avatar";
 import { useStore } from "effector-react";
 import { actionsStore } from "../../../stores/ActionStore";
-import { IPlayer } from "../../../types/BoardTypes";
+import { IPlayer } from "../../../types/types";
 
 interface Prop {
   players: IPlayer[];

@@ -1,5 +1,5 @@
 import { playersStore, setPlayersEvent } from "../stores/PlayersStore";
-import { IPlayer } from "../types/BoardTypes";
+import { IPlayer } from "../types/types";
 
 export const getPlayerById = (userId: number) =>
   playersStore.getState().players.find((v) => v.userId === userId);

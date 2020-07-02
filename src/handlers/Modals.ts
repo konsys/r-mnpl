@@ -1,4 +1,4 @@
-import { BoardAction } from "../types/BoardTypes";
+import { BoardAction } from "../types/types";
 import {
   rollDicesEffect,
   fieldBoughtEffect,

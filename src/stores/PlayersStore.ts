@@ -1,6 +1,6 @@
 import { BoardDomain } from "./BoardDomain";
 import { fetchPlayers } from "../components/core/PlayersCore/api";
-import { IPlayer } from "../types/BoardTypes";
+import { IPlayer } from "../types/types";
 import { sample } from "effector";
 import {
   moveTokenAfterPlayerUpdate,

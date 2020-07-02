@@ -1,4 +1,4 @@
-import { FieldStatus } from "../types/BoardTypes";
+import { FieldStatus } from "../types/types";
 import { fieldsStore } from "../stores/FieldsStore";
 import { setFieldsEvent } from "../stores/FieldsStore";
 import _ from "lodash";

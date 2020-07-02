@@ -4,7 +4,7 @@ import {
   OutcomeMessageType,
   IncomeMessageType,
   IDices,
-} from "../types/BoardTypes";
+} from "../types/types";
 import { boardSocket } from "../components/core/BoardCore/BoardCore";
 
 const DiceDomain = BoardDomain.domain("DiceDomain");

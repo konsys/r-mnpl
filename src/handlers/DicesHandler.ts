@@ -1,4 +1,4 @@
-import { IDices } from "../types/BoardTypes";
+import { IDices } from "../types/types";
 import { setDicesEvent } from "../stores/DicesStore";
 
 export const rollDicesAction = async (act: IDices) => {

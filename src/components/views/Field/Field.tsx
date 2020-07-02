@@ -1,5 +1,5 @@
 import React from "react";
-import { FieldType, IField } from "../../../types/BoardTypes";
+import { FieldType, IField } from "../../../types/types";
 import { useStore } from "effector-react";
 import { playersStore } from "../../../stores/PlayersStore";
 
@@ -29,15 +29,16 @@ export const Field = ({
         mnpl-owner={
           status && players.find((v) => v.userId === status.userId)?.moveOrder
         }
-        className="table-body-board-fields-one"
+        className={"table-body-board-fields-one"}
         onClick={onClick}
+        mnpl-mortgaged={status?.mortgaged && 1}
       >
         {(type === FieldType.AUTO ||
           type === FieldType.COMPANY ||
           type === FieldType.IT) && (
           <div
             mnpl-currency={currency}
-            className="table-body-board-fields-one-label"
+            className={`table-body-board-fields-one-label `}
           >
             <div>
               {status?.userId
@@ -68,6 +69,13 @@ export const Field = ({
           />
         </div>
         {!fieldSpecial && <div className="table-body-board-fields-one-level" />}
+        {status?.mortgaged && (
+          <div className="table-body-board-fields-one-mortgaged">
+            <div className="">
+              <span>{status?.mortgaged} </span>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );

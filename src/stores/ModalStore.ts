@@ -6,7 +6,7 @@ import {
   IncomeMessageType,
   OutcomeMessageType,
   IFieldId,
-} from "../types/BoardTypes";
+} from "../types/types";
 import { boardSocket } from "../components/core/BoardCore/BoardCore";
 
 const ModalDomain = BoardDomain.domain("ModalDomain");

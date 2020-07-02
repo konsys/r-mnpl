@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  IFieldModalPosition,
-  IField,
-  FieldType,
-} from "../../../types/BoardTypes";
+import { IFieldModalPosition, IField, FieldType } from "../../../types/types";
 import { FieldActionCompany } from "./FieldActionCompany";
 import { FieldActionAuto } from "./FieldActionAuto";
 import { FieldActionIT } from "./FieldActionIT";

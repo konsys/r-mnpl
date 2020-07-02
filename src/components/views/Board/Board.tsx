@@ -8,8 +8,8 @@ import {
 } from "../../../stores/FieldsStore";
 import { useStore } from "effector-react";
 import { FieldActions } from "../FieldActions/FieldAction";
-import { IField, IFieldModalPosition } from "../../../types/BoardTypes";
-import { FIELD_WIDTH } from "../../../types/boardParams";
+import { IField, IFieldModalPosition } from "../../../types/types";
+import { FIELD_WIDTH } from "../../../params/boardParams";
 import { mortgageFieldEffect } from "../../../stores/ModalStore";
 
 export const Board = () => {
@@ -54,13 +54,10 @@ export const Board = () => {
     };
   }, []);
 
-  const onMortgage = (fieldId: number) => {
-    // mortgageFieldEffect
-    console.log("onMortgage");
+  const onMortgage = (fieldId: number) =>
     mortgageFieldEffect({
       fieldId,
     });
-  };
 
   return (
     <>

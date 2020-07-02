@@ -185,10 +185,22 @@ body[theme="dark"] .TableContract-content-list > div {
   font: 13px Ionicons;
   transform: translateY(-1px);
 }
-body:not([theme]) .TableContract-content-list > div ._one ._info ._title ._edit {
+body:not([theme])
+  .TableContract-content-list
+  > div
+  ._one
+  ._info
+  ._title
+  ._edit {
   color: #a7adb5;
 }
-body[theme="dark"] .TableContract-content-list > div ._one ._info ._title ._edit {
+body[theme="dark"]
+  .TableContract-content-list
+  > div
+  ._one
+  ._info
+  ._title
+  ._edit {
   color: #a1a1a4;
 }
 .TableContract-content-list > div ._one ._info ._title ._edit:before {

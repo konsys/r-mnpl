@@ -1,5 +1,5 @@
 import { BoardDomain } from "./BoardDomain";
-import { IBoardEvent, IncomeMessageType } from "../types/BoardTypes";
+import { IBoardEvent, IncomeMessageType } from "../types/types";
 import { showModalEvent } from "./ModalStore";
 import {
   rollDicesModal,
