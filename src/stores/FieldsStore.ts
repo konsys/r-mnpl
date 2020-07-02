@@ -15,11 +15,10 @@ const waitForNumber = async (n: number) => {
     setFieldActionEvent(0);
 
     return new Promise((resolve, reject) => {
-      return setTimeout(resolve, 200);
+      return setTimeout(() => resolve(n), 200);
     });
-  } else {
-    return Promise.resolve(n);
   }
+  return Promise.resolve(n);
 };
 
 export const resetFieldActionEvent = FieldsDomain.event();
@@ -29,7 +28,7 @@ export const setFieldActionEffect = FieldsDomain.effect<number, any>({
 });
 
 export const fieldActionStore = FieldsDomain.store<number>(0)
-  .on(setFieldActionEffect.done, (_, data) => data.params)
+  .on(setFieldActionEffect.done, (_, data) => data.result)
   .on(setFieldActionEvent, (_, data) => data)
   .reset(resetFieldActionEvent);
 
