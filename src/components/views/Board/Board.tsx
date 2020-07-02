@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Field } from "../Field/Field";
 import {
   fieldsStore,
-  setFieldActionEvent,
+  closeFieldActionEvent,
   fieldActionStore,
   setFieldActionEffect,
 } from "../../../stores/FieldsStore";
@@ -41,10 +41,10 @@ export const Board = () => {
   };
 
   const closeFieldAction = (event: any) => {
-    (!event.target && !event.target.id && setFieldActionEvent(0)) ||
+    (!event.target && !event.target.id && closeFieldActionEvent()) ||
       (event.target.id &&
         !(event.target.id.indexOf("field") > -1) &&
-        setFieldActionEvent(0));
+        closeFieldActionEvent());
   };
 
   useEffect(() => {
@@ -54,12 +54,13 @@ export const Board = () => {
     };
   }, []);
 
-  const onMortgage = (fieldId: number) =>
+  const onMortgage = (fieldId: number) => {
     mortgageFieldEffect({
       fieldId,
     });
+    closeFieldActionEvent();
+  };
 
-  console.log("fieldActionIdfieldActionId", fieldActionId);
   return (
     <>
       <div id="ui-fields" className="table-body-board-fields">
