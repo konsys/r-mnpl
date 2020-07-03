@@ -42,12 +42,12 @@ export const Field = ({
           >
             <div>
               {status?.userId
-                ? (status?.level === 1 && rent?.baseRent) ||
-                  (status?.level === 2 && rent?.oneStar) ||
-                  (status?.level === 3 && rent?.twoStar) ||
-                  (status?.level === 4 && rent?.freeStar) ||
-                  (status?.level === 5 && rent?.fourStar) ||
-                  (status?.level === 6 && rent?.bigStar)
+                ? (status?.branches === 0 && rent?.baseRent) ||
+                  (status?.branches === 1 && rent?.oneStar) ||
+                  (status?.branches === 2 && rent?.twoStar) ||
+                  (status?.branches === 3 && rent?.freeStar) ||
+                  (status?.branches === 4 && rent?.fourStar) ||
+                  (status?.branches === 5 && rent?.bigStar)
                 : price?.startPrice}
             </div>
           </div>
@@ -68,16 +68,18 @@ export const Field = ({
             style={{ backgroundImage: `url(${imgSrc}` }}
           />
         </div>
-        {status && status?.branches > 0 && (
+        {status && status?.branches > 0 && status?.branches < 5 && (
           <div className="table-body-board-fields-one-level">
-            <span className="_small"></span>
-            <span className="_small"></span>
-            <span className="_small"></span>
+            {new Array(status?.branches).fill(0).map(() => (
+              <span className="_small"></span>
+            ))}
           </div>
         )}
-        {/* <div className="table-body-board-fields-one-level">
-          <span className="_big"></span>
-        </div> */}
+        {status && status?.branches === 5 && (
+          <div className="table-body-board-fields-one-level">
+            <span className="_big"></span>
+          </div>
+        )}
         {!fieldSpecial && <div className="table-body-board-fields-one-level" />}
         {status && status.mortgaged > 0 && (
           <div className="table-body-board-fields-one-mortgaged">

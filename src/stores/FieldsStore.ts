@@ -59,4 +59,5 @@ export const fieldsStore = FieldsDomain.store<IFieldsStore>({
   .on(setFieldsEvent, (_, state: IFieldsStore) => state)
   .reset(resetFieldsEvent);
 
-// fieldsStore.watch((v) => onsole.log("fieldsStoreWatch", v));
+fieldsStore.watch((v) => console.log("fieldsStoreWatch", v.fields[1]));
+//
