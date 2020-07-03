@@ -4,10 +4,10 @@ import { setFieldsEvent } from "../stores/FieldsStore";
 import _ from "lodash";
 
 export const fieldsHandler = (messageFieldsStatus: FieldStatus[]) => {
-  // statusFieldsIterate(messageFieldsStatus);
   allFieldsIterate(messageFieldsStatus);
 };
 
+// Not used
 export const statusFieldsIterate = (messageFieldsStatus: FieldStatus[]) => {
   const store = fieldsStore.getState();
   let toUpdateStore = false;

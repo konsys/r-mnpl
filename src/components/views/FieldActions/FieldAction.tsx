@@ -10,6 +10,7 @@ export interface IFieldAction extends IField {
   isActive: boolean;
   onMortgage: () => void;
   onUnMortgage: () => void;
+  levelUp: () => void;
 }
 
 export const FieldActions = ({
@@ -25,6 +26,7 @@ export const FieldActions = ({
   status,
   onMortgage,
   onUnMortgage,
+  levelUp,
 }: IFieldAction) => {
   const player = getActingPlayer();
   return (
@@ -50,6 +52,11 @@ export const FieldActions = ({
           {player?.userId === status?.userId && !!status?.mortgaged && (
             <div className="_unmortgage" onClick={onUnMortgage}>
               Выкупить
+            </div>
+          )}
+          {player?.userId === status?.userId && !!!status?.mortgaged && (
+            <div className="_level_up" onClick={levelUp}>
+              Филиал
             </div>
           )}
         </div>

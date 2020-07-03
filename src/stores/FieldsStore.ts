@@ -33,10 +33,7 @@ export const setFieldActionEffect = FieldsDomain.effect<number, number>({
 });
 
 export const fieldActionStore = FieldsDomain.store<number>(0)
-  .on(setFieldActionEffect.done, (_, data) => {
-    console.log("setFieldActionEffect", data);
-    return data.result;
-  })
+  .on(setFieldActionEffect.done, (_, data) => data.result)
   .on(setFieldActionEvent, (_, data) => data)
   .on(closeFieldActionEvent, (_, data) => 0)
   .reset(resetFieldActionEvent);

@@ -109,3 +109,12 @@ export const unMortgageFieldEffect = ModalDomain.effect<
 export const modalStore = ModalDomain.store<BoardAction>(init)
   .on(showModalEvent, (_, data) => data)
   .reset(resetModalEvent);
+
+export const levelUpFieldEffect = ModalDomain.effect<
+  IFieldId,
+  Promise<SocketIOClient.Socket>,
+  Error
+>(OutcomeMessageType.OUTCOME_LEVEL_UP_FIELD_CLICKED, {
+  handler: async (data) =>
+    boardSocket.emit(OutcomeMessageType.OUTCOME_LEVEL_UP_FIELD_CLICKED, data),
+});

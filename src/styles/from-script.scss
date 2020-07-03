@@ -531,7 +531,11 @@ body[theme="dark"] .TableHelper-content-players > div:not(:first-child) {
   background: linear-gradient(45deg, #66b343, #b0e372);
 }
 .TableHelper-content-players-row > div:nth-child(1) ._dot._index_3 {
-  background: linear-gradient(45deg, rgba(161, 127, 239, 1), rgba(209, 136, 227, 1));
+  background: linear-gradient(
+    45deg,
+    rgba(161, 127, 239, 1),
+    rgba(209, 136, 227, 1)
+  );
 }
 .TableHelper-content-players-row > div:nth-child(1) ._dot._index_4 {
   background: linear-gradient(45deg, #d98942, #d9b444);
@@ -958,10 +962,22 @@ body[theme="dark"] .TableContract-content-list > div {
   font: 13px Ionicons;
   transform: translateY(-1px);
 }
-body:not([theme]) .TableContract-content-list > div ._one ._info ._title ._edit {
+body:not([theme])
+  .TableContract-content-list
+  > div
+  ._one
+  ._info
+  ._title
+  ._edit {
   color: #a7adb5;
 }
-body[theme="dark"] .TableContract-content-list > div ._one ._info ._title ._edit {
+body[theme="dark"]
+  .TableContract-content-list
+  > div
+  ._one
+  ._info
+  ._title
+  ._edit {
   color: #a1a1a4;
 }
 .TableContract-content-list > div ._one ._info ._title ._edit:before {
@@ -1967,7 +1983,8 @@ body[theme="dark"] .emotes-button-window-title {
 }
 .TableGeneratorDices-one._skin_733 .side,
 .TableGeneratorDices-one._skin_743 .side {
-  background: url(//m1.dogecdn.wtf/dices/dicesbox6/veteli-texture.svg) center/cover;
+  background: url(//m1.dogecdn.wtf/dices/dicesbox6/veteli-texture.svg)
+    center/cover;
 }
 .TableGeneratorDices-one._skin_733 .side .dot,
 .TableGeneratorDices-one._skin_743 .side .dot {
@@ -1980,7 +1997,8 @@ body[theme="dark"] .emotes-button-window-title {
 }
 .TableGeneratorDices-one._skin_734 .side,
 .TableGeneratorDices-one._skin_744 .side {
-  background: url(//m1.dogecdn.wtf/dices/dicesbox6/eina-texture.svg) center/cover;
+  background: url(//m1.dogecdn.wtf/dices/dicesbox6/eina-texture.svg)
+    center/cover;
 }
 .TableGeneratorDices-one._skin_734 .side .dot,
 .TableGeneratorDices-one._skin_744 .side .dot {
@@ -1993,7 +2011,8 @@ body[theme="dark"] .emotes-button-window-title {
 }
 .TableGeneratorDices-one._skin_735 .side,
 .TableGeneratorDices-one._skin_745 .side {
-  background: url(//m1.dogecdn.wtf/dices/dicesbox6/kierspe-texture.svg) center/cover;
+  background: url(//m1.dogecdn.wtf/dices/dicesbox6/kierspe-texture.svg)
+    center/cover;
 }
 .TableGeneratorDices-one._skin_735 .side .dot,
 .TableGeneratorDices-one._skin_745 .side .dot {
@@ -2006,7 +2025,8 @@ body[theme="dark"] .emotes-button-window-title {
 }
 .TableGeneratorDices-one._skin_736 .side,
 .TableGeneratorDices-one._skin_746 .side {
-  background: url(//m1.dogecdn.wtf/dices/dicesbox6/delft-texture.svg) center/cover;
+  background: url(//m1.dogecdn.wtf/dices/dicesbox6/delft-texture.svg)
+    center/cover;
 }
 .TableGeneratorDices-one._skin_736 .side .dot,
 .TableGeneratorDices-one._skin_746 .side .dot {
@@ -2019,7 +2039,8 @@ body[theme="dark"] .emotes-button-window-title {
 }
 .TableGeneratorDices-one._skin_737 .side,
 .TableGeneratorDices-one._skin_747 .side {
-  background: url(//m1.dogecdn.wtf/dices/dicesbox6/colatina-texture.svg) center/cover;
+  background: url(//m1.dogecdn.wtf/dices/dicesbox6/colatina-texture.svg)
+    center/cover;
 }
 .TableGeneratorDices-one._skin_737 .side .dot,
 .TableGeneratorDices-one._skin_747 .side .dot {
@@ -2032,7 +2053,8 @@ body[theme="dark"] .emotes-button-window-title {
 }
 .TableGeneratorDices-one._skin_738 .side,
 .TableGeneratorDices-one._skin_748 .side {
-  background: url(//m1.dogecdn.wtf/dices/dicesbox6/bendigo-texture.svg) center/cover;
+  background: url(//m1.dogecdn.wtf/dices/dicesbox6/bendigo-texture.svg)
+    center/cover;
 }
 .TableGeneratorDices-one._skin_738 .side .dot,
 .TableGeneratorDices-one._skin_748 .side .dot {
@@ -2045,7 +2067,8 @@ body[theme="dark"] .emotes-button-window-title {
 }
 .TableGeneratorDices-one._skin_739 .side,
 .TableGeneratorDices-one._skin_749 .side {
-  background: url(//m1.dogecdn.wtf/dices/dicesbox6/atami-texture.svg) center/cover;
+  background: url(//m1.dogecdn.wtf/dices/dicesbox6/atami-texture.svg)
+    center/cover;
 }
 .TableGeneratorDices-one._skin_739 .side .dot,
 .TableGeneratorDices-one._skin_749 .side .dot {
@@ -2058,7 +2081,8 @@ body[theme="dark"] .emotes-button-window-title {
 }
 .TableGeneratorDices-one._skin_740 .side,
 .TableGeneratorDices-one._skin_750 .side {
-  background: url(//m1.dogecdn.wtf/dices/dicesbox6/ferrol-texture.svg) center/cover;
+  background: url(//m1.dogecdn.wtf/dices/dicesbox6/ferrol-texture.svg)
+    center/cover;
 }
 .TableGeneratorDices-one._skin_740 .side .dot,
 .TableGeneratorDices-one._skin_750 .side .dot {
@@ -2071,7 +2095,8 @@ body[theme="dark"] .emotes-button-window-title {
 }
 .TableGeneratorDices-one._skin_741 .side,
 .TableGeneratorDices-one._skin_751 .side {
-  background: url(//m1.dogecdn.wtf/dices/dicesbox6/avignon-texture.svg) center/cover;
+  background: url(//m1.dogecdn.wtf/dices/dicesbox6/avignon-texture.svg)
+    center/cover;
 }
 .TableGeneratorDices-one._skin_741 .side .dot,
 .TableGeneratorDices-one._skin_751 .side .dot {

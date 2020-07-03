@@ -68,6 +68,16 @@ export const Field = ({
             style={{ backgroundImage: `url(${imgSrc}` }}
           />
         </div>
+        {status && status?.branches > 0 && (
+          <div className="table-body-board-fields-one-level">
+            <span className="_small"></span>
+            <span className="_small"></span>
+            <span className="_small"></span>
+          </div>
+        )}
+        {/* <div className="table-body-board-fields-one-level">
+          <span className="_big"></span>
+        </div> */}
         {!fieldSpecial && <div className="table-body-board-fields-one-level" />}
         {status && status.mortgaged > 0 && (
           <div className="table-body-board-fields-one-mortgaged">

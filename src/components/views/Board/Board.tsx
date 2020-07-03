@@ -13,6 +13,7 @@ import { FIELD_WIDTH } from "../../../params/boardParams";
 import {
   mortgageFieldEffect,
   unMortgageFieldEffect,
+  levelUpFieldEffect,
 } from "../../../stores/ModalStore";
 
 export const Board = () => {
@@ -71,6 +72,13 @@ export const Board = () => {
     closeFieldActionEvent();
   };
 
+  const onLevelUp = (fieldId: number) => {
+    levelUpFieldEffect({
+      fieldId,
+    });
+    closeFieldActionEvent();
+  };
+
   return (
     <>
       <div id="ui-fields" className="table-body-board-fields">
@@ -96,6 +104,7 @@ export const Board = () => {
                   isActive={field.fieldId === fieldActionId}
                   onMortgage={() => onMortgage(field.fieldId || 0)}
                   onUnMortgage={() => onUnMortgage(field.fieldId || 0)}
+                  levelUp={() => onLevelUp(field.fieldId || 0)}
                 />
               )
             );

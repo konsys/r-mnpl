@@ -34,6 +34,7 @@ export enum OutcomeMessageType {
   OUTCOME_ROLL_DICES_CLICKED = "rollDicesClicked",
   OUTCOME_MORTGAGE_FIELD_CLICKED = "mortgageFieldClicked",
   OUTCOME_UN_MORTGAGE_FIELD_CLICKED = "unMortgageFieldClicked",
+  OUTCOME_LEVEL_UP_FIELD_CLICKED = "levelUpFieldClicked",
 }
 
 export enum IncomeMessageType {
@@ -90,6 +91,7 @@ export interface FieldStatus {
   userId: number;
   level: number;
   mortgaged: number;
+  branches: number;
 }
 
 export interface IFieldModalPosition {
