@@ -33,7 +33,6 @@ export const statusFieldsIterate = (messageFieldsStatus: FieldStatus[]) => {
 
 export const allFieldsIterate = (messageFieldsStatus: FieldStatus[]) => {
   const store = fieldsStore.getState();
-  // let toUpdateStore = false;
 
   store.fields.forEach((storeField, index) => {
     const messageFieldStatus = messageFieldsStatus.find(
@@ -41,21 +40,16 @@ export const allFieldsIterate = (messageFieldsStatus: FieldStatus[]) => {
     );
 
     if (messageFieldStatus) {
-      console.log(11111);
       store.fields[index] = {
         ...store.fields[index],
         status: messageFieldStatus,
       };
-      // toUpdateStore = true;
     } else {
-      console.log(2222);
       store.fields[index] = {
         ...store.fields[index],
         status: undefined,
       };
     }
   });
-
-  // toUpdateStore &&
   setFieldsEvent({ ...store, version: ++store.version });
 };
