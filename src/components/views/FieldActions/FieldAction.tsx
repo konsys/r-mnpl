@@ -51,6 +51,7 @@ export const FieldActions = ({
         <div className="TableFieldcard-buttons">
           {status &&
             player?.userId === status?.userId &&
+            status.fieldActions &&
             status.fieldActions.indexOf(IFieldAction.MORTGAGE) > -1 && (
               <div className="_mortgage" onClick={onMortgage}>
                 Заложить
@@ -58,6 +59,7 @@ export const FieldActions = ({
             )}
           {status &&
             player?.userId === status?.userId &&
+            status.fieldActions &&
             status.fieldActions.indexOf(IFieldAction.UNMORTGAGE) > -1 && (
               <div className="_unmortgage" onClick={onUnMortgage}>
                 Выкупить
@@ -65,6 +67,7 @@ export const FieldActions = ({
             )}
           {status &&
             player?.userId === status?.userId &&
+            status.fieldActions &&
             status.fieldActions.indexOf(IFieldAction.LEVEL_UP) > -1 && (
               <div className="_level_up" onClick={levelUp}>
                 Построить
