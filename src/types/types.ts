@@ -25,6 +25,13 @@ export type Contract = {
   _id: string;
 };
 
+export enum IFieldAction {
+  MORTGAGE = "mortgage",
+  UNMORTGAGE = "nmortgage",
+  LEVEL_UP = "levelUp",
+  LEVEL_DOWN = "levelDown",
+}
+
 export enum OutcomeMessageType {
   INCOME_TOKEN_TRANSITION_COMPLETED = "changeTokenPositionCompleted",
   OUTCOME_AUCTION_START_CLICKED = "auctionStartClicked",
@@ -92,6 +99,7 @@ export interface FieldStatus {
   level: number;
   mortgaged: number;
   branches: number;
+  fieldActions: IFieldAction[];
 }
 
 export interface IFieldModalPosition {

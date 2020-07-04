@@ -1,11 +1,16 @@
 import React from "react";
-import { IFieldModalPosition, IField, FieldType } from "../../../types/types";
+import {
+  IFieldModalPosition,
+  IField,
+  FieldType,
+  IFieldAction,
+} from "../../../types/types";
 import { FieldActionCompany } from "./FieldActionCompany";
 import { FieldActionAuto } from "./FieldActionAuto";
 import { FieldActionIT } from "./FieldActionIT";
 import { getActingPlayer } from "../../../utils/players.utils";
 
-export interface IFieldAction extends IField {
+export interface IFieldModal extends IField {
   position: IFieldModalPosition;
   isActive: boolean;
   onMortgage: () => void;
@@ -27,7 +32,7 @@ export const FieldActions = ({
   onMortgage,
   onUnMortgage,
   levelUp,
-}: IFieldAction) => {
+}: IFieldModal) => {
   const player = getActingPlayer();
   return (
     <div
@@ -44,21 +49,27 @@ export const FieldActions = ({
       </div>
       <div className="_bg">
         <div className="TableFieldcard-buttons">
-          {player?.userId === status?.userId && !!!status?.mortgaged && (
-            <div className="_mortgage" onClick={onMortgage}>
-              Заложить
-            </div>
-          )}
-          {player?.userId === status?.userId && !!status?.mortgaged && (
-            <div className="_unmortgage" onClick={onUnMortgage}>
-              Выкупить
-            </div>
-          )}
-          {player?.userId === status?.userId && !!!status?.mortgaged && (
-            <div className="_level_up" onClick={levelUp}>
-              Филиал
-            </div>
-          )}
+          {status &&
+            player?.userId === status?.userId &&
+            status.fieldActions.indexOf(IFieldAction.MORTGAGE) > -1 && (
+              <div className="_mortgage" onClick={onMortgage}>
+                Заложить
+              </div>
+            )}
+          {status &&
+            player?.userId === status?.userId &&
+            status.fieldActions.indexOf(IFieldAction.UNMORTGAGE) > -1 && (
+              <div className="_unmortgage" onClick={onUnMortgage}>
+                Выкупить
+              </div>
+            )}
+          {status &&
+            player?.userId === status?.userId &&
+            status.fieldActions.indexOf(IFieldAction.LEVEL_UP) > -1 && (
+              <div className="_level_up" onClick={levelUp}>
+                Построить
+              </div>
+            )}
         </div>
         <div className="TableFieldcard-data">
           <div className="TableFieldcard-data-rich">
