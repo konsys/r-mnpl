@@ -8,7 +8,7 @@ import {
 } from "../../../stores/FieldsStore";
 import { useStore } from "effector-react";
 import { FieldActions } from "../FieldActions/FieldAction";
-import { IField, IFieldModalPosition } from "../../../types/types";
+import { IField, IFieldModalPosition, FieldType } from "../../../types/types";
 import { FIELD_WIDTH } from "../../../params/boardParams";
 import {
   mortgageFieldEffect,
@@ -91,12 +91,17 @@ export const Board = () => {
     <>
       <div id="ui-fields" className="table-body-board-fields">
         {fields &&
-          fields.map((field, index) => (
+          fields.map((f, index) => (
             <Field
-              key={(field && field.fieldId) || index}
-              {...field}
+              key={(f && f.fieldId) || index}
+              {...f}
               onClick={() => {
-                field.fieldId && setFieldActionEffect(field.fieldId);
+                f.type === FieldType.AUTO ||
+                f.type === FieldType.COMPANY ||
+                f.type === FieldType.IT
+                  ? setFieldActionEffect(f.fieldId || 0)
+                  : closeFieldActionEvent();
+
                 return false;
               }}
             />
