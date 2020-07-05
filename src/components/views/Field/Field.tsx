@@ -68,14 +68,17 @@ export const Field = ({
             style={{ backgroundImage: `url(${imgSrc}` }}
           />
         </div>
-        {status && status?.branches > 0 && status?.branches < 5 && (
-          <div className="table-body-board-fields-one-level">
-            {new Array(status?.branches).fill(0).map(() => (
-              <span className="_small"></span>
-            ))}
-          </div>
-        )}
-        {status && status?.branches === 5 && (
+        {type === FieldType.COMPANY &&
+          status &&
+          status?.branches > 0 &&
+          status?.branches < 5 && (
+            <div className="table-body-board-fields-one-level">
+              {new Array(status?.branches).fill(0).map(() => (
+                <span className="_small"></span>
+              ))}
+            </div>
+          )}
+        {type === FieldType.COMPANY && status && status?.branches === 5 && (
           <div className="table-body-board-fields-one-level">
             <span className="_big"></span>
           </div>
