@@ -14,6 +14,7 @@ import {
   mortgageFieldEffect,
   unMortgageFieldEffect,
   levelUpFieldEffect,
+  levelDownFieldEffect,
 } from "../../../stores/ModalStore";
 
 export const Board = () => {
@@ -79,6 +80,13 @@ export const Board = () => {
     closeFieldActionEvent();
   };
 
+  const onLevelDown = (fieldId: number) => {
+    levelDownFieldEffect({
+      fieldId,
+    });
+    closeFieldActionEvent();
+  };
+
   return (
     <>
       <div id="ui-fields" className="table-body-board-fields">
@@ -105,6 +113,7 @@ export const Board = () => {
                   onMortgage={() => onMortgage(field.fieldId || 0)}
                   onUnMortgage={() => onUnMortgage(field.fieldId || 0)}
                   levelUp={() => onLevelUp(field.fieldId || 0)}
+                  levelDown={() => onLevelDown(field.fieldId || 0)}
                 />
               )
             );

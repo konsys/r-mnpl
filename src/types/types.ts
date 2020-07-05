@@ -42,6 +42,7 @@ export enum OutcomeMessageType {
   OUTCOME_MORTGAGE_FIELD_CLICKED = "mortgageFieldClicked",
   OUTCOME_UN_MORTGAGE_FIELD_CLICKED = "unMortgageFieldClicked",
   OUTCOME_LEVEL_UP_FIELD_CLICKED = "levelUpFieldClicked",
+  OUTCOME_LEVEL_DOWN_FIELD_CLICKED = "levelDownFieldClicked",
 }
 
 export enum IncomeMessageType {

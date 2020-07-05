@@ -16,6 +16,7 @@ export interface IFieldModal extends IField {
   onMortgage: () => void;
   onUnMortgage: () => void;
   levelUp: () => void;
+  levelDown: () => void;
 }
 
 export const FieldActions = ({
@@ -32,6 +33,7 @@ export const FieldActions = ({
   onMortgage,
   onUnMortgage,
   levelUp,
+  levelDown,
 }: IFieldModal) => {
   const player = getActingPlayer();
   return (
@@ -77,7 +79,7 @@ export const FieldActions = ({
             player?.userId === status?.userId &&
             status.fieldActions &&
             status.fieldActions.indexOf(IFieldAction.LEVEL_DOWN) > -1 && (
-              <div className="_level_down" onClick={levelUp}>
+              <div className="_level_down" onClick={levelDown}>
                 Продать
               </div>
             )}

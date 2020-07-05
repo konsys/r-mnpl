@@ -118,3 +118,12 @@ export const levelUpFieldEffect = ModalDomain.effect<
   handler: async (data) =>
     boardSocket.emit(OutcomeMessageType.OUTCOME_LEVEL_UP_FIELD_CLICKED, data),
 });
+
+export const levelDownFieldEffect = ModalDomain.effect<
+  IFieldId,
+  Promise<SocketIOClient.Socket>,
+  Error
+>(OutcomeMessageType.OUTCOME_LEVEL_DOWN_FIELD_CLICKED, {
+  handler: async (data) =>
+    boardSocket.emit(OutcomeMessageType.OUTCOME_LEVEL_DOWN_FIELD_CLICKED, data),
+});
