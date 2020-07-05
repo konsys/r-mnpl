@@ -26,10 +26,10 @@ export type Contract = {
 };
 
 export enum IFieldAction {
-  MORTGAGE = "mortgage",
-  UNMORTGAGE = "nmortgage",
-  LEVEL_UP = "levelUp",
-  LEVEL_DOWN = "levelDown",
+  MORTGAGE = 0,
+  UNMORTGAGE = 1,
+  LEVEL_UP = 2,
+  LEVEL_DOWN = 3,
 }
 
 export enum OutcomeMessageType {
