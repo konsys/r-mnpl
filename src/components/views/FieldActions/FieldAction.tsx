@@ -73,6 +73,14 @@ export const FieldActions = ({
                 Построить
               </div>
             )}
+          {status &&
+            player?.userId === status?.userId &&
+            status.fieldActions &&
+            status.fieldActions.indexOf(IFieldAction.LEVEL_DOWN) > -1 && (
+              <div className="_level_down" onClick={levelUp}>
+                Продать
+              </div>
+            )}
         </div>
         <div className="TableFieldcard-data">
           <div className="TableFieldcard-data-rich">
