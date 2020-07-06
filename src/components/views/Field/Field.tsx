@@ -73,8 +73,8 @@ export const Field = ({
           status?.branches > 0 &&
           status?.branches < 5 && (
             <div className="table-body-board-fields-one-level">
-              {new Array(status?.branches).fill(0).map(() => (
-                <span className="_small"></span>
+              {new Array(status?.branches).fill(0).map((k, v) => (
+                <span className="_small" key={v}></span>
               ))}
             </div>
           )}
