@@ -24,7 +24,6 @@ export const Tokens = () => {
       {t.map((v: IToken, k) => {
         let samePos = findPosition(v.meanPosition).length;
         const line = getLine(v.meanPosition);
-        console.log(111, samePos, line);
         if (samePos > 4) samePos = 4;
         const left =
           samePos !== 1 && (line === 1 || line === 3)
