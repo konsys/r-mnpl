@@ -22,18 +22,18 @@ export const Tokens = () => {
   return (
     <>
       {t.map((v: IToken, k) => {
-        console.log(111);
-        const samePos = findPosition(v.meanPosition).length;
+        let samePos = findPosition(v.meanPosition).length;
         const line = getLine(v.meanPosition);
-
+        console.log(111, samePos, line);
+        if (samePos > 4) samePos = 4;
         const left =
           samePos !== 1 && (line === 1 || line === 3)
-            ? v.left
-            : v.left + samePos * k * 15;
+            ? v.left - (samePos - 1) * 12 + k * 25
+            : v.left;
 
         const top =
           samePos !== 1 && (line === 0 || line === 2)
-            ? v.top + samePos * k * 15
+            ? v.top - (samePos - 1) * 12 + k * 25
             : v.top;
 
         return (
