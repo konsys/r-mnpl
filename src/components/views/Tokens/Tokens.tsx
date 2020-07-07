@@ -33,23 +33,22 @@ export const Tokens = () => {
   ): IPosition => {
     let top = topS;
     let left = leftS;
-    const r = k + 1;
 
-    if (samePos !== 1 && (line === 0 || line === 2)) {
-      top = topS - samePos * 8 + 15 * r;
+    if (line === 0 || line === 2) {
+      top = topS - samePos * 10 + 2 + 16 * k;
 
-      if (r % 2 === 0) {
-        left += 15;
+      if (k % 2 === 0) {
+        left += 10;
       } else {
         left -= 10;
       }
     }
 
-    if (samePos !== 1 && (line === 1 || line === 3)) {
-      left = leftS - samePos * 8 + 15 * r;
+    if (line === 1 || line === 3) {
+      left = leftS - samePos * 10 + 2 + 16 * k;
 
       if (k % 2 === 0) {
-        top += 15;
+        top += 10;
       } else {
         top -= 10;
       }
@@ -61,13 +60,17 @@ export const Tokens = () => {
     };
   };
 
+  let i = 1;
   return (
     <>
       {t.map((v: IToken, k) => {
         let samePos = findPosition(v.meanPosition).length;
         const line = getLine(v.meanPosition);
 
-        const t = getPosition(samePos, k, line, v.left, v.top);
+        const t =
+          samePos > 1
+            ? getPosition(samePos, i++, line, v.left, v.top)
+            : { left: v.left, top: v.top };
 
         return (
           <div
