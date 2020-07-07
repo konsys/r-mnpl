@@ -13,10 +13,52 @@ export const Tokens = () => {
     return t.filter((v) => v.meanPosition === pos);
   };
 
+  interface IPosition {
+    left: number;
+    top: number;
+  }
+
   const getLine = (meanPosition: number): number => {
     return (
       f.find((v: IField) => v.fieldPosition === meanPosition)?.fieldLine || 0
     );
+  };
+
+  const getPosition = (
+    samePos: number,
+    k: number,
+    line: number,
+    leftS: number,
+    topS: number
+  ): IPosition => {
+    let top = topS;
+    let left = leftS;
+    const r = k + 1;
+
+    if (samePos !== 1 && (line === 0 || line === 2)) {
+      top = topS - samePos * 8 + 15 * r;
+
+      if (r % 2 === 0) {
+        left += 15;
+      } else {
+        left -= 10;
+      }
+    }
+
+    if (samePos !== 1 && (line === 1 || line === 3)) {
+      left = leftS - samePos * 8 + 15 * r;
+
+      if (k % 2 === 0) {
+        top += 15;
+      } else {
+        top -= 10;
+      }
+    }
+
+    return {
+      left,
+      top,
+    };
   };
 
   return (
@@ -24,24 +66,16 @@ export const Tokens = () => {
       {t.map((v: IToken, k) => {
         let samePos = findPosition(v.meanPosition).length;
         const line = getLine(v.meanPosition);
-        if (samePos > 4) samePos = 4;
-        const left =
-          samePos !== 1 && (line === 1 || line === 3)
-            ? v.left - (samePos - 1) * 12 + k * 25
-            : v.left;
 
-        const top =
-          samePos !== 1 && (line === 0 || line === 2)
-            ? v.top - (samePos - 1) * 12 + k * 25
-            : v.top;
+        const t = getPosition(samePos, k, line, v.left, v.top);
 
         return (
           <div
             key={k}
             mnpl-jailed={v.jailed}
             style={{
-              left: `${left}px`,
-              top: `${top}px `,
+              left: `${t.left}px`,
+              top: `${t.top}px `,
               transitionDuration: `${LINE_TRANSITION_TIMEOUT}ms`,
               transitionProperty: "left top ease",
               transform: `scale(${samePos === 1 ? 1 : 0.7})`,
