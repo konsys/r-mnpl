@@ -4,13 +4,18 @@ import { useStore } from "effector-react";
 import { tokensStore } from "../../../stores/TokensStore";
 import { IToken, IField } from "../../../types/types";
 import { fieldsStore } from "../../../stores/FieldsStore";
+import _ from "lodash";
 
 export const Tokens = () => {
-  const t = useStore(tokensStore).tokens;
+  const tokens = useStore(tokensStore).tokens;
   const f = useStore(fieldsStore).fields;
 
+  const group = (ar: any[]) => {
+    return _(ar).groupBy("meanPosition").value();
+  };
+
   const findPosition = (pos: number): IToken[] => {
-    return t.filter((v) => v.meanPosition === pos);
+    return tokens.filter((v) => v.meanPosition === pos);
   };
 
   interface IPosition {
@@ -25,19 +30,19 @@ export const Tokens = () => {
   };
 
   const getPosition = (
-    samePos: number,
-    k: number,
+    t: IToken[],
+    userId: number,
     line: number,
     leftS: number,
     topS: number
   ): IPosition => {
     let top = topS;
     let left = leftS;
-
+    const index = t.findIndex((v) => v.userId === userId);
     if (line === 0 || line === 2) {
-      top = topS - samePos * 10 + 2 + 16 * k;
+      top = topS - 1 * 10 + 2 + 16 * index;
 
-      if (k % 2 === 0) {
+      if (index % 2 === 0) {
         left += 10;
       } else {
         left -= 10;
@@ -45,9 +50,9 @@ export const Tokens = () => {
     }
 
     if (line === 1 || line === 3) {
-      left = leftS - samePos * 10 + 2 + 16 * k;
+      left = leftS - 1 * 10 + 2 + 16 * index;
 
-      if (k % 2 === 0) {
+      if (index % 2 === 0) {
         top += 10;
       } else {
         top -= 10;
@@ -60,18 +65,14 @@ export const Tokens = () => {
     };
   };
 
-  let i = 1;
+  const res = group(tokens);
+
   return (
     <>
-      {t.map((v: IToken, k) => {
-        let samePos = findPosition(v.meanPosition).length;
+      {tokens.map((v: IToken, k) => {
         const line = getLine(v.meanPosition);
-
-        const t =
-          samePos > 1
-            ? getPosition(samePos, i++, line, v.left, v.top)
-            : { left: v.left, top: v.top };
-
+        const s = res[v.meanPosition];
+        const t = getPosition(s, v.userId, line, v.left, v.top);
         return (
           <div
             key={k}
@@ -81,7 +82,7 @@ export const Tokens = () => {
               top: `${t.top}px `,
               transitionDuration: `${LINE_TRANSITION_TIMEOUT}ms`,
               transitionProperty: "left top ease",
-              transform: `scale(${samePos === 1 ? 1 : 0.7})`,
+              transform: `scale(${s.length === 1 ? 1 : 0.7})`,
             }}
             same-pos={findPosition(v.meanPosition).length}
             className="_animated"
