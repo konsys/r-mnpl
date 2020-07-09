@@ -12,6 +12,20 @@ import { fieldPositions } from "../utils/fields.utils";
 
 const PlayersDomain = BoardDomain.domain("PlayersDomain");
 
+export interface IPlayerAction {
+  srcPlayer: number;
+  distPlayer: number;
+  isVisible: boolean;
+  position: 1 | 2;
+}
+
+export const openPlayerActionEvent = PlayersDomain.event<IPlayerAction>();
+export const closePlayeActionEvent = PlayersDomain.event();
+
+export const playerActionStore = PlayersDomain.store<IPlayerAction | null>(null)
+  .on(openPlayerActionEvent, (_, data) => data)
+  .on(closePlayeActionEvent, () => null);
+
 export interface IPlayersStore {
   version: number;
   players: IPlayer[];

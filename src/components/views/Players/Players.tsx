@@ -3,6 +3,11 @@ import { Avatar } from "../Avatar/Avatar";
 import { useStore } from "effector-react";
 import { actionsStore } from "../../../stores/ActionStore";
 import { IPlayer } from "../../../types/types";
+import { PlayerActions } from "../PlayerActions/PlayerActions";
+import {
+  playerActionStore,
+  openPlayerActionEvent,
+} from "../../../stores/PlayersStore";
 
 interface Prop {
   players: IPlayer[];
@@ -10,6 +15,7 @@ interface Prop {
 
 export const Players = (prop: Prop) => {
   const action = useStore(actionsStore);
+  const actionStore = useStore(playerActionStore);
 
   return (
     <>
@@ -25,6 +31,20 @@ export const Players = (prop: Prop) => {
               mnpl-action_player={
                 action.event.action.userId === player.userId ? 1 : 0
               }
+              mnpl-opened={
+                actionStore?.isVisible &&
+                actionStore.srcPlayer === player.userId
+                  ? actionStore.position * 0
+                  : 0
+              }
+              onClick={() =>
+                openPlayerActionEvent({
+                  srcPlayer: player.userId,
+                  distPlayer: player.userId,
+                  isVisible: !actionStore?.isVisible,
+                  position: 1,
+                })
+              }
             >
               <Avatar
                 key={index}
@@ -34,12 +54,7 @@ export const Players = (prop: Prop) => {
                 avatar={player.avatar ? player.avatar : ""}
                 isVip={player.vip}
               />
-
-              <div className="table-body-players-card-menu">
-                <div className="_profile" />
-                <div className="_ignore" />
-                <div className="_report" />
-              </div>
+              <PlayerActions {...player} />
             </div>
           );
         })}
