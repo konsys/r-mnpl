@@ -363,10 +363,12 @@ body[mnpl-newcolors] .table-body-players-card-body-avatar > div > div {
 .table-body-players-card[mnpl-pressed][mnpl-action_player="1"] {
   transform: scale(1.02125);
 }
-.table-body-players-card[mnpl-opened] {
+.table-body-players-card[mnpl-opened="1"],
+.table-body-players-card[mnpl-opened="2"] {
   z-index: 3;
 }
-.table-body-players-card[mnpl-opened] .table-body-players-card-menu {
+.table-body-players-card[mnpl-opened="1"] .table-body-players-card-menu,
+.table-body-players-card[mnpl-opened="2"] .table-body-players-card-menu {
   opacity: 1;
   pointer-events: auto;
 }

@@ -1,19 +1,28 @@
 import React from "react";
-import { IPlayer } from "../../../types/types";
+import { IPlayerAction } from "../../../stores/PlayersStore";
 
-export const PlayerActions = ({ name }: IPlayer) => {
-  console.log(33333, name);
-  return (
-    <div className="table-body-players-card-menu">
-      <div className="_profile" />
-      <div className="_ignore" />
-      <div className="_report" />
-      <div className="_restart" />
-      <div className="_credit_take" />
-      <div className="_credit_pay" />
-      <div className="_leave" />
-      <div className="_contract" />
-      <div className="_kick" />
-    </div>
-  );
-};
+export const PlayerActions = ({
+  profile,
+  ignore,
+  ignoreOff,
+  report,
+  restart,
+  creditTake,
+  creditPay,
+  leave,
+  contract,
+  kick,
+}: IPlayerAction) => (
+  <div className="table-body-players-card-menu">
+    {profile && <div className="_profile" />}
+    {ignore && <div className="_ignore" />}
+    {ignoreOff && <div className="_ignore_off" />}
+    {report && <div className="_report" />}
+    {restart && <div className="_restart" />}
+    {creditTake && <div className="_credit_take" />}
+    {creditPay && <div className="_credit_pay" />}
+    {leave && <div className="_leave" />}
+    {contract && <div className="_contract" />}
+    {kick && <div className="_kick" />}
+  </div>
+);

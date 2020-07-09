@@ -9,22 +9,47 @@ import {
 } from "./TokensStore";
 import { getPlayerById } from "../utils/players.utils";
 import { fieldPositions } from "../utils/fields.utils";
-
 const PlayersDomain = BoardDomain.domain("PlayersDomain");
 
 export interface IPlayerAction {
   srcPlayer: number;
   distPlayer: number;
   isVisible: boolean;
-  position: 1 | 2;
+  position: number;
+  profile: boolean;
+  ignore: boolean;
+  ignoreOff: boolean;
+  report: boolean;
+  restart: boolean;
+  creditTake: boolean;
+  creditPay: boolean;
+  leave: boolean;
+  contract: boolean;
+  kick: boolean;
 }
 
 export const openPlayerActionEvent = PlayersDomain.event<IPlayerAction>();
 export const closePlayeActionEvent = PlayersDomain.event();
 
-export const playerActionStore = PlayersDomain.store<IPlayerAction | null>(null)
+const init = {
+  srcPlayer: 0,
+  distPlayer: 0,
+  isVisible: false,
+  position: 1,
+  ignore: false,
+  ignoreOff: false,
+  profile: false,
+  contract: false,
+  creditTake: false,
+  creditPay: false,
+  kick: false,
+  leave: false,
+  report: false,
+  restart: false,
+};
+export const playerActionStore = PlayersDomain.store<IPlayerAction>(init)
   .on(openPlayerActionEvent, (_, data) => data)
-  .on(closePlayeActionEvent, () => null);
+  .reset(closePlayeActionEvent);
 
 export interface IPlayersStore {
   version: number;

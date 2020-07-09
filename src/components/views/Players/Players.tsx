@@ -32,9 +32,8 @@ export const Players = (prop: Prop) => {
                 action.event.action.userId === player.userId ? 1 : 0
               }
               mnpl-opened={
-                actionStore?.isVisible &&
-                actionStore.srcPlayer === player.userId
-                  ? actionStore.position * 0
+                actionStore.isVisible && actionStore.srcPlayer === player.userId
+                  ? actionStore.position * 1
                   : 0
               }
               onClick={() =>
@@ -43,6 +42,16 @@ export const Players = (prop: Prop) => {
                   distPlayer: player.userId,
                   isVisible: !actionStore?.isVisible,
                   position: 1,
+                  ignore: true,
+                  ignoreOff: false,
+                  profile: true,
+                  contract: true,
+                  creditTake: true,
+                  creditPay: false,
+                  kick: false,
+                  leave: true,
+                  report: true,
+                  restart: false,
                 })
               }
             >
@@ -54,7 +63,7 @@ export const Players = (prop: Prop) => {
                 avatar={player.avatar ? player.avatar : ""}
                 isVip={player.vip}
               />
-              <PlayerActions {...player} />
+              <PlayerActions {...actionStore} />
             </div>
           );
         })}
