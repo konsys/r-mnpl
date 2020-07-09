@@ -1,7 +1,8 @@
 import React from "react";
 import "./App.scss";
-import { Router, Link } from "@reach/router";
+import { Router } from "@reach/router";
 import { Game } from "../GameCore";
+import { LoginForm } from "../../views/LoginForm/LoginForm";
 
 function App() {
   return (
@@ -9,8 +10,7 @@ function App() {
       <Router>
         <Game path="/game" />
       </Router>
-      Treatment
-      <Link to="/game">FF</Link>
+      <LoginForm />
     </>
   );
 }

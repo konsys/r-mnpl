@@ -42,7 +42,7 @@ export const Players = (prop: Prop) => {
                   distPlayer: player.userId,
                   isVisible: !actionStore?.isVisible,
                   position: 1,
-                  ignore: true,
+                  ignore: false,
                   ignoreOff: false,
                   profile: true,
                   contract: true,
