@@ -4492,15 +4492,21 @@ div.switcher._async._processing:before {
   width: 24.7px;
 }
 
-body:not([theme]) input[type="checkbox"].switcher:checked + div.switcher:not(.hack) {
+body:not([theme])
+  input[type="checkbox"].switcher:checked
+  + div.switcher:not(.hack) {
   background-color: #8cc152;
 }
 
-body[theme="dark"] input[type="checkbox"].switcher:checked + div.switcher:not(.hack) {
+body[theme="dark"]
+  input[type="checkbox"].switcher:checked
+  + div.switcher:not(.hack) {
   background-color: #59743f;
 }
 
-body[theme="dark"] input[type="checkbox"].switcher:checked + div.switcher:not(.hack):before {
+body[theme="dark"]
+  input[type="checkbox"].switcher:checked
+  + div.switcher:not(.hack):before {
   background-color: #8cc152;
 }
 
@@ -4508,15 +4514,20 @@ input[type="checkbox"].switcher:checked + div.switcher:before {
   left: 28px;
 }
 
-body:not([theme]) input[type="checkbox"].switcher:checked + div.switcher._async._processing {
+body:not([theme])
+  input[type="checkbox"].switcher:checked
+  + div.switcher._async._processing {
   background-color: #a7cb81;
 }
 
-body[theme="dark"] input[type="checkbox"].switcher:checked + div.switcher._async._processing {
+body[theme="dark"]
+  input[type="checkbox"].switcher:checked
+  + div.switcher._async._processing {
   background-color: #749851;
 }
 
-input[type="checkbox"].switcher:checked + div.switcher._async._processing:before {
+input[type="checkbox"].switcher:checked
+  + div.switcher._async._processing:before {
   left: 22.3px;
 }
 
@@ -4528,23 +4539,33 @@ body[theme="dark"] div.switcher._color-grapefruit._async._processing {
   background-color: #764550;
 }
 
-body:not([theme]) input[type="checkbox"].switcher:checked + div.switcher._color-grapefruit:not(._hack) {
+body:not([theme])
+  input[type="checkbox"].switcher:checked
+  + div.switcher._color-grapefruit:not(._hack) {
   background-color: #da4553;
 }
 
-body[theme="dark"] input[type="checkbox"].switcher:checked + div.switcher._color-grapefruit:not(._hack) {
+body[theme="dark"]
+  input[type="checkbox"].switcher:checked
+  + div.switcher._color-grapefruit:not(._hack) {
   background-color: #80363f;
 }
 
-body[theme="dark"] input[type="checkbox"].switcher:checked + div.switcher._color-grapefruit:not(._hack):before {
+body[theme="dark"]
+  input[type="checkbox"].switcher:checked
+  + div.switcher._color-grapefruit:not(._hack):before {
   background-color: #da4553;
 }
 
-body:not([theme]) input[type="checkbox"].switcher:checked + div.switcher._color-grapefruit._async._processing {
+body:not([theme])
+  input[type="checkbox"].switcher:checked
+  + div.switcher._color-grapefruit._async._processing {
   background-color: #db7881;
 }
 
-body[theme="dark"] input[type="checkbox"].switcher:checked + div.switcher._color-grapefruit._async._processing {
+body[theme="dark"]
+  input[type="checkbox"].switcher:checked
+  + div.switcher._color-grapefruit._async._processing {
   background-color: #a84552;
 }
 
@@ -4556,23 +4577,33 @@ body[theme="dark"] div.switcher._color-bittersweet._async._processing {
   background-color: #7b4b49;
 }
 
-body:not([theme]) input[type="checkbox"].switcher:checked + div.switcher._color-bittersweet:not(._hack) {
+body:not([theme])
+  input[type="checkbox"].switcher:checked
+  + div.switcher._color-bittersweet:not(._hack) {
   background-color: #e9573e;
 }
 
-body[theme="dark"] input[type="checkbox"].switcher:checked + div.switcher._color-bittersweet:not(._hack) {
+body[theme="dark"]
+  input[type="checkbox"].switcher:checked
+  + div.switcher._color-bittersweet:not(._hack) {
   background-color: #873f35;
 }
 
-body[theme="dark"] input[type="checkbox"].switcher:checked + div.switcher._color-bittersweet:not(._hack):before {
+body[theme="dark"]
+  input[type="checkbox"].switcher:checked
+  + div.switcher._color-bittersweet:not(._hack):before {
   background-color: #e9573e;
 }
 
-body:not([theme]) input[type="checkbox"].switcher:checked + div.switcher._color-bittersweet._async._processing {
+body:not([theme])
+  input[type="checkbox"].switcher:checked
+  + div.switcher._color-bittersweet._async._processing {
   background-color: #e58473;
 }
 
-body[theme="dark"] input[type="checkbox"].switcher:checked + div.switcher._color-bittersweet._async._processing {
+body[theme="dark"]
+  input[type="checkbox"].switcher:checked
+  + div.switcher._color-bittersweet._async._processing {
   background-color: #b25144;
 }
 
@@ -4584,23 +4615,33 @@ body[theme="dark"] div.switcher._color-sunflower._async._processing {
   background-color: #7f6c4b;
 }
 
-body:not([theme]) input[type="checkbox"].switcher:checked + div.switcher._color-sunflower:not(._hack) {
+body:not([theme])
+  input[type="checkbox"].switcher:checked
+  + div.switcher._color-sunflower:not(._hack) {
   background-color: #f6bb43;
 }
 
-body[theme="dark"] input[type="checkbox"].switcher:checked + div.switcher._color-sunflower:not(._hack) {
+body[theme="dark"]
+  input[type="checkbox"].switcher:checked
+  + div.switcher._color-sunflower:not(._hack) {
   background-color: #8e7137;
 }
 
-body[theme="dark"] input[type="checkbox"].switcher:checked + div.switcher._color-sunflower:not(._hack):before {
+body[theme="dark"]
+  input[type="checkbox"].switcher:checked
+  + div.switcher._color-sunflower:not(._hack):before {
   background-color: #f6bb43;
 }
 
-body:not([theme]) input[type="checkbox"].switcher:checked + div.switcher._color-sunflower._async._processing {
+body:not([theme])
+  input[type="checkbox"].switcher:checked
+  + div.switcher._color-sunflower._async._processing {
   background-color: #eec777;
 }
 
-body[theme="dark"] input[type="checkbox"].switcher:checked + div.switcher._color-sunflower._async._processing {
+body[theme="dark"]
+  input[type="checkbox"].switcher:checked
+  + div.switcher._color-sunflower._async._processing {
   background-color: #bb9447;
 }
 
@@ -4612,23 +4653,33 @@ body[theme="dark"] div.switcher._color-grass._async._processing {
   background-color: #5c6e50;
 }
 
-body:not([theme]) input[type="checkbox"].switcher:checked + div.switcher._color-grass:not(._hack) {
+body:not([theme])
+  input[type="checkbox"].switcher:checked
+  + div.switcher._color-grass:not(._hack) {
   background-color: #8cc152;
 }
 
-body[theme="dark"] input[type="checkbox"].switcher:checked + div.switcher._color-grass:not(._hack) {
+body[theme="dark"]
+  input[type="checkbox"].switcher:checked
+  + div.switcher._color-grass:not(._hack) {
   background-color: #59743f;
 }
 
-body[theme="dark"] input[type="checkbox"].switcher:checked + div.switcher._color-grass:not(._hack):before {
+body[theme="dark"]
+  input[type="checkbox"].switcher:checked
+  + div.switcher._color-grass:not(._hack):before {
   background-color: #8cc152;
 }
 
-body:not([theme]) input[type="checkbox"].switcher:checked + div.switcher._color-grass._async._processing {
+body:not([theme])
+  input[type="checkbox"].switcher:checked
+  + div.switcher._color-grass._async._processing {
   background-color: #a7cb81;
 }
 
-body[theme="dark"] input[type="checkbox"].switcher:checked + div.switcher._color-grass._async._processing {
+body[theme="dark"]
+  input[type="checkbox"].switcher:checked
+  + div.switcher._color-grass._async._processing {
   background-color: #749851;
 }
 
@@ -4640,23 +4691,33 @@ body[theme="dark"] div.switcher._color-mint._async._processing {
   background-color: #406d69;
 }
 
-body:not([theme]) input[type="checkbox"].switcher:checked + div.switcher._color-mint:not(._hack) {
+body:not([theme])
+  input[type="checkbox"].switcher:checked
+  + div.switcher._color-mint:not(._hack) {
   background-color: #37bc9d;
 }
 
-body[theme="dark"] input[type="checkbox"].switcher:checked + div.switcher._color-mint:not(._hack) {
+body[theme="dark"]
+  input[type="checkbox"].switcher:checked
+  + div.switcher._color-mint:not(._hack) {
   background-color: #2e7164;
 }
 
-body[theme="dark"] input[type="checkbox"].switcher:checked + div.switcher._color-mint:not(._hack):before {
+body[theme="dark"]
+  input[type="checkbox"].switcher:checked
+  + div.switcher._color-mint:not(._hack):before {
   background-color: #37bc9d;
 }
 
-body:not([theme]) input[type="checkbox"].switcher:checked + div.switcher._color-mint._async._processing {
+body:not([theme])
+  input[type="checkbox"].switcher:checked
+  + div.switcher._color-mint._async._processing {
   background-color: #6fc7b3;
 }
 
-body[theme="dark"] input[type="checkbox"].switcher:checked + div.switcher._color-mint._async._processing {
+body[theme="dark"]
+  input[type="checkbox"].switcher:checked
+  + div.switcher._color-mint._async._processing {
   background-color: #3b9483;
 }
 
@@ -4668,23 +4729,33 @@ body[theme="dark"] div.switcher._color-aqua._async._processing {
   background-color: #41687d;
 }
 
-body:not([theme]) input[type="checkbox"].switcher:checked + div.switcher._color-aqua:not(._hack) {
+body:not([theme])
+  input[type="checkbox"].switcher:checked
+  + div.switcher._color-aqua:not(._hack) {
   background-color: #3bafda;
 }
 
-body[theme="dark"] input[type="checkbox"].switcher:checked + div.switcher._color-aqua:not(._hack) {
+body[theme="dark"]
+  input[type="checkbox"].switcher:checked
+  + div.switcher._color-aqua:not(._hack) {
   background-color: #306b83;
 }
 
-body[theme="dark"] input[type="checkbox"].switcher:checked + div.switcher._color-aqua:not(._hack):before {
+body[theme="dark"]
+  input[type="checkbox"].switcher:checked
+  + div.switcher._color-aqua:not(._hack):before {
   background-color: #3bafda;
 }
 
-body:not([theme]) input[type="checkbox"].switcher:checked + div.switcher._color-aqua._async._processing {
+body:not([theme])
+  input[type="checkbox"].switcher:checked
+  + div.switcher._color-aqua._async._processing {
   background-color: #71bfdb;
 }
 
-body[theme="dark"] input[type="checkbox"].switcher:checked + div.switcher._color-aqua._async._processing {
+body[theme="dark"]
+  input[type="checkbox"].switcher:checked
+  + div.switcher._color-aqua._async._processing {
   background-color: #3e8cac;
 }
 
@@ -4696,23 +4767,33 @@ body[theme="dark"] div.switcher._color-blueJeans._async._processing {
   background-color: #465c7e;
 }
 
-body:not([theme]) input[type="checkbox"].switcher:checked + div.switcher._color-blueJeans:not(._hack) {
+body:not([theme])
+  input[type="checkbox"].switcher:checked
+  + div.switcher._color-blueJeans:not(._hack) {
   background-color: #4b89dc;
 }
 
-body[theme="dark"] input[type="checkbox"].switcher:checked + div.switcher._color-blueJeans:not(._hack) {
+body[theme="dark"]
+  input[type="checkbox"].switcher:checked
+  + div.switcher._color-blueJeans:not(._hack) {
   background-color: #385884;
 }
 
-body[theme="dark"] input[type="checkbox"].switcher:checked + div.switcher._color-blueJeans:not(._hack):before {
+body[theme="dark"]
+  input[type="checkbox"].switcher:checked
+  + div.switcher._color-blueJeans:not(._hack):before {
   background-color: #4b89dc;
 }
 
-body:not([theme]) input[type="checkbox"].switcher:checked + div.switcher._color-blueJeans._async._processing {
+body:not([theme])
+  input[type="checkbox"].switcher:checked
+  + div.switcher._color-blueJeans._async._processing {
   background-color: #7ca5dd;
 }
 
-body[theme="dark"] input[type="checkbox"].switcher:checked + div.switcher._color-blueJeans._async._processing {
+body[theme="dark"]
+  input[type="checkbox"].switcher:checked
+  + div.switcher._color-blueJeans._async._processing {
   background-color: #4972ad;
 }
 
@@ -4724,23 +4805,33 @@ body[theme="dark"] div.switcher._color-lavander._async._processing {
   background-color: #5f577e;
 }
 
-body:not([theme]) input[type="checkbox"].switcher:checked + div.switcher._color-lavander:not(._hack) {
+body:not([theme])
+  input[type="checkbox"].switcher:checked
+  + div.switcher._color-lavander:not(._hack) {
   background-color: #967bdc;
 }
 
-body[theme="dark"] input[type="checkbox"].switcher:checked + div.switcher._color-lavander:not(._hack) {
+body[theme="dark"]
+  input[type="checkbox"].switcher:checked
+  + div.switcher._color-lavander:not(._hack) {
   background-color: #5e5184;
 }
 
-body[theme="dark"] input[type="checkbox"].switcher:checked + div.switcher._color-lavander:not(._hack):before {
+body[theme="dark"]
+  input[type="checkbox"].switcher:checked
+  + div.switcher._color-lavander:not(._hack):before {
   background-color: #967bdc;
 }
 
-body:not([theme]) input[type="checkbox"].switcher:checked + div.switcher._color-lavander._async._processing {
+body:not([theme])
+  input[type="checkbox"].switcher:checked
+  + div.switcher._color-lavander._async._processing {
   background-color: #ae9cdd;
 }
 
-body[theme="dark"] input[type="checkbox"].switcher:checked + div.switcher._color-lavander._async._processing {
+body[theme="dark"]
+  input[type="checkbox"].switcher:checked
+  + div.switcher._color-lavander._async._processing {
   background-color: #7b69ad;
 }
 
@@ -4752,23 +4843,33 @@ body[theme="dark"] div.switcher._color-pinkRose._async._processing {
   background-color: #75536e;
 }
 
-body:not([theme]) input[type="checkbox"].switcher:checked + div.switcher._color-pinkRose:not(._hack) {
+body:not([theme])
+  input[type="checkbox"].switcher:checked
+  + div.switcher._color-pinkRose:not(._hack) {
   background-color: #d870ad;
 }
 
-body[theme="dark"] input[type="checkbox"].switcher:checked + div.switcher._color-pinkRose:not(._hack) {
+body[theme="dark"]
+  input[type="checkbox"].switcher:checked
+  + div.switcher._color-pinkRose:not(._hack) {
   background-color: #7f4b6c;
 }
 
-body[theme="dark"] input[type="checkbox"].switcher:checked + div.switcher._color-pinkRose:not(._hack):before {
+body[theme="dark"]
+  input[type="checkbox"].switcher:checked
+  + div.switcher._color-pinkRose:not(._hack):before {
   background-color: #d870ad;
 }
 
-body:not([theme]) input[type="checkbox"].switcher:checked + div.switcher._color-pinkRose._async._processing {
+body:not([theme])
+  input[type="checkbox"].switcher:checked
+  + div.switcher._color-pinkRose._async._processing {
   background-color: #da95bd;
 }
 
-body[theme="dark"] input[type="checkbox"].switcher:checked + div.switcher._color-pinkRose._async._processing {
+body[theme="dark"]
+  input[type="checkbox"].switcher:checked
+  + div.switcher._color-pinkRose._async._processing {
   background-color: #a7628e;
 }
 
@@ -4864,7 +4965,9 @@ body[theme="dark"] div.triway[design-value="-1"]:not(._hack):before {
   background-color: #da4553;
 }
 
-body:not([theme]) div.triway[design-value="-1"]:not(._hack) > div:first-child:before {
+body:not([theme])
+  div.triway[design-value="-1"]:not(._hack)
+  > div:first-child:before {
   color: #da4553;
 }
 
@@ -4889,7 +4992,9 @@ body[theme="dark"] div.triway[design-value="1"]:not(._hack):before {
   background-color: #8cc152;
 }
 
-body:not([theme]) div.triway[design-value="1"]:not(._hack) > div:last-child:before {
+body:not([theme])
+  div.triway[design-value="1"]:not(._hack)
+  > div:last-child:before {
   color: #8cc152;
 }
 
@@ -5034,110 +5139,182 @@ body[theme="dark"] input[type="checkbox"].checker:indeterminate + div.checker {
   color: #8cc152;
 }
 
-body:not([theme]) input[type="checkbox"].checker:checked + div.checker._color-grapefruit,
-body:not([theme]) input[type="checkbox"].checker:indeterminate + div.checker._color-grapefruit {
+body:not([theme])
+  input[type="checkbox"].checker:checked
+  + div.checker._color-grapefruit,
+body:not([theme])
+  input[type="checkbox"].checker:indeterminate
+  + div.checker._color-grapefruit {
   background-color: #da4553;
   color: #fff;
 }
 
-body[theme="dark"] input[type="checkbox"].checker:checked + div.checker._color-grapefruit,
-body[theme="dark"] input[type="checkbox"].checker:indeterminate + div.checker._color-grapefruit {
+body[theme="dark"]
+  input[type="checkbox"].checker:checked
+  + div.checker._color-grapefruit,
+body[theme="dark"]
+  input[type="checkbox"].checker:indeterminate
+  + div.checker._color-grapefruit {
   background-color: #80363f;
   color: #da4553;
 }
 
-body:not([theme]) input[type="checkbox"].checker:checked + div.checker._color-bittersweet,
-body:not([theme]) input[type="checkbox"].checker:indeterminate + div.checker._color-bittersweet {
+body:not([theme])
+  input[type="checkbox"].checker:checked
+  + div.checker._color-bittersweet,
+body:not([theme])
+  input[type="checkbox"].checker:indeterminate
+  + div.checker._color-bittersweet {
   background-color: #e9573e;
   color: #fff;
 }
 
-body[theme="dark"] input[type="checkbox"].checker:checked + div.checker._color-bittersweet,
-body[theme="dark"] input[type="checkbox"].checker:indeterminate + div.checker._color-bittersweet {
+body[theme="dark"]
+  input[type="checkbox"].checker:checked
+  + div.checker._color-bittersweet,
+body[theme="dark"]
+  input[type="checkbox"].checker:indeterminate
+  + div.checker._color-bittersweet {
   background-color: #873f35;
   color: #e9573e;
 }
 
-body:not([theme]) input[type="checkbox"].checker:checked + div.checker._color-sunflower,
-body:not([theme]) input[type="checkbox"].checker:indeterminate + div.checker._color-sunflower {
+body:not([theme])
+  input[type="checkbox"].checker:checked
+  + div.checker._color-sunflower,
+body:not([theme])
+  input[type="checkbox"].checker:indeterminate
+  + div.checker._color-sunflower {
   background-color: #f6bb43;
   color: #fff;
 }
 
-body[theme="dark"] input[type="checkbox"].checker:checked + div.checker._color-sunflower,
-body[theme="dark"] input[type="checkbox"].checker:indeterminate + div.checker._color-sunflower {
+body[theme="dark"]
+  input[type="checkbox"].checker:checked
+  + div.checker._color-sunflower,
+body[theme="dark"]
+  input[type="checkbox"].checker:indeterminate
+  + div.checker._color-sunflower {
   background-color: #8e7137;
   color: #f6bb43;
 }
 
-body:not([theme]) input[type="checkbox"].checker:checked + div.checker._color-grass,
-body:not([theme]) input[type="checkbox"].checker:indeterminate + div.checker._color-grass {
+body:not([theme])
+  input[type="checkbox"].checker:checked
+  + div.checker._color-grass,
+body:not([theme])
+  input[type="checkbox"].checker:indeterminate
+  + div.checker._color-grass {
   background-color: #8cc152;
   color: #fff;
 }
 
-body[theme="dark"] input[type="checkbox"].checker:checked + div.checker._color-grass,
-body[theme="dark"] input[type="checkbox"].checker:indeterminate + div.checker._color-grass {
+body[theme="dark"]
+  input[type="checkbox"].checker:checked
+  + div.checker._color-grass,
+body[theme="dark"]
+  input[type="checkbox"].checker:indeterminate
+  + div.checker._color-grass {
   background-color: #59743f;
   color: #8cc152;
 }
 
-body:not([theme]) input[type="checkbox"].checker:checked + div.checker._color-mint,
-body:not([theme]) input[type="checkbox"].checker:indeterminate + div.checker._color-mint {
+body:not([theme])
+  input[type="checkbox"].checker:checked
+  + div.checker._color-mint,
+body:not([theme])
+  input[type="checkbox"].checker:indeterminate
+  + div.checker._color-mint {
   background-color: #37bc9d;
   color: #fff;
 }
 
-body[theme="dark"] input[type="checkbox"].checker:checked + div.checker._color-mint,
-body[theme="dark"] input[type="checkbox"].checker:indeterminate + div.checker._color-mint {
+body[theme="dark"]
+  input[type="checkbox"].checker:checked
+  + div.checker._color-mint,
+body[theme="dark"]
+  input[type="checkbox"].checker:indeterminate
+  + div.checker._color-mint {
   background-color: #2e7164;
   color: #37bc9d;
 }
 
-body:not([theme]) input[type="checkbox"].checker:checked + div.checker._color-aqua,
-body:not([theme]) input[type="checkbox"].checker:indeterminate + div.checker._color-aqua {
+body:not([theme])
+  input[type="checkbox"].checker:checked
+  + div.checker._color-aqua,
+body:not([theme])
+  input[type="checkbox"].checker:indeterminate
+  + div.checker._color-aqua {
   background-color: #3bafda;
   color: #fff;
 }
 
-body[theme="dark"] input[type="checkbox"].checker:checked + div.checker._color-aqua,
-body[theme="dark"] input[type="checkbox"].checker:indeterminate + div.checker._color-aqua {
+body[theme="dark"]
+  input[type="checkbox"].checker:checked
+  + div.checker._color-aqua,
+body[theme="dark"]
+  input[type="checkbox"].checker:indeterminate
+  + div.checker._color-aqua {
   background-color: #306b83;
   color: #3bafda;
 }
 
-body:not([theme]) input[type="checkbox"].checker:checked + div.checker._color-blueJeans,
-body:not([theme]) input[type="checkbox"].checker:indeterminate + div.checker._color-blueJeans {
+body:not([theme])
+  input[type="checkbox"].checker:checked
+  + div.checker._color-blueJeans,
+body:not([theme])
+  input[type="checkbox"].checker:indeterminate
+  + div.checker._color-blueJeans {
   background-color: #4b89dc;
   color: #fff;
 }
 
-body[theme="dark"] input[type="checkbox"].checker:checked + div.checker._color-blueJeans,
-body[theme="dark"] input[type="checkbox"].checker:indeterminate + div.checker._color-blueJeans {
+body[theme="dark"]
+  input[type="checkbox"].checker:checked
+  + div.checker._color-blueJeans,
+body[theme="dark"]
+  input[type="checkbox"].checker:indeterminate
+  + div.checker._color-blueJeans {
   background-color: #385884;
   color: #4b89dc;
 }
 
-body:not([theme]) input[type="checkbox"].checker:checked + div.checker._color-lavander,
-body:not([theme]) input[type="checkbox"].checker:indeterminate + div.checker._color-lavander {
+body:not([theme])
+  input[type="checkbox"].checker:checked
+  + div.checker._color-lavander,
+body:not([theme])
+  input[type="checkbox"].checker:indeterminate
+  + div.checker._color-lavander {
   background-color: #967bdc;
   color: #fff;
 }
 
-body[theme="dark"] input[type="checkbox"].checker:checked + div.checker._color-lavander,
-body[theme="dark"] input[type="checkbox"].checker:indeterminate + div.checker._color-lavander {
+body[theme="dark"]
+  input[type="checkbox"].checker:checked
+  + div.checker._color-lavander,
+body[theme="dark"]
+  input[type="checkbox"].checker:indeterminate
+  + div.checker._color-lavander {
   background-color: #5e5184;
   color: #967bdc;
 }
 
-body:not([theme]) input[type="checkbox"].checker:checked + div.checker._color-pinkRose,
-body:not([theme]) input[type="checkbox"].checker:indeterminate + div.checker._color-pinkRose {
+body:not([theme])
+  input[type="checkbox"].checker:checked
+  + div.checker._color-pinkRose,
+body:not([theme])
+  input[type="checkbox"].checker:indeterminate
+  + div.checker._color-pinkRose {
   background-color: #d870ad;
   color: #fff;
 }
 
-body[theme="dark"] input[type="checkbox"].checker:checked + div.checker._color-pinkRose,
-body[theme="dark"] input[type="checkbox"].checker:indeterminate + div.checker._color-pinkRose {
+body[theme="dark"]
+  input[type="checkbox"].checker:checked
+  + div.checker._color-pinkRose,
+body[theme="dark"]
+  input[type="checkbox"].checker:indeterminate
+  + div.checker._color-pinkRose {
   background-color: #7f4b6c;
   color: #d870ad;
 }
@@ -5372,7 +5549,9 @@ body.design__messageAppeared {
   overflow: hidden;
 }
 
-@supports not ((-webkit-backdrop-filter: blur(5px)) or (backdrop-filter: blur(5px))) {
+@supports not (
+  (-webkit-backdrop-filter: blur(5px)) or (backdrop-filter: blur(5px))
+) {
   body > :not(.design_message).design__blurred {
     -webkit-filter: blur(5px);
     filter: blur(5px);
@@ -5457,7 +5636,9 @@ body[theme="dark"] .designDialog-one {
   }
 }
 
-@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+@supports not (
+  (-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))
+) {
   body:not([theme]) .designDialog,
   body[theme="dark"] .designDialog {
     background-color: rgba(0, 0, 0, 0.9);
@@ -5503,15 +5684,20 @@ body[theme="dark"] .vueDesignDialog:not(._content_only) {
   font-size: 14px;
 }
 
-.vueDesignDialog:not(._content_only) .vueDesignDialog-content:not(:first-child) {
+.vueDesignDialog:not(._content_only)
+  .vueDesignDialog-content:not(:first-child) {
   margin-top: 5px;
 }
 
-body:not([theme]) .vueDesignDialog:not(._content_only) .vueDesignDialog-content:not(:first-child) {
+body:not([theme])
+  .vueDesignDialog:not(._content_only)
+  .vueDesignDialog-content:not(:first-child) {
   color: #656d78;
 }
 
-body[theme="dark"] .vueDesignDialog:not(._content_only) .vueDesignDialog-content:not(:first-child) {
+body[theme="dark"]
+  .vueDesignDialog:not(._content_only)
+  .vueDesignDialog-content:not(:first-child) {
   color: #e6e9ed;
 }
 

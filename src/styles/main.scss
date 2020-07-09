@@ -4,15 +4,17 @@
   src: url(https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/fonts/ionicons.eot?v=4.5.5);
   src: url(https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/fonts/ionicons.eot?v=4.5.5#iefix)
       format("embedded-opentype"),
-    url(https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/fonts/ionicons.woff2?v=4.5.5) format("woff2"),
-    url(https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/fonts/ionicons.woff?v=4.5.5) format("woff"),
-    url(https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/fonts/ionicons.ttf?v=4.5.5) format("truetype"),
-    url(https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/fonts/ionicons.svg?v=4.5.5#Ionicons) format("svg");
+    url(https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/fonts/ionicons.woff2?v=4.5.5)
+      format("woff2"),
+    url(https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/fonts/ionicons.woff?v=4.5.5)
+      format("woff"),
+    url(https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/fonts/ionicons.ttf?v=4.5.5)
+      format("truetype");
   font-weight: 400;
   font-style: normal;
 }
 [data-ph],
-[v-cloak]:not([v-cloak="processing"]) {
+[v-cloak]:not([v-cloak^="processing"]) {
   display: none !important;
 }
 .kd-tooltip {
@@ -315,12 +317,18 @@ body[theme="dark"] .header:not([mnpl-style]) .header-menu-one:hover {
   margin: 15px;
   width: 225px;
 }
-.notifications .notifications-one .notifications-one-info .notifications-one-info-title {
+.notifications
+  .notifications-one
+  .notifications-one-info
+  .notifications-one-info-title {
   font-size: 16px;
   font-weight: 600;
   line-height: 16px;
 }
-.notifications .notifications-one .notifications-one-info .notifications-one-info-text {
+.notifications
+  .notifications-one
+  .notifications-one-info
+  .notifications-one-info-text {
   margin-top: 7px;
   font-size: 13px;
   line-height: 16px;
@@ -743,29 +751,47 @@ body[theme="dark"] .thing .thing-image > div {
   font-family: Ionicons;
   font-size: 75px;
 }
-.thing[mnpl-rare="true"]:not([mnpl-rare-thing="true"]) .thing-about > div:before,
-.thing[mnpl-rare="true"]:not([mnpl-rare-thing="true"]) .thing-about > div[mnpl-kind="0"]:before {
+.thing[mnpl-rare="true"]:not([mnpl-rare-thing="true"])
+  .thing-about
+  > div:before,
+.thing[mnpl-rare="true"]:not([mnpl-rare-thing="true"])
+  .thing-about
+  > div[mnpl-kind="0"]:before {
   content: "Очень редкий предмет!";
 }
-.thing[mnpl-rare="true"]:not([mnpl-rare-thing="true"]) .thing-about > div[mnpl-kind="1"]:before {
+.thing[mnpl-rare="true"]:not([mnpl-rare-thing="true"])
+  .thing-about
+  > div[mnpl-kind="1"]:before {
   content: "Редкая насмешка!";
 }
-.thing[mnpl-rare="true"]:not([mnpl-rare-thing="true"]) .thing-about > div[mnpl-kind="2"]:before {
+.thing[mnpl-rare="true"]:not([mnpl-rare-thing="true"])
+  .thing-about
+  > div[mnpl-kind="2"]:before {
   content: "Редкая ★ насмешка!";
 }
-.thing[mnpl-rare="true"]:not([mnpl-rare-thing="true"]) .thing-about > div[mnpl-kind="1021"]:before {
+.thing[mnpl-rare="true"]:not([mnpl-rare-thing="true"])
+  .thing-about
+  > div[mnpl-kind="1021"]:before {
   content: "Редкая насмешка серии 2!";
 }
-.thing[mnpl-rare="true"]:not([mnpl-rare-thing="true"]) .thing-about > div[mnpl-kind="1022"]:before {
+.thing[mnpl-rare="true"]:not([mnpl-rare-thing="true"])
+  .thing-about
+  > div[mnpl-kind="1022"]:before {
   content: "Редкая ★ насмешка серии 2!";
 }
-.thing[mnpl-rare="true"][mnpl-rare-thing="true"] .thing-about > div[mnpl-form="0"]:before {
+.thing[mnpl-rare="true"][mnpl-rare-thing="true"]
+  .thing-about
+  > div[mnpl-form="0"]:before {
   content: "Очень редкий ";
 }
-.thing[mnpl-rare="true"][mnpl-rare-thing="true"] .thing-about > div[mnpl-form="1"]:before {
+.thing[mnpl-rare="true"][mnpl-rare-thing="true"]
+  .thing-about
+  > div[mnpl-form="1"]:before {
   content: "Очень редкая ";
 }
-.thing[mnpl-rare="true"][mnpl-rare-thing="true"] .thing-about > div:not([mnpl-form="-1"]):after {
+.thing[mnpl-rare="true"][mnpl-rare-thing="true"]
+  .thing-about
+  > div:not([mnpl-form="-1"]):after {
   content: "!";
 }
 .PrettyPopup {
