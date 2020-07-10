@@ -26,6 +26,7 @@ export const fieldsActionPosition = (): IFieldModalPosition => {
 };
 
 export const Game = () => {
+  // console.log(8888888);
   const actionState = useStore(actionsStore);
 
   return (
