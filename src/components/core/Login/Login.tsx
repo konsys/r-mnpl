@@ -19,7 +19,7 @@ export const Login = () => {
   const loginState = useStore(LoginStore);
 
   return loginState && loginState.access_token ? (
-    <Redirect to="/game" />
+    <Redirect from="/" to="/game" />
   ) : (
     <LoginForm onSubmit={login} />
   );
