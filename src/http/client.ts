@@ -1,6 +1,7 @@
 import axios, { AxiosError } from "axios";
 import { config } from "./config";
 import { getToken } from "../components/core/Login/model/LoginModel";
+
 export const client = axios.create({
   baseURL: config.baseURL,
   headers: {
@@ -8,6 +9,13 @@ export const client = axios.create({
   },
 });
 
-client.interceptors.response.use(undefined, onError);
+client.interceptors.request.use((config) => {
+  const token = `Bearer ${getToken()}`;
+  config.headers.Authorization = token;
 
-async function onError(e: AxiosError) {}
+  return config;
+}, onError);
+
+async function onError(e: AxiosError) {
+  console.error("Axios error", e);
+}

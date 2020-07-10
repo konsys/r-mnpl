@@ -1,14 +1,11 @@
 import { createDomain } from "effector";
-import { loginFetch, userFetch } from "./api";
+import { loginFetch } from "../../../../api/Login/api";
 import { ILoginForm, ILoginResponce } from "../Login";
-import { LocalStorageParams, IUser } from "../../../../types/types";
+import { LocalStorageParams } from "../../../../types/types";
+import { getUserEffect } from "../../../../stores/UserStore";
 
 const AuthDomain = createDomain("AuthDomain");
 const clearTokenStore = AuthDomain.event();
-
-export const getUserEffect = AuthDomain.effect<string, IUser, Error>({
-  handler: userFetch,
-});
 
 export const loginEffect = AuthDomain.effect<ILoginForm, ILoginResponce, Error>(
   {
@@ -22,17 +19,13 @@ export const LoginStore = AuthDomain.store<ILoginResponce | null>(null)
   )
   .on(loginEffect.done, (_, data) => {
     localStorage.setItem(LocalStorageParams.TOKEN, data.result.access_token);
-
+    data.result.access_token && getUserEffect("me");
     return data.result;
   })
   .on(loginEffect.fail, (err) =>
     localStorage.setItem(LocalStorageParams.TOKEN, "")
   )
   .reset(clearTokenStore);
-
-LoginStore.updates.watch((v) => {
-  v?.access_token && getUserEffect("me");
-});
 
 export const getToken = (): string => {
   const storeToken = LoginStore.getState();
