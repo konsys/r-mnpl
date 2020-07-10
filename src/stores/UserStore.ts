@@ -13,4 +13,5 @@ export const setUserEvent = UserDomain.event<IUser>();
 
 export const userStore = UserDomain.store<IUser | null>(null)
   .on(setUserEvent, (_, data) => data)
+  .on(getUserEffect.done, (_, data) => data.result)
   .reset(resetUserEvent);
