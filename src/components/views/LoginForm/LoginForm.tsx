@@ -1,16 +1,15 @@
 import React, { useState } from "react";
+import { ILoginForm } from "../../core/Login/Login";
 
 interface IProps {
   onSubmit: (data: ILoginForm) => any;
 }
 
-export interface ILoginForm {
-  email: string;
-  password: string;
-}
-
 export const LoginForm = ({ onSubmit }: IProps) => {
-  const [state, setState] = useState<ILoginForm>({ email: "", password: "" });
+  const [state, setState] = useState<ILoginForm>({
+    email: "test2@yandex.ru",
+    password: "111",
+  });
 
   return (
     <>

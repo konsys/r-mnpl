@@ -1,8 +1,8 @@
 import { client } from "../../../../http/client";
-import { IPlayer } from "../../../../types/types";
+import { ILoginResponce } from "../Login";
 
-const URL = `/users/ath/login`;
+const URL = `/users/auth/login`;
 
-export const login = async (params?: any): Promise<IPlayer[]> => {
+export const loginFetch = async (params?: any): Promise<ILoginResponce> => {
   return await (await client.post(URL, params)).data;
 };
