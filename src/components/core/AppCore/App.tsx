@@ -11,13 +11,8 @@ function App() {
         <Link to="/">Home</Link>
         <Link to="/game">Game</Link>
         <Switch>
-          <Route path="/">
-            <Login />
-          </Route>
-
-          <Route path="/game">
-            <Game />
-          </Route>
+          <Route exact path="/" component={Login} />
+          <Route exact path="/game" component={Game} />
         </Switch>
       </Router>
     </>
