@@ -14,7 +14,6 @@ export let boardSocket: SocketIOClient.Socket;
 export const BoardCore = () => {
   useEffect(() => {
     boardSocket = openSocket("http://localhost:3001");
-    console.log(9999999999999);
     getInitFieldsEffect();
     boardSocket.on(SocketActions.BOARD_MESSAGE, MessageHandler);
     boardSocket.on(SocketActions.ERROR_MESSAGE, errorHandler);
