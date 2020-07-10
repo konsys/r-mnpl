@@ -10,7 +10,7 @@ enum LocalStorageKeys {
   accessTokenExpiresIn = "auth.token.expires",
   refreshToken = "refresh.token",
   refreshTokenExpiresIn = "refresh.token.expires",
-  keepTokens = "auth.token.store"
+  keepTokens = "auth.token.store",
 }
 
 interface AuthResponse {
@@ -36,7 +36,7 @@ export class Auth {
   public static async login({
     username,
     password,
-    saveCredentials
+    saveCredentials,
   }: LogInRequest): Promise<User> {
     const req = { username, password };
     const authResponse = await client.post(`${Path.auth}/pwd`, req);
