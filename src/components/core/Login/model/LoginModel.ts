@@ -1,10 +1,14 @@
 import { createDomain } from "effector";
-import { loginFetch } from "./api";
+import { loginFetch, userFetch } from "./api";
 import { ILoginForm, ILoginResponce } from "../Login";
-import { LocalStorageParams } from "../../../../types/types";
+import { LocalStorageParams, IUser } from "../../../../types/types";
 
 const AuthDomain = createDomain("AuthDomain");
 const clearTokenStore = AuthDomain.event();
+
+export const getUserEffect = AuthDomain.effect<string, IUser, Error>({
+  handler: userFetch,
+});
 
 export const loginEffect = AuthDomain.effect<ILoginForm, ILoginResponce, Error>(
   {
@@ -25,6 +29,10 @@ export const LoginStore = AuthDomain.store<ILoginResponce | null>(null)
     localStorage.setItem(LocalStorageParams.TOKEN, "")
   )
   .reset(clearTokenStore);
+
+LoginStore.updates.watch((v) => {
+  v?.access_token && getUserEffect("me");
+});
 
 export const getToken = (): string => {
   const storeToken = LoginStore.getState();
