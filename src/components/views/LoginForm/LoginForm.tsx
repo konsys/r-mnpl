@@ -62,8 +62,7 @@ export const LoginForm = () => (
           <div
             className="HeaderUser-avatar"
             style={{
-              backgroundImage:
-                "url('https://d1.dogecdn.wtf/730835360107724820/XkwxZrGMKv96.jpg');",
+              backgroundImage: `url('https://d1.dogecdn.wtf/730835360107724820/XkwxZrGMKv96.jpg')`,
             }}
           ></div>
         </div>
