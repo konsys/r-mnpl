@@ -18,6 +18,7 @@ export const LoginStore = AuthDomain.store<ILoginResponce | null>(null)
   )
   .on(loginEffect.done, (_, data) => {
     localStorage.setItem(LocalStorageParams.TOKEN, data.result.access_token);
+
     return data.result;
   })
   .on(loginEffect.fail, (err) =>
