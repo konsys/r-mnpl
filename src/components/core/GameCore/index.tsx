@@ -1,5 +1,4 @@
 import React from "react";
-import { RouteComponentProps } from "@reach/router";
 import "./style.scss";
 import { Chat } from "../../views/Chat/Chat";
 import { Contract } from "../../views/Contract/Contract";
@@ -26,9 +25,7 @@ export const fieldsActionPosition = (): IFieldModalPosition => {
   };
 };
 
-interface Props extends RouteComponentProps {}
-
-export const Game = (props: Props) => {
+export const Game = () => {
   const actionState = useStore(actionsStore);
 
   return (

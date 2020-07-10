@@ -1,16 +1,25 @@
 import React from "react";
 import "./App.scss";
-import { Router } from "@reach/router";
 import { Game } from "../GameCore";
-import { LoginForm } from "../../views/LoginForm/LoginForm";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Login } from "../Login/Login";
 
 function App() {
   return (
     <>
       <Router>
-        <Game path="/game" />
+        <Link to="/">Home</Link>
+        <Link to="/game">Game</Link>
+        <Switch>
+          <Route path="/">
+            <Login />
+          </Route>
+
+          <Route path="/game">
+            <Game />
+          </Route>
+        </Switch>
       </Router>
-      <LoginForm />
     </>
   );
 }
