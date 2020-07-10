@@ -267,3 +267,6 @@ export enum FieldType {
   AUTO = "auto",
   TAKE_REST = "takeRest",
 }
+export enum LocalStorageParams {
+  TOKEN = "token",
+}
