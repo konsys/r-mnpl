@@ -25,7 +25,9 @@ export const Tokens = () => {
 
   const getLine = (meanPosition: number): number => {
     return (
-      f.find((v: IField) => v.fieldPosition === meanPosition)?.fieldLine || 0
+      (f &&
+        f.find((v: IField) => v.fieldPosition === meanPosition)?.fieldLine) ||
+      0
     );
   };
 

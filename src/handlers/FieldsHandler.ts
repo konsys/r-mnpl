@@ -34,22 +34,23 @@ export const statusFieldsIterate = (messageFieldsStatus: FieldStatus[]) => {
 export const allFieldsIterate = (messageFieldsStatus: FieldStatus[]) => {
   const store = fieldsStore.getState();
 
-  store.fields.forEach((storeField, index) => {
-    const messageFieldStatus = messageFieldsStatus.find(
-      (messageField) => messageField.fieldId === storeField.fieldId
-    );
+  store.fields &&
+    store.fields.forEach((storeField, index) => {
+      const messageFieldStatus = messageFieldsStatus.find(
+        (messageField) => messageField.fieldId === storeField.fieldId
+      );
 
-    if (messageFieldStatus) {
-      store.fields[index] = {
-        ...store.fields[index],
-        status: messageFieldStatus,
-      };
-    } else {
-      store.fields[index] = {
-        ...store.fields[index],
-        status: undefined,
-      };
-    }
-  });
+      if (messageFieldStatus) {
+        store.fields[index] = {
+          ...store.fields[index],
+          status: messageFieldStatus,
+        };
+      } else {
+        store.fields[index] = {
+          ...store.fields[index],
+          status: undefined,
+        };
+      }
+    });
   setFieldsEvent({ ...store, version: ++store.version });
 };
