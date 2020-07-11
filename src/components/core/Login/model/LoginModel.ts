@@ -3,9 +3,10 @@ import { loginFetch } from "../../../../api/Login/api";
 import { ILoginForm, ILoginResponce } from "../Login";
 import { LocalStorageParams } from "../../../../types/types";
 import { getUserEffect } from "../../../../stores/UserStore";
+import { saveToken, clearToken } from "./TokenModel";
 
 const AuthDomain = createDomain("AuthDomain");
-const clearTokenStore = AuthDomain.event();
+export const clearTokenStore = AuthDomain.event();
 
 export const loginEffect = AuthDomain.effect<ILoginForm, ILoginResponce, Error>(
   {
@@ -18,7 +19,8 @@ export const LoginStore = AuthDomain.store<ILoginResponce | null>(null)
     localStorage.setItem(LocalStorageParams.TOKEN, "")
   )
   .on(loginEffect.done, (_, data) => {
-    localStorage.setItem(LocalStorageParams.TOKEN, data.result.access_token);
+    clearToken();
+    data.result && saveToken(data.result.access_token);
     data.result.access_token && getUserEffect("me");
     return data.result;
   })
@@ -27,18 +29,4 @@ export const LoginStore = AuthDomain.store<ILoginResponce | null>(null)
   )
   .reset(clearTokenStore);
 
-export const getToken = (): string | null => {
-  const storeToken = LoginStore.getState();
-  const storage = localStorage.getItem(LocalStorageParams.TOKEN);
-  return storeToken && storeToken.access_token
-    ? storeToken.access_token
-    : storage
-    ? storage
-    : null;
-};
-
-export const clearToken = () => {
-  localStorage.setItem(LocalStorageParams.TOKEN, "");
-  clearTokenStore();
-};
 // LoginStore.updates.watch((v) => console.log("LoginStoreWatch", v));

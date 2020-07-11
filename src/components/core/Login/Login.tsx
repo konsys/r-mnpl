@@ -1,9 +1,10 @@
 import React from "react";
-import { loginEffect, getToken } from "./model/LoginModel";
+import { loginEffect } from "./model/LoginModel";
 import { LoginForm } from "../../views/LoginForm/LoginForm";
 import { Redirect } from "react-router-dom";
 import { useStore } from "effector-react";
 import { userStore } from "../../../stores/UserStore";
+import { getToken } from "./model/TokenModel";
 
 export interface ILoginForm {
   email: string;
@@ -18,9 +19,8 @@ export const login = (data: ILoginForm) => loginEffect(data);
 
 export const Login = () => {
   const user = useStore(userStore);
-
-  console.log(111111, user, getToken());
-  return user ? (
+  const token = getToken();
+  return user || token ? (
     <Redirect from="/" to="/game" />
   ) : (
     <LoginForm onSubmit={login} />

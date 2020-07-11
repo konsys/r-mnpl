@@ -1,6 +1,6 @@
 import axios, { AxiosError } from "axios";
 import { config } from "./config";
-import { getToken } from "../components/core/Login/model/LoginModel";
+import { getToken } from "../components/core/Login/model/TokenModel";
 
 export const client = axios.create({
   baseURL: config.baseURL,

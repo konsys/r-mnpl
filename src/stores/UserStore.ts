@@ -16,4 +16,4 @@ export const userStore = UserDomain.store<IUser | null>(null)
   .on(getUserEffect.done, (_, data) => data.result)
   .reset(resetUserEvent);
 
-userStore.updates.watch((v) => console.log("userStore.updates.watch", v));
+// userStore.updates.watch((v) => console.log("userStore.updates.watch", v));
