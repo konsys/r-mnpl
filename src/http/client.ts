@@ -1,6 +1,9 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { config } from "./config";
-import { getToken } from "../components/core/Login/model/TokenModel";
+import {
+  getToken,
+  clearToken,
+} from "../components/core/Login/model/TokenModel";
 
 export const client = axios.create({
   baseURL: config.baseURL,
@@ -22,6 +25,7 @@ client.interceptors.response.use(
   },
   (error: AxiosError) => {
     if (error.response && error.response.status === 401) {
+      clearToken();
       console.log(error.response);
       // <Redirect to="/game" />;
     }

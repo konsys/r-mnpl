@@ -1,7 +1,7 @@
 import React from "react";
 import { IFieldModalPosition } from "../../../types/types";
 import { GameBoardView } from "./GameBoardView";
-
+import { getToken } from "../Login/model/TokenModel";
 export const fieldsActionPosition = (): IFieldModalPosition => {
   return {
     left: 0,
@@ -10,5 +10,6 @@ export const fieldsActionPosition = (): IFieldModalPosition => {
 };
 
 export const GameBoard = () => {
-  return <GameBoardView />;
+  const token = getToken();
+  return <>{token ? <GameBoardView /> : "no"}</>;
 };
