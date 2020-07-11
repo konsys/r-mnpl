@@ -1,5 +1,5 @@
 import { BoardDomain } from "./BoardDomain";
-import { fetchInitFields } from "../components/core/BoardCore/Api";
+import { fetchInitFields } from "../api/Fields/api";
 import { IField } from "../types/types";
 
 export interface IFieldsStore {
