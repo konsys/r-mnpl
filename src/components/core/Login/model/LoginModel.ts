@@ -27,14 +27,14 @@ export const LoginStore = AuthDomain.store<ILoginResponce | null>(null)
   )
   .reset(clearTokenStore);
 
-export const getToken = (): string => {
+export const getToken = (): string | null => {
   const storeToken = LoginStore.getState();
   const storage = localStorage.getItem(LocalStorageParams.TOKEN);
   return storeToken && storeToken.access_token
     ? storeToken.access_token
     : storage
     ? storage
-    : "";
+    : null;
 };
 
 export const clearToken = () => {

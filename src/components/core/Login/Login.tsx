@@ -1,5 +1,5 @@
 import React from "react";
-import { loginEffect } from "./model/LoginModel";
+import { loginEffect, getToken } from "./model/LoginModel";
 import { LoginForm } from "../../views/LoginForm/LoginForm";
 import { Redirect } from "react-router-dom";
 import { useStore } from "effector-react";
@@ -19,6 +19,7 @@ export const login = (data: ILoginForm) => loginEffect(data);
 export const Login = () => {
   const user = useStore(userStore);
 
+  console.log(111111, user, getToken());
   return user ? (
     <Redirect from="/" to="/game" />
   ) : (
