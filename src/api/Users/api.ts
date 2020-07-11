@@ -2,8 +2,8 @@ import { client } from "../../http/client";
 import { IUser, IPlayer } from "../../types/types";
 
 const usersUrl = `/users`;
-export const usersFetch = async (params?: any): Promise<IPlayer[]> => {
-  return await (await client.get(usersUrl, params)).data;
+export const usersFetch = async (ids?: number[]): Promise<IPlayer[]> => {
+  return await (await client.get(usersUrl, { params: { ids } })).data;
 };
 
 const profileUrl = `/users/profile`;

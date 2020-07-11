@@ -6,13 +6,16 @@ import {
   resetPlayersEvent,
   playersStore,
 } from "../../../stores/PlayersStore";
+import { gameStore } from "../../../stores/BoardDomain";
 
 export const UsersCore = () => {
-  useEffect(() => {
-    getPlayersEffect();
-    return () => resetPlayersEvent();
-  }, []);
+  const game = gameStore.getState();
   const data = useStore(playersStore);
   const pending = useStore(getPlayersEffect.pending);
+  useEffect(() => {
+    getPlayersEffect(game.players);
+    return () => resetPlayersEvent();
+  }, [game.players]);
+
   return !pending ? <Players players={data.players} /> : <>wait</>;
 };

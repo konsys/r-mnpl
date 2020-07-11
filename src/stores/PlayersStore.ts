@@ -57,7 +57,11 @@ export interface IPlayersStore {
   players: IPlayer[];
 }
 export const resetPlayersEvent = PlayersDomain.event();
-export const getPlayersEffect = PlayersDomain.effect<void, IPlayer[], Error>({
+export const getPlayersEffect = PlayersDomain.effect<
+  number[],
+  IPlayer[],
+  Error
+>({
   handler: usersFetch,
 });
 export const setPlayersEvent = PlayersDomain.event<IPlayersStore>();
@@ -69,7 +73,7 @@ export const playersStore = PlayersDomain.store<IPlayersStore>({
   .on(getPlayersEffect.done, (_, data) => {
     // Init token position
     const fields = fieldPositions();
-    const players = data.result.map((player, k) => {
+    const players = data.result.map((player) => {
       updateToken({
         jailed: player.jailed,
         left: fields[player.meanPosition].left,
