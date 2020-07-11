@@ -1,5 +1,4 @@
 import { BoardDomain } from "./BoardDomain";
-import { fetchPlayers } from "../components/core/PlayersCore/api";
 import { IPlayer } from "../types/types";
 import { sample } from "effector";
 import {
@@ -9,6 +8,8 @@ import {
 } from "./TokensStore";
 import { getPlayerById } from "../utils/players.utils";
 import { fieldPositions } from "../utils/fields.utils";
+import { usersFetch } from "../api/Users/api";
+
 const PlayersDomain = BoardDomain.domain("PlayersDomain");
 
 export interface IPlayerAction {
@@ -57,7 +58,7 @@ export interface IPlayersStore {
 }
 export const resetPlayersEvent = PlayersDomain.event();
 export const getPlayersEffect = PlayersDomain.effect<void, IPlayer[], Error>({
-  handler: fetchPlayers,
+  handler: usersFetch,
 });
 export const setPlayersEvent = PlayersDomain.event<IPlayersStore>();
 
