@@ -8,6 +8,7 @@ import openSocket from "socket.io-client";
 import { clearNode } from "effector";
 import { BoardDomain } from "../../../stores/BoardDomain";
 import { errorHandler } from "../../../handlers/ErrorHandler";
+import { BoardLoading } from "../../views/BoardLoading/BoardLoading";
 
 export let boardSocket: SocketIOClient.Socket;
 
@@ -24,5 +25,5 @@ export const BoardCore = () => {
 
   const pending = useStore(getInitFieldsEffect.pending);
   // TODO Make something with version
-  return !pending ? <Board /> : <>wait</>;
+  return !pending ? <Board /> : <BoardLoading />;
 };
