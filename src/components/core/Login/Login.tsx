@@ -17,10 +17,5 @@ export const login = (data: ILoginForm) => loginEffect(data);
 
 export const Login = () => {
   const token = getToken();
-  return token ? (
-    <Redirect to="/game" />
-  ) : (
-    // <GameBoard />
-    <LoginForm onSubmit={login} />
-  );
+  return token ? <Redirect to="/game" /> : <LoginForm onSubmit={login} />;
 };

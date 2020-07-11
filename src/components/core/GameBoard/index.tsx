@@ -1,7 +1,4 @@
 import React from "react";
-
-import { useStore } from "effector-react";
-
 import { IFieldModalPosition } from "../../../types/types";
 import { GameBoardView } from "./GameBoardView";
 
