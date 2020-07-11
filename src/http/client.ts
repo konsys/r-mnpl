@@ -1,4 +1,4 @@
-import axios, { AxiosError } from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
 import { config } from "./config";
 import { getToken } from "../components/core/Login/model/TokenModel";
 
@@ -17,12 +17,13 @@ client.interceptors.request.use((config) => {
 }, onError);
 
 client.interceptors.response.use(
-  (response) => {
+  (response: AxiosResponse) => {
     return response;
   },
-  (error) => {
-    if (error.response.status === 401) {
-      console.log(23424234423);
+  (error: AxiosError) => {
+    if (error.response && error.response.status === 401) {
+      console.log(error.response);
+      // <Redirect to="/game" />;
     }
     return error;
   }
