@@ -18,5 +18,6 @@ export const login = (data: ILoginForm) => loginEffect(data);
 export const Login = () => {
   const token = getToken();
 
+  console.log(1111, token);
   return token ? <Redirect to="/game" /> : <LoginForm onSubmit={login} />;
 };
