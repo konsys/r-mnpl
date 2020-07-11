@@ -24,6 +24,6 @@ export const BoardCore = () => {
   }, []);
 
   const pending = useStore(getInitFieldsEffect.pending);
-  // TODO Make something with version
+
   return !pending ? <Board /> : <BoardLoading />;
 };
