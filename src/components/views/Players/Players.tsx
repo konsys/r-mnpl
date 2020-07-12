@@ -20,53 +20,55 @@ export const Players = (prop: Prop) => {
   return (
     <>
       <div className="table-body-players">
-        {prop.players.map((player: IPlayer, index) => {
-          return (
-            <div
-              key={index}
-              className="table-body-players-card"
-              id={"player_card_" + player.userId}
-              mnpl-order={player.moveOrder}
-              mnpl-team={player.team}
-              mnpl-action_player={
-                action.event.action.userId === player.userId ? 1 : 0
-              }
-              mnpl-opened={
-                actionStore.isVisible && actionStore.srcPlayer === player.userId
-                  ? actionStore.position * 1
-                  : 0
-              }
-              onClick={() =>
-                openPlayerActionEvent({
-                  srcPlayer: player.userId,
-                  distPlayer: player.userId,
-                  isVisible: !actionStore?.isVisible,
-                  position: 1,
-                  ignore: false,
-                  ignoreOff: false,
-                  profile: true,
-                  contract: true,
-                  creditTake: true,
-                  creditPay: false,
-                  kick: false,
-                  leave: true,
-                  report: true,
-                  restart: false,
-                })
-              }
-            >
-              <Avatar
+        {prop.players &&
+          prop.players.map((player: IPlayer, index) => {
+            return (
+              <div
                 key={index}
-                name={player.name}
-                money={player.money}
-                remainTime={53}
-                avatar={player.avatar ? player.avatar : ""}
-                isVip={player.vip}
-              />
-              <PlayerActions {...actionStore} />
-            </div>
-          );
-        })}
+                className="table-body-players-card"
+                id={"player_card_" + player.userId}
+                mnpl-order={player.moveOrder}
+                mnpl-team={player.team}
+                mnpl-action_player={
+                  action.event.action.userId === player.userId ? 1 : 0
+                }
+                mnpl-opened={
+                  actionStore.isVisible &&
+                  actionStore.srcPlayer === player.userId
+                    ? actionStore.position * 1
+                    : 0
+                }
+                onClick={() =>
+                  openPlayerActionEvent({
+                    srcPlayer: player.userId,
+                    distPlayer: player.userId,
+                    isVisible: !actionStore?.isVisible,
+                    position: 1,
+                    ignore: false,
+                    ignoreOff: false,
+                    profile: true,
+                    contract: true,
+                    creditTake: true,
+                    creditPay: false,
+                    kick: false,
+                    leave: true,
+                    report: true,
+                    restart: false,
+                  })
+                }
+              >
+                <Avatar
+                  key={index}
+                  name={player.name}
+                  money={player.money}
+                  remainTime={53}
+                  avatar={player.avatar ? player.avatar : ""}
+                  isVip={player.vip}
+                />
+                <PlayerActions {...actionStore} />
+              </div>
+            );
+          })}
       </div>
     </>
   );

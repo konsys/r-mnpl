@@ -6,7 +6,7 @@ export const getPlayerById = (userId: number) =>
 
 export const getActingPlayer = () => {
   const pStore = playersStore.getState();
-  return pStore.players.find((v) => v.isActing === true);
+  return pStore.players && pStore.players.find((v) => v.isActing === true);
 };
 
 export const getActingPlayerIndex = () => {
