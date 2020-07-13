@@ -12,6 +12,7 @@ export const UsersCore = () => {
   const game = gameStore.getState();
   const data = useStore(playersStore);
   const pending = useStore(getPlayersEffect.pending);
+
   useEffect(() => {
     getPlayersEffect(game.players);
     return () => resetPlayersEvent();

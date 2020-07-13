@@ -10,7 +10,6 @@ export const MessageHandler = (message: BoardMessage) => {
   fieldsHandler(message.data.boardStatus.fields);
   playersHandler(message.data.boardStatus.players);
 
-  console.log(11111, event);
   setCurrentActionEvent({
     actionId: (event && event._id) || nanoid(4),
     event: message.data.event,
