@@ -1,13 +1,14 @@
-import React from "react";
+import {
+  openPlayerActionEvent,
+  playerActionStore,
+} from "../../../stores/PlayersStore";
+
 import { Avatar } from "../Avatar/Avatar";
-import { useStore } from "effector-react";
-import { actionsStore } from "../../../stores/ActionStore";
 import { IPlayer } from "../../../types/types";
 import { PlayerActions } from "../PlayerActions/PlayerActions";
-import {
-  playerActionStore,
-  openPlayerActionEvent,
-} from "../../../stores/PlayersStore";
+import React from "react";
+import { actionsStore } from "../../../stores/ActionStore";
+import { useStore } from "effector-react";
 
 interface Prop {
   players: IPlayer[];
