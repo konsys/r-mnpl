@@ -31,7 +31,7 @@ export const Players = (prop: Prop) => {
                 mnpl-order={player.moveOrder}
                 mnpl-team={player.team}
                 mnpl-action_player={
-                  action.event.action.userId === player.userId ? 1 : 0
+                  player && action.event.action.userId === player.userId ? 1 : 0
                 }
                 mnpl-opened={
                   actionStore.isVisible &&
