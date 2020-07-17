@@ -15,7 +15,6 @@ export const resetTokens = TokenDomain.event();
 const fields = fieldPositions();
 
 const tokenTransition = (token: IToken, player: IPlayer) => {
-  console.log(23424234);
   let stopPosition = player.meanPosition ? player.meanPosition : 0;
   const usedFields = createTurnsArray(token.meanPosition, stopPosition);
 
@@ -29,12 +28,15 @@ const tokenTransition = (token: IToken, player: IPlayer) => {
         lastIndex === usedFields.length - 1
       ) {
         setTimeout(() => {
-          updateToken({
-            ...token,
-            left: fields[field].left,
-            top: fields[field].top,
-            meanPosition: stopPosition,
-          });
+          updateToken(
+            {
+              ...token,
+              left: fields[field].left,
+              top: fields[field].top,
+              meanPosition: stopPosition,
+            },
+            "tokenTransition not jailed"
+          );
         }, timeout);
         timeout += LINE_TRANSITION_TIMEOUT;
       }
@@ -43,14 +45,19 @@ const tokenTransition = (token: IToken, player: IPlayer) => {
   } else {
     setTimeout(
       () => {
-        updateToken({
-          ...token,
-          left: player.jailed
-            ? FIELD_JAIL_LEFT
-            : fields[player.meanPosition].left,
-          top: player.jailed ? FIELD_JAIL_TOP : fields[player.meanPosition].top,
-          meanPosition: stopPosition,
-        });
+        updateToken(
+          {
+            ...token,
+            left: player.jailed
+              ? FIELD_JAIL_LEFT
+              : fields[player.meanPosition].left,
+            top: player.jailed
+              ? FIELD_JAIL_TOP
+              : fields[player.meanPosition].top,
+            meanPosition: stopPosition,
+          },
+          "tokenTransition jailed"
+        );
       },
       player.jailed ? 0 : LINE_TRANSITION_TIMEOUT
     );
@@ -72,7 +79,8 @@ export const tokensStore = TokensDomain.store<TokenStore>({
   .on(setTokensEvent, (_, data) => data)
   .reset(resetTokens);
 
-export const updateToken = (token: IToken) => {
+export const updateToken = (token: IToken, from: string) => {
+  console.log(23423423, token.meanPosition, from);
   const tokens = tokensStore.getState().tokens;
   const index = tokens.findIndex((v) => v.userId === token.userId);
   index === -1 ? tokens.push(token) : (tokens[index] = token);

@@ -75,13 +75,16 @@ export const playersStore = PlayersDomain.store<IPlayersStore>({
     // Init token position
     const fields = fieldPositions();
     const players = data.result.map((player) => {
-      updateToken({
-        jailed: player.jailed,
-        left: fields[player.meanPosition].left,
-        top: fields[player.meanPosition].top,
-        meanPosition: player.meanPosition,
-        userId: player.userId,
-      });
+      updateToken(
+        {
+          jailed: player.jailed,
+          left: fields[player.meanPosition].left,
+          top: fields[player.meanPosition].top,
+          meanPosition: player.meanPosition,
+          userId: player.userId,
+        },
+        "getPlayersEffect.done"
+      );
       return player;
     });
     return {
@@ -101,7 +104,7 @@ export const playersPositionChange = sample(
   (v) => v
 );
 
-playersStore.watch((v) => {
+playersPositionChange.watch((v) => {
   tokensStore.getState().tokens.map((token) => {
     const player = getPlayerById(token.userId);
     return player && token && moveTokenAfterPlayerUpdate(token, player);
