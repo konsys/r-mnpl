@@ -1,12 +1,13 @@
-import { BoardDomain } from "./BoardDomain";
 import {
-  LINE_TRANSITION_TIMEOUT,
   CORNER_FIELDS,
   FIELD_JAIL_LEFT,
   FIELD_JAIL_TOP,
+  LINE_TRANSITION_TIMEOUT,
 } from "../utils/boardParams";
+import { IPlayer, IToken, TokenStore } from "../types/types";
 import { createTurnsArray, fieldPositions } from "../utils/fields.utils";
-import { TokenStore, IToken, IPlayer } from "../types/types";
+
+import { BoardDomain } from "./BoardDomain";
 
 const TokenDomain = BoardDomain.createDomain("TokenDomain");
 export const resetTokens = TokenDomain.event();
@@ -14,6 +15,7 @@ export const resetTokens = TokenDomain.event();
 const fields = fieldPositions();
 
 const tokenTransition = (token: IToken, player: IPlayer) => {
+  console.log(23424234);
   let stopPosition = player.meanPosition ? player.meanPosition : 0;
   const usedFields = createTurnsArray(token.meanPosition, stopPosition);
 

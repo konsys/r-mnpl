@@ -1,10 +1,11 @@
-import React from "react";
+import { IField, IToken } from "../../../types/types";
+
 import { LINE_TRANSITION_TIMEOUT } from "../../../utils/boardParams";
-import { useStore } from "effector-react";
-import { tokensStore } from "../../../stores/TokensStore";
-import { IToken, IField } from "../../../types/types";
-import { fieldsStore } from "../../../stores/FieldsStore";
+import React from "react";
 import _ from "lodash";
+import { fieldsStore } from "../../../stores/FieldsStore";
+import { tokensStore } from "../../../stores/TokensStore";
+import { useStore } from "effector-react";
 
 export const Tokens = () => {
   const tokens = useStore(tokensStore).tokens;

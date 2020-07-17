@@ -1,13 +1,14 @@
-import { BoardDomain } from "./BoardDomain";
-import { IPlayer } from "../types/types";
-import { sample } from "effector";
 import {
   moveTokenAfterPlayerUpdate,
   tokensStore,
   updateToken,
 } from "./TokensStore";
-import { getPlayerById } from "../utils/players.utils";
+
+import { BoardDomain } from "./BoardDomain";
+import { IPlayer } from "../types/types";
 import { fieldPositions } from "../utils/fields.utils";
+import { getPlayerById } from "../utils/players.utils";
+import { sample } from "effector";
 import { usersFetch } from "../api/Users/api";
 
 const PlayersDomain = BoardDomain.domain("PlayersDomain");
@@ -100,7 +101,7 @@ export const playersPositionChange = sample(
   (v) => v
 );
 
-playersPositionChange.watch((v) => {
+playersStore.watch((v) => {
   tokensStore.getState().tokens.map((token) => {
     const player = getPlayerById(token.userId);
     return player && token && moveTokenAfterPlayerUpdate(token, player);
