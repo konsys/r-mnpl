@@ -80,7 +80,6 @@ export const tokensStore = TokensDomain.store<TokenStore>({
   .reset(resetTokens);
 
 export const updateToken = (token: IToken, from: string) => {
-  console.log(23423423, token.meanPosition, from);
   const tokens = tokensStore.getState().tokens;
   const index = tokens.findIndex((v) => v.userId === token.userId);
   index === -1 ? tokens.push(token) : (tokens[index] = token);

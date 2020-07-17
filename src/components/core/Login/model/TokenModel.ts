@@ -1,5 +1,6 @@
-import { LocalStorageParams } from "../../../../types/types";
 import { LoginStore, clearTokenStore } from "./LoginModel";
+
+import { LocalStorageParams } from "../../../../types/types";
 
 export const getToken = (): string | null => {
   const storeToken = LoginStore.getState();
@@ -12,7 +13,6 @@ export const getToken = (): string | null => {
 };
 
 export const saveToken = (token: string): void | null => {
-  console.log("saveToken", token);
   localStorage.setItem(LocalStorageParams.TOKEN, token);
 };
 
