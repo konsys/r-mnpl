@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
-import { useStore } from "effector-react";
-import { Players } from "../../views/Players/Players";
 import {
   getPlayersEffect,
-  resetPlayersEvent,
   playersStore,
+  resetPlayersEvent,
 } from "../../../stores/PlayersStore";
-import { gameStore } from "../../../stores/BoardDomain";
+
+import { Players } from "../../views/Players/Players";
+import { gameStore } from "../../../stores/GameStore";
+import { useStore } from "effector-react";
 
 export const UsersCore = () => {
   const game = gameStore.getState();

@@ -1,5 +1,5 @@
 import { BoardDomain } from "./BoardDomain";
-import { IPlayer } from "../types/types";
+import nanoid from "nanoid";
 
 const GameStore = BoardDomain.domain("DiceDomain");
 
@@ -8,9 +8,10 @@ export const resetGameEvent = GameStore.event();
 
 export interface IGameStore {
   gameId: string;
-  players: IPlayer[];
+  players: number[];
 }
 
-export const fieldModalStore = GameStore.store<IGameStore | null>(null)
-  .on(setNewGameEvent, (_, data) => data)
-  .reset(resetGameEvent);
+export const gameStore = BoardDomain.store({
+  gameId: nanoid(8),
+  players: [2],
+});
