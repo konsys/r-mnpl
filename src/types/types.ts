@@ -62,7 +62,7 @@ export interface BoardAction {
   _id: string;
   type: OutcomeMessageType | IncomeMessageType;
   bet?: number;
-  field?: number;
+  field?: IField;
   money?: number;
   userId: number;
   toUserId?: number;

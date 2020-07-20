@@ -96,7 +96,7 @@ export const playersStore = PlayersDomain.store<IPlayersStore>({
   .on(setPlayersEvent, (_, state) => state)
   .reset(resetPlayersEvent);
 
-playersStore.watch((v) => console.log("playersStoreWatch", v));
+// playersStore.watch((v) => console.log("playersStoreWatch", v));
 
 export const playersPositionChange = sample(
   playersStore,

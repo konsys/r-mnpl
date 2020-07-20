@@ -1,16 +1,17 @@
-import { BoardDomain } from "./BoardDomain";
 import { IBoardEvent, IncomeMessageType } from "../types/types";
-import { showModalEvent } from "./ModalStore";
 import {
-  rollDicesModal,
   canBuyModal,
+  rollDicesModal,
   taxModal,
   unJailModal,
   unJailPayingModal,
 } from "../handlers/Modals";
-import { rollDicesAction } from "../handlers/DicesHandler";
+
+import { BoardDomain } from "./BoardDomain";
 import { hideDicesEvent } from "./DicesStore";
 import nanoid from "nanoid";
+import { rollDicesAction } from "../handlers/DicesHandler";
+import { showModalEvent } from "./ModalStore";
 
 export interface ICurrentAction {
   actionId: string;

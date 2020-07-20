@@ -1,12 +1,13 @@
-import { BoardDomain } from "./BoardDomain";
 import {
   BoardAction,
   IActionId,
+  IFieldId,
   IMoveCompleted,
   IncomeMessageType,
   OutcomeMessageType,
-  IFieldId,
 } from "../types/types";
+
+import { BoardDomain } from "./BoardDomain";
 import { boardSocket } from "../components/core/BoardCore/BoardCore";
 
 const ModalDomain = BoardDomain.domain("ModalDomain");

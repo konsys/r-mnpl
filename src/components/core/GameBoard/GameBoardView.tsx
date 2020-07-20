@@ -1,22 +1,22 @@
-import React from "react";
-
-import { Chat } from "../../views/Chat/Chat";
-import { Contract } from "../../views/Contract/Contract";
-import { TableHelper } from "../../views/TableHelper/TableHelper";
-import { Tokens } from "../../views/Tokens/Tokens";
-import { Ticket } from "../../views/Ticket/ticket";
-import { Arbitr } from "../../views/Arbitr/Arbitr";
-import { M1tv } from "../../views/M1tv/M1tv";
-import { BoardModal } from "../../views/BoardModal/BoardModal";
-import { Dices } from "../../views/Dices/Dices";
-import { GameLoading } from "../../views/GameLoading/GameLoading";
-import { BoardCore } from "../BoardCore/BoardCore";
-import { UsersCore } from "../PlayersCore/PlayersCore";
 import "./style.scss";
 import "react-toastify/dist/ReactToastify.css";
+
+import { Arbitr } from "../../views/Arbitr/Arbitr";
+import { BoardCore } from "../BoardCore/BoardCore";
+import { BoardModal } from "../../views/BoardModal/BoardModal";
+import { Chat } from "../../views/Chat/Chat";
+import { Contract } from "../../views/Contract/Contract";
+import { Dices } from "../../views/Dices/Dices";
+import { GameLoading } from "../../views/GameLoading/GameLoading";
+import { M1tv } from "../../views/M1tv/M1tv";
+import React from "react";
+import { TableHelper } from "../../views/TableHelper/TableHelper";
+import { Ticket } from "../../views/Ticket/ticket";
 import { ToastContainer } from "react-toastify";
-import { useStore } from "effector-react";
+import { Tokens } from "../../views/Tokens/Tokens";
+import { UsersCore } from "../PlayersCore/PlayersCore";
 import { actionsStore } from "../../../stores/ActionStore";
+import { useStore } from "effector-react";
 
 export const GameBoardView = () => {
   const actionState = useStore(actionsStore);

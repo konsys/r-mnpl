@@ -1,8 +1,11 @@
 import { playersStore, setPlayersEvent } from "../stores/PlayersStore";
+
 import { IPlayer } from "../types/types";
 
-export const getPlayerById = (userId: number) =>
-  playersStore.getState().players.find((v) => v.userId === userId);
+export const getPlayerById = (userId: number): IPlayer | undefined => {
+  const players = playersStore.getState();
+  return players ? players.players.find((v) => v.userId === userId) : undefined;
+};
 
 export const getActingPlayer = () => {
   const pStore = playersStore.getState();

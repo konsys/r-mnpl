@@ -1,7 +1,7 @@
-import React from "react";
-import { useStore } from "effector-react";
-import { modalStore } from "../../../stores/ModalStore";
 import { ActionPanel } from "../ActionPanel/ActionPanel";
+import React from "react";
+import { modalStore } from "../../../stores/ModalStore";
+import { useStore } from "effector-react";
 
 interface Props {
   isModal: boolean;

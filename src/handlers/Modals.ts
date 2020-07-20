@@ -1,11 +1,15 @@
-import { BoardAction } from "../types/types";
 import {
-  rollDicesEffect,
-  fieldBoughtEffect,
   fieldAuctionEffect,
+  fieldBoughtEffect,
+  rollDicesEffect,
   taxPaidEffect,
   unjailPaidEffect,
 } from "../stores/ModalStore";
+
+import { BoardAction } from "../types/types";
+import { getFieldById } from "../utils/fields.utils";
+import { getPlayerById } from "../utils/players.utils";
+
 export const rollDicesModal = (act: BoardAction): BoardAction => {
   return {
     type: act.type,
@@ -28,34 +32,48 @@ export const rollDicesModal = (act: BoardAction): BoardAction => {
   };
 };
 
-export const canBuyModal = (act: BoardAction): BoardAction => ({
-  type: act.type,
-  userId: act.userId,
-  title: act.title,
-  text: act.text,
-  actionButtons: [
-    {
-      title: "Купить",
-      onClick: () => {
-        fieldBoughtEffect({
-          actionId: act._id,
-        });
+export const canBuyModal = (act: BoardAction): BoardAction => {
+  const p = getPlayerById(act.userId);
+  const f = act.field && act.field.fieldId && getFieldById(act.field.fieldId);
+
+  if (!p || !f) {
+    throw new Error("User or Field not found inbuy modal");
+  }
+  console.log(
+    111111,
+    p?.money,
+    f?.price?.startPrice,
+    p.money < (f.price?.startPrice || 0)
+  );
+  return {
+    type: act.type,
+    userId: act.userId,
+    title: act.title,
+    text: act.text,
+    actionButtons: [
+      {
+        title: "Купить",
+        onClick: () => {
+          fieldBoughtEffect({
+            actionId: act._id,
+          });
+        },
+        disabled: !f.price || p.money < f.price?.startPrice,
       },
-      disabled: false,
-    },
-    {
-      title: "На аукцион",
-      onClick: () => {
-        fieldAuctionEffect({
-          actionId: act._id,
-        });
+      {
+        title: "На аукцион",
+        onClick: () => {
+          fieldAuctionEffect({
+            actionId: act._id,
+          });
+        },
+        disabled: false,
       },
-      disabled: false,
-    },
-  ],
-  _id: act._id,
-  isModal: act.isModal,
-});
+    ],
+    _id: act._id,
+    isModal: act.isModal,
+  };
+};
 
 export const taxModal = (act: BoardAction): BoardAction => {
   return {
