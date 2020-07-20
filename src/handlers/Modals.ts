@@ -39,12 +39,7 @@ export const canBuyModal = (act: BoardAction): BoardAction => {
   if (!p || !f) {
     throw new Error("User or Field not found inbuy modal");
   }
-  console.log(
-    111111,
-    p?.money,
-    f?.price?.startPrice,
-    p.money < (f.price?.startPrice || 0)
-  );
+
   return {
     type: act.type,
     userId: act.userId,
@@ -76,6 +71,7 @@ export const canBuyModal = (act: BoardAction): BoardAction => {
 };
 
 export const taxModal = (act: BoardAction): BoardAction => {
+  const p = getPlayerById(act.userId);
   return {
     type: act.type,
     userId: act.userId,
@@ -89,7 +85,7 @@ export const taxModal = (act: BoardAction): BoardAction => {
             actionId: act._id,
           });
         },
-        disabled: false,
+        disabled: !p || !act.money || p?.money < Math.abs(act.money),
       },
     ],
     _id: act._id,
@@ -98,6 +94,7 @@ export const taxModal = (act: BoardAction): BoardAction => {
 };
 
 export const unJailModal = (act: BoardAction): BoardAction => {
+  const p = getPlayerById(act.userId);
   return {
     type: act.type,
     userId: act.userId,
@@ -111,7 +108,7 @@ export const unJailModal = (act: BoardAction): BoardAction => {
             actionId: act._id,
           });
         },
-        disabled: false,
+        disabled: !p || !act.money || p?.money < Math.abs(act.money),
       },
       {
         title: "Бросить кубики",
@@ -129,6 +126,7 @@ export const unJailModal = (act: BoardAction): BoardAction => {
 };
 
 export const unJailPayingModal = (act: BoardAction): BoardAction => {
+  const p = getPlayerById(act.userId);
   return {
     type: act.type,
     userId: act.userId,
@@ -142,7 +140,7 @@ export const unJailPayingModal = (act: BoardAction): BoardAction => {
             actionId: act._id,
           });
         },
-        disabled: false,
+        disabled: !p || !act.money || p?.money < Math.abs(act.money),
       },
     ],
     _id: act._id,
