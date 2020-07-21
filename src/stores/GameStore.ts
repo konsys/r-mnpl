@@ -13,5 +13,5 @@ export interface IGameStore {
 
 export const gameStore = BoardDomain.store({
   gameId: nanoid(8),
-  players: [2, 3],
+  players: [2, 3, 4, 5, 6],
 });

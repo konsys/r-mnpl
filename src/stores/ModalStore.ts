@@ -2,7 +2,6 @@ import {
   BoardAction,
   IActionId,
   IFieldId,
-  IMoveCompleted,
   IncomeMessageType,
   OutcomeMessageType,
 } from "../types/types";
@@ -34,19 +33,6 @@ export const rollDicesEffect = ModalDomain.effect<
 >(OutcomeMessageType.OUTCOME_ROLL_DICES_CLICKED, {
   handler: async (data) =>
     boardSocket.emit(OutcomeMessageType.OUTCOME_ROLL_DICES_CLICKED, data),
-});
-
-// Emits after token`s move completed
-export const tokensMoveCompleteEffect = ModalDomain.effect<
-  IMoveCompleted,
-  Promise<SocketIOClient.Socket>,
-  Error
->(OutcomeMessageType.INCOME_TOKEN_TRANSITION_COMPLETED, {
-  handler: async (data) =>
-    boardSocket.emit(
-      OutcomeMessageType.INCOME_TOKEN_TRANSITION_COMPLETED,
-      data
-    ),
 });
 
 export const taxPaidEffect = ModalDomain.effect<
@@ -89,18 +75,18 @@ export const auctionDecline = ModalDomain.effect<
   IActionId,
   Promise<SocketIOClient.Socket>,
   Error
->(OutcomeMessageType.OUTCOME_UN_JAIL_PAID_CLICKED, {
+>(OutcomeMessageType.OUTCOME_AUCTION_DECLINE_CLICKED, {
   handler: async (data) =>
-    boardSocket.emit(OutcomeMessageType.OUTCOME_UN_JAIL_PAID_CLICKED, data),
+    boardSocket.emit(OutcomeMessageType.OUTCOME_AUCTION_DECLINE_CLICKED, data),
 });
 
 export const auctionAccept = ModalDomain.effect<
   IActionId,
   Promise<SocketIOClient.Socket>,
   Error
->(OutcomeMessageType.OUTCOME_UN_JAIL_PAID_CLICKED, {
+>(OutcomeMessageType.OUTCOME_AUCTION_ACCEPT_CLICKED, {
   handler: async (data) =>
-    boardSocket.emit(OutcomeMessageType.OUTCOME_UN_JAIL_PAID_CLICKED, data),
+    boardSocket.emit(OutcomeMessageType.OUTCOME_AUCTION_ACCEPT_CLICKED, data),
 });
 
 // Emits to mortgage field

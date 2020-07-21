@@ -33,8 +33,10 @@ export enum IFieldAction {
 }
 
 export enum OutcomeMessageType {
-  INCOME_TOKEN_TRANSITION_COMPLETED = "changeTokenPositionCompleted",
+  OUTCOME_TOKEN_TRANSITION_COMPLETED = "changeTokenPositionCompleted",
   OUTCOME_AUCTION_START_CLICKED = "auctionStartClicked",
+  OUTCOME_AUCTION_ACCEPT_CLICKED = "auctionAcceptClicked",
+  OUTCOME_AUCTION_DECLINE_CLICKED = "auctionDeclineClicked",
   OUTCOME_BUY_FIELD_CLICKED = "buyFieldClicked",
   OUTCOME_TAX_PAID_CLICKED = "taxPaidCLicked",
   OUTCOME_UN_JAIL_PAID_CLICKED = "unJailPaidClicked",
@@ -43,8 +45,6 @@ export enum OutcomeMessageType {
   OUTCOME_UN_MORTGAGE_FIELD_CLICKED = "unMortgageFieldClicked",
   OUTCOME_LEVEL_UP_FIELD_CLICKED = "levelUpFieldClicked",
   OUTCOME_LEVEL_DOWN_FIELD_CLICKED = "levelDownFieldClicked",
-  OUTCOME_AUCTION_ACCEPT = "auctionAccept",
-  OUTCOME_AUCTION_DECLINE = "auctionDecline",
 }
 
 export enum IncomeMessageType {

@@ -1,10 +1,11 @@
-import { BoardDomain } from "./BoardDomain";
 import {
   IActionId,
-  OutcomeMessageType,
-  IncomeMessageType,
   IDices,
+  IncomeMessageType,
+  OutcomeMessageType,
 } from "../types/types";
+
+import { BoardDomain } from "./BoardDomain";
 import { boardSocket } from "../components/core/BoardCore/BoardCore";
 
 const DiceDomain = BoardDomain.domain("DiceDomain");
@@ -14,10 +15,10 @@ export const tokenTransitionCompleted = DiceDomain.effect<
   IActionId,
   Promise<SocketIOClient.Socket>,
   Error
->(OutcomeMessageType.INCOME_TOKEN_TRANSITION_COMPLETED, {
+>(OutcomeMessageType.OUTCOME_TOKEN_TRANSITION_COMPLETED, {
   handler: async (data) =>
     boardSocket.emit(
-      OutcomeMessageType.INCOME_TOKEN_TRANSITION_COMPLETED,
+      OutcomeMessageType.OUTCOME_TOKEN_TRANSITION_COMPLETED,
       data
     ),
 });
