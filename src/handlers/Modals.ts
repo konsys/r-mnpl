@@ -165,7 +165,7 @@ export const auctionModal = (act: BoardAction): BoardAction => {
             actionId: act._id,
           });
         },
-        disabled: !p || !act.money || p?.money < Math.abs(act.money),
+        disabled: !p || !act.bet || p?.money < Math.abs(act.bet),
       },
       {
         title: `Отказаться`,
@@ -174,7 +174,7 @@ export const auctionModal = (act: BoardAction): BoardAction => {
             actionId: act._id,
           });
         },
-        disabled: !p || !act.money || p?.money < Math.abs(act.money),
+        disabled: false,
       },
     ],
     _id: act._id,
