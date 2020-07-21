@@ -1,5 +1,6 @@
 import { IBoardEvent, IncomeMessageType } from "../types/types";
 import {
+  auctionModal,
   canBuyModal,
   rollDicesModal,
   taxModal,
@@ -88,6 +89,10 @@ actionsStore.watch((v) => {
 
     case IncomeMessageType.INCOME_UNJAIL_PAYING_MODAL:
       showModalEvent(unJailPayingModal(action));
+      break;
+
+    case IncomeMessageType.INCOME_AUCTION_MODAL:
+      showModalEvent(auctionModal(action));
       break;
   }
 });

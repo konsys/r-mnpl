@@ -85,6 +85,24 @@ export const unjailPaidEffect = ModalDomain.effect<
     boardSocket.emit(OutcomeMessageType.OUTCOME_UN_JAIL_PAID_CLICKED, data),
 });
 
+export const auctionDecline = ModalDomain.effect<
+  IActionId,
+  Promise<SocketIOClient.Socket>,
+  Error
+>(OutcomeMessageType.OUTCOME_UN_JAIL_PAID_CLICKED, {
+  handler: async (data) =>
+    boardSocket.emit(OutcomeMessageType.OUTCOME_UN_JAIL_PAID_CLICKED, data),
+});
+
+export const auctionAccept = ModalDomain.effect<
+  IActionId,
+  Promise<SocketIOClient.Socket>,
+  Error
+>(OutcomeMessageType.OUTCOME_UN_JAIL_PAID_CLICKED, {
+  handler: async (data) =>
+    boardSocket.emit(OutcomeMessageType.OUTCOME_UN_JAIL_PAID_CLICKED, data),
+});
+
 // Emits to mortgage field
 export const mortgageFieldEffect = ModalDomain.effect<
   IFieldId,

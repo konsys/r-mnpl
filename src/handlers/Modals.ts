@@ -1,4 +1,6 @@
 import {
+  auctionAccept,
+  auctionDecline,
   fieldAuctionEffect,
   fieldBoughtEffect,
   rollDicesEffect,
@@ -137,6 +139,38 @@ export const unJailPayingModal = (act: BoardAction): BoardAction => {
         title: `Заплатить ${act.money && Math.abs(act.money)}k`,
         onClick: () => {
           unjailPaidEffect({
+            actionId: act._id,
+          });
+        },
+        disabled: !p || !act.money || p?.money < Math.abs(act.money),
+      },
+    ],
+    _id: act._id,
+    isModal: act.isModal,
+  };
+};
+
+export const auctionModal = (act: BoardAction): BoardAction => {
+  const p = getPlayerById(act.userId);
+  return {
+    type: act.type,
+    userId: act.userId,
+    title: act.title,
+    text: act.text,
+    actionButtons: [
+      {
+        title: `Поднять до ${act.bet}k`,
+        onClick: () => {
+          auctionAccept({
+            actionId: act._id,
+          });
+        },
+        disabled: !p || !act.money || p?.money < Math.abs(act.money),
+      },
+      {
+        title: `Отказаться`,
+        onClick: () => {
+          auctionDecline({
             actionId: act._id,
           });
         },
