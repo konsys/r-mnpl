@@ -1,9 +1,10 @@
-import { createDomain } from "effector";
-import { loginFetch } from "../../../../api/Login/api";
 import { ILoginForm, ILoginResponce } from "../Login";
+import { clearToken, saveToken } from "./TokenModel";
+
 import { LocalStorageParams } from "../../../../types/types";
+import { createDomain } from "effector";
 import { getUserEffect } from "../../../../stores/UserStore";
-import { saveToken, clearToken } from "./TokenModel";
+import { loginFetch } from "../../../../models/api/Login/api";
 
 const AuthDomain = createDomain("AuthDomain");
 export const clearTokenStore = AuthDomain.event();

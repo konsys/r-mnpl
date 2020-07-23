@@ -9,7 +9,7 @@ import { IPlayer } from "../types/types";
 import { fieldPositions } from "../utils/fields.utils";
 import { getPlayerById } from "../utils/players.utils";
 import { sample } from "effector";
-import { usersFetch } from "../api/Users/api";
+import { usersFetch } from "../models/api/Users/api";
 
 const PlayersDomain = BoardDomain.domain("PlayersDomain");
 

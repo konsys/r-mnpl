@@ -188,16 +188,6 @@ export interface BoardMessage {
   data: BoardEventData;
 }
 
-interface UsersEntity {
-  userId: number;
-  vip: boolean;
-  name: string;
-  team?: string;
-  avatar?: string;
-  isActive: boolean;
-  isBlocked?: boolean;
-}
-
 export interface IUser {
   userId: number;
   vip: boolean;

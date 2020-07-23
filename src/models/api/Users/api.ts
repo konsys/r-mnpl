@@ -1,5 +1,6 @@
-import { client } from "../../http/client";
-import { IUser, IPlayer } from "../../types/types";
+import { IPlayer, IUser } from "../../../types/types";
+
+import { client } from "../../../http/client";
 
 const usersUrl = `/users`;
 export const usersFetch = async (ids?: number[]): Promise<IPlayer[]> => {
