@@ -1,5 +1,5 @@
-import { ILoginResponce } from "../../../components/core/Login/Login";
-import { client } from "../../../http/client";
+import { ILoginResponce } from "../../components/core/Login/Login";
+import { client } from "../../http/client";
 
 const loginUrl = `/users/auth/login`;
 

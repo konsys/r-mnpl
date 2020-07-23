@@ -1,6 +1,6 @@
 import { BoardDomain } from "./BoardDomain";
 import { IUser } from "../types/types";
-import { profile } from "../models/api/Users/api";
+import { profile } from "../models/Users/api";
 
 const UserDomain = BoardDomain.domain("UserDomain");
 export const resetUserEvent = UserDomain.event();

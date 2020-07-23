@@ -1,5 +1,5 @@
-import { IField } from "../../../types/types";
-import { client } from "../../../http/client";
+import { IField } from "../../types/types";
+import { client } from "../../http/client";
 
 const URL = `/fields/initial`;
 
