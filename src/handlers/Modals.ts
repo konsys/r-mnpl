@@ -3,7 +3,6 @@ import {
   auctionDecline,
   fieldAuctionEffect,
   fieldBoughtEffect,
-  rollDicesEffect,
   taxPaidEffect,
   unjailPaidEffect,
 } from "../stores/ModalStore";
@@ -11,6 +10,7 @@ import {
 import { BoardAction } from "../types/types";
 import { getFieldById } from "../utils/fields.utils";
 import { getPlayerById } from "../utils/players.utils";
+import { rollDicesEffect } from "../models/Board/model";
 
 export const rollDicesModal = (act: BoardAction): BoardAction => {
   return {
