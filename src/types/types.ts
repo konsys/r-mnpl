@@ -32,6 +32,10 @@ export enum IFieldAction {
   LEVEL_DOWN = 3,
 }
 
+export interface IFetchGameAction {
+  action: OutcomeMessageType;
+}
+
 export enum OutcomeMessageType {
   OUTCOME_TOKEN_TRANSITION_COMPLETED = "changeTokenPositionCompleted",
   OUTCOME_AUCTION_START_CLICKED = "auctionStartClicked",

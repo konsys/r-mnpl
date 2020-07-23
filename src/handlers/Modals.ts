@@ -1,3 +1,4 @@
+import { BoardAction, OutcomeMessageType } from "../types/types";
 import {
   auctionAccept,
   auctionDecline,
@@ -7,7 +8,6 @@ import {
   unjailPaidEffect,
 } from "../stores/ModalStore";
 
-import { BoardAction } from "../types/types";
 import { getFieldById } from "../utils/fields.utils";
 import { getPlayerById } from "../utils/players.utils";
 import { rollDicesEffect } from "../models/Board/model";
@@ -23,7 +23,7 @@ export const rollDicesModal = (act: BoardAction): BoardAction => {
         title: "Бросить кубики",
         onClick: () => {
           rollDicesEffect({
-            actionId: act._id,
+            action: OutcomeMessageType.OUTCOME_ROLL_DICES_CLICKED,
           });
         },
         disabled: false,
@@ -116,7 +116,7 @@ export const unJailModal = (act: BoardAction): BoardAction => {
         title: "Бросить кубики",
         onClick: () => {
           rollDicesEffect({
-            actionId: act._id,
+            action: OutcomeMessageType.OUTCOME_ROLL_DICES_CLICKED,
           });
         },
         disabled: false,
