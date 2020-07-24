@@ -4,7 +4,7 @@ import { fetchGameAction } from "./api";
 
 const GameActionDomain = BoardDomain.domain("ModalDomain");
 
-export const rollDicesEffect = GameActionDomain.effect<
+export const gameActionEffect = GameActionDomain.effect<
   IFetchGameAction,
   Promise<any>,
   Error
