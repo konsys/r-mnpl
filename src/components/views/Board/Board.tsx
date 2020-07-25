@@ -1,21 +1,16 @@
+import { FieldType, IField, IFieldModalPosition } from "../../../types/types";
 import React, { useEffect } from "react";
-import { Field } from "../Field/Field";
 import {
-  fieldsStore,
   closeFieldActionEvent,
   fieldActionStore,
+  fieldsStore,
   setFieldActionEffect,
 } from "../../../stores/FieldsStore";
-import { useStore } from "effector-react";
-import { FieldActions } from "../FieldActions/FieldAction";
-import { IField, IFieldModalPosition, FieldType } from "../../../types/types";
+
 import { FIELD_WIDTH } from "../../../params/boardParams";
-import {
-  mortgageFieldEffect,
-  unMortgageFieldEffect,
-  levelUpFieldEffect,
-  levelDownFieldEffect,
-} from "../../../stores/ModalStore";
+import { Field } from "../Field/Field";
+import { FieldActions } from "../FieldActions/FieldAction";
+import { useStore } from "effector-react";
 
 export const Board = () => {
   const { fields } = useStore(fieldsStore);
@@ -59,34 +54,6 @@ export const Board = () => {
     };
   }, []);
 
-  const onMortgage = (fieldId: number) => {
-    mortgageFieldEffect({
-      fieldId,
-    });
-    closeFieldActionEvent();
-  };
-
-  const onUnMortgage = (fieldId: number) => {
-    unMortgageFieldEffect({
-      fieldId,
-    });
-    closeFieldActionEvent();
-  };
-
-  const onLevelUp = (fieldId: number) => {
-    levelUpFieldEffect({
-      fieldId,
-    });
-    closeFieldActionEvent();
-  };
-
-  const onLevelDown = (fieldId: number) => {
-    levelDownFieldEffect({
-      fieldId,
-    });
-    closeFieldActionEvent();
-  };
-
   return (
     <>
       <div id="ui-fields" className="table-body-board-fields">
@@ -115,10 +82,6 @@ export const Board = () => {
                   {...field}
                   position={getFieldActionPosition(field)}
                   isActive={field.fieldId === fieldActionId}
-                  onMortgage={() => onMortgage(field.fieldId || 0)}
-                  onUnMortgage={() => onUnMortgage(field.fieldId || 0)}
-                  levelUp={() => onLevelUp(field.fieldId || 0)}
-                  levelDown={() => onLevelDown(field.fieldId || 0)}
                 />
               )
             );

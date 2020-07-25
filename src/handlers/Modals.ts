@@ -148,7 +148,6 @@ export const auctionModal = (act: BoardAction): BoardAction => {
     type: act.type,
     userId: act.userId,
     title: act.title,
-    text: act.text,
     actionButtons: [
       {
         title: `Поднять до ${act.bet}k`,

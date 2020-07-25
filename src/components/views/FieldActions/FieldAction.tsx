@@ -1,22 +1,21 @@
-import React from "react";
 import {
-  IFieldModalPosition,
-  IField,
   FieldType,
+  IField,
   IFieldAction,
+  IFieldModalPosition,
+  OutcomeMessageType,
 } from "../../../types/types";
-import { FieldActionCompany } from "./FieldActionCompany";
+
 import { FieldActionAuto } from "./FieldActionAuto";
+import { FieldActionCompany } from "./FieldActionCompany";
 import { FieldActionIT } from "./FieldActionIT";
+import React from "react";
+import { gameActionEffect } from "../../../models/Board/model";
 import { getActingPlayer } from "../../../utils/players.utils";
 
 export interface IFieldModal extends IField {
   position: IFieldModalPosition;
   isActive: boolean;
-  onMortgage: () => void;
-  onUnMortgage: () => void;
-  levelUp: () => void;
-  levelDown: () => void;
 }
 
 export const FieldActions = ({
@@ -30,10 +29,6 @@ export const FieldActions = ({
   description,
   type,
   status,
-  onMortgage,
-  onUnMortgage,
-  levelUp,
-  levelDown,
 }: IFieldModal) => {
   const player = getActingPlayer();
   return (
@@ -55,7 +50,14 @@ export const FieldActions = ({
             player?.userId === status?.userId &&
             status.fieldActions &&
             status.fieldActions.indexOf(IFieldAction.MORTGAGE) > -1 && (
-              <div className="_mortgage" onClick={onMortgage}>
+              <div
+                className="_mortgage"
+                onClick={() => {
+                  gameActionEffect({
+                    action: OutcomeMessageType.OUTCOME_MORTGAGE_FIELD_CLICKED,
+                  });
+                }}
+              >
                 Заложить
               </div>
             )}
@@ -63,7 +65,15 @@ export const FieldActions = ({
             player?.userId === status?.userId &&
             status.fieldActions &&
             status.fieldActions.indexOf(IFieldAction.UNMORTGAGE) > -1 && (
-              <div className="_unmortgage" onClick={onUnMortgage}>
+              <div
+                className="_unmortgage"
+                onClick={() => {
+                  gameActionEffect({
+                    action:
+                      OutcomeMessageType.OUTCOME_UN_MORTGAGE_FIELD_CLICKED,
+                  });
+                }}
+              >
                 Выкупить
               </div>
             )}
@@ -71,7 +81,14 @@ export const FieldActions = ({
             player?.userId === status?.userId &&
             status.fieldActions &&
             status.fieldActions.indexOf(IFieldAction.LEVEL_UP) > -1 && (
-              <div className="_level_up" onClick={levelUp}>
+              <div
+                className="_level_up"
+                onClick={() => {
+                  gameActionEffect({
+                    action: OutcomeMessageType.OUTCOME_LEVEL_UP_FIELD_CLICKED,
+                  });
+                }}
+              >
                 Построить
               </div>
             )}
@@ -79,7 +96,14 @@ export const FieldActions = ({
             player?.userId === status?.userId &&
             status.fieldActions &&
             status.fieldActions.indexOf(IFieldAction.LEVEL_DOWN) > -1 && (
-              <div className="_level_down" onClick={levelDown}>
+              <div
+                className="_level_down"
+                onClick={() => {
+                  gameActionEffect({
+                    action: OutcomeMessageType.OUTCOME_LEVEL_DOWN_FIELD_CLICKED,
+                  });
+                }}
+              >
                 Продать
               </div>
             )}
