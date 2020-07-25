@@ -34,6 +34,7 @@ export enum IFieldAction {
 
 export interface IFetchGameAction {
   action: OutcomeMessageType;
+  fieldId?: number;
 }
 
 export enum OutcomeMessageType {

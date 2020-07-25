@@ -29,6 +29,7 @@ export const FieldActions = ({
   description,
   type,
   status,
+  fieldId,
 }: IFieldModal) => {
   const player = getActingPlayer();
   return (
@@ -55,6 +56,7 @@ export const FieldActions = ({
                 onClick={() => {
                   gameActionEffect({
                     action: OutcomeMessageType.OUTCOME_MORTGAGE_FIELD_CLICKED,
+                    fieldId,
                   });
                 }}
               >
@@ -71,6 +73,7 @@ export const FieldActions = ({
                   gameActionEffect({
                     action:
                       OutcomeMessageType.OUTCOME_UN_MORTGAGE_FIELD_CLICKED,
+                    fieldId,
                   });
                 }}
               >
@@ -86,6 +89,7 @@ export const FieldActions = ({
                 onClick={() => {
                   gameActionEffect({
                     action: OutcomeMessageType.OUTCOME_LEVEL_UP_FIELD_CLICKED,
+                    fieldId,
                   });
                 }}
               >
@@ -101,6 +105,7 @@ export const FieldActions = ({
                 onClick={() => {
                   gameActionEffect({
                     action: OutcomeMessageType.OUTCOME_LEVEL_DOWN_FIELD_CLICKED,
+                    fieldId,
                   });
                 }}
               >
