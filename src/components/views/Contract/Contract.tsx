@@ -1,14 +1,16 @@
+import { contractStore, userStore } from "../../../stores/UserStore";
+
 import React from "react";
-import { contractStore } from "../../../stores/UserStore";
 import { useStore } from "effector-react";
 
 export const Contract = () => {
   const contract = useStore(contractStore);
+  const player = useStore(userStore);
 
   console.log(contract);
   return (
     <>
-      {contract && (
+      {contract.isModalOpen && contract.fromUserId === player?.userId && (
         <div className="TableContract" style={{}}>
           <div className="TableContract-top">
             <div className="TableContract-top-title">Договор</div>
