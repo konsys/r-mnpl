@@ -267,3 +267,11 @@ export enum FieldType {
 export enum LocalStorageParams {
   TOKEN = "token",
 }
+
+export interface IContract {
+  isModalOpen: boolean;
+  fromUserId: number;
+  toUserId: number;
+  fields?: IField[];
+  money?: number;
+}

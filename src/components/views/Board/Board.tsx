@@ -7,7 +7,7 @@ import {
   setFieldActionEffect,
 } from "../../../stores/FieldsStore";
 
-import { FIELD_WIDTH } from "../../../params/boardParams";
+import { BOARD_PARAMS } from "../../../params/boardParams";
 import { Field } from "../Field/Field";
 import { FieldActions } from "../FieldActions/FieldAction";
 import { useStore } from "effector-react";
@@ -19,21 +19,36 @@ export const Board = () => {
   const getFieldActionPosition = (field: IField): IFieldModalPosition => {
     switch (field.fieldLine) {
       case 0:
-        return { top: 105, left: 25 + (field.fieldPosition - 1) * FIELD_WIDTH };
+        return {
+          top: 105,
+          left: 25 + (field.fieldPosition - 1) * BOARD_PARAMS.FIELD_WIDTH,
+        };
       case 1:
         return field.fieldPosition < 16
-          ? { top: 105 + (field.fieldPosition - 11) * FIELD_WIDTH, left: 380 }
-          : { top: (field.fieldPosition - 13) * FIELD_WIDTH, left: 380 };
+          ? {
+              top: 105 + (field.fieldPosition - 11) * BOARD_PARAMS.FIELD_WIDTH,
+              left: 380,
+            }
+          : {
+              top: (field.fieldPosition - 13) * BOARD_PARAMS.FIELD_WIDTH,
+              left: 380,
+            };
       case 2:
         return {
           top: 240,
-          left: 450 - (field.fieldPosition - 21) * FIELD_WIDTH,
+          left: 450 - (field.fieldPosition - 21) * BOARD_PARAMS.FIELD_WIDTH,
         };
 
       case 3:
         return field.fieldPosition > 34
-          ? { top: 105 + (39 - field.fieldPosition) * FIELD_WIDTH, left: 105 }
-          : { top: (39 - field.fieldPosition) * FIELD_WIDTH - 110, left: 105 };
+          ? {
+              top: 105 + (39 - field.fieldPosition) * BOARD_PARAMS.FIELD_WIDTH,
+              left: 105,
+            }
+          : {
+              top: (39 - field.fieldPosition) * BOARD_PARAMS.FIELD_WIDTH - 110,
+              left: 105,
+            };
 
       default:
         return { top: 240, left: 105 };

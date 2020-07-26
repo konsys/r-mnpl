@@ -1,5 +1,7 @@
+import { IContract, IUser } from "../types/types";
+
+import { BOARD_PARAMS } from "../params/boardParams";
 import { BoardDomain } from "./BoardDomain";
-import { IUser } from "../types/types";
 import { profile } from "../models/Users/api";
 
 const UserDomain = BoardDomain.domain("UserDomain");
@@ -18,9 +20,10 @@ export const userStore = UserDomain.store<IUser | null>(null)
 
 // userStore.updates.watch((v) => console.log("userStore.updates.watch", v));
 
-export const openContractModal = UserDomain.event<boolean>();
+export const openContractModal = UserDomain.event();
 
-export const contractStore = UserDomain.store<boolean>(true).on(
-  openContractModal,
-  () => true
-);
+export const contractStore = UserDomain.store<IContract>({
+  fromUserId: BOARD_PARAMS.BANK_USER_ID,
+  toUserId: BOARD_PARAMS.BANK_USER_ID,
+  isModalOpen: false,
+}).on(openContractModal, (prev) => ({ ...prev, isModalOpen: true }));

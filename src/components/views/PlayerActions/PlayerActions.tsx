@@ -1,5 +1,6 @@
-import React from "react";
 import { IPlayerAction } from "../../../stores/PlayersStore";
+import React from "react";
+import { openContractModal } from "../../../stores/UserStore";
 
 export const PlayerActions = ({
   profile,
@@ -22,7 +23,9 @@ export const PlayerActions = ({
     {creditTake && <div className="_credit_take" />}
     {creditPay && <div className="_credit_pay" />}
     {leave && <div className="_leave" />}
-    {contract && <div className="_contract" />}
+    {contract && (
+      <div className="_contract" onClick={() => openContractModal()} />
+    )}
     {kick && <div className="_kick" />}
   </div>
 );

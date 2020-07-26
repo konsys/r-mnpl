@@ -1,6 +1,9 @@
-export const LINE_TRANSITION_TIMEOUT = 700;
-export const CORNER_FIELDS = [0, 10, 20, 30];
-export const TABLE_SIZE = 665;
-export const MARGIN_CENTER = 35;
-export const FIELD_WIDTH = 55;
-export const DURATION = 100;
+export const BOARD_PARAMS = {
+  LINE_TRANSITION_TIMEOUT: 700,
+  CORNER_FIELDS: [0, 10, 20, 30],
+  TABLE_SIZE: 665,
+  MARGIN_CENTER: 35,
+  FIELD_WIDTH: 55,
+  DURATION: 100,
+  BANK_USER_ID: 0,
+};
