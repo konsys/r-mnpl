@@ -1,13 +1,6 @@
-import {
-  BoardAction,
-  IActionId,
-  IFieldId,
-  IncomeMessageType,
-  OutcomeMessageType,
-} from "../types/types";
+import { BoardAction, IncomeMessageType } from "../types/types";
 
 import { BoardDomain } from "./BoardDomain";
-import { boardSocket } from "../components/core/BoardCore/BoardCore";
 
 const ModalDomain = BoardDomain.domain("ModalDomain");
 
@@ -25,110 +18,6 @@ const init: BoardAction = {
 
 export const showModalEvent = ModalDomain.event<BoardAction>();
 
-// Emits to roll dices and move tokens
-// export const rollDicesEffect = ModalDomain.effect<
-//   IActionId,
-//   Promise<SocketIOClient.Socket>,
-//   Error
-// >(OutcomeMessageType.OUTCOME_ROLL_DICES_CLICKED, {
-//   handler: async (data) =>
-//     boardSocket.emit(OutcomeMessageType.OUTCOME_ROLL_DICES_CLICKED, data),
-// });
-
-export const taxPaidEffect = ModalDomain.effect<
-  IActionId,
-  Promise<SocketIOClient.Socket>,
-  Error
->(OutcomeMessageType.OUTCOME_TAX_PAID_CLICKED, {
-  handler: async (data) =>
-    boardSocket.emit(OutcomeMessageType.OUTCOME_TAX_PAID_CLICKED, data),
-});
-
-export const fieldBoughtEffect = ModalDomain.effect<
-  IActionId,
-  Promise<SocketIOClient.Socket>,
-  Error
->(OutcomeMessageType.OUTCOME_BUY_FIELD_CLICKED, {
-  handler: async (data) =>
-    boardSocket.emit(OutcomeMessageType.OUTCOME_BUY_FIELD_CLICKED, data),
-});
-
-export const fieldAuctionEffect = ModalDomain.effect<
-  IActionId,
-  Promise<SocketIOClient.Socket>,
-  Error
->(OutcomeMessageType.OUTCOME_AUCTION_START_CLICKED, {
-  handler: async (data) =>
-    boardSocket.emit(OutcomeMessageType.OUTCOME_AUCTION_START_CLICKED, data),
-});
-
-export const unjailPaidEffect = ModalDomain.effect<
-  IActionId,
-  Promise<SocketIOClient.Socket>,
-  Error
->(OutcomeMessageType.OUTCOME_UN_JAIL_PAID_CLICKED, {
-  handler: async (data) =>
-    boardSocket.emit(OutcomeMessageType.OUTCOME_UN_JAIL_PAID_CLICKED, data),
-});
-
-export const auctionDecline = ModalDomain.effect<
-  IActionId,
-  Promise<SocketIOClient.Socket>,
-  Error
->(OutcomeMessageType.OUTCOME_AUCTION_DECLINE_CLICKED, {
-  handler: async (data) =>
-    boardSocket.emit(OutcomeMessageType.OUTCOME_AUCTION_DECLINE_CLICKED, data),
-});
-
-export const auctionAccept = ModalDomain.effect<
-  IActionId,
-  Promise<SocketIOClient.Socket>,
-  Error
->(OutcomeMessageType.OUTCOME_AUCTION_ACCEPT_CLICKED, {
-  handler: async (data) =>
-    boardSocket.emit(OutcomeMessageType.OUTCOME_AUCTION_ACCEPT_CLICKED, data),
-});
-
-// Emits to mortgage field
-export const mortgageFieldEffect = ModalDomain.effect<
-  IFieldId,
-  Promise<SocketIOClient.Socket>,
-  Error
->(OutcomeMessageType.OUTCOME_MORTGAGE_FIELD_CLICKED, {
-  handler: async (data) =>
-    boardSocket.emit(OutcomeMessageType.OUTCOME_MORTGAGE_FIELD_CLICKED, data),
-});
-
-export const unMortgageFieldEffect = ModalDomain.effect<
-  IFieldId,
-  Promise<SocketIOClient.Socket>,
-  Error
->(OutcomeMessageType.OUTCOME_UN_MORTGAGE_FIELD_CLICKED, {
-  handler: async (data) =>
-    boardSocket.emit(
-      OutcomeMessageType.OUTCOME_UN_MORTGAGE_FIELD_CLICKED,
-      data
-    ),
-});
-
 export const modalStore = ModalDomain.store<BoardAction>(init)
   .on(showModalEvent, (_, data) => data)
   .reset(resetModalEvent);
-
-export const levelUpFieldEffect = ModalDomain.effect<
-  IFieldId,
-  Promise<SocketIOClient.Socket>,
-  Error
->(OutcomeMessageType.OUTCOME_LEVEL_UP_FIELD_CLICKED, {
-  handler: async (data) =>
-    boardSocket.emit(OutcomeMessageType.OUTCOME_LEVEL_UP_FIELD_CLICKED, data),
-});
-
-export const levelDownFieldEffect = ModalDomain.effect<
-  IFieldId,
-  Promise<SocketIOClient.Socket>,
-  Error
->(OutcomeMessageType.OUTCOME_LEVEL_DOWN_FIELD_CLICKED, {
-  handler: async (data) =>
-    boardSocket.emit(OutcomeMessageType.OUTCOME_LEVEL_DOWN_FIELD_CLICKED, data),
-});
