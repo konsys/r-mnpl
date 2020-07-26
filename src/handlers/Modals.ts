@@ -89,6 +89,8 @@ export const taxModal = (act: BoardAction): BoardAction => {
 
 export const unJailModal = (act: BoardAction): BoardAction => {
   const p = getPlayerById(act.userId);
+  console.log(p?.money, act);
+
   return {
     type: act.type,
     userId: act.userId,
