@@ -20,10 +20,11 @@ export const userStore = UserDomain.store<IUser | null>(null)
 
 // userStore.updates.watch((v) => console.log("userStore.updates.watch", v));
 
-export const openContractModal = UserDomain.event();
+export const openContractModal = UserDomain.event<IContract>();
 
 export const contractStore = UserDomain.store<IContract>({
   fromUserId: BOARD_PARAMS.BANK_USER_ID,
   toUserId: BOARD_PARAMS.BANK_USER_ID,
-  isModalOpen: false,
-}).on(openContractModal, (prev) => ({ ...prev, isModalOpen: true }));
+}).on(openContractModal, (prev, next) => next);
+
+contractStore.watch((v) => console.log(11111, v));

@@ -269,7 +269,6 @@ export enum LocalStorageParams {
 }
 
 export interface IContract {
-  isModalOpen: boolean;
   fromUserId: number;
   toUserId: number;
   fields?: IField[];

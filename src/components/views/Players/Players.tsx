@@ -46,7 +46,7 @@ export const Players = (prop: Prop) => {
                 onClick={() =>
                   openPlayerActionEvent({
                     srcPlayer: player.userId,
-                    distPlayer: player.userId,
+                    dstPlayer: player.userId,
                     isVisible: !actionStore?.isVisible,
                     position: 1,
                     ignore: false,

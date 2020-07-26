@@ -15,7 +15,7 @@ const PlayersDomain = BoardDomain.domain("PlayersDomain");
 
 export interface IPlayerAction {
   srcPlayer: number;
-  distPlayer: number;
+  dstPlayer: number;
   isVisible: boolean;
   position: number;
   profile: boolean;
@@ -35,7 +35,7 @@ export const closePlayeActionEvent = PlayersDomain.event();
 
 const init = {
   srcPlayer: 0,
-  distPlayer: 0,
+  dstPlayer: 0,
   isVisible: false,
   position: 1,
   ignore: false,

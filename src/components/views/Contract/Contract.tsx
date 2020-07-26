@@ -10,7 +10,7 @@ export const Contract = () => {
   console.log(contract);
   return (
     <>
-      {contract.isModalOpen && contract.fromUserId === player?.userId && (
+      {contract && contract.fromUserId === player?.userId && (
         <div className="TableContract" style={{}}>
           <div className="TableContract-top">
             <div className="TableContract-top-title">Договор</div>
