@@ -17,3 +17,10 @@ export const userStore = UserDomain.store<IUser | null>(null)
   .reset(resetUserEvent);
 
 // userStore.updates.watch((v) => console.log("userStore.updates.watch", v));
+
+export const openContractModal = UserDomain.event<boolean>();
+
+export const contractStore = UserDomain.store<boolean>(true).on(
+  openContractModal,
+  () => true
+);
