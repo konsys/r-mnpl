@@ -46,23 +46,24 @@ export const Players = (prop: Prop) => {
                     : 0
                 }
                 onClick={() => {
-                  console.log(11111, user && user.userId, player.userId);
+                  const user1 = (user && user.userId) || player.userId;
+                  const user2 = player.userId;
 
                   return openPlayerActionEvent({
-                    srcPlayer: user ? user.userId : player.userId,
-                    dstPlayer: player.userId,
+                    srcPlayer: user1,
+                    dstPlayer: user2,
                     isVisible: !actionStore?.isVisible,
                     position: 1,
-                    ignore: false,
-                    ignoreOff: false,
-                    profile: true,
-                    contract: true,
-                    creditTake: true,
+                    ignore: user1 !== user2,
+                    ignoreOff: user1 !== user2,
+                    profile: user1 !== user2,
+                    contract: user1 !== user2,
+                    creditTake: user1 === user2,
                     creditPay: false,
-                    kick: false,
-                    leave: true,
-                    report: true,
-                    restart: false,
+                    kick: user1 !== user2,
+                    leave: user1 === user2,
+                    report: user1 !== user2,
+                    restart: user1 === user2,
                   });
                 }}
               >
