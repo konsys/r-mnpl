@@ -72,13 +72,22 @@ export const Board = () => {
     };
   }, []);
 
-  const onclick = (f: IField) => {
-    f.type === FieldType.AUTO ||
-    f.type === FieldType.COMPANY ||
-    f.type === FieldType.IT
-      ? contract.fromUserId !== user?.userId &&
-        setFieldActionEffect(f.fieldId || 0)
-      : closeFieldActionEvent();
+  const addToContract = (f: IField) => {
+    console.log(121212, f.name);
+  };
+
+  const onClick = (f: IField) => {
+    if (contract.fromUserId === user?.userId) {
+      addToContract(f);
+    } else if (
+      f.type === FieldType.AUTO ||
+      f.type === FieldType.COMPANY ||
+      f.type === FieldType.IT
+    ) {
+      setFieldActionEffect(f.fieldId || 0);
+    } else {
+      closeFieldActionEvent();
+    }
 
     return false;
   };
@@ -91,7 +100,7 @@ export const Board = () => {
             <Field
               key={(f && f.fieldId) || index}
               {...f}
-              onClick={() => onclick(f)}
+              onClick={() => onClick(f)}
             />
           ))}
         {fields &&
