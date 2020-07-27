@@ -77,14 +77,16 @@ export const Board = () => {
   };
 
   const onClick = (f: IField) => {
-    if (contract.fromUserId === user?.userId) {
-      addToContract(f);
-    } else if (
+    if (
       f.type === FieldType.AUTO ||
       f.type === FieldType.COMPANY ||
       f.type === FieldType.IT
     ) {
-      setFieldActionEffect(f.fieldId || 0);
+      if (contract.fromUserId === user?.userId) {
+        addToContract(f);
+      } else {
+        setFieldActionEffect(f.fieldId || 0);
+      }
     } else {
       closeFieldActionEvent();
     }
