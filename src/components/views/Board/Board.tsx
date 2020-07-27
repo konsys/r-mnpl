@@ -9,7 +9,7 @@ import {
 
 import { BOARD_PARAMS } from "../../../params/boardParams";
 import { Field } from "../Field/Field";
-import { FieldActions } from "../FieldActions/FieldAction";
+import { FieldActions } from "../Field/FieldActions/FieldAction";
 import { useStore } from "effector-react";
 
 export const Board = () => {

@@ -5,7 +5,7 @@ import {
 
 import { Avatar } from "../Avatar/Avatar";
 import { IPlayer } from "../../../types/types";
-import { PlayerActions } from "../PlayerActions/PlayerActions";
+import { PlayerActions } from "./PlayerActions/PlayerActions";
 import React from "react";
 import { actionsStore } from "../../../stores/ActionStore";
 import { useStore } from "effector-react";

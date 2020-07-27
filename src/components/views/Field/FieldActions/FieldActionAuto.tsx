@@ -1,5 +1,5 @@
+import { IFieldRent } from "../../../../types/types";
 import React from "react";
-import { IFieldRent } from "../../../types/types";
 
 export const FieldActionAuto = (rent: IFieldRent) => {
   return (
