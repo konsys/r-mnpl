@@ -41,7 +41,7 @@ export const Players = (prop: Prop) => {
                 }
                 mnpl-opened={
                   actionStore.isVisible &&
-                  actionStore.srcPlayer === player.userId
+                  actionStore.fromUserId === player.userId
                     ? actionStore.position * 1
                     : 0
                 }
@@ -50,8 +50,8 @@ export const Players = (prop: Prop) => {
                   const user2 = player.userId;
 
                   return openPlayerActionEvent({
-                    srcPlayer: user1,
-                    dstPlayer: user2,
+                    fromUserId: user1,
+                    toUserId: user2,
                     isVisible: !actionStore?.isVisible,
                     position: 1,
                     ignore: user1 !== user2,

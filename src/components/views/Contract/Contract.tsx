@@ -1,5 +1,10 @@
-import { contractStore, userStore } from "../../../stores/UserStore";
+import {
+  closeContractModal,
+  contractStore,
+  userStore,
+} from "../../../stores/UserStore";
 
+import { ContractCompany } from "./ContractCompany";
 import React from "react";
 import { useStore } from "effector-react";
 
@@ -7,14 +12,16 @@ export const Contract = () => {
   const contract = useStore(contractStore);
   const user = useStore(userStore);
 
-  console.log(contract);
   return (
     <>
       {contract && contract.fromUserId === user?.userId && (
         <div className="TableContract" style={{}}>
           <div className="TableContract-top">
             <div className="TableContract-top-title">Договор</div>
-            <div className="TableContract-top-close"></div>
+            <div
+              className="TableContract-top-close"
+              onClick={() => closeContractModal()}
+            ></div>
           </div>
           <div className="TableContract-content">
             <div className="TableContract-content-head">
@@ -62,6 +69,8 @@ export const Contract = () => {
                           <div className="_subtitle">Наличные</div>
                         </div>
                       </div>
+
+                      <ContractCompany />
                     </div>
                     <div className="scr-pane" style={{ display: "none" }}>
                       <div
@@ -88,6 +97,7 @@ export const Contract = () => {
                           <div className="_subtitle">Наличные</div>
                         </div>
                       </div>
+                      <ContractCompany />
                     </div>
                     <div className="scr-pane" style={{ display: "none" }}>
                       <div

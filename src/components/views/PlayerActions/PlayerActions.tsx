@@ -13,8 +13,8 @@ export const PlayerActions = ({
   leave,
   contract,
   kick,
-  srcPlayer,
-  dstPlayer,
+  fromUserId,
+  toUserId,
 }: IPlayerAction) => (
   <div className="table-body-players-card-menu">
     {profile && <div className="_profile" />}
@@ -30,8 +30,8 @@ export const PlayerActions = ({
         className="_contract"
         onClick={() =>
           openContractModal({
-            fromUserId: srcPlayer,
-            toUserId: dstPlayer,
+            fromUserId,
+            toUserId,
           })
         }
       />

@@ -1,6 +1,6 @@
 import { IContract, IUser } from "../types/types";
 
-import { BOARD_PARAMS } from "../params/boardParams";
+// import { BOARD_PARAMS } from "../params/boardParams";
 import { BoardDomain } from "./BoardDomain";
 import { profile } from "../models/Users/api";
 
@@ -20,11 +20,31 @@ export const userStore = UserDomain.store<IUser | null>(null)
 
 // userStore.updates.watch((v) => console.log("userStore.updates.watch", v));
 
-export const openContractModal = UserDomain.event<IContract>();
+export const openContractModal = UserDomain.event<IOpenContractModal>();
+export const closeContractModal = UserDomain.event();
 
-export const contractStore = UserDomain.store<IContract>({
-  fromUserId: BOARD_PARAMS.BANK_USER_ID,
-  toUserId: BOARD_PARAMS.BANK_USER_ID,
-}).on(openContractModal, (prev, next) => next);
+interface IOpenContractModal {
+  fromUserId: number;
+  toUserId: number;
+}
+
+const initContract: IContract = {
+  // fromUserId: BOARD_PARAMS.BANK_USER_ID,
+  // toUserId: BOARD_PARAMS.BANK_USER_ID,
+  fromUserId: 2,
+  toUserId: 3,
+  fieldsFrom: [],
+  fieldsTo: [],
+  moneyFrom: 0,
+  moneyTo: 0,
+};
+
+export const contractStore = UserDomain.store<IContract>(initContract)
+  .on(openContractModal, (prev, next) => ({
+    ...prev,
+    fromUserId: next.fromUserId,
+    toUserId: next.toUserId,
+  }))
+  .reset(closeContractModal);
 
 // contractStore.updates.watch((v) => console.log("contractStoreWatch", v));

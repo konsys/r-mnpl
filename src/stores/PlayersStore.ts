@@ -14,8 +14,8 @@ import { usersFetch } from "../models/Users/api";
 const PlayersDomain = BoardDomain.domain("PlayersDomain");
 
 export interface IPlayerAction {
-  srcPlayer: number;
-  dstPlayer: number;
+  fromUserId: number;
+  toUserId: number;
   isVisible: boolean;
   position: number;
   profile: boolean;
@@ -33,9 +33,9 @@ export interface IPlayerAction {
 export const openPlayerActionEvent = PlayersDomain.event<IPlayerAction>();
 export const closePlayeActionEvent = PlayersDomain.event();
 
-const init = {
-  srcPlayer: 0,
-  dstPlayer: 0,
+const init: IPlayerAction = {
+  fromUserId: 0,
+  toUserId: 0,
   isVisible: false,
   position: 1,
   ignore: false,
