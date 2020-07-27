@@ -1,6 +1,6 @@
 import { IContract, IUser } from "../types/types";
 
-// import { BOARD_PARAMS } from "../params/boardParams";
+import { BOARD_PARAMS } from "../params/boardParams";
 import { BoardDomain } from "./BoardDomain";
 import { profile } from "../models/Users/api";
 
@@ -29,10 +29,10 @@ interface IOpenContractModal {
 }
 
 const initContract: IContract = {
-  // fromUserId: BOARD_PARAMS.BANK_USER_ID,
-  // toUserId: BOARD_PARAMS.BANK_USER_ID,
-  fromUserId: 2,
-  toUserId: 3,
+  fromUserId: BOARD_PARAMS.BANK_USER_ID,
+  toUserId: BOARD_PARAMS.BANK_USER_ID,
+  // fromUserId: 2,
+  // toUserId: 3,
   fieldsFrom: [],
   fieldsTo: [],
   moneyFrom: 0,

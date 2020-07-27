@@ -8,6 +8,7 @@ import { IPlayer } from "../../../types/types";
 import { PlayerActions } from "./PlayerActions/PlayerActions";
 import React from "react";
 import { actionsStore } from "../../../stores/ActionStore";
+import { closeFieldActionEvent } from "../../../stores/FieldsStore";
 import { useStore } from "effector-react";
 import { userStore } from "../../../stores/UserStore";
 
@@ -46,6 +47,7 @@ export const Players = (prop: Prop) => {
                     : 0
                 }
                 onClick={() => {
+                  closeFieldActionEvent();
                   const user1 = (user && user.userId) || player.userId;
                   const user2 = player.userId;
 

@@ -6,6 +6,7 @@ import {
   fieldsStore,
   setFieldActionEffect,
 } from "../../../stores/FieldsStore";
+import { contractStore, userStore } from "../../../stores/UserStore";
 
 import { BOARD_PARAMS } from "../../../params/boardParams";
 import { Field } from "../Field/Field";
@@ -15,6 +16,8 @@ import { useStore } from "effector-react";
 export const Board = () => {
   const { fields } = useStore(fieldsStore);
   const fieldActionId = useStore(fieldActionStore);
+  const contract = useStore(contractStore);
+  const user = useStore(userStore);
 
   const getFieldActionPosition = (field: IField): IFieldModalPosition => {
     switch (field.fieldLine) {
@@ -69,6 +72,17 @@ export const Board = () => {
     };
   }, []);
 
+  const onclick = (f: IField) => {
+    f.type === FieldType.AUTO ||
+    f.type === FieldType.COMPANY ||
+    f.type === FieldType.IT
+      ? contract.fromUserId !== user?.userId &&
+        setFieldActionEffect(f.fieldId || 0)
+      : closeFieldActionEvent();
+
+    return false;
+  };
+
   return (
     <>
       <div id="ui-fields" className="table-body-board-fields">
@@ -77,15 +91,7 @@ export const Board = () => {
             <Field
               key={(f && f.fieldId) || index}
               {...f}
-              onClick={() => {
-                f.type === FieldType.AUTO ||
-                f.type === FieldType.COMPANY ||
-                f.type === FieldType.IT
-                  ? setFieldActionEffect(f.fieldId || 0)
-                  : closeFieldActionEvent();
-
-                return false;
-              }}
+              onClick={() => onclick(f)}
             />
           ))}
         {fields &&

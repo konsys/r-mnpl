@@ -1,7 +1,8 @@
-import React from "react";
 import { FieldType, IField } from "../../../types/types";
-import { useStore } from "effector-react";
+
+import React from "react";
 import { playersStore } from "../../../stores/PlayersStore";
+import { useStore } from "effector-react";
 
 export const Field = ({
   fieldCorner,
