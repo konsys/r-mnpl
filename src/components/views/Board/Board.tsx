@@ -6,12 +6,13 @@ import {
   fieldsStore,
   setFieldActionEffect,
 } from "../../../stores/FieldsStore";
-import { contractStore, userStore } from "../../../stores/UserStore";
 
 import { BOARD_PARAMS } from "../../../params/boardParams";
 import { Field } from "../Field/Field";
 import { FieldActions } from "../Field/FieldActions/FieldAction";
+import { contractStore } from "../../../stores/ContractStore";
 import { useStore } from "effector-react";
+import { userStore } from "../../../stores/UserStore";
 
 export const Board = () => {
   const { fields } = useStore(fieldsStore);

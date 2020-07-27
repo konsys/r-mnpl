@@ -1,12 +1,12 @@
 import {
   closeContractModal,
   contractStore,
-  userStore,
-} from "../../../stores/UserStore";
+} from "../../../stores/ContractStore";
 
 import { ContractCompany } from "./ContractCompany";
 import React from "react";
 import { useStore } from "effector-react";
+import { userStore } from "../../../stores/UserStore";
 
 export const Contract = () => {
   const contract = useStore(contractStore);
