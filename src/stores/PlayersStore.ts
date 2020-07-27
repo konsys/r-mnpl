@@ -49,6 +49,7 @@ const init = {
   report: false,
   restart: false,
 };
+
 export const playerActionStore = PlayersDomain.store<IPlayerAction>(init)
   .on(openPlayerActionEvent, (_, data) => data)
   .reset(closePlayeActionEvent);

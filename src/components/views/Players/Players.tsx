@@ -9,6 +9,7 @@ import { PlayerActions } from "../PlayerActions/PlayerActions";
 import React from "react";
 import { actionsStore } from "../../../stores/ActionStore";
 import { useStore } from "effector-react";
+import { userStore } from "../../../stores/UserStore";
 
 interface Prop {
   players: IPlayer[];
@@ -16,6 +17,7 @@ interface Prop {
 
 export const Players = (prop: Prop) => {
   const action = useStore(actionsStore);
+  const user = useStore(userStore);
   const actionStore = useStore(playerActionStore);
 
   return (
@@ -43,9 +45,11 @@ export const Players = (prop: Prop) => {
                     ? actionStore.position * 1
                     : 0
                 }
-                onClick={() =>
-                  openPlayerActionEvent({
-                    srcPlayer: player.userId,
+                onClick={() => {
+                  console.log(11111, user && user.userId, player.userId);
+
+                  return openPlayerActionEvent({
+                    srcPlayer: user ? user.userId : player.userId,
                     dstPlayer: player.userId,
                     isVisible: !actionStore?.isVisible,
                     position: 1,
@@ -59,8 +63,8 @@ export const Players = (prop: Prop) => {
                     leave: true,
                     report: true,
                     restart: false,
-                  })
-                }
+                  });
+                }}
               >
                 <Avatar
                   key={index}

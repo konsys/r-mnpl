@@ -9,12 +9,12 @@ import { Contract } from "../../views/Contract/Contract";
 import { Dices } from "../../views/Dices/Dices";
 import { GameLoading } from "../../views/GameLoading/GameLoading";
 import { M1tv } from "../../views/M1tv/M1tv";
+import { PlayersCore } from "../PlayersCore/PlayersCore";
 import React from "react";
 import { TableHelper } from "../../views/TableHelper/TableHelper";
 import { Ticket } from "../../views/Ticket/ticket";
 import { ToastContainer } from "react-toastify";
 import { Tokens } from "../../views/Tokens/Tokens";
-import { UsersCore } from "../PlayersCore/PlayersCore";
 import { actionsStore } from "../../../stores/ActionStore";
 import { useStore } from "effector-react";
 
@@ -26,7 +26,7 @@ export const GameBoardView = () => {
       <div className="wrapper" style={{ width: "100%", height: "100%" }}>
         <div className="table _shakehack">
           <div className="table-body">
-            <UsersCore />
+            <PlayersCore />
             <div className="table-body-board">
               <BoardCore />
               <div className="table-body-board-center">

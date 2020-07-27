@@ -27,4 +27,4 @@ export const contractStore = UserDomain.store<IContract>({
   toUserId: BOARD_PARAMS.BANK_USER_ID,
 }).on(openContractModal, (prev, next) => next);
 
-contractStore.watch((v) => console.log(11111, v));
+// contractStore.updates.watch((v) => console.log("contractStoreWatch", v));

@@ -5,12 +5,12 @@ import { useStore } from "effector-react";
 
 export const Contract = () => {
   const contract = useStore(contractStore);
-  const player = useStore(userStore);
+  const user = useStore(userStore);
 
   console.log(contract);
   return (
     <>
-      {contract && contract.fromUserId === player?.userId && (
+      {contract && contract.fromUserId === user?.userId && (
         <div className="TableContract" style={{}}>
           <div className="TableContract-top">
             <div className="TableContract-top-title">Договор</div>

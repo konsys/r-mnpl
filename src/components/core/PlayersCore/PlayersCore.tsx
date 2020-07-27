@@ -7,15 +7,17 @@ import {
 
 import { Players } from "../../views/Players/Players";
 import { gameStore } from "../../../stores/GameStore";
+import { getUserEffect } from "../../../stores/UserStore";
 import { useStore } from "effector-react";
 
-export const UsersCore = () => {
+export const PlayersCore = () => {
   const game = gameStore.getState();
   const data = useStore(playersStore);
   const pending = useStore(getPlayersEffect.pending);
 
   useEffect(() => {
     getPlayersEffect(game.players);
+    getUserEffect("me");
     return () => resetPlayersEvent();
   }, [game.players]);
 
