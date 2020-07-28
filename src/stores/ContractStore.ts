@@ -36,6 +36,11 @@ export const contractStore = ContractDomain.store<IContract>(initContract)
   }))
   .on(addToContract, (prev, data) => {
     if (data.field && data.field.status) {
+      const price = data.field.price
+        ? data.field.status.mortgaged
+          ? data.field.price.startPrice / 2
+          : data.field.price.startPrice
+        : 0;
       if (
         data.field.status.userId === data.fromUserId &&
         !prev.fieldsFrom.includes(data.field)
@@ -43,11 +48,17 @@ export const contractStore = ContractDomain.store<IContract>(initContract)
         return {
           ...prev,
           fieldsFrom: _.concat(prev.fieldsFrom, data.field),
-          moneyFrom:
-            prev.moneyFrom +
-            (data.field.price ? data.field.price?.startPrice : 0),
-          fromUserId: data.fromUserId,
-          toUserId: data.toUserId,
+          moneyFrom: prev.moneyFrom + price,
+        };
+      } else if (
+        data.field.status.userId === data.fromUserId &&
+        prev.fieldsFrom.includes(data.field)
+      ) {
+        prev.fieldsFrom.splice(_.indexOf(prev.fieldsFrom, data.field), 1);
+        return {
+          ...prev,
+          fieldsFrom: prev.fieldsFrom,
+          moneyFrom: prev.moneyFrom - price,
         };
       } else if (
         data.field.status.userId === data.toUserId &&
@@ -56,11 +67,17 @@ export const contractStore = ContractDomain.store<IContract>(initContract)
         return {
           ...prev,
           fieldsTo: _.concat(prev.fieldsTo, data.field),
-          moneyTo:
-            prev.moneyTo +
-            (data.field.price ? data.field.price?.startPrice : 0),
-          fromUserId: data.fromUserId,
-          toUserId: data.toUserId,
+          moneyTo: prev.moneyTo + price,
+        };
+      } else if (
+        data.field.status.userId === data.toUserId &&
+        prev.fieldsTo.includes(data.field)
+      ) {
+        prev.fieldsTo.splice(_.indexOf(prev.fieldsTo, data.field), 1);
+        return {
+          ...prev,
+          fieldsTo: prev.fieldsTo,
+          moneyTo: prev.moneyTo - price,
         };
       }
     }
