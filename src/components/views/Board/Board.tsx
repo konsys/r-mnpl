@@ -1,5 +1,6 @@
 import { FieldType, IField, IFieldModalPosition } from "../../../types/types";
 import React, { useEffect } from "react";
+import { addToContract, contractStore } from "../../../stores/ContractStore";
 import {
   closeFieldActionEvent,
   fieldActionStore,
@@ -10,7 +11,6 @@ import {
 import { BOARD_PARAMS } from "../../../params/boardParams";
 import { Field } from "../Field/Field";
 import { FieldActions } from "../Field/FieldActions/FieldAction";
-import { contractStore } from "../../../stores/ContractStore";
 import { useStore } from "effector-react";
 import { userStore } from "../../../stores/UserStore";
 
@@ -73,18 +73,18 @@ export const Board = () => {
     };
   }, []);
 
-  const addToContract = (f: IField) => {
-    console.log(121212, f.name);
-  };
-
   const onClick = (f: IField) => {
     if (
       f.type === FieldType.AUTO ||
       f.type === FieldType.COMPANY ||
       f.type === FieldType.IT
     ) {
-      if (contract.fromUserId === user?.userId) {
-        addToContract(f);
+      if (contract && contract.fromUserId === user?.userId) {
+        addToContract({
+          fromUserId: user?.userId,
+          toUserId: contract.toUserId,
+          field: f,
+        });
       } else {
         setFieldActionEffect(f.fieldId || 0);
       }

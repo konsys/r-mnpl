@@ -71,8 +71,8 @@ export const Contract = () => {
                       </div>
 
                       {!!contract.fieldsFrom.length &&
-                        contract.fieldsFrom.map((f) => (
-                          <ContractCompany field={f} />
+                        contract.fieldsFrom.map((f, k) => (
+                          <ContractCompany field={f} key={k} />
                         ))}
                     </div>
                     <div className="scr-pane" style={{ display: "none" }}>
@@ -101,8 +101,8 @@ export const Contract = () => {
                         </div>
                       </div>
                       {!!contract.fieldsTo.length &&
-                        contract.fieldsTo.map((f) => (
-                          <ContractCompany field={f} />
+                        contract.fieldsTo.map((f, k) => (
+                          <ContractCompany field={f} key={k} />
                         ))}
                     </div>
                     <div className="scr-pane" style={{ display: "none" }}>
