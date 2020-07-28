@@ -35,7 +35,6 @@ export const contractStore = ContractDomain.store<IContract>(initContract)
     toUserId: next.toUserId,
   }))
   .on(addToContract, (prev, data) => {
-    console.log(data);
     if (data.field && data.field.status) {
       if (data.field.status.userId === data.fromUserId) {
         return {
@@ -44,7 +43,13 @@ export const contractStore = ContractDomain.store<IContract>(initContract)
           fromUserId: data.fromUserId,
           toUserId: data.toUserId,
         };
-      } else {
+      } else if (data.field.status.userId === data.toUserId) {
+        return {
+          ...prev,
+          fieldsTo: _.concat(prev.fieldsFrom, data.field),
+          fromUserId: data.fromUserId,
+          toUserId: data.toUserId,
+        };
       }
     }
   })
