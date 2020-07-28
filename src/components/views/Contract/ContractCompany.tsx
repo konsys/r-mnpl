@@ -9,8 +9,7 @@ export const ContractCompany = ({ field }: { field: IField }) => {
           <div
             className="_image"
             style={{
-              backgroundImage:
-                'url("https://m1.dogecdn.wtf/fields/brands/2_clothing/lacoste.svg")',
+              backgroundImage: `url("${field.imgSrc}")`,
             }}
           ></div>
           <div className="_info">

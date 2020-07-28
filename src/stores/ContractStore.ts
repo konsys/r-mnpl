@@ -36,17 +36,29 @@ export const contractStore = ContractDomain.store<IContract>(initContract)
   }))
   .on(addToContract, (prev, data) => {
     if (data.field && data.field.status) {
-      if (data.field.status.userId === data.fromUserId) {
+      if (
+        data.field.status.userId === data.fromUserId &&
+        !prev.fieldsFrom.includes(data.field)
+      ) {
         return {
           ...prev,
           fieldsFrom: _.concat(prev.fieldsFrom, data.field),
+          moneyFrom:
+            prev.moneyFrom +
+            (data.field.price ? data.field.price?.startPrice : 0),
           fromUserId: data.fromUserId,
           toUserId: data.toUserId,
         };
-      } else if (data.field.status.userId === data.toUserId) {
+      } else if (
+        data.field.status.userId === data.toUserId &&
+        !prev.fieldsTo.includes(data.field)
+      ) {
         return {
           ...prev,
-          fieldsTo: _.concat(prev.fieldsFrom, data.field),
+          fieldsTo: _.concat(prev.fieldsTo, data.field),
+          moneyTo:
+            prev.moneyTo +
+            (data.field.price ? data.field.price?.startPrice : 0),
           fromUserId: data.fromUserId,
           toUserId: data.toUserId,
         };
