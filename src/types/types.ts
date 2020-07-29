@@ -272,9 +272,9 @@ export interface IContract {
   fromUserId: number;
   toUserId: number;
   fieldIdsFrom: number[];
-  fieldIdsFromPrice: number;
+  fieldFromPrice: number;
   fieldIdsTo: number[];
-  fieldIdsToPrice: number;
+  fieldToPrice: number;
   moneyFrom: number;
   moneyTo: number;
 }

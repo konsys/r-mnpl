@@ -29,9 +29,9 @@ const initContract: IContract = {
   // fromUserId: 2,
   // toUserId: 3,
   fieldIdsFrom: [],
-  fieldIdsFromPrice: 0,
+  fieldFromPrice: 0,
   fieldIdsTo: [],
-  fieldIdsToPrice: 0,
+  fieldToPrice: 0,
   moneyFrom: 0,
   moneyTo: 0,
 };
@@ -45,55 +45,55 @@ export const contractStore = ContractDomain.store<IContract>(initContract)
     };
   })
   .on(addFieldToContract, (prev, data) => {
-    if (data.field && data.field.status) {
-      const price = data.field.price
+    const fieldId = (data.field && data.field.fieldId) || 0;
+    const price =
+      data.field && data.field.price && data.field.status
         ? data.field.status.mortgaged
           ? data.field.price.startPrice / 2
           : data.field.price.startPrice
         : 0;
-      if (
-        data.field.status.userId === data.fromUserId &&
-        !prev.fieldIdsFrom.includes(data.field.fieldId || 0)
+    const ownerId =
+      (data.field &&
+        data.field.price &&
+        data.field.status &&
+        data.field.status.userId) ||
+      0;
+
+    if (fieldId && ownerId && price) {
+      if (ownerId === data.fromUserId && !prev.fieldIdsFrom.includes(fieldId)) {
+        return {
+          ...prev,
+          fieldIdsFrom: _.concat(prev.fieldIdsFrom, fieldId),
+          fieldIdsFromPrice: prev.fieldFromPrice + price,
+        };
+      } else if (
+        ownerId === data.fromUserId &&
+        prev.fieldIdsFrom.includes(fieldId)
+      ) {
+        prev.fieldIdsFrom.splice(_.indexOf(prev.fieldIdsFrom, fieldId), 1);
+        return {
+          ...prev,
+          fieldIdsFrom: prev.fieldIdsFrom,
+          fieldIdsFromPrice: prev.fieldFromPrice - price,
+        };
+      } else if (
+        ownerId === data.toUserId &&
+        !prev.fieldIdsTo.includes(fieldId)
       ) {
         return {
           ...prev,
-          fieldsFrom: _.concat(prev.fieldIdsFrom, data.field.fieldId || 0),
-          fieldIdsFromPrice: prev.fieldIdsFromPrice + price,
+          fieldIdsTo: _.concat(prev.fieldIdsTo, fieldId),
+          fieldIdsFromPrice: prev.fieldToPrice + price,
         };
       } else if (
-        data.field.status.userId === data.fromUserId &&
-        prev.fieldIdsFrom.includes(data.field.fieldId || 0)
+        ownerId === data.toUserId &&
+        prev.fieldIdsTo.includes(fieldId)
       ) {
-        prev.fieldIdsFrom.splice(
-          _.indexOf(prev.fieldIdsFrom, data.field.fieldId || 0),
-          1
-        );
-        return {
-          ...prev,
-          fieldsFrom: prev.fieldIdsFrom,
-          fieldIdsFromPrice: prev.fieldIdsFromPrice - price,
-        };
-      } else if (
-        data.field.status.userId === data.toUserId &&
-        !prev.fieldIdsTo.includes(data.field.fieldId || 0)
-      ) {
-        return {
-          ...prev,
-          fieldIdsTo: _.concat(prev.fieldIdsTo, data.field.fieldId || 0),
-          fieldIdsFromPrice: prev.fieldIdsFromPrice + price,
-        };
-      } else if (
-        data.field.status.userId === data.toUserId &&
-        prev.fieldIdsTo.includes(data.field.fieldId || 0)
-      ) {
-        prev.fieldIdsTo.splice(
-          _.indexOf(prev.fieldIdsTo, data.field.fieldId || 0),
-          1
-        );
+        prev.fieldIdsTo.splice(_.indexOf(prev.fieldIdsTo, fieldId), 1);
         return {
           ...prev,
           fieldIdsTo: prev.fieldIdsTo,
-          fieldIdsToPrice: prev.fieldIdsToPrice - price,
+          fieldIdsToPrice: prev.fieldToPrice - price,
         };
       }
     }

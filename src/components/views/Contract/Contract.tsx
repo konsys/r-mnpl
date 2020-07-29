@@ -242,11 +242,11 @@ export const Contract = () => {
             </div>
             <div className="TableContract-content-bottom">
               <div className="_sum">
-                {contract.moneyFrom + contract.fieldIdsFromPrice}
+                {contract.moneyFrom + contract.fieldFromPrice}
               </div>
               <div className="_text">Общая сумма</div>
               <div className="_sum">
-                {contract.moneyTo + contract.fieldIdsToPrice}
+                {contract.moneyTo + contract.fieldToPrice}
               </div>
             </div>
           </div>
