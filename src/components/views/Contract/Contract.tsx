@@ -12,7 +12,6 @@ export const Contract = () => {
   const contract = useStore(contractStore);
   const user = useStore(userStore);
 
-  console.log(111, contract.fromUser.userId, user?.userId);
   return (
     <>
       {contract && contract.fromUser.userId === user?.userId && (
@@ -30,8 +29,7 @@ export const Contract = () => {
                 <div
                   className="_avatar"
                   style={{
-                    backgroundImage:
-                      "url(&quot;https://d1.dogecdn.wtf/730835360107724820/XkwxZrGMKv96.jpg&quot;)",
+                    backgroundImage: `url("${contract.fromUser.avatar}")`,
                   }}
                 ></div>
                 <div className="_info">
@@ -43,12 +41,11 @@ export const Contract = () => {
                 <div
                   className="_avatar"
                   style={{
-                    backgroundImage:
-                      'url("https://m1.dogecdn.wtf/default_avatar.png")',
+                    backgroundImage: `url("${contract.toUser.avatar}")`,
                   }}
                 ></div>
                 <div className="_info">
-                  <div className="_nick">NN</div>
+                  <div className="_nick">{`${contract.toUser.name}`}</div>
                   <div className="_subtitle">отдаёт</div>
                 </div>
               </div>
