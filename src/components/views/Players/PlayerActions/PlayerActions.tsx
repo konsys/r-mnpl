@@ -15,27 +15,30 @@ export const PlayerActions = ({
   kick,
   fromUserId,
   toUserId,
-}: IPlayerAction) => (
-  <div className="table-body-players-card-menu">
-    {profile && <div className="_profile" />}
-    {ignore && <div className="_ignore" />}
-    {ignoreOff && <div className="_ignore_off" />}
-    {report && <div className="_report" />}
-    {restart && <div className="_restart" />}
-    {creditTake && <div className="_credit_take" />}
-    {creditPay && <div className="_credit_pay" />}
-    {leave && <div className="_leave" />}
-    {contract && (
-      <div
-        className="_contract"
-        onClick={() =>
-          openContractModal({
-            fromUserId,
-            toUserId,
-          })
-        }
-      />
-    )}
-    {kick && <div className="_kick" />}
-  </div>
-);
+}: IPlayerAction) => {
+  return (
+    <div className="table-body-players-card-menu">
+      {profile && <div className="_profile" />}
+      {ignore && <div className="_ignore" />}
+      {ignoreOff && <div className="_ignore_off" />}
+      {report && <div className="_report" />}
+      {restart && <div className="_restart" />}
+      {creditTake && <div className="_credit_take" />}
+      {creditPay && <div className="_credit_pay" />}
+      {leave && <div className="_leave" />}
+      {contract && (
+        <div
+          className="_contract"
+          onClick={() => {
+            console.log(fromUserId, toUserId);
+            openContractModal({
+              fromUserId,
+              toUserId,
+            });
+          }}
+        />
+      )}
+      {kick && <div className="_kick" />}
+    </div>
+  );
+};

@@ -31,11 +31,14 @@ const initContract: IContract = {
 };
 
 export const contractStore = ContractDomain.store<IContract>(initContract)
-  .on(openContractModal, (prev, next) => ({
-    ...prev,
-    fromUserId: next.fromUserId,
-    toUserId: next.toUserId,
-  }))
+  .on(openContractModal, (state, next) => {
+    console.log(next);
+    return {
+      ...state,
+      fromUser: getPlayer(next.fromUserId) || ({} as IPlayer),
+      toUser: getPlayer(next.toUserId) || ({} as IPlayer),
+    };
+  })
   .on(addToContract, (prev, data) => {
     if (data.field && data.field.status) {
       const price = data.field.price

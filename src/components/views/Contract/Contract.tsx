@@ -12,6 +12,7 @@ export const Contract = () => {
   const contract = useStore(contractStore);
   const user = useStore(userStore);
 
+  console.log(111, contract.fromUser.userId, user?.userId);
   return (
     <>
       {contract && contract.fromUser.userId === user?.userId && (
