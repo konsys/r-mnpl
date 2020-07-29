@@ -23,40 +23,42 @@ export const Contract = () => {
 
   const onChange = (e: any) => {
     // if (!e.target.value.match(/^[0-9]+$/)) return;
-
+    const v = e.target.value.slice(0, 6);
     if (e.target && e.target.name === "from") {
-      setValueFrom(e.target.value);
+      setValueFrom(v);
     } else if (e.target && e.target.name === "to") {
-      setValueTo(e.target.value);
+      setValueTo(v);
     }
   };
 
   const onKeyPress = (e: any) => {
     if (e.which !== KeyCode.ENTER) return;
-    if (!e.target.value.match(/^[0-9]+$/)) return;
     setActiveInput(0);
 
-    if (e.target.name === "from" && !isNaN(Number.parseInt(e.target.value))) {
-      addMoneyToContract({
-        fromUserId: contract.fromUser.userId,
-        toUserId: contract.toUser.userId,
-        money: Number.parseInt(e.target.value),
-      });
-      // setValueFrom(e.target.value);
-    } else if (
-      e.target.name === "to" &&
-      !isNaN(Number.parseInt(e.target.value))
-    ) {
-      addMoneyToContract({
-        fromUserId: contract.toUser.userId,
-        toUserId: contract.fromUser.userId,
-        money: Number.parseInt(e.target.value),
-      });
-      // setValueTo(e.target.value);
-    }
+    const money = Number.parseInt(e.target.value);
 
+    if (e.target.value.match(/^[0-9]+$/)) {
+      if (e.target.name === "from" && !isNaN(money)) {
+        addMoneyToContract({
+          fromUserId: contract.fromUser.userId,
+          toUserId: contract.toUser.userId,
+          money,
+        });
+      } else if (e.target.name === "to" && !isNaN(money)) {
+        addMoneyToContract({
+          fromUserId: contract.toUser.userId,
+          toUserId: contract.fromUser.userId,
+          money,
+        });
+        // setValueTo(e.target.value);
+      }
+    }
     setValueFrom("");
     setValueTo("");
+  };
+
+  const onSubmit = () => {
+    console.log(23423423);
   };
 
   return (
@@ -108,16 +110,15 @@ export const Contract = () => {
                       <div className="_one _cash _clickable">
                         <div className="_image"></div>
                         <div className="_info">
-                          <div className="_title">
+                          <div
+                            className="_title"
+                            onClick={() =>
+                              setActiveInput(contract.fromUser.userId)
+                            }
+                          >
                             {activeInput !== contract.fromUser.userId ? (
                               <>
-                                {contract.moneyFrom}k{" "}
-                                <span
-                                  className="_edit"
-                                  onClick={() =>
-                                    setActiveInput(contract.fromUser.userId)
-                                  }
-                                />
+                                {contract.moneyFrom}k <span className="_edit" />
                               </>
                             ) : (
                               <input
@@ -126,8 +127,6 @@ export const Contract = () => {
                                 onChange={onChange}
                                 value={valueFrom}
                                 onKeyPress={onKeyPress}
-                                maxLength={6}
-                                max={500000}
                               />
                             )}
                           </div>
@@ -159,16 +158,15 @@ export const Contract = () => {
                       <div className="_one _cash _clickable">
                         <div className="_image"></div>
                         <div className="_info">
-                          <div className="_title">
+                          <div
+                            className="_title"
+                            onClick={() =>
+                              setActiveInput(contract.toUser.userId)
+                            }
+                          >
                             {activeInput !== contract.toUser.userId ? (
                               <>
-                                {contract.moneyTo}k{" "}
-                                <span
-                                  className="_edit"
-                                  onClick={() =>
-                                    setActiveInput(contract.toUser.userId)
-                                  }
-                                />
+                                {contract.moneyTo}k <span className="_edit" />
                               </>
                             ) : (
                               <input
@@ -177,8 +175,6 @@ export const Contract = () => {
                                 onChange={onChange}
                                 value={valueTo}
                                 onKeyPress={onKeyPress}
-                                maxLength={6}
-                                max={500000}
                               />
                             )}
                           </div>
@@ -207,7 +203,9 @@ export const Contract = () => {
             </div>
           </div>
           <div className="TableContract-actions">
-            <div className="_button">Предложить</div>
+            <div className="_button" onClick={onSubmit}>
+              Предложить
+            </div>
             {/* <div className="_future">Future</div> */}
           </div>
         </div>
