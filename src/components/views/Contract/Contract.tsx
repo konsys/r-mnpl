@@ -6,6 +6,7 @@ import {
 } from "../../../stores/ContractStore";
 
 import { ContractCompany } from "./ContractCompany";
+import { showDialog } from "../../../stores/DialogStore";
 import { useStore } from "effector-react";
 import { userStore } from "../../../stores/UserStore";
 
@@ -58,7 +59,7 @@ export const Contract = () => {
   };
 
   const onSubmit = () => {
-    console.log(23423423);
+    showDialog({ title: "Error", message: "fff" });
   };
 
   return (
