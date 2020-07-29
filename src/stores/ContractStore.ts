@@ -29,7 +29,9 @@ const initContract: IContract = {
   // fromUserId: 2,
   // toUserId: 3,
   fieldIdsFrom: [],
+  fieldIdsFromPrice: 0,
   fieldIdsTo: [],
+  fieldIdsToPrice: 0,
   moneyFrom: 0,
   moneyTo: 0,
 };
@@ -56,7 +58,7 @@ export const contractStore = ContractDomain.store<IContract>(initContract)
         return {
           ...prev,
           fieldsFrom: _.concat(prev.fieldIdsFrom, data.field.fieldId || 0),
-          moneyFrom: prev.moneyFrom + price,
+          fieldIdsFromPrice: prev.fieldIdsFromPrice + price,
         };
       } else if (
         data.field.status.userId === data.fromUserId &&
@@ -69,7 +71,7 @@ export const contractStore = ContractDomain.store<IContract>(initContract)
         return {
           ...prev,
           fieldsFrom: prev.fieldIdsFrom,
-          moneyFrom: prev.moneyFrom - price,
+          fieldIdsFromPrice: prev.fieldIdsFromPrice - price,
         };
       } else if (
         data.field.status.userId === data.toUserId &&
@@ -78,7 +80,7 @@ export const contractStore = ContractDomain.store<IContract>(initContract)
         return {
           ...prev,
           fieldIdsTo: _.concat(prev.fieldIdsTo, data.field.fieldId || 0),
-          moneyTo: prev.moneyTo + price,
+          fieldIdsFromPrice: prev.fieldIdsFromPrice + price,
         };
       } else if (
         data.field.status.userId === data.toUserId &&
@@ -91,7 +93,7 @@ export const contractStore = ContractDomain.store<IContract>(initContract)
         return {
           ...prev,
           fieldIdsTo: prev.fieldIdsTo,
-          moneyTo: prev.moneyTo - price,
+          fieldIdsToPrice: prev.fieldIdsToPrice - price,
         };
       }
     }

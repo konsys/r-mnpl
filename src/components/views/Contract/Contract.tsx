@@ -78,6 +78,7 @@ export const Contract = () => {
       contract.moneyFrom * 2 > contract.moneyTo ||
       contract.moneyTo * 2 > contract.moneyFrom
     ) {
+      console.log(121212, contract);
       showDialog({
         title: "Ошибка",
         message:
@@ -240,9 +241,13 @@ export const Contract = () => {
               </div>
             </div>
             <div className="TableContract-content-bottom">
-              <div className="_sum">{contract.moneyFrom}</div>
+              <div className="_sum">
+                {contract.moneyFrom + contract.fieldIdsFromPrice}
+              </div>
               <div className="_text">Общая сумма</div>
-              <div className="_sum">{contract.moneyTo}</div>
+              <div className="_sum">
+                {contract.moneyTo + contract.fieldIdsToPrice}
+              </div>
             </div>
           </div>
           <div className="TableContract-actions">
