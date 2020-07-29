@@ -1,8 +1,9 @@
 import { IContract, IField, IPlayer } from "../types/types";
 
-// import { BOARD_PARAMS } from "../params/boardParams";
+import { BOARD_PARAMS } from "../params/boardParams";
 import { BoardDomain } from "./BoardDomain";
 import _ from "lodash";
+import { fetchContract } from "../models/Contract/api";
 import { getPlayer } from "../utils/players.utils";
 
 const ContractDomain = BoardDomain.domain("UserDomain");
@@ -11,6 +12,9 @@ export const openContractModal = ContractDomain.event<IOpenContractModal>();
 export const closeContractModal = ContractDomain.event();
 export const addFieldToContract = ContractDomain.event<IOpenContractModal>();
 export const addMoneyToContract = ContractDomain.event<IOpenContractModal>();
+export const sendContract = ContractDomain.effect<IContract, Promise<any>>({
+  handler: fetchContract,
+});
 
 interface IOpenContractModal {
   fromUserId: number;
@@ -21,12 +25,12 @@ interface IOpenContractModal {
 
 const initContract: IContract = {
   // TODO getPlayer shld return player always
-  // fromUser: getPlayer(BOARD_PARAMS.BANK_USER_ID) || ({} as IPlayer),
-  // toUser: getPlayer(BOARD_PARAMS.BANK_USER_ID) || ({} as IPlayer),
-  fromUser: getPlayer(2) || ({} as IPlayer),
-  toUser: getPlayer(3) || ({} as IPlayer),
-  fieldsFrom: [],
-  fieldsTo: [],
+  fromUserId: BOARD_PARAMS.BANK_USER_ID,
+  toUserId: BOARD_PARAMS.BANK_USER_ID,
+  // fromUser: 2,
+  // toUser: 3,
+  fieldIdsFrom: [],
+  fieldIdsTo: [],
   moneyFrom: 0,
   moneyTo: 0,
 };
@@ -49,47 +53,53 @@ export const contractStore = ContractDomain.store<IContract>(initContract)
         : 0;
       if (
         data.field.status.userId === data.fromUserId &&
-        !prev.fieldsFrom.includes(data.field)
+        !prev.fieldIdsFrom.includes(data.field.fieldId || 0)
       ) {
         return {
           ...prev,
-          fieldsFrom: _.concat(prev.fieldsFrom, data.field),
+          fieldsFrom: _.concat(prev.fieldIdsFrom, data.field.fieldId || 0),
           moneyFrom: prev.moneyFrom + price,
         };
       } else if (
         data.field.status.userId === data.fromUserId &&
-        prev.fieldsFrom.includes(data.field)
+        prev.fieldIdsFrom.includes(data.field.fieldId || 0)
       ) {
-        prev.fieldsFrom.splice(_.indexOf(prev.fieldsFrom, data.field), 1);
+        prev.fieldIdsFrom.splice(
+          _.indexOf(prev.fieldIdsFrom, data.field.fieldId || 0),
+          1
+        );
         return {
           ...prev,
-          fieldsFrom: prev.fieldsFrom,
+          fieldsFrom: prev.fieldIdsFrom,
           moneyFrom: prev.moneyFrom - price,
         };
       } else if (
         data.field.status.userId === data.toUserId &&
-        !prev.fieldsTo.includes(data.field)
+        !prev.fieldIdsTo.includes(data.field.fieldId || 0)
       ) {
         return {
           ...prev,
-          fieldsTo: _.concat(prev.fieldsTo, data.field),
+          fieldIdsTo: _.concat(prev.fieldIdsTo, data.field.fieldId || 0),
           moneyTo: prev.moneyTo + price,
         };
       } else if (
         data.field.status.userId === data.toUserId &&
-        prev.fieldsTo.includes(data.field)
+        prev.fieldIdsTo.includes(data.field.fieldId || 0)
       ) {
-        prev.fieldsTo.splice(_.indexOf(prev.fieldsTo, data.field), 1);
+        prev.fieldIdsTo.splice(
+          _.indexOf(prev.fieldIdsTo, data.field.fieldId || 0),
+          1
+        );
         return {
           ...prev,
-          fieldsTo: prev.fieldsTo,
+          fieldIdsTo: prev.fieldIdsTo,
           moneyTo: prev.moneyTo - price,
         };
       }
     }
   })
   .on(addMoneyToContract, (prev, data) => {
-    if (data.fromUserId === prev.fromUser.userId) {
+    if (data.fromUserId === prev.fromUserId) {
       prev.moneyFrom = data.money || 0;
     } else {
       prev.moneyTo = data.money || 0;

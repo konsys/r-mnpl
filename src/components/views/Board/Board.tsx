@@ -82,10 +82,10 @@ export const Board = () => {
       f.type === FieldType.COMPANY ||
       f.type === FieldType.IT
     ) {
-      if (contract && contract.fromUser.userId === user?.userId) {
+      if (contract && contract.fromUserId === user?.userId) {
         addFieldToContract({
           fromUserId: user?.userId,
-          toUserId: contract.toUser.userId,
+          toUserId: contract.toUserId,
           field: f,
         });
       } else {

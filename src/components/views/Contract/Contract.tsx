@@ -3,9 +3,13 @@ import {
   addMoneyToContract,
   closeContractModal,
   contractStore,
+  sendContract,
 } from "../../../stores/ContractStore";
 
 import { ContractCompany } from "./ContractCompany";
+import { IField } from "../../../types/types";
+import { getField } from "../../../utils/fields.utils";
+import { getPlayer } from "../../../utils/players.utils";
 import { showDialog } from "../../../stores/DialogStore";
 import { useStore } from "effector-react";
 import { userStore } from "../../../stores/UserStore";
@@ -41,14 +45,14 @@ export const Contract = () => {
     // if (e.target.value.match(/^[0-9]+$/)) {
     if (e.target.name === "from") {
       addMoneyToContract({
-        fromUserId: contract.fromUser.userId,
-        toUserId: contract.toUser.userId,
+        fromUserId: contract.fromUserId,
+        toUserId: contract.toUserId,
         money: !isNaN(money) ? money : 0,
       });
     } else if (e.target.name === "to") {
       addMoneyToContract({
-        fromUserId: contract.toUser.userId,
-        toUserId: contract.fromUser.userId,
+        fromUserId: contract.toUserId,
+        toUserId: contract.fromUserId,
         money: !isNaN(money) ? money : 0,
       });
       // setValueTo(e.target.value);
@@ -65,7 +69,7 @@ export const Contract = () => {
         title: "Ошибка",
         message: "Наличные в договоре могут быть только с одной стороны.",
       });
-    } else if (!contract.fieldsFrom.length && !contract.fieldsTo.length) {
+    } else if (!contract.fieldIdsFrom.length && !contract.fieldIdsTo.length) {
       showDialog({
         title: "Ошибка",
         message: "В договоре должно быть хотя бы одно поле.",
@@ -81,11 +85,15 @@ export const Contract = () => {
       });
     }
     setActiveInput(0);
+    sendContract(contract);
   };
+
+  const fromUser = getPlayer(contract.fromUserId);
+  const toUser = getPlayer(contract.toUserId);
 
   return (
     <>
-      {contract && contract.fromUser.userId === user?.userId && (
+      {contract && contract.fromUserId === user?.userId && (
         <div className="TableContract" style={{}}>
           <div className="TableContract-top">
             <div className="TableContract-top-title">Договор</div>
@@ -100,7 +108,7 @@ export const Contract = () => {
                 <div
                   className="_avatar"
                   style={{
-                    backgroundImage: `url("${contract.fromUser.avatar}")`,
+                    backgroundImage: `url("${fromUser && fromUser.avatar}")`,
                   }}
                 ></div>
                 <div className="_info">
@@ -112,11 +120,11 @@ export const Contract = () => {
                 <div
                   className="_avatar"
                   style={{
-                    backgroundImage: `url("${contract.toUser.avatar}")`,
+                    backgroundImage: `url("${toUser && toUser.avatar}")`,
                   }}
                 ></div>
                 <div className="_info">
-                  <div className="_nick">{`${contract.toUser.name}`}</div>
+                  <div className="_nick">{`${toUser && toUser.name}`}</div>
                   <div className="_subtitle">отдаёт</div>
                 </div>
               </div>
@@ -135,12 +143,13 @@ export const Contract = () => {
                           <div
                             className="_title"
                             onClick={() =>
-                              setActiveInput(contract.fromUser.userId)
+                              setActiveInput((fromUser && fromUser.userId) || 0)
                             }
                           >
-                            {activeInput !== contract.fromUser.userId ? (
+                            {fromUser && activeInput !== fromUser.userId ? (
                               <>
-                                {contract.moneyFrom}k <span className="_edit" />
+                                {contract.moneyFrom}k
+                                <span className="_edit" />
                               </>
                             ) : (
                               <input
@@ -156,10 +165,16 @@ export const Contract = () => {
                         </div>
                       </div>
 
-                      {!!contract.fieldsFrom.length &&
-                        contract.fieldsFrom.map((f, k) => (
-                          <ContractCompany field={f} key={k} />
-                        ))}
+                      {!!contract.fieldIdsFrom.length &&
+                        contract.fieldIdsFrom.map((fId, k) => {
+                          const f = getField(fId);
+                          return (
+                            <ContractCompany
+                              field={f || ({} as IField)}
+                              key={k}
+                            />
+                          );
+                        })}
                     </div>
                     <div className="scr-pane" style={{ display: "none" }}>
                       <div
@@ -183,10 +198,10 @@ export const Contract = () => {
                           <div
                             className="_title"
                             onClick={() =>
-                              setActiveInput(contract.toUser.userId)
+                              setActiveInput((toUser && toUser.userId) || 0)
                             }
                           >
-                            {activeInput !== contract.toUser.userId ? (
+                            {toUser && activeInput !== toUser.userId ? (
                               <>
                                 {contract.moneyTo}k <span className="_edit" />
                               </>
@@ -203,10 +218,16 @@ export const Contract = () => {
                           <div className="_subtitle">Наличные</div>
                         </div>
                       </div>
-                      {!!contract.fieldsTo.length &&
-                        contract.fieldsTo.map((f, k) => (
-                          <ContractCompany field={f} key={k} />
-                        ))}
+                      {!!contract.fieldIdsTo.length &&
+                        contract.fieldIdsTo.map((fId, k) => {
+                          const f = getField(fId);
+                          return (
+                            <ContractCompany
+                              field={f || ({} as IField)}
+                              key={k}
+                            />
+                          );
+                        })}
                     </div>
                     <div className="scr-pane" style={{ display: "none" }}>
                       <div

@@ -179,7 +179,8 @@ body[theme="dark"] .TableContract-content-list > div {
   font-size: 15px;
   font-weight: 600;
 }
-.TableContract-content-list > div ._one ._info ._title ._edit {
+.TableContract-content-list > div ._one ._info ._title ._edit,
+.TableContract-content-list > div ._one ._info ._title ._clear {
   display: inline-block;
   margin-left: 3px;
   font: 13px Ionicons;
@@ -205,6 +206,9 @@ body[theme="dark"]
 }
 .TableContract-content-list > div ._one ._info ._title ._edit:before {
   content: "\f2bf";
+}
+.TableContract-content-list > div ._one ._info ._title ._clear:before {
+  content: "\f2d7";
 }
 .TableContract-content-list > div ._one ._info ._subtitle {
   margin-top: -1px;
