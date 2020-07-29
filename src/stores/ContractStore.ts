@@ -64,7 +64,7 @@ export const contractStore = ContractDomain.store<IContract>(initContract)
         return {
           ...prev,
           fieldIdsFrom: _.concat(prev.fieldIdsFrom, fieldId),
-          fieldIdsFromPrice: prev.fieldFromPrice + price,
+          fieldFromPrice: prev.fieldFromPrice + price,
         };
       } else if (
         ownerId === data.fromUserId &&
@@ -74,7 +74,7 @@ export const contractStore = ContractDomain.store<IContract>(initContract)
         return {
           ...prev,
           fieldIdsFrom: prev.fieldIdsFrom,
-          fieldIdsFromPrice: prev.fieldFromPrice - price,
+          fieldFromPrice: prev.fieldFromPrice - price,
         };
       } else if (
         ownerId === data.toUserId &&
@@ -83,7 +83,7 @@ export const contractStore = ContractDomain.store<IContract>(initContract)
         return {
           ...prev,
           fieldIdsTo: _.concat(prev.fieldIdsTo, fieldId),
-          fieldIdsFromPrice: prev.fieldToPrice + price,
+          fieldToPrice: prev.fieldToPrice + price,
         };
       } else if (
         ownerId === data.toUserId &&
@@ -93,7 +93,7 @@ export const contractStore = ContractDomain.store<IContract>(initContract)
         return {
           ...prev,
           fieldIdsTo: prev.fieldIdsTo,
-          fieldIdsToPrice: prev.fieldToPrice - price,
+          fieldToPrice: prev.fieldToPrice - price,
         };
       }
     }
@@ -108,4 +108,4 @@ export const contractStore = ContractDomain.store<IContract>(initContract)
   })
   .reset(closeContractModal);
 
-contractStore.watch((v) => console.log("contractStoreWatch", v));
+// contractStore.watch((v) => console.log("contractStoreWatch", v));

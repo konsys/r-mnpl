@@ -63,7 +63,7 @@ export const Contract = () => {
   };
 
   const onSubmit = () => {
-    // TODO написать текст ошибок
+    setActiveInput(0);
     if (contract.moneyFrom && contract.moneyTo) {
       showDialog({
         title: "Ошибка",
@@ -75,18 +75,19 @@ export const Contract = () => {
         message: "В договоре должно быть хотя бы одно поле.",
       });
     } else if (
-      contract.moneyFrom * 2 > contract.moneyTo ||
-      contract.moneyTo * 2 > contract.moneyFrom
+      (contract.moneyFrom + contract.fieldFromPrice) / 2 >
+        contract.moneyTo + contract.fieldToPrice ||
+      (contract.moneyTo + contract.fieldToPrice) / 2 >
+        contract.moneyFrom + contract.fieldFromPrice
     ) {
-      console.log(121212, contract);
       showDialog({
         title: "Ошибка",
         message:
           "Разница между суммой предлагаемого и запрашиваемого не может превышать 50%.",
       });
+    } else {
+      sendContract(contract);
     }
-    setActiveInput(0);
-    sendContract(contract);
   };
 
   const fromUser = getPlayer(contract.fromUserId);
