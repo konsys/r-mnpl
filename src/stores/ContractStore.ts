@@ -1,10 +1,9 @@
-import { IContract, IField, IPlayer } from "../types/types";
+import { IContract, IField } from "../types/types";
 
 import { BOARD_PARAMS } from "../params/boardParams";
 import { BoardDomain } from "./BoardDomain";
 import _ from "lodash";
 import { fetchContract } from "../models/Contract/api";
-import { getPlayer } from "../utils/players.utils";
 
 const ContractDomain = BoardDomain.domain("UserDomain");
 
@@ -27,8 +26,8 @@ const initContract: IContract = {
   // TODO getPlayer shld return player always
   fromUserId: BOARD_PARAMS.BANK_USER_ID,
   toUserId: BOARD_PARAMS.BANK_USER_ID,
-  // fromUser: 2,
-  // toUser: 3,
+  // fromUserId: 2,
+  // toUserId: 3,
   fieldIdsFrom: [],
   fieldIdsTo: [],
   moneyFrom: 0,
@@ -37,11 +36,10 @@ const initContract: IContract = {
 
 export const contractStore = ContractDomain.store<IContract>(initContract)
   .on(openContractModal, (state, next) => {
-    console.log(next);
     return {
       ...state,
-      fromUser: getPlayer(next.fromUserId) || ({} as IPlayer),
-      toUser: getPlayer(next.toUserId) || ({} as IPlayer),
+      fromUserId: next.fromUserId,
+      toUserId: next.toUserId,
     };
   })
   .on(addFieldToContract, (prev, data) => {
@@ -108,6 +106,4 @@ export const contractStore = ContractDomain.store<IContract>(initContract)
   })
   .reset(closeContractModal);
 
-contractStore.updates.watch((v) =>
-  console.log("contractStoreWatch", v.moneyFrom, v.moneyTo)
-);
+contractStore.watch((v) => console.log("contractStoreWatch", v));

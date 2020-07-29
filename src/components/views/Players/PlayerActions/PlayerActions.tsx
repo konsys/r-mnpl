@@ -29,13 +29,12 @@ export const PlayerActions = ({
       {contract && (
         <div
           className="_contract"
-          onClick={() => {
-            console.log(fromUserId, toUserId);
+          onClick={() =>
             openContractModal({
               fromUserId,
               toUserId,
-            });
-          }}
+            })
+          }
         />
       )}
       {kick && <div className="_kick" />}
