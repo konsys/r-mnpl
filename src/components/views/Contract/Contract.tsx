@@ -1,16 +1,63 @@
+import React, { useState } from "react";
 import {
+  addMoneyToContract,
   closeContractModal,
   contractStore,
 } from "../../../stores/ContractStore";
 
 import { ContractCompany } from "./ContractCompany";
-import React from "react";
 import { useStore } from "effector-react";
 import { userStore } from "../../../stores/UserStore";
+
+export enum KeyCode {
+  ENTER = 13,
+}
 
 export const Contract = () => {
   const contract = useStore(contractStore);
   const user = useStore(userStore);
+
+  const [activeInput, setActiveInput] = useState<number>(0);
+  const [valueFrom, setValueFrom] = useState<string>("");
+  const [valueTo, setValueTo] = useState<string>("");
+
+  const onChange = (e: any) => {
+    // if (!e.target.value.match(/^[0-9]+$/)) return;
+
+    if (e.target && e.target.name === "from") {
+      setValueFrom(e.target.value);
+    } else if (e.target && e.target.name === "to") {
+      setValueTo(e.target.value);
+    }
+  };
+
+  const onKeyPress = (e: any) => {
+    if (e.which !== KeyCode.ENTER) return;
+    if (!e.target.value.match(/^[0-9]+$/)) return;
+    setActiveInput(0);
+
+    if (e.target.name === "from" && !isNaN(Number.parseInt(e.target.value))) {
+      addMoneyToContract({
+        fromUserId: contract.fromUser.userId,
+        toUserId: contract.toUser.userId,
+        money: Number.parseInt(e.target.value),
+      });
+      // setValueFrom(e.target.value);
+    } else if (
+      e.target.name === "to" &&
+      !isNaN(Number.parseInt(e.target.value))
+    ) {
+      addMoneyToContract({
+        fromUserId: contract.toUser.userId,
+        toUserId: contract.fromUser.userId,
+        money: Number.parseInt(e.target.value),
+      });
+      // setValueTo(e.target.value);
+    }
+
+    setValueFrom("");
+    setValueTo("");
+  };
 
   return (
     <>
@@ -62,7 +109,27 @@ export const Contract = () => {
                         <div className="_image"></div>
                         <div className="_info">
                           <div className="_title">
-                            0k <span className="_edit"></span>
+                            {activeInput !== contract.fromUser.userId ? (
+                              <>
+                                {contract.moneyFrom}k{" "}
+                                <span
+                                  className="_edit"
+                                  onClick={() =>
+                                    setActiveInput(contract.fromUser.userId)
+                                  }
+                                />
+                              </>
+                            ) : (
+                              <input
+                                type="number"
+                                name="from"
+                                onChange={onChange}
+                                value={valueFrom}
+                                onKeyPress={onKeyPress}
+                                maxLength={6}
+                                max={500000}
+                              />
+                            )}
                           </div>
                           <div className="_subtitle">Наличные</div>
                         </div>
@@ -93,7 +160,27 @@ export const Contract = () => {
                         <div className="_image"></div>
                         <div className="_info">
                           <div className="_title">
-                            0k <span className="_edit"></span>
+                            {activeInput !== contract.toUser.userId ? (
+                              <>
+                                {contract.moneyTo}k{" "}
+                                <span
+                                  className="_edit"
+                                  onClick={() =>
+                                    setActiveInput(contract.toUser.userId)
+                                  }
+                                />
+                              </>
+                            ) : (
+                              <input
+                                type="number"
+                                name="to"
+                                onChange={onChange}
+                                value={valueTo}
+                                onKeyPress={onKeyPress}
+                                maxLength={6}
+                                max={500000}
+                              />
+                            )}
                           </div>
                           <div className="_subtitle">Наличные</div>
                         </div>

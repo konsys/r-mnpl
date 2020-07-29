@@ -1,6 +1,9 @@
 import { FieldType, IField, IFieldModalPosition } from "../../../types/types";
 import React, { useEffect } from "react";
-import { addToContract, contractStore } from "../../../stores/ContractStore";
+import {
+  addFieldToContract,
+  contractStore,
+} from "../../../stores/ContractStore";
 import {
   closeFieldActionEvent,
   fieldActionStore,
@@ -80,7 +83,7 @@ export const Board = () => {
       f.type === FieldType.IT
     ) {
       if (contract && contract.fromUser.userId === user?.userId) {
-        addToContract({
+        addFieldToContract({
           fromUserId: user?.userId,
           toUserId: contract.toUser.userId,
           field: f,

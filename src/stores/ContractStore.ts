@@ -1,6 +1,6 @@
 import { IContract, IField, IPlayer } from "../types/types";
 
-import { BOARD_PARAMS } from "../params/boardParams";
+// import { BOARD_PARAMS } from "../params/boardParams";
 import { BoardDomain } from "./BoardDomain";
 import _ from "lodash";
 import { getPlayer } from "../utils/players.utils";
@@ -9,7 +9,8 @@ const ContractDomain = BoardDomain.domain("UserDomain");
 
 export const openContractModal = ContractDomain.event<IOpenContractModal>();
 export const closeContractModal = ContractDomain.event();
-export const addToContract = ContractDomain.event<IOpenContractModal>();
+export const addFieldToContract = ContractDomain.event<IOpenContractModal>();
+export const addMoneyToContract = ContractDomain.event<IOpenContractModal>();
 
 interface IOpenContractModal {
   fromUserId: number;
@@ -20,10 +21,10 @@ interface IOpenContractModal {
 
 const initContract: IContract = {
   // TODO getPlayer shld return player always
-  fromUser: getPlayer(BOARD_PARAMS.BANK_USER_ID) || ({} as IPlayer),
-  toUser: getPlayer(BOARD_PARAMS.BANK_USER_ID) || ({} as IPlayer),
-  // fromUserId: getPlayer(2),
-  // toUserId: getPlayer(3),
+  // fromUser: getPlayer(BOARD_PARAMS.BANK_USER_ID) || ({} as IPlayer),
+  // toUser: getPlayer(BOARD_PARAMS.BANK_USER_ID) || ({} as IPlayer),
+  fromUser: getPlayer(2) || ({} as IPlayer),
+  toUser: getPlayer(3) || ({} as IPlayer),
   fieldsFrom: [],
   fieldsTo: [],
   moneyFrom: 0,
@@ -39,7 +40,7 @@ export const contractStore = ContractDomain.store<IContract>(initContract)
       toUser: getPlayer(next.toUserId) || ({} as IPlayer),
     };
   })
-  .on(addToContract, (prev, data) => {
+  .on(addFieldToContract, (prev, data) => {
     if (data.field && data.field.status) {
       const price = data.field.price
         ? data.field.status.mortgaged
@@ -87,6 +88,16 @@ export const contractStore = ContractDomain.store<IContract>(initContract)
       }
     }
   })
+  .on(addMoneyToContract, (prev, data) => {
+    console.log(222222, data);
+    if (data.money) {
+      return {
+        ...prev,
+      };
+    }
+  })
   .reset(closeContractModal);
 
-// contractStore.updates.watch((v) => console.log("contractStoreWatch", v));
+contractStore.updates.watch((v) =>
+  console.log("contractStoreWatch", v.moneyFrom, v.moneyTo)
+);
