@@ -269,8 +269,8 @@ export enum LocalStorageParams {
 }
 
 export interface IContract {
-  fromUserId: number;
-  toUserId: number;
+  fromUser: IPlayer;
+  toUser: IPlayer;
   fieldsFrom: IField[];
   fieldsTo: IField[];
   moneyFrom: number;

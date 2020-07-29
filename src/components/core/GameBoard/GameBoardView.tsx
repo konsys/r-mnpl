@@ -17,9 +17,11 @@ import { ToastContainer } from "react-toastify";
 import { Tokens } from "../../views/Tokens/Tokens";
 import { actionsStore } from "../../../stores/ActionStore";
 import { useStore } from "effector-react";
+import { userStore } from "../../../stores/UserStore";
 
 export const GameBoardView = () => {
-  const actionState = useStore(actionsStore);
+  const action = useStore(actionsStore);
+  const user = useStore(userStore);
 
   return (
     <>
@@ -31,17 +33,17 @@ export const GameBoardView = () => {
               <BoardCore />
               <div className="table-body-board-center">
                 <M1tv />
-                {actionState && (
+                {action &&
                   // TODO check for user credentials
-                  // userState.userId === actionState.event.action.userId &&
-                  <BoardModal
-                    isModal={
-                      (actionState.event.action &&
-                        actionState.event.action.isModal) ||
-                      false
-                    }
-                  />
-                )}
+                  user &&
+                  user.userId === action.event.action.userId && (
+                    <BoardModal
+                      isModal={
+                        (action.event.action && action.event.action.isModal) ||
+                        false
+                      }
+                    />
+                  )}
                 <Arbitr />
                 <Ticket />
                 <Chat />

@@ -2,7 +2,7 @@ import { playersStore, setPlayersEvent } from "../stores/PlayersStore";
 
 import { IPlayer } from "../types/types";
 
-export const getPlayerById = (userId: number): IPlayer | undefined => {
+export const getPlayer = (userId: number): IPlayer | undefined => {
   const players = playersStore.getState();
   return players ? players.players.find((v) => v.userId === userId) : undefined;
 };

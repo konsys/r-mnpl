@@ -7,7 +7,7 @@ import {
 import { BoardDomain } from "./BoardDomain";
 import { IPlayer } from "../types/types";
 import { fieldPositions } from "../utils/fields.utils";
-import { getPlayerById } from "../utils/players.utils";
+import { getPlayer } from "../utils/players.utils";
 import { sample } from "effector";
 import { usersFetch } from "../models/Users/api";
 
@@ -107,7 +107,7 @@ export const playersPositionChange = sample(
 
 playersPositionChange.watch((v) => {
   tokensStore.getState().tokens.map((token) => {
-    const player = getPlayerById(token.userId);
+    const player = getPlayer(token.userId);
     return player && token && moveTokenAfterPlayerUpdate(token, player);
   });
 });

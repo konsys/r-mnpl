@@ -1,8 +1,8 @@
 import { BoardAction, OutcomeMessageType } from "../types/types";
 
 import { gameActionEffect } from "../models/Board/model";
-import { getFieldById } from "../utils/fields.utils";
-import { getPlayerById } from "../utils/players.utils";
+import { getField } from "../utils/fields.utils";
+import { getPlayer } from "../utils/players.utils";
 
 export const rollDicesModal = (act: BoardAction): BoardAction => {
   return {
@@ -27,8 +27,8 @@ export const rollDicesModal = (act: BoardAction): BoardAction => {
 };
 
 export const canBuyModal = (act: BoardAction): BoardAction => {
-  const p = getPlayerById(act.userId);
-  const f = act.field && act.field.fieldId && getFieldById(act.field.fieldId);
+  const p = getPlayer(act.userId);
+  const f = act.field && act.field.fieldId && getField(act.field.fieldId);
 
   if (!p || !f) {
     throw new Error("User or Field not found inbuy modal");
@@ -65,7 +65,7 @@ export const canBuyModal = (act: BoardAction): BoardAction => {
 };
 
 export const taxModal = (act: BoardAction): BoardAction => {
-  const p = getPlayerById(act.userId);
+  const p = getPlayer(act.userId);
   return {
     type: act.type,
     userId: act.userId,
@@ -88,7 +88,7 @@ export const taxModal = (act: BoardAction): BoardAction => {
 };
 
 export const unJailModal = (act: BoardAction): BoardAction => {
-  const p = getPlayerById(act.userId);
+  const p = getPlayer(act.userId);
   console.log(p?.money, act);
 
   return {
@@ -122,7 +122,7 @@ export const unJailModal = (act: BoardAction): BoardAction => {
 };
 
 export const unJailPayingModal = (act: BoardAction): BoardAction => {
-  const p = getPlayerById(act.userId);
+  const p = getPlayer(act.userId);
   return {
     type: act.type,
     userId: act.userId,
@@ -145,7 +145,7 @@ export const unJailPayingModal = (act: BoardAction): BoardAction => {
 };
 
 export const auctionModal = (act: BoardAction): BoardAction => {
-  const p = getPlayerById(act.userId);
+  const p = getPlayer(act.userId);
   return {
     type: act.type,
     userId: act.userId,

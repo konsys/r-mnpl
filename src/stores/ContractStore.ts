@@ -1,8 +1,9 @@
-import { IContract, IField } from "../types/types";
+import { IContract, IField, IPlayer } from "../types/types";
 
-// import { BOARD_PARAMS } from "../params/boardParams";
+import { BOARD_PARAMS } from "../params/boardParams";
 import { BoardDomain } from "./BoardDomain";
 import _ from "lodash";
+import { getPlayer } from "../utils/players.utils";
 
 const ContractDomain = BoardDomain.domain("UserDomain");
 
@@ -18,10 +19,11 @@ interface IOpenContractModal {
 }
 
 const initContract: IContract = {
-  // fromUserId: BOARD_PARAMS.BANK_USER_ID,
-  // toUserId: BOARD_PARAMS.BANK_USER_ID,
-  fromUserId: 2,
-  toUserId: 3,
+  // TODO getPlayer shld return player always
+  fromUser: getPlayer(BOARD_PARAMS.BANK_USER_ID) || ({} as IPlayer),
+  toUser: getPlayer(BOARD_PARAMS.BANK_USER_ID) || ({} as IPlayer),
+  // fromUserId: getPlayer(2),
+  // toUserId: getPlayer(3),
   fieldsFrom: [],
   fieldsTo: [],
   moneyFrom: 0,

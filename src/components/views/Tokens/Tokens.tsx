@@ -15,10 +15,6 @@ export const Tokens = () => {
     return _(ar).groupBy("meanPosition").value();
   };
 
-  const findPosition = (pos: number): IToken[] => {
-    return tokens.filter((v) => v.meanPosition === pos);
-  };
-
   interface IPosition {
     left: number;
     top: number;
@@ -89,7 +85,6 @@ export const Tokens = () => {
               transitionProperty: "left top ease",
               transform: `scale(${s.length === 1 ? 1 : 0.75})`,
             }}
-            same-pos={findPosition(v.meanPosition).length}
             className="_animated"
           />
         );

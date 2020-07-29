@@ -14,7 +14,7 @@ export const Contract = () => {
 
   return (
     <>
-      {contract && contract.fromUserId === user?.userId && (
+      {contract && contract.fromUser.userId === user?.userId && (
         <div className="TableContract" style={{}}>
           <div className="TableContract-top">
             <div className="TableContract-top-title">Договор</div>

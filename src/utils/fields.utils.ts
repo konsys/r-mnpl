@@ -81,7 +81,7 @@ export const fieldPositions = () => {
   return fieldPositions;
 };
 
-export const getFieldById = (fieldId: number): IField | undefined => {
+export const getField = (fieldId: number): IField | undefined => {
   const f = fieldsStore.getState();
   return f ? f.fields.find((v) => v.fieldId === fieldId) : undefined;
 };
