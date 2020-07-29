@@ -38,28 +38,49 @@ export const Contract = () => {
 
     const money = Number.parseInt(e.target.value);
 
-    if (e.target.value.match(/^[0-9]+$/)) {
-      if (e.target.name === "from" && !isNaN(money)) {
-        addMoneyToContract({
-          fromUserId: contract.fromUser.userId,
-          toUserId: contract.toUser.userId,
-          money,
-        });
-      } else if (e.target.name === "to" && !isNaN(money)) {
-        addMoneyToContract({
-          fromUserId: contract.toUser.userId,
-          toUserId: contract.fromUser.userId,
-          money,
-        });
-        // setValueTo(e.target.value);
-      }
+    // if (e.target.value.match(/^[0-9]+$/)) {
+    if (e.target.name === "from") {
+      addMoneyToContract({
+        fromUserId: contract.fromUser.userId,
+        toUserId: contract.toUser.userId,
+        money: !isNaN(money) ? money : 0,
+      });
+    } else if (e.target.name === "to") {
+      addMoneyToContract({
+        fromUserId: contract.toUser.userId,
+        toUserId: contract.fromUser.userId,
+        money: !isNaN(money) ? money : 0,
+      });
+      // setValueTo(e.target.value);
     }
+    // }
     setValueFrom("");
     setValueTo("");
   };
 
   const onSubmit = () => {
-    showDialog({ title: "Error", message: "fff" });
+    // TODO написать текст ошибок
+    if (contract.moneyFrom && contract.moneyTo) {
+      showDialog({
+        title: "Ошибка",
+        message: "Наличные в договоре могут быть только с одной стороны.",
+      });
+    } else if (!contract.fieldsFrom.length && !contract.fieldsTo.length) {
+      showDialog({
+        title: "Ошибка",
+        message: "В договоре должно быть хотя бы одно поле.",
+      });
+    } else if (
+      contract.moneyFrom * 2 > contract.moneyTo ||
+      contract.moneyTo * 2 > contract.moneyFrom
+    ) {
+      showDialog({
+        title: "Ошибка",
+        message:
+          "Разница между суммой предлагаемого и запрашиваемого не может превышать 50%.",
+      });
+    }
+    setActiveInput(0);
   };
 
   return (

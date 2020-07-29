@@ -89,15 +89,12 @@ export const contractStore = ContractDomain.store<IContract>(initContract)
     }
   })
   .on(addMoneyToContract, (prev, data) => {
-    console.log(222222, data);
-    if (data.money) {
-      if (data.fromUserId === prev.fromUser.userId) {
-        prev.moneyFrom = data.money;
-      } else {
-        prev.moneyTo = data.money;
-      }
-      return prev;
+    if (data.fromUserId === prev.fromUser.userId) {
+      prev.moneyFrom = data.money || 0;
+    } else {
+      prev.moneyTo = data.money || 0;
     }
+    return prev;
   })
   .reset(closeContractModal);
 
