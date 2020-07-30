@@ -35,6 +35,7 @@ export enum IFieldAction {
 export interface IFetchGameAction {
   action: OutcomeMessageType;
   fieldId?: number;
+  contract?: IContract;
 }
 
 export enum OutcomeMessageType {
@@ -50,6 +51,7 @@ export enum OutcomeMessageType {
   OUTCOME_UN_MORTGAGE_FIELD_CLICKED = "unMortgageFieldClicked",
   OUTCOME_LEVEL_UP_FIELD_CLICKED = "levelUpFieldClicked",
   OUTCOME_LEVEL_DOWN_FIELD_CLICKED = "levelDownFieldClicked",
+  OUTCOME_CONTRACT_START = "contractStart",
 }
 
 export enum IncomeMessageType {
