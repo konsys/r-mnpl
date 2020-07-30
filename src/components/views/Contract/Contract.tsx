@@ -18,7 +18,7 @@ export enum KeyCode {
   ENTER = 13,
 }
 
-export const Contract = () => {
+export const Contract = ({ isCreateContract }: { isCreateContract?: any }) => {
   const contract = useStore(contractStore);
   const user = useStore(userStore);
 
@@ -256,9 +256,17 @@ export const Contract = () => {
             </div>
           </div>
           <div className="TableContract-actions">
-            <div className="_button" onClick={onSubmit}>
-              Предложить
-            </div>
+            {isCreateContract ? (
+              <div className="_button" onClick={onSubmit}>
+                Предложить
+              </div>
+            ) : (
+              <>
+                <div className="_button">Принять</div>
+                <div className="_button _button_negative">Отклонить</div>
+              </>
+            )}
+
             {/* <div className="_future">Future</div> */}
           </div>
         </div>
