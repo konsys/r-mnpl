@@ -121,6 +121,6 @@ export const contractStore = ContractDomain.store<IContract>(initContract)
   })
   .reset(closeContractModal);
 
-contractStore.watch((v) =>
-  console.log("contractStoreWatch", v.fromUserId, v.toUserId)
-);
+// contractStore.watch((v) =>
+//   console.log("contractStoreWatch", v.fromUserId, v.toUserId)
+// );

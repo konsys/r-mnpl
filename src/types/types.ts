@@ -52,6 +52,8 @@ export enum OutcomeMessageType {
   OUTCOME_LEVEL_UP_FIELD_CLICKED = "levelUpFieldClicked",
   OUTCOME_LEVEL_DOWN_FIELD_CLICKED = "levelDownFieldClicked",
   OUTCOME_CONTRACT_START = "contractStart",
+  OUTCOME_CONTRACT_ACCEPT = "contractAccept",
+  OUTCOME_CONTRACT_DECLINE = "contractDecline",
 }
 
 export enum IncomeMessageType {

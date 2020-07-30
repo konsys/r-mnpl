@@ -270,8 +270,26 @@ export const Contract = () => {
                 </div>
               ) : (
                 <>
-                  <div className="_button">Принять</div>
-                  <div className="_button _button_negative">Отклонить</div>
+                  <div
+                    className="_button"
+                    onClick={() =>
+                      gameActionEffect({
+                        action: OutcomeMessageType.OUTCOME_CONTRACT_ACCEPT,
+                      })
+                    }
+                  >
+                    Принять
+                  </div>
+                  <div
+                    onClick={() =>
+                      gameActionEffect({
+                        action: OutcomeMessageType.OUTCOME_CONTRACT_DECLINE,
+                      })
+                    }
+                    className="_button _button_negative"
+                  >
+                    Отклонить
+                  </div>
                 </>
               )}
 
