@@ -32,7 +32,7 @@ export enum IFieldAction {
   LEVEL_DOWN = 3,
 }
 
-export interface IFetchGameAction {
+export interface IGameActionRequest {
   action: OutcomeMessageType;
   fieldId?: number;
   contract?: any;

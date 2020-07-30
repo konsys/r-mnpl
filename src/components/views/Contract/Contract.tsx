@@ -1,4 +1,4 @@
-import { IContract, IField, OutcomeMessageType } from "../../../types/types";
+import { IField, OutcomeMessageType } from "../../../types/types";
 import React, { useState } from "react";
 import {
   addMoneyToContract,
@@ -89,8 +89,7 @@ export const Contract = () => {
       console.log(contract);
       gameActionEffect({
         action: OutcomeMessageType.OUTCOME_CONTRACT_START,
-        contract: { moneyTo: 33 } as IContract,
-        fieldId: 234,
+        contract,
       });
     }
   };

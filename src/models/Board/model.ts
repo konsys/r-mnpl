@@ -1,11 +1,11 @@
 import { BoardDomain } from "../../stores/BoardDomain";
-import { IFetchGameAction } from "../../types/types";
+import { IGameActionRequest } from "../../types/types";
 import { fetchGameAction } from "./api";
 
 const GameActionDomain = BoardDomain.domain("ModalDomain");
 
 export const gameActionEffect = GameActionDomain.effect<
-  IFetchGameAction,
+  IGameActionRequest,
   Promise<any>,
   Error
 >({
