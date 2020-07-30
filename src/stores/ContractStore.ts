@@ -50,7 +50,7 @@ export const contractStore = ContractDomain.store<IContract>(initContract)
     const user = userStore.getState();
     if (user && action && action.event.action.contract) {
       if (user.userId === action.event.action.contract.toUserId) {
-        setContract(action.event.action.contract);
+        return action.event.action.contract;
       }
     }
 
@@ -121,4 +121,6 @@ export const contractStore = ContractDomain.store<IContract>(initContract)
   })
   .reset(closeContractModal);
 
-contractStore.watch((v) => console.log("contractStoreWatch", v.fieldIdsFrom));
+contractStore.watch((v) =>
+  console.log("contractStoreWatch", v.fromUserId, v.toUserId)
+);

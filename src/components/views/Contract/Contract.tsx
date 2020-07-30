@@ -27,7 +27,9 @@ export const Contract = () => {
   const [valueTo, setValueTo] = useState<string>("");
 
   gameActionEffect.done.watch(() => {
-    closeContractModal();
+    (user.userId === contract.fromUserId ||
+      user.userId === contract.toUserId) &&
+      closeContractModal();
   });
 
   const onChange = (e: any) => {
@@ -98,11 +100,7 @@ export const Contract = () => {
   const toUser = getPlayer(contract.toUserId);
 
   const contractType = contract.fromUserId === user.userId ? "from" : "to";
-  console.log(
-    1111122,
-    contract.fromUserId === user.userId,
-    contract.toUserId === user.userId
-  );
+
   return (
     <>
       {contract &&
