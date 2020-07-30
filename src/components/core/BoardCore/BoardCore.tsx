@@ -1,16 +1,32 @@
 import React, { useEffect } from "react";
+
 import { Board } from "../../views/Board/Board";
-import { useStore } from "effector-react";
-import { getInitFieldsEffect } from "../../../stores/FieldsStore";
-import { SocketActions } from "../../../types/Socket/SocketTypes";
-import { MessageHandler } from "../../../handlers/MessageHandler";
-import openSocket from "socket.io-client";
-import { clearNode } from "effector";
 import { BoardDomain } from "../../../stores/BoardDomain";
-import { errorHandler } from "../../../handlers/ErrorHandler";
 import { BoardLoading } from "../../views/BoardLoading/BoardLoading";
+import { BoardMessage } from "../../../types/types";
+import { SocketActions } from "../../../types/Socket/SocketTypes";
+import { clearNode } from "effector";
+import { errorHandler } from "../../../handlers/ErrorHandler";
+import { fieldsHandler } from "../../../handlers/FieldsHandler";
+import { getInitFieldsEffect } from "../../../stores/FieldsStore";
+import nanoid from "nanoid";
+import openSocket from "socket.io-client";
+import { playersHandler } from "../../../handlers/PlayersHandler";
+import { setCurrentActionEvent } from "../../../stores/ActionStore";
+import { useStore } from "effector-react";
 
 export let boardSocket: SocketIOClient.Socket;
+
+export const MessageHandler = (message: BoardMessage) => {
+  const event = message.data.event.action;
+  fieldsHandler(message.data.boardStatus.fields);
+  playersHandler(message.data.boardStatus.players);
+
+  setCurrentActionEvent({
+    actionId: (event && event._id) || nanoid(4),
+    event: message.data.event,
+  });
+};
 
 export const BoardCore = () => {
   useEffect(() => {

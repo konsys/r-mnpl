@@ -1,7 +1,7 @@
 import { FieldStatus } from "../types/types";
+import _ from "lodash";
 import { fieldsStore } from "../stores/FieldsStore";
 import { setFieldsEvent } from "../stores/FieldsStore";
-import _ from "lodash";
 
 export const fieldsHandler = (messageFieldsStatus: FieldStatus[]) => {
   allFieldsIterate(messageFieldsStatus);
@@ -31,7 +31,7 @@ export const statusFieldsIterate = (messageFieldsStatus: FieldStatus[]) => {
   toUpdateStore && setFieldsEvent({ ...store, version: ++store.version });
 };
 
-export const allFieldsIterate = (messageFieldsStatus: FieldStatus[]) => {
+const allFieldsIterate = (messageFieldsStatus: FieldStatus[]) => {
   const store = fieldsStore.getState();
 
   store.fields &&
