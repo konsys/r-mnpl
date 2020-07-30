@@ -121,4 +121,4 @@ export const contractStore = ContractDomain.store<IContract>(initContract)
   })
   .reset(closeContractModal);
 
-// contractStore.watch((v) => console.log("contractStoreWatch", v));
+contractStore.watch((v) => console.log("contractStoreWatch", v.fieldIdsFrom));

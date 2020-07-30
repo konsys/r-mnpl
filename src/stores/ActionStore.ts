@@ -97,7 +97,7 @@ actionsStore.watch((v) => {
       break;
 
     case IncomeMessageType.INCOME_CONTRACT_MODAL:
-      incomeContract();
+      // incomeContract();
 
       break;
   }

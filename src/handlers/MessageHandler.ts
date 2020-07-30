@@ -1,9 +1,8 @@
 import { BoardMessage } from "../types/types";
-import { setCurrentActionEvent } from "../stores/ActionStore";
-
 import { fieldsHandler } from "./FieldsHandler";
-import { playersHandler } from "./PlayersHandler";
 import nanoid from "nanoid";
+import { playersHandler } from "./PlayersHandler";
+import { setCurrentActionEvent } from "../stores/ActionStore";
 
 export const MessageHandler = (message: BoardMessage) => {
   const event = message.data.event.action;
