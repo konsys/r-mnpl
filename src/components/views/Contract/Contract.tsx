@@ -18,13 +18,19 @@ export enum KeyCode {
   ENTER = 13,
 }
 
-export const Contract = ({ isCreateContract }: { isCreateContract?: any }) => {
+export const Contract = ({
+  isCreateContract,
+}: {
+  isCreateContract: boolean;
+}) => {
   const contract = useStore(contractStore);
   const user = useStore(userStore);
 
   const [activeInput, setActiveInput] = useState<number>(0);
   const [valueFrom, setValueFrom] = useState<string>("");
   const [valueTo, setValueTo] = useState<string>("");
+
+  gameActionEffect.done.watch(() => closeContractModal());
 
   const onChange = (e: any) => {
     // if (!e.target.value.match(/^[0-9]+$/)) return;
@@ -86,7 +92,6 @@ export const Contract = ({ isCreateContract }: { isCreateContract?: any }) => {
           "Разница между суммой предлагаемого и запрашиваемого не может превышать 50%.",
       });
     } else {
-      console.log(contract);
       gameActionEffect({
         action: OutcomeMessageType.OUTCOME_CONTRACT_START,
         contract,

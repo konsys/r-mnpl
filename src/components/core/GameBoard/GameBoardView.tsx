@@ -23,6 +23,7 @@ export const GameBoardView = () => {
   const action = useStore(actionsStore);
   const user = useStore(userStore);
 
+  console.log(11111, user);
   return (
     <>
       <div className="wrapper" style={{ width: "100%", height: "100%" }}>
@@ -33,9 +34,8 @@ export const GameBoardView = () => {
               <BoardCore />
               <div className="table-body-board-center">
                 <M1tv />
-                {action &&
-                  // TODO check for user credentials
-                  user &&
+                {user &&
+                  action &&
                   user.userId === action.event.action.userId && (
                     <BoardModal
                       isModal={
@@ -52,7 +52,7 @@ export const GameBoardView = () => {
                 <Tokens />
               </div>
               <Dices />
-              <Contract />
+              <Contract isCreateContract={true} />
               <TableHelper />
             </div>
           </div>

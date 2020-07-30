@@ -65,6 +65,7 @@ export enum IncomeMessageType {
   INCOME_UN_JAIL_ACTION = "unJailAction",
   INCOME_AUCTION_MODAL = "auctionModal",
   INCOME_ROLL_DICES_ACTION = "rollDicesAction",
+  INCOME_CONTRACT_MODAL = "contractModal",
 }
 
 export interface BoardAction {
