@@ -58,47 +58,47 @@ export const doNothing = (userId: number) => {
 actionsStore.watch((v) => {
   const action = v.event.action;
   hideDicesEvent();
-  // switch (action.type) {
-  //   case IncomeMessageType.INCOME_ROLL_DICES_MODAL:
-  //     showModalEvent(
-  //       rollDicesModal({
-  //         type: action.type,
-  //         _id: action._id,
-  //         userId: action.userId,
-  //         text: action.text,
-  //         title: action.title,
-  //         isModal: action.isModal,
-  //       })
-  //     );
-  //     break;
+  switch (action.type) {
+    case IncomeMessageType.INCOME_ROLL_DICES_MODAL:
+      showModalEvent(
+        rollDicesModal({
+          type: action.type,
+          _id: action._id,
+          userId: action.userId,
+          text: action.text,
+          title: action.title,
+          isModal: action.isModal,
+        })
+      );
+      break;
 
-  //   case IncomeMessageType.INCOME_ROLL_DICES_ACTION:
-  //     rollDicesAction(action);
-  //     break;
+    case IncomeMessageType.INCOME_ROLL_DICES_ACTION:
+      rollDicesAction(action);
+      break;
 
-  //   case IncomeMessageType.INCOME_CAN_BUY_MODAL:
-  //     showModalEvent(canBuyModal(action));
-  //     break;
+    case IncomeMessageType.INCOME_CAN_BUY_MODAL:
+      showModalEvent(canBuyModal(action));
+      break;
 
-  //   case IncomeMessageType.INCOME_TAX_PAYING_MODAL:
-  //     showModalEvent(taxModal(action));
-  //     break;
+    case IncomeMessageType.INCOME_TAX_PAYING_MODAL:
+      showModalEvent(taxModal(action));
+      break;
 
-  //   case IncomeMessageType.INCOME_UN_JAIL_MODAL:
-  //     showModalEvent(unJailModal(action));
-  //     break;
+    case IncomeMessageType.INCOME_UN_JAIL_MODAL:
+      showModalEvent(unJailModal(action));
+      break;
 
-  //   case IncomeMessageType.INCOME_UNJAIL_PAYING_MODAL:
-  //     showModalEvent(unJailPayingModal(action));
-  //     break;
+    case IncomeMessageType.INCOME_UNJAIL_PAYING_MODAL:
+      showModalEvent(unJailPayingModal(action));
+      break;
 
-  //   case IncomeMessageType.INCOME_AUCTION_MODAL:
-  //     showModalEvent(auctionModal(action));
-  //     break;
+    case IncomeMessageType.INCOME_AUCTION_MODAL:
+      showModalEvent(auctionModal(action));
+      break;
 
-  //   case IncomeMessageType.INCOME_CONTRACT_MODAL:
-  //     // incomeContract();
+    case IncomeMessageType.INCOME_CONTRACT_MODAL:
+      // incomeContract();
 
-  //     break;
-  // }
+      break;
+  }
 });
