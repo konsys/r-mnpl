@@ -1,13 +1,13 @@
-import { IField, OutcomeMessageType } from "../../../types/types";
+import { IContract, IField, OutcomeMessageType } from "../../../types/types";
 import React, { useState } from "react";
 import {
   addMoneyToContract,
   closeContractModal,
   contractStore,
-  sendContract,
 } from "../../../stores/ContractStore";
 
 import { ContractCompany } from "./ContractCompany";
+import { gameActionEffect } from "../../../models/Board/model";
 import { getField } from "../../../utils/fields.utils";
 import { getPlayer } from "../../../utils/players.utils";
 import { showDialog } from "../../../stores/DialogStore";
@@ -86,9 +86,11 @@ export const Contract = () => {
           "Разница между суммой предлагаемого и запрашиваемого не может превышать 50%.",
       });
     } else {
-      sendContract({
+      console.log(contract);
+      gameActionEffect({
         action: OutcomeMessageType.OUTCOME_CONTRACT_START,
-        contract,
+        contract: { moneyTo: 33 } as IContract,
+        fieldId: 234,
       });
     }
   };

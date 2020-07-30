@@ -1,9 +1,8 @@
-import { IContract, IFetchGameAction, IField } from "../types/types";
+import { IContract, IField } from "../types/types";
 
 import { BOARD_PARAMS } from "../params/boardParams";
 import { BoardDomain } from "./BoardDomain";
 import _ from "lodash";
-import { fetchGameAction } from "../models/Board/api";
 
 const ContractDomain = BoardDomain.domain("UserDomain");
 
@@ -11,12 +10,6 @@ export const openContractModal = ContractDomain.event<IOpenContractModal>();
 export const closeContractModal = ContractDomain.event();
 export const addFieldToContract = ContractDomain.event<IOpenContractModal>();
 export const addMoneyToContract = ContractDomain.event<IOpenContractModal>();
-export const sendContract = ContractDomain.effect<
-  IFetchGameAction,
-  Promise<any>
->({
-  handler: fetchGameAction,
-});
 
 interface IOpenContractModal {
   fromUserId: number;

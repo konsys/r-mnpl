@@ -35,7 +35,7 @@ export enum IFieldAction {
 export interface IFetchGameAction {
   action: OutcomeMessageType;
   fieldId?: number;
-  contract?: IContract;
+  contract?: any;
 }
 
 export enum OutcomeMessageType {
