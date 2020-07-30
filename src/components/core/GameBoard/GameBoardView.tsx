@@ -23,7 +23,6 @@ export const GameBoardView = () => {
   const action = useStore(actionsStore);
   const user = useStore(userStore);
 
-  console.log(11111, user);
   return (
     <>
       <div className="wrapper" style={{ width: "100%", height: "100%" }}>
@@ -52,7 +51,7 @@ export const GameBoardView = () => {
                 <Tokens />
               </div>
               <Dices />
-              <Contract isCreateContract={true} />
+              <Contract />
               <TableHelper />
             </div>
           </div>

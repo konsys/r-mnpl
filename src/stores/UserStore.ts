@@ -11,7 +11,18 @@ export const getUserEffect = UserDomain.effect<string, IUser, Error>({
 
 export const setUserEvent = UserDomain.event<IUser>();
 
-export const userStore = UserDomain.store<IUser | null>(null)
+export const userStore = UserDomain.store<IUser>({
+  isActive: false,
+  isBlocked: false,
+  name: "",
+  userId: -1,
+  vip: false,
+  avatar: "",
+  createdAt: new Date(),
+  registrationType: "",
+  team: undefined,
+  updatedAt: new Date(),
+})
   .on(setUserEvent, (_, data) => data)
   .on(getUserEffect.done, (_, data) => data.result)
   .reset(resetUserEvent);

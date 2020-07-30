@@ -80,6 +80,7 @@ export interface BoardAction {
   title?: string;
   text?: string;
   actionButtons?: ActionButtons[];
+  contract?: IContract;
   isModal: boolean;
 }
 

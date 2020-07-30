@@ -18,11 +18,7 @@ export enum KeyCode {
   ENTER = 13,
 }
 
-export const Contract = ({
-  isCreateContract,
-}: {
-  isCreateContract: boolean;
-}) => {
+export const Contract = () => {
   const contract = useStore(contractStore);
   const user = useStore(userStore);
 
@@ -30,10 +26,11 @@ export const Contract = ({
   const [valueFrom, setValueFrom] = useState<string>("");
   const [valueTo, setValueTo] = useState<string>("");
 
-  gameActionEffect.done.watch(() => closeContractModal());
+  gameActionEffect.done.watch(() => {
+    closeContractModal();
+  });
 
   const onChange = (e: any) => {
-    // if (!e.target.value.match(/^[0-9]+$/)) return;
     const v = e.target.value.slice(0, 6);
     if (e.target && e.target.name === "from") {
       setValueFrom(v);
@@ -48,7 +45,6 @@ export const Contract = ({
 
     const money = Number.parseInt(e.target.value);
 
-    // if (e.target.value.match(/^[0-9]+$/)) {
     if (e.target.name === "from") {
       addMoneyToContract({
         fromUserId: contract.fromUserId,
@@ -61,9 +57,8 @@ export const Contract = ({
         toUserId: contract.fromUserId,
         money: !isNaN(money) ? money : 0,
       });
-      // setValueTo(e.target.value);
     }
-    // }
+
     setValueFrom("");
     setValueTo("");
   };
@@ -102,180 +97,185 @@ export const Contract = ({
   const fromUser = getPlayer(contract.fromUserId);
   const toUser = getPlayer(contract.toUserId);
 
+  const contractType = contract.fromUserId === user.userId ? "from" : "to";
   return (
     <>
-      {contract && contract.fromUserId === user?.userId && (
-        <div className="TableContract" style={{}}>
-          <div className="TableContract-top">
-            <div className="TableContract-top-title">Договор</div>
-            <div
-              className="TableContract-top-close"
-              onClick={() => closeContractModal()}
-            ></div>
-          </div>
-          <div className="TableContract-content">
-            <div className="TableContract-content-head">
-              <div className="_user_index_0">
-                <div
-                  className="_avatar"
-                  style={{
-                    backgroundImage: `url("${fromUser && fromUser.avatar}")`,
-                  }}
-                ></div>
-                <div className="_info">
-                  <div className="_nick">Вы</div>
-                  <div className="_subtitle">предлагаете</div>
-                </div>
-              </div>
-              <div className="_user_index_1">
-                <div
-                  className="_avatar"
-                  style={{
-                    backgroundImage: `url("${toUser && toUser.avatar}")`,
-                  }}
-                ></div>
-                <div className="_info">
-                  <div className="_nick">{`${toUser && toUser.name}`}</div>
-                  <div className="_subtitle">отдаёт</div>
-                </div>
-              </div>
+      {contract &&
+        (contract.fromUserId === user.userId ||
+          contract.toUserId === user.userId) && (
+          <div className="TableContract" style={{}}>
+            <div className="TableContract-top">
+              <div className="TableContract-top-title">Договор</div>
+              <div
+                className="TableContract-top-close"
+                onClick={() => closeContractModal()}
+              ></div>
             </div>
-            <div className="TableContract-content-list">
-              <div>
-                <div className="scr" scr-active="1">
+            <div className="TableContract-content">
+              <div className="TableContract-content-head">
+                <div className="_user_index_0">
                   <div
-                    className="scr-window"
-                    style={{ width: "262px", height: "294px" }}
-                  >
-                    <div className="scr-content" style={{ width: "212px" }}>
-                      <div className="_one _cash _clickable">
-                        <div className="_image"></div>
-                        <div className="_info">
-                          <div
-                            className="_title"
-                            onClick={() =>
-                              setActiveInput((fromUser && fromUser.userId) || 0)
-                            }
-                          >
-                            {fromUser && activeInput !== fromUser.userId ? (
-                              <>
-                                {contract.moneyFrom}k
-                                <span className="_edit" />
-                              </>
-                            ) : (
-                              <input
-                                type="number"
-                                name="from"
-                                onChange={onChange}
-                                value={valueFrom}
-                                onKeyPress={onKeyPress}
-                              />
-                            )}
+                    className="_avatar"
+                    style={{
+                      backgroundImage: `url("${fromUser && fromUser.avatar}")`,
+                    }}
+                  ></div>
+                  <div className="_info">
+                    <div className="_nick">Вы</div>
+                    <div className="_subtitle">предлагаете</div>
+                  </div>
+                </div>
+                <div className="_user_index_1">
+                  <div
+                    className="_avatar"
+                    style={{
+                      backgroundImage: `url("${toUser && toUser.avatar}")`,
+                    }}
+                  ></div>
+                  <div className="_info">
+                    <div className="_nick">{`${toUser && toUser.name}`}</div>
+                    <div className="_subtitle">отдаёт</div>
+                  </div>
+                </div>
+              </div>
+              <div className="TableContract-content-list">
+                <div>
+                  <div className="scr" scr-active="1">
+                    <div
+                      className="scr-window"
+                      style={{ width: "262px", height: "294px" }}
+                    >
+                      <div className="scr-content" style={{ width: "212px" }}>
+                        <div className="_one _cash _clickable">
+                          <div className="_image"></div>
+                          <div className="_info">
+                            <div
+                              className="_title"
+                              onClick={() =>
+                                setActiveInput(
+                                  (fromUser && fromUser.userId) || 0
+                                )
+                              }
+                            >
+                              {fromUser && activeInput !== fromUser.userId ? (
+                                <>
+                                  {contract.moneyFrom}k
+                                  <span className="_edit" />
+                                </>
+                              ) : (
+                                <input
+                                  type="number"
+                                  name="from"
+                                  onChange={onChange}
+                                  value={valueFrom}
+                                  onKeyPress={onKeyPress}
+                                />
+                              )}
+                            </div>
+                            <div className="_subtitle">Наличные</div>
                           </div>
-                          <div className="_subtitle">Наличные</div>
                         </div>
-                      </div>
 
-                      {!!contract.fieldIdsFrom.length &&
-                        contract.fieldIdsFrom.map((fId, k) => {
-                          const f = getField(fId);
-                          return (
-                            <ContractCompany
-                              field={f || ({} as IField)}
-                              key={k}
-                            />
-                          );
-                        })}
+                        {!!contract.fieldIdsFrom.length &&
+                          contract.fieldIdsFrom.map((fId, k) => {
+                            const f = getField(fId);
+                            return (
+                              <ContractCompany
+                                field={f || ({} as IField)}
+                                key={k}
+                              />
+                            );
+                          })}
+                      </div>
+                      <div className="scr-pane" style={{ display: "none" }}>
+                        <div
+                          className="scr-pane-handler"
+                          style={{ transform: "translateY(0px)}" }}
+                        ></div>
+                      </div>
                     </div>
-                    <div className="scr-pane" style={{ display: "none" }}>
-                      <div
-                        className="scr-pane-handler"
-                        style={{ transform: "translateY(0px)}" }}
-                      ></div>
+                  </div>
+                </div>
+                <div>
+                  <div className="scr" scr-active="1">
+                    <div
+                      className="scr-window"
+                      style={{ width: "261px", height: "294px" }}
+                    >
+                      <div className="scr-content" style={{ width: "211px" }}>
+                        <div className="_one _cash _clickable">
+                          <div className="_image"></div>
+                          <div className="_info">
+                            <div
+                              className="_title"
+                              onClick={() =>
+                                setActiveInput((toUser && toUser.userId) || 0)
+                              }
+                            >
+                              {toUser && activeInput !== toUser.userId ? (
+                                <>
+                                  {contract.moneyTo}k <span className="_edit" />
+                                </>
+                              ) : (
+                                <input
+                                  type="number"
+                                  name="to"
+                                  onChange={onChange}
+                                  value={valueTo}
+                                  onKeyPress={onKeyPress}
+                                />
+                              )}
+                            </div>
+                            <div className="_subtitle">Наличные</div>
+                          </div>
+                        </div>
+                        {!!contract.fieldIdsTo.length &&
+                          contract.fieldIdsTo.map((fId, k) => {
+                            const f = getField(fId);
+                            return (
+                              <ContractCompany
+                                field={f || ({} as IField)}
+                                key={k}
+                              />
+                            );
+                          })}
+                      </div>
+                      <div className="scr-pane" style={{ display: "none" }}>
+                        <div
+                          className="scr-pane-handler"
+                          style={{ transform: "translateY(0px)" }}
+                        ></div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div>
-                <div className="scr" scr-active="1">
-                  <div
-                    className="scr-window"
-                    style={{ width: "261px", height: "294px" }}
-                  >
-                    <div className="scr-content" style={{ width: "211px" }}>
-                      <div className="_one _cash _clickable">
-                        <div className="_image"></div>
-                        <div className="_info">
-                          <div
-                            className="_title"
-                            onClick={() =>
-                              setActiveInput((toUser && toUser.userId) || 0)
-                            }
-                          >
-                            {toUser && activeInput !== toUser.userId ? (
-                              <>
-                                {contract.moneyTo}k <span className="_edit" />
-                              </>
-                            ) : (
-                              <input
-                                type="number"
-                                name="to"
-                                onChange={onChange}
-                                value={valueTo}
-                                onKeyPress={onKeyPress}
-                              />
-                            )}
-                          </div>
-                          <div className="_subtitle">Наличные</div>
-                        </div>
-                      </div>
-                      {!!contract.fieldIdsTo.length &&
-                        contract.fieldIdsTo.map((fId, k) => {
-                          const f = getField(fId);
-                          return (
-                            <ContractCompany
-                              field={f || ({} as IField)}
-                              key={k}
-                            />
-                          );
-                        })}
-                    </div>
-                    <div className="scr-pane" style={{ display: "none" }}>
-                      <div
-                        className="scr-pane-handler"
-                        style={{ transform: "translateY(0px)" }}
-                      ></div>
-                    </div>
-                  </div>
+              <div className="TableContract-content-bottom">
+                <div className="_sum">
+                  {contract.moneyFrom + contract.fieldFromPrice}
+                </div>
+                <div className="_text">Общая сумма</div>
+                <div className="_sum">
+                  {contract.moneyTo + contract.fieldToPrice}
                 </div>
               </div>
             </div>
-            <div className="TableContract-content-bottom">
-              <div className="_sum">
-                {contract.moneyFrom + contract.fieldFromPrice}
-              </div>
-              <div className="_text">Общая сумма</div>
-              <div className="_sum">
-                {contract.moneyTo + contract.fieldToPrice}
-              </div>
+            <div className="TableContract-actions">
+              {contractType === "from" ? (
+                <div className="_button" onClick={onSubmit}>
+                  Предложить
+                </div>
+              ) : (
+                <>
+                  <div className="_button">Принять</div>
+                  <div className="_button _button_negative">Отклонить</div>
+                </>
+              )}
+
+              {/* <div className="_future">Future</div> */}
             </div>
           </div>
-          <div className="TableContract-actions">
-            {isCreateContract ? (
-              <div className="_button" onClick={onSubmit}>
-                Предложить
-              </div>
-            ) : (
-              <>
-                <div className="_button">Принять</div>
-                <div className="_button _button_negative">Отклонить</div>
-              </>
-            )}
-
-            {/* <div className="_future">Future</div> */}
-          </div>
-        </div>
-      )}
+        )}
     </>
   );
 };

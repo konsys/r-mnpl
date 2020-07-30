@@ -3,6 +3,8 @@ import { IContract, IField } from "../types/types";
 import { BOARD_PARAMS } from "../params/boardParams";
 import { BoardDomain } from "./BoardDomain";
 import _ from "lodash";
+import { actionsStore } from "./ActionStore";
+import { userStore } from "./UserStore";
 
 const ContractDomain = BoardDomain.domain("UserDomain");
 
@@ -10,6 +12,8 @@ export const openContractModal = ContractDomain.event<IOpenContractModal>();
 export const closeContractModal = ContractDomain.event();
 export const addFieldToContract = ContractDomain.event<IOpenContractModal>();
 export const addMoneyToContract = ContractDomain.event<IOpenContractModal>();
+export const incomeContract = ContractDomain.event();
+export const setContract = ContractDomain.event<IContract>();
 
 interface IOpenContractModal {
   fromUserId: number;
@@ -40,6 +44,19 @@ export const contractStore = ContractDomain.store<IContract>(initContract)
       toUserId: next.toUserId,
     };
   })
+  .on(setContract, (_, data) => data)
+  .on(incomeContract, (state) => {
+    const action = actionsStore.getState();
+    const user = userStore.getState();
+    if (user && action && action.event.action.contract) {
+      if (user.userId === action.event.action.contract.toUserId) {
+        setContract(action.event.action.contract);
+      }
+    }
+
+    return state;
+  })
+
   .on(addFieldToContract, (prev, data) => {
     const fieldId = (data.field && data.field.fieldId) || 0;
     const price =

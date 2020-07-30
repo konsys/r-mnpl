@@ -10,6 +10,7 @@ import {
 
 import { BoardDomain } from "./BoardDomain";
 import { hideDicesEvent } from "./DicesStore";
+import { incomeContract } from "./ContractStore";
 import nanoid from "nanoid";
 import { rollDicesAction } from "../handlers/DicesHandler";
 import { showModalEvent } from "./ModalStore";
@@ -93,6 +94,11 @@ actionsStore.watch((v) => {
 
     case IncomeMessageType.INCOME_AUCTION_MODAL:
       showModalEvent(auctionModal(action));
+      break;
+
+    case IncomeMessageType.INCOME_CONTRACT_MODAL:
+      incomeContract();
+
       break;
   }
 });
