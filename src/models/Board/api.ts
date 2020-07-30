@@ -1,14 +1,8 @@
-import { OutcomeMessageType } from "../../types/types";
+import { IFetchGameAction } from "../../types/types";
 import { client } from "../../http/client";
 
 const URL = `/game/action`;
 
-export async function fetchGameAction({
-  action,
-  fieldId,
-}: {
-  action: OutcomeMessageType;
-  fieldId?: number;
-}): Promise<any> {
-  return await (await client.post(URL, { action, fieldId })).data;
+export async function fetchGameAction(data: IFetchGameAction): Promise<any> {
+  return await (await client.post(URL, { ...data })).data;
 }
