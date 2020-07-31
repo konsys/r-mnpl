@@ -275,6 +275,7 @@ export const Contract = () => {
                     onClick={() =>
                       gameActionEffect({
                         action: OutcomeMessageType.OUTCOME_CONTRACT_ACCEPT,
+                        contract,
                       })
                     }
                   >
@@ -284,6 +285,7 @@ export const Contract = () => {
                     onClick={() =>
                       gameActionEffect({
                         action: OutcomeMessageType.OUTCOME_CONTRACT_DECLINE,
+                        contract,
                       })
                     }
                     className="_button _button_negative"
