@@ -36,8 +36,8 @@ export const closePlayerActionEvent = PlayersDomain.event();
 const init: IPlayerAction = {
   fromUserId: 0,
   toUserId: 0,
-  isVisible: false,
   position: 1,
+  isVisible: false,
   ignore: false,
   ignoreOff: false,
   profile: false,

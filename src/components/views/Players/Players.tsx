@@ -57,7 +57,7 @@ export const Players = (prop: Prop) => {
                 }
                 mnpl-opened={
                   actionStore.isVisible &&
-                  actionStore.fromUserId === player.userId
+                  actionStore.toUserId === player.userId
                     ? actionStore.position * 1
                     : 0
                 }
@@ -69,8 +69,8 @@ export const Players = (prop: Prop) => {
                   return openPlayerActionEvent({
                     fromUserId: user1,
                     toUserId: user2,
-                    isVisible: !actionStore?.isVisible,
                     position: 1,
+                    isVisible: !actionStore.isVisible,
                     ignore: user1 !== user2,
                     ignoreOff: user1 !== user2,
                     profile: user1 !== user2,
