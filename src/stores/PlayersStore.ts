@@ -31,7 +31,7 @@ export interface IPlayerAction {
 }
 
 export const openPlayerActionEvent = PlayersDomain.event<IPlayerAction>();
-export const closePlayeActionEvent = PlayersDomain.event();
+export const closePlayerActionEvent = PlayersDomain.event();
 
 const init: IPlayerAction = {
   fromUserId: 0,
@@ -52,7 +52,7 @@ const init: IPlayerAction = {
 
 export const playerActionStore = PlayersDomain.store<IPlayerAction>(init)
   .on(openPlayerActionEvent, (_, data) => data)
-  .reset(closePlayeActionEvent);
+  .reset(closePlayerActionEvent);
 
 export interface IPlayersStore {
   version: number;

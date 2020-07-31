@@ -1,4 +1,6 @@
+import React, { useEffect } from "react";
 import {
+  closePlayerActionEvent,
   openPlayerActionEvent,
   playerActionStore,
 } from "../../../stores/PlayersStore";
@@ -6,7 +8,6 @@ import {
 import { Avatar } from "../Avatar/Avatar";
 import { IPlayer } from "../../../types/types";
 import { PlayerActions } from "./PlayerActions/PlayerActions";
-import React from "react";
 import { actionsStore } from "../../../stores/ActionStore";
 import { closeFieldActionEvent } from "../../../stores/FieldsStore";
 import { useStore } from "effector-react";
@@ -20,6 +21,20 @@ export const Players = (prop: Prop) => {
   const action = useStore(actionsStore);
   const user = useStore(userStore);
   const actionStore = useStore(playerActionStore);
+
+  const closePlayerAction = (event: any) => {
+    (!event.target && !event.target.id && closePlayerActionEvent()) ||
+      (event.target.id &&
+        !(event.target.id.indexOf("player_card") > -1) &&
+        closePlayerActionEvent());
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", closePlayerAction, false);
+    return () => {
+      document.removeEventListener("click", closePlayerAction, false);
+    };
+  }, []);
 
   return (
     <>
