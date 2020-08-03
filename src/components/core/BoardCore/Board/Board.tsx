@@ -1,25 +1,25 @@
 import "./style.scss";
 import "react-toastify/dist/ReactToastify.css";
 
-import { Arbitr } from "../../views/BoardViews/Arbitr/Arbitr";
-import { BoardCore } from "../BoardCore/BoardCore";
-import { BoardModal } from "../../views/BoardViews/BoardModal/BoardModal";
-import { Chat } from "../../views/BoardViews/Chat/Chat";
-import { Contract } from "../../views/BoardViews/Contract/Contract";
-import { Dices } from "../../views/BoardViews/Dices/Dices";
-import { GameLoading } from "../../views/BoardViews/GameLoading/GameLoading";
-import { M1tv } from "../../views/BoardViews/M1tv/M1tv";
-import { PlayersCore } from "../PlayersCore/PlayersCore";
+import { Arbitr } from "../../../views/BoardViews/Arbitr/Arbitr";
+import { BoardCore } from "../../../../socket/BoardSocket";
+import { BoardModal } from "../../../views/BoardViews/BoardModal/BoardModal";
+import { Chat } from "../../../views/BoardViews/Chat/Chat";
+import { Contract } from "../../../views/BoardViews/Contract/Contract";
+import { Dices } from "../../../views/BoardViews/Dices/Dices";
+import { GameLoading } from "../../../views/BoardViews/GameLoading/GameLoading";
+import { M1tv } from "../../../views/BoardViews/M1tv/M1tv";
+import { PlayersCore } from "../../PlayersCore/PlayersCore";
 import React from "react";
-import { TableHelper } from "../../views/BoardViews/TableHelper/TableHelper";
-import { Ticket } from "../../views/BoardViews/Ticket/ticket";
+import { TableHelper } from "../../../views/BoardViews/TableHelper/TableHelper";
+import { Ticket } from "../../../views/BoardViews/Ticket/ticket";
 import { ToastContainer } from "react-toastify";
-import { Tokens } from "../../views/BoardViews/Tokens/Tokens";
-import { actionsStore } from "../../../stores/ActionStore";
+import { Tokens } from "../../../views/BoardViews/Tokens/Tokens";
+import { actionsStore } from "../../../../stores/ActionStore";
 import { useStore } from "effector-react";
-import { userStore } from "../../../stores/UserStore";
+import { userStore } from "../../../../stores/UserStore";
 
-export const GameBoardView = () => {
+export const Board = () => {
   const action = useStore(actionsStore);
   const user = useStore(userStore);
 

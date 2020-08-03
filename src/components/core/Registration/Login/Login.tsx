@@ -1,8 +1,8 @@
+import { LoginForm } from "../../../views/LoginForm/LoginForm";
 import React from "react";
-import { loginEffect } from "./model/LoginModel";
-import { LoginForm } from "../../views/LoginForm/LoginForm";
 import { Redirect } from "react-router-dom";
 import { getToken } from "./model/TokenModel";
+import { loginEffect } from "./model/LoginModel";
 
 export interface ILoginForm {
   email: string;

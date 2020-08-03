@@ -1,22 +1,22 @@
-import { BoardMessage, FieldStatus, IPlayer } from "../../../types/types";
+import { BoardMessage, FieldStatus, IPlayer } from "../types/types";
 import React, { useEffect } from "react";
 import {
   fieldsStore,
   getInitFieldsEffect,
   setFieldsEvent,
-} from "../../../stores/FieldsStore";
+} from "../stores/FieldsStore";
 
-import { Board } from "../../views/BoardViews/Board/Board";
-import { BoardDomain } from "../../../stores/BoardDomain";
-import { BoardLoading } from "../../views/BoardViews/BoardLoading/BoardLoading";
-import { SocketActions } from "../../../types/Socket/SocketTypes";
+import { Board } from "../components/views/BoardViews/Board/Board";
+import { BoardDomain } from "../stores/BoardDomain";
+import { BoardLoading } from "../components/views/BoardViews/BoardLoading/BoardLoading";
+import { SocketActions } from "../types/Socket/SocketTypes";
 import { clearNode } from "effector";
-import { errorHandler } from "../../../handlers/ErrorHandler";
+import { errorHandler } from "../handlers/ErrorHandler";
 import { isEqual } from "lodash";
 import nanoid from "nanoid";
 import openSocket from "socket.io-client";
-import { setCurrentActionEvent } from "../../../stores/ActionStore";
-import { updateAllPlayers } from "../../../utils/players.utils";
+import { setCurrentActionEvent } from "../stores/ActionStore";
+import { updateAllPlayers } from "../utils/players.utils";
 import { useStore } from "effector-react";
 
 export let boardSocket: SocketIOClient.Socket;

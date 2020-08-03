@@ -1,8 +1,10 @@
-import React from "react";
 import "./App.scss";
-import { GameBoard } from "../GameBoard";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { Login } from "../Login/Login";
+
+import { Link, Route, BrowserRouter as Router, Switch } from "react-router-dom";
+
+import { GameBoard } from "../BoardCore/Board";
+import { Login } from "../Registration/Login/Login";
+import React from "react";
 
 function App() {
   return (

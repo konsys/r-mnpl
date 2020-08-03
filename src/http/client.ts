@@ -1,9 +1,10 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
-import { config } from "./config";
 import {
-  getToken,
   clearToken,
-} from "../components/core/Login/model/TokenModel";
+  getToken,
+} from "../components/core/Registration/Login/model/TokenModel";
+
+import { config } from "./config";
 
 export const client = axios.create({
   baseURL: config.baseURL,
