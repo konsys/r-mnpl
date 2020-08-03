@@ -1,4 +1,4 @@
-import { LoginForm } from "../../../views/LoginForm/LoginForm";
+import { LoginForm } from "../../../views/Registration/LoginForm/LoginForm";
 import React from "react";
 import { Redirect } from "react-router-dom";
 import { getToken } from "./model/TokenModel";

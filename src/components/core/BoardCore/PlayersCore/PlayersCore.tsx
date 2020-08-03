@@ -3,11 +3,11 @@ import {
   getPlayersEffect,
   playersStore,
   resetPlayersEvent,
-} from "../../../stores/PlayersStore";
+} from "../../../../stores/PlayersStore";
 
-import { Players } from "../../views/BoardViews/Players/Players";
-import { gameStore } from "../../../stores/GameStore";
-import { getUserEffect } from "../../../stores/UserStore";
+import { Players } from "../../../views/BoardViews/Players/Players";
+import { gameStore } from "../../../../stores/GameStore";
+import { getUserEffect } from "../../../../stores/UserStore";
 import { useStore } from "effector-react";
 
 export const PlayersCore = () => {

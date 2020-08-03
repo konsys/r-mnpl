@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { ILoginForm } from "../../core/Registration/Login/Login";
+import { ILoginForm } from "../../../core/Registration/Login/Login";
 
 interface IProps {
   onSubmit: (data: ILoginForm) => any;
