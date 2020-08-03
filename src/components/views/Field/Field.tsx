@@ -45,6 +45,9 @@ export const Field = ({
             <div>
               {status?.userId
                 ? (status?.branches === 0 && rent?.baseRent) ||
+                  (status?.branches === 0 &&
+                    status?.isMonopoly &&
+                    rent?.monopolyRent) ||
                   (status?.branches === 1 && rent?.oneStar) ||
                   (status?.branches === 2 && rent?.twoStar) ||
                   (status?.branches === 3 && rent?.freeStar) ||

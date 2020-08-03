@@ -113,6 +113,7 @@ export interface FieldStatus {
   level: number;
   mortgaged: number;
   branches: number;
+  isMonopoly: boolean;
   fieldActions: IFieldAction[];
 }
 
@@ -143,6 +144,7 @@ export interface IField {
 
 export interface IFieldRent {
   baseRent: number;
+  monopolyRent: number;
   oneStar: number;
   twoStar: number;
   freeStar: number;
