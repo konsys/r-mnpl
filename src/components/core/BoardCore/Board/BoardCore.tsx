@@ -2,7 +2,6 @@ import "./style.scss";
 import "react-toastify/dist/ReactToastify.css";
 
 import { Arbitr } from "../../../views/BoardViews/Arbitr/Arbitr";
-import { BoardCore } from "../../../../socket/BoardSocket";
 import { BoardModal } from "../../../views/BoardViews/BoardModal/BoardModal";
 import { Chat } from "../../../views/BoardViews/Chat/Chat";
 import { Contract } from "../../../views/BoardViews/Contract/Contract";
@@ -19,7 +18,7 @@ import { actionsStore } from "../../../../stores/ActionStore";
 import { useStore } from "effector-react";
 import { userStore } from "../../../../stores/UserStore";
 
-export const Board = () => {
+export const BoardCore = () => {
   const action = useStore(actionsStore);
   const user = useStore(userStore);
 

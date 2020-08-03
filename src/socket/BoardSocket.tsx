@@ -85,7 +85,7 @@ export const MessageHandler = (message: BoardMessage) => {
 };
 export const playersHandler = (players: IPlayer[]) => updateAllPlayers(players);
 
-export const BoardCore = () => {
+export const BoardSocket = () => {
   useEffect(() => {
     boardSocket = openSocket("http://localhost:3001");
     getInitFieldsEffect();

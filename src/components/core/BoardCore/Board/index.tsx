@@ -1,12 +1,12 @@
-import { Board } from "./Board";
+import { BoardCore } from "./BoardCore";
 import { ModalDialog } from "../../../views/BoardViews/ModalDialog/ModalDialog";
 import React from "react";
 
-export const GameBoard = () => {
+export const Board = () => {
   return (
     <>
       <ModalDialog />
-      <Board />
+      <BoardCore />
     </>
   );
 };
