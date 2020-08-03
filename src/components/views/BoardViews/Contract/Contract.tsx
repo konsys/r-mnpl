@@ -1,18 +1,18 @@
-import { IField, OutcomeMessageType } from "../../../types/types";
+import { IField, OutcomeMessageType } from "../../../../types/types";
 import React, { useState } from "react";
 import {
   addMoneyToContract,
   closeContractModal,
   contractStore,
-} from "../../../stores/ContractStore";
+} from "../../../../stores/ContractStore";
 
 import { ContractCompany } from "./ContractCompany";
-import { gameActionEffect } from "../../../models/Board/model";
-import { getField } from "../../../utils/fields.utils";
-import { getPlayer } from "../../../utils/players.utils";
-import { showDialog } from "../../../stores/DialogStore";
+import { gameActionEffect } from "../../../../models/Board/model";
+import { getField } from "../../../../utils/fields.utils";
+import { getPlayer } from "../../../../utils/players.utils";
+import { showDialog } from "../../../../stores/DialogStore";
 import { useStore } from "effector-react";
-import { userStore } from "../../../stores/UserStore";
+import { userStore } from "../../../../stores/UserStore";
 
 export enum KeyCode {
   ENTER = 13,

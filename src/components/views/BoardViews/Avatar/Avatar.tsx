@@ -1,5 +1,5 @@
+import { Params } from "../../../../config/params";
 import React from "react";
-import { Params } from "../../../config/params";
 
 export interface AvatarProps {
   money: number;

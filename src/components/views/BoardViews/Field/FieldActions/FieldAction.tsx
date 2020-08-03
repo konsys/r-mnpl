@@ -4,15 +4,15 @@ import {
   IFieldAction,
   IFieldModalPosition,
   OutcomeMessageType,
-} from "../../../../types/types";
+} from "../../../../../types/types";
 
 import { FieldActionAuto } from "./FieldActionAuto";
 import { FieldActionCompany } from "./FieldActionCompany";
 import { FieldActionIT } from "./FieldActionIT";
 import React from "react";
-import { closeFieldActionEvent } from "../../../../stores/FieldsStore";
-import { gameActionEffect } from "../../../../models/Board/model";
-import { getActingPlayer } from "../../../../utils/players.utils";
+import { closeFieldActionEvent } from "../../../../../stores/FieldsStore";
+import { gameActionEffect } from "../../../../../models/Board/model";
+import { getActingPlayer } from "../../../../../utils/players.utils";
 
 export interface IFieldModal extends IField {
   position: IFieldModalPosition;

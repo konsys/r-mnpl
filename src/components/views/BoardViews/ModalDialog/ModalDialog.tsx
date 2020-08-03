@@ -1,4 +1,4 @@
-import { dialogStore, hideDialog } from "../../../stores/DialogStore";
+import { dialogStore, hideDialog } from "../../../../stores/DialogStore";
 
 import React from "react";
 import { useStore } from "effector-react";

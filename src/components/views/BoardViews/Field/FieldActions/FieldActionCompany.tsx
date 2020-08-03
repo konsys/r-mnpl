@@ -1,4 +1,4 @@
-import { IFieldRent } from "../../../../types/types";
+import { IFieldRent } from "../../../../../types/types";
 import React from "react";
 
 export const FieldActionCompany = (rent: IFieldRent) => {

@@ -1,6 +1,6 @@
 import { ActionPanel } from "../ActionPanel/ActionPanel";
 import React from "react";
-import { modalStore } from "../../../stores/ModalStore";
+import { modalStore } from "../../../../stores/ModalStore";
 import { useStore } from "effector-react";
 
 interface Props {
@@ -31,7 +31,6 @@ export const BoardModal = (props: Props) => {
           </div>
         </div>
       )}
-      }
     </>
   );
 };

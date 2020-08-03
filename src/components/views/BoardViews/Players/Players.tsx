@@ -3,15 +3,15 @@ import {
   closePlayerActionEvent,
   openPlayerActionEvent,
   playerActionStore,
-} from "../../../stores/PlayersStore";
+} from "../../../../stores/PlayersStore";
 
 import { Avatar } from "../Avatar/Avatar";
-import { IPlayer } from "../../../types/types";
+import { IPlayer } from "../../../../types/types";
 import { PlayerActions } from "./PlayerActions/PlayerActions";
-import { actionsStore } from "../../../stores/ActionStore";
-import { closeFieldActionEvent } from "../../../stores/FieldsStore";
+import { actionsStore } from "../../../../stores/ActionStore";
+import { closeFieldActionEvent } from "../../../../stores/FieldsStore";
 import { useStore } from "effector-react";
-import { userStore } from "../../../stores/UserStore";
+import { userStore } from "../../../../stores/UserStore";
 
 interface Prop {
   players: IPlayer[];

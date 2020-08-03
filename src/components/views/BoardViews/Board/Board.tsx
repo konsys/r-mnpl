@@ -1,21 +1,25 @@
-import { FieldType, IField, IFieldModalPosition } from "../../../types/types";
+import {
+  FieldType,
+  IField,
+  IFieldModalPosition,
+} from "../../../../types/types";
 import React, { useEffect } from "react";
 import {
   addFieldToContract,
   contractStore,
-} from "../../../stores/ContractStore";
+} from "../../../../stores/ContractStore";
 import {
   closeFieldActionEvent,
   fieldActionStore,
   fieldsStore,
   setFieldActionEffect,
-} from "../../../stores/FieldsStore";
+} from "../../../../stores/FieldsStore";
 
-import { BOARD_PARAMS } from "../../../params/boardParams";
+import { BOARD_PARAMS } from "../../../../params/boardParams";
 import { Field } from "../Field/Field";
 import { FieldActions } from "../Field/FieldActions/FieldAction";
 import { useStore } from "effector-react";
-import { userStore } from "../../../stores/UserStore";
+import { userStore } from "../../../../stores/UserStore";
 
 export const Board = () => {
   const { fields } = useStore(fieldsStore);

@@ -6,9 +6,9 @@ import {
   setFieldsEvent,
 } from "../../../stores/FieldsStore";
 
-import { Board } from "../../views/Board/Board";
+import { Board } from "../../views/BoardViews/Board/Board";
 import { BoardDomain } from "../../../stores/BoardDomain";
-import { BoardLoading } from "../../views/BoardLoading/BoardLoading";
+import { BoardLoading } from "../../views/BoardViews/BoardLoading/BoardLoading";
 import { SocketActions } from "../../../types/Socket/SocketTypes";
 import { clearNode } from "effector";
 import { errorHandler } from "../../../handlers/ErrorHandler";

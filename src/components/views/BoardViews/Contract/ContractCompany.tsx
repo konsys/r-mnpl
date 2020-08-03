@@ -1,4 +1,4 @@
-import { IField } from "../../../types/types";
+import { IField } from "../../../../types/types";
 import React from "react";
 
 export const ContractCompany = ({ field }: { field: IField }) => {
