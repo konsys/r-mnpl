@@ -11,10 +11,11 @@ function App() {
     <>
       <Router>
         <Link to="/">Home</Link>
-        <Link to="/game">Game</Link>
+        <Link to="/board">Game</Link>
+        <Link to="/games">Game</Link>
         <Switch>
           <Route exact path="/" component={Login} />
-          <Route exact path="/game" component={GameBoard} />
+          <Route exact path="/board" component={GameBoard} />
         </Switch>
       </Router>
     </>
