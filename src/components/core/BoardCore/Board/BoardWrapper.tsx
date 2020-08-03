@@ -3,6 +3,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { Arbitr } from "../../../views/BoardViews/Arbitr/Arbitr";
 import { BoardModal } from "../../../views/BoardViews/BoardModal/BoardModal";
+import { BoardSocket } from "../../../../socket/BoardSocket";
 import { Chat } from "../../../views/BoardViews/Chat/Chat";
 import { Contract } from "../../../views/BoardViews/Contract/Contract";
 import { Dices } from "../../../views/BoardViews/Dices/Dices";
@@ -18,7 +19,7 @@ import { actionsStore } from "../../../../stores/ActionStore";
 import { useStore } from "effector-react";
 import { userStore } from "../../../../stores/UserStore";
 
-export const BoardCore = () => {
+export const BoardWrapper = () => {
   const action = useStore(actionsStore);
   const user = useStore(userStore);
 
@@ -29,7 +30,7 @@ export const BoardCore = () => {
           <div className="table-body">
             <PlayersCore />
             <div className="table-body-board">
-              <BoardCore />
+              <BoardSocket />
               <div className="table-body-board-center">
                 <M1tv />
                 {user &&

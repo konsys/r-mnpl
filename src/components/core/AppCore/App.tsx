@@ -2,7 +2,7 @@ import "./App.scss";
 
 import { Link, Route, BrowserRouter as Router, Switch } from "react-router-dom";
 
-import { Board } from "../../views/BoardViews/Board/Board";
+import { Board } from "../BoardCore/Board";
 import { Game } from "../Game/Game";
 import { Login } from "../Registration/Login/Login";
 import React from "react";
