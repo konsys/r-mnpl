@@ -1,4 +1,4 @@
-import Counters from "../Game/Counters";
+import Counters from "./Counters";
 import Footer from "../Game/Footer";
 import Header from "../Game/Header";
 import Messages from "../Game/Messages";
