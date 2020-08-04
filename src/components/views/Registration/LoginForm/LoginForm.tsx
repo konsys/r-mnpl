@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { ILoginForm } from "../../../core/Registration/Login/Login";
-import Template from "../../Game/Template";
+import Template from "../../Template/Template";
 
 interface IProps {
   onSubmit: (data: ILoginForm) => any;
