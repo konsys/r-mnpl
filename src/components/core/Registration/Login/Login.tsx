@@ -1,7 +1,7 @@
 import { LoginForm } from "../../../views/Registration/LoginForm/LoginForm";
 import React from "react";
-import { Redirect } from "react-router-dom";
-import { getToken } from "./model/TokenModel";
+// import { Redirect } from "react-router-dom";
+// import { getToken } from "./model/TokenModel";
 import { loginEffect } from "./model/LoginModel";
 
 export interface ILoginForm {
@@ -16,6 +16,7 @@ export interface ILoginResponce {
 export const login = (data: ILoginForm) => loginEffect(data);
 
 export const Login = () => {
-  const token = getToken();
-  return token ? <Redirect to="/game" /> : <LoginForm onSubmit={login} />;
+  // const token = getToken();
+  // return token ? <Redirect to="/board" /> : <LoginForm onSubmit={login} />;
+  return <LoginForm onSubmit={login} />;
 };

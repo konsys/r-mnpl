@@ -11,13 +11,13 @@ function App() {
   return (
     <>
       <Router>
-        <Link to="/">Home</Link>
-        <Link to="/board">Board</Link>
-        <Link to="/games">Game</Link>
+        {/* <Link to="/">Home</Link> */}
+        {/* <Link to="/board">Board</Link> */}
+        <Link to="/games">Games</Link>
         <Switch>
-          <Route exact path="/" component={Login} />
+          <Route exact path="/login" component={Login} />
           <Route exact path="/board" component={Board} />
-          <Route exact path="/game" component={Game} />
+          <Route exact path="/games" component={Game} />
         </Switch>
       </Router>
     </>
