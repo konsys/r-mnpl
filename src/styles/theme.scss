@@ -2,11 +2,12 @@
 @import "./main.scss";
 @import "./avatar.scss";
 
-@import "./table.scss";
-@import "./board.scss";
-
 @import "./design.scss";
-@import "./table-action.scss";
-@import "./dice.scss";
-@import "./fieldcard.scss";
-@import "./contract.scss";
+
+/** **/
+@import "./boardColors.scss";
+@import "./boardSizes.scss";
+@import "./boardActions.scss";
+@import "./fieldActions.scss";
+@import "./dices.scss";
+@import "./contractModal.scss";
