@@ -1,6 +1,6 @@
 import "./App.scss";
 
-import { Link, Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 
 import { Board } from "../BoardCore/Board";
 import { Game } from "../Game/Game";
@@ -11,9 +11,6 @@ function App() {
   return (
     <>
       <Router>
-        {/* <Link to="/">Home</Link> */}
-        {/* <Link to="/board">Board</Link> */}
-        <Link to="/games">Games</Link>
         <Switch>
           <Route exact path="/login" component={Login} />
           <Route exact path="/board" component={Board} />
