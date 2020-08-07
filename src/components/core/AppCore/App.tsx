@@ -7,7 +7,7 @@ import { Game } from "../Game/Game";
 import { Login } from "../Registration/Login/Login";
 import React from "react";
 
-function App() {
+const App = () => {
   return (
     <>
       <Router>
@@ -19,6 +19,6 @@ function App() {
       </Router>
     </>
   );
-}
+};
 
 export default App;

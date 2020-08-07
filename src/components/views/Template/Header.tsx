@@ -4,6 +4,7 @@ import { Box, Button, Container, Grid } from "@material-ui/core";
 
 import { BLOCK_SIZE } from "../../../theme";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 // xs: 0
 // sm: 600
@@ -12,21 +13,29 @@ import React from "react";
 // xl: 1920
 
 export default function Header() {
+  const { t } = useTranslation();
   return (
     <Box m={1} display="flex" flexDirection="row">
       <Container
-        maxWidth={BLOCK_SIZE.lg}
+        fixed
+        maxWidth={BLOCK_SIZE.xl}
         style={{ border: "2px solid red", color: "red" }}
       >
         <Grid>logo</Grid>
 
         <Grid>
-          <Button variant="contained" color="secondary">
-            Поиск игр
+          <Button
+            variant="contained"
+            color="secondary"
+            style={{ whiteSpace: "nowrap" }}
+          >
+            {t("Search games")}
           </Button>
         </Grid>
 
-        <Grid>11</Grid>
+        <Grid>{t("M1TV")}</Grid>
+        <Grid>{t("Friends")}</Grid>
+        <Grid>{t("Inventory")}</Grid>
       </Container>
     </Box>
   );
