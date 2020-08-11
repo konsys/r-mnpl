@@ -1,5 +1,6 @@
 import "./style.scss";
 import "react-toastify/dist/ReactToastify.css";
+import "../../../../styles/board/theme.scss";
 
 import { Arbitr } from "../../../views/BoardViews/Arbitr/Arbitr";
 import { BoardModal } from "../../../views/BoardViews/BoardModal/BoardModal";
@@ -25,7 +26,7 @@ export const BoardWrapper = () => {
 
   return (
     <>
-      <div className="wrapper" style={{ width: "100%", height: "100%" }}>
+      <div className="boardWrapper" style={{ width: "100%", height: "100%" }}>
         <div className="table _shakehack">
           <div className="table-body">
             <PlayersCore />

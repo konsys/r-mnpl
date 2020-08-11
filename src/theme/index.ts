@@ -9,6 +9,7 @@ export enum BLOCK_SIZE {
   md = "md",
   lg = "lg",
 }
+
 export const theme = createMuiTheme({
   palette: {
     primary: {
