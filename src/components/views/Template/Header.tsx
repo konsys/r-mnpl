@@ -1,8 +1,17 @@
 import "./styles/header.scss";
 
-import { Box, Button, Container, Grid, Hidden } from "@material-ui/core";
+import {
+  Box,
+  Button,
+  Container,
+  Grid,
+  Hidden,
+  Menu,
+  MenuItem,
+} from "@material-ui/core";
 
 import { BLOCK_SIZE } from "../../../theme";
+import MenuIcon from "@material-ui/icons/Menu";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
@@ -30,7 +39,22 @@ export default function Header() {
           direction="row"
           spacing={2}
         >
-          <Hidden smDown>
+          {/* <Hidden xsUp> */}
+          <Grid item xs={2}>
+            <MenuIcon />
+            <Menu
+              id="simple-menu"
+              keepMounted
+              open={Boolean(false)}
+              onClose={() => null}
+            >
+              <MenuItem onClick={() => null}>Profile</MenuItem>
+              <MenuItem onClick={() => null}>My account</MenuItem>
+              <MenuItem onClick={() => null}>Logout</MenuItem>
+            </Menu>
+          </Grid>
+          {/* </Hidden> */}
+          {/* <Hidden smDown>
             <Grid item xs={2}>
               <a href="/" className="">
                 <Grid
@@ -54,7 +78,7 @@ export default function Header() {
                 </Grid>
               </a>
             </Grid>
-          </Hidden>
+          </Hidden> */}
           <Grid item sm={2}>
             <Button
               size={"small"}
@@ -66,19 +90,21 @@ export default function Header() {
               {t("Search games")}
             </Button>
           </Grid>
-          <Grid item sm={6}>
-            <Grid
-              container
-              justify="flex-start"
-              alignItems="center"
-              direction="row"
-              spacing={2}
-            >
-              <Grid item>{t("M1TV")}</Grid>
-              <Grid item>{t("Friends")}</Grid>
-              <Grid item>{t("Inventory")}</Grid>
+          <Hidden xsDown>
+            <Grid item sm={6}>
+              <Grid
+                container
+                justify="flex-start"
+                alignItems="center"
+                direction="row"
+                spacing={2}
+              >
+                <Grid item>{t("M1TV")}</Grid>
+                <Grid item>{t("Friends")}</Grid>
+                <Grid item>{t("Inventory")}</Grid>
+              </Grid>
             </Grid>
-          </Grid>
+          </Hidden>
           <Grid item sm={2}>
             <Button
               variant="contained"
