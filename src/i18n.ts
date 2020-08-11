@@ -14,6 +14,7 @@ i18n
           "Search games": "Поиск игр",
           Inventory: "Инвентарь",
           M1TV: "M1TV",
+          Login: "Войти",
         },
       },
     },
