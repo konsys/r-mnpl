@@ -59,7 +59,7 @@ export default function Header() {
           spacing={2}
         >
           <Hidden smUp>
-            <Grid item xs={2}>
+            <Grid item sm={2}>
               <MenuIcon onClick={handleClick} style={{ cursor: "pointer" }} />
               <Menu
                 id="simple-menu"
@@ -83,7 +83,7 @@ export default function Header() {
             </Grid>
           </Hidden>
           <Hidden smDown>
-            <Grid item xs={2}>
+            <Grid item sm={2}>
               <a href="/" className="">
                 <Grid
                   container
@@ -107,7 +107,7 @@ export default function Header() {
               </a>
             </Grid>
           </Hidden>
-          <Grid item sm={2}>
+          <Grid item xs={3} sm={2}>
             <Button
               size={"small"}
               fullWidth={true}
