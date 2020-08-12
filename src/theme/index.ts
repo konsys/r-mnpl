@@ -1,4 +1,4 @@
-import { green, purple } from "@material-ui/core/colors";
+import { purple, teal } from "@material-ui/core/colors";
 
 import { createMuiTheme } from "@material-ui/core";
 
@@ -20,10 +20,10 @@ export enum BREAK_SIZES {
 export const theme = createMuiTheme({
   palette: {
     primary: {
-      main: purple[500],
+      main: teal[500],
     },
     secondary: {
-      main: green[500],
+      main: purple[500],
     },
   },
 });
