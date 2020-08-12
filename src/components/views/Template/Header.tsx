@@ -58,31 +58,31 @@ export default function Header() {
           direction="row"
           spacing={2}
         >
-          {/* <Hidden xsUp> */}
-          <Grid item xs={2}>
-            <MenuIcon onClick={handleClick} style={{ cursor: "pointer" }} />
-            <Menu
-              id="simple-menu"
-              anchorEl={anchorEl}
-              keepMounted
-              open={open}
-              onClose={handleClose}
-              PaperProps={{
-                style: {
-                  maxHeight: ITEM_HEIGHT * 4.5,
-                  width: "20ch",
-                },
-              }}
-            >
-              {Object.keys(menu).map((v: any, k: number) => (
-                <MenuItem key={k} onClick={() => null} component={"span"}>
-                  <Link to={menu[v]}>{t(v)}</Link>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Grid>
-          {/* </Hidden> */}
-          {/* <Hidden smDown>
+          <Hidden smUp>
+            <Grid item xs={2}>
+              <MenuIcon onClick={handleClick} style={{ cursor: "pointer" }} />
+              <Menu
+                id="simple-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={open}
+                onClose={handleClose}
+                PaperProps={{
+                  style: {
+                    maxHeight: ITEM_HEIGHT * 4.5,
+                    width: "20ch",
+                  },
+                }}
+              >
+                {Object.keys(menu).map((v: any, k: number) => (
+                  <MenuItem key={k} onClick={() => null} component={"span"}>
+                    <Link to={menu[v]}>{t(v)}</Link>
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Grid>
+          </Hidden>
+          <Hidden smDown>
             <Grid item xs={2}>
               <a href="/" className="">
                 <Grid
@@ -106,13 +106,13 @@ export default function Header() {
                 </Grid>
               </a>
             </Grid>
-          </Hidden> */}
+          </Hidden>
           <Grid item sm={2}>
             <Button
               size={"small"}
               fullWidth={true}
               variant="contained"
-              color="secondary"
+              color="primary"
               style={{ whiteSpace: "nowrap" }}
             >
               {t("Search games")}
@@ -138,7 +138,7 @@ export default function Header() {
           <Grid item sm={2}>
             <Button
               variant="contained"
-              color="secondary"
+              color="primary"
               style={{ whiteSpace: "nowrap" }}
             >
               {t("Login")}
