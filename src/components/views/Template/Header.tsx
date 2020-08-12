@@ -9,10 +9,11 @@ import {
   Menu,
   MenuItem,
 } from "@material-ui/core";
+import React, { useState } from "react";
 
 import { BLOCK_SIZE } from "../../../theme";
+import { Link } from "react-router-dom";
 import MenuIcon from "@material-ui/icons/Menu";
-import React from "react";
 import { useTranslation } from "react-i18next";
 
 // xs: 0
@@ -21,8 +22,26 @@ import { useTranslation } from "react-i18next";
 // lg: 1280
 // xl: 1920
 
+const menu: any = {
+  M1TV: "/games",
+  Friends: "/games",
+  Inventory: "/games",
+};
+const ITEM_HEIGHT = 48;
+
 export default function Header() {
   const { t } = useTranslation();
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event: any) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <Box
       m={0}
@@ -41,16 +60,25 @@ export default function Header() {
         >
           {/* <Hidden xsUp> */}
           <Grid item xs={2}>
-            <MenuIcon />
+            <MenuIcon onClick={handleClick} style={{ cursor: "pointer" }} />
             <Menu
               id="simple-menu"
+              anchorEl={anchorEl}
               keepMounted
-              open={Boolean(false)}
-              onClose={() => null}
+              open={open}
+              onClose={handleClose}
+              PaperProps={{
+                style: {
+                  maxHeight: ITEM_HEIGHT * 4.5,
+                  width: "20ch",
+                },
+              }}
             >
-              <MenuItem onClick={() => null}>Profile</MenuItem>
-              <MenuItem onClick={() => null}>My account</MenuItem>
-              <MenuItem onClick={() => null}>Logout</MenuItem>
+              {Object.keys(menu).map((v: any, k: number) => (
+                <MenuItem key={k} onClick={() => null} component={"span"}>
+                  <Link to={menu[v]}>{t(v)}</Link>
+                </MenuItem>
+              ))}
             </Menu>
           </Grid>
           {/* </Hidden> */}
@@ -99,9 +127,11 @@ export default function Header() {
                 direction="row"
                 spacing={2}
               >
-                <Grid item>{t("M1TV")}</Grid>
-                <Grid item>{t("Friends")}</Grid>
-                <Grid item>{t("Inventory")}</Grid>
+                {Object.keys(menu).map((v: any, k: number) => (
+                  <Grid item key={k}>
+                    <Link to={menu[v]}>{t(v)}</Link>
+                  </Grid>
+                ))}
               </Grid>
             </Grid>
           </Hidden>
