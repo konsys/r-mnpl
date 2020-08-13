@@ -63,7 +63,6 @@ export default function Header() {
               alignItems="center"
               direction="row"
               spacing={2}
-              className="top-menu"
             >
               <TopMenu />
             </Grid>

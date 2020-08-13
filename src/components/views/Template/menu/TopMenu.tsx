@@ -1,4 +1,5 @@
-import { Grid } from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
+
 import { Link } from "react-router-dom";
 import React from "react";
 import { menuItems } from "./MobileMenu";
@@ -10,7 +11,9 @@ export default function TopMenu() {
     <>
       {Object.keys(menuItems).map((v: any, k: number) => (
         <Grid item key={k}>
-          <Link to={menuItems[v]}>{t(v)}</Link>
+          <Typography color={"textPrimary"}>
+            <Link to={menuItems[v]}>{t(v)}</Link>
+          </Typography>
         </Grid>
       ))}
     </>

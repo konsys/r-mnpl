@@ -1,4 +1,4 @@
-import { Menu, MenuItem } from "@material-ui/core";
+import { Menu, MenuItem, Typography } from "@material-ui/core";
 import React, { useState } from "react";
 
 import { Link } from "react-router-dom";
@@ -41,7 +41,7 @@ export default function MobileMenu() {
         {Object.keys(menuItems).map((v: any, k: number) => (
           <Link to={menuItems[v]}>
             <MenuItem key={k} onClick={() => null} component={"span"}>
-              {t(v)}
+              <Typography color={"textPrimary"}>{t(v)}</Typography>
             </MenuItem>
           </Link>
         ))}
