@@ -6,19 +6,19 @@
   overflow: hidden;
   z-index: 13;
 }
-body:not([theme]) .TableFieldcard {
+.boardWrapper:not([theme]) .TableFieldcard {
   color: #656d78;
 }
-body[theme="dark"] .TableFieldcard {
+.boardWrapper[theme="dark"] .TableFieldcard {
   color: #e2e2e3;
 }
 .TableFieldcard ._bg {
   display: inline-block;
 }
-body:not([theme]) .TableFieldcard ._bg {
+.boardWrapper:not([theme]) .TableFieldcard ._bg {
   background-color: #fff;
 }
-body[theme="dark"] .TableFieldcard ._bg {
+.boardWrapper[theme="dark"] .TableFieldcard ._bg {
   background-color: #25262b;
 }
 .TableFieldcard-top {
@@ -143,10 +143,18 @@ body[theme="dark"] .TableFieldcard ._bg {
 .TableFieldcard-data-rows > div ._title ._star_small:not(:first-child) {
   margin-left: 2px;
 }
-body:not([theme]) .TableFieldcard-data-rows > div ._title ._star_small {
+.boardWrapper:not([theme])
+  .TableFieldcard-data-rows
+  > div
+  ._title
+  ._star_small {
   color: #656d78;
 }
-body[theme="dark"] .TableFieldcard-data-rows > div ._title ._star_small {
+.boardWrapper[theme="dark"]
+  .TableFieldcard-data-rows
+  > div
+  ._title
+  ._star_small {
   color: #e2e2e3;
 }
 .TableFieldcard-data-rows > div ._title ._star_big {
@@ -161,10 +169,16 @@ body[theme="dark"] .TableFieldcard-data-rows > div ._title ._star_small {
   content: "k";
   font-weight: 400;
 }
-body:not([theme]) .TableFieldcard-data-rows > div ._value._type_money:after {
+.boardWrapper:not([theme])
+  .TableFieldcard-data-rows
+  > div
+  ._value._type_money:after {
   color: #a7adb5;
 }
-body[theme="dark"] .TableFieldcard-data-rows > div ._value._type_money:after {
+.boardWrapper[theme="dark"]
+  .TableFieldcard-data-rows
+  > div
+  ._value._type_money:after {
   color: #a1a1a4;
 }
 .TableFieldcard-data-rows > div ._value._type_x {
@@ -176,9 +190,19 @@ body[theme="dark"] .TableFieldcard-data-rows > div ._value._type_money:after {
   margin-right: 3px;
   height: 19px;
 }
-body:not([theme]) .TableFieldcard-data-rows > div ._value._type_x svg path {
+.boardWrapper:not([theme])
+  .TableFieldcard-data-rows
+  > div
+  ._value._type_x
+  svg
+  path {
   fill: #656d78;
 }
-body[theme="dark"] .TableFieldcard-data-rows > div ._value._type_x svg path {
+.boardWrapper[theme="dark"]
+  .TableFieldcard-data-rows
+  > div
+  ._value._type_x
+  svg
+  path {
   fill: #e2e2e3;
 }

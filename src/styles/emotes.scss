@@ -19,11 +19,11 @@
   width: 222px;
   cursor: default;
 }
-body:not([theme]) .emotes-button-window {
+.boardWrapper:not([theme]) .emotes-button-window {
   background-color: #fff;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
-body[theme="dark"] .emotes-button-window {
+.boardWrapper[theme="dark"] .emotes-button-window {
   background-color: #25262b;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
 }
@@ -33,10 +33,10 @@ body[theme="dark"] .emotes-button-window {
   font-weight: 600;
   text-transform: uppercase;
 }
-body:not([theme]) .emotes-button-window-title {
+.boardWrapper:not([theme]) .emotes-button-window-title {
   color: #a7adb5;
 }
-body[theme="dark"] .emotes-button-window-title {
+.boardWrapper[theme="dark"] .emotes-button-window-title {
   color: #a1a1a4;
 }
 .emotes-button-window-list {

@@ -147,16 +147,16 @@ body._pinned {
   font-size: 30px;
   transition: color 0.1s;
 }
-body:not([theme]) .header .header-right > div:before {
+.boardWrapper:not([theme]) .header .header-right > div:before {
   color: #c7ccd3;
 }
-body[theme="dark"] .header .header-right > div:before {
+.boardWrapper[theme="dark"] .header .header-right > div:before {
   color: #afb5c3;
 }
-body:not([theme]) .header .header-right > div:hover:before {
+.boardWrapper:not([theme]) .header .header-right > div:hover:before {
   color: #aab2bd;
 }
-body[theme="dark"] .header .header-right > div:hover:before {
+.boardWrapper[theme="dark"] .header .header-right > div:hover:before {
   color: #ccd0d9;
 }
 .header .header-right > div:not(:last-child) {
@@ -183,28 +183,32 @@ body[theme="dark"] .header .header-right > div:hover:before {
   display: flex;
   align-items: center;
 }
-body:not([theme]) .header:not([mnpl-style]) .header-logo > svg > path {
+.boardWrapper:not([theme]) .header:not([mnpl-style]) .header-logo > svg > path {
   fill: #7e8692;
 }
-body[theme="dark"] .header:not([mnpl-style]) .header-logo > svg > path {
+.boardWrapper[theme="dark"]
+  .header:not([mnpl-style])
+  .header-logo
+  > svg
+  > path {
   fill: #c8c8ca;
 }
-body:not([theme]) .header:not([mnpl-style]) .header-logo > div {
+.boardWrapper:not([theme]) .header:not([mnpl-style]) .header-logo > div {
   color: #656d78;
 }
-body[theme="dark"] .header:not([mnpl-style]) .header-logo > div {
+.boardWrapper[theme="dark"] .header:not([mnpl-style]) .header-logo > div {
   color: #e2e2e3;
 }
-body:not([theme]) .header:not([mnpl-style]) .header-menu-one {
+.boardWrapper:not([theme]) .header:not([mnpl-style]) .header-menu-one {
   color: #656d78;
 }
-body[theme="dark"] .header:not([mnpl-style]) .header-menu-one {
+.boardWrapper[theme="dark"] .header:not([mnpl-style]) .header-menu-one {
   color: #e2e2e3;
 }
-body:not([theme]) .header:not([mnpl-style]) .header-menu-one:hover {
+.boardWrapper:not([theme]) .header:not([mnpl-style]) .header-menu-one:hover {
   background-color: rgba(0, 0, 0, 0.04);
 }
-body[theme="dark"] .header:not([mnpl-style]) .header-menu-one:hover {
+.boardWrapper[theme="dark"] .header:not([mnpl-style]) .header-menu-one:hover {
   background-color: rgba(255, 255, 255, 0.067);
 }
 .header:not([mnpl-style]) .header-right > div:before {
@@ -357,10 +361,10 @@ body[theme="dark"] .header:not([mnpl-style]) .header-menu-one:hover {
   position: relative;
   margin-top: 25px;
 }
-body:not([theme]) .footer {
+.boardWrapper:not([theme]) .footer {
   background-color: #e6e9ed;
 }
-body[theme="dark"] .footer {
+.boardWrapper[theme="dark"] .footer {
   background-color: #25262b;
 }
 .footer .paragraph {
@@ -606,10 +610,10 @@ body[theme="dark"] .footer {
   border: 1px solid;
   border-bottom: none;
 }
-body:not([theme]) .thing .thing-image {
+.boardWrapper:not([theme]) .thing .thing-image {
   border-color: #e6e6e6;
 }
-body[theme="dark"] .thing .thing-image {
+.boardWrapper[theme="dark"] .thing .thing-image {
   border-color: #3d3e46;
 }
 .thing .thing-image > div {
@@ -617,7 +621,7 @@ body[theme="dark"] .thing .thing-image {
   height: 100%;
   background: center/contain no-repeat;
 }
-body[theme="dark"] .thing .thing-image > div {
+.boardWrapper[theme="dark"] .thing .thing-image > div {
   -webkit-filter: drop-shadow(0 0 1.5px rgba(255, 255, 255, 0.75));
   filter: drop-shadow(0 0 1.5px rgba(255, 255, 255, 0.75));
 }

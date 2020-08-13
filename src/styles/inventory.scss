@@ -6,10 +6,10 @@
   height: 100%;
   z-index: 1;
 }
-body:not([theme]) .VueTableActionInventory {
+.boardWrapper:not([theme]) .VueTableActionInventory {
   background-color: rgba(38, 44, 47, 0.8);
 }
-body[theme="dark"] .VueTableActionInventory {
+.boardWrapper[theme="dark"] .VueTableActionInventory {
   background-color: rgba(38, 44, 47, 0.9);
 }
 .VueTableActionInventory-title {
@@ -38,11 +38,11 @@ body[theme="dark"] .VueTableActionInventory {
   box-shadow: #000 0 0 50px;
   z-index: 12;
 }
-body:not([theme]) .TableHelper {
+.boardWrapper:not([theme]) .TableHelper {
   background-color: #fff;
   color: #656d78;
 }
-body[theme="dark"] .TableHelper {
+.boardWrapper[theme="dark"] .TableHelper {
   background-color: #25262b;
   color: #e2e2e3;
 }
@@ -54,10 +54,10 @@ body[theme="dark"] .TableHelper {
   border-bottom: 1px solid;
   padding: 5px 20px 0;
 }
-body:not([theme]) .TableHelper-tabs {
+.boardWrapper:not([theme]) .TableHelper-tabs {
   border-bottom-color: #e6e6e6;
 }
-body[theme="dark"] .TableHelper-tabs {
+.boardWrapper[theme="dark"] .TableHelper-tabs {
   border-bottom-color: #3d3e46;
 }
 .TableHelper-tabs > div {
@@ -70,10 +70,10 @@ body[theme="dark"] .TableHelper-tabs {
 .TableHelper-tabs > div:not(:first-child) {
   margin-left: 20px;
 }
-body:not([theme]) .TableHelper-tabs > div:not(._active) {
+.boardWrapper:not([theme]) .TableHelper-tabs > div:not(._active) {
   color: #a7adb5;
 }
-body[theme="dark"] .TableHelper-tabs > div:not(._active) {
+.boardWrapper[theme="dark"] .TableHelper-tabs > div:not(._active) {
   color: #a1a1a4;
 }
 .TableHelper-tabs > div._active {
@@ -167,10 +167,10 @@ body[theme="dark"] .TableHelper-tabs > div:not(._active) {
   margin-top: -3px;
   font-size: 12px;
 }
-body:not([theme]) .TableHelper-content-stat > div > div:last-child {
+.boardWrapper:not([theme]) .TableHelper-content-stat > div > div:last-child {
   color: #a7adb5;
 }
-body[theme="dark"] .TableHelper-content-stat > div > div:last-child {
+.boardWrapper[theme="dark"] .TableHelper-content-stat > div > div:last-child {
   color: #a1a1a4;
 }
 .TableHelper-content-stat ._roundtax._mod_0 > div:first-child {
@@ -205,10 +205,14 @@ body[theme="dark"] .TableHelper-content-stat > div > div:last-child {
 .TableHelper-content-players > div:not(:first-child) {
   border-top: 1px solid;
 }
-body:not([theme]) .TableHelper-content-players > div:not(:first-child) {
+.boardWrapper:not([theme])
+  .TableHelper-content-players
+  > div:not(:first-child) {
   border-top-color: #e6e6e6;
 }
-body[theme="dark"] .TableHelper-content-players > div:not(:first-child) {
+.boardWrapper[theme="dark"]
+  .TableHelper-content-players
+  > div:not(:first-child) {
   border-top-color: #3d3e46;
 }
 .TableHelper-content-players-head {
@@ -272,7 +276,11 @@ body[theme="dark"] .TableHelper-content-players > div:not(:first-child) {
   background: linear-gradient(45deg, #66b343, #b0e372);
 }
 .TableHelper-content-players-row > div:nth-child(1) ._dot._index_3 {
-  background: linear-gradient(45deg, rgba(161, 127, 239, 1), rgba(209, 136, 227, 1));
+  background: linear-gradient(
+    45deg,
+    rgba(161, 127, 239, 1),
+    rgba(209, 136, 227, 1)
+  );
 }
 .TableHelper-content-players-row > div:nth-child(1) ._dot._index_4 {
   background: linear-gradient(45deg, #d98942, #d9b444);
