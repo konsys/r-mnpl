@@ -1,4 +1,4 @@
-import { Button, Container, Grid, Hidden } from "@material-ui/core";
+import { Box, Button, Container, Grid, Hidden } from "@material-ui/core";
 
 import { BLOCK_SIZE } from "../../../theme";
 import Logo from "./logo/Logo";
@@ -16,58 +16,67 @@ import { useTranslation } from "react-i18next";
 export default function Header() {
   const { t } = useTranslation();
   return (
-    <Container maxWidth={BLOCK_SIZE.md}>
-      <Grid
-        container
-        justify="center"
-        alignItems="center"
-        direction="row"
-        spacing={2}
-      >
-        <Hidden smUp>
-          <Grid item sm={2} className="top-menu">
-            <MobileMenu />
-          </Grid>
-        </Hidden>
-        <Hidden smDown>
-          <Grid item sm={3}>
-            <Logo />
-          </Grid>
-        </Hidden>
-        <Grid item xs={4} sm={2}>
-          <Button
-            size={"small"}
-            fullWidth={true}
-            variant="outlined"
-            color="primary"
-            style={{ whiteSpace: "nowrap" }}
-          >
-            {t("Search games")}
-          </Button>
-        </Grid>
-        <Hidden xsDown>
-          <Grid item sm={5}>
-            <Grid
-              container
-              justify="flex-start"
-              alignItems="center"
-              direction="row"
-              spacing={2}
-            >
-              <TopMenu />
+    <Box
+      m={0}
+      p={2}
+      display="flex"
+      flexDirection="row"
+      style={{ backgroundColor: "white" }}
+      className="games-template"
+    >
+      <Container maxWidth={BLOCK_SIZE.md}>
+        <Grid
+          container
+          justify="center"
+          alignItems="center"
+          direction="row"
+          spacing={2}
+        >
+          <Hidden smUp>
+            <Grid item sm={2} className="top-menu">
+              <MobileMenu />
             </Grid>
+          </Hidden>
+          <Hidden smDown>
+            <Grid item sm={3}>
+              <Logo />
+            </Grid>
+          </Hidden>
+          <Grid item xs={4} sm={2}>
+            <Button
+              size={"small"}
+              fullWidth={true}
+              variant="outlined"
+              color="primary"
+              style={{ whiteSpace: "nowrap" }}
+            >
+              {t("Search games")}
+            </Button>
           </Grid>
-        </Hidden>
-        <Grid item sm={1}>
-          <Button
-            variant="outlined"
-            color="primary"
-            style={{ whiteSpace: "nowrap" }}
-          >
-            {t("Login")}
-          </Button>
+          <Hidden xsDown>
+            <Grid item sm={5}>
+              <Grid
+                container
+                justify="flex-start"
+                alignItems="center"
+                direction="row"
+                spacing={2}
+              >
+                <TopMenu />
+              </Grid>
+            </Grid>
+          </Hidden>
+          <Grid item sm={1}>
+            <Button
+              variant="outlined"
+              color="primary"
+              style={{ whiteSpace: "nowrap" }}
+            >
+              {t("Login")}
+            </Button>
+          </Grid>
         </Grid>
-      </Grid>
-    </Container>
+      </Container>
+    </Box>
   );
 }

@@ -1,30 +1,19 @@
 import "./styles/styles.scss";
 
-import { Box } from "@material-ui/core";
+import Content from "./Content";
 import Counters from "./Counters";
 import Footer from "./Footer";
 import Header from "./Header";
-import Messages from "./Messages";
-import Nc from "./Nc";
 import React from "react";
 
 export default function Template({ children }: { children: any }) {
   return (
-    <Box
-      m={0}
-      p={2}
-      display="flex"
-      flexDirection="row"
-      style={{ backgroundColor: "white" }}
-      className="games-template"
-    >
+    <>
       <Header />
-      <Nc />
-      {children}
-      <Messages />
+      <Content /> {children}
       <Footer />
       <Counters />
-      <div className="designDialog" style={{ display: "none" }}></div>
-    </Box>
+      <div className="designDialog" style={{ display: "none" }}></div>{" "}
+    </>
   );
 }
