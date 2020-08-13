@@ -9,7 +9,7 @@ export default function Logo() {
         container
         justify="center"
         alignItems="center"
-        direction="column"
+        direction="row"
         spacing={1}
       >
         <Grid item>

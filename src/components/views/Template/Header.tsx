@@ -30,15 +30,15 @@ export default function Header() {
           </Grid>
         </Hidden>
         <Hidden smDown>
-          <Grid item sm={2}>
+          <Grid item sm={3}>
             <Logo />
           </Grid>
         </Hidden>
-        <Grid item xs={3} sm={2}>
+        <Grid item xs={4} sm={2}>
           <Button
             size={"small"}
             fullWidth={true}
-            variant="contained"
+            variant="outlined"
             color="primary"
             style={{ whiteSpace: "nowrap" }}
           >
@@ -46,7 +46,7 @@ export default function Header() {
           </Button>
         </Grid>
         <Hidden xsDown>
-          <Grid item sm={6}>
+          <Grid item sm={5}>
             <Grid
               container
               justify="flex-start"
@@ -58,9 +58,9 @@ export default function Header() {
             </Grid>
           </Grid>
         </Hidden>
-        <Grid item sm={2}>
+        <Grid item sm={1}>
           <Button
-            variant="contained"
+            variant="outlined"
             color="primary"
             style={{ whiteSpace: "nowrap" }}
           >
