@@ -24,7 +24,7 @@ export default function Header() {
       style={{ backgroundColor: "white" }}
       className="games-template"
     >
-      <Container maxWidth={BLOCK_SIZE.md} disableGutters={true}>
+      <Container maxWidth={BLOCK_SIZE.md}>
         <Grid
           container
           justify="flex-start"
