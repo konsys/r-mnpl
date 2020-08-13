@@ -24,28 +24,29 @@ export default function Header() {
       style={{ backgroundColor: "white" }}
       className="games-template"
     >
-      <Container maxWidth={BLOCK_SIZE.md}>
+      <Container maxWidth={BLOCK_SIZE.md} disableGutters={true}>
         <Grid
           container
-          justify="center"
+          justify="flex-start"
           alignItems="center"
           direction="row"
           spacing={2}
         >
-          <Hidden smUp>
-            <Grid item sm={2} className="top-menu">
-              <MobileMenu />
-            </Grid>
-          </Hidden>
           <Hidden smDown>
-            <Grid item sm={3}>
+            <Grid item md={3}>
               <Logo />
             </Grid>
           </Hidden>
-          <Grid item xs={4} sm={2}>
+
+          <Hidden mdUp>
+            <Grid item sm={4} xs={2} className="top-menu">
+              <MobileMenu />
+            </Grid>
+          </Hidden>
+
+          <Grid item md={2} sm={4} xs={5}>
             <Button
               size={"small"}
-              fullWidth={true}
               variant="outlined"
               color="primary"
               style={{ whiteSpace: "nowrap" }}
@@ -53,11 +54,12 @@ export default function Header() {
               {t("Search games")}
             </Button>
           </Grid>
-          <Hidden xsDown>
-            <Grid item sm={5}>
+
+          <Hidden smDown>
+            <Grid item md={5}>
               <Grid
                 container
-                justify="flex-start"
+                justify="center"
                 alignItems="center"
                 direction="row"
                 spacing={2}
@@ -66,14 +68,13 @@ export default function Header() {
               </Grid>
             </Grid>
           </Hidden>
-          <Grid item sm={1}>
-            <Button
-              variant="outlined"
-              color="primary"
-              style={{ whiteSpace: "nowrap" }}
-            >
-              {t("Login")}
-            </Button>
+
+          <Grid item md={2} sm={4} xs={5}>
+            <Grid container justify="flex-end">
+              <Button variant="outlined" color="primary">
+                {t("Login")}
+              </Button>
+            </Grid>
           </Grid>
         </Grid>
       </Container>

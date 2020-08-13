@@ -7,7 +7,7 @@ export default function Logo() {
     <>
       <Grid
         container
-        justify="center"
+        justify="flex-start"
         alignItems="center"
         direction="row"
         spacing={1}
