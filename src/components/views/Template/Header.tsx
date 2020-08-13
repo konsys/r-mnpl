@@ -1,5 +1,3 @@
-import "./styles/header.scss";
-
 import { Button, Container, Grid, Hidden } from "@material-ui/core";
 
 import { BLOCK_SIZE } from "../../../theme";
@@ -27,7 +25,7 @@ export default function Header() {
         spacing={2}
       >
         <Hidden smUp>
-          <Grid item sm={2}>
+          <Grid item sm={2} className="top-menu">
             <MobileMenu />
           </Grid>
         </Hidden>
@@ -65,6 +63,7 @@ export default function Header() {
               alignItems="center"
               direction="row"
               spacing={2}
+              className="top-menu"
             >
               <TopMenu />
             </Grid>

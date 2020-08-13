@@ -1,3 +1,5 @@
+import "./styles/styles.scss";
+
 import { Box } from "@material-ui/core";
 import Counters from "./Counters";
 import Footer from "./Footer";
@@ -14,6 +16,7 @@ export default function Template({ children }: { children: any }) {
       display="flex"
       flexDirection="row"
       style={{ backgroundColor: "white" }}
+      className="games-template"
     >
       <Header />
       <Nc />

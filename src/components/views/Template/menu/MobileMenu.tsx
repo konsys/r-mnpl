@@ -27,7 +27,6 @@ export default function MobileMenu() {
     <>
       <MenuIcon onClick={handleClick} style={{ cursor: "pointer" }} />
       <Menu
-        id="simple-menu"
         anchorEl={anchorEl}
         keepMounted
         open={open}
@@ -40,9 +39,11 @@ export default function MobileMenu() {
         }}
       >
         {Object.keys(menuItems).map((v: any, k: number) => (
-          <MenuItem key={k} onClick={() => null} component={"span"}>
-            <Link to={menuItems[v]}>{t(v)}</Link>
-          </MenuItem>
+          <Link to={menuItems[v]}>
+            <MenuItem key={k} onClick={() => null} component={"span"}>
+              {t(v)}
+            </MenuItem>
+          </Link>
         ))}
       </Menu>
     </>
