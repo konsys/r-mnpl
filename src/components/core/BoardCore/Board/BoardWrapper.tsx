@@ -26,7 +26,15 @@ export const BoardWrapper = () => {
 
   return (
     <>
-      <div className="boardWrapper" style={{ width: "100%", height: "100%" }}>
+      <div
+        className="boardWrapper"
+        style={{ width: "100%", height: "100%" }}
+        mnpl-newcolors="1"
+        cz-shortcut-listen="true"
+        mnpl-mouse="1"
+        data-os="null"
+        data-browser="chrome"
+      >
         <div className="table _shakehack">
           <div className="table-body">
             <PlayersCore />
