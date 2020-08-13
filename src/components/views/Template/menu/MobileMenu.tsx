@@ -41,7 +41,7 @@ export default function MobileMenu() {
         {Object.keys(menuItems).map((v: any, k: number) => (
           <Link to={menuItems[v]}>
             <MenuItem key={k} onClick={() => null} component={"span"}>
-              <Typography color={"textPrimary"}>{t(v)}</Typography>
+              <Typography color={"textSecondary"}>{t(v)}</Typography>
             </MenuItem>
           </Link>
         ))}

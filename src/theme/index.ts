@@ -1,4 +1,4 @@
-import { purple, teal } from "@material-ui/core/colors";
+import { grey, purple, red, teal } from "@material-ui/core/colors";
 
 import { createMuiTheme } from "@material-ui/core";
 
@@ -24,6 +24,14 @@ export const theme = createMuiTheme({
     },
     secondary: {
       main: purple[500],
+    },
+    text: {
+      primary: grey[600],
+      secondary: grey[500],
+      disabled: grey[300],
+    },
+    error: {
+      main: red[500],
     },
   },
   props: {

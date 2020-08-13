@@ -12,7 +12,7 @@ export default function TopMenu() {
       {Object.keys(menuItems).map((v: any, k: number) => (
         <Grid item key={k}>
           <Link to={menuItems[v]}>
-            <Typography color={"textPrimary"}>{t(v)} </Typography>
+            <Typography color={"textSecondary"}>{t(v)} </Typography>
           </Link>
         </Grid>
       ))}

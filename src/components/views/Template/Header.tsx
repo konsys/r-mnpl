@@ -31,17 +31,7 @@ export default function Header() {
         </Hidden>
         <Hidden smDown>
           <Grid item sm={2}>
-            <a href="/" className="">
-              <Grid
-                container
-                justify="center"
-                alignItems="center"
-                direction="row"
-                spacing={2}
-              >
-                <Logo />
-              </Grid>
-            </a>
+            <Logo />
           </Grid>
         </Hidden>
         <Grid item xs={3} sm={2}>
