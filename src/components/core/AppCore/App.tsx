@@ -1,4 +1,3 @@
-import "./App.scss";
 import "fontsource-roboto";
 
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
@@ -7,6 +6,7 @@ import { Board } from "../BoardCore/Board";
 import { Game } from "../Game/Game";
 import { Login } from "../Registration/Login/Login";
 import { MuiThemeProvider } from "@material-ui/core";
+import NotFound from "../../views/Errors/NotFound";
 import React from "react";
 import { theme } from "../../../theme";
 
@@ -20,6 +20,7 @@ const App = () => {
             <Route exact path="/login" component={Login} />
             <Route exact path="/board" component={Board} />
             <Route exact path="/games" component={Game} />
+            <Route path="/" component={NotFound} />
           </Switch>
         </Router>
       </MuiThemeProvider>
