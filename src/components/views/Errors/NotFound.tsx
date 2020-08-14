@@ -1,4 +1,4 @@
-import { Button, Grid, Typography } from "@material-ui/core";
+import { Button, Grid, Hidden, Typography } from "@material-ui/core";
 
 import { GRID_SPACING } from "../../../theme";
 import { Helmet } from "react-helmet";
@@ -17,19 +17,38 @@ export default function NotFound() {
       direction="column"
       spacing={GRID_SPACING}
     >
-      <Grid item style={{ height: "200px", width: "500px" }}>
+      <Grid item style={{ height: "25%", width: "50%" }}>
         <NotFoundIcon />
       </Grid>
-      <Grid item>
-        <Typography variant="h4" gutterBottom>
-          {t("Page not found")}
-        </Typography>
-      </Grid>
-      <Grid item>
-        <Typography variant="body1">
-          {t("This page doesn`t exist yet")}
-        </Typography>
-      </Grid>
+      <Hidden smDown>
+        <Grid item>
+          <Typography variant="h4" gutterBottom>
+            {t("Page not found")}
+          </Typography>
+        </Grid>
+      </Hidden>
+      <Hidden mdUp>
+        <Grid item>
+          <Typography variant="body1" gutterBottom>
+            {t("Page not found")}
+          </Typography>
+        </Grid>
+      </Hidden>
+
+      <Hidden smDown>
+        <Grid item>
+          <Typography variant="body1">
+            {t("This page doesn`t exist yet")}
+          </Typography>
+        </Grid>{" "}
+      </Hidden>
+      <Hidden mdUp>
+        <Grid item>
+          <Typography variant="body2">
+            {t("This page doesn`t exist yet")}
+          </Typography>
+        </Grid>{" "}
+      </Hidden>
       <Grid item>
         <Button size={"medium"} variant="contained" color="primary">
           <Typography variant="body2" noWrap>

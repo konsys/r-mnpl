@@ -20,7 +20,7 @@ export default function OneColumnContent({ children }: { children: any }) {
           direction="row"
           spacing={GRID_SPACING}
         >
-          <Grid item sm={12}>
+          <Grid item xs={12}>
             <Card variant="outlined">
               <CardContent>{children}</CardContent>
             </Card>
