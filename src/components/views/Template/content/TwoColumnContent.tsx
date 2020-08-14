@@ -6,6 +6,7 @@ import FriendsOnline from "../../GameVievs/LeftBlock/FriendsOnline";
 import LeftBlock from "./LeftBlock";
 import React from "react";
 import RightBlock from "./RightBlock";
+import TopFive from "../../GameVievs/LeftBlock/TopFive";
 
 // xs: 0
 // sm: 600
@@ -30,10 +31,16 @@ export default function TwoColumnContent({ children }: { children?: any[] }) {
           direction="row"
           spacing={GRID_SPACING}
         >
-          <LeftBlock>
-            <FriendsOnline />
-          </LeftBlock>
-
+          <Grid item md={4} sm={12} xs={12}>
+            <Grid container direction="column" spacing={GRID_SPACING}>
+              <LeftBlock>
+                <FriendsOnline />
+              </LeftBlock>
+              <LeftBlock>
+                <TopFive />
+              </LeftBlock>
+            </Grid>
+          </Grid>
           <Grid item md={8} sm={12} xs={12}>
             <Grid container direction="column" spacing={GRID_SPACING}>
               <RightBlock>

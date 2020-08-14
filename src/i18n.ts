@@ -11,6 +11,8 @@ i18n
       ru: {
         translations: {
           Friends: "Друзья",
+          "Friends online": "Друзья онлайн",
+          "No friends online": "Нет друзей онлайн",
           "Search games": "Поиск игр",
           Inventory: "Инвентарь",
           M1TV: "M1TV",
@@ -20,6 +22,10 @@ i18n
           "Page not found": "Страница не найдена",
           "To main page": "На главную",
           "This page doesn`t exist yet": "Вы попали на несуществующую страницу",
+          "Week top": "Топ недели",
+          More: "Подробнее",
+          "You are not in Top Five":
+            "Вы не входите в топ игроков недели — сначала выиграйте матч на четыре или пять игроков.",
         },
       },
     },
