@@ -1,5 +1,6 @@
 import "./styles/styles.scss";
 
+import BuyGallery from "../GameVievs/BuyGallery";
 import Content from "./Content";
 import Counters from "./Counters";
 import Footer from "./Footer";
@@ -16,6 +17,7 @@ export default function Template({
   return (
     <>
       <Header />
+      <BuyGallery />
       <Content leftBlocks={leftBlocks} centerBlocks={centerBlocks} />
       <Footer />
       <Counters />
