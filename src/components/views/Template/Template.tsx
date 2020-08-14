@@ -4,9 +4,9 @@ import Counters from "./Counters";
 import Footer from "./Footer";
 import Header from "./Header";
 import { Helmet } from "react-helmet";
-import OneColumnContent from "./OneColumnContent";
+import OneColumnContent from "./content/OneColumnContent";
 import React from "react";
-import TwoColumnContent from "./TwoColumnContent";
+import TwoColumnContent from "./content/TwoColumnContent";
 import { useTranslation } from "react-i18next";
 
 export default function Template({

@@ -1,4 +1,4 @@
-import { BLOCK_SIZE, GRID_SPACING } from "../../../theme";
+import { BLOCK_SIZE, GRID_SPACING } from "../../../../theme";
 import { Box, Card, CardContent, Container, Grid } from "@material-ui/core";
 
 import React from "react";
