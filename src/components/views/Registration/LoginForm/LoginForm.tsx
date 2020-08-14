@@ -96,7 +96,7 @@ export const LoginForm = ({ onSubmit }: IProps) => {
 
   return (
     <>
-      <Template centerBlocks={[comp]} />
+      <Template>{comp}</Template>
     </>
   );
 };

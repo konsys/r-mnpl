@@ -1,6 +1,7 @@
 import { BLOCK_SIZE, GRID_SPACING } from "../../../theme";
 import { Box, Card, CardContent, Container, Grid } from "@material-ui/core";
 
+import BuyGallery from "../GameVievs/BuyGallery";
 import React from "react";
 
 // xs: 0
@@ -9,14 +10,8 @@ import React from "react";
 // lg: 1280
 // xl: 1920
 
-export default function Content({
-  leftBlocks,
-  centerBlocks,
-}: {
-  leftBlocks?: any[];
-  centerBlocks: any[];
-}) {
-  const centerWidth = leftBlocks?.length ? 8 : 12;
+export default function Content({ children }: { children?: any[] }) {
+  const centerWidth = children ? 8 : 12;
   return (
     <Box
       m={0}
@@ -33,28 +28,27 @@ export default function Content({
           direction="row"
           spacing={GRID_SPACING}
         >
-          {leftBlocks && leftBlocks.length && (
+          {children && (
             <Grid item md={4}>
               <Grid container direction="column" spacing={GRID_SPACING}>
-                {leftBlocks.map((v) => (
-                  <Grid item>
-                    <Card variant="outlined">
-                      <CardContent>{v}</CardContent>
-                    </Card>
-                  </Grid>
-                ))}
+                <Grid item>
+                  <Card variant="outlined">
+                    <CardContent>{children}</CardContent>
+                  </Card>
+                </Grid>
+                ); }
               </Grid>
             </Grid>
           )}
           <Grid item md={centerWidth}>
             <Grid container direction="column" spacing={GRID_SPACING}>
-              {centerBlocks.map((v) => (
-                <Grid item>
-                  <Card variant="outlined">
-                    <CardContent>{v}</CardContent>
-                  </Card>
-                </Grid>
-              ))}
+              <Grid item>
+                <Card variant="outlined">
+                  <CardContent>
+                    <BuyGallery />
+                  </CardContent>
+                </Card>
+              </Grid>
             </Grid>
           </Grid>
         </Grid>

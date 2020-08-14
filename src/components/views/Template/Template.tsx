@@ -1,24 +1,17 @@
 import "./styles/styles.scss";
 
-import BuyGallery from "../GameVievs/BuyGallery";
 import Content from "./Content";
 import Counters from "./Counters";
 import Footer from "./Footer";
 import Header from "./Header";
 import React from "react";
 
-export default function Template({
-  leftBlocks,
-  centerBlocks,
-}: {
-  leftBlocks?: any[];
-  centerBlocks: any[];
-}) {
+export default function Template({ children }: { children?: any }) {
   return (
     <>
       <Header />
-      <BuyGallery />
-      <Content leftBlocks={leftBlocks} centerBlocks={centerBlocks} />
+
+      <Content>{children}</Content>
       <Footer />
       <Counters />
       <div className="designDialog" style={{ display: "none" }} />
