@@ -13,7 +13,7 @@ export default function OneColumnContent({ children }: { children: any }) {
   return (
     <>
       <Box mx="auto" mt={GRID_SPACING}>
-        <Container maxWidth={BLOCK_SIZE.lg}>
+        <Container maxWidth={BLOCK_SIZE.md}>
           <Grid
             container
             justify="center"

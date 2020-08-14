@@ -2,6 +2,7 @@ import { BLOCK_SIZE, GRID_SPACING } from "../../../theme";
 import { Box, Card, CardContent, Container, Grid } from "@material-ui/core";
 
 import BuyGallery from "../GameVievs/BuyGallery";
+import FriendsOnline from "../GameVievs/LeftBlock/FriendsOnline";
 import React from "react";
 
 // xs: 0
@@ -19,7 +20,7 @@ export default function TwoColumnContent({ children }: { children?: any[] }) {
       flexDirection="row"
       className="games-template"
     >
-      <Container maxWidth={BLOCK_SIZE.lg}>
+      <Container maxWidth={BLOCK_SIZE.md}>
         <Grid
           container
           justify="center"
@@ -32,7 +33,9 @@ export default function TwoColumnContent({ children }: { children?: any[] }) {
               <Grid container direction="column" spacing={GRID_SPACING}>
                 <Grid item>
                   <Card variant="outlined">
-                    <CardContent>left</CardContent>
+                    <CardContent>
+                      <FriendsOnline />
+                    </CardContent>
                   </Card>
                 </Grid>
               </Grid>
