@@ -6,10 +6,12 @@ import React from "react";
 export default function FriendsOnline() {
   return (
     <>
-      <Grid container spacing={GRID_SPACING} justify="center">
+      <Grid container justify="center" spacing={GRID_SPACING}>
         <Grid item>
           <Typography variant={"h6"}>Друзья онлайн</Typography>
         </Grid>
+      </Grid>
+      <Grid container justify="flex-start" spacing={GRID_SPACING}>
         <Grid item>
           <Typography variant={"body2"}>Нет друзей онлайн.</Typography>
         </Grid>
