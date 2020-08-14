@@ -1,10 +1,12 @@
 import { BLOCK_SIZE, GRID_SPACING } from "../../../theme";
 import { Box, Button, Container, Grid, Hidden } from "@material-ui/core";
 
+import { Link } from "react-router-dom";
 import Logo from "./logo/Logo";
 import MobileMenu from "./menu/MobileMenu";
 import React from "react";
 import TopMenu from "./menu/TopMenu";
+import { useHistory } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 // xs: 0
@@ -15,6 +17,8 @@ import { useTranslation } from "react-i18next";
 
 export default function Header() {
   const { t } = useTranslation();
+
+  const history = useHistory();
   return (
     <Box
       m={0}
@@ -50,6 +54,7 @@ export default function Header() {
               variant="outlined"
               color="primary"
               style={{ whiteSpace: "nowrap" }}
+              onClick={() => history.push("games")}
             >
               {t("Search games")}
             </Button>
@@ -71,7 +76,12 @@ export default function Header() {
 
           <Grid item md={2} sm={4} xs={5}>
             <Grid container justify="flex-end">
-              <Button variant="outlined" color="primary">
+              <Button
+                variant="outlined"
+                color="primary"
+                size={"small"}
+                onClick={() => history.push("login")}
+              >
                 {t("Login")}
               </Button>
             </Grid>

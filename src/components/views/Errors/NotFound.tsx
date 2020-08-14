@@ -31,9 +31,9 @@ export default function NotFound() {
         </Typography>
       </Grid>
       <Grid item>
-        <Button size={"small"} variant="contained" color="primary">
+        <Button size={"medium"} variant="contained" color="primary">
           <Typography variant="body2" noWrap>
-            {t("To main page")}{" "}
+            {t("To main page")}
           </Typography>
         </Button>
       </Grid>
