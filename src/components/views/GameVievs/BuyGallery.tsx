@@ -12,7 +12,7 @@ import { autoPlay } from "react-swipeable-views-utils";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
-const tutorialSteps = [
+const buySteps = [
   {
     label: "San Francisco – Oakland Bay Bridge, United States",
     imgPath:
@@ -42,7 +42,6 @@ const tutorialSteps = [
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 400,
     flexGrow: 1,
   },
   header: {
@@ -55,7 +54,6 @@ const useStyles = makeStyles((theme) => ({
   img: {
     height: 255,
     display: "block",
-    maxWidth: 400,
     overflow: "hidden",
     width: "100%",
   },
@@ -64,7 +62,7 @@ export default function BuyGallery() {
   const classes = useStyles();
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
-  const maxSteps = tutorialSteps.length;
+  const maxSteps = buySteps.length;
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -77,18 +75,20 @@ export default function BuyGallery() {
   const handleStepChange = (step: any) => {
     setActiveStep(step);
   };
+
   return (
     <div className={classes.root}>
       <Paper square elevation={0} className={classes.header}>
-        <Typography>{tutorialSteps[activeStep].label}</Typography>
+        <Typography>{buySteps[activeStep].label}</Typography>
       </Paper>
       <AutoPlaySwipeableViews
+        interval={15000}
         axis={theme.direction === "rtl" ? "x-reverse" : "x"}
         index={activeStep}
         onChangeIndex={handleStepChange}
         enableMouseEvents
       >
-        {tutorialSteps.map((step, index) => (
+        {buySteps.map((step, index) => (
           <div key={step.label}>
             {Math.abs(activeStep - index) <= 2 ? (
               <img
@@ -103,7 +103,7 @@ export default function BuyGallery() {
       <MobileStepper
         steps={maxSteps}
         position="static"
-        variant="text"
+        variant="progress"
         activeStep={activeStep}
         nextButton={
           <Button
@@ -111,7 +111,6 @@ export default function BuyGallery() {
             onClick={handleNext}
             disabled={activeStep === maxSteps - 1}
           >
-            Next
             {theme.direction === "rtl" ? (
               <KeyboardArrowLeft />
             ) : (
@@ -126,7 +125,6 @@ export default function BuyGallery() {
             ) : (
               <KeyboardArrowLeft />
             )}
-            Back
           </Button>
         }
       />

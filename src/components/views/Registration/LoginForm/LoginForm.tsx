@@ -96,7 +96,7 @@ export const LoginForm = ({ onSubmit }: IProps) => {
 
   return (
     <>
-      <Template>{comp}</Template>
+      <Template columns={1}>{comp}</Template>
     </>
   );
 };

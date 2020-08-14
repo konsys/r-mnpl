@@ -10,8 +10,7 @@ import React from "react";
 // lg: 1280
 // xl: 1920
 
-export default function Content({ children }: { children?: any[] }) {
-  const centerWidth = children ? 8 : 12;
+export default function OneColumnContent({ children }: { children: any }) {
   return (
     <Box
       m={0}
@@ -20,33 +19,26 @@ export default function Content({ children }: { children?: any[] }) {
       flexDirection="row"
       className="games-template"
     >
-      <Container maxWidth={BLOCK_SIZE.md}>
+      <Container maxWidth={BLOCK_SIZE.lg}>
         <Grid
           container
           justify="center"
-          alignItems="center"
+          alignItems="flex-start"
           direction="row"
           spacing={GRID_SPACING}
         >
-          {children && (
-            <Grid item md={4}>
-              <Grid container direction="column" spacing={GRID_SPACING}>
-                <Grid item>
-                  <Card variant="outlined">
-                    <CardContent>{children}</CardContent>
-                  </Card>
-                </Grid>
-                ); }
-              </Grid>
-            </Grid>
-          )}
-          <Grid item md={centerWidth}>
+          <Grid item>
             <Grid container direction="column" spacing={GRID_SPACING}>
               <Grid item>
                 <Card variant="outlined">
                   <CardContent>
                     <BuyGallery />
                   </CardContent>
+                </Card>
+              </Grid>
+              <Grid item>
+                <Card variant="outlined">
+                  <CardContent>{children}</CardContent>
                 </Card>
               </Grid>
             </Grid>

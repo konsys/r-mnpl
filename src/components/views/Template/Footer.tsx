@@ -12,7 +12,7 @@ export default function Footer() {
       flexDirection="row"
       className="games-template"
     >
-      <Container maxWidth={BLOCK_SIZE.md}>
+      <Container maxWidth={BLOCK_SIZE.lg}>
         <Grid
           container
           justify="flex-start"

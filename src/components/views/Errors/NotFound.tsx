@@ -44,7 +44,7 @@ export default function NotFound() {
       <Helmet>
         <title>{t("Page not found")}</title>
       </Helmet>
-      <Template>{component}</Template>
+      <Template columns={1}>{component}</Template>
     </>
   );
 }
