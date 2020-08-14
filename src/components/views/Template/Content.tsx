@@ -13,9 +13,10 @@ export default function Content({
   leftBlocks,
   centerBlocks,
 }: {
-  leftBlocks: any[];
+  leftBlocks?: any[];
   centerBlocks: any[];
 }) {
+  const centerWidth = leftBlocks?.length ? 8 : 12;
   return (
     <Box
       m={0}
@@ -32,18 +33,20 @@ export default function Content({
           direction="row"
           spacing={GRID_SPACING}
         >
-          <Grid item md={4} spacing={10}>
-            <Grid container direction="column" spacing={GRID_SPACING}>
-              {leftBlocks.map((v) => (
-                <Grid item>
-                  <Card variant="outlined">
-                    <CardContent>{v}</CardContent>
-                  </Card>
-                </Grid>
-              ))}
+          {leftBlocks && leftBlocks.length && (
+            <Grid item md={4}>
+              <Grid container direction="column" spacing={GRID_SPACING}>
+                {leftBlocks.map((v) => (
+                  <Grid item>
+                    <Card variant="outlined">
+                      <CardContent>{v}</CardContent>
+                    </Card>
+                  </Grid>
+                ))}
+              </Grid>
             </Grid>
-          </Grid>
-          <Grid item md={8}>
+          )}
+          <Grid item md={centerWidth}>
             <Grid container direction="column" spacing={GRID_SPACING}>
               {centerBlocks.map((v) => (
                 <Grid item>

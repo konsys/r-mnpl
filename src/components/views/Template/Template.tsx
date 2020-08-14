@@ -6,17 +6,20 @@ import Footer from "./Footer";
 import Header from "./Header";
 import React from "react";
 
-export default function Template({ children }: { children: any }) {
+export default function Template({
+  leftBlocks,
+  centerBlocks,
+}: {
+  leftBlocks?: any[];
+  centerBlocks: any[];
+}) {
   return (
     <>
       <Header />
-      <Content
-        leftBlocks={["leftBlock1", "leftContent2"]}
-        centerBlocks={[children, children]}
-      />
+      <Content leftBlocks={leftBlocks} centerBlocks={centerBlocks} />
       <Footer />
       <Counters />
-      <div className="designDialog" style={{ display: "none" }}></div>{" "}
+      <div className="designDialog" style={{ display: "none" }} />
     </>
   );
 }
