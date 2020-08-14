@@ -33,14 +33,7 @@ export default function Content({
           spacing={GRID_SPACING}
         >
           <Grid item md={4} spacing={10}>
-            <Grid
-              container
-              // justify="center"
-              // alignItems="center"
-              // alignContent="stretch"
-              direction="column"
-              spacing={GRID_SPACING}
-            >
+            <Grid container direction="column" spacing={GRID_SPACING}>
               {leftBlocks.map((v) => (
                 <Grid item>
                   <Card variant="outlined">
@@ -51,13 +44,7 @@ export default function Content({
             </Grid>
           </Grid>
           <Grid item md={8}>
-            <Grid
-              container
-              // justify="center"
-              // alignItems="center"
-              direction="column"
-              spacing={GRID_SPACING}
-            >
+            <Grid container direction="column" spacing={GRID_SPACING}>
               {centerBlocks.map((v) => (
                 <Grid item>
                   <Card variant="outlined">
