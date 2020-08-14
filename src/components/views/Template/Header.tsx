@@ -33,7 +33,6 @@ export default function Header() {
           justify="flex-start"
           alignItems="center"
           direction="row"
-          spacing={GRID_SPACING}
         >
           <Hidden smDown>
             <Grid item md={3}>

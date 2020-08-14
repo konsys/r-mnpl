@@ -1,7 +1,6 @@
 import { BLOCK_SIZE, GRID_SPACING } from "../../../theme";
 import { Box, Card, CardContent, Container, Grid } from "@material-ui/core";
 
-import BuyGallery from "../GameVievs/BuyGallery";
 import React from "react";
 
 // xs: 0
@@ -12,13 +11,7 @@ import React from "react";
 
 export default function OneColumnContent({ children }: { children: any }) {
   return (
-    <Box
-      m={0}
-      p={GRID_SPACING}
-      display="flex"
-      flexDirection="row"
-      className="games-template"
-    >
+    <Box mx="auto" mt={GRID_SPACING}>
       <Container maxWidth={BLOCK_SIZE.lg}>
         <Grid
           container
@@ -27,21 +20,10 @@ export default function OneColumnContent({ children }: { children: any }) {
           direction="row"
           spacing={GRID_SPACING}
         >
-          <Grid item>
-            <Grid container direction="column" spacing={GRID_SPACING}>
-              <Grid item>
-                <Card variant="outlined">
-                  <CardContent>
-                    <BuyGallery />
-                  </CardContent>
-                </Card>
-              </Grid>
-              <Grid item>
-                <Card variant="outlined">
-                  <CardContent>{children}</CardContent>
-                </Card>
-              </Grid>
-            </Grid>
+          <Grid item sm={12}>
+            <Card variant="outlined">
+              <CardContent>{children}</CardContent>
+            </Card>
           </Grid>
         </Grid>
       </Container>
