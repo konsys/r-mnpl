@@ -1,4 +1,4 @@
-import { FindGames } from "../../views/FindGames/FindGames";
+import { FindGames } from "../../views/GameVievs/FindGames";
 import React from "react";
 
 export const Game = () => {

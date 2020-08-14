@@ -1,7 +1,6 @@
 import { BLOCK_SIZE, GRID_SPACING } from "../../../theme";
 import { Box, Button, Container, Grid, Hidden } from "@material-ui/core";
 
-import { Link } from "react-router-dom";
 import Logo from "./logo/Logo";
 import MobileMenu from "./menu/MobileMenu";
 import React from "react";
