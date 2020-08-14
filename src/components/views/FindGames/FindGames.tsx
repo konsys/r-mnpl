@@ -1,6 +1,6 @@
 import React from "react";
 import Template from "../Template/Template";
 
-export const GameView = () => {
+export const FindGames = () => {
   return <Template centerBlocks={["GameViewChildren"]} />;
 };

@@ -1,6 +1,6 @@
-import { GameView } from "../../views/Game/GameView";
+import { FindGames } from "../../views/FindGames/FindGames";
 import React from "react";
 
 export const Game = () => {
-  return <GameView />;
+  return <FindGames />;
 };

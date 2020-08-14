@@ -15,6 +15,7 @@ i18n
           Inventory: "Инвентарь",
           M1TV: "M1TV",
           Login: "Войти",
+          Market: "Маркет",
         },
       },
     },

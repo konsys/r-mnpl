@@ -6,9 +6,10 @@ import MenuIcon from "@material-ui/icons/Menu";
 import { useTranslation } from "react-i18next";
 
 export const menuItems: any = {
-  M1TV: "/games",
-  Friends: "/games",
-  Inventory: "/games",
+  M1TV: "/m1tv",
+  Friends: "/friends",
+  Inventory: "/invemtory",
+  Market: "/market",
 };
 
 const ITEM_HEIGHT = 48;
@@ -40,7 +41,7 @@ export default function MobileMenu() {
       >
         {Object.keys(menuItems).map((v: any, k: number) => (
           <Link to={menuItems[v]}>
-            <MenuItem key={k} onClick={() => null} component={"span"}>
+            <MenuItem key={k} component={"span"}>
               <Typography color={"textSecondary"}>{t(v)}</Typography>
             </MenuItem>
           </Link>
