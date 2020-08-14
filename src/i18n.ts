@@ -16,6 +16,7 @@ i18n
           M1TV: "M1TV",
           Login: "Войти",
           Market: "Маркет",
+          "Find games": "Поиск игр",
           "Page not found": "Страница не найдена",
           "To main page": "На главную",
           "This page doesn`t exist yet": "Вы попали на несуществующую страницу",

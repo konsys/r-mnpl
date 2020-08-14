@@ -1,7 +1,6 @@
 import { Button, Grid, Hidden, Typography } from "@material-ui/core";
 
 import { GRID_SPACING } from "../../../theme";
-import { Helmet } from "react-helmet";
 import { ReactComponent as NotFoundIcon } from "../../../theme/svg/404.svg";
 import React from "react";
 import Template from "../Template/Template";
@@ -60,10 +59,12 @@ export default function NotFound() {
   );
   return (
     <>
-      <Helmet>
+      {/* <Helmet>
         <title>{t("Page not found")}</title>
-      </Helmet>
-      <Template columns={1}>{component}</Template>
+      </Helmet> */}
+      <Template columns={1} title={"Page not found"}>
+        {component}
+      </Template>
     </>
   );
 }

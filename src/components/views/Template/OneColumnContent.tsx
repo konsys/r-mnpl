@@ -11,22 +11,24 @@ import React from "react";
 
 export default function OneColumnContent({ children }: { children: any }) {
   return (
-    <Box mx="auto" mt={GRID_SPACING}>
-      <Container maxWidth={BLOCK_SIZE.lg}>
-        <Grid
-          container
-          justify="center"
-          alignItems="flex-start"
-          direction="row"
-          spacing={GRID_SPACING}
-        >
-          <Grid item xs={12}>
-            <Card variant="outlined">
-              <CardContent>{children}</CardContent>
-            </Card>
+    <>
+      <Box mx="auto" mt={GRID_SPACING}>
+        <Container maxWidth={BLOCK_SIZE.lg}>
+          <Grid
+            container
+            justify="center"
+            alignItems="flex-start"
+            direction="row"
+            spacing={GRID_SPACING}
+          >
+            <Grid item xs={12}>
+              <Card variant="outlined">
+                <CardContent>{children}</CardContent>
+              </Card>
+            </Grid>
           </Grid>
-        </Grid>
-      </Container>
-    </Box>
+        </Container>
+      </Box>
+    </>
   );
 }
