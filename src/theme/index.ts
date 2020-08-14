@@ -17,6 +17,10 @@ export enum BREAK_SIZES {
   xl = "1920",
 }
 
+export const GRID_SPACING = 3;
+export const BOX_MARGIN = 3;
+export const BOX_PADDING = 3;
+
 export const theme = createMuiTheme({
   palette: {
     primary: {

@@ -1,21 +1,74 @@
-import { Container, Grid, Paper } from "@material-ui/core";
+import { BLOCK_SIZE, GRID_SPACING } from "../../../theme";
+import { Box, Card, CardContent, Container, Grid } from "@material-ui/core";
 
-import { BLOCK_SIZE } from "../../../theme";
 import React from "react";
 
-export default function Content() {
+// xs: 0
+// sm: 600
+// md: 960
+// lg: 1280
+// xl: 1920
+
+export default function Content({
+  leftBlocks,
+  centerBlocks,
+}: {
+  leftBlocks: any[];
+  centerBlocks: any[];
+}) {
   return (
-    <Container maxWidth={BLOCK_SIZE.md}>
-      <Grid
-        container
-        justify="flex-start"
-        alignItems="center"
-        direction="row"
-        spacing={2}
-      ></Grid>
-      <Paper elevation={0}>1</Paper>
-      <Paper elevation={1}>2</Paper>
-      <Paper elevation={2}>3</Paper>
-    </Container>
+    <Box
+      m={0}
+      p={GRID_SPACING}
+      display="flex"
+      flexDirection="row"
+      className="games-template"
+    >
+      <Container maxWidth={BLOCK_SIZE.md}>
+        <Grid
+          container
+          justify="center"
+          alignItems="center"
+          direction="row"
+          spacing={GRID_SPACING}
+        >
+          <Grid item md={4} spacing={10}>
+            <Grid
+              container
+              // justify="center"
+              // alignItems="center"
+              // alignContent="stretch"
+              direction="column"
+              spacing={GRID_SPACING}
+            >
+              {leftBlocks.map((v) => (
+                <Grid item>
+                  <Card variant="outlined">
+                    <CardContent>{v}</CardContent>
+                  </Card>
+                </Grid>
+              ))}
+            </Grid>
+          </Grid>
+          <Grid item md={8}>
+            <Grid
+              container
+              // justify="center"
+              // alignItems="center"
+              direction="column"
+              spacing={GRID_SPACING}
+            >
+              {centerBlocks.map((v) => (
+                <Grid item>
+                  <Card variant="outlined">
+                    <CardContent>{v}</CardContent>
+                  </Card>
+                </Grid>
+              ))}
+            </Grid>
+          </Grid>
+        </Grid>
+      </Container>
+    </Box>
   );
 }

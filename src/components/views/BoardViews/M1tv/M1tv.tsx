@@ -34,7 +34,7 @@ export const M1tv = (props: any) => (
       </div>
       <div className="table-body-board-m1tv-speed">
         <div className="_btn">–</div>
-        <div className="_val">1</div>
+        <div className="_val">M!</div>
         <div className="_btn">+</div>
       </div>
     </div>

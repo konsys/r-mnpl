@@ -1,6 +1,6 @@
+import { BLOCK_SIZE, GRID_SPACING } from "../../../theme";
 import { Box, Button, Container, Grid, Hidden } from "@material-ui/core";
 
-import { BLOCK_SIZE } from "../../../theme";
 import Logo from "./logo/Logo";
 import MobileMenu from "./menu/MobileMenu";
 import React from "react";
@@ -18,7 +18,7 @@ export default function Header() {
   return (
     <Box
       m={0}
-      p={2}
+      p={1}
       display="flex"
       flexDirection="row"
       style={{ backgroundColor: "white" }}
@@ -30,7 +30,7 @@ export default function Header() {
           justify="flex-start"
           alignItems="center"
           direction="row"
-          spacing={2}
+          spacing={GRID_SPACING}
         >
           <Hidden smDown>
             <Grid item md={3}>
@@ -62,7 +62,7 @@ export default function Header() {
                 justify="center"
                 alignItems="center"
                 direction="row"
-                spacing={2}
+                spacing={GRID_SPACING}
               >
                 <TopMenu />
               </Grid>

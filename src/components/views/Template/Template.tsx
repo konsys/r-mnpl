@@ -10,7 +10,10 @@ export default function Template({ children }: { children: any }) {
   return (
     <>
       <Header />
-      <Content /> {children}
+      <Content
+        leftBlocks={["leftBlock1", "leftContent2"]}
+        centerBlocks={[children, children]}
+      />
       <Footer />
       <Counters />
       <div className="designDialog" style={{ display: "none" }}></div>{" "}
