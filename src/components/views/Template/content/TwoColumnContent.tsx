@@ -2,10 +2,10 @@ import { BLOCK_SIZE, GRID_SPACING } from "../../../../theme";
 import { Box, Container, Grid } from "@material-ui/core";
 
 import BuyGallery from "../../../core/Game/BuyGallery/BuyGallery";
+import ContentBlock from "./ContentBlock";
 import FriendsOnline from "../../GameVievs/LeftBlock/FriendsOnline";
 import LeftBlock from "./LeftBlock";
 import React from "react";
-import RightBlock from "./RightBlock";
 import TopFive from "../../GameVievs/LeftBlock/TopFive";
 
 // xs: 0
@@ -43,10 +43,10 @@ export default function TwoColumnContent({ children }: { children?: any[] }) {
           </Grid>
           <Grid item md={8} sm={12} xs={12}>
             <Grid container direction="column" spacing={GRID_SPACING}>
-              <RightBlock>
+              <ContentBlock>
                 <BuyGallery />
-              </RightBlock>
-              <RightBlock>{children}</RightBlock>
+              </ContentBlock>
+              <ContentBlock>{children}</ContentBlock>
             </Grid>
           </Grid>
         </Grid>
