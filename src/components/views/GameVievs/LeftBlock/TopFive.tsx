@@ -20,9 +20,10 @@ export default function TopFive() {
           <Typography variant={"h6"}>{t("Week top")}</Typography>
         </Grid>
         <Grid item>
-          <Link to="/top-five">
-            <Typography variant={"body2"}>{t("More")}</Typography>
-          </Link>
+          <Typography variant={"body2"}>
+            {" "}
+            <Link to="/top-five">{t("More")}</Link>
+          </Typography>
         </Grid>
       </Grid>
       <Grid container justify="flex-start" spacing={GRID_SPACING}>

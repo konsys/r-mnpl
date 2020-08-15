@@ -1,5 +1,5 @@
 import React from "react";
-import Template from "../Template/Template";
+import Template from "../../../views/Template/Template";
 import { useTranslation } from "react-i18next";
 
 export default function TopFivePage() {

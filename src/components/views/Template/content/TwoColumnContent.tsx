@@ -1,7 +1,7 @@
 import { BLOCK_SIZE, GRID_SPACING } from "../../../../theme";
 import { Box, Container, Grid } from "@material-ui/core";
 
-import BuyGallery from "../../GameVievs/BuyGallery";
+import BuyGallery from "../../../core/Game/BuyGallery/BuyGallery";
 import FriendsOnline from "../../GameVievs/LeftBlock/FriendsOnline";
 import LeftBlock from "./LeftBlock";
 import React from "react";

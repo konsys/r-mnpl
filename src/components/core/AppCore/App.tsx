@@ -1,4 +1,5 @@
 import "fontsource-roboto";
+import "./app.scss";
 
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 
@@ -8,7 +9,7 @@ import { Login } from "../Registration/Login/Login";
 import { MuiThemeProvider } from "@material-ui/core";
 import NotFound from "../../views/Errors/NotFound";
 import React from "react";
-import TopFivePage from "../../views/TopFivePage/TopFivePage";
+import TopFivePage from "../Game/TopFivePage/TopFivePage";
 import { theme } from "../../../theme";
 
 const App = () => {
