@@ -1,6 +1,7 @@
 import { Grid, Typography } from "@material-ui/core";
 
 import { GRID_SPACING } from "../../../../theme";
+import { Link } from "react-router-dom";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
@@ -19,7 +20,9 @@ export default function TopFive() {
           <Typography variant={"h6"}>{t("Week top")}</Typography>
         </Grid>
         <Grid item>
-          <Typography variant={"body2"}>{t("More")}</Typography>
+          <Link to="/top-five">
+            <Typography variant={"body2"}>{t("More")}</Typography>
+          </Link>
         </Grid>
       </Grid>
       <Grid container justify="flex-start" spacing={GRID_SPACING}>

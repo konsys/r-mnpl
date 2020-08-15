@@ -8,6 +8,7 @@ import { Login } from "../Registration/Login/Login";
 import { MuiThemeProvider } from "@material-ui/core";
 import NotFound from "../../views/Errors/NotFound";
 import React from "react";
+import TopFivePage from "../../views/TopFivePage/TopFivePage";
 import { theme } from "../../../theme";
 
 const App = () => {
@@ -20,6 +21,7 @@ const App = () => {
             <Route exact path="/login" component={Login} />
             <Route exact path="/board" component={Board} />
             <Route exact path="/games" component={Game} />
+            <Route path="/top-five" component={TopFivePage} />
             <Route path="/" component={NotFound} />
           </Switch>
         </Router>

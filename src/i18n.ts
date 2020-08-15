@@ -14,6 +14,7 @@ i18n
           "Friends online": "Друзья онлайн",
           "No friends online": "Нет друзей онлайн",
           "Search games": "Поиск игр",
+          "Top Five": "Лучшие игроки",
           Inventory: "Инвентарь",
           M1TV: "M1TV",
           Login: "Войти",
