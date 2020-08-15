@@ -10,6 +10,7 @@ i18n
     resources: {
       ru: {
         translations: {
+          Chat: "Чат",
           Friends: "Друзья",
           "Friends online": "Друзья онлайн",
           "No friends online": "Нет друзей онлайн",
