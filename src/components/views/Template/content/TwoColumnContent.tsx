@@ -18,8 +18,7 @@ import TopFive from "../../GameVievs/LeftBlock/TopFive";
 export default function TwoColumnContent({ children }: { children?: any[] }) {
   return (
     <Box
-      m={0}
-      p={GRID_SPACING}
+      mt={GRID_SPACING}
       display="flex"
       flexDirection="row"
       className="games-template"
