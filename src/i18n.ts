@@ -11,6 +11,7 @@ i18n
       ru: {
         translations: {
           Chat: "Чат",
+          "Type message and press Enter": "Введите сообщение и нажмите Enter",
           "now online": "сейчас онлайн",
           "Show bots messages": "Показывать сообщения ботов",
           Friends: "Друзья",

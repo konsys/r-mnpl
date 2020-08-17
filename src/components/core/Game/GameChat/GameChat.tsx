@@ -1,4 +1,4 @@
-import { Grid, Switch, Typography } from "@material-ui/core";
+import { Grid, Switch, TextField, Typography } from "@material-ui/core";
 
 import ChatMessage from "./ChatMessage";
 import { GRID_SPACING } from "../../../../theme";
@@ -46,7 +46,15 @@ export default function GameChat() {
           </Grid>
         </Grid>
         <Grid item id="game-chat-input">
-          <input />
+          <TextField
+            helperText={t("Type message and press Enter")}
+            id="outlined-basic"
+            label="Outlined"
+            variant="outlined"
+            size="small"
+            value="sfswef"
+            fullWidth={true}
+          />
         </Grid>
       </Grid>
     </>
