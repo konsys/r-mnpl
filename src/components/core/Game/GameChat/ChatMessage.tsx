@@ -4,22 +4,18 @@ import React from "react";
 import Reply from "@material-ui/icons/Reply";
 import StarOutlined from "@material-ui/icons/StarOutlined";
 import moment from "moment";
+import { theme } from "../../../../theme";
 
-export default function ChatMessage({
-  vip,
-  toVip,
-  name,
-  toName,
-  message,
-  time,
-}: {
+export interface IChatMessage {
   vip: boolean;
   toVip: boolean;
   name: string;
   toName: string;
   message: string;
   time: Date;
-}) {
+}
+
+export default function ChatMessage(props: IChatMessage) {
   return (
     <>
       <Grid
@@ -29,22 +25,24 @@ export default function ChatMessage({
         justify="center"
         spacing={1}
       >
-        <Grid item>{moment(time).format("HH:mm").toString()}</Grid>{" "}
+        <Grid item>{moment(props.time).format("HH:mm").toString()}</Grid>{" "}
         <Grid item>
           <Chip
-            color={vip ? "secondary" : undefined}
+            color={props.vip ? "secondary" : "default"}
             size="small"
-            label={name}
+            label={props.name}
             icon={
-              <StarOutlined
-                style={{
-                  width: "15px",
-                  height: "15px",
-                  color: "white",
-                }}
-              />
+              props.vip ? (
+                <StarOutlined
+                  style={{
+                    width: "15px",
+                    height: "15px",
+                    color: "white",
+                  }}
+                />
+              ) : undefined
             }
-            style={{ color: "white" }}
+            style={{ color: props.vip ? "white" : theme.palette.text.primary }}
           />
         </Grid>
         <Grid item>
@@ -54,23 +52,27 @@ export default function ChatMessage({
         </Grid>
         <Grid item>
           <Chip
-            color={toVip ? "secondary" : undefined}
+            color={props.toVip ? "secondary" : "default"}
             size="small"
-            label={toName}
+            label={props.toName}
             icon={
-              <StarOutlined
-                style={{
-                  width: "15px",
-                  height: "15px",
-                  color: "white",
-                }}
-              />
+              props.toVip ? (
+                <StarOutlined
+                  style={{
+                    width: "15px",
+                    height: "15px",
+                    color: "white",
+                  }}
+                />
+              ) : undefined
             }
-            style={{ color: "white" }}
+            style={{
+              color: props.toVip ? "white" : theme.palette.text.primary,
+            }}
           />
         </Grid>
         <Grid item>-</Grid>
-        <Grid item>{message}</Grid>
+        <Grid item>{props.message}</Grid>
         <Grid item></Grid>
       </Grid>
     </>

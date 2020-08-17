@@ -35,8 +35,8 @@ export default function GameChat() {
           <Grid container>
             <Grid item>
               <ChatMessage
-                vip={true}
-                toVip={false}
+                vip={false}
+                toVip={true}
                 name="name"
                 toName="toName"
                 message={"message"}

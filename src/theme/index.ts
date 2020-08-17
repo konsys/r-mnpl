@@ -40,6 +40,7 @@ export const theme = createMuiTheme({
     secondary: {
       main: "#f6bb43",
     },
+    grey: { A100: red[500] },
     text: {
       primary: grey[600],
       secondary: grey[500],
