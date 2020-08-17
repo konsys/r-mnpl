@@ -1,4 +1,4 @@
-import { grey, purple, red, teal } from "@material-ui/core/colors";
+import { grey, red } from "@material-ui/core/colors";
 
 import { createMuiTheme } from "@material-ui/core";
 
@@ -22,12 +22,23 @@ export const BOX_MARGIN = 3;
 export const BOX_PADDING = 3;
 
 export const theme = createMuiTheme({
+  typography: {
+    fontFamily: ["Open Sans", "Tahoma", "Arial", "sans-serif"].join(","),
+
+    fontSize: 14,
+    body1: {
+      color: "#656d78",
+    },
+    body2: {
+      color: "#a7adb5",
+    },
+  },
   palette: {
     primary: {
-      main: teal[500],
+      main: "#8cc152",
     },
     secondary: {
-      main: purple[500],
+      main: "#f6bb43",
     },
     text: {
       primary: grey[600],

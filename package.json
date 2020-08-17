@@ -12,6 +12,7 @@
     "i18next": "^19.6.3",
     "i18next-browser-languagedetector": "^5.0.1",
     "lodash": "^4.17.15",
+    "moment": "^2.27.0",
     "nanoid": "^2.1.11",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
