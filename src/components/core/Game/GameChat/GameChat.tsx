@@ -42,8 +42,9 @@ export default function GameChat() {
           </Grid>
         </Grid>
         <Grid item id="game-chat-content" style={{ height: "225px" }}>
-          <Grid container>
+          <Grid container spacing={1} direction={"column"}>
             {messages &&
+              messages.length &&
               messages.map((v) => (
                 <Grid item>
                   <ChatMessage
