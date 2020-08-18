@@ -1,8 +1,13 @@
 import ChatMessage, { IChatMessage } from "./ChatMessage";
 import { Grid, Switch, TextField, Typography } from "@material-ui/core";
 import React, { useState } from "react";
+import {
+  chatStore,
+  sendChatMessageEffect,
+} from "../../../../stores/Game/GameChatStore";
 
 import { GRID_SPACING } from "../../../../theme";
+import { useStore } from "effector-react";
 import { useTranslation } from "react-i18next";
 
 enum KeyName {
@@ -10,14 +15,7 @@ enum KeyName {
 }
 export default function GameChat() {
   const { t } = useTranslation();
-  const [messages, addMessage] = useState<IChatMessage>({
-    message: "start message",
-    name: "Boris",
-    time: new Date(),
-    toName: "Ivan",
-    toVip: false,
-    vip: true,
-  });
+  const messages = useStore(chatStore);
   const [m, setM] = useState<string>("");
   return (
     <>
@@ -45,16 +43,18 @@ export default function GameChat() {
         </Grid>
         <Grid item id="game-chat-content" style={{ height: "225px" }}>
           <Grid container>
-            <Grid item>
-              <ChatMessage
-                vip={false}
-                toVip={true}
-                name="name"
-                toName="toName"
-                message={messages.message}
-                time={new Date()}
-              />
-            </Grid>
+            {messages.map((v) => (
+              <Grid item>
+                <ChatMessage
+                  vip={v.vip}
+                  toVip={v.toVip}
+                  name={v.name}
+                  toName={v.toName}
+                  message={v.message}
+                  time={v.time}
+                />
+              </Grid>
+            ))}
           </Grid>
         </Grid>
         <Grid item id="game-chat-input">
@@ -68,11 +68,8 @@ export default function GameChat() {
             fullWidth={true}
             onChange={(e: any) => setM(e.target.value)}
             onKeyPress={(e: any) => {
-              if (
-                (e.keyCode === KeyName.ENTER || e.which === KeyName.ENTER) &&
-                !(e.target.name === "paginationInput")
-              ) {
-                addMessage({ ...messages, message: e.target.value });
+              if (e.keyCode === KeyName.ENTER || e.which === KeyName.ENTER) {
+                sendChatMessageEffect(e.target.value);
               }
             }}
           />

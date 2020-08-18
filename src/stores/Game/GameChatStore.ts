@@ -6,13 +6,13 @@ const ChatDomain = GameDomain.domain("ChatDomain");
 
 export const resetChatEvent = ChatDomain.event();
 
-export const getChatEffect = ChatDomain.effect<any, IChatMessage[]>({
+export const sendChatMessageEffect = ChatDomain.effect<any, IChatMessage[]>({
   handler: fetchChat,
 });
 
 export const setChatEvent = ChatDomain.event<IChatMessage>();
 
 export const chatStore = ChatDomain.store<IChatMessage[]>([]).on(
-  getChatEffect,
+  sendChatMessageEffect,
   (_, v) => v
 );
