@@ -1,4 +1,3 @@
-import ChatMessage, { IChatMessage } from "./ChatMessage";
 import { Grid, Switch, TextField, Typography } from "@material-ui/core";
 import React, { useState } from "react";
 import {
@@ -6,6 +5,7 @@ import {
   sendChatMessageEffect,
 } from "../../../../stores/Game/GameChatStore";
 
+import ChatMessage from "./ChatMessage";
 import { GRID_SPACING } from "../../../../theme";
 import { useStore } from "effector-react";
 import { useTranslation } from "react-i18next";
@@ -43,18 +43,19 @@ export default function GameChat() {
         </Grid>
         <Grid item id="game-chat-content" style={{ height: "225px" }}>
           <Grid container>
-            {messages.map((v) => (
-              <Grid item>
-                <ChatMessage
-                  vip={v.vip}
-                  toVip={v.toVip}
-                  name={v.name}
-                  toName={v.toName}
-                  message={v.message}
-                  time={v.time}
-                />
-              </Grid>
-            ))}
+            {messages &&
+              messages.map((v) => (
+                <Grid item>
+                  <ChatMessage
+                    vip={v.vip}
+                    toVip={v.toVip}
+                    name={v.name}
+                    toName={v.toName}
+                    message={v.message}
+                    time={v.time}
+                  />
+                </Grid>
+              ))}
           </Grid>
         </Grid>
         <Grid item id="game-chat-input">
