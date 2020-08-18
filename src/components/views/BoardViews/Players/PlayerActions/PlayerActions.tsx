@@ -1,6 +1,6 @@
-import { IPlayerAction } from "../../../../../stores/PlayersStore";
+import { IPlayerAction } from "../../../../../stores/Board/PlayersStore";
 import React from "react";
-import { openContractModal } from "../../../../../stores/ContractStore";
+import { openContractModal } from "../../../../../stores/Board/ContractStore";
 
 export const PlayerActions = ({
   profile,

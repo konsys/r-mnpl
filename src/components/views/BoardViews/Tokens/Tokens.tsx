@@ -3,8 +3,8 @@ import { IField, IToken } from "../../../../types/types";
 import { LINE_TRANSITION_TIMEOUT } from "../../../../utils/boardParams";
 import React from "react";
 import _ from "lodash";
-import { fieldsStore } from "../../../../stores/FieldsStore";
-import { tokensStore } from "../../../../stores/TokensStore";
+import { fieldsStore } from "../../../../stores/Board/FieldsStore";
+import { tokensStore } from "../../../../stores/Board/TokensStore";
 import { useStore } from "effector-react";
 
 export const Tokens = () => {

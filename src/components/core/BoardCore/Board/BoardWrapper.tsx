@@ -16,9 +16,9 @@ import { TableHelper } from "../../../views/BoardViews/TableHelper/TableHelper";
 import { Ticket } from "../../../views/BoardViews/Ticket/ticket";
 import { ToastContainer } from "react-toastify";
 import { Tokens } from "../../../views/BoardViews/Tokens/Tokens";
-import { actionsStore } from "../../../../stores/ActionStore";
+import { actionsStore } from "../../../../stores/Board/ActionStore";
 import { useStore } from "effector-react";
-import { userStore } from "../../../../stores/UserStore";
+import { userStore } from "../../../../stores/Game/UserStore";
 
 export const BoardWrapper = () => {
   const action = useStore(actionsStore);

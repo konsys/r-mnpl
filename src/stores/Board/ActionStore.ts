@@ -1,4 +1,4 @@
-import { IBoardEvent, IncomeMessageType } from "../types/types";
+import { IBoardEvent, IncomeMessageType } from "../../types/types";
 import {
   auctionModal,
   canBuyModal,
@@ -6,13 +6,13 @@ import {
   taxModal,
   unJailModal,
   unJailPayingModal,
-} from "../handlers/Modals";
+} from "../../handlers/Modals";
 
 import { BoardDomain } from "./BoardDomain";
 import { hideDicesEvent } from "./DicesStore";
 import { incomeContract } from "./ContractStore";
 import nanoid from "nanoid";
-import { rollDicesAction } from "../handlers/DicesHandler";
+import { rollDicesAction } from "../../handlers/DicesHandler";
 import { showModalEvent } from "./ModalStore";
 
 export interface ICurrentAction {

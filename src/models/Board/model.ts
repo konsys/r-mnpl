@@ -1,4 +1,4 @@
-import { BoardDomain } from "../../stores/BoardDomain";
+import { BoardDomain } from "../../stores/Board/BoardDomain";
 import { IGameActionRequest } from "../../types/types";
 import { fetchGameAction } from "./api";
 

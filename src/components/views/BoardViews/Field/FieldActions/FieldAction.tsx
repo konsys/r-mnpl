@@ -10,7 +10,7 @@ import { FieldActionAuto } from "./FieldActionAuto";
 import { FieldActionCompany } from "./FieldActionCompany";
 import { FieldActionIT } from "./FieldActionIT";
 import React from "react";
-import { closeFieldActionEvent } from "../../../../../stores/FieldsStore";
+import { closeFieldActionEvent } from "../../../../../stores/Board/FieldsStore";
 import { gameActionEffect } from "../../../../../models/Board/model";
 import { getActingPlayer } from "../../../../../utils/players.utils";
 

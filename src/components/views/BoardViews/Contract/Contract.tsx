@@ -4,15 +4,15 @@ import {
   addMoneyToContract,
   closeContractModal,
   contractStore,
-} from "../../../../stores/ContractStore";
+} from "../../../../stores/Board/ContractStore";
 
 import { ContractCompany } from "./ContractCompany";
 import { gameActionEffect } from "../../../../models/Board/model";
 import { getField } from "../../../../utils/fields.utils";
 import { getPlayer } from "../../../../utils/players.utils";
-import { showDialog } from "../../../../stores/DialogStore";
+import { showDialog } from "../../../../stores/Board/DialogStore";
 import { useStore } from "effector-react";
-import { userStore } from "../../../../stores/UserStore";
+import { userStore } from "../../../../stores/Game/UserStore";
 
 export enum KeyCode {
   ENTER = 13,

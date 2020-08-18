@@ -3,7 +3,7 @@ import { clearToken, saveToken } from "./TokenModel";
 
 import { LocalStorageParams } from "../../../../../types/types";
 import { createDomain } from "effector";
-import { getUserEffect } from "../../../../../stores/UserStore";
+import { getUserEffect } from "../../../../../stores/Game/UserStore";
 import { loginFetch } from "../../../../../models/Login/api";
 
 const AuthDomain = createDomain("AuthDomain");

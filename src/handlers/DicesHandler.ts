@@ -1,5 +1,5 @@
 import { IDices } from "../types/types";
-import { setDicesEvent } from "../stores/DicesStore";
+import { setDicesEvent } from "../stores/Board/DicesStore";
 
 export const rollDicesAction = async (act: IDices) => {
   const roll: IDices = {

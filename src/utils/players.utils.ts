@@ -1,4 +1,4 @@
-import { playersStore, setPlayersEvent } from "../stores/PlayersStore";
+import { playersStore, setPlayersEvent } from "../stores/Board/PlayersStore";
 
 import { IPlayer } from "../types/types";
 

@@ -4,10 +4,10 @@ import {
   fieldsStore,
   getInitFieldsEffect,
   setFieldsEvent,
-} from "../stores/FieldsStore";
+} from "../stores/Board/FieldsStore";
 
 import { Board } from "../components/views/BoardViews/Board/Board";
-import { BoardDomain } from "../stores/BoardDomain";
+import { BoardDomain } from "../stores/Board/BoardDomain";
 import { BoardLoading } from "../components/views/BoardViews/BoardLoading/BoardLoading";
 import { SocketActions } from "../types/Socket/SocketTypes";
 import { clearNode } from "effector";
@@ -15,7 +15,7 @@ import { errorHandler } from "../handlers/ErrorHandler";
 import { isEqual } from "lodash";
 import nanoid from "nanoid";
 import openSocket from "socket.io-client";
-import { setCurrentActionEvent } from "../stores/ActionStore";
+import { setCurrentActionEvent } from "../stores/Board/ActionStore";
 import { updateAllPlayers } from "../utils/players.utils";
 import { useStore } from "effector-react";
 

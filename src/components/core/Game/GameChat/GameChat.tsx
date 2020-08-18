@@ -61,7 +61,7 @@ export default function GameChat() {
           <TextField
             helperText={t("Type message and press Enter")}
             id="outlined-basic"
-            label="Outlined"
+            // label="Outlined"
             variant="outlined"
             size="small"
             value={m}

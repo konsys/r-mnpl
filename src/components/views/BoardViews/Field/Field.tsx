@@ -2,7 +2,7 @@ import { FieldType, IField } from "../../../../types/types";
 
 import { Params } from "../../../../config/params";
 import React from "react";
-import { playersStore } from "../../../../stores/PlayersStore";
+import { playersStore } from "../../../../stores/Board/PlayersStore";
 import { useStore } from "effector-react";
 
 export const Field = ({

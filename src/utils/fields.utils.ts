@@ -1,7 +1,7 @@
 import { FIELD_WIDTH, MARGIN_CENTER, TABLE_SIZE } from "./boardParams";
 
 import { IField } from "../types/types";
-import { fieldsStore } from "../stores/FieldsStore";
+import { fieldsStore } from "../stores/Board/FieldsStore";
 
 export const createTurnsArray = (
   position: number,

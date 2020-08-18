@@ -7,19 +7,19 @@ import React, { useEffect } from "react";
 import {
   addFieldToContract,
   contractStore,
-} from "../../../../stores/ContractStore";
+} from "../../../../stores/Board/ContractStore";
 import {
   closeFieldActionEvent,
   fieldActionStore,
   fieldsStore,
   setFieldActionEffect,
-} from "../../../../stores/FieldsStore";
+} from "../../../../stores/Board/FieldsStore";
 
 import { BOARD_PARAMS } from "../../../../params/boardParams";
 import { Field } from "../Field/Field";
 import { FieldActions } from "../Field/FieldActions/FieldAction";
 import { useStore } from "effector-react";
-import { userStore } from "../../../../stores/UserStore";
+import { userStore } from "../../../../stores/Game/UserStore";
 
 export const Board = () => {
   const { fields } = useStore(fieldsStore);
