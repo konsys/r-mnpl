@@ -42,7 +42,13 @@ export default function GameChat() {
           </Grid>
         </Grid>
         <Grid item id="game-chat-content" style={{ height: "225px" }}>
-          <Grid container spacing={1} direction={"column"}>
+          <Grid
+            container
+            spacing={1}
+            direction={"column"}
+            justify={"center"}
+            alignItems={"flex-start"}
+          >
             {messages &&
               messages.length &&
               messages.map((v) => (
