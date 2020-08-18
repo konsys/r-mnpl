@@ -9,6 +9,6 @@ export const usersFetch = async (ids?: number[]): Promise<IPlayer[]> => {
 
 const profileUrl = `/users/profile`;
 
-export async function profile(params?: any): Promise<IUser> {
+export async function fetchUserProfile(params?: any): Promise<IUser> {
   return await (await client.get(profileUrl, params)).data;
 }
