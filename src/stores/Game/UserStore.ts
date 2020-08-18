@@ -1,7 +1,5 @@
-import { BoardDomain } from "./BoardDomain";
-import { IUser } from "../types/types";
-import { profile } from "../models/Users/api";
-
+import { BoardDomain } from "../Board/BoardDomain";
+import { IUser } from "../../types/types";
 const UserDomain = BoardDomain.domain("UserDomain");
 export const resetUserEvent = UserDomain.event();
 

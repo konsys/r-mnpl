@@ -5,11 +5,11 @@ import {
 } from "./TokensStore";
 
 import { BoardDomain } from "./BoardDomain";
-import { IPlayer } from "../types/types";
-import { fieldPositions } from "../utils/fields.utils";
-import { getPlayer } from "../utils/players.utils";
+import { IPlayer } from "../../types/types";
+import { fieldPositions } from "../../utils/fields.utils";
+import { getPlayer } from "../../utils/players.utils";
 import { sample } from "effector";
-import { usersFetch } from "../models/Users/api";
+import { usersFetch } from "../../models/Users/api";
 
 const PlayersDomain = BoardDomain.domain("PlayersDomain");
 

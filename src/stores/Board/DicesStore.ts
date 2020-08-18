@@ -3,10 +3,10 @@ import {
   IDices,
   IncomeMessageType,
   OutcomeMessageType,
-} from "../types/types";
+} from "../../types/types";
 
 import { BoardDomain } from "./BoardDomain";
-import { boardSocket } from "../socket/BoardSocket";
+import { boardSocket } from "../../socket/BoardSocket";
 
 const DiceDomain = BoardDomain.domain("DiceDomain");
 export const hideDicesEvent = DiceDomain.event();

@@ -1,4 +1,4 @@
-import { BoardAction, IncomeMessageType } from "../types/types";
+import { BoardAction, IncomeMessageType } from "../../types/types";
 
 import { BoardDomain } from "./BoardDomain";
 

@@ -3,9 +3,9 @@ import {
   FIELD_JAIL_LEFT,
   FIELD_JAIL_TOP,
   LINE_TRANSITION_TIMEOUT,
-} from "../utils/boardParams";
-import { IPlayer, IToken, TokenStore } from "../types/types";
-import { createTurnsArray, fieldPositions } from "../utils/fields.utils";
+} from "../../utils/boardParams";
+import { IPlayer, IToken, TokenStore } from "../../types/types";
+import { createTurnsArray, fieldPositions } from "../../utils/fields.utils";
 
 import { BoardDomain } from "./BoardDomain";
 
