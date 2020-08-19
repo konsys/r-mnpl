@@ -1,5 +1,6 @@
 import { Chip, Grid, Typography } from "@material-ui/core";
 
+import { IUser } from "../../../../types/types";
 import React from "react";
 import Reply from "@material-ui/icons/Reply";
 import StarOutlined from "@material-ui/icons/StarOutlined";
@@ -7,15 +8,18 @@ import moment from "moment";
 import { theme } from "../../../../theme";
 
 export interface IChatMessage {
-  vip: boolean;
-  toVip: boolean;
-  name: string;
-  toName: string;
+  fromUser: IUser;
+  toUser?: IUser;
   message: string;
   time: Date;
 }
 
-export default function ChatMessage(props: IChatMessage) {
+export interface IChatMessageProps extends IChatMessage {
+  setM: (message: string) => any;
+}
+
+export default function ChatMessage(props: IChatMessageProps) {
+  console.log(2222, props);
   return (
     <>
       <Grid
@@ -27,36 +31,20 @@ export default function ChatMessage(props: IChatMessage) {
       >
         <Grid item>{moment(props.time).format("HH:mm").toString()}</Grid>{" "}
         <Grid item>
-          <Chip
-            color={props.vip ? "secondary" : "default"}
-            size="small"
-            label={props.name}
-            icon={
-              props.vip ? (
-                <StarOutlined
-                  style={{
-                    width: "15px",
-                    height: "15px",
-                    color: "white",
-                  }}
-                />
-              ) : undefined
-            }
-            style={{ color: props.vip ? "white" : theme.palette.text.primary }}
-          />
-        </Grid>
-        <Grid item>
           <Typography variant="body2">
-            <Reply style={{ width: "15px", height: "15px" }} />
+            <Reply
+              onClick={() => props.setM(`#${props.toUser?.userId}, `)}
+              style={{ width: "15px", height: "15px" }}
+            />
           </Typography>
         </Grid>
         <Grid item>
           <Chip
-            color={props.toVip ? "secondary" : "default"}
+            color={props.fromUser.vip ? "secondary" : "default"}
             size="small"
-            label={props.toName}
+            label={props.fromUser.name}
             icon={
-              props.toVip ? (
+              props.fromUser.vip ? (
                 <StarOutlined
                   style={{
                     width: "15px",
@@ -67,10 +55,36 @@ export default function ChatMessage(props: IChatMessage) {
               ) : undefined
             }
             style={{
-              color: props.toVip ? "white" : theme.palette.text.primary,
+              color: props.fromUser.vip ? "white" : theme.palette.text.primary,
             }}
           />
         </Grid>
+        <Grid item>
+          <Typography variant="body2">-</Typography>
+        </Grid>
+        {props.toUser && (
+          <Grid item>
+            <Chip
+              color={props.toUser.vip ? "secondary" : "default"}
+              size="small"
+              label={props.toUser.name}
+              icon={
+                props.toUser.vip ? (
+                  <StarOutlined
+                    style={{
+                      width: "15px",
+                      height: "15px",
+                      color: "white",
+                    }}
+                  />
+                ) : undefined
+              }
+              style={{
+                color: props.toUser.vip ? "white" : theme.palette.text.primary,
+              }}
+            />
+          </Grid>
+        )}
         <Grid item>-</Grid>
         <Grid item>{props.message}</Grid>
         <Grid item></Grid>

@@ -17,6 +17,7 @@ export default function GameChat() {
   const { t } = useTranslation();
   const messages = useStore(chatStore);
   const [m, setM] = useState<string>("");
+  sendChatMessageEffect.done.watch(() => setM(""));
   return (
     <>
       <Grid container direction="column" spacing={GRID_SPACING}>
@@ -51,14 +52,13 @@ export default function GameChat() {
           >
             {messages &&
               messages.length &&
-              messages.map((v) => (
-                <Grid item>
+              messages.map((v, k) => (
+                <Grid item key={k}>
                   <ChatMessage
-                    vip={v.vip}
-                    toVip={v.toVip}
-                    name={v.name}
-                    toName={v.toName}
+                    fromUser={v.fromUser}
+                    toUser={v.toUser}
                     message={v.message}
+                    setM={setM}
                     time={v.time}
                   />
                 </Grid>
