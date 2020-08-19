@@ -1,5 +1,5 @@
 import { Grid, Switch, TextField, Typography } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   chatStore,
   sendChatMessageEffect,
@@ -18,6 +18,8 @@ export default function GameChat() {
   const messages = useStore(chatStore);
   const [m, setM] = useState<string>("");
   sendChatMessageEffect.done.watch(() => setM(""));
+  const inputEl = useRef<HTMLInputElement>(null);
+
   return (
     <>
       <Grid container direction="column" spacing={GRID_SPACING}>
@@ -67,14 +69,22 @@ export default function GameChat() {
         </Grid>
         <Grid item id="game-chat-input">
           <TextField
+            ref={inputEl}
             helperText={t("Type message and press Enter")}
             id="outlined-basic"
-            // label="Outlined"
             variant="outlined"
             size="small"
             value={m}
             fullWidth={true}
-            onChange={(e: any) => setM(e.target.value)}
+            onChange={(e: any) => {
+              setM(e.target.value);
+
+              try {
+                if (inputEl && inputEl.current && inputEl?.current.focus) {
+                  inputEl.current.focus();
+                }
+              } catch (er) {}
+            }}
             onKeyPress={(e: any) => {
               if (e.keyCode === KeyName.ENTER || e.which === KeyName.ENTER) {
                 sendChatMessageEffect(e.target.value);

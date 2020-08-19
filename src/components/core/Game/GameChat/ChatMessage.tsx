@@ -32,8 +32,10 @@ export default function ChatMessage(props: IChatMessageProps) {
         <Grid item>
           <Typography variant="body2">
             <Reply
-              onClick={() => props.setM(`#${props.toUser?.userId}, `)}
-              style={{ width: "15px", height: "15px" }}
+              onClick={() => {
+                props.setM(`#${props.fromUser.name}, `);
+              }}
+              style={{ width: "15px", height: "15px", cursor: "pointer" }}
             />
           </Typography>
         </Grid>
