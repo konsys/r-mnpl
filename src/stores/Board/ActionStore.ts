@@ -57,7 +57,6 @@ export const doNothing = (userId: number) => {
 
 actionsStore.watch((v) => {
   const action = v.event.action;
-  console.log("action", action.type);
   hideDicesEvent();
   switch (action.type) {
     case IncomeMessageType.INCOME_ROLL_DICES_MODAL:

@@ -19,7 +19,6 @@ export interface IChatMessageProps extends IChatMessage {
 }
 
 export default function ChatMessage(props: IChatMessageProps) {
-  console.log(2222, props);
   return (
     <>
       <Grid
@@ -59,9 +58,11 @@ export default function ChatMessage(props: IChatMessageProps) {
             }}
           />
         </Grid>
-        <Grid item>
-          <Typography variant="body2">-</Typography>
-        </Grid>
+        {props.toUser && (
+          <Grid item>
+            <Typography variant="body2">-</Typography>
+          </Grid>
+        )}
         {props.toUser && (
           <Grid item>
             <Chip

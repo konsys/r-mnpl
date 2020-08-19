@@ -16,5 +16,3 @@ export const chatStore = ChatDomain.store<IChatMessage[]>([]).on(
   sendChatMessageEffect.done,
   (_, v) => v.result
 );
-
-chatStore.watch((v) => console.log(2222, v));
