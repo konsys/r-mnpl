@@ -4,6 +4,7 @@ import { IUser } from "../../../../types/types";
 import React from "react";
 import Reply from "@material-ui/icons/Reply";
 import StarOutlined from "@material-ui/icons/StarOutlined";
+import { addReplyToEvent } from "../../../../stores/Game/GameChatStore";
 import moment from "moment";
 import { theme } from "../../../../theme";
 
@@ -14,9 +15,7 @@ export interface IChatMessage {
   time: Date;
 }
 
-export interface IChatMessageProps extends IChatMessage {
-  addReply: (player: IUser) => any;
-}
+export interface IChatMessageProps extends IChatMessage {}
 
 export default function ChatMessage(props: IChatMessageProps) {
   return (
@@ -32,9 +31,7 @@ export default function ChatMessage(props: IChatMessageProps) {
         <Grid item>
           <Typography variant="body2">
             <Reply
-              onClick={() => {
-                props.addReply(props.fromUser);
-              }}
+              onClick={() => addReplyToEvent(props.fromUser)}
               style={{ width: "15px", height: "15px", cursor: "pointer" }}
             />
           </Typography>

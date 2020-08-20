@@ -7,7 +7,6 @@ import {
 } from "@material-ui/core";
 import React, { useRef, useState } from "react";
 import {
-  addReplyToEvent,
   chatStore,
   deleteReplyToEvent,
   replyStore,
@@ -73,7 +72,6 @@ export default function GameChat() {
                     fromUser={v.fromUser}
                     toUser={v.toUser}
                     message={v.message}
-                    addReply={addReplyToEvent}
                     time={v.time}
                   />
                 </Grid>
