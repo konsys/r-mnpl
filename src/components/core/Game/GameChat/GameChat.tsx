@@ -10,6 +10,7 @@ import {
   chatStore,
   deleteReplyToEvent,
   replyStore,
+  resetReplyToEvent,
   sendChatMessageEffect,
 } from "../../../../stores/Game/GameChatStore";
 
@@ -29,7 +30,11 @@ export default function GameChat() {
   const replies = useStore(replyStore);
   const [m, setM] = useState<string>("");
 
-  sendChatMessageEffect.done.watch(() => setM(""));
+  console.log("replies", replies);
+  sendChatMessageEffect.done.watch(() => {
+    resetReplyToEvent();
+    setM("");
+  });
   const inputEl = useRef<HTMLInputElement>(null);
 
   return (
@@ -84,7 +89,7 @@ export default function GameChat() {
             placeholder={t("Type message and press Enter")}
             startAdornment={
               <InputAdornment position="start">
-                {replies.map((v, k) => (
+                {replies.users.map((v, k) => (
                   <PlayerChip
                     key={k}
                     handleDelete={() => deleteReplyToEvent(v)}

@@ -23,14 +23,23 @@ export const addReplyToEvent = ChatDomain.event<IUser>();
 export const deleteReplyToEvent = ChatDomain.event<IUser>();
 export const resetReplyToEvent = ChatDomain.event();
 
-export const replyStore = ChatDomain.store<IUser[]>([])
+export interface IReply {
+  n: number;
+  users: IUser[];
+}
+export const replyStore = ChatDomain.store<IReply>({ n: 0, users: [] })
   .on(addReplyToEvent, (prev, v) => {
     console.log("addReplyToEvent", merge(prev, [v]));
-    return merge(prev, [v]);
+    const users = merge(prev.users, [v]);
+    return { n: users.length, users };
   })
-  .on(deleteReplyToEvent, (prev, v) =>
-    prev.filter((user) => user.userId !== v.userId)
-  )
+  .on(deleteReplyToEvent, (prev, v) => {
+    const r = prev.users.filter((user) => user.userId !== v.userId);
+    return {
+      n: r ? r.length : 0,
+      users: r ? r : [],
+    };
+  })
   .reset(resetReplyToEvent);
 
 replyStore.watch((v) => console.log("replyStoreWatch", v));
