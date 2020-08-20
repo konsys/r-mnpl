@@ -1,22 +1,35 @@
-import { Grid, Switch, TextField, Typography } from "@material-ui/core";
+import {
+  Grid,
+  Input,
+  InputAdornment,
+  Switch,
+  Typography,
+} from "@material-ui/core";
 import React, { useRef, useState } from "react";
 import {
+  addReplyToEvent,
   chatStore,
+  deleteReplyToEvent,
+  replyStore,
   sendChatMessageEffect,
 } from "../../../../stores/Game/GameChatStore";
 
 import ChatMessage from "./ChatMessage";
 import { GRID_SPACING } from "../../../../theme";
+import PlayerChip from "./PlayerChip";
 import { useStore } from "effector-react";
 import { useTranslation } from "react-i18next";
 
 enum KeyName {
   "ENTER" = 13,
 }
+
 export default function GameChat() {
   const { t } = useTranslation();
   const messages = useStore(chatStore);
+  const replies = useStore(replyStore);
   const [m, setM] = useState<string>("");
+
   sendChatMessageEffect.done.watch(() => setM(""));
   const inputEl = useRef<HTMLInputElement>(null);
 
@@ -60,7 +73,7 @@ export default function GameChat() {
                     fromUser={v.fromUser}
                     toUser={v.toUser}
                     message={v.message}
-                    setM={setM}
+                    addReply={addReplyToEvent}
                     time={v.time}
                   />
                 </Grid>
@@ -68,14 +81,21 @@ export default function GameChat() {
           </Grid>
         </Grid>
         <Grid item id="game-chat-input">
-          <TextField
-            ref={inputEl}
-            helperText={t("Type message and press Enter")}
-            id="outlined-basic"
-            variant="outlined"
-            size="small"
+          <Input
+            style={{ width: "100%" }}
+            placeholder={t("Type message and press Enter")}
+            startAdornment={
+              <InputAdornment position="start">
+                {replies.map((v, k) => (
+                  <PlayerChip
+                    key={k}
+                    handleDelete={() => deleteReplyToEvent(v)}
+                    name={v.name}
+                  />
+                ))}
+              </InputAdornment>
+            }
             value={m}
-            fullWidth={true}
             onChange={(e: any) => {
               setM(e.target.value);
 

@@ -15,7 +15,7 @@ export interface IChatMessage {
 }
 
 export interface IChatMessageProps extends IChatMessage {
-  setM: (message: string) => any;
+  addReply: (player: IUser) => any;
 }
 
 export default function ChatMessage(props: IChatMessageProps) {
@@ -33,7 +33,7 @@ export default function ChatMessage(props: IChatMessageProps) {
           <Typography variant="body2">
             <Reply
               onClick={() => {
-                props.setM(`#${props.fromUser.name}, `);
+                props.addReply(props.fromUser);
               }}
               style={{ width: "15px", height: "15px", cursor: "pointer" }}
             />
