@@ -24,10 +24,13 @@ export const deleteReplyToEvent = ChatDomain.event<IUser>();
 export const resetReplyToEvent = ChatDomain.event();
 
 export const replyStore = ChatDomain.store<IUser[]>([])
-  .on(addReplyToEvent, (prev, v) => merge(prev, v))
+  .on(addReplyToEvent, (prev, v) => {
+    console.log("addReplyToEvent", merge(prev, [v]));
+    return merge(prev, [v]);
+  })
   .on(deleteReplyToEvent, (prev, v) =>
     prev.filter((user) => user.userId !== v.userId)
   )
   .reset(resetReplyToEvent);
 
-replyStore.watch((v) => console.log(22222, v));
+replyStore.watch((v) => console.log("replyStoreWatch", v));
