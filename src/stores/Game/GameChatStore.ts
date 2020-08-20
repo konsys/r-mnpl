@@ -27,14 +27,13 @@ export interface IReply {
   n: number;
   users: IUser[];
 }
-export const replyStore = ChatDomain.store<IReply>({ n: 0, users: [] })
+export const replyStore = ChatDomain.store<IReply | null>(null)
   .on(addReplyToEvent, (prev, v) => {
-    console.log("addReplyToEvent", merge(prev, [v]));
-    const users = merge(prev.users, [v]);
+    const users = prev ? merge(prev.users, [v]) : [v];
     return { n: users.length, users };
   })
   .on(deleteReplyToEvent, (prev, v) => {
-    const r = prev.users.filter((user) => user.userId !== v.userId);
+    const r = prev ? prev.users.filter((user) => user.userId !== v.userId) : [];
     return {
       n: r ? r.length : 0,
       users: r ? r : [],
@@ -42,4 +41,4 @@ export const replyStore = ChatDomain.store<IReply>({ n: 0, users: [] })
   })
   .reset(resetReplyToEvent);
 
-replyStore.watch((v) => console.log("replyStoreWatch", v));
+// replyStore.watch((v) => console.log("replyStoreWatch", v));
