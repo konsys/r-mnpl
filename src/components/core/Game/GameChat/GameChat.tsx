@@ -74,7 +74,7 @@ export default function GameChat() {
                 <Grid item key={k}>
                   <ChatMessage
                     fromUser={v.fromUser}
-                    toUser={v.toUser}
+                    replies={v.replies}
                     message={v.message}
                     time={v.time}
                   />
@@ -88,14 +88,15 @@ export default function GameChat() {
             placeholder={t("Type message and press Enter")}
             startAdornment={
               <InputAdornment position="start">
-                {replies &&
-                  replies.users.map((v, k) => (
-                    <PlayerChip
-                      key={k}
-                      handleDelete={() => deleteReplyToEvent(v)}
-                      name={v.name}
-                    />
-                  ))}
+                {replies && replies.users
+                  ? replies.users.map((v, k) => (
+                      <PlayerChip
+                        key={k}
+                        handleDelete={() => deleteReplyToEvent(v)}
+                        name={v.name}
+                      />
+                    ))
+                  : ""}
               </InputAdornment>
             }
             value={m}
@@ -110,7 +111,10 @@ export default function GameChat() {
             }}
             onKeyPress={(e: any) => {
               if (e.keyCode === KeyName.ENTER || e.which === KeyName.ENTER) {
-                sendChatMessageEffect(e.target.value);
+                sendChatMessageEffect({
+                  message: e.target.value,
+                  replies: replies ? replies.users : [],
+                });
               }
             }}
           />

@@ -10,7 +10,7 @@ import { theme } from "../../../../theme";
 
 export interface IChatMessage {
   fromUser: IUser;
-  toUser?: IUser;
+  replies?: IUser[];
   message: string;
   time: Date;
 }
@@ -18,6 +18,7 @@ export interface IChatMessage {
 export interface IChatMessageProps extends IChatMessage {}
 
 export default function ChatMessage(props: IChatMessageProps) {
+  console.log(1111, props.replies);
   return (
     <>
       <Grid
@@ -59,32 +60,35 @@ export default function ChatMessage(props: IChatMessageProps) {
             }}
           />
         </Grid>
-        {props.toUser && (
+        {props.replies && (
           <Grid item>
             <Typography variant="body2">-</Typography>
           </Grid>
         )}
-        {props.toUser && (
+        {props.replies && (
           <Grid item>
-            <Chip
-              color={props.toUser.vip ? "secondary" : "default"}
-              size="small"
-              label={props.toUser.name}
-              icon={
-                props.toUser.vip ? (
-                  <StarOutlined
-                    style={{
-                      width: "15px",
-                      height: "15px",
-                      color: "white",
-                    }}
-                  />
-                ) : undefined
-              }
-              style={{
-                color: props.toUser.vip ? "white" : theme.palette.text.primary,
-              }}
-            />
+            {props.replies.map((v, k) => (
+              <Chip
+                key={k}
+                color={v.vip ? "secondary" : "default"}
+                size="small"
+                label={v.name}
+                icon={
+                  v.vip ? (
+                    <StarOutlined
+                      style={{
+                        width: "15px",
+                        height: "15px",
+                        color: "white",
+                      }}
+                    />
+                  ) : undefined
+                }
+                style={{
+                  color: v.vip ? "white" : theme.palette.text.primary,
+                }}
+              />
+            ))}
           </Grid>
         )}
         <Grid item>-</Grid>
