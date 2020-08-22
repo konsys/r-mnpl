@@ -105,14 +105,16 @@ export default function GameChat() {
             style={{ width: "100%" }}
             placeholder={t("Type message and press Enter")}
             startAdornment={
-              <InputAdornment position="start">
+              <InputAdornment position="start" variant="outlined">
                 {replies && replies.users
                   ? replies.users.map((v, k) => (
-                      <PlayerChip
-                        key={k}
-                        handleDelete={() => deleteReplyToEvent(v)}
-                        name={v.name}
-                      />
+                      // TODO make standart spacing
+                      <div style={{ marginRight: "5px" }}>
+                        <PlayerChip
+                          handleDelete={() => deleteReplyToEvent(v)}
+                          name={v.name}
+                        />{" "}
+                      </div>
                     ))
                   : ""}
               </InputAdornment>

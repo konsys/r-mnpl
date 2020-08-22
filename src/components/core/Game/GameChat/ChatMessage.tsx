@@ -72,41 +72,43 @@ export default function ChatMessage(props: IChatMessageProps) {
         )}
         {props.replies && (
           <Grid item>
-            {props.replies.map((v, k) => (
-              <div key={k}>
-                <Chip
-                  variant={v.userId === user.userId ? "default" : "outlined"}
-                  color={
-                    v.vip
-                      ? "secondary"
-                      : v.userId === user.userId
-                      ? "primary"
-                      : "default"
-                  }
-                  size="small"
-                  label={v.name}
-                  icon={
-                    v.vip ? (
-                      <StarOutlined
-                        style={{
-                          width: "15px",
-                          height: "15px",
-                          color: "white",
-                        }}
-                      />
-                    ) : undefined
-                  }
-                  style={{
-                    color: v.vip
-                      ? "white"
-                      : v.userId !== user.userId
-                      ? theme.palette.text.primary
-                      : "white",
-                  }}
-                />
-                ,
-              </div>
-            ))}
+            <Grid container spacing={1}>
+              {props.replies.map((v, k) => (
+                <Grid item key={k}>
+                  <Chip
+                    variant={v.userId === user.userId ? "default" : "outlined"}
+                    color={
+                      v.vip
+                        ? "secondary"
+                        : v.userId === user.userId
+                        ? "primary"
+                        : "default"
+                    }
+                    size="small"
+                    label={v.name}
+                    icon={
+                      v.vip ? (
+                        <StarOutlined
+                          style={{
+                            width: "15px",
+                            height: "15px",
+                            color: "white",
+                          }}
+                        />
+                      ) : undefined
+                    }
+                    style={{
+                      color: v.vip
+                        ? "white"
+                        : v.userId !== user.userId
+                        ? theme.palette.text.primary
+                        : "white",
+                    }}
+                  />
+                  ,
+                </Grid>
+              ))}
+            </Grid>
           </Grid>
         )}
         <Grid item>-</Grid>
