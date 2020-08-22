@@ -5,11 +5,12 @@ import {
   Switch,
   Typography,
 } from "@material-ui/core";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   chatStore,
   deleteReplyToEvent,
   replyStore,
+  resetChatEvent,
   resetReplyToEvent,
   sendChatMessageEffect,
 } from "../../../../stores/Game/GameChatStore";
@@ -17,6 +18,7 @@ import {
 import ChatMessage from "./ChatMessage";
 import { GRID_SPACING } from "../../../../theme";
 import PlayerChip from "./PlayerChip";
+import { getUserEffect } from "../../../../stores/Game/UserStore";
 import { useStore } from "effector-react";
 import { useTranslation } from "react-i18next";
 
@@ -29,6 +31,13 @@ export default function GameChat() {
   const messages = useStore(chatStore);
   const replies = useStore(replyStore);
   const [m, setM] = useState<string>("");
+
+  useEffect(() => {
+    getUserEffect("me");
+    return () => {
+      resetChatEvent();
+    };
+  }, []);
 
   sendChatMessageEffect.done.watch(() => {
     resetReplyToEvent();
