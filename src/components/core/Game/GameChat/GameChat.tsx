@@ -72,6 +72,7 @@ export default function GameChat() {
               ? messages.map((v, k) => (
                   <Grid item key={k}>
                     <ChatMessage
+                      key={k}
                       fromUser={v.fromUser}
                       replies={v.replies}
                       message={v.message}

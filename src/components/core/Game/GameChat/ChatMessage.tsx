@@ -21,6 +21,7 @@ export interface IChatMessageProps extends IChatMessage {}
 
 export default function ChatMessage(props: IChatMessageProps) {
   const user = useStore(userStore);
+  console.log(111111, user);
   return (
     <>
       <Grid
@@ -72,9 +73,8 @@ export default function ChatMessage(props: IChatMessageProps) {
         {props.replies && (
           <Grid item>
             {props.replies.map((v, k) => (
-              <>
+              <div key={k}>
                 <Chip
-                  key={k}
                   color={
                     v.vip
                       ? "secondary"
@@ -100,7 +100,7 @@ export default function ChatMessage(props: IChatMessageProps) {
                   }}
                 />
                 ,
-              </>
+              </div>
             ))}
           </Grid>
         )}
