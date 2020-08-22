@@ -7,6 +7,8 @@ import StarOutlined from "@material-ui/icons/StarOutlined";
 import { addReplyToEvent } from "../../../../stores/Game/GameChatStore";
 import moment from "moment";
 import { theme } from "../../../../theme";
+import { useStore } from "effector-react";
+import { userStore } from "../../../../stores/Game/UserStore";
 
 export interface IChatMessage {
   fromUser: IUser;
@@ -18,7 +20,7 @@ export interface IChatMessage {
 export interface IChatMessageProps extends IChatMessage {}
 
 export default function ChatMessage(props: IChatMessageProps) {
-  console.log(1111, props.replies);
+  const user = useStore(userStore);
   return (
     <>
       <Grid
@@ -60,34 +62,45 @@ export default function ChatMessage(props: IChatMessageProps) {
             }}
           />
         </Grid>
-        {props.replies && (
+        {props.replies && props.replies.length ? (
           <Grid item>
             <Typography variant="body2">-</Typography>
           </Grid>
+        ) : (
+          ""
         )}
         {props.replies && (
           <Grid item>
             {props.replies.map((v, k) => (
-              <Chip
-                key={k}
-                color={v.vip ? "secondary" : "default"}
-                size="small"
-                label={v.name}
-                icon={
-                  v.vip ? (
-                    <StarOutlined
-                      style={{
-                        width: "15px",
-                        height: "15px",
-                        color: "white",
-                      }}
-                    />
-                  ) : undefined
-                }
-                style={{
-                  color: v.vip ? "white" : theme.palette.text.primary,
-                }}
-              />
+              <>
+                <Chip
+                  key={k}
+                  color={
+                    v.vip
+                      ? "secondary"
+                      : v.userId === user.userId
+                      ? "primary"
+                      : "default"
+                  }
+                  size="small"
+                  label={v.name}
+                  icon={
+                    v.vip ? (
+                      <StarOutlined
+                        style={{
+                          width: "15px",
+                          height: "15px",
+                          color: "white",
+                        }}
+                      />
+                    ) : undefined
+                  }
+                  style={{
+                    color: v.vip ? "white" : theme.palette.text.primary,
+                  }}
+                />
+                ,
+              </>
             ))}
           </Grid>
         )}

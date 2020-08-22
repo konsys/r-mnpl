@@ -68,18 +68,18 @@ export default function GameChat() {
             justify={"center"}
             alignItems={"flex-start"}
           >
-            {messages &&
-              messages.length &&
-              messages.map((v, k) => (
-                <Grid item key={k}>
-                  <ChatMessage
-                    fromUser={v.fromUser}
-                    replies={v.replies}
-                    message={v.message}
-                    time={v.time}
-                  />
-                </Grid>
-              ))}
+            {messages && messages.length
+              ? messages.map((v, k) => (
+                  <Grid item key={k}>
+                    <ChatMessage
+                      fromUser={v.fromUser}
+                      replies={v.replies}
+                      message={v.message}
+                      time={v.time}
+                    />
+                  </Grid>
+                ))
+              : ""}
           </Grid>
         </Grid>
         <Grid item id="game-chat-input">
