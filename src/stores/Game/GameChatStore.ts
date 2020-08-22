@@ -2,7 +2,6 @@ import { GameDomain } from "./UserStore";
 import { IChatMessage } from "../../components/core/Game/GameChat/ChatMessage";
 import { IUser } from "../../types/types";
 import { fetchChat } from "../../models/GameChat/api";
-import { merge } from "lodash";
 
 const ChatDomain = GameDomain.domain("ChatDomain");
 
@@ -27,9 +26,10 @@ export interface IReply {
   n: number;
   users: IUser[];
 }
-export const replyStore = ChatDomain.store<IReply | null>(null)
+export const replyStore = ChatDomain.store<IReply>({ n: 0, users: [] })
   .on(addReplyToEvent, (prev, v) => {
-    const users = prev ? merge(prev.users, [v]) : [v];
+    const users = prev.users.filter((user) => user.userId !== v.userId);
+    users.push(v);
     return { n: users.length, users };
   })
   .on(deleteReplyToEvent, (prev, v) => {
@@ -41,4 +41,4 @@ export const replyStore = ChatDomain.store<IReply | null>(null)
   })
   .reset(resetReplyToEvent);
 
-// replyStore.watch((v) => console.log("replyStoreWatch", v));
+replyStore.watch((v) => console.log("replyStoreWatch", v));

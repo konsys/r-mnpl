@@ -69,7 +69,15 @@ export default function GameChat() {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item id="game-chat-content" style={{ height: "225px" }}>
+        <Grid
+          item
+          id="game-chat-content"
+          style={{
+            maxHeight: "225px",
+            overflow: "auto",
+            scrollBehavior: "smooth",
+          }}
+        >
           <Grid
             container
             spacing={1}
