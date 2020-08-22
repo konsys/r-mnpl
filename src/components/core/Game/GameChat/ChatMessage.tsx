@@ -21,7 +21,6 @@ export interface IChatMessageProps extends IChatMessage {}
 
 export default function ChatMessage(props: IChatMessageProps) {
   const user = useStore(userStore);
-  console.log(111111, user);
   return (
     <>
       <Grid
@@ -44,6 +43,7 @@ export default function ChatMessage(props: IChatMessageProps) {
         </Grid>
         <Grid item>
           <Chip
+            variant="outlined"
             color={props.fromUser.vip ? "secondary" : "default"}
             size="small"
             label={props.fromUser.name}
@@ -75,6 +75,7 @@ export default function ChatMessage(props: IChatMessageProps) {
             {props.replies.map((v, k) => (
               <div key={k}>
                 <Chip
+                  variant={v.userId === user.userId ? "default" : "outlined"}
                   color={
                     v.vip
                       ? "secondary"
@@ -96,7 +97,11 @@ export default function ChatMessage(props: IChatMessageProps) {
                     ) : undefined
                   }
                   style={{
-                    color: v.vip ? "white" : theme.palette.text.primary,
+                    color: v.vip
+                      ? "white"
+                      : v.userId !== user.userId
+                      ? theme.palette.text.primary
+                      : "white",
                   }}
                 />
                 ,
