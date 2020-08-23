@@ -13,6 +13,8 @@ i18n
           Chat: "Чат",
           "Type message and press Enter": "Введите сообщение и нажмите Enter",
           "now online": "сейчас онлайн",
+          "Waiting for games": "Ожидают игр",
+          "Create game": "Создать игру",
           "Show bots messages": "Показывать сообщения ботов",
           Friends: "Друзья",
           "Friends online": "Друзья онлайн",
