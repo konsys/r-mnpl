@@ -36,13 +36,15 @@ export default function CreateGameModal() {
           justify="space-between"
           alignItems="center"
           direction="row"
+          spacing={1}
         >
-          <Grid item>
+          <Grid item sm={5}>
             <Grid
               container
               justify="center"
               alignItems="flex-start"
               direction="column"
+              spacing={1}
             >
               <Grid item>
                 <Typography variant="h6">{t("Regular game")}</Typography>
@@ -76,7 +78,7 @@ export default function CreateGameModal() {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item>
+          <Grid item sm={7}>
             <Grid container justify="space-between" alignItems="center">
               content
             </Grid>
@@ -86,14 +88,6 @@ export default function CreateGameModal() {
       <DialogActions>
         <Button onClick={() => closeModal()} color="primary" variant="outlined">
           {t("Create room")}
-        </Button>
-        <Button
-          onClick={() => closeModal()}
-          color="primary"
-          autoFocus
-          variant="outlined"
-        >
-          {t("Cancel")}
         </Button>
       </DialogActions>
     </Dialog>
