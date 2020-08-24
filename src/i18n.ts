@@ -37,6 +37,15 @@ i18n
           "To main page": "На главную",
           "This page doesn`t exist yet": "Вы попали на несуществующую страницу",
           "Week top": "Топ недели",
+          "Usual rating match.": "Обычный рейтинговый матч.",
+          "Fird dice and other rules for quick match.":
+            "Третий кубик и дополнительные правила, ускоряющие матч.",
+          "Tournament for playing with different cards.":
+            "Турнир, где вы играете со случайными картами.",
+          "Rules for classic monopoly":
+            "Играйте на поле и по правилам из лета 2015.",
+          "Go and shoot. Nothing more.":
+            "Катайтесь по полям и стреляйте. Ничего более.",
           More: "Подробнее",
           "You are not in Top Five":
             "Вы не входите в топ игроков недели — сначала выиграйте матч на четыре или пять игроков.",

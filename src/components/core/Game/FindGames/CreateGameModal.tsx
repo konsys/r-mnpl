@@ -38,47 +38,47 @@ export default function CreateGameModal() {
           direction="row"
           spacing={1}
         >
-          <Grid item sm={5}>
+          <Grid item sm={6}>
             <Grid
               container
-              justify="center"
+              // justify="center"
               alignItems="flex-start"
               direction="column"
               spacing={1}
             >
-              <Grid item>
+              <Grid item style={{ border: "2px solid red" }}>
                 <Typography variant="h6">{t("Regular game")}</Typography>
                 <Typography variant="body2">
-                  Обычный рейтинговый матч
+                  {t("Usual rating match.")}
                 </Typography>
               </Grid>
-              <Grid item>
+              <Grid item style={{ border: "2px solid red" }}>
                 <Typography variant="h6">{t("Quick game")} </Typography>
                 <Typography variant="body2">
-                  Третий кубик и дополнительные правила, ускоряющие матч.
+                  {t("Fird dice and other rules for quick match.")}
                 </Typography>
               </Grid>
               <Grid item>
                 <Typography variant="h6">{t("GMS Shuffle")} </Typography>
                 <Typography variant="body2">
-                  Турнир, где вы играете со случайными картами.
+                  {t("Tournament for playing with different cards.")}
                 </Typography>
               </Grid>
               <Grid item>
                 <Typography variant="h6">{t("Retro")} </Typography>
                 <Typography variant="body2">
-                  Играйте на поле и по правилам из лета 2015.
+                  {t("Rules for classic monopoly")}
                 </Typography>
               </Grid>
               <Grid item>
                 <Typography variant="h6">{t("Russian roulette")} </Typography>
                 <Typography variant="body2">
-                  Катайтесь по полям и стреляйте. Ничего более.
+                  {t("Go and shoot. Nothing more.")}
                 </Typography>
               </Grid>
             </Grid>
           </Grid>
-          <Grid item sm={7}>
+          <Grid item sm={6}>
             <Grid container justify="space-between" alignItems="center">
               content
             </Grid>
