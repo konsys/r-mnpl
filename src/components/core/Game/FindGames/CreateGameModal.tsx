@@ -1,29 +1,101 @@
-import { Fade, Modal } from "@material-ui/core";
+import "./style.scss";
 
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  Grid,
+  Typography,
+} from "@material-ui/core";
+import {
+  closeModal,
+  gameModalStore,
+} from "../../../../stores/Game/GameModalStore";
+
+import CloseIcon from "@material-ui/icons/Close";
 import React from "react";
-import { gameModalStore } from "../../../../stores/Game/GameModalStore";
 import { useStore } from "effector-react";
+import { useTranslation } from "react-i18next";
 
 export default function CreateGameModal() {
-  const isOpen = useStore(gameModalStore);
+  const open = useStore(gameModalStore);
+  const { t } = useTranslation();
   return (
-    <Modal
-      aria-labelledby="transition-modal-title"
-      aria-describedby="transition-modal-description"
-      open={isOpen}
-      closeAfterTransition
-      BackdropProps={{
-        timeout: 500,
-      }}
-    >
-      <Fade in={isOpen}>
-        <div>
-          <h2 id="transition-modal-title">Transition modal</h2>
-          <p id="transition-modal-description">
-            react-transition-group animates me.
-          </p>
-        </div>
-      </Fade>
-    </Modal>
+    <Dialog open={open} onClose={() => null}>
+      {" "}
+      <DialogContent>
+        <Grid container justify="flex-end" alignItems="center">
+          <CloseIcon
+            style={{ cursor: "pointer" }}
+            onClick={() => closeModal()}
+          />
+        </Grid>
+        <Grid
+          container
+          justify="space-between"
+          alignItems="center"
+          direction="row"
+        >
+          <Grid item>
+            <Grid
+              container
+              justify="center"
+              alignItems="flex-start"
+              direction="column"
+            >
+              <Grid item>
+                <Typography variant="h6">{t("Regular game")}</Typography>
+                <Typography variant="body2">
+                  Обычный рейтинговый матч
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Typography variant="h6">{t("Quick game")} </Typography>
+                <Typography variant="body2">
+                  Третий кубик и дополнительные правила, ускоряющие матч.
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Typography variant="h6">{t("GMS Shuffle")} </Typography>
+                <Typography variant="body2">
+                  Турнир, где вы играете со случайными картами.
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Typography variant="h6">{t("Retro")} </Typography>
+                <Typography variant="body2">
+                  Играйте на поле и по правилам из лета 2015.
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Typography variant="h6">{t("Russian roulette")} </Typography>
+                <Typography variant="body2">
+                  Катайтесь по полям и стреляйте. Ничего более.
+                </Typography>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item>
+            <Grid container justify="space-between" alignItems="center">
+              content
+            </Grid>
+          </Grid>
+        </Grid>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={() => closeModal()} color="primary" variant="outlined">
+          {t("Create room")}
+        </Button>
+        <Button
+          onClick={() => closeModal()}
+          color="primary"
+          autoFocus
+          variant="outlined"
+        >
+          {t("Cancel")}
+        </Button>
+      </DialogActions>
+    </Dialog>
   );
 }

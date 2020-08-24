@@ -9,24 +9,31 @@ import { useTranslation } from "react-i18next";
 export const FindGames = () => {
   const { t } = useTranslation();
   return (
-    <Template columns={2} title={"Find games"}>
+    <>
       <CreateGameModal />
-      <Grid container alignItems="stretch" justify="space-between" spacing={1}>
-        <Grid item>
-          <Typography variant="h6">{t("Waiting for games")}</Typography>
+      <Template columns={2} title={"Find games"}>
+        <Grid
+          container
+          alignItems="stretch"
+          justify="space-between"
+          spacing={1}
+        >
+          <Grid item>
+            <Typography variant="h6">{t("Waiting for games")}</Typography>
+          </Grid>
+          <Grid item>
+            <Typography variant="body2">
+              <Button
+                variant="outlined"
+                color="primary"
+                onClick={() => openModal()}
+              >
+                {t("Create game")}
+              </Button>
+            </Typography>
+          </Grid>
         </Grid>
-        <Grid item>
-          <Typography variant="body2">
-            <Button
-              variant="outlined"
-              color="primary"
-              onClick={() => openModal()}
-            >
-              {t("Create game")}
-            </Button>
-          </Typography>
-        </Grid>
-      </Grid>
-    </Template>
+      </Template>
+    </>
   );
 };
