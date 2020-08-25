@@ -1,3 +1,30 @@
 .MuiDialog-root {
   backdrop-filter: blur(10px);
 }
+.newRoom {
+  > div {
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .regular._selected {
+    background-color: #8cc152;
+  }
+  .quick._selected {
+    background-color: #da4553;
+  }
+  .shuffle._selected {
+    background-color: #3bafda;
+  }
+  .retro._selected {
+    background-color: #000;
+  }
+  .roulette._selected {
+    background-color: #d870ad;
+  }
+  ._selected {
+    > * {
+      color: #fff !important;
+    }
+  }
+}
