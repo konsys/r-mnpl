@@ -36,7 +36,7 @@ export default function CreateGameModal() {
   const { t } = useTranslation();
   return (
     <Dialog open={open} onClose={() => null}>
-      <DialogContent>
+      <DialogContent className={"newRoom"}>
         <Grid container justify="flex-end" alignItems="center">
           <CloseIcon
             style={{ cursor: "pointer" }}
@@ -56,7 +56,6 @@ export default function CreateGameModal() {
               alignItems="flex-start"
               direction="column"
               spacing={2}
-              className={"newRoom"}
             >
               <Grid
                 item
@@ -130,7 +129,7 @@ export default function CreateGameModal() {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item sm={6}>
+          <Grid item sm={6} className="roomParams">
             <Grid container justify="space-between" alignItems="center">
               {selected === RoomType.REGULAR && <RegularGameParams />}
               {selected === RoomType.QUICK && <QuickGameParams />}
