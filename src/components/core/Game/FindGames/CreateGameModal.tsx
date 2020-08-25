@@ -53,9 +53,9 @@ export default function CreateGameModal() {
           <Grid item sm={5}>
             <Grid
               container
-              alignItems="flex-start"
               direction="column"
               spacing={2}
+              className="menuBlock"
             >
               <Grid
                 item

@@ -2,10 +2,11 @@
   backdrop-filter: blur(10px);
 }
 .newRoom {
-  > div {
-    width: 100%;
-    border-radius: 5px;
-    cursor: pointer;
+  .menuBlock {
+    > div {
+      border-radius: 5px;
+      cursor: pointer;
+    }
   }
   .regular._selected {
     background-color: #8cc152;
