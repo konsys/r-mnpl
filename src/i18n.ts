@@ -25,6 +25,12 @@ i18n
           "Regular game": "Обычная игра",
           "Quick game": "Быстрая игра",
           "GMS Shuffle": "Перетасовка",
+
+          Players: "Игроки",
+          "Room settings": "Настройки комнаты",
+          "Private room": "Приватная комната",
+          "Game autostart": "Автостарт игры",
+
           Retro: "Ретро",
           "Russian roulette": "Русская рулетка",
           Cancel: "Отмена",

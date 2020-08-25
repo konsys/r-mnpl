@@ -13,7 +13,7 @@ import { useTranslation } from "react-i18next";
 interface IState {
   playersNumber: number;
   autostart: boolean;
-  privateGame: boolean;
+  privateRoom: boolean;
 }
 
 export default function RegularGameParams() {
@@ -21,7 +21,7 @@ export default function RegularGameParams() {
   const [state, setState] = useState<IState>({
     autostart: false,
     playersNumber: 4,
-    privateGame: false,
+    privateRoom: false,
   });
 
   return (
@@ -92,18 +92,18 @@ export default function RegularGameParams() {
           </Grid>
         </Grid>
         <Grid container justify="space-between" spacing={GRID_SPACING}>
-          <Grid item>{t("Private game")}</Grid>
+          <Grid item>{t("Private room")}</Grid>
           <Grid item>
             <Switch
               color="primary"
-              checked={state.privateGame}
+              checked={state.privateRoom}
               onChange={() =>
                 setState({
                   ...state,
-                  privateGame: !state.privateGame,
+                  privateRoom: !state.privateRoom,
                 })
               }
-              name="privateGame"
+              name="privateRoom"
               inputProps={{ "aria-label": "secondary checkbox" }}
             />
           </Grid>
