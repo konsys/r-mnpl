@@ -46,7 +46,7 @@ export default function CreateGameModal() {
         <Grid
           container
           justify="space-between"
-          alignItems="center"
+          alignItems="flex-start"
           direction="row"
           spacing={1}
         >
