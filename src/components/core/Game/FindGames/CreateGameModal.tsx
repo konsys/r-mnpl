@@ -15,6 +15,11 @@ import {
 } from "../../../../stores/Game/GameModalStore";
 
 import CloseIcon from "@material-ui/icons/Close";
+import QuickGameParams from "./GameParams/QuickGameParams";
+import RegularGameParams from "./GameParams/RegularGameParams";
+import RetroGameParams from "./GameParams/RetroGameParams";
+import RouletteGameParams from "./GameParams/RouletteGameParams";
+import ShuffleGameParams from "./GameParams/ShuffleGameParams";
 import { useStore } from "effector-react";
 import { useTranslation } from "react-i18next";
 
@@ -127,7 +132,11 @@ export default function CreateGameModal() {
           </Grid>
           <Grid item sm={6}>
             <Grid container justify="space-between" alignItems="center">
-              content
+              {selected === RoomType.REGULAR && <RegularGameParams />}
+              {selected === RoomType.QUICK && <QuickGameParams />}
+              {selected === RoomType.RETRO && <RetroGameParams />}
+              {selected === RoomType.ROULETTE && <RouletteGameParams />}
+              {selected === RoomType.SHUFFLE && <ShuffleGameParams />}
             </Grid>
           </Grid>
         </Grid>
