@@ -25,6 +25,7 @@ i18n
           "Regular game": "Обычная игра",
           "Quick game": "Быстрая игра",
           "GMS Shuffle": "Перетасовка",
+          "Game restarts": "С рестартами",
 
           Players: "Игроки",
           "Room settings": "Настройки комнаты",

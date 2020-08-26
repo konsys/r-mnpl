@@ -44,7 +44,7 @@ export interface IRoomSetup {
 
 export default function CreateGameModal() {
   const open = useStore(gameModalStore);
-  const [selected, setSelected] = useState<string>(RoomType.REGULAR);
+  const [selected, setSelected] = useState<string>(RoomType.SHUFFLE);
   const { t } = useTranslation();
 
   const [state, setState] = useState<IRoomState>({
@@ -158,7 +158,9 @@ export default function CreateGameModal() {
               )}
               {selected === RoomType.RETRO && <RetroGameParams />}
               {selected === RoomType.ROULETTE && <RouletteGameParams />}
-              {selected === RoomType.SHUFFLE && <ShuffleGameParams />}
+              {selected === RoomType.SHUFFLE && (
+                <ShuffleGameParams setup={{ state, setState }} />
+              )}
             </Grid>
           </Grid>
         </Grid>
