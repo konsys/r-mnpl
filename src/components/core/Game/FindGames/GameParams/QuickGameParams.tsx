@@ -1,14 +1,9 @@
-import {
-  Button,
-  ButtonGroup,
-  Grid,
-  Switch,
-  Typography,
-} from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
 
 import { GRID_SPACING } from "../../../../../theme";
 import { IRoomSetup } from "../CreateGameModal";
 import React from "react";
+import RoomSwitch from "./views/RoomSwitch";
 import { useTranslation } from "react-i18next";
 
 export default function QuickGameParams({ setup }: { setup: IRoomSetup }) {
@@ -17,7 +12,7 @@ export default function QuickGameParams({ setup }: { setup: IRoomSetup }) {
   return (
     <Grid container direction="column" spacing={GRID_SPACING}>
       <Grid item>
-        <Typography variant="h6">{t("Regular game")}</Typography>
+        <Typography variant="h6">{t("Quick game")}</Typography>
       </Grid>
       <Grid item>
         <Grid
@@ -37,50 +32,21 @@ export default function QuickGameParams({ setup }: { setup: IRoomSetup }) {
             <Typography variant="h6">{t("Room settings")}</Typography>
           </Grid>
         </Grid>
-        <Grid
-          container
-          justify="space-between"
-          spacing={GRID_SPACING}
-          alignItems="center"
-        >
-          <Grid item>{t("Private room")}</Grid>
-          <Grid item>
-            {/* <Switch
-              color="primary"
-              checked={state.privateRoom}
-              onChange={() =>
-                setState({
-                  ...state,
-                  privateRoom: !state.privateRoom,
-                })
-              }
-              name="privateRoom"
-              inputProps={{ "aria-label": "secondary checkbox" }}
-            /> */}
-          </Grid>
-        </Grid>
-        <Grid
-          container
-          justify="space-between"
-          spacing={GRID_SPACING}
-          alignItems="center"
-        >
-          <Grid item>{t("Game autostart")}</Grid>
-          <Grid item>
-            {/* <Switch
-              color="primary"
-              checked={state.autostart}
-              onChange={() =>
-                setState({
-                  ...state,
-                  autostart: !state.autostart,
-                })
-              }
-              name="autostart"
-              inputProps={{ "aria-label": "secondary checkbox" }}
-            /> */}
-          </Grid>
-        </Grid>
+        <RoomSwitch
+          setup={setup}
+          text={"Private room"}
+          parameterName={"privateRoom"}
+        />
+        <RoomSwitch
+          setup={setup}
+          text={"Game autostart"}
+          parameterName={"autostart"}
+        />
+        <RoomSwitch
+          setup={setup}
+          text={"Game restarts"}
+          parameterName={"restarts"}
+        />
       </Grid>
     </Grid>
   );

@@ -1,15 +1,9 @@
-import {
-  Button,
-  ButtonGroup,
-  Grid,
-  Switch,
-  Typography,
-} from "@material-ui/core";
-import React, { useState } from "react";
+import { Grid, Typography } from "@material-ui/core";
 
 import { GRID_SPACING } from "../../../../../theme";
 import { IRoomSetup } from "../CreateGameModal";
 import PlayersNumber from "./views/PlayersNumber";
+import React from "react";
 import RoomSwitch from "./views/RoomSwitch";
 import { useTranslation } from "react-i18next";
 
@@ -22,18 +16,7 @@ export default function RegularGameParams({ setup }: { setup: IRoomSetup }) {
         <Typography variant="h6">{t("Regular game")}</Typography>
       </Grid>
       <Grid item>
-        <Grid
-          container
-          spacing={1}
-          justify="space-between"
-          alignItems="center"
-          direction="row"
-        >
-          <Grid item>{t("Players")}</Grid>
-          <Grid item className="playersNumber">
-            <PlayersNumber setup={setup} />
-          </Grid>
-        </Grid>
+        <PlayersNumber setup={setup} />
       </Grid>
       <Grid item>
         <Grid container spacing={GRID_SPACING}>
