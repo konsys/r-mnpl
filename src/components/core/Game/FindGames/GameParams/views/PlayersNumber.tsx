@@ -4,7 +4,13 @@ import { IRoomSetup } from "../../CreateGameModal";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-export default function PlayersNumber({ setup }: { setup: IRoomSetup }) {
+export default function PlayersNumber({
+  setup,
+  battleClosed,
+}: {
+  setup: IRoomSetup;
+  battleClosed?: boolean;
+}) {
   const { t } = useTranslation();
   return (
     <Grid
@@ -50,14 +56,18 @@ export default function PlayersNumber({ setup }: { setup: IRoomSetup }) {
           >
             5
           </Button>
-          <Button
-            disabled={false}
-            variant="contained"
-            color={setup.state.playersNumber === 6 ? "primary" : "default"}
-            onClick={() => setup.setState({ ...setup.state, playersNumber: 6 })}
-          >
-            2x2
-          </Button>
+          {!battleClosed && (
+            <Button
+              disabled={false}
+              variant="contained"
+              color={setup.state.playersNumber === 6 ? "primary" : "default"}
+              onClick={() =>
+                setup.setState({ ...setup.state, playersNumber: 6 })
+              }
+            >
+              2x2
+            </Button>
+          )}
         </ButtonGroup>
       </Grid>
     </Grid>

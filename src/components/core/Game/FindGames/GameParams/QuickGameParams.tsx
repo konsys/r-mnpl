@@ -16,6 +16,16 @@ export default function QuickGameParams({ setup }: { setup: IRoomSetup }) {
         <Typography variant="h6">{t("Quick game")}</Typography>
       </Grid>
       <Grid item>
+        <Typography variant="body2">
+          {t(
+            "Тут действуют особые правила, ускоряющие классические матчи, например, невероятный третий кубик с бонусами и триплами, а также сокращённые таймеры."
+          )}
+          {t(
+            "Если вам интересно разобраться в правилах быстрой игры, прочитайте пост в нашем блоге."
+          )}
+        </Typography>
+      </Grid>
+      <Grid item>
         <PlayersNumber setup={setup} />
       </Grid>
       <Grid item>

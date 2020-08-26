@@ -48,7 +48,7 @@ export default function CreateGameModal() {
   const { t } = useTranslation();
 
   const [state, setState] = useState<IRoomState>({
-    autostart: false,
+    autostart: true,
     playersNumber: 4,
     privateRoom: false,
   });
@@ -156,8 +156,12 @@ export default function CreateGameModal() {
               {selected === RoomType.QUICK && (
                 <QuickGameParams setup={{ state, setState }} />
               )}
-              {selected === RoomType.RETRO && <RetroGameParams />}
-              {selected === RoomType.ROULETTE && <RouletteGameParams />}
+              {selected === RoomType.RETRO && (
+                <RetroGameParams setup={{ state, setState }} />
+              )}
+              {selected === RoomType.ROULETTE && (
+                <RouletteGameParams setup={{ state, setState }} />
+              )}
               {selected === RoomType.SHUFFLE && (
                 <ShuffleGameParams setup={{ state, setState }} />
               )}
