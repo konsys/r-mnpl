@@ -12,13 +12,11 @@ export default function RouletteGameParams({ setup }: { setup: IRoomSetup }) {
   return (
     <Grid container direction="column" spacing={1}>
       <Grid item>
-        <Typography variant="h6">{t("Retro game")}</Typography>
+        <Typography variant="h6">{t("Russian roulette")}</Typography>
       </Grid>
       <Grid item>
         <Typography variant="body2">
-          {t(
-            "Тут нет полей, тут нечего покупать и продавать. Но всегда можно (и нужно!) играть в рулетку!"
-          )}
+          {t("No cards but you play russian roulette!")}
         </Typography>
       </Grid>
       <Grid item>

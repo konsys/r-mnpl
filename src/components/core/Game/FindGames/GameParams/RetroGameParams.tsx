@@ -12,15 +12,13 @@ export default function RetroGameParams({ setup }: { setup: IRoomSetup }) {
   return (
     <Grid container direction="column" spacing={1}>
       <Grid item>
-        <Typography variant="h6">{t("Retro game")}</Typography>
+        <Typography variant="h6">{t("Retro")}</Typography>
       </Grid>
       <Grid item>
         <Typography variant="body2">
-          {t(
-            "Запускаем ностальгию! Играйте на поле и по правилам, которые действовали летом 2015."
-          )}
+          {t("We start game with rules from 2015!")}
           <br />
-          {t("Подробнее о правилах этого режима можно прочитать здесь.")}
+          {t("More about this game")}
         </Typography>
       </Grid>
       <Grid item>

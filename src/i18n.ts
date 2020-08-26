@@ -12,7 +12,11 @@ i18n
         translations: {
           Chat: "Чат",
           "Type message and press Enter": "Введите сообщение и нажмите Enter",
+          "Special rules for quick games. The third dice and quick timers and other interesting things.":
+            "Тут действуют особые правила, ускоряющие классические матчи, например, невероятный третий кубик с бонусами и триплами, а также сокращённые таймеры.",
           "now online": "сейчас онлайн",
+          "For more inforamtion about quick game read here":
+            "Если вам интересно разобраться в правилах быстрой игры, прочитайте пост в нашем блоге.",
           "Waiting for games": "Ожидают игр",
           "Create game": "Создать игру",
           "Show bots messages": "Показывать сообщения ботов",
@@ -26,6 +30,16 @@ i18n
           "Quick game": "Быстрая игра",
           "GMS Shuffle": "Перетасовка",
           "Game restarts": "С рестартами",
+          "you play with random cards adn dices;":
+            "вы играете со случайными карточками и кубиками;",
+          "if you win three matches you get this thing;":
+            "выиграв три матча подряд, вы получаете один из этих предметов;",
+          "if you loose you have to start from the beginning.":
+            "в случае поражения в матче вам придётся начинать турнир сначала.",
+          "We start game with rules from 2015!":
+            "Запускаем ностальгию! Играйте на поле и по правилам, которые действовали летом 2015.",
+          "More about this game":
+            "Подробнее о правилах этого режима можно прочитать здесь.",
 
           Players: "Игроки",
           "Room settings": "Настройки комнаты",
@@ -40,6 +54,8 @@ i18n
           Login: "Войти",
           Market: "Маркет",
           "Find games": "Поиск игр",
+          "No cards but you play russian roulette!":
+            "Тут нет полей, тут нечего покупать и продавать. Но всегда можно (и нужно!) играть в рулетку!",
           "Page not found": "Страница не найдена",
           "To main page": "На главную",
           "This page doesn`t exist yet": "Вы попали на несуществующую страницу",

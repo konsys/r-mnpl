@@ -18,13 +18,11 @@ export default function QuickGameParams({ setup }: { setup: IRoomSetup }) {
       <Grid item>
         <Typography variant="body2">
           {t(
-            "Тут действуют особые правила, ускоряющие классические матчи, например, невероятный третий кубик с бонусами и триплами, а также сокращённые таймеры."
+            "Special rules for quick games. The third dice and quick timers and other interesting things."
           )}
           <br />
           <br />
-          {t(
-            "Если вам интересно разобраться в правилах быстрой игры, прочитайте пост в нашем блоге."
-          )}
+          {t("For more inforamtion about quick game read here")}
         </Typography>
       </Grid>
       <Grid item>

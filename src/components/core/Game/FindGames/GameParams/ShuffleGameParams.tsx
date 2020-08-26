@@ -39,17 +39,17 @@ export default function ShuffleGameParams({ setup }: { setup: IRoomSetup }) {
       <Grid container direction="column" spacing={1}>
         <Grid item>
           <Typography component="span" variant="body2" color="textPrimary">
-            вы играете со случайными карточками и кубиками;
+            {t("you play with random cards adn dices;")}
           </Typography>
         </Grid>
         <Grid item>
           <Typography component="span" variant="body2" color="textPrimary">
-            выиграв три матча подряд, вы получаете один из этих предметов;
+            {t("if you win three matches you get this thing;")}
           </Typography>
         </Grid>
         <Grid item>
           <Typography component="span" variant="body2" color="textPrimary">
-            в случае поражения в матче вам придётся начинать турнир сначала.
+            {t("if you loose you have to start from the beginning.")}
           </Typography>
         </Grid>
       </Grid>
