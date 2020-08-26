@@ -40,8 +40,8 @@ export default function MobileMenu() {
         }}
       >
         {Object.keys(menuItems).map((v: any, k: number) => (
-          <Link to={menuItems[v]}>
-            <MenuItem key={k} component={"span"}>
+          <Link to={menuItems[v]} key={k}>
+            <MenuItem component={"span"}>
               <Typography color={"textSecondary"}>{t(v)}</Typography>
             </MenuItem>
           </Link>

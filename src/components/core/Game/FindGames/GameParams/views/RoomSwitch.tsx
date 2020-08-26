@@ -15,6 +15,7 @@ export default function RoomSwitch({
   parameterName: any;
 }) {
   const { t } = useTranslation();
+
   return (
     <Grid
       container
@@ -26,7 +27,7 @@ export default function RoomSwitch({
       <Grid item>
         <Switch
           color="primary"
-          checked={setup.state.privateRoom}
+          checked={setup.state[parameterName]}
           onChange={() =>
             setup.setState({
               ...setup.state,
