@@ -30,10 +30,29 @@ export enum RoomType {
   QUICK = "quick",
   ROULETTE = "roulette",
 }
+
+export interface IRoomState {
+  playersNumber: number;
+  autostart: boolean;
+  privateRoom: boolean;
+  restarts?: boolean;
+}
+export interface IRoomSetup {
+  state: IRoomState;
+  setState: (n: IRoomState) => void;
+}
+
 export default function CreateGameModal() {
   const open = useStore(gameModalStore);
   const [selected, setSelected] = useState<string>(RoomType.REGULAR);
   const { t } = useTranslation();
+
+  const [state, setState] = useState<IRoomState>({
+    autostart: false,
+    playersNumber: 4,
+    privateRoom: false,
+  });
+
   return (
     <Dialog open={open} onClose={() => null}>
       <DialogContent className={"newRoom"}>
@@ -131,8 +150,12 @@ export default function CreateGameModal() {
           </Grid>
           <Grid item sm={6} className="roomParams">
             <Grid container justify="space-between" alignItems="center">
-              {selected === RoomType.REGULAR && <RegularGameParams />}
-              {selected === RoomType.QUICK && <QuickGameParams />}
+              {selected === RoomType.REGULAR && (
+                <RegularGameParams setup={{ state, setState }} />
+              )}
+              {selected === RoomType.QUICK && (
+                <QuickGameParams setup={{ state, setState }} />
+              )}
               {selected === RoomType.RETRO && <RetroGameParams />}
               {selected === RoomType.ROULETTE && <RouletteGameParams />}
               {selected === RoomType.SHUFFLE && <ShuffleGameParams />}
