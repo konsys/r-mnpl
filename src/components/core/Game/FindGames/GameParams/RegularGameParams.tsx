@@ -91,7 +91,12 @@ export default function RegularGameParams() {
             <Typography variant="h6">{t("Room settings")}</Typography>
           </Grid>
         </Grid>
-        <Grid container justify="space-between" spacing={GRID_SPACING}>
+        <Grid
+          container
+          justify="space-between"
+          spacing={GRID_SPACING}
+          alignItems="center"
+        >
           <Grid item>{t("Private room")}</Grid>
           <Grid item>
             <Switch
@@ -108,7 +113,12 @@ export default function RegularGameParams() {
             />
           </Grid>
         </Grid>
-        <Grid container justify="space-between" spacing={GRID_SPACING}>
+        <Grid
+          container
+          justify="space-between"
+          spacing={GRID_SPACING}
+          alignItems="center"
+        >
           <Grid item>{t("Game autostart")}</Grid>
           <Grid item>
             <Switch
