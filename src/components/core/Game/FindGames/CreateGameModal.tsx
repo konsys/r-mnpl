@@ -68,6 +68,7 @@ export default function CreateGameModal() {
           alignItems="flex-start"
           direction="row"
           spacing={1}
+          className={"roomContent"}
         >
           <Grid item sm={5}>
             <Grid

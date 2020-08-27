@@ -30,8 +30,12 @@
   }
   .roomParams {
     min-width: 300px;
+    overflow: hidden;
   }
 
+  .roomContent {
+    // min-height: 490px;
+  }
   .playersNumber {
     button {
       color: white;
