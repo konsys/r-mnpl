@@ -18,7 +18,7 @@ export enum BREAK_SIZES {
 }
 
 export const GRID_SPACING = 3;
-export const BLOCK_SPACING = 5;
+export const BLOCK_SPACING = 6;
 export const BOX_MARGIN = 3;
 export const BOX_PADDING = 3;
 

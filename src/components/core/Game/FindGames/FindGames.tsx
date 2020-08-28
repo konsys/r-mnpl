@@ -1,9 +1,10 @@
 import { Button, Divider, Grid, Typography } from "@material-ui/core";
+import CreateGameModal, { RoomType } from "./CreateGameModal";
 
 import { BLOCK_SPACING } from "../../../../theme";
-import CreateGameModal from "./CreateGameModal";
 import React from "react";
 import RoomAvatar from "./GameParams/views/RoomAvatar";
+import RoomTypeParam from "./GameParams/views/RoomTypeView";
 import Template from "../../../views/Template/Template";
 import { openModal } from "../../../../stores/Game/GameModalStore";
 import { useTranslation } from "react-i18next";
@@ -57,24 +58,29 @@ export const FindGames = () => {
             <Grid
               container
               justify="center"
-              direction="row"
-              spacing={BLOCK_SPACING}
+              direction="column"
+              spacing={1}
               className="newRoomOne"
             >
-              <Grid className="newRoomOneAvatar">
-                <RoomAvatar />
+              <Grid item className="newRoomOneParams">
+                <RoomTypeParam type={RoomType.QUICK} />
               </Grid>
-              <Grid className="newRoomOneAvatar">
-                <RoomAvatar />
-              </Grid>
-              <Grid className="newRoomOneAvatar">
-                <RoomAvatar />
-              </Grid>
-              <Grid className="newRoomOneAvatar">
-                <RoomAvatar />
-              </Grid>
-              <Grid className="newRoomOneAvatar">
-                <RoomAvatar />
+              <Grid item className="newRoomOnePlayers">
+                <Grid className="newRoomOneAvatar">
+                  <RoomAvatar />
+                </Grid>
+                <Grid className="newRoomOneAvatar">
+                  <RoomAvatar />
+                </Grid>
+                <Grid className="newRoomOneAvatar">
+                  <RoomAvatar />
+                </Grid>
+                <Grid className="newRoomOneAvatar">
+                  <RoomAvatar />
+                </Grid>
+                <Grid className="newRoomOneAvatar">
+                  <RoomAvatar />
+                </Grid>
               </Grid>
             </Grid>
           </Grid>
