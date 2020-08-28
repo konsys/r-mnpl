@@ -4,7 +4,7 @@ import CreateGameModal, { RoomType } from "./CreateGameModal";
 import { BLOCK_SPACING } from "../../../../theme";
 import React from "react";
 import RoomAvatar from "./GameParams/views/RoomAvatar";
-import RoomTypeParam from "./NewRoom/RoomTypeView";
+import RoomTypeView from "./NewRoom/RoomTypeView";
 import Template from "../../../views/Template/Template";
 import { openModal } from "../../../../stores/Game/GameModalStore";
 import { useTranslation } from "react-i18next";
@@ -63,7 +63,7 @@ export const FindGame = () => {
               className="newRoomOne"
             >
               <Grid item className="newRoomOneParams">
-                <RoomTypeParam type={RoomType.ROULETTE} />
+                <RoomTypeView type={RoomType.SHUFFLE} />
               </Grid>
               <Grid item className="newRoomOnePlayers">
                 <Grid className="newRoomOneAvatar">
