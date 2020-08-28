@@ -9,11 +9,12 @@ import Template from "../../../views/Template/Template";
 import { openModal } from "../../../../stores/Game/GameModalStore";
 import { useTranslation } from "react-i18next";
 
-export const FindGames = () => {
+export const FindGame = () => {
   const { t } = useTranslation();
   return (
-    <>
+    <div className="findGame">
       <CreateGameModal />
+
       <Template columns={2} title={"Find games"}>
         <Grid
           container
@@ -86,6 +87,6 @@ export const FindGames = () => {
           </Grid>
         </Grid>
       </Template>
-    </>
+    </div>
   );
 };

@@ -3,29 +3,53 @@
 .MuiDialog-root {
   backdrop-filter: blur(10px);
 }
-.newRoom {
-  .menuBlock {
-    > div {
-      border-radius: 5px;
-      cursor: pointer;
+.findGame {
+  .newRoom {
+    .menuBlock {
+      > div {
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .regular._selected {
+        background-color: $rouletteСolor;
+      }
+      .quick._selected {
+        background-color: $quickСolor;
+      }
+      .shuffle._selected {
+        background-color: $shuffleСolor;
+      }
+      .retro._selected {
+        background-color: $retroСolor;
+      }
+      .roulette._selected {
+        background-color: $rouletteСolor;
+      }
     }
 
-    .regular._selected {
-      background-color: $rouletteСolor;
+    ._selected {
+      > * {
+        color: #fff !important;
+      }
     }
-    .quick._selected {
-      background-color: $quickСolor;
+    .roomParams {
+      min-width: 300px;
+      overflow: hidden;
     }
-    .shuffle._selected {
-      background-color: $shuffleСolor;
+
+    .roomContent {
+      // min-height: 490px;
     }
-    .retro._selected {
-      background-color: $retroСolor;
-    }
-    .roulette._selected {
-      background-color: $rouletteСolor;
+
+    .playersNumber {
+      button {
+        color: white;
+        font-weight: 700;
+      }
     }
   }
+
   .gameTypeName {
     .regular {
       color: $rouletteСolor;
@@ -41,25 +65,6 @@
     }
     .roulette {
       color: $rouletteСolor;
-    }
-  }
-  ._selected {
-    > * {
-      color: #fff !important;
-    }
-  }
-  .roomParams {
-    min-width: 300px;
-    overflow: hidden;
-  }
-
-  .roomContent {
-    // min-height: 490px;
-  }
-  .playersNumber {
-    button {
-      color: white;
-      font-weight: 700;
     }
   }
 }
