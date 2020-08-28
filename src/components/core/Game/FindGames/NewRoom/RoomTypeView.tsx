@@ -9,11 +9,26 @@ export default function RoomTypeView({ type }: { type: RoomType }) {
   let name = "";
   let className = "";
   switch (type) {
+    case RoomType.REGULAR:
+      name = RoomTypeName.REGULAR;
+      className = RoomType.REGULAR;
+      break;
     case RoomType.QUICK:
       name = RoomTypeName.QUICK;
       className = RoomType.QUICK;
       break;
+    case RoomType.RETRO:
+      name = RoomTypeName.RETRO;
+      className = RoomType.RETRO;
+      break;
+    case RoomType.ROULETTE:
+      name = RoomTypeName.ROULETTE;
+      className = RoomType.ROULETTE;
+      break;
+    case RoomType.SHUFFLE:
+      name = RoomTypeName.SHUFFLE;
+      className = RoomType.SHUFFLE;
+      break;
   }
   return <Typography className={className}>{t(name)}</Typography>;
 }
-// #root > div.MuiBox-root.MuiBox-root-2.games-template > div > div > div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-12.MuiGrid-grid-sm-12.MuiGrid-grid-md-8 > div > div:nth-child(3) > div > div > div:nth-child(3) > div > div > div.MuiGrid-root.newRoomOneParams.MuiGrid-item

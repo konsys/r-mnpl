@@ -18,7 +18,6 @@ export const FindGame = () => {
       <Template columns={2} title={"Find games"}>
         <Grid
           container
-          alignItems="stretch"
           justify="space-between"
           spacing={BLOCK_SPACING}
           direction="row"
@@ -64,7 +63,7 @@ export const FindGame = () => {
               className="newRoomOne"
             >
               <Grid item className="newRoomOneParams">
-                <RoomTypeParam type={RoomType.QUICK} />
+                <RoomTypeParam type={RoomType.ROULETTE} />
               </Grid>
               <Grid item className="newRoomOnePlayers">
                 <Grid className="newRoomOneAvatar">
