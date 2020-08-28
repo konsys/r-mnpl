@@ -4,7 +4,7 @@ import CreateGameModal, { RoomType } from "./CreateGameModal";
 import { BLOCK_SPACING } from "../../../../theme";
 import React from "react";
 import RoomAvatar from "./GameParams/views/RoomAvatar";
-import RoomTypeParam from "./GameParams/views/RoomTypeView";
+import RoomTypeParam from "./NewRoom/RoomTypeView";
 import Template from "../../../views/Template/Template";
 import { openModal } from "../../../../stores/Game/GameModalStore";
 import { useTranslation } from "react-i18next";

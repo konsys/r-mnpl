@@ -1,5 +1,6 @@
 import "fontsource-roboto";
 import "./app.scss";
+import "../../../theme/styles/vars.scss";
 
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 

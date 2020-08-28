@@ -11,19 +11,36 @@
     }
 
     .regular._selected {
-      background-color: $regular-game-color;
+      background-color: $rouletteСolor;
     }
     .quick._selected {
-      background-color: $quick-game-color;
+      background-color: $quickСolor;
     }
     .shuffle._selected {
-      background-color: $shuffle-game-color;
+      background-color: $shuffleСolor;
     }
     .retro._selected {
-      background-color: $retro-game-color;
+      background-color: $retroСolor;
     }
     .roulette._selected {
-      background-color: $roulette-game-color;
+      background-color: $rouletteСolor;
+    }
+  }
+  .gameTypeName {
+    .regular {
+      color: $rouletteСolor;
+    }
+    .quick {
+      color: $quickСolor;
+    }
+    .shuffle {
+      color: $shuffleСolor;
+    }
+    .retro {
+      color: $retroСolor;
+    }
+    .roulette {
+      color: $rouletteСolor;
     }
   }
   ._selected {

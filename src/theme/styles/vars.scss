@@ -1,5 +1,13 @@
-$regular-game-color: #8cc152;
-$quick-game-color: #da4553;
-$shuffle-game-color: #3bafda;
-$retro-game-color: #000;
-$roulette-game-color: #d870ad;
+$regularСolor: #8cc152;
+$quickСolor: #da4553;
+$shuffleСolor: #3bafda;
+$retroСolor: #000;
+$rouletteСolor: #d870ad;
+
+:export {
+  regularСolor: $regularСolor;
+  quickСolor: $quickСolor;
+  shuffleСolor: $shuffleСolor;
+  retroСolor: $retroСolor;
+  rouletteСolor: $rouletteСolor;
+}
