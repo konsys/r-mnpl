@@ -24,6 +24,14 @@ import { useStore } from "effector-react";
 import { useTranslation } from "react-i18next";
 
 export enum RoomType {
+  REGULAR = "regular",
+  RETRO = "retro",
+  SHUFFLE = "shuffle",
+  QUICK = "quick",
+  ROULETTE = "roulette",
+}
+
+export enum RoomTypeName {
   REGULAR = "Regular game",
   RETRO = "Retro",
   SHUFFLE = "GMS Shuffle",

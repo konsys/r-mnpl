@@ -1,3 +1,5 @@
+@import "../../../../theme/styles/vars.scss";
+
 .MuiDialog-root {
   backdrop-filter: blur(10px);
 }
@@ -7,21 +9,22 @@
       border-radius: 5px;
       cursor: pointer;
     }
-  }
-  .regular._selected {
-    background-color: #8cc152;
-  }
-  .quick._selected {
-    background-color: #da4553;
-  }
-  .shuffle._selected {
-    background-color: #3bafda;
-  }
-  .retro._selected {
-    background-color: #000;
-  }
-  .roulette._selected {
-    background-color: #d870ad;
+
+    .regular._selected {
+      background-color: $regular-game-color;
+    }
+    .quick._selected {
+      background-color: $quick-game-color;
+    }
+    .shuffle._selected {
+      background-color: $shuffle-game-color;
+    }
+    .retro._selected {
+      background-color: $retro-game-color;
+    }
+    .roulette._selected {
+      background-color: $roulette-game-color;
+    }
   }
   ._selected {
     > * {
