@@ -17,7 +17,7 @@ i18n
           "now online": "сейчас онлайн",
           "For more inforamtion about quick game read here":
             "Если вам интересно разобраться в правилах быстрой игры, прочитайте пост в нашем блоге.",
-          "Waiting for games": "Ожидают игр",
+          "Waiting for games": "Ожидают игры",
           "Create game": "Создать игру",
           "Show bots messages": "Показывать сообщения ботов",
           Friends: "Друзья",

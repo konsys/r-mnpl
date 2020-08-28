@@ -1,4 +1,4 @@
-import { Button, Grid, Typography } from "@material-ui/core";
+import { Button, Divider, Grid, Typography } from "@material-ui/core";
 
 import CreateGameModal from "./CreateGameModal";
 import React from "react";
@@ -21,6 +21,7 @@ export const FindGames = () => {
           <Grid item>
             <Typography variant="h6">{t("Waiting for games")}</Typography>
           </Grid>
+
           <Grid item>
             <Typography variant="body2">
               <Button
@@ -32,6 +33,15 @@ export const FindGames = () => {
               </Button>
             </Typography>
           </Grid>
+        </Grid>
+        <Divider />
+        <Grid
+          container
+          alignItems="stretch"
+          justify="space-between"
+          spacing={1}
+        >
+          <Grid item>111</Grid>
         </Grid>
       </Template>
     </>
