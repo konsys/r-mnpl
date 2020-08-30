@@ -1,4 +1,4 @@
-import { RoomType, RoomTypeName } from "../CreatRoomModal/CreateGameModal";
+import { RoomType, RoomTypeName } from "../../CreatRoomModal/CreateGameModal";
 
 import { Grid } from "@material-ui/core";
 import LocationSearchingIcon from "@material-ui/icons/LocationSearching";
@@ -43,7 +43,6 @@ export default function RoomTypeView({ type }: { type: RoomType }) {
       break;
   }
 
-  console.log(11111, className);
   return (
     <Grid
       container
