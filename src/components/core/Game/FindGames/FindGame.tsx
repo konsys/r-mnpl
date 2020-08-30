@@ -63,7 +63,7 @@ export const FindGame = () => {
               className="newRoomOne"
             >
               <Grid item className="newRoomOneParams">
-                <RoomTypeView type={RoomType.SHUFFLE} />
+                <RoomTypeView type={RoomType.QUICK} />
               </Grid>
               <Grid item className="newRoomOnePlayers">
                 <Grid className="newRoomOneAvatar">

@@ -1,6 +1,6 @@
-import { Grid, Typography } from "@material-ui/core";
 import { RoomType, RoomTypeName } from "../CreateGameModal";
 
+import { Grid } from "@material-ui/core";
 import LocationSearchingIcon from "@material-ui/icons/LocationSearching";
 import RadioIcon from "@material-ui/icons/Radio";
 import React from "react";
@@ -43,12 +43,18 @@ export default function RoomTypeView({ type }: { type: RoomType }) {
       break;
   }
 
+  console.log(11111, className);
   return (
-    <Typography component="div" className={className}>
-      <Grid container justify="flex-start" spacing={1}>
-        <Grid item>{icon}</Grid>
-        <Grid item> {t(name)}</Grid>
-      </Grid>
-    </Typography>
+    <Grid
+      container
+      justify="flex-start"
+      alignContent="center"
+      alignItems="center"
+      spacing={1}
+      className={className}
+    >
+      <Grid item>{icon}</Grid>
+      <Grid item> {t(name)}</Grid>
+    </Grid>
   );
 }
