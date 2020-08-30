@@ -12,7 +12,7 @@ import React, { useState } from "react";
 import {
   closeModal,
   gameModalStore,
-} from "../../../../stores/Game/GameModalStore";
+} from "../../../../../stores/Game/GameModalStore";
 
 import CloseIcon from "@material-ui/icons/Close";
 import QuickGameParams from "./GameParams/QuickGameParams";

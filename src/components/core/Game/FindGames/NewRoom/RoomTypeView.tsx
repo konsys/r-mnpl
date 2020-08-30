@@ -1,4 +1,4 @@
-import { RoomType, RoomTypeName } from "../CreateGameModal";
+import { RoomType, RoomTypeName } from "../CreatRoomModal/CreateGameModal";
 
 import { Grid } from "@material-ui/core";
 import LocationSearchingIcon from "@material-ui/icons/LocationSearching";

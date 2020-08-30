@@ -1,9 +1,9 @@
 import { Button, Divider, Grid, Typography } from "@material-ui/core";
-import CreateGameModal, { RoomType } from "./CreateGameModal";
+import CreateGameModal, { RoomType } from "./CreatRoomModal/CreateGameModal";
 
 import { BLOCK_SPACING } from "../../../../theme";
 import React from "react";
-import RoomAvatar from "./GameParams/views/RoomAvatar";
+import RoomAvatar from "./CreatRoomModal/GameParams/views/RoomAvatar";
 import RoomTypeView from "./NewRoom/RoomTypeView";
 import Template from "../../../views/Template/Template";
 import { openModal } from "../../../../stores/Game/GameModalStore";

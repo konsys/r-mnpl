@@ -1,22 +1,24 @@
 import { Grid, Typography } from "@material-ui/core";
 
-import { GRID_SPACING } from "../../../../../theme";
+import { GRID_SPACING } from "../../../../../../theme";
 import { IRoomSetup } from "../CreateGameModal";
 import PlayersNumber from "./views/PlayersNumber";
 import React from "react";
 import RoomSwitch from "./views/RoomSwitch";
 import { useTranslation } from "react-i18next";
 
-export default function RouletteGameParams({ setup }: { setup: IRoomSetup }) {
+export default function RetroGameParams({ setup }: { setup: IRoomSetup }) {
   const { t } = useTranslation();
   return (
     <Grid container direction="column" spacing={1}>
       <Grid item>
-        <Typography variant="h6">{t("Russian roulette")}</Typography>
+        <Typography variant="h6">{t("Retro")}</Typography>
       </Grid>
       <Grid item>
         <Typography variant="body2">
-          {t("No cards but you play russian roulette!")}
+          {t("We start game with rules from 2015!")}
+          <br />
+          {t("More about this game")}
         </Typography>
       </Grid>
       <Grid item>
