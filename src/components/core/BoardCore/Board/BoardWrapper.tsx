@@ -1,6 +1,6 @@
 import "./style.scss";
 import "react-toastify/dist/ReactToastify.css";
-import "../../../../styles/board/theme.scss";
+import "../../../../theme/styles/board/theme.scss";
 
 import { Arbitr } from "../../../views/BoardViews/Arbitr/Arbitr";
 import { BoardModal } from "../../../views/BoardViews/BoardModal/BoardModal";
