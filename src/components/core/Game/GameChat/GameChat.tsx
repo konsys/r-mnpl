@@ -130,9 +130,13 @@ export default function GameChat() {
               } catch (er) {}
             }}
             onKeyPress={(e: any) => {
-              if (e.keyCode === KeyName.ENTER || e.which === KeyName.ENTER) {
+              const message = e.target.value;
+              if (
+                (e.keyCode === KeyName.ENTER || e.which === KeyName.ENTER) &&
+                message.length
+              ) {
                 sendChatMessageEffect({
-                  message: e.target.value,
+                  message: message,
                   replies: replies ? replies.users : [],
                 });
               }

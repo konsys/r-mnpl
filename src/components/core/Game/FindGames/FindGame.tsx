@@ -60,9 +60,10 @@ export const FindGame = () => {
 
   const { t } = useTranslation();
 
+  const createRoom = () => {};
   return (
     <div className="findGame">
-      <CreateGameModal setup={{ state, setState }} />
+      <CreateGameModal setup={{ state, setState }} createRoom={createRoom} />
 
       <Template columns={2} title={"Find games"}>
         <Grid

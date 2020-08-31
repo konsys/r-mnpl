@@ -24,10 +24,17 @@ import ShuffleGameParams from "./GameParams/ShuffleGameParams";
 import { useStore } from "effector-react";
 import { useTranslation } from "react-i18next";
 
-export default function CreateGameModal({ setup }: { setup: IRoomSetup }) {
+export default function CreateGameModal({
+  setup,
+  createRoom,
+}: {
+  setup: IRoomSetup;
+  createRoom: () => void;
+}) {
   const open = useStore(gameModalStore);
   const { t } = useTranslation();
   const [selected, setSelected] = useState<string>(RoomType.SHUFFLE);
+
   return (
     <Dialog open={open} onClose={() => null}>
       <DialogContent className={"newRoom"}>
@@ -142,7 +149,14 @@ export default function CreateGameModal({ setup }: { setup: IRoomSetup }) {
         </Grid>
       </DialogContent>
       <DialogActions>
-        <Button onClick={() => closeModal()} color="primary" variant="outlined">
+        <Button
+          onClick={() => {
+            createRoom();
+            closeModal();
+          }}
+          color="primary"
+          variant="outlined"
+        >
           {t("Create room")}
         </Button>
       </DialogActions>
