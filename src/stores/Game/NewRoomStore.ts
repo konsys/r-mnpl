@@ -1,11 +1,45 @@
-import {
-  IRoomState,
-  RoomPortalFieldType,
-  RoomType,
-} from "components/core/Game/FindGames/FindGame";
-
 import { GameDomain } from "./UserStore";
 import { sample } from "effector";
+
+export interface IRoomSetup {
+  state: IRoomState;
+  setState: (n: IRoomState) => void;
+}
+export enum RoomPortalFieldType {
+  PORTAL = "Portal",
+  NOP = "Empty field",
+  ROULETTE = "Roulette",
+  RUSSIAN_ROULETTE = "Russian roulette",
+}
+
+export enum RoomType {
+  REGULAR = "regular",
+  RETRO = "retro",
+  SHUFFLE = "shuffle",
+  QUICK = "quick",
+  ROULETTE = "roulette",
+}
+
+export enum RoomTypeName {
+  REGULAR = "Regular game",
+  RETRO = "Retro",
+  SHUFFLE = "GMS Shuffle",
+  QUICK = "Quick game",
+  ROULETTE = "Russian roulette",
+}
+
+export interface IRoomState {
+  roomId: number;
+  creatorId: number;
+  playersId: number[];
+  createTime: Date;
+  roomType: RoomType;
+  playersNumber: number;
+  autostart: boolean;
+  privateRoom: boolean;
+  restarts: boolean;
+  portalType: RoomPortalFieldType;
+}
 
 const RoomDomain = GameDomain.domain("ChatDomain");
 

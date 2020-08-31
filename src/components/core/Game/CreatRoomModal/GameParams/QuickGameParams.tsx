@@ -7,14 +7,15 @@ import {
 } from "@material-ui/core";
 import {
   RoomPortalFieldType,
-  roomSwitchChange,
-} from "../../FindGames/FindGame";
-import { newRoomStore, updateRoom } from "stores/Game/NewRoomStore";
+  newRoomStore,
+  updateRoom,
+} from "stores/Game/NewRoomStore";
 
 import { GRID_SPACING } from "../../../../../theme";
 import PlayersNumber from "./views/PlayersNumber";
 import React from "react";
 import RoomSwitch from "./views/RoomSwitch";
+import { roomSwitchChange } from "../../FindGames/FindGame";
 import { useStore } from "effector-react";
 import { useTranslation } from "react-i18next";
 

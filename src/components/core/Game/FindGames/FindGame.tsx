@@ -13,45 +13,6 @@ import { openModal } from "../../../../stores/Game/GameModalStore";
 import { useStore } from "effector-react";
 import { useTranslation } from "react-i18next";
 
-export interface IRoomSetup {
-  state: IRoomState;
-  setState: (n: IRoomState) => void;
-}
-export enum RoomPortalFieldType {
-  PORTAL = "Portal",
-  NOP = "Empty field",
-  ROULETTE = "Roulette",
-  RUSSIAN_ROULETTE = "Russian roulette",
-}
-
-export enum RoomType {
-  REGULAR = "regular",
-  RETRO = "retro",
-  SHUFFLE = "shuffle",
-  QUICK = "quick",
-  ROULETTE = "roulette",
-}
-
-export enum RoomTypeName {
-  REGULAR = "Regular game",
-  RETRO = "Retro",
-  SHUFFLE = "GMS Shuffle",
-  QUICK = "Quick game",
-  ROULETTE = "Russian roulette",
-}
-
-export interface IRoomState {
-  roomId: number;
-  creatorId: number;
-  playersId: number[];
-  createTime: Date;
-  roomType: RoomType;
-  playersNumber: number;
-  autostart: boolean;
-  privateRoom: boolean;
-  restarts: boolean;
-  portalType: RoomPortalFieldType;
-}
 export const roomSwitchChange = (name: string) => {
   console.log(234234234, name);
 };

@@ -9,6 +9,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import React, { useState } from "react";
+import { RoomType, createRoom } from "stores/Game/NewRoomStore";
 import {
   closeModal,
   gameModalStore,
@@ -18,10 +19,8 @@ import CloseIcon from "@material-ui/icons/Close";
 import QuickGameParams from "./GameParams/QuickGameParams";
 import RegularGameParams from "./GameParams/RegularGameParams";
 import RetroGameParams from "./GameParams/RetroGameParams";
-import { RoomType } from "../FindGames/FindGame";
 import RouletteGameParams from "./GameParams/RouletteGameParams";
 import ShuffleGameParams from "./GameParams/ShuffleGameParams";
-import { createRoom } from "stores/Game/NewRoomStore";
 import { useStore } from "effector-react";
 import { useTranslation } from "react-i18next";
 
