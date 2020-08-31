@@ -1,9 +1,11 @@
+import "./styles.scss";
+
 import { Button, Divider, Grid, Typography } from "@material-ui/core";
 import CreateGameModal, { RoomType } from "../CreatRoomModal/CreateGameModal";
 
 import { BLOCK_SPACING } from "../../../../theme";
 import React from "react";
-import RoomAvatar from "../CreatRoomModal/GameParams/views/RoomAvatar";
+import RoomAvatar from "./NewRoom/RoomAvatar";
 import RoomTypeView from "./NewRoom/RoomTypeView";
 import Template from "../../../views/Template/Template";
 import { openModal } from "../../../../stores/Game/GameModalStore";
@@ -63,23 +65,25 @@ export const FindGame = () => {
               className="newRoomOne"
             >
               <Grid item className="newRoomOneParams">
-                <RoomTypeView type={RoomType.QUICK} />
+                <RoomTypeView type={RoomType.REGULAR} />
               </Grid>
               <Grid item className="newRoomOnePlayers">
-                <Grid className="newRoomOneAvatar">
-                  <RoomAvatar />
-                </Grid>
-                <Grid className="newRoomOneAvatar">
-                  <RoomAvatar />
-                </Grid>
-                <Grid className="newRoomOneAvatar">
-                  <RoomAvatar />
-                </Grid>
-                <Grid className="newRoomOneAvatar">
-                  <RoomAvatar />
-                </Grid>
-                <Grid className="newRoomOneAvatar">
-                  <RoomAvatar />
+                <Grid container justify="center" direction="column" spacing={1}>
+                  <Grid className="newRoomOneAvatar">
+                    <RoomAvatar />
+                  </Grid>
+                  <Grid className="newRoomOneAvatar">
+                    <RoomAvatar />
+                  </Grid>
+                  <Grid className="newRoomOneAvatar">
+                    <RoomAvatar />
+                  </Grid>
+                  <Grid className="newRoomOneAvatar">
+                    <RoomAvatar />
+                  </Grid>
+                  <Grid className="newRoomOneAvatar">
+                    <RoomAvatar />
+                  </Grid>
                 </Grid>
               </Grid>
             </Grid>

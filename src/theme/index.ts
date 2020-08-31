@@ -34,6 +34,9 @@ export const theme = createMuiTheme({
     body2: {
       color: "#a7adb5",
     },
+    overline: {
+      color: "white",
+    },
   },
   palette: {
     primary: {

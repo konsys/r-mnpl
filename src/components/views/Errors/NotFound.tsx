@@ -50,7 +50,7 @@ export default function NotFound() {
       </Hidden>
       <Grid item>
         <Button size={"medium"} variant="contained" color="primary">
-          <Typography variant="body2" noWrap>
+          <Typography variant="overline" noWrap>
             {t("To main page")}
           </Typography>
         </Button>
