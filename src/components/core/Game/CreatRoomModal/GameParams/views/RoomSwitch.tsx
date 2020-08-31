@@ -1,18 +1,17 @@
 import { Grid, Switch } from "@material-ui/core";
 
 import { GRID_SPACING } from "../../../../../../theme";
-import { IRoomSetup } from "components/core/Game/FindGames/FindGame";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
 export default function RoomSwitch({
-  setup,
   text,
-  parameterName,
+  name,
+  onChange,
 }: {
-  setup: IRoomSetup | any;
   text: string;
-  parameterName: any;
+  name: string;
+  onChange: (name: string) => void;
 }) {
   const { t } = useTranslation();
 
@@ -27,15 +26,10 @@ export default function RoomSwitch({
       <Grid item>
         <Switch
           color="primary"
-          checked={setup.state[parameterName]}
-          onChange={() =>
-            setup.setState({
-              ...setup.state,
-              [parameterName]: !setup.state[parameterName],
-            })
-          }
-          name={parameterName}
-          inputProps={{ "aria-label": parameterName }}
+          checked={false}
+          onChange={() => onChange(name)}
+          name={name}
+          inputProps={{ "aria-label": name }}
         />
       </Grid>
     </Grid>

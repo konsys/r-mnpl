@@ -1,14 +1,16 @@
 import "./styles.scss";
 
 import { Button, Divider, Grid, Typography } from "@material-ui/core";
-import React, { useState } from "react";
 
 import { BLOCK_SPACING } from "../../../../theme";
 import CreateGameModal from "../CreatRoomModal/CreateGameModal";
+import React from "react";
 import RoomAvatar from "./NewRoom/RoomAvatar";
 import RoomTypeView from "./NewRoom/RoomTypeView";
 import Template from "../../../views/Template/Template";
+import { newRoomStore } from "stores/Game/NewRoomStore";
 import { openModal } from "../../../../stores/Game/GameModalStore";
+import { useStore } from "effector-react";
 import { useTranslation } from "react-i18next";
 
 export interface IRoomSetup {
@@ -39,7 +41,10 @@ export enum RoomTypeName {
 }
 
 export interface IRoomState {
+  roomId: number;
   creatorId: number;
+  playersId: number[];
+  createTime: Date;
   roomType: RoomType;
   playersNumber: number;
   autostart: boolean;
@@ -47,23 +52,18 @@ export interface IRoomState {
   restarts: boolean;
   portalType: RoomPortalFieldType;
 }
+export const roomSwitchChange = (name: string) => {
+  console.log(234234234, name);
+};
+
 export const FindGame = () => {
-  const [state, setState] = useState<IRoomState>({
-    creatorId: 0,
-    roomType: RoomType.REGULAR,
-    autostart: true,
-    restarts: false,
-    playersNumber: 4,
-    privateRoom: false,
-    portalType: RoomPortalFieldType.ROULETTE,
-  });
+  const room = useStore(newRoomStore);
 
   const { t } = useTranslation();
 
-  const createRoom = () => {};
   return (
     <div className="findGame">
-      <CreateGameModal setup={{ state, setState }} createRoom={createRoom} />
+      <CreateGameModal />
 
       <Template columns={2} title={"Find games"}>
         <Grid
@@ -113,7 +113,7 @@ export const FindGame = () => {
               className="newRoomOne"
             >
               <Grid item className="newRoomOneParams">
-                <RoomTypeView type={state.roomType} roomParams={state} />
+                <RoomTypeView type={room.roomType} roomParams={room} />
               </Grid>
               <Grid item className="newRoomOnePlayers">
                 <Grid container justify="center" direction="column" spacing={1}>

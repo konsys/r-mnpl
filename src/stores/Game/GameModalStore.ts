@@ -1,6 +1,6 @@
 import { GameDomain } from "./UserStore";
 
-const GameModalDomain = GameDomain.domain("ChatDomain");
+const GameModalDomain = GameDomain.domain("GameModalDomain");
 
 export const openModal = GameModalDomain.event();
 export const closeModal = GameModalDomain.event();

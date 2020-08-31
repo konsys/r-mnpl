@@ -8,7 +8,6 @@ import {
   Grid,
   Typography,
 } from "@material-ui/core";
-import { IRoomSetup, RoomType } from "../FindGames/FindGame";
 import React, { useState } from "react";
 import {
   closeModal,
@@ -19,18 +18,14 @@ import CloseIcon from "@material-ui/icons/Close";
 import QuickGameParams from "./GameParams/QuickGameParams";
 import RegularGameParams from "./GameParams/RegularGameParams";
 import RetroGameParams from "./GameParams/RetroGameParams";
+import { RoomType } from "../FindGames/FindGame";
 import RouletteGameParams from "./GameParams/RouletteGameParams";
 import ShuffleGameParams from "./GameParams/ShuffleGameParams";
+import { createRoom } from "stores/Game/NewRoomStore";
 import { useStore } from "effector-react";
 import { useTranslation } from "react-i18next";
 
-export default function CreateGameModal({
-  setup,
-  createRoom,
-}: {
-  setup: IRoomSetup;
-  createRoom: () => void;
-}) {
+export default function CreateGameModal() {
   const open = useStore(gameModalStore);
   const { t } = useTranslation();
   const [selected, setSelected] = useState<string>(RoomType.SHUFFLE);
@@ -133,17 +128,11 @@ export default function CreateGameModal({
           </Grid>
           <Grid item sm={6} className="roomParams">
             <Grid container justify="space-between" alignItems="center">
-              {selected === RoomType.REGULAR && (
-                <RegularGameParams setup={setup} />
-              )}
-              {selected === RoomType.QUICK && <QuickGameParams setup={setup} />}
-              {selected === RoomType.RETRO && <RetroGameParams setup={setup} />}
-              {selected === RoomType.ROULETTE && (
-                <RouletteGameParams setup={setup} />
-              )}
-              {selected === RoomType.SHUFFLE && (
-                <ShuffleGameParams setup={setup} />
-              )}
+              {selected === RoomType.REGULAR && <RegularGameParams />}
+              {selected === RoomType.QUICK && <QuickGameParams />}
+              {selected === RoomType.RETRO && <RetroGameParams />}
+              {selected === RoomType.ROULETTE && <RouletteGameParams />}
+              {selected === RoomType.SHUFFLE && <ShuffleGameParams />}
             </Grid>
           </Grid>
         </Grid>

@@ -5,17 +5,23 @@ import {
   RadioGroup,
   Typography,
 } from "@material-ui/core";
-import { IRoomSetup, RoomPortalFieldType } from "../../FindGames/FindGame";
+import {
+  RoomPortalFieldType,
+  roomSwitchChange,
+} from "../../FindGames/FindGame";
+import { newRoomStore, updateRoom } from "stores/Game/NewRoomStore";
 
 import { GRID_SPACING } from "../../../../../theme";
 import PlayersNumber from "./views/PlayersNumber";
 import React from "react";
 import RoomSwitch from "./views/RoomSwitch";
+import { useStore } from "effector-react";
 import { useTranslation } from "react-i18next";
 
-export default function QuickGameParams({ setup }: { setup: IRoomSetup }) {
+export default function QuickGameParams() {
   const { t } = useTranslation();
-  const { portalType } = setup.state;
+  const room = useStore(newRoomStore);
+
   return (
     <Grid container direction="column" spacing={GRID_SPACING}>
       <Grid item>
@@ -32,7 +38,7 @@ export default function QuickGameParams({ setup }: { setup: IRoomSetup }) {
         </Typography>
       </Grid>
       <Grid item>
-        <PlayersNumber setup={setup} />
+        <PlayersNumber />
       </Grid>
       <Grid item>
         <Grid container spacing={GRID_SPACING}>
@@ -41,19 +47,19 @@ export default function QuickGameParams({ setup }: { setup: IRoomSetup }) {
           </Grid>
         </Grid>
         <RoomSwitch
-          setup={setup}
           text={"Private room"}
-          parameterName={"privateRoom"}
+          name={"privateRoom"}
+          onChange={roomSwitchChange}
         />
         <RoomSwitch
-          setup={setup}
           text={"Game autostart"}
-          parameterName={"autostart"}
+          name={"autostart"}
+          onChange={roomSwitchChange}
         />
         <RoomSwitch
-          setup={setup}
           text={"Game restarts"}
-          parameterName={"restarts"}
+          name={"restarts"}
+          onChange={roomSwitchChange}
         />
         <Grid container spacing={GRID_SPACING}>
           <Grid item>
@@ -66,9 +72,9 @@ export default function QuickGameParams({ setup }: { setup: IRoomSetup }) {
               <RadioGroup
                 aria-label="portal type"
                 name="portal"
-                value={portalType}
+                value={room?.portalType}
                 onChange={(v: any) =>
-                  setup.setState({ ...setup.state, portalType: v.target.value })
+                  updateRoom({ ...room, portalType: v.target.value })
                 }
               >
                 <FormControlLabel
