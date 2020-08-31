@@ -47,6 +47,10 @@ i18n
           "Game autostart": "Автостарт игры",
 
           Retro: "Ретро",
+          Roulette: "Рулетка",
+          Portal: "Портал",
+          "Room type": "Тип комнаты",
+          "Empty field": "Пустое поле",
           "Russian roulette": "Русская рулетка",
           Cancel: "Отмена",
           Inventory: "Инвентарь",

@@ -23,6 +23,13 @@ import ShuffleGameParams from "./GameParams/ShuffleGameParams";
 import { useStore } from "effector-react";
 import { useTranslation } from "react-i18next";
 
+export enum RoomPortalFieldType {
+  PORTAL = "Portal",
+  NOP = "Empty field",
+  ROULETTE = "Roulette",
+  RUSSIAN_ROULETTE = "Russian roulette",
+}
+
 export enum RoomType {
   REGULAR = "regular",
   RETRO = "retro",
@@ -43,7 +50,8 @@ export interface IRoomState {
   playersNumber: number;
   autostart: boolean;
   privateRoom: boolean;
-  restarts?: boolean;
+  restarts: boolean;
+  portalType: RoomPortalFieldType;
 }
 export interface IRoomSetup {
   state: IRoomState;
@@ -57,8 +65,10 @@ export default function CreateGameModal() {
 
   const [state, setState] = useState<IRoomState>({
     autostart: true,
+    restarts: false,
     playersNumber: 4,
     privateRoom: false,
+    portalType: RoomPortalFieldType.ROULETTE,
   });
 
   return (
