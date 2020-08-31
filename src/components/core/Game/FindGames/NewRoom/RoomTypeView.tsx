@@ -1,5 +1,5 @@
 import { Grid, Typography } from "@material-ui/core";
-import { RoomType, RoomTypeName } from "../../CreatRoomModal/CreateGameModal";
+import { IRoomState, RoomType, RoomTypeName } from "../FindGame";
 
 import LocationSearchingIcon from "@material-ui/icons/LocationSearching";
 import RadioIcon from "@material-ui/icons/Radio";
@@ -9,7 +9,13 @@ import ShuffleIcon from "@material-ui/icons/Shuffle";
 import VideogameAssetIcon from "@material-ui/icons/VideogameAsset";
 import { useTranslation } from "react-i18next";
 
-export default function RoomTypeView({ type }: { type: RoomType }) {
+export default function RoomTypeView({
+  type,
+  roomParams,
+}: {
+  type: RoomType;
+  roomParams: IRoomState;
+}) {
   const { t } = useTranslation();
   let name = "";
   let className = "";

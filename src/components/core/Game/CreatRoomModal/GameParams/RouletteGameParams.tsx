@@ -1,7 +1,7 @@
 import { Grid, Typography } from "@material-ui/core";
 
 import { GRID_SPACING } from "../../../../../theme";
-import { IRoomSetup } from "../CreateGameModal";
+import { IRoomSetup } from "../../FindGames/FindGame";
 import PlayersNumber from "./views/PlayersNumber";
 import React from "react";
 import RoomSwitch from "./views/RoomSwitch";

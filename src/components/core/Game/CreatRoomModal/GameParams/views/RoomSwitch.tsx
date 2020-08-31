@@ -1,7 +1,7 @@
 import { Grid, Switch } from "@material-ui/core";
 
 import { GRID_SPACING } from "../../../../../../theme";
-import { IRoomSetup } from "../../CreateGameModal";
+import { IRoomSetup } from "components/core/Game/FindGames/FindGame";
 import React from "react";
 import { useTranslation } from "react-i18next";
 

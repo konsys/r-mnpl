@@ -5,7 +5,7 @@ import {
   RadioGroup,
   Typography,
 } from "@material-ui/core";
-import { IRoomSetup, RoomPortalFieldType } from "../CreateGameModal";
+import { IRoomSetup, RoomPortalFieldType } from "../../FindGames/FindGame";
 
 import { GRID_SPACING } from "../../../../../theme";
 import PlayersNumber from "./views/PlayersNumber";

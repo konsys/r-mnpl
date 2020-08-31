@@ -1,21 +1,62 @@
 import "./styles.scss";
 
 import { Button, Divider, Grid, Typography } from "@material-ui/core";
-import CreateGameModal, { RoomType } from "../CreatRoomModal/CreateGameModal";
+import React, { useState } from "react";
 
 import { BLOCK_SPACING } from "../../../../theme";
-import React from "react";
+import CreateGameModal from "../CreatRoomModal/CreateGameModal";
 import RoomAvatar from "./NewRoom/RoomAvatar";
 import RoomTypeView from "./NewRoom/RoomTypeView";
 import Template from "../../../views/Template/Template";
 import { openModal } from "../../../../stores/Game/GameModalStore";
 import { useTranslation } from "react-i18next";
 
+export interface IRoomSetup {
+  state: IRoomState;
+  setState: (n: IRoomState) => void;
+}
+export enum RoomPortalFieldType {
+  PORTAL = "Portal",
+  NOP = "Empty field",
+  ROULETTE = "Roulette",
+  RUSSIAN_ROULETTE = "Russian roulette",
+}
+
+export enum RoomType {
+  REGULAR = "regular",
+  RETRO = "retro",
+  SHUFFLE = "shuffle",
+  QUICK = "quick",
+  ROULETTE = "roulette",
+}
+
+export enum RoomTypeName {
+  REGULAR = "Regular game",
+  RETRO = "Retro",
+  SHUFFLE = "GMS Shuffle",
+  QUICK = "Quick game",
+  ROULETTE = "Russian roulette",
+}
+
+export interface IRoomState {
+  playersNumber: number;
+  autostart: boolean;
+  privateRoom: boolean;
+  restarts: boolean;
+  portalType: RoomPortalFieldType;
+}
 export const FindGame = () => {
+  const [state, setState] = useState<IRoomState>({
+    autostart: true,
+    restarts: false,
+    playersNumber: 4,
+    privateRoom: false,
+    portalType: RoomPortalFieldType.ROULETTE,
+  });
   const { t } = useTranslation();
   return (
     <div className="findGame">
-      <CreateGameModal />
+      <CreateGameModal setup={{ state, setState }} />
 
       <Template columns={2} title={"Find games"}>
         <Grid
@@ -65,7 +106,16 @@ export const FindGame = () => {
               className="newRoomOne"
             >
               <Grid item className="newRoomOneParams">
-                <RoomTypeView type={RoomType.REGULAR} />
+                <RoomTypeView
+                  type={RoomType.REGULAR}
+                  roomParams={{
+                    autostart: false,
+                    playersNumber: 4,
+                    portalType: RoomPortalFieldType.PORTAL,
+                    restarts: false,
+                    privateRoom: false,
+                  }}
+                />
               </Grid>
               <Grid item className="newRoomOnePlayers">
                 <Grid container justify="center" direction="column" spacing={1}>

@@ -1,6 +1,6 @@
 import { Button, ButtonGroup, Grid } from "@material-ui/core";
 
-import { IRoomSetup } from "../../CreateGameModal";
+import { IRoomSetup } from "components/core/Game/FindGames/FindGame";
 import React from "react";
 import { useTranslation } from "react-i18next";
 

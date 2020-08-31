@@ -8,6 +8,7 @@ import {
   Grid,
   Typography,
 } from "@material-ui/core";
+import { IRoomSetup, RoomType } from "../FindGames/FindGame";
 import React, { useState } from "react";
 import {
   closeModal,
@@ -23,54 +24,10 @@ import ShuffleGameParams from "./GameParams/ShuffleGameParams";
 import { useStore } from "effector-react";
 import { useTranslation } from "react-i18next";
 
-export enum RoomPortalFieldType {
-  PORTAL = "Portal",
-  NOP = "Empty field",
-  ROULETTE = "Roulette",
-  RUSSIAN_ROULETTE = "Russian roulette",
-}
-
-export enum RoomType {
-  REGULAR = "regular",
-  RETRO = "retro",
-  SHUFFLE = "shuffle",
-  QUICK = "quick",
-  ROULETTE = "roulette",
-}
-
-export enum RoomTypeName {
-  REGULAR = "Regular game",
-  RETRO = "Retro",
-  SHUFFLE = "GMS Shuffle",
-  QUICK = "Quick game",
-  ROULETTE = "Russian roulette",
-}
-
-export interface IRoomState {
-  playersNumber: number;
-  autostart: boolean;
-  privateRoom: boolean;
-  restarts: boolean;
-  portalType: RoomPortalFieldType;
-}
-export interface IRoomSetup {
-  state: IRoomState;
-  setState: (n: IRoomState) => void;
-}
-
-export default function CreateGameModal() {
+export default function CreateGameModal({ setup }: { setup: IRoomSetup }) {
   const open = useStore(gameModalStore);
-  const [selected, setSelected] = useState<string>(RoomType.SHUFFLE);
   const { t } = useTranslation();
-
-  const [state, setState] = useState<IRoomState>({
-    autostart: true,
-    restarts: false,
-    playersNumber: 4,
-    privateRoom: false,
-    portalType: RoomPortalFieldType.ROULETTE,
-  });
-
+  const [selected, setSelected] = useState<string>(RoomType.SHUFFLE);
   return (
     <Dialog open={open} onClose={() => null}>
       <DialogContent className={"newRoom"}>
@@ -170,19 +127,15 @@ export default function CreateGameModal() {
           <Grid item sm={6} className="roomParams">
             <Grid container justify="space-between" alignItems="center">
               {selected === RoomType.REGULAR && (
-                <RegularGameParams setup={{ state, setState }} />
+                <RegularGameParams setup={setup} />
               )}
-              {selected === RoomType.QUICK && (
-                <QuickGameParams setup={{ state, setState }} />
-              )}
-              {selected === RoomType.RETRO && (
-                <RetroGameParams setup={{ state, setState }} />
-              )}
+              {selected === RoomType.QUICK && <QuickGameParams setup={setup} />}
+              {selected === RoomType.RETRO && <RetroGameParams setup={setup} />}
               {selected === RoomType.ROULETTE && (
-                <RouletteGameParams setup={{ state, setState }} />
+                <RouletteGameParams setup={setup} />
               )}
               {selected === RoomType.SHUFFLE && (
-                <ShuffleGameParams setup={{ state, setState }} />
+                <ShuffleGameParams setup={setup} />
               )}
             </Grid>
           </Grid>
