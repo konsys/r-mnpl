@@ -74,7 +74,7 @@ export const FindGame = () => {
               className="newRoomOne"
             >
               <Grid item className="newRoomOneParams">
-                <RoomTypeView type={room.roomType} roomParams={room} />
+                <RoomTypeView type={room} />
               </Grid>
               <Grid item className="newRoomOnePlayers">
                 <Grid container justify="center" direction="column" spacing={1}>

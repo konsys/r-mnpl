@@ -1,10 +1,6 @@
 import { GameDomain } from "./UserStore";
 import { sample } from "effector";
 
-export interface IRoomSetup {
-  state: IRoomState;
-  setState: (n: IRoomState) => void;
-}
 export enum RoomPortalFieldType {
   PORTAL = "Portal",
   NOP = "Empty field",

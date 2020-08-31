@@ -9,19 +9,13 @@ import ShuffleIcon from "@material-ui/icons/Shuffle";
 import VideogameAssetIcon from "@material-ui/icons/VideogameAsset";
 import { useTranslation } from "react-i18next";
 
-export default function RoomTypeView({
-  type,
-  roomParams,
-}: {
-  type: RoomType;
-  roomParams: IRoomState;
-}) {
+export default function RoomTypeView({ type }: { type: IRoomState }) {
   const { t } = useTranslation();
   let name = "";
   let className = "";
   let icon = <VideogameAssetIcon />;
 
-  switch (type) {
+  switch (type.roomType) {
     case RoomType.REGULAR:
       name = RoomTypeName.REGULAR;
       className = RoomType.REGULAR;
