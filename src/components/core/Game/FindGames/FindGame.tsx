@@ -39,6 +39,8 @@ export enum RoomTypeName {
 }
 
 export interface IRoomState {
+  creatorId: number;
+  roomType: RoomType;
   playersNumber: number;
   autostart: boolean;
   privateRoom: boolean;
@@ -47,13 +49,17 @@ export interface IRoomState {
 }
 export const FindGame = () => {
   const [state, setState] = useState<IRoomState>({
+    creatorId: 0,
+    roomType: RoomType.REGULAR,
     autostart: true,
     restarts: false,
     playersNumber: 4,
     privateRoom: false,
     portalType: RoomPortalFieldType.ROULETTE,
   });
+
   const { t } = useTranslation();
+
   return (
     <div className="findGame">
       <CreateGameModal setup={{ state, setState }} />
@@ -106,16 +112,7 @@ export const FindGame = () => {
               className="newRoomOne"
             >
               <Grid item className="newRoomOneParams">
-                <RoomTypeView
-                  type={RoomType.REGULAR}
-                  roomParams={{
-                    autostart: false,
-                    playersNumber: 4,
-                    portalType: RoomPortalFieldType.PORTAL,
-                    restarts: false,
-                    privateRoom: false,
-                  }}
-                />
+                <RoomTypeView type={state.roomType} roomParams={state} />
               </Grid>
               <Grid item className="newRoomOnePlayers">
                 <Grid container justify="center" direction="column" spacing={1}>
