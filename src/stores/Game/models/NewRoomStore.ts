@@ -1,6 +1,8 @@
 import { GameDomain, userStore } from "../UserStore";
 import { combine, sample } from "effector";
 
+import nanoid from "nanoid";
+
 export enum RoomPortalFieldType {
   PORTAL = "Portal",
   NOP = "Empty field",
@@ -25,7 +27,7 @@ export enum RoomTypeName {
 }
 
 export interface IRoomState {
-  roomId: number;
+  roomId: string;
   creatorId: number;
   playersId: number[];
   createTime: Date;
@@ -48,7 +50,7 @@ export const toggleRoomSwitch = RoomDomain.event<string>();
 export const deleteRoom = RoomDomain.event<void>();
 
 export const newRoomStore = RoomDomain.store<IRoomState>({
-  roomId: 0,
+  roomId: "",
   creatorId: 0,
   playersId: [],
   createTime: new Date(),
@@ -59,7 +61,10 @@ export const newRoomStore = RoomDomain.store<IRoomState>({
   restarts: false,
   privateRoom: false,
 })
-  .on(updateRoom, (v) => v)
+  .on(updateRoom, (_, v) => {
+    console.log(23232323, v);
+    return v;
+  })
 
   .on(toggleAutostart, (state) => ({
     ...state,
@@ -103,6 +108,7 @@ sample({
     ...room,
     creatorId: user.userId,
     playersId: [user.userId],
+    roomId: nanoid(8),
   }),
 
   target: updateRoom,

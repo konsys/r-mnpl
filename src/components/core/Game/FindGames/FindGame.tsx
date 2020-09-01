@@ -8,9 +8,8 @@ import {
 
 import { BLOCK_SPACING } from "../../../../theme";
 import CreateGameModal from "../CreatRoomModal/CreateGameModal";
+import NewRoomBlock from "./NewRoom/NewRoomBlock";
 import React from "react";
-import RoomAvatar from "./NewRoom/RoomAvatar";
-import RoomTypeView from "./NewRoom/RoomTypeView";
 import Template from "../../../views/Template/Template";
 import { openModal } from "stores/Game/models/GameModalStore";
 import { useStore } from "effector-react";
@@ -69,36 +68,7 @@ export const FindGame = () => {
           spacing={BLOCK_SPACING}
         >
           <Grid item>
-            <Grid
-              container
-              justify="center"
-              direction="column"
-              spacing={1}
-              className="newRoomOne"
-            >
-              <Grid item className="newRoomOneParams">
-                <RoomTypeView type={room} />
-              </Grid>
-              <Grid item className="newRoomOnePlayers">
-                <Grid container justify="center" direction="column" spacing={1}>
-                  <Grid className="newRoomOneAvatar">
-                    <RoomAvatar />
-                  </Grid>
-                  <Grid className="newRoomOneAvatar">
-                    <RoomAvatar />
-                  </Grid>
-                  <Grid className="newRoomOneAvatar">
-                    <RoomAvatar />
-                  </Grid>
-                  <Grid className="newRoomOneAvatar">
-                    <RoomAvatar />
-                  </Grid>
-                  <Grid className="newRoomOneAvatar">
-                    <RoomAvatar />
-                  </Grid>
-                </Grid>
-              </Grid>
-            </Grid>
+            <NewRoomBlock room={room} />
           </Grid>
         </Grid>
       </Template>
