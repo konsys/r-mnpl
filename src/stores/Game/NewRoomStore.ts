@@ -41,6 +41,10 @@ const RoomDomain = GameDomain.domain("ChatDomain");
 
 export const createRoom = RoomDomain.event<void>();
 export const updateRoom = RoomDomain.event<IRoomState>();
+export const toggleAutostart = RoomDomain.event<void>();
+export const togglePrivateRoom = RoomDomain.event<void>();
+export const togglRestarts = RoomDomain.event<void>();
+export const toggleRoomSwitch = RoomDomain.event<string>();
 export const deleteRoom = RoomDomain.event<void>();
 
 export const newRoomStore = RoomDomain.store<IRoomState>({
@@ -49,18 +53,53 @@ export const newRoomStore = RoomDomain.store<IRoomState>({
   playersId: [],
   createTime: new Date(),
   roomType: RoomType.REGULAR,
+  playersNumber: 4,
+  portalType: RoomPortalFieldType.ROULETTE,
   autostart: true,
   restarts: false,
-  playersNumber: 4,
   privateRoom: false,
-  portalType: RoomPortalFieldType.ROULETTE,
 })
   .on(createRoom, (v) => v)
   .on(updateRoom, (v) => v)
+
+  .on(toggleAutostart, (state) => ({
+    ...state,
+    autostart: !state.autostart,
+  }))
+  .on(togglePrivateRoom, (state) => ({
+    ...state,
+    privateRoom: !state.privateRoom,
+  }))
+  .on(togglRestarts, (state) => ({
+    ...state,
+    restarts: !state.restarts,
+  }))
   .reset(deleteRoom);
 
+// newRoomStore.updates.watch((v) => console.log("newRoomStoreWatch", v));
+
 sample({
-  clock: createRoom,
-  source: newRoomStore.map((v) => v),
-  target: updateRoom,
+  clock: toggleRoomSwitch,
+  source: toggleRoomSwitch,
+  fn: (name) => {
+    console.log(1212121212, name);
+    switch (name) {
+      case "autostart":
+        toggleAutostart();
+        break;
+      case "privateRoom":
+        togglePrivateRoom();
+        break;
+      case "restarts":
+        togglRestarts();
+        break;
+    }
+  },
+  // target: updateRoom,
 });
+
+// sample({
+//   clock: toggleRoomSwitch,
+//   source: newRoomStore.map((v) => v),
+//   target: updateRoom,
+// });

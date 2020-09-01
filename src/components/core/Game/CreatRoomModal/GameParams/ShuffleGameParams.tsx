@@ -4,11 +4,14 @@ import { GRID_SPACING } from "../../../../../theme";
 import PlayersNumber from "./views/PlayersNumber";
 import React from "react";
 import RoomSwitch from "./views/RoomSwitch";
+import { newRoomStore } from "stores/Game/NewRoomStore";
 import { roomSwitchChange } from "../../FindGames/FindGame";
+import { useStore } from "effector-react";
 import { useTranslation } from "react-i18next";
 
 export default function ShuffleGameParams() {
   const { t } = useTranslation();
+  const room = useStore(newRoomStore);
   return (
     <>
       <Grid container direction="column" spacing={GRID_SPACING}>
@@ -27,11 +30,13 @@ export default function ShuffleGameParams() {
           <RoomSwitch
             text={"Private room"}
             name={"privateRoom"}
+            checked={room.privateRoom}
             onChange={roomSwitchChange}
           />
           <RoomSwitch
             text={"Game autostart"}
             name={"autostart"}
+            checked={room.autostart}
             onChange={roomSwitchChange}
           />
         </Grid>

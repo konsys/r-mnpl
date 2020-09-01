@@ -7,14 +7,15 @@ import { useTranslation } from "react-i18next";
 export default function RoomSwitch({
   text,
   name,
+  checked,
   onChange,
 }: {
   text: string;
   name: string;
+  checked: boolean;
   onChange: (name: string) => void;
 }) {
   const { t } = useTranslation();
-
   return (
     <Grid
       container
@@ -26,7 +27,7 @@ export default function RoomSwitch({
       <Grid item>
         <Switch
           color="primary"
-          checked={false}
+          checked={checked}
           onChange={() => onChange(name)}
           name={name}
           inputProps={{ "aria-label": name }}

@@ -50,16 +50,19 @@ export default function QuickGameParams() {
         <RoomSwitch
           text={"Private room"}
           name={"privateRoom"}
+          checked={room.privateRoom}
           onChange={roomSwitchChange}
         />
         <RoomSwitch
           text={"Game autostart"}
           name={"autostart"}
+          checked={room.autostart}
           onChange={roomSwitchChange}
         />
         <RoomSwitch
           text={"Game restarts"}
           name={"restarts"}
+          checked={room.restarts}
           onChange={roomSwitchChange}
         />
         <Grid container spacing={GRID_SPACING}>
