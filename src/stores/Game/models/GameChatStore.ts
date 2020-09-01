@@ -1,7 +1,7 @@
-import { GameDomain } from "./UserStore";
-import { IChatMessage } from "../../components/core/Game/GameChat/ChatMessage";
-import { IUser } from "../../types/types";
-import { fetchChat } from "../../models/GameChat/api";
+import { GameDomain } from "../UserStore";
+import { IChatMessage } from "../../../components/core/Game/GameChat/ChatMessage";
+import { IUser } from "../../../types/types";
+import { fetchChat } from "../../../models/GameChat/api";
 
 const ChatDomain = GameDomain.domain("ChatDomain");
 

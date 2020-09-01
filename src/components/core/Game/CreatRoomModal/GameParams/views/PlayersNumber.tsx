@@ -1,5 +1,5 @@
 import { Button, ButtonGroup, Grid } from "@material-ui/core";
-import { newRoomStore, updateRoom } from "stores/Game/NewRoomStore";
+import { newRoomStore, updateRoom } from "stores/Game/models/NewRoomStore";
 
 import React from "react";
 import { useStore } from "effector-react";

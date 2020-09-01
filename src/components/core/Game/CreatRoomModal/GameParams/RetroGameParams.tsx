@@ -4,7 +4,7 @@ import { GRID_SPACING } from "../../../../../theme";
 import PlayersNumber from "./views/PlayersNumber";
 import React from "react";
 import RoomSwitch from "./views/RoomSwitch";
-import { newRoomStore } from "stores/Game/NewRoomStore";
+import { newRoomStore } from "stores/Game/models/NewRoomStore";
 import { roomSwitchChange } from "../../FindGames/FindGame";
 import { useStore } from "effector-react";
 import { useTranslation } from "react-i18next";

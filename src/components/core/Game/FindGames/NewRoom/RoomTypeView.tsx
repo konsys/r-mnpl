@@ -1,5 +1,9 @@
 import { Grid, Typography } from "@material-ui/core";
-import { IRoomState, RoomType, RoomTypeName } from "stores/Game/NewRoomStore";
+import {
+  IRoomState,
+  RoomType,
+  RoomTypeName,
+} from "stores/Game/models/NewRoomStore";
 
 import LocationSearchingIcon from "@material-ui/icons/LocationSearching";
 import RadioIcon from "@material-ui/icons/Radio";

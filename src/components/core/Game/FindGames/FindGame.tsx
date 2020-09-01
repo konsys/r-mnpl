@@ -1,7 +1,10 @@
 import "./styles.scss";
 
 import { Button, Divider, Grid, Typography } from "@material-ui/core";
-import { newRoomStore, toggleRoomSwitch } from "stores/Game/NewRoomStore";
+import {
+  newRoomStore,
+  toggleRoomSwitch,
+} from "stores/Game/models/NewRoomStore";
 
 import { BLOCK_SPACING } from "../../../../theme";
 import CreateGameModal from "../CreatRoomModal/CreateGameModal";
@@ -9,7 +12,7 @@ import React from "react";
 import RoomAvatar from "./NewRoom/RoomAvatar";
 import RoomTypeView from "./NewRoom/RoomTypeView";
 import Template from "../../../views/Template/Template";
-import { openModal } from "../../../../stores/Game/GameModalStore";
+import { openModal } from "stores/Game/models/GameModalStore";
 import { useStore } from "effector-react";
 import { useTranslation } from "react-i18next";
 

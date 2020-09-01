@@ -9,11 +9,8 @@ import {
   Typography,
 } from "@material-ui/core";
 import React, { useState } from "react";
-import { RoomType, createRoom } from "stores/Game/NewRoomStore";
-import {
-  closeModal,
-  gameModalStore,
-} from "../../../../stores/Game/GameModalStore";
+import { RoomType, createRoom } from "stores/Game/models/NewRoomStore";
+import { closeModal, gameModalStore } from "stores/Game/models/GameModalStore";
 
 import CloseIcon from "@material-ui/icons/Close";
 import QuickGameParams from "./GameParams/QuickGameParams";

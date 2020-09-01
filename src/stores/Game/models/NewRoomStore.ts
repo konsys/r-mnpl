@@ -1,4 +1,4 @@
-import { GameDomain } from "./UserStore";
+import { GameDomain } from "../UserStore";
 import { sample } from "effector";
 
 export enum RoomPortalFieldType {
