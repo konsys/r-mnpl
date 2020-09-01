@@ -76,13 +76,10 @@ export const newRoomStore = RoomDomain.store<IRoomState>({
   }))
   .reset(deleteRoom);
 
-// newRoomStore.updates.watch((v) => console.log("newRoomStoreWatch", v));
-
 sample({
   clock: toggleRoomSwitch,
   source: toggleRoomSwitch,
   fn: (name) => {
-    console.log(1212121212, name);
     switch (name) {
       case "autostart":
         toggleAutostart();
@@ -95,7 +92,6 @@ sample({
         break;
     }
   },
-  // target: updateRoom,
 });
 
 // sample({
