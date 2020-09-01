@@ -1,6 +1,7 @@
 import { GameDomain, userStore } from "../UserStore";
 import { combine, sample } from "effector";
 
+import { createRoomFetch } from "./api";
 import nanoid from "nanoid";
 
 export enum RoomPortalFieldType {
@@ -41,6 +42,9 @@ export interface IRoomState {
 
 const RoomDomain = GameDomain.domain("ChatDomain");
 
+export const createRoomFx = RoomDomain.effect<IRoomState, any>({
+  handler: createRoomFetch,
+});
 export const createRoom = RoomDomain.event<void>();
 export const updateRoom = RoomDomain.event<IRoomState>();
 export const toggleAutostart = RoomDomain.event<void>();
@@ -108,8 +112,8 @@ sample({
     ...room,
     creatorId: user.userId,
     playersId: [user.userId],
-    roomId: nanoid(8),
+    roomId: `${nanoid(8)}-${Date.now()}`,
   }),
 
-  target: updateRoom,
+  target: createRoomFx,
 });
