@@ -1,5 +1,5 @@
-import { GameDomain } from "../UserStore";
-import { sample } from "effector";
+import { GameDomain, userStore } from "../UserStore";
+import { combine, sample } from "effector";
 
 export enum RoomPortalFieldType {
   PORTAL = "Portal",
@@ -59,7 +59,6 @@ export const newRoomStore = RoomDomain.store<IRoomState>({
   restarts: false,
   privateRoom: false,
 })
-  .on(createRoom, (v) => v)
   .on(updateRoom, (v) => v)
 
   .on(toggleAutostart, (state) => ({
@@ -94,8 +93,17 @@ sample({
   },
 });
 
-// sample({
-//   clock: toggleRoomSwitch,
-//   source: newRoomStore.map((v) => v),
-//   target: updateRoom,
-// });
+sample({
+  clock: createRoom,
+  source: combine({
+    room: newRoomStore.map((v) => v),
+    user: userStore,
+  }),
+  fn: ({ room, user }) => ({
+    ...room,
+    creatorId: user.userId,
+    playersId: [user.userId],
+  }),
+
+  target: updateRoom,
+});
