@@ -30,7 +30,7 @@ client.interceptors.response.use(
       console.log(error.response);
       // <Redirect to="/game" />;
     }
-    return error;
+    throw error;
   }
 );
 

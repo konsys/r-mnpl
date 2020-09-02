@@ -3,6 +3,7 @@ import { combine, sample } from "effector";
 
 import { createRoomFetch } from "./api";
 import nanoid from "nanoid";
+import { openRoomModal } from "./RoomModalStore";
 
 export enum RoomPortalFieldType {
   PORTAL = "Portal",
@@ -42,9 +43,19 @@ export interface IRoomState {
 
 const RoomDomain = GameDomain.domain("ChatDomain");
 
-export const createRoomFx = RoomDomain.effect<IRoomState, any>({
+export const createRoomFx = RoomDomain.effect<IRoomState, IRoomState[], Error>({
   handler: createRoomFetch,
 });
+
+createRoomFx.fail.watch((v: any) => {
+  try {
+    console.log(234234234, v.error.response.data.code);
+    openRoomModal();
+  } catch (err) {
+    //NOP
+  }
+});
+
 export const createRoom = RoomDomain.event<void>();
 export const updateRoom = RoomDomain.event<IRoomState>();
 export const toggleAutostart = RoomDomain.event<void>();

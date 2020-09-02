@@ -10,7 +10,10 @@ import {
 } from "@material-ui/core";
 import React, { useState } from "react";
 import { RoomType, createRoom } from "stores/Game/models/NewRoomStore";
-import { closeModal, gameModalStore } from "stores/Game/models/GameModalStore";
+import {
+  closeRoomModal,
+  gameModalStore,
+} from "stores/Game/models/RoomModalStore";
 
 import CloseIcon from "@material-ui/icons/Close";
 import QuickGameParams from "./GameParams/QuickGameParams";
@@ -32,7 +35,7 @@ export default function CreateGameModal() {
         <Grid container justify="flex-end" alignItems="center">
           <CloseIcon
             style={{ cursor: "pointer" }}
-            onClick={() => closeModal()}
+            onClick={() => closeRoomModal()}
           />
         </Grid>
         <Grid
@@ -137,7 +140,7 @@ export default function CreateGameModal() {
         <Button
           onClick={() => {
             createRoom();
-            closeModal();
+            closeRoomModal();
           }}
           color="primary"
           variant="outlined"

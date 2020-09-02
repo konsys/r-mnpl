@@ -11,7 +11,7 @@ import CreateGameModal from "../CreatRoomModal/CreateGameModal";
 import NewRoomBlock from "./NewRoom/NewRoomBlock";
 import React from "react";
 import Template from "../../../views/Template/Template";
-import { openModal } from "stores/Game/models/GameModalStore";
+import { openRoomModal } from "stores/Game/models/RoomModalStore";
 import { useStore } from "effector-react";
 import { useTranslation } from "react-i18next";
 
@@ -44,7 +44,7 @@ export const FindGame = () => {
               <Button
                 variant="outlined"
                 color="primary"
-                onClick={() => openModal()}
+                onClick={() => openRoomModal()}
               >
                 {t("Create game")}
               </Button>
