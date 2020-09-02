@@ -12,7 +12,7 @@ import React, { useState } from "react";
 import { RoomType, createRoom } from "stores/Game/Room/NewRoomStore";
 import {
   closeRoomModal,
-  gameModalStore,
+  roomModalStore,
 } from "stores/Game/Room/RoomModalStore";
 
 import CloseIcon from "@material-ui/icons/Close";
@@ -24,8 +24,8 @@ import ShuffleGameParams from "./GameParams/ShuffleGameParams";
 import { useStore } from "effector-react";
 import { useTranslation } from "react-i18next";
 
-export default function CreateGameModal() {
-  const open = useStore(gameModalStore);
+export default function CreateRoomModal() {
+  const open = useStore(roomModalStore);
   const { t } = useTranslation();
   const [selected, setSelected] = useState<string>(RoomType.SHUFFLE);
 

@@ -4,7 +4,7 @@ import { Button, Divider, Grid, Typography } from "@material-ui/core";
 import { newRoomStore, toggleRoomSwitch } from "stores/Game/Room/NewRoomStore";
 
 import { BLOCK_SPACING } from "../../../../theme";
-import CreateGameModal from "../CreatRoomModal/CreateGameModal";
+import CreateRoomModal from "../CreatRoomModal/CreateRoomModal";
 import NewRoomBlock from "./NewRoom/NewRoomBlock";
 import React from "react";
 import Template from "../../../views/Template/Template";
@@ -23,7 +23,7 @@ export const FindGame = () => {
 
   return (
     <div className="findGame">
-      <CreateGameModal />
+      <CreateRoomModal />
 
       <Template columns={2} title={"Find games"}>
         <Grid
