@@ -1,6 +1,6 @@
 import { ActionPanel } from "../ActionPanel/ActionPanel";
 import React from "react";
-import { modalStore } from "../../../../stores/Board/ModalStore";
+import { boardModalStore } from "stores/Board/ModalStore";
 import { useStore } from "effector-react";
 
 interface Props {
@@ -8,7 +8,7 @@ interface Props {
 }
 
 export const BoardModal = (props: Props) => {
-  const modal = useStore(modalStore);
+  const modal = useStore(boardModalStore);
   return (
     <>
       {props.isModal && (

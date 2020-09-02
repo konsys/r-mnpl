@@ -4,7 +4,7 @@ import { BoardDomain } from "./BoardDomain";
 
 const ModalDomain = BoardDomain.domain("ModalDomain");
 
-export const resetModalEvent = ModalDomain.event();
+export const resetBoardModalEvent = ModalDomain.event();
 
 const init: BoardAction = {
   type: IncomeMessageType.DO_NOTHING,
@@ -16,8 +16,8 @@ const init: BoardAction = {
   isModal: false,
 };
 
-export const showModalEvent = ModalDomain.event<BoardAction>();
+export const showBoardModalEvent = ModalDomain.event<BoardAction>();
 
-export const modalStore = ModalDomain.store<BoardAction>(init)
-  .on(showModalEvent, (_, data) => data)
-  .reset(resetModalEvent);
+export const boardModalStore = ModalDomain.store<BoardAction>(init)
+  .on(showBoardModalEvent, (_, data) => data)
+  .reset(resetBoardModalEvent);

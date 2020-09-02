@@ -13,7 +13,7 @@ import { hideDicesEvent } from "./DicesStore";
 import { incomeContract } from "./ContractStore";
 import nanoid from "nanoid";
 import { rollDicesAction } from "../../handlers/DicesHandler";
-import { showModalEvent } from "./ModalStore";
+import { showBoardModalEvent } from "./ModalStore";
 
 export interface ICurrentAction {
   actionId: string;
@@ -60,7 +60,7 @@ actionsStore.watch((v) => {
   hideDicesEvent();
   switch (action.type) {
     case IncomeMessageType.INCOME_ROLL_DICES_MODAL:
-      showModalEvent(
+      showBoardModalEvent(
         rollDicesModal({
           type: action.type,
           _id: action._id,
@@ -77,23 +77,23 @@ actionsStore.watch((v) => {
       break;
 
     case IncomeMessageType.INCOME_CAN_BUY_MODAL:
-      showModalEvent(canBuyModal(action));
+      showBoardModalEvent(canBuyModal(action));
       break;
 
     case IncomeMessageType.INCOME_TAX_PAYING_MODAL:
-      showModalEvent(taxModal(action));
+      showBoardModalEvent(taxModal(action));
       break;
 
     case IncomeMessageType.INCOME_UN_JAIL_MODAL:
-      showModalEvent(unJailModal(action));
+      showBoardModalEvent(unJailModal(action));
       break;
 
     case IncomeMessageType.INCOME_UNJAIL_PAYING_MODAL:
-      showModalEvent(unJailPayingModal(action));
+      showBoardModalEvent(unJailPayingModal(action));
       break;
 
     case IncomeMessageType.INCOME_AUCTION_MODAL:
-      showModalEvent(auctionModal(action));
+      showBoardModalEvent(auctionModal(action));
       break;
 
     case IncomeMessageType.INCOME_CONTRACT_MODAL:
