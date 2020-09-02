@@ -3,7 +3,7 @@ import { combine, sample } from "effector";
 
 import { createRoomFetch } from "./api";
 import nanoid from "nanoid";
-import { openRoomModal } from "./RoomModalStore";
+import { openGameModal } from "../Modal/ModalStore";
 
 export enum RoomPortalFieldType {
   PORTAL = "Portal",
@@ -50,7 +50,7 @@ export const createRoomFx = RoomDomain.effect<IRoomState, IRoomState[], Error>({
 createRoomFx.fail.watch((v: any) => {
   try {
     console.log(234234234, v.error.response.data.code);
-    openRoomModal();
+    openGameModal();
   } catch (err) {
     //NOP
   }

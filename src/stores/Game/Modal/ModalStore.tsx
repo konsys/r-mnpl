@@ -1,9 +1,9 @@
 import { GameDomain } from "../UserStore";
 
-const ModalDomain = GameDomain.domain("ModalDomain");
+const GameModalDomain = GameDomain.domain("ModalDomain");
 
-export const openModal = ModalDomain.event();
-export const closeModal = ModalDomain.event();
-export const modalStore = ModalDomain.store<boolean>(false)
-  .on(openModal, () => true)
-  .reset(closeModal);
+export const openGameModal = GameModalDomain.event();
+export const closeGameModal = GameModalDomain.event();
+export const gameModalStore = GameModalDomain.store<boolean>(false)
+  .on(openGameModal, () => true)
+  .reset(closeGameModal);

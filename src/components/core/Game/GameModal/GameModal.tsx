@@ -4,14 +4,14 @@ import {
   DialogActions,
   DialogContent,
 } from "@material-ui/core";
-import { closeModal, modalStore } from "stores/Game/Modal/ModalStore";
+import { closeGameModal, gameModalStore } from "stores/Game/Modal/ModalStore";
 
 import React from "react";
 import { useStore } from "effector-react";
 import { useTranslation } from "react-i18next";
 
-export default function Modal() {
-  const open = useStore(modalStore);
+export default function GameModal() {
+  const open = useStore(gameModalStore);
   const { t } = useTranslation();
   return (
     <Dialog open={open} onClose={() => null}>
@@ -19,12 +19,12 @@ export default function Modal() {
       <DialogActions>
         <Button
           onClick={() => {
-            closeModal();
+            closeGameModal();
           }}
           color="primary"
           variant="outlined"
         >
-          {t("Create room")}
+          {t("Close")}
         </Button>
       </DialogActions>
     </Dialog>

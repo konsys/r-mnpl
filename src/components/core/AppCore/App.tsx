@@ -6,6 +6,7 @@ import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 
 import { Board } from "../BoardCore/Board";
 import { Game } from "../Game/Game";
+import GameModal from "../Game/GameModal/GameModal";
 import { Login } from "../Registration/Login/Login";
 import { MuiThemeProvider } from "@material-ui/core";
 import NotFound from "../../views/Errors/NotFound";
@@ -16,6 +17,7 @@ import { theme } from "../../../theme";
 const App = () => {
   return (
     <>
+      <GameModal />
       {/* <React.StrictMode> */}
       <MuiThemeProvider theme={theme}>
         <Router>
