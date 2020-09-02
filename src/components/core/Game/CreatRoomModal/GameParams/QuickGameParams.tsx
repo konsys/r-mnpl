@@ -9,7 +9,7 @@ import {
   RoomPortalFieldType,
   newRoomStore,
   updateRoom,
-} from "stores/Game/models/NewRoomStore";
+} from "stores/Game/Room/NewRoomStore";
 
 import { GRID_SPACING } from "../../../../../theme";
 import PlayersNumber from "./views/PlayersNumber";

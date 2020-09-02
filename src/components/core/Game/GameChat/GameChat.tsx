@@ -13,7 +13,7 @@ import {
   resetChatEvent,
   resetReplyToEvent,
   sendChatMessageEffect,
-} from "../../../../stores/Game/models/GameChatStore";
+} from "../../../../stores/Game/Chat/GameChatStore";
 
 import ChatMessage from "./ChatMessage";
 import { GRID_SPACING } from "../../../../theme";

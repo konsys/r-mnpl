@@ -1,5 +1,5 @@
 import { Grid } from "@material-ui/core";
-import { IRoomState } from "stores/Game/models/NewRoomStore";
+import { IRoomState } from "stores/Game/Room/NewRoomStore";
 import React from "react";
 import RoomAvatar from "./RoomAvatar";
 import RoomTypeView from "./RoomTypeView";

@@ -3,7 +3,7 @@ import {
   IRoomState,
   RoomType,
   RoomTypeName,
-} from "stores/Game/models/NewRoomStore";
+} from "stores/Game/Room/NewRoomStore";
 
 import LocationSearchingIcon from "@material-ui/icons/LocationSearching";
 import RadioIcon from "@material-ui/icons/Radio";

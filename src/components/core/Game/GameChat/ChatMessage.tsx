@@ -4,7 +4,7 @@ import { IUser } from "../../../../types/types";
 import React from "react";
 import Reply from "@material-ui/icons/Reply";
 import StarOutlined from "@material-ui/icons/StarOutlined";
-import { addReplyToEvent } from "../../../../stores/Game/models/GameChatStore";
+import { addReplyToEvent } from "../../../../stores/Game/Chat/GameChatStore";
 import moment from "moment";
 import { theme } from "../../../../theme";
 import { useStore } from "effector-react";
