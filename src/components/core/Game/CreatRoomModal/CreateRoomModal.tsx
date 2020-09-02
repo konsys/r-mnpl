@@ -8,8 +8,12 @@ import {
   Grid,
   Typography,
 } from "@material-ui/core";
-import React, { useState } from "react";
-import { RoomType, createRoom } from "stores/Game/Room/NewRoomStore";
+import {
+  RoomType,
+  createRoom,
+  newRoomStore,
+  updateRoom,
+} from "stores/Game/Room/NewRoomStore";
 import {
   closeRoomModal,
   roomModalStore,
@@ -17,6 +21,7 @@ import {
 
 import CloseIcon from "@material-ui/icons/Close";
 import QuickGameParams from "./GameParams/QuickGameParams";
+import React from "react";
 import RegularGameParams from "./GameParams/RegularGameParams";
 import RetroGameParams from "./GameParams/RetroGameParams";
 import RouletteGameParams from "./GameParams/RouletteGameParams";
@@ -27,8 +32,8 @@ import { useTranslation } from "react-i18next";
 export default function CreateRoomModal() {
   const open = useStore(roomModalStore);
   const { t } = useTranslation();
-  const [selected, setSelected] = useState<string>(RoomType.SHUFFLE);
-
+  const room = useStore(newRoomStore);
+  const { roomType } = room;
   return (
     <Dialog open={open} onClose={() => null}>
       <DialogContent className={"newRoom"}>
@@ -56,11 +61,13 @@ export default function CreateRoomModal() {
               <Grid
                 item
                 className={
-                  selected === RoomType.REGULAR
+                  roomType === RoomType.REGULAR
                     ? RoomType.REGULAR + " _selected"
                     : RoomType.REGULAR
                 }
-                onClick={() => setSelected(RoomType.REGULAR)}
+                onClick={() =>
+                  updateRoom({ ...room, roomType: RoomType.REGULAR })
+                }
               >
                 <Typography variant="h6">{t("Regular game")}</Typography>
                 <Typography variant="body2">
@@ -70,11 +77,13 @@ export default function CreateRoomModal() {
               <Grid
                 item
                 className={
-                  selected === RoomType.QUICK
+                  roomType === RoomType.QUICK
                     ? RoomType.QUICK + " _selected"
                     : RoomType.QUICK
                 }
-                onClick={() => setSelected(RoomType.QUICK)}
+                onClick={() =>
+                  updateRoom({ ...room, roomType: RoomType.REGULAR })
+                }
               >
                 <Typography variant="h6">{t("Quick game")}</Typography>
                 <Typography variant="body2">
@@ -84,11 +93,13 @@ export default function CreateRoomModal() {
               <Grid
                 item
                 className={
-                  selected === RoomType.SHUFFLE
+                  roomType === RoomType.SHUFFLE
                     ? RoomType.SHUFFLE + " _selected"
                     : RoomType.SHUFFLE
                 }
-                onClick={() => setSelected(RoomType.SHUFFLE)}
+                onClick={() =>
+                  updateRoom({ ...room, roomType: RoomType.REGULAR })
+                }
               >
                 <Typography variant="h6">{t("GMS Shuffle")}</Typography>
                 <Typography variant="body2">
@@ -98,11 +109,13 @@ export default function CreateRoomModal() {
               <Grid
                 item
                 className={
-                  selected === RoomType.RETRO
+                  roomType === RoomType.RETRO
                     ? RoomType.RETRO + " _selected"
                     : RoomType.RETRO
                 }
-                onClick={() => setSelected(RoomType.RETRO)}
+                onClick={() =>
+                  updateRoom({ ...room, roomType: RoomType.REGULAR })
+                }
               >
                 <Typography variant="h6">{t("Retro")}</Typography>
                 <Typography variant="body2">
@@ -112,11 +125,13 @@ export default function CreateRoomModal() {
               <Grid
                 item
                 className={
-                  selected === RoomType.ROULETTE
+                  roomType === RoomType.ROULETTE
                     ? RoomType.ROULETTE + " _selected"
                     : RoomType.ROULETTE
                 }
-                onClick={() => setSelected(RoomType.ROULETTE)}
+                onClick={() =>
+                  updateRoom({ ...room, roomType: RoomType.REGULAR })
+                }
               >
                 <Typography variant="h6">{t("Russian roulette")}</Typography>
                 <Typography variant="body2">
@@ -127,11 +142,11 @@ export default function CreateRoomModal() {
           </Grid>
           <Grid item sm={6} className="roomParams">
             <Grid container justify="space-between" alignItems="center">
-              {selected === RoomType.REGULAR && <RegularGameParams />}
-              {selected === RoomType.QUICK && <QuickGameParams />}
-              {selected === RoomType.RETRO && <RetroGameParams />}
-              {selected === RoomType.ROULETTE && <RouletteGameParams />}
-              {selected === RoomType.SHUFFLE && <ShuffleGameParams />}
+              {roomType === RoomType.REGULAR && <RegularGameParams />}
+              {roomType === RoomType.QUICK && <QuickGameParams />}
+              {roomType === RoomType.RETRO && <RetroGameParams />}
+              {roomType === RoomType.ROULETTE && <RouletteGameParams />}
+              {roomType === RoomType.SHUFFLE && <ShuffleGameParams />}
             </Grid>
           </Grid>
         </Grid>
