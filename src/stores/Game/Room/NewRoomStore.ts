@@ -1,5 +1,5 @@
 import { GameDomain, userStore } from "../UserStore";
-import { closeGameModal, openGameModal } from "../Modal/ModalStore";
+import { closeGameModal, openGameModal } from "../GameModal/GameModalStore";
 import { combine, sample } from "effector";
 
 import { ErrorCode } from "utils/errors";
@@ -80,10 +80,7 @@ export const newRoomStore = RoomDomain.store<IRoomState>({
   restarts: false,
   privateRoom: false,
 })
-  .on(updateRoom, (_, v) => {
-    console.log(23232323, v);
-    return v;
-  })
+  .on(updateRoom, (_, v) => v)
 
   .on(toggleAutostart, (state) => ({
     ...state,
