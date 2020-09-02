@@ -62,7 +62,26 @@ export default function RoomTypeView({ room }: { room: IRoomState }) {
         {t(name)}
       </Grid>
       <Grid item>
-        <Typography color="textSecondary">roomParam</Typography>
+        {room.restarts && (
+          <Typography color="textSecondary" variant="body2">
+            {t("With restarts")}
+          </Typography>
+        )}
+        {room.autostart && (
+          <Typography color="textSecondary" variant="body2">
+            {t("Game autostart")}
+          </Typography>
+        )}
+        {room.privateRoom && (
+          <Typography color="textSecondary" variant="body2">
+            {t("Private room")}
+          </Typography>
+        )}
+        {room.portalType && (
+          <Typography color="textSecondary" variant="body2">
+            {t("With portal")}
+          </Typography>
+        )}
       </Grid>
     </Grid>
   );

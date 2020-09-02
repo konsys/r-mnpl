@@ -31,7 +31,7 @@ i18n
           "Regular game": "Обычная игра",
           "Quick game": "Быстрая игра",
           "GMS Shuffle": "Перетасовка",
-          "Game restarts": "С рестартами",
+          "With restarts": "С рестартами",
           "you play with random cards adn dices;":
             "вы играете со случайными карточками и кубиками;",
           "if you win three matches you get this thing;":

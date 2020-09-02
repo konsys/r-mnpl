@@ -60,7 +60,7 @@ export default function QuickGameParams() {
           onChange={roomSwitchChange}
         />
         <RoomSwitch
-          text={"Game restarts"}
+          text={"With restarts"}
           name={"restarts"}
           checked={room.restarts}
           onChange={roomSwitchChange}
