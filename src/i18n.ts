@@ -10,6 +10,7 @@ i18n
     resources: {
       ru: {
         translations: {
+          Error: "Ошибка",
           Chat: "Чат",
           "Type message and press Enter": "Введите сообщение и нажмите Enter",
           "Special rules for quick games. The third dice and quick timers and other interesting things.":

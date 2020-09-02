@@ -1,9 +1,10 @@
 import { GameDomain, userStore } from "../UserStore";
+import { closeGameModal, openGameModal } from "../Modal/ModalStore";
 import { combine, sample } from "effector";
 
+import { ErrorCode } from "utils/errors";
 import { createRoomFetch } from "./api";
 import nanoid from "nanoid";
-import { openGameModal } from "../Modal/ModalStore";
 
 export enum RoomPortalFieldType {
   PORTAL = "Portal",
@@ -49,10 +50,13 @@ export const createRoomFx = RoomDomain.effect<IRoomState, IRoomState[], Error>({
 
 createRoomFx.fail.watch((v: any) => {
   try {
-    console.log(234234234, v.error.response.data.code);
-    openGameModal();
+    openGameModal({
+      open: true,
+      title: "Error",
+      text: ErrorCode[v.error.response.data.code],
+    });
   } catch (err) {
-    //NOP
+    closeGameModal();
   }
 });
 

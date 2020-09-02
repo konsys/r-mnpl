@@ -17,9 +17,9 @@ import { theme } from "../../../theme";
 const App = () => {
   return (
     <>
-      <GameModal />
       {/* <React.StrictMode> */}
       <MuiThemeProvider theme={theme}>
+        <GameModal />
         <Router>
           <Switch>
             <Route exact path="/login" component={Login} />
