@@ -14,4 +14,4 @@ export const gameModalStore = GameModalDomain.store<IGameModal>({
   title: "",
 })
   .on(openGameModal, (_, payload) => payload)
-  .reset(closeGameModal);
+  .on(closeGameModal, (prev) => ({ ...prev, open: false }));

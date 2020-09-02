@@ -3,7 +3,6 @@ import "./style.scss";
 import {
   Button,
   Dialog,
-  DialogActions,
   DialogContent,
   Grid,
   Typography,
@@ -21,27 +20,42 @@ export default function GameModal() {
   const modal = useStore(gameModalStore);
   const { t } = useTranslation();
   return (
-    <Dialog open={modal.open} className={"gameModal"} onClose={() => null}>
-      <DialogContent className={"newRoom"}>
-        <Grid container></Grid>
-        <Grid>
-          <Typography variant="h6">{t(modal.title)}</Typography>
+    <Dialog open={modal.open} onClose={() => null}>
+      <DialogContent className={"gameModal"}>
+        <Grid
+          container
+          spacing={1}
+          direction="column"
+          justify="center"
+          alignContent="center"
+        >
+          <Grid item>
+            <Typography variant="h5">{t(modal.title)}</Typography>
+          </Grid>
+          <Grid item>
+            <Typography variant="body1">{t(modal.text)}</Typography>
+          </Grid>
         </Grid>
-        <Grid>
-          <Typography variant="body2">{t(modal.text)}</Typography>
+        <Grid
+          container
+          direction="column"
+          justify="center"
+          alignContent="center"
+          spacing={2}
+        >
+          <Grid item>
+            <Button
+              onClick={() => {
+                closeGameModal();
+              }}
+              color="default"
+              variant="contained"
+            >
+              {t("Ok")}
+            </Button>
+          </Grid>
         </Grid>
       </DialogContent>
-      <DialogActions>
-        <Button
-          onClick={() => {
-            closeGameModal();
-          }}
-          color="primary"
-          variant="outlined"
-        >
-          {t("Close")}
-        </Button>
-      </DialogActions>
     </Dialog>
   );
 }
