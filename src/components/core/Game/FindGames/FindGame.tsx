@@ -1,7 +1,10 @@
 import "./styles.scss";
 
 import { Button, Divider, Grid, Typography } from "@material-ui/core";
-import { newRoomStore, toggleRoomSwitch } from "stores/Game/Room/NewRoomStore";
+import {
+  availableRoomsStore,
+  toggleRoomSwitch,
+} from "stores/Game/Room/NewRoomStore";
 
 import { BLOCK_SPACING } from "../../../../theme";
 import CreateRoomModal from "../CreatRoomModal/CreateRoomModal";
@@ -17,8 +20,9 @@ export const roomSwitchChange = (name: string) => {
 };
 
 export const FindGame = () => {
-  const room = useStore(newRoomStore);
+  const rooms = useStore(availableRoomsStore);
 
+  console.log(234234234, rooms);
   const { t } = useTranslation();
 
   return (
@@ -64,9 +68,11 @@ export const FindGame = () => {
           direction="column"
           spacing={BLOCK_SPACING}
         >
-          <Grid item>
-            <NewRoomBlock room={room} />
-          </Grid>
+          {rooms.map((room, k) => (
+            <Grid item>
+              <NewRoomBlock key={k} room={room} />
+            </Grid>
+          ))}
         </Grid>
       </Template>
     </div>

@@ -129,3 +129,8 @@ sample({
 
   target: createRoomFx,
 });
+
+export const resetAvailableRooms = RoomDomain.event();
+export const availableRoomsStore = RoomDomain.store<IRoomState[]>([])
+  .reset(resetAvailableRooms)
+  .on(createRoomFx.done, (_, { result }) => result);
