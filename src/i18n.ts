@@ -11,6 +11,7 @@ i18n
       ru: {
         translations: {
           Error: "Ошибка",
+          "Oops!": "Упс!",
           Chat: "Чат",
           "Type message and press Enter": "Введите сообщение и нажмите Enter",
           "Special rules for quick games. The third dice and quick timers and other interesting things.":
@@ -77,22 +78,8 @@ i18n
           More: "Подробнее",
           "You are not in Top Five":
             "Вы не входите в топ игроков недели — сначала выиграйте матч на четыре или пять игроков.",
-          errors: {
-            "Not enough money": "101",
-            "Company has owner": "102",
-            "Wrong tranactionId": "103",
-            "Not user field": "104",
-            "Field is mortgaged": "105",
-            "Not my turn": "106",
-            "Cannot mortgage field": "107",
-            "Cannot unmortgage field": "108",
-            "Max field level": "109",
-            "Cannot build branch": "110",
-            "No monopoly": "111",
-            "Cannot start auction": "112",
-            "Cannot proceed contract": "113",
-            "Room exists": "114",
-          },
+
+          "Room already exists": "Вы уже ожидаете игру",
         },
       },
     },

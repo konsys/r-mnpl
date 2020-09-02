@@ -12,5 +12,5 @@ export enum ErrorCode {
   "No monopoly" = 111,
   "Cannot start auction" = 112,
   "Cannot proceed contract" = 113,
-  "Room exists" = 114,
+  "Room already exists" = 114,
 }

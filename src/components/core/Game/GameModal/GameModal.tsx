@@ -24,25 +24,18 @@ export default function GameModal() {
       <DialogContent className={"gameModal"}>
         <Grid
           container
-          spacing={1}
+          spacing={2}
           direction="column"
           justify="center"
           alignContent="center"
+          alignItems="center"
         >
           <Grid item>
-            <Typography variant="h5">{t(modal.title)}</Typography>
+            <Typography variant="h6">{t(modal.title)}</Typography>
           </Grid>
           <Grid item>
             <Typography variant="body1">{t(modal.text)}</Typography>
           </Grid>
-        </Grid>
-        <Grid
-          container
-          direction="column"
-          justify="center"
-          alignContent="center"
-          spacing={2}
-        >
           <Grid item>
             <Button
               onClick={() => {
@@ -53,7 +46,7 @@ export default function GameModal() {
             >
               {t("Ok")}
             </Button>
-          </Grid>
+          </Grid>{" "}
         </Grid>
       </DialogContent>
     </Dialog>

@@ -52,7 +52,7 @@ createRoomFx.fail.watch((v: any) => {
   try {
     openGameModal({
       open: true,
-      title: "Error",
+      title: "Oops!",
       text: ErrorCode[v.error.response.data.code],
     });
   } catch (err) {
