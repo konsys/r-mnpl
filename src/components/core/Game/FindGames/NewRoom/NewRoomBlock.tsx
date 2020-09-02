@@ -21,18 +21,6 @@ export default function NewRoomBlock({ room }: { room: IRoomState }) {
           <Grid className="newRoomOneAvatar">
             <RoomAvatar />
           </Grid>
-          <Grid className="newRoomOneAvatar">
-            <RoomAvatar />
-          </Grid>
-          <Grid className="newRoomOneAvatar">
-            <RoomAvatar />
-          </Grid>
-          <Grid className="newRoomOneAvatar">
-            <RoomAvatar />
-          </Grid>
-          <Grid className="newRoomOneAvatar">
-            <RoomAvatar />
-          </Grid>
         </Grid>
       </Grid>
     </Grid>

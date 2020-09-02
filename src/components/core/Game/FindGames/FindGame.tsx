@@ -22,7 +22,6 @@ export const roomSwitchChange = (name: string) => {
 export const FindGame = () => {
   const rooms = useStore(availableRoomsStore);
 
-  console.log(234234234, rooms);
   const { t } = useTranslation();
 
   return (
@@ -69,8 +68,8 @@ export const FindGame = () => {
           spacing={BLOCK_SPACING}
         >
           {rooms.map((room, k) => (
-            <Grid item>
-              <NewRoomBlock key={k} room={room} />
+            <Grid item key={k}>
+              <NewRoomBlock room={room} />
             </Grid>
           ))}
         </Grid>
