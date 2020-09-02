@@ -66,7 +66,7 @@ export const toggleAutostart = RoomDomain.event<void>();
 export const togglePrivateRoom = RoomDomain.event<void>();
 export const togglRestarts = RoomDomain.event<void>();
 export const toggleRoomSwitch = RoomDomain.event<string>();
-export const deleteRoom = RoomDomain.event<void>();
+export const resetRoomStore = RoomDomain.event<void>();
 
 export const newRoomStore = RoomDomain.store<IRoomState>({
   roomId: "",
@@ -94,7 +94,7 @@ export const newRoomStore = RoomDomain.store<IRoomState>({
     ...state,
     restarts: !state.restarts,
   }))
-  .reset(deleteRoom);
+  .reset(resetRoomStore);
 
 sample({
   clock: toggleRoomSwitch,

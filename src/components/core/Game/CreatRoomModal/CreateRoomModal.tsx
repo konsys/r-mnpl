@@ -82,7 +82,7 @@ export default function CreateRoomModal() {
                     : RoomType.QUICK
                 }
                 onClick={() =>
-                  updateRoom({ ...room, roomType: RoomType.REGULAR })
+                  updateRoom({ ...room, roomType: RoomType.QUICK })
                 }
               >
                 <Typography variant="h6">{t("Quick game")}</Typography>
@@ -98,7 +98,7 @@ export default function CreateRoomModal() {
                     : RoomType.SHUFFLE
                 }
                 onClick={() =>
-                  updateRoom({ ...room, roomType: RoomType.REGULAR })
+                  updateRoom({ ...room, roomType: RoomType.SHUFFLE })
                 }
               >
                 <Typography variant="h6">{t("GMS Shuffle")}</Typography>
@@ -114,7 +114,7 @@ export default function CreateRoomModal() {
                     : RoomType.RETRO
                 }
                 onClick={() =>
-                  updateRoom({ ...room, roomType: RoomType.REGULAR })
+                  updateRoom({ ...room, roomType: RoomType.RETRO })
                 }
               >
                 <Typography variant="h6">{t("Retro")}</Typography>
@@ -130,7 +130,7 @@ export default function CreateRoomModal() {
                     : RoomType.ROULETTE
                 }
                 onClick={() =>
-                  updateRoom({ ...room, roomType: RoomType.REGULAR })
+                  updateRoom({ ...room, roomType: RoomType.ROULETTE })
                 }
               >
                 <Typography variant="h6">{t("Russian roulette")}</Typography>
