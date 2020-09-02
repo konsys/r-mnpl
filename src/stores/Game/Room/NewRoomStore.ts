@@ -3,6 +3,7 @@ import { closeGameModal, openGameModal } from "../GameModal/GameModalStore";
 import { combine, sample } from "effector";
 
 import { ErrorCode } from "utils/errors";
+import { IUser } from "types/types";
 import { createRoomFetch } from "./api";
 import nanoid from "nanoid";
 
@@ -32,7 +33,7 @@ export enum RoomTypeName {
 export interface IRoomState {
   roomId: string;
   creatorId: number;
-  playersId: number[];
+  players: Partial<IUser[]>;
   createTime: Date;
   roomType: RoomType;
   playersNumber: number;
@@ -71,7 +72,7 @@ export const resetRoomStore = RoomDomain.event<void>();
 export const newRoomStore = RoomDomain.store<IRoomState>({
   roomId: "",
   creatorId: 0,
-  playersId: [],
+  players: [],
   createTime: new Date(),
   roomType: RoomType.REGULAR,
   playersNumber: 4,
@@ -123,8 +124,8 @@ sample({
   fn: ({ room, user }) => ({
     ...room,
     creatorId: user.userId,
-    playersId: [user.userId],
-    roomId: `${nanoid(8)}-${Date.now()}`,
+    players: [user],
+    roomId: `${nanoid(4)}-${Date.now()}`,
   }),
 
   target: createRoomFx,
