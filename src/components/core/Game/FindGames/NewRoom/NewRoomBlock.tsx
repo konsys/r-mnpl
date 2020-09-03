@@ -32,8 +32,8 @@ export default function NewRoomBlock({ room }: { room: IRoomState }) {
               <RoomAvatar
                 avatar={(v && v.avatar) || ""}
                 name={(v && v.name) || ""}
-                onClick={(gameId: string) =>
-                  addPlayerToRoomFx({ gameId, userId })
+                onClick={(roomId: string) =>
+                  addPlayerToRoomFx({ roomId, userId })
                 }
                 roomId={room.roomId}
               />

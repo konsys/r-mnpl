@@ -44,7 +44,7 @@ export interface IRoomState {
 }
 
 export interface IAddPlayerToRoom {
-  gameId: string;
+  roomId: string;
   userId: number;
 }
 

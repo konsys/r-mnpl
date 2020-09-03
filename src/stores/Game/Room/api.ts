@@ -13,7 +13,6 @@ export const createRoomFetch = async (
 export const addPlayerToRoomFetch = async (
   params?: IAddPlayerToRoom
 ): Promise<IRoomState[]> => {
-  return await (
-    await client.post(`${createameUrl}/addPlayer`, { room: params })
-  ).data;
+  return await (await client.post(`${createameUrl}/addPlayer`, { ...params }))
+    .data;
 };
