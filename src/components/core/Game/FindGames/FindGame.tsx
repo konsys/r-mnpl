@@ -13,10 +13,11 @@ import { useStore } from "effector-react";
 import { useTranslation } from "react-i18next";
 
 export const FindGame = () => {
-  const rooms = useStore(availableRoomsStore);
+  const roomsResponce = useStore(availableRoomsStore);
 
   const { t } = useTranslation();
 
+  console.log(121212, roomsResponce);
   return (
     <div className="findGame">
       <CreateRoomModal />
@@ -60,11 +61,12 @@ export const FindGame = () => {
           direction="column"
           spacing={BLOCK_SPACING}
         >
-          {rooms.map((room, k) => (
-            <Grid item key={k}>
-              <NewRoomBlock room={room} />
-            </Grid>
-          ))}
+          {roomsResponce &&
+            roomsResponce.rooms.map((room, k) => (
+              <Grid item key={k}>
+                <NewRoomBlock room={room} />
+              </Grid>
+            ))}
         </Grid>
       </Template>
     </div>

@@ -48,11 +48,18 @@ export interface IAddPlayerToRoom {
   userId: number;
 }
 
+export interface IRoomResponce {
+  playersInRooms: number;
+  rooms: IRoomState[];
+}
+
 const RoomDomain = GameDomain.domain("ChatDomain");
 
-export const createRoomFx = RoomDomain.effect<IRoomState, IRoomState[], Error>({
-  handler: createRoomFetch,
-});
+export const createRoomFx = RoomDomain.effect<IRoomState, IRoomResponce, Error>(
+  {
+    handler: createRoomFetch,
+  }
+);
 
 createRoomFx.fail.watch((v: any) => {
   try {
@@ -67,7 +74,7 @@ createRoomFx.fail.watch((v: any) => {
 });
 export const addPlayerToRoomFx = RoomDomain.effect<
   IAddPlayerToRoom,
-  IRoomState[],
+  IRoomResponce,
   Error
 >({
   handler: addPlayerToRoomFetch,
@@ -156,6 +163,9 @@ sample({
 });
 
 export const resetAvailableRooms = RoomDomain.event();
-export const availableRoomsStore = RoomDomain.store<IRoomState[]>([])
+export const availableRoomsStore = RoomDomain.store<IRoomResponce>({
+  playersInRooms: 0,
+  rooms: [],
+})
   .reset(resetAvailableRooms)
   .on(createRoomFx.done, (_, { result }) => result);
