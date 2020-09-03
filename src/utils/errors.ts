@@ -13,4 +13,6 @@ export enum ErrorCode {
   "Cannot start auction" = 112,
   "Cannot proceed contract" = 113,
   "Room already exists" = 114,
+  "Room doesn`t exist" = 115,
+  "Max players reached" = 116,
 }
