@@ -168,4 +168,5 @@ export const availableRoomsStore = RoomDomain.store<IRoomResponce>({
   rooms: [],
 })
   .reset(resetAvailableRooms)
-  .on(createRoomFx.done, (_, { result }) => result);
+  .on(createRoomFx.done, (_, { result }) => result)
+  .on(addPlayerToRoomFx.done, (_, { result }) => result);
