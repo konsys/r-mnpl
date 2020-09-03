@@ -18,9 +18,14 @@ export default function NewRoomBlock({ room }: { room: IRoomState }) {
       </Grid>
       <Grid item className="newRoomOnePlayers">
         <Grid container justify="center" direction="column" spacing={1}>
-          <Grid className="newRoomOneAvatar">
-            <RoomAvatar />
-          </Grid>
+          {room.players.map((v, k: number) => (
+            <Grid key={k} item className="newRoomOneAvatar">
+              <RoomAvatar
+                avatar={(v && v.avatar) || ""}
+                name={(v && v.name) || ""}
+              />
+            </Grid>
+          ))}
         </Grid>
       </Grid>
     </Grid>
