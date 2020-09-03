@@ -90,7 +90,7 @@ export default function RoomTypeView({ room }: { room: IRoomState }) {
       <Grid item>
         {room.privateRoom && (
           <Typography color="textSecondary" variant="subtitle2">
-            <Grid container alignContent="center">
+            <Grid container alignItems="center">
               <VisibilityOffIcon />
               {t("Private room")}
             </Grid>
@@ -100,7 +100,9 @@ export default function RoomTypeView({ room }: { room: IRoomState }) {
       <Grid item>
         {room.portalType === RoomPortalFieldType.PORTAL && (
           <Typography color="textSecondary" variant="subtitle2">
-            {t("With portal")}
+            <Grid container alignItems="center">
+              {t("With portal")}
+            </Grid>
           </Typography>
         )}
         {room.portalType === RoomPortalFieldType.ROULETTE && (
