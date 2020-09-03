@@ -47,7 +47,7 @@ i18n
           "Room settings": "Настройки комнаты",
           "Private room": "Приватная комната",
           "Game autostart": "Автостарт игры",
-
+          "With portal": "С порталом",
           Retro: "Ретро",
           Roulette: "Рулетка",
           Portal: "Портал",

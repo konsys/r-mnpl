@@ -37,6 +37,10 @@ export const theme = createMuiTheme({
     overline: {
       color: "white",
     },
+    subtitle2: {
+      color: "#a7adb5",
+      fontSize: "smaller",
+    },
   },
   palette: {
     primary: {
