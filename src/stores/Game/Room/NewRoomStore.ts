@@ -1,10 +1,10 @@
 import { GameDomain, userStore } from "../UserStore";
+import { addPlayerToRoomFetch, createRoomFetch } from "./api";
 import { closeGameModal, openGameModal } from "../GameModal/GameModalStore";
 import { combine, sample } from "effector";
 
 import { ErrorCode } from "utils/errors";
 import { IUser } from "types/types";
-import { createRoomFetch } from "./api";
 import nanoid from "nanoid";
 
 export enum RoomPortalFieldType {
@@ -43,6 +43,11 @@ export interface IRoomState {
   portalType: RoomPortalFieldType;
 }
 
+export interface IAddPlayerToRoom {
+  gameId: string;
+  userId: number;
+}
+
 const RoomDomain = GameDomain.domain("ChatDomain");
 
 export const createRoomFx = RoomDomain.effect<IRoomState, IRoomState[], Error>({
@@ -55,6 +60,25 @@ createRoomFx.fail.watch((v: any) => {
       open: true,
       title: "Oops!",
       text: ErrorCode[v.error.response.data.code],
+    });
+  } catch (err) {
+    closeGameModal();
+  }
+});
+export const addPlayerToRoomFx = RoomDomain.effect<
+  IAddPlayerToRoom,
+  IRoomState[],
+  Error
+>({
+  handler: addPlayerToRoomFetch,
+});
+
+addPlayerToRoomFx.fail.watch((v: any) => {
+  try {
+    openGameModal({
+      open: true,
+      title: "Oops!",
+      text: ErrorCode[v.error.response.data.code] || "Error",
     });
   } catch (err) {
     closeGameModal();

@@ -8,6 +8,7 @@ import {
 import {
   RoomPortalFieldType,
   newRoomStore,
+  toggleRoomSwitch,
   updateRoom,
 } from "stores/Game/Room/NewRoomStore";
 
@@ -15,7 +16,6 @@ import { GRID_SPACING } from "../../../../../theme";
 import PlayersNumber from "./views/PlayersNumber";
 import React from "react";
 import RoomSwitch from "./views/RoomSwitch";
-import { roomSwitchChange } from "../../FindGames/FindGame";
 import { useStore } from "effector-react";
 import { useTranslation } from "react-i18next";
 
@@ -51,19 +51,19 @@ export default function QuickGameParams() {
           text={"Private room"}
           name={"privateRoom"}
           checked={room.privateRoom}
-          onChange={roomSwitchChange}
+          onChange={toggleRoomSwitch}
         />
         <RoomSwitch
           text={"Game autostart"}
           name={"autostart"}
           checked={room.autostart}
-          onChange={roomSwitchChange}
+          onChange={toggleRoomSwitch}
         />
         <RoomSwitch
           text={"With restarts"}
           name={"restarts"}
           checked={room.restarts}
-          onChange={roomSwitchChange}
+          onChange={toggleRoomSwitch}
         />
         <Grid container spacing={GRID_SPACING}>
           <Grid item>

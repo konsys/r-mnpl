@@ -1,11 +1,10 @@
 import { Grid, Typography } from "@material-ui/core";
+import { newRoomStore, toggleRoomSwitch } from "stores/Game/Room/NewRoomStore";
 
 import { GRID_SPACING } from "../../../../../theme";
 import PlayersNumber from "./views/PlayersNumber";
 import React from "react";
 import RoomSwitch from "./views/RoomSwitch";
-import { newRoomStore } from "stores/Game/Room/NewRoomStore";
-import { roomSwitchChange } from "../../FindGames/FindGame";
 import { useStore } from "effector-react";
 import { useTranslation } from "react-i18next";
 
@@ -30,13 +29,13 @@ export default function RegularGameParams() {
           text={"Private room"}
           name={"privateRoom"}
           checked={room.privateRoom}
-          onChange={roomSwitchChange}
+          onChange={toggleRoomSwitch}
         />
         <RoomSwitch
           text={"Game autostart"}
           name={"autostart"}
           checked={room.autostart}
-          onChange={roomSwitchChange}
+          onChange={toggleRoomSwitch}
         />
       </Grid>
     </Grid>

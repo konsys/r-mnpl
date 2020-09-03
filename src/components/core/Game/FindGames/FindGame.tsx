@@ -1,23 +1,16 @@
 import "./styles.scss";
 
 import { Button, Divider, Grid, Typography } from "@material-ui/core";
-import {
-  availableRoomsStore,
-  toggleRoomSwitch,
-} from "stores/Game/Room/NewRoomStore";
 
 import { BLOCK_SPACING } from "../../../../theme";
 import CreateRoomModal from "../CreatRoomModal/CreateRoomModal";
 import NewRoomBlock from "./NewRoom/NewRoomBlock";
 import React from "react";
 import Template from "../../../views/Template/Template";
+import { availableRoomsStore } from "stores/Game/Room/NewRoomStore";
 import { openRoomModal } from "stores/Game/Room/RoomModalStore";
 import { useStore } from "effector-react";
 import { useTranslation } from "react-i18next";
-
-export const roomSwitchChange = (name: string) => {
-  toggleRoomSwitch(name);
-};
 
 export const FindGame = () => {
   const rooms = useStore(availableRoomsStore);
