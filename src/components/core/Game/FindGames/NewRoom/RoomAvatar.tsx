@@ -1,3 +1,4 @@
+import { Params } from "config/params";
 import React from "react";
 
 export default function RoomAvatar({
@@ -9,7 +10,7 @@ export default function RoomAvatar({
 }) {
   return (
     <>
-      <img src={avatar} alt={name} />
+      <img src={`${Params.BASE_URL}/${avatar}`} alt={name} />
     </>
   );
 }

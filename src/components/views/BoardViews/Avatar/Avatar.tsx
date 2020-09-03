@@ -15,7 +15,7 @@ export const Avatar = (props: AvatarProps) => (
         <div>
           <div
             style={{
-              backgroundImage: `url(${Params.BASE_URL}${props.avatar})`,
+              backgroundImage: `url(${Params.BASE_URL}/${props.avatar})`,
             }}
           />
         </div>
