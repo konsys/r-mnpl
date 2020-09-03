@@ -1,15 +1,19 @@
+import { IRoomState, addPlayerToRoomFx } from "stores/Game/Room/NewRoomStore";
+
 import { Grid } from "@material-ui/core";
-import { IRoomState } from "stores/Game/Room/NewRoomStore";
 import React from "react";
 import RoomAvatar from "./RoomAvatar";
 import RoomTypeView from "./RoomTypeView";
 import { concat } from "lodash";
+import { useStore } from "effector-react";
+import { userStore } from "stores/Game/UserStore";
 
 export default function NewRoomBlock({ room }: { room: IRoomState }) {
   const g = concat(
     room.players,
     new Array(room.playersNumber - room.players.length).fill(null)
   );
+  const { userId } = useStore(userStore);
   return (
     <Grid
       container
@@ -28,7 +32,9 @@ export default function NewRoomBlock({ room }: { room: IRoomState }) {
               <RoomAvatar
                 avatar={(v && v.avatar) || ""}
                 name={(v && v.name) || ""}
-                onClick={(n) => console.log(22222, n)}
+                onClick={(gameId: string) =>
+                  addPlayerToRoomFx({ gameId, userId })
+                }
                 roomId={room.roomId}
               />
             </Grid>

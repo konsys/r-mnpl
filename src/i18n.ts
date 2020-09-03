@@ -11,6 +11,7 @@ i18n
       ru: {
         translations: {
           Error: "Ошибка",
+          "Unknown error": "Неизвестная ошибка",
           "Oops!": "Упс!",
           Chat: "Чат",
           "Type message and press Enter": "Введите сообщение и нажмите Enter",

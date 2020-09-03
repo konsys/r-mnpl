@@ -78,7 +78,7 @@ addPlayerToRoomFx.fail.watch((v: any) => {
     openGameModal({
       open: true,
       title: "Oops!",
-      text: ErrorCode[v.error.response.data.code] || "Error",
+      text: ErrorCode[v.error.response.data.code] || "Unknown error",
     });
   } catch (err) {
     closeGameModal();
