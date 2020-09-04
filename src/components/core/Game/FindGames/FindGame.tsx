@@ -17,7 +17,6 @@ export const FindGame = () => {
 
   const { t } = useTranslation();
 
-  console.log(121212, roomsResponce);
   return (
     <div className="findGame">
       <CreateRoomModal />
