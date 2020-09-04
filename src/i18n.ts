@@ -11,6 +11,7 @@ i18n
       ru: {
         translations: {
           Error: "Ошибка",
+          "Only for VIP": "Только для VIP статуса",
           "Unknown error": "Неизвестная ошибка",
           "Oops!": "Упс!",
           "Room doesn`t exist": "Комната уже не существует",

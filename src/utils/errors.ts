@@ -15,4 +15,5 @@ export enum ErrorCode {
   "Room already exists" = 114,
   "Room doesn`t exist" = 115,
   "Max players reached" = 116,
+  "Only for VIP" = 117,
 }
