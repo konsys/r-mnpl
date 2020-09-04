@@ -1,5 +1,5 @@
 export enum SocketActions {
-  GAME_MESSAGE = "gameMessage",
+  CHAT_MESSAGE = "chatMessage",
   BOARD_MESSAGE = "boardMessage",
   ERROR_MESSAGE = "errorMessage",
 }

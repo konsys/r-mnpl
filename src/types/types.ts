@@ -1,4 +1,4 @@
-enum ResponceCode {
+export enum ResponceCode {
   ok = 0,
   error = 1,
 }
