@@ -11,12 +11,11 @@ export const sendChatMessageEffect = ChatDomain.effect<any, IChatMessage[]>({
   handler: fetchChat,
 });
 
-export const setChatEvent = ChatDomain.event<IChatMessage>();
+export const setChatMessages = ChatDomain.event<IChatMessage[]>();
 
-export const chatStore = ChatDomain.store<IChatMessage[]>([]).on(
-  sendChatMessageEffect.done,
-  (_, v) => v.result
-);
+export const chatStore = ChatDomain.store<IChatMessage[]>([])
+  // .on(sendChatMessageEffect.done, (_, v) => v.result)
+  .on(setChatMessages, (_, v) => v);
 
 export const addReplyToEvent = ChatDomain.event<IUser>();
 export const deleteReplyToEvent = ChatDomain.event<IUser>();

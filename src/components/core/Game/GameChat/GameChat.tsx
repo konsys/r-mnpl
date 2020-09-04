@@ -85,7 +85,7 @@ export default function GameChat() {
             justify={"center"}
             alignItems={"flex-start"}
           >
-            {messages && messages.length
+            {messages && Array.isArray(messages)
               ? messages.map((v, k) => (
                   <Grid item key={k}>
                     <ChatMessage
