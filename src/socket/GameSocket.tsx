@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 
 import { SocketActions } from "types/Socket/SocketTypes";
+import io from "socket.io-client";
 
 export default function GameSocket() {
   useEffect(() => {

@@ -12,9 +12,9 @@ import { BoardLoading } from "../components/views/BoardViews/BoardLoading/BoardL
 import { SocketActions } from "../types/Socket/SocketTypes";
 import { clearNode } from "effector";
 import { errorHandler } from "../handlers/ErrorHandler";
-import io from "socket.io-client";
 import { isEqual } from "lodash";
 import nanoid from "nanoid";
+import openSocket from "socket.io-client";
 import { setCurrentActionEvent } from "../stores/Board/ActionStore";
 import { updateAllPlayers } from "../utils/players.utils";
 import { useStore } from "effector-react";
@@ -87,8 +87,9 @@ export const playersHandler = (players: IPlayer[]) => updateAllPlayers(players);
 
 export const BoardSocket = () => {
   useEffect(() => {
-    const boardSocket = io(`http://localhost:8000/board`);
+    boardSocket = openSocket("http://localhost:8000/board");
     getInitFieldsEffect();
+    boardSocket.on(SocketActions.BOARD_MESSAGE, MessageHandler);
     boardSocket.on(SocketActions.ERROR_MESSAGE, errorHandler);
     return () => {
       clearNode(BoardDomain, { deep: true });
