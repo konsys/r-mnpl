@@ -67,7 +67,8 @@ export const Rooms = () => {
           direction="column"
           spacing={BLOCK_SPACING}
         >
-          {Array.isArray(rooms) &&
+          {rooms &&
+            Array.isArray(rooms.rooms) &&
             rooms.rooms.map((room, k) => (
               <Grid item key={k}>
                 <NewRoomBlock room={room} />
