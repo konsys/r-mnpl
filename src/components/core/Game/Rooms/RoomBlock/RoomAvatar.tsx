@@ -33,12 +33,11 @@ export default function RoomAvatar({
             justify="center"
             alignItems="center"
             direction="column"
-            onClick={() => onClick(roomId)}
           >
             {avatar ? (
               <img src={`${Params.BASE_URL}/${avatar}`} alt={name} />
             ) : (
-              <AddIcon />
+              <AddIcon onClick={() => onClick(roomId)} />
             )}
           </Grid>
         </Grid>

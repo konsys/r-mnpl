@@ -16,7 +16,7 @@ i18n
           "Unknown error": "Неизвестная ошибка",
           "Oops!": "Упс!",
           "Room doesn`t exist": "Комната уже не существует",
-          "Max players reached": "Максимальное количество игроков набрано",
+          "Max players reached": "Максимальное количество игроков",
           Chat: "Чат",
           "Type message and press Enter": "Введите сообщение и нажмите Enter",
           "Special rules for quick games. The third dice and quick timers and other interesting things.":
