@@ -38,7 +38,10 @@ export default function RoomBlock({ room }: { room: IRoomState }) {
               <RoomAvatar
                 avatar={(v && v.avatar) || ""}
                 name={(v && v.name) || ""}
-                onClick={(roomId: string) =>
+                addPlayer={(roomId: string) =>
+                  addPlayerToRoomFx({ roomId, userId })
+                }
+                removePlayer={(roomId: string) =>
                   addPlayerToRoomFx({ roomId, userId })
                 }
                 roomId={room.roomId}

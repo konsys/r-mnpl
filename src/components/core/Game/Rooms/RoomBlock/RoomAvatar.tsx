@@ -8,12 +8,14 @@ import { useTranslation } from "react-i18next";
 export default function RoomAvatar({
   avatar,
   name,
-  onClick,
+  addPlayer,
+  removePlayer,
   roomId,
 }: {
   avatar: string;
   name: string;
-  onClick: (id: string) => void;
+  addPlayer: (id: string) => void;
+  removePlayer: (id: string) => void;
   roomId: string;
 }) {
   const { t } = useTranslation();
@@ -28,11 +30,17 @@ export default function RoomAvatar({
             alignItems="center"
             direction="column"
           >
-            {avatar ? (
-              <img src={`${Params.BASE_URL}/${avatar}`} alt={name} />
-            ) : (
-              <AddIcon onClick={() => onClick(roomId)} />
-            )}
+            <Grid item style={{ border: "2px solid red" }}>
+              {avatar ? (
+                <>
+                  <span className="removePlayerIcon"> remove</span>
+
+                  <img src={`${Params.BASE_URL}/${avatar}`} alt={name} />
+                </>
+              ) : (
+                <AddIcon onClick={() => addPlayer(roomId)} />
+              )}
+            </Grid>
           </Grid>
         </Grid>
         <Grid item>
