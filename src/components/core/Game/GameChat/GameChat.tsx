@@ -5,21 +5,20 @@ import {
   Switch,
   Typography,
 } from "@material-ui/core";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   chatStore,
   deleteReplyToEvent,
   replyStore,
-  resetChatEvent,
   resetReplyToEvent,
   sendChatMessageEffect,
 } from "../../../../stores/Game/Chat/GameChatStore";
+import { useGate, useStore } from "effector-react";
 
 import ChatMessage from "./ChatMessage";
 import { GRID_SPACING } from "../../../../theme";
 import PlayerChip from "./PlayerChip";
-import { getUserEffect } from "../../../../stores/Game/UserStore";
-import { useStore } from "effector-react";
+import { profileGate } from "../../../../stores/Game/UserStore";
 import { useTranslation } from "react-i18next";
 
 enum KeyName {
@@ -32,17 +31,14 @@ export default function GameChat() {
   const replies = useStore(replyStore);
   const [m, setM] = useState<string>("");
 
-  useEffect(() => {
-    getUserEffect("me");
-    return () => {
-      resetChatEvent();
-    };
-  }, []);
+  useGate(profileGate);
 
   sendChatMessageEffect.done.watch(() => {
     resetReplyToEvent();
     setM("");
   });
+
+  // TODO focus on added message
   const inputEl = useRef<HTMLInputElement>(null);
 
   return (

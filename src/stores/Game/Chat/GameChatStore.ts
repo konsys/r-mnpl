@@ -8,6 +8,8 @@ import { sample } from "effector";
 
 const ChatDomain = GameDomain.domain("ChatDomain");
 
+export const chatGate = createGate<any>();
+
 export const resetChatEvent = ChatDomain.event();
 
 export const sendChatMessageEffect = ChatDomain.effect<any, IChatMessage[]>({
@@ -22,9 +24,9 @@ export const getChatMessagesFx = ChatDomain.effect<undefined, IChatMessage[]>({
 });
 
 export const chatStore = ChatDomain.store<IChatMessage[]>([])
-  // .on(sendChatMessageEffect.done, (_, v) => v.result)
   .on(setChatMessages, (_, v) => v)
-  .on(getChatMessagesFx.done, (_, { result }) => result);
+  .on(getChatMessagesFx.done, (_, { result }) => result)
+  .reset(chatGate.close);
 
 export const addReplyToEvent = ChatDomain.event<IUser>();
 export const deleteReplyToEvent = ChatDomain.event<IUser>();
@@ -48,11 +50,6 @@ export const replyStore = ChatDomain.store<IReply>({ n: 0, users: [] })
     };
   })
   .reset(resetReplyToEvent);
-
-replyStore.watch((v) => console.log("replyStoreWatch", v));
-
-/**  Chat init */
-export const chatGate = createGate<any>();
 
 sample({
   clock: chatGate.open,
