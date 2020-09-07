@@ -1,15 +1,16 @@
+import { IRoomResponce, setRooms } from "stores/Game/Rooms/RoomsStore";
 import React, { useEffect } from "react";
 
 import { SocketActions } from "types/Socket/SocketTypes";
 import io from "socket.io-client";
-import { setRooms } from "stores/Game/Rooms/RoomsStore";
 
 export default function RoomsSocket() {
   useEffect(() => {
     const gameSocket = io(`http://localhost:8002/rooms`);
-    gameSocket.on(SocketActions.ROOMS_MESSAGE, (m: string) => {
+    gameSocket.on(SocketActions.ROOMS_MESSAGE, (m: IRoomResponce) => {
+      console.log(33333, m);
       try {
-        setRooms(JSON.parse(m));
+        setRooms(m);
       } catch (e) {
         //NOP
       }

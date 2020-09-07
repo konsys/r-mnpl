@@ -195,7 +195,10 @@ export const roomsStore = RoomDomain.store<IRoomResponce>({
   .on(createRoomFx.done, (_, { result }) => result)
   .on(getRoomsFx.done, (_, { result }) => result)
   .on(addPlayerToRoomFx.done, (_, { result }) => result)
-  .on(setRooms, (_, result) => result)
+  .on(setRooms, (_, result) => {
+    console.log(23424234, result);
+    return result;
+  })
   .on(removePlayerFromRoomFx.done, (_, { result }) => result);
 
 export const isWaitingForGame = sample({
