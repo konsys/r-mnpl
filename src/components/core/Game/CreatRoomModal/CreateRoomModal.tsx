@@ -13,11 +13,11 @@ import {
   createRoom,
   newRoomStore,
   updateRoom,
-} from "stores/Game/Room/RoomStore";
+} from "stores/Game/Rooms/RoomsStore";
 import {
   closeRoomModal,
   roomModalStore,
-} from "stores/Game/Room/RoomModalStore";
+} from "stores/Game/Rooms/RoomsModalStore";
 
 import CloseIcon from "@material-ui/icons/Close";
 import QuickGameParams from "./GameParams/QuickGameParams";

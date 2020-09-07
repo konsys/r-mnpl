@@ -5,7 +5,7 @@ import {
   isWaitingForGame,
   roomsGate,
   roomsStore,
-} from "stores/Game/Room/RoomStore";
+} from "stores/Game/Rooms/RoomsStore";
 import { useGate, useStore } from "effector-react";
 
 import { BLOCK_SPACING } from "../../../../theme";
@@ -13,7 +13,7 @@ import CreateRoomModal from "../CreatRoomModal/CreateRoomModal";
 import React from "react";
 import RoomBlock from "./RoomBlock/RoomBlock";
 import Template from "../../../views/Template/Template";
-import { openRoomModal } from "stores/Game/Room/RoomModalStore";
+import { openRoomModal } from "stores/Game/Rooms/RoomsModalStore";
 import { useTranslation } from "react-i18next";
 
 export const Rooms = () => {

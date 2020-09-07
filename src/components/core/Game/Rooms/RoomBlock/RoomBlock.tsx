@@ -2,7 +2,7 @@ import {
   IRoomState,
   addPlayerToRoomFx,
   removePlayerFromRoomFx,
-} from "stores/Game/Room/RoomStore";
+} from "stores/Game/Rooms/RoomsStore";
 
 import { Grid } from "@material-ui/core";
 import { IPlayer } from "types/types";

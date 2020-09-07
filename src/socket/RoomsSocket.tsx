@@ -2,14 +2,14 @@ import React, { useEffect } from "react";
 
 import { SocketActions } from "types/Socket/SocketTypes";
 import io from "socket.io-client";
-import { setChatMessages } from "stores/Game/Chat/GameChatStore";
+import { setRooms } from "stores/Game/Rooms/RoomsStore";
 
 export default function RoomsSocket() {
   useEffect(() => {
     const gameSocket = io(`http://localhost:8002/rooms`);
     gameSocket.on(SocketActions.ROOMS_MESSAGE, (m: string) => {
       try {
-        setChatMessages(JSON.parse(m));
+        setRooms(JSON.parse(m));
       } catch (e) {
         //NOP
       }
