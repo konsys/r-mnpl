@@ -1,5 +1,5 @@
 import { GameDomain } from "../UserStore";
-import { resetRoomStore } from "./RoomsStore";
+import { resetRoomsStore } from "./RoomsStore";
 import { sample } from "effector";
 
 const RoomModalDomain = GameDomain.domain("GameModalDomain");
@@ -12,6 +12,6 @@ export const roomModalStore = RoomModalDomain.store<boolean>(false)
 
 sample({
   clock: closeRoomModal,
-  source: resetRoomStore,
-  target: resetRoomStore,
+  source: resetRoomsStore,
+  target: resetRoomsStore,
 });
