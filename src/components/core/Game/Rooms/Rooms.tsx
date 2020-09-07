@@ -10,8 +10,8 @@ import { useGate, useStore } from "effector-react";
 
 import { BLOCK_SPACING } from "../../../../theme";
 import CreateRoomModal from "../CreatRoomModal/CreateRoomModal";
-import NewRoomBlock from "./NewRoom/NewRoomBlock";
 import React from "react";
+import RoomBlock from "./RoomBlock/RoomBlock";
 import Template from "../../../views/Template/Template";
 import { openRoomModal } from "stores/Game/Room/RoomModalStore";
 import { useTranslation } from "react-i18next";
@@ -22,7 +22,6 @@ export const Rooms = () => {
   const waitingGame = useStore(isWaitingForGame);
   const { t } = useTranslation();
 
-  console.log(123123123123, rooms);
   return (
     <div className="findGame">
       <CreateRoomModal />
@@ -71,7 +70,7 @@ export const Rooms = () => {
             Array.isArray(rooms.rooms) &&
             rooms.rooms.map((room, k) => (
               <Grid item key={k}>
-                <NewRoomBlock room={room} />
+                <RoomBlock room={room} />
               </Grid>
             ))}
         </Grid>

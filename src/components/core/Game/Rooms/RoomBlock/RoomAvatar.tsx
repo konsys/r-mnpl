@@ -23,11 +23,14 @@ export default function RoomAvatar({
         alignItems="center"
         onClick={() => onClick(roomId)}
       >
-        {avatar ? (
-          <img src={`${Params.BASE_URL}/${avatar}`} alt={name} />
-        ) : (
-          <AddIcon />
-        )}
+        <Grid item>
+          {avatar ? (
+            <img src={`${Params.BASE_URL}/${avatar}`} alt={name} />
+          ) : (
+            <AddIcon />
+          )}
+        </Grid>
+        <Grid item>{name}</Grid>
       </Grid>
     </>
   );

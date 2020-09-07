@@ -8,7 +8,7 @@ import { concat } from "lodash";
 import { useStore } from "effector-react";
 import { userStore } from "stores/Game/UserStore";
 
-export default function NewRoomBlock({ room }: { room: IRoomState }) {
+export default function RoomBlock({ room }: { room: IRoomState }) {
   const g = concat(
     room.players,
     new Array(room.playersNumber - room.players.length).fill(null)
