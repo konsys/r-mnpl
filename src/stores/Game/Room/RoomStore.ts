@@ -64,6 +64,8 @@ const RoomDomain = GameDomain.domain("ChatDomain");
 
 export const roomsGate = createGate<any>();
 
+export const setRooms = RoomDomain.event<IRoomResponce>();
+
 export const createRoomFx = RoomDomain.effect<IRoomState, IRoomResponce, Error>(
   {
     handler: createRoomFetch,
@@ -193,6 +195,7 @@ export const roomsStore = RoomDomain.store<IRoomResponce>({
   .on(createRoomFx.done, (_, { result }) => result)
   .on(getRoomsFx.done, (_, { result }) => result)
   .on(addPlayerToRoomFx.done, (_, { result }) => result)
+  .on(setRooms, (_, result) => result)
   .on(removePlayerFromRoomFx.done, (_, { result }) => result);
 
 export const isWaitingForGame = sample({
