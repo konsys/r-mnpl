@@ -1,7 +1,9 @@
+import { Grid, Typography } from "@material-ui/core";
+
 import AddIcon from "@material-ui/icons/Add";
-import { Grid } from "@material-ui/core";
 import { Params } from "config/params";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 export default function RoomAvatar({
   avatar,
@@ -14,23 +16,29 @@ export default function RoomAvatar({
   onClick: (id: string) => void;
   roomId: string;
 }) {
+  const { t } = useTranslation();
+
   return (
     <>
       <Grid
         container
-        className="avatar"
         justify="center"
         alignItems="center"
+        direction="column"
         onClick={() => onClick(roomId)}
       >
-        <Grid item>
+        <Grid item className="avatar">
           {avatar ? (
             <img src={`${Params.BASE_URL}/${avatar}`} alt={name} />
           ) : (
             <AddIcon />
           )}
         </Grid>
-        <Grid item>{name}</Grid>
+        <Grid item>
+          <Typography variant="subtitle2">
+            {name ? name : t("Enter room")}
+          </Typography>
+        </Grid>
       </Grid>
     </>
   );

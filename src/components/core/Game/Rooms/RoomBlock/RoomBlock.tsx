@@ -26,7 +26,13 @@ export default function RoomBlock({ room }: { room: IRoomState }) {
         <RoomTypeView room={room} />
       </Grid>
       <Grid item className="newRoomOnePlayers">
-        <Grid container justify="flex-start" direction="row" spacing={2}>
+        <Grid
+          container
+          justify="flex-start"
+          alignItems="center"
+          direction="row"
+          spacing={2}
+        >
           {g.map((v, k: number) => (
             <Grid key={k} item className="newRoomOneAvatar">
               <RoomAvatar

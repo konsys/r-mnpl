@@ -12,6 +12,7 @@ i18n
         translations: {
           Error: "Ошибка",
           "Only for VIP": "Только для VIP статуса",
+          "Enter room": "Присоединиться",
           "Unknown error": "Неизвестная ошибка",
           "Oops!": "Упс!",
           "Room doesn`t exist": "Комната уже не существует",
