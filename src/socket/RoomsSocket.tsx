@@ -1,13 +1,12 @@
 import React, { useEffect } from "react";
 
 import { SocketActions } from "types/Socket/SocketTypes";
-import io from "socket.io-client";
 import { setChatMessages } from "stores/Game/Chat/GameChatStore";
 
-export default function GameSocket() {
+export default function RoomsSocket() {
   useEffect(() => {
-    const gameSocket = io(`http://localhost:8001/game`);
-    gameSocket.on(SocketActions.CHAT_MESSAGE, (m: string) => {
+    const gameSocket = io(`http://localhost:8002/rooms`);
+    gameSocket.on(SocketActions.ROOMS_MESSAGE, (m: string) => {
       try {
         setChatMessages(JSON.parse(m));
       } catch (e) {
