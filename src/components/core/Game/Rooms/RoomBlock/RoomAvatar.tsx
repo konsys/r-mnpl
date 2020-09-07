@@ -28,11 +28,19 @@ export default function RoomAvatar({
         onClick={() => onClick(roomId)}
       >
         <Grid item className="avatar">
-          {avatar ? (
-            <img src={`${Params.BASE_URL}/${avatar}`} alt={name} />
-          ) : (
-            <AddIcon />
-          )}
+          <Grid
+            container
+            justify="center"
+            alignItems="center"
+            direction="column"
+            onClick={() => onClick(roomId)}
+          >
+            {avatar ? (
+              <img src={`${Params.BASE_URL}/${avatar}`} alt={name} />
+            ) : (
+              <AddIcon />
+            )}
+          </Grid>
         </Grid>
         <Grid item>
           <Typography variant="subtitle2">
