@@ -20,13 +20,7 @@ export default function RoomAvatar({
 
   return (
     <>
-      <Grid
-        container
-        justify="center"
-        alignItems="center"
-        direction="column"
-        onClick={() => onClick(roomId)}
-      >
+      <Grid container justify="center" alignItems="center" direction="column">
         <Grid item className="avatar">
           <Grid
             container
@@ -42,6 +36,7 @@ export default function RoomAvatar({
           </Grid>
         </Grid>
         <Grid item>
+          {/* TODO add link to profile */}
           <Typography variant="subtitle2">
             {name ? name : t("Enter room")}
           </Typography>
