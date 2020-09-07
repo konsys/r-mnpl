@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 
 import { SocketActions } from "types/Socket/SocketTypes";
+import io from "socket.io-client";
 import { setChatMessages } from "stores/Game/Chat/GameChatStore";
 
 export default function RoomsSocket() {

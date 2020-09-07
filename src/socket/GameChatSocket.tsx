@@ -6,7 +6,7 @@ import { setChatMessages } from "stores/Game/Chat/GameChatStore";
 
 export default function GameChatSocket() {
   useEffect(() => {
-    const gameSocket = io(`http://localhost:8001/game`);
+    const gameSocket = io(`http://localhost:8001/gameChat`);
     gameSocket.on(SocketActions.GAME_CHAT_MESSAGE, (m: string) => {
       try {
         setChatMessages(JSON.parse(m));
