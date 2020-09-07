@@ -4,7 +4,7 @@ import { Button, Divider, Grid, Typography } from "@material-ui/core";
 import {
   availableRoomsStore,
   isWaitingForGame,
-} from "stores/Game/Room/NewRoomStore";
+} from "stores/Game/Room/RoomStore";
 
 import { BLOCK_SPACING } from "../../../../theme";
 import CreateRoomModal from "../CreatRoomModal/CreateRoomModal";

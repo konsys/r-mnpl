@@ -4,7 +4,7 @@ import {
   RoomPortalFieldType,
   RoomType,
   RoomTypeName,
-} from "stores/Game/Room/NewRoomStore";
+} from "stores/Game/Room/RoomStore";
 
 import Autorenew from "@material-ui/icons/Autorenew";
 import CasinoIcon from "@material-ui/icons/Casino";

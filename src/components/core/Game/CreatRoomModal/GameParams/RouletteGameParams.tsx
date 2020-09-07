@@ -1,5 +1,5 @@
 import { Grid, Typography } from "@material-ui/core";
-import { newRoomStore, toggleRoomSwitch } from "stores/Game/Room/NewRoomStore";
+import { newRoomStore, toggleRoomSwitch } from "stores/Game/Room/RoomStore";
 
 import { GRID_SPACING } from "../../../../../theme";
 import PlayersNumber from "./views/PlayersNumber";

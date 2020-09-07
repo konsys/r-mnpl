@@ -1,4 +1,4 @@
-import { IRoomState, addPlayerToRoomFx } from "stores/Game/Room/NewRoomStore";
+import { IRoomState, addPlayerToRoomFx } from "stores/Game/Room/RoomStore";
 
 import { Grid } from "@material-ui/core";
 import React from "react";

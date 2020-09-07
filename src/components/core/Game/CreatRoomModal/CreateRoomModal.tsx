@@ -13,7 +13,7 @@ import {
   createRoom,
   newRoomStore,
   updateRoom,
-} from "stores/Game/Room/NewRoomStore";
+} from "stores/Game/Room/RoomStore";
 import {
   closeRoomModal,
   roomModalStore,

@@ -1,4 +1,4 @@
-import { IAddPlayerToRoom, IRoomResponce, IRoomState } from "./NewRoomStore";
+import { IAddPlayerToRoom, IRoomResponce, IRoomState } from "./RoomStore";
 
 import { client } from "http/client";
 
