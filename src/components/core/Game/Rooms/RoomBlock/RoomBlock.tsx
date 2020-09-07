@@ -1,6 +1,11 @@
-import { IRoomState, addPlayerToRoomFx } from "stores/Game/Room/RoomStore";
+import {
+  IRoomState,
+  addPlayerToRoomFx,
+  removePlayerFromRoomFx,
+} from "stores/Game/Room/RoomStore";
 
 import { Grid } from "@material-ui/core";
+import { IPlayer } from "types/types";
 import React from "react";
 import RoomAvatar from "./RoomAvatar";
 import RoomTypeView from "./RoomTypeView";
@@ -9,7 +14,7 @@ import { useStore } from "effector-react";
 import { userStore } from "stores/Game/UserStore";
 
 export default function RoomBlock({ room }: { room: IRoomState }) {
-  const g = concat(
+  const g: IPlayer[] | null = concat(
     room.players,
     new Array(room.playersNumber - room.players.length).fill(null)
   );
@@ -42,9 +47,10 @@ export default function RoomBlock({ room }: { room: IRoomState }) {
                   addPlayerToRoomFx({ roomId, userId })
                 }
                 removePlayer={(roomId: string) =>
-                  addPlayerToRoomFx({ roomId, userId })
+                  removePlayerFromRoomFx({ roomId, userId })
                 }
                 roomId={room.roomId}
+                isMe={userId === v.userId}
               />
             </Grid>
           ))}

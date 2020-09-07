@@ -1,6 +1,7 @@
 import { Grid, Typography } from "@material-ui/core";
 
 import AddIcon from "@material-ui/icons/Add";
+import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 import { Params } from "config/params";
 import React from "react";
 import { useTranslation } from "react-i18next";
@@ -11,12 +12,14 @@ export default function RoomAvatar({
   addPlayer,
   removePlayer,
   roomId,
+  isMe,
 }: {
   avatar: string;
   name: string;
   addPlayer: (id: string) => void;
   removePlayer: (id: string) => void;
   roomId: string;
+  isMe: boolean;
 }) {
   const { t } = useTranslation();
 
@@ -30,11 +33,12 @@ export default function RoomAvatar({
             alignItems="center"
             direction="column"
           >
-            <Grid item style={{ border: "2px solid red" }}>
+            <Grid item className="avatarWrap">
               {avatar ? (
                 <>
-                  <span className="removePlayerIcon"> remove</span>
-
+                  {isMe && (
+                    <HighlightOffIcon onClick={() => removePlayer(roomId)} />
+                  )}
                   <img src={`${Params.BASE_URL}/${avatar}`} alt={name} />
                 </>
               ) : (

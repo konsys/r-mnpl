@@ -1,5 +1,10 @@
 import { GameDomain, userStore } from "../UserStore";
-import { addPlayerToRoomFetch, createRoomFetch, fetchRooms } from "./api";
+import {
+  addPlayerToRoomFetch,
+  createRoomFetch,
+  fetchRooms,
+  removePlayerFromRoomFetch,
+} from "./api";
 import { closeGameModal, openGameModal } from "../GameModal/GameModalStore";
 import { combine, sample } from "effector";
 
@@ -87,6 +92,14 @@ export const addPlayerToRoomFx = RoomDomain.effect<
   Error
 >({
   handler: addPlayerToRoomFetch,
+});
+
+export const removePlayerFromRoomFx = RoomDomain.effect<
+  IAddPlayerToRoom,
+  IRoomResponce,
+  Error
+>({
+  handler: removePlayerFromRoomFetch,
 });
 
 addPlayerToRoomFx.fail.watch((v: any) => {

@@ -20,3 +20,11 @@ export const addPlayerToRoomFetch = async (
   return await (await client.post(`${roomsUrl}/addPlayer`, { add: params }))
     .data;
 };
+
+export const removePlayerFromRoomFetch = async (
+  params?: IAddPlayerToRoom
+): Promise<IRoomResponce> => {
+  return await (
+    await client.post(`${roomsUrl}/removePlayer`, { remove: params })
+  ).data;
+};

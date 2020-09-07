@@ -20,7 +20,6 @@
     }
   }
   .avatar {
-    position: relative;
     width: 100px;
     height: 100px;
     div {
@@ -37,12 +36,25 @@
       opacity: 0.4;
       cursor: pointer;
     }
-    .removePlayerIcon {
+    .avatarWrap {
+      position: relative;
+      &:hover {
+        > svg {
+          display: block;
+        }
+      }
+    }
+
+    svg {
+      display: none;
       position: absolute;
+      right: 0px;
+      top: 0px;
       z-index: 1000;
-      right: 0;
-      top: 0;
+      width: 30px;
+      height: 30px;
       cursor: pointer;
+      color: #e4e4e4;
     }
   }
 }
