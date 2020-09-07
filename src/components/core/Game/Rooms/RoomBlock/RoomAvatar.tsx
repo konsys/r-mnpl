@@ -31,18 +31,31 @@ export default function RoomAvatar({
             container
             justify="center"
             alignItems="center"
+            alignContent="center"
             direction="column"
           >
-            <Grid item className="avatarWrap">
-              {avatar ? (
+            <Grid item>
+              {avatar && name ? (
                 <>
-                  {isMe && (
-                    <HighlightOffIcon onClick={() => removePlayer(roomId)} />
-                  )}
-                  <img src={`${Params.BASE_URL}/${avatar}`} alt={name} />
+                  <div className="avatarWrap">
+                    {isMe && (
+                      <HighlightOffIcon onClick={() => removePlayer(roomId)} />
+                    )}
+                    <img src={`${Params.BASE_URL}/${avatar}`} alt={name} />
+                  </div>
                 </>
               ) : (
-                <AddIcon onClick={() => addPlayer(roomId)} />
+                <Grid
+                  container
+                  justify="center"
+                  alignItems="center"
+                  alignContent="center"
+                  direction="column"
+                >
+                  <Grid item className="addPlayerWrap">
+                    <AddIcon onClick={() => addPlayer(roomId)} />
+                  </Grid>
+                </Grid>
               )}
             </Grid>
           </Grid>

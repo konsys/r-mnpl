@@ -50,7 +50,7 @@ export default function RoomBlock({ room }: { room: IRoomState }) {
                   removePlayerFromRoomFx({ roomId, userId })
                 }
                 roomId={room.roomId}
-                isMe={userId === v.userId}
+                isMe={v ? userId === v.userId : false}
               />
             </Grid>
           ))}

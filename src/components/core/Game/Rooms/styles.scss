@@ -31,8 +31,8 @@
       height: 100%;
     }
     svg {
-      width: 50%;
-      height: 50%;
+      width: 50px;
+      height: 50px;
       opacity: 0.4;
       cursor: pointer;
     }
@@ -43,18 +43,25 @@
           display: block;
         }
       }
+      svg {
+        display: none;
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        z-index: 1000;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        color: #e4e4e4;
+      }
     }
-
-    svg {
-      display: none;
-      position: absolute;
-      right: 0px;
-      top: 0px;
-      z-index: 1000;
-      width: 30px;
-      height: 30px;
-      cursor: pointer;
-      color: #e4e4e4;
+    .addPlayerWrap {
+      width: 50px;
+      height: 50px;
+      svg {
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 }
