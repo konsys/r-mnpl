@@ -2,9 +2,11 @@ import "./styles.scss";
 
 import { Button, Divider, Grid, Typography } from "@material-ui/core";
 import {
-  availableRoomsStore,
   isWaitingForGame,
+  roomsGate,
+  roomsStore,
 } from "stores/Game/Room/RoomStore";
+import { useGate, useStore } from "effector-react";
 
 import { BLOCK_SPACING } from "../../../../theme";
 import CreateRoomModal from "../CreatRoomModal/CreateRoomModal";
@@ -12,14 +14,15 @@ import NewRoomBlock from "./NewRoom/NewRoomBlock";
 import React from "react";
 import Template from "../../../views/Template/Template";
 import { openRoomModal } from "stores/Game/Room/RoomModalStore";
-import { useStore } from "effector-react";
 import { useTranslation } from "react-i18next";
 
 export const Rooms = () => {
-  const rooms = useStore(availableRoomsStore);
+  useGate(roomsGate);
+  const rooms = useStore(roomsStore);
   const waitingGame = useStore(isWaitingForGame);
   const { t } = useTranslation();
 
+  console.log(123123123123, rooms);
   return (
     <div className="findGame">
       <CreateRoomModal />

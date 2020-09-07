@@ -2,17 +2,21 @@ import { IAddPlayerToRoom, IRoomResponce, IRoomState } from "./RoomStore";
 
 import { client } from "http/client";
 
-const createameUrl = `/rooms`;
+const roomsUrl = `/rooms`;
+
+export const fetchRooms = async (): Promise<IRoomResponce> => {
+  return await (await client.get(roomsUrl)).data;
+};
 
 export const createRoomFetch = async (
   params: IRoomState
 ): Promise<IRoomResponce> => {
-  return await (await client.post(createameUrl, { room: params })).data;
+  return await (await client.post(roomsUrl, { room: params })).data;
 };
 
 export const addPlayerToRoomFetch = async (
   params?: IAddPlayerToRoom
 ): Promise<IRoomResponce> => {
-  return await (await client.post(`${createameUrl}/addPlayer`, { add: params }))
+  return await (await client.post(`${roomsUrl}/addPlayer`, { add: params }))
     .data;
 };

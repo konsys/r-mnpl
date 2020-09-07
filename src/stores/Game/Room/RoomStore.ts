@@ -1,10 +1,11 @@
 import { GameDomain, userStore } from "../UserStore";
-import { addPlayerToRoomFetch, createRoomFetch } from "./api";
+import { addPlayerToRoomFetch, createRoomFetch, fetchRooms } from "./api";
 import { closeGameModal, openGameModal } from "../GameModal/GameModalStore";
 import { combine, sample } from "effector";
 
 import { ErrorCode } from "utils/errors";
 import { IUser } from "types/types";
+import { createGate } from "effector-react";
 import { flattenDeep } from "lodash";
 import nanoid from "nanoid";
 
@@ -56,11 +57,17 @@ export interface IRoomResponce {
 
 const RoomDomain = GameDomain.domain("ChatDomain");
 
+export const roomsGate = createGate<any>();
+
 export const createRoomFx = RoomDomain.effect<IRoomState, IRoomResponce, Error>(
   {
     handler: createRoomFetch,
   }
 );
+
+export const getRoomsFx = RoomDomain.effect<undefined, IRoomResponce, Error>({
+  handler: fetchRooms,
+});
 
 createRoomFx.fail.watch((v: any) => {
   try {
@@ -73,6 +80,7 @@ createRoomFx.fail.watch((v: any) => {
     closeGameModal();
   }
 });
+
 export const addPlayerToRoomFx = RoomDomain.effect<
   IAddPlayerToRoom,
   IRoomResponce,
@@ -163,24 +171,31 @@ sample({
   target: createRoomFx,
 });
 
-export const resetAvailableRooms = RoomDomain.event();
-export const availableRoomsStore = RoomDomain.store<IRoomResponce>({
+export const resetRoomsStore = RoomDomain.event();
+export const roomsStore = RoomDomain.store<IRoomResponce>({
   playersInRooms: 0,
   rooms: [],
 })
-  .reset(resetAvailableRooms)
+  .reset(resetRoomsStore)
   .on(createRoomFx.done, (_, { result }) => result)
+  .on(getRoomsFx.done, (_, { result }) => result)
   .on(addPlayerToRoomFx.done, (_, { result }) => result);
 
 export const isWaitingForGame = sample({
-  clock: availableRoomsStore,
+  clock: roomsStore,
   source: combine({
     userId: userStore.map((v) => v.userId),
-    playerIds: availableRoomsStore.map((v) =>
+    playerIds: roomsStore.map((v) =>
       flattenDeep(
         v.rooms.map((room) => room.players.map((player) => player?.userId))
       )
     ),
   }),
   fn: ({ userId, playerIds }) => playerIds.some((v) => v === userId),
+});
+
+sample({
+  clock: roomsGate.open,
+  source: roomsGate.state,
+  target: getRoomsFx,
 });
