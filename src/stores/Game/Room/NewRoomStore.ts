@@ -5,6 +5,7 @@ import { combine, sample } from "effector";
 
 import { ErrorCode } from "utils/errors";
 import { IUser } from "types/types";
+import { flattenDeep } from "lodash";
 import nanoid from "nanoid";
 
 export enum RoomPortalFieldType {
@@ -170,3 +171,18 @@ export const availableRoomsStore = RoomDomain.store<IRoomResponce>({
   .reset(resetAvailableRooms)
   .on(createRoomFx.done, (_, { result }) => result)
   .on(addPlayerToRoomFx.done, (_, { result }) => result);
+
+// export const isWaitingGame = (): boolean => false;
+
+export const isWaitingGame = sample({
+  clock: availableRoomsStore,
+  source: combine({
+    userId: userStore.map((v) => v.userId),
+    playerIds: availableRoomsStore.map((v) =>
+      flattenDeep(
+        v.rooms.map((room) => room.players.map((player) => player?.userId))
+      )
+    ),
+  }),
+  fn: ({ userId, playerIds }) => playerIds.some((v) => v === userId),
+});

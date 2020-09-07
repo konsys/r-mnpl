@@ -1,6 +1,6 @@
-import { FindGame } from "./FindGames/FindGame";
 import React from "react";
+import { Rooms } from "./Rooms/Rooms";
 
 export const Game = () => {
-  return <FindGame />;
+  return <Rooms />;
 };
