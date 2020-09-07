@@ -172,9 +172,7 @@ export const availableRoomsStore = RoomDomain.store<IRoomResponce>({
   .on(createRoomFx.done, (_, { result }) => result)
   .on(addPlayerToRoomFx.done, (_, { result }) => result);
 
-// export const isWaitingGame = (): boolean => false;
-
-export const isWaitingGame = sample({
+export const isWaitingForGame = sample({
   clock: availableRoomsStore,
   source: combine({
     userId: userStore.map((v) => v.userId),

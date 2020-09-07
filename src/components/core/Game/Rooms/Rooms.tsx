@@ -3,21 +3,23 @@ import "./styles.scss";
 import { Button, Divider, Grid, Typography } from "@material-ui/core";
 import {
   availableRoomsStore,
-  isWaitingGame,
+  isWaitingForGame,
 } from "stores/Game/Room/NewRoomStore";
+import { useGate, useStore } from "effector-react";
 
 import { BLOCK_SPACING } from "../../../../theme";
 import CreateRoomModal from "../CreatRoomModal/CreateRoomModal";
 import NewRoomBlock from "./NewRoom/NewRoomBlock";
 import React from "react";
 import Template from "../../../views/Template/Template";
+import { chatGate } from "stores/Game/Chat/GameChatStore";
 import { openRoomModal } from "stores/Game/Room/RoomModalStore";
-import { useStore } from "effector-react";
 import { useTranslation } from "react-i18next";
 
 export const Rooms = () => {
-  const roomsResponce = useStore(availableRoomsStore);
-
+  useGate(chatGate);
+  const rooms = useStore(availableRoomsStore);
+  const waitingGame = useStore(isWaitingForGame);
   const { t } = useTranslation();
 
   return (
@@ -41,7 +43,7 @@ export const Rooms = () => {
                 variant="outlined"
                 color="primary"
                 onClick={() => openRoomModal()}
-                disabled={isWaitingGame.getState()}
+                disabled={waitingGame}
               >
                 {t("Create game")}
               </Button>
@@ -64,8 +66,8 @@ export const Rooms = () => {
           direction="column"
           spacing={BLOCK_SPACING}
         >
-          {roomsResponce &&
-            roomsResponce.rooms.map((room, k) => (
+          {Array.isArray(rooms) &&
+            rooms.rooms.map((room, k) => (
               <Grid item key={k}>
                 <NewRoomBlock room={room} />
               </Grid>
