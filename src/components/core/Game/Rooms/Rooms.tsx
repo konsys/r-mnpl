@@ -21,7 +21,6 @@ export const Rooms = () => {
   const rooms = useStore(roomsStore);
   const waitingGame = useStore(isWaitingForGame);
   const { t } = useTranslation();
-
   return (
     <div className="findGame">
       <CreateRoomModal />

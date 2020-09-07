@@ -14,11 +14,14 @@ import { useStore } from "effector-react";
 import { userStore } from "stores/Game/UserStore";
 
 export default function RoomBlock({ room }: { room: IRoomState }) {
-  const g: IPlayer[] | null = concat(
-    room.players,
-    new Array(room.playersNumber - room.players.length).fill(null)
-  );
+  const g: IPlayer[] | null = room.players.length
+    ? concat(
+        room.players,
+        new Array(room.playersNumber - room.players.length).fill(null)
+      )
+    : [];
   const { userId } = useStore(userStore);
+
   return (
     <Grid
       container

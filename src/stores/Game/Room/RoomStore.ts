@@ -192,7 +192,8 @@ export const roomsStore = RoomDomain.store<IRoomResponce>({
   .reset(resetRoomsStore)
   .on(createRoomFx.done, (_, { result }) => result)
   .on(getRoomsFx.done, (_, { result }) => result)
-  .on(addPlayerToRoomFx.done, (_, { result }) => result);
+  .on(addPlayerToRoomFx.done, (_, { result }) => result)
+  .on(removePlayerFromRoomFx.done, (_, { result }) => result);
 
 export const isWaitingForGame = sample({
   clock: roomsStore,
