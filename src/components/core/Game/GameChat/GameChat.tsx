@@ -7,6 +7,7 @@ import {
 } from "@material-ui/core";
 import React, { useRef, useState } from "react";
 import {
+  chatGate,
   chatStore,
   deleteReplyToEvent,
   replyStore,
@@ -32,7 +33,7 @@ export default function GameChat() {
   const [m, setM] = useState<string>("");
 
   useGate(profileGate);
-
+  useGate(chatGate);
   sendChatMessageEffect.done.watch(() => {
     resetReplyToEvent();
     setM("");
