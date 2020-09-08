@@ -10,6 +10,8 @@ i18n
     resources: {
       ru: {
         translations: {
+          "Open VIP status for all available options":
+            "Откройте VIP статус чтобы выбрать все возможные опции",
           Error: "Ошибка",
           "Login to create room": "Войдите, чтобы создать комнату",
           "Only for VIP": "Только для VIP статуса",

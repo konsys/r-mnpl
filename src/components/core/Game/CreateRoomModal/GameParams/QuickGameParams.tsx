@@ -27,6 +27,9 @@ export default function QuickGameParams({ isVip }: { isVip: boolean }) {
     <Grid container direction="column" spacing={GRID_SPACING}>
       <Grid item>
         <Typography variant="h6">{t("Quick game")}</Typography>
+        <Typography variant="subtitle2" color="error">
+          {!isVip && t("Open VIP status for all available options")}
+        </Typography>
       </Grid>
       <Grid item>
         <Typography variant="body2">
@@ -85,21 +88,25 @@ export default function QuickGameParams({ isVip }: { isVip: boolean }) {
                 }
               >
                 <FormControlLabel
+                  disabled={!isVip}
                   value={RoomPortalFieldType.ROULETTE}
                   control={<Radio color="primary" />}
                   label={t(RoomPortalFieldType.ROULETTE)}
                 />
                 <FormControlLabel
+                  disabled={!isVip}
                   value={RoomPortalFieldType.RUSSIAN_ROULETTE}
                   control={<Radio color="primary" />}
                   label={t(RoomPortalFieldType.RUSSIAN_ROULETTE)}
                 />
                 <FormControlLabel
+                  disabled={!isVip}
                   value={RoomPortalFieldType.PORTAL}
                   control={<Radio color="primary" />}
                   label={t(RoomPortalFieldType.PORTAL)}
                 />
                 <FormControlLabel
+                  disabled={!isVip}
                   value={RoomPortalFieldType.NOP}
                   control={<Radio color="primary" />}
                   label={t(RoomPortalFieldType.NOP)}
