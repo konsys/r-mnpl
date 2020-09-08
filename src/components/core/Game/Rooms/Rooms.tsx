@@ -24,9 +24,7 @@ export const Rooms = () => {
   const waitingGame = useStore(isWaitingForGame);
   const { t } = useTranslation();
   const { userId } = useStore(userStore);
-  const iHaveRoom = rooms.rooms.some((v) =>
-    v.players.some((v1) => v1?.userId === userId)
-  );
+
   return (
     <div className="findGame">
       <CreateRoomModal />
@@ -50,7 +48,7 @@ export const Rooms = () => {
                 onClick={() => openRoomModal()}
                 disabled={waitingGame}
               >
-                {t("Create game")}
+                {t("Create room")}
               </Button>
             </Typography>
           </Grid>
@@ -80,7 +78,7 @@ export const Rooms = () => {
                     <RoomBlock
                       room={room}
                       userId={userId}
-                      iHaveRoom={iHaveRoom}
+                      iHaveRoom={waitingGame}
                     />
                   </Grid>
                 )
