@@ -19,7 +19,7 @@ import RoomSwitch from "./views/RoomSwitch";
 import { useStore } from "effector-react";
 import { useTranslation } from "react-i18next";
 
-export default function QuickGameParams() {
+export default function QuickGameParams({ isVip }: { isVip: boolean }) {
   const { t } = useTranslation();
   const room = useStore(newRoomStore);
 
@@ -52,18 +52,21 @@ export default function QuickGameParams() {
           name={"privateRoom"}
           checked={room.privateRoom}
           onChange={toggleRoomSwitch}
+          disabled={!isVip}
         />
         <RoomSwitch
           text={"Game autostart"}
           name={"autostart"}
           checked={room.autostart}
           onChange={toggleRoomSwitch}
+          disabled={!isVip}
         />
         <RoomSwitch
           text={"With restarts"}
           name={"restarts"}
           checked={room.restarts}
           onChange={toggleRoomSwitch}
+          disabled={!isVip}
         />
         <Grid container spacing={GRID_SPACING}>
           <Grid item>

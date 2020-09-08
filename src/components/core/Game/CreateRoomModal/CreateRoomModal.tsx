@@ -28,8 +28,10 @@ import RouletteGameParams from "./GameParams/RouletteGameParams";
 import ShuffleGameParams from "./GameParams/ShuffleGameParams";
 import { useStore } from "effector-react";
 import { useTranslation } from "react-i18next";
+import { userStore } from "stores/Game/UserStore";
 
 export default function CreateRoomModal() {
+  const user = useStore(userStore);
   const open = useStore(roomModalStore);
   const { t } = useTranslation();
   const room = useStore(newRoomStore);
@@ -142,11 +144,21 @@ export default function CreateRoomModal() {
           </Grid>
           <Grid item sm={6} className="roomParams">
             <Grid container justify="space-between" alignItems="center">
-              {roomType === RoomType.REGULAR && <RegularGameParams />}
-              {roomType === RoomType.QUICK && <QuickGameParams />}
-              {roomType === RoomType.RETRO && <RetroGameParams />}
-              {roomType === RoomType.ROULETTE && <RouletteGameParams />}
-              {roomType === RoomType.SHUFFLE && <ShuffleGameParams />}
+              {roomType === RoomType.REGULAR && (
+                <RegularGameParams isVip={user.vip} />
+              )}
+              {roomType === RoomType.QUICK && (
+                <QuickGameParams isVip={user.vip} />
+              )}
+              {roomType === RoomType.RETRO && (
+                <RetroGameParams isVip={user.vip} />
+              )}
+              {roomType === RoomType.ROULETTE && (
+                <RouletteGameParams isVip={user.vip} />
+              )}
+              {roomType === RoomType.SHUFFLE && (
+                <ShuffleGameParams isVip={user.vip} />
+              )}
             </Grid>
           </Grid>
         </Grid>

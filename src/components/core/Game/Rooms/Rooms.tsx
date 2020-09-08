@@ -9,7 +9,7 @@ import {
 import { useGate, useStore } from "effector-react";
 
 import { BLOCK_SPACING } from "../../../../theme";
-import CreateRoomModal from "../CreatRoomModal/CreateRoomModal";
+import CreateRoomModal from "../CreateRoomModal/CreateRoomModal";
 import React from "react";
 import RoomBlock from "./RoomBlock/RoomBlock";
 import Template from "../../../views/Template/Template";

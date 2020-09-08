@@ -8,7 +8,7 @@ import RoomSwitch from "./views/RoomSwitch";
 import { useStore } from "effector-react";
 import { useTranslation } from "react-i18next";
 
-export default function ShuffleGameParams() {
+export default function ShuffleGameParams({ isVip }: { isVip: boolean }) {
   const { t } = useTranslation();
   const room = useStore(newRoomStore);
   return (
@@ -31,12 +31,14 @@ export default function ShuffleGameParams() {
             name={"privateRoom"}
             checked={room.privateRoom}
             onChange={toggleRoomSwitch}
+            disabled={!isVip}
           />
           <RoomSwitch
             text={"Game autostart"}
             name={"autostart"}
             checked={room.autostart}
             onChange={toggleRoomSwitch}
+            disabled={!isVip}
           />
         </Grid>
       </Grid>

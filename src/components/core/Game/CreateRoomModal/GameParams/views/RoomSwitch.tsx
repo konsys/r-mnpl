@@ -9,11 +9,13 @@ export default function RoomSwitch({
   name,
   checked,
   onChange,
+  disabled,
 }: {
   text: string;
   name: string;
   checked: boolean;
   onChange: (name: string) => void;
+  disabled: boolean;
 }) {
   const { t } = useTranslation();
   return (
@@ -26,6 +28,7 @@ export default function RoomSwitch({
       <Grid item>{t(text)}</Grid>
       <Grid item>
         <Switch
+          disabled={disabled}
           color="primary"
           checked={checked}
           onChange={() => onChange(name)}

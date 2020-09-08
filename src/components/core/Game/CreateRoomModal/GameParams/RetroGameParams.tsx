@@ -8,7 +8,7 @@ import RoomSwitch from "./views/RoomSwitch";
 import { useStore } from "effector-react";
 import { useTranslation } from "react-i18next";
 
-export default function RetroGameParams() {
+export default function RetroGameParams({ isVip }: { isVip: boolean }) {
   const { t } = useTranslation();
   const room = useStore(newRoomStore);
   return (
@@ -37,12 +37,14 @@ export default function RetroGameParams() {
           name={"privateRoom"}
           checked={room.privateRoom}
           onChange={toggleRoomSwitch}
+          disabled={!isVip}
         />
         <RoomSwitch
           text={"Game autostart"}
           name={"autostart"}
           checked={room.autostart}
           onChange={toggleRoomSwitch}
+          disabled={!isVip}
         />
       </Grid>
     </Grid>

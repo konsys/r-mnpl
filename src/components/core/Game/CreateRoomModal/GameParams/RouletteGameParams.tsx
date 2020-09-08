@@ -8,16 +8,21 @@ import RoomSwitch from "./views/RoomSwitch";
 import { useStore } from "effector-react";
 import { useTranslation } from "react-i18next";
 
-export default function RegularGameParams() {
+export default function RouletteGameParams({ isVip }: { isVip: boolean }) {
   const { t } = useTranslation();
   const room = useStore(newRoomStore);
   return (
-    <Grid container direction="column" spacing={GRID_SPACING}>
+    <Grid container direction="column" spacing={1}>
       <Grid item>
-        <Typography variant="h6">{t("Regular game")}</Typography>
+        <Typography variant="h6">{t("Russian roulette")}</Typography>
       </Grid>
       <Grid item>
-        <PlayersNumber />
+        <Typography variant="body2">
+          {t("No cards but you play russian roulette!")}
+        </Typography>
+      </Grid>
+      <Grid item>
+        <PlayersNumber battleClosed={true} />
       </Grid>
       <Grid item>
         <Grid container spacing={GRID_SPACING}>
@@ -30,12 +35,14 @@ export default function RegularGameParams() {
           name={"privateRoom"}
           checked={room.privateRoom}
           onChange={toggleRoomSwitch}
+          disabled={!isVip}
         />
         <RoomSwitch
           text={"Game autostart"}
           name={"autostart"}
           checked={room.autostart}
           onChange={toggleRoomSwitch}
+          disabled={!isVip}
         />
       </Grid>
     </Grid>
