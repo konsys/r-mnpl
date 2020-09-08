@@ -2,6 +2,7 @@ import "./styles.scss";
 
 import { Button, Divider, Grid, Typography } from "@material-ui/core";
 import {
+  RoomStatus,
   isWaitingForGame,
   roomsGate,
   roomsStore,
@@ -67,11 +68,14 @@ export const Rooms = () => {
         >
           {rooms &&
             Array.isArray(rooms.rooms) &&
-            rooms.rooms.map((room, k) => (
-              <Grid item key={k}>
-                <RoomBlock room={room} />
-              </Grid>
-            ))}
+            rooms.rooms.map(
+              (room, k) =>
+                room.roomStatus === RoomStatus.CREATED && (
+                  <Grid item key={k}>
+                    <RoomBlock room={room} />
+                  </Grid>
+                )
+            )}
         </Grid>
       </Template>
     </div>
