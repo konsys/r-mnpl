@@ -28,7 +28,13 @@ export enum RoomType {
   QUICK = "quick",
   ROULETTE = "roulette",
 }
-
+export enum RoomStatus {
+  NOT_CREATED = "notCreated",
+  PENDING = "pending",
+  DELETED = "deleted",
+  STARTED = "started",
+  COMPLETED = "completed",
+}
 export enum RoomTypeName {
   REGULAR = "Regular game",
   RETRO = "Retro",
@@ -48,6 +54,7 @@ export interface IRoomState {
   privateRoom: boolean;
   restarts: boolean;
   portalType: RoomPortalFieldType;
+  roomStatus: RoomStatus;
 }
 
 export interface IAddPlayerToRoom {
@@ -138,6 +145,7 @@ export const newRoomStore = RoomDomain.store<IRoomState>({
   autostart: true,
   restarts: false,
   privateRoom: false,
+  roomStatus: RoomStatus.NOT_CREATED,
 })
   .on(updateRoom, (_, v) => v)
 
