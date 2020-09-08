@@ -16,12 +16,17 @@ import RoomBlock from "./RoomBlock/RoomBlock";
 import Template from "../../../views/Template/Template";
 import { openRoomModal } from "stores/Game/Rooms/RoomsModalStore";
 import { useTranslation } from "react-i18next";
+import { userStore } from "stores/Game/UserStore";
 
 export const Rooms = () => {
   useGate(roomsGate);
   const rooms = useStore(roomsStore);
   const waitingGame = useStore(isWaitingForGame);
   const { t } = useTranslation();
+  const { userId } = useStore(userStore);
+  const iHaveRoom = rooms.rooms.some((v) =>
+    v.players.some((v1) => v1?.userId === userId)
+  );
   return (
     <div className="findGame">
       <CreateRoomModal />
@@ -70,9 +75,13 @@ export const Rooms = () => {
             Array.isArray(rooms.rooms) &&
             rooms.rooms.map(
               (room, k) =>
-                room.roomStatus === RoomStatus.CREATED && (
+                room.roomStatus === RoomStatus.PENDING && (
                   <Grid item key={k}>
-                    <RoomBlock room={room} />
+                    <RoomBlock
+                      room={room}
+                      userId={userId}
+                      iHaveRoom={iHaveRoom}
+                    />
                   </Grid>
                 )
             )}
