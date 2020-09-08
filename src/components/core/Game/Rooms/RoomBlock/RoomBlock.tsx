@@ -1,6 +1,7 @@
 import {
   IRoomState,
   addPlayerToRoomFx,
+  newRoomStore,
   removePlayerFromRoomFx,
 } from "stores/Game/Rooms/RoomsStore";
 
@@ -10,7 +11,9 @@ import React from "react";
 import RoomAvatar from "./RoomAvatar";
 import RoomTypeView from "./RoomTypeView";
 import { concat } from "lodash";
+import { openGameModal } from "stores/Game/GameModal/GameModalStore";
 import { useStore } from "effector-react";
+import { useTranslation } from "react-i18next";
 import { userStore } from "stores/Game/UserStore";
 
 export default function RoomBlock({ room }: { room: IRoomState }) {
@@ -21,7 +24,9 @@ export default function RoomBlock({ room }: { room: IRoomState }) {
       )
     : [];
   const { userId } = useStore(userStore);
-
+  const { creatorId } = useStore(newRoomStore);
+  const iHaveRoom = userId === creatorId;
+  const { t } = useTranslation();
   return (
     <Grid
       container
@@ -47,7 +52,13 @@ export default function RoomBlock({ room }: { room: IRoomState }) {
                 avatar={(v && v.avatar) || ""}
                 name={(v && v.name) || ""}
                 addPlayer={(roomId: string) =>
-                  addPlayerToRoomFx({ roomId, userId })
+                  iHaveRoom
+                    ? addPlayerToRoomFx({ roomId, userId })
+                    : openGameModal({
+                        open: true,
+                        text: t("You can`t join the room"),
+                        title: t("You are already waiting game"),
+                      })
                 }
                 removePlayer={(roomId: string) =>
                   removePlayerFromRoomFx({ roomId, userId })

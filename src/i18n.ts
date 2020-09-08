@@ -10,6 +10,8 @@ i18n
     resources: {
       ru: {
         translations: {
+          "You can`t join the room": "Вы не можете присоединиться к игре",
+          "You are already waiting game": "Вы уже ожидаете игру",
           "Open VIP status for all available options":
             "Откройте VIP статус чтобы выбрать все возможные опции",
           Error: "Ошибка",
