@@ -286,3 +286,7 @@ export interface IContract {
   moneyFrom: number;
   moneyTo: number;
 }
+export interface IResponceCode {
+  code: number;
+  message?: string;
+}

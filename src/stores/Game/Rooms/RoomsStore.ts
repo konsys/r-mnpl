@@ -1,4 +1,5 @@
 import { GameDomain, userStore } from "../UserStore";
+import { IResponceCode, IUser } from "types/types";
 import {
   addPlayerToRoomFetch,
   createRoomFetch,
@@ -9,7 +10,6 @@ import { closeGameModal, openGameModal } from "../GameModal/GameModalStore";
 import { combine, sample } from "effector";
 
 import { ErrorCode } from "utils/errors";
-import { IUser } from "types/types";
 import { createGate } from "effector-react";
 import { flattenDeep } from "lodash";
 import nanoid from "nanoid";
@@ -66,7 +66,7 @@ export const roomsGate = createGate<any>();
 
 export const setRooms = RoomDomain.event<IRoomResponce>();
 
-export const createRoomFx = RoomDomain.effect<IRoomState, IRoomResponce, Error>(
+export const createRoomFx = RoomDomain.effect<IRoomState, IResponceCode, Error>(
   {
     handler: createRoomFetch,
   }
@@ -93,7 +93,7 @@ export const getRoomsFx = RoomDomain.effect<undefined, IRoomResponce, Error>({
 
 export const addPlayerToRoomFx = RoomDomain.effect<
   IAddPlayerToRoom,
-  IRoomResponce,
+  IResponceCode,
   Error
 >({
   handler: addPlayerToRoomFetch,
@@ -101,7 +101,7 @@ export const addPlayerToRoomFx = RoomDomain.effect<
 
 export const removePlayerFromRoomFx = RoomDomain.effect<
   IAddPlayerToRoom,
-  IRoomResponce,
+  IResponceCode,
   Error
 >({
   handler: removePlayerFromRoomFetch,
@@ -195,14 +195,8 @@ export const roomsStore = RoomDomain.store<IRoomResponce>({
   rooms: [],
 })
   .reset(resetRoomsStore)
-  .on(createRoomFx.done, (_, { result }) => result)
   .on(getRoomsFx.done, (_, { result }) => result)
-  .on(addPlayerToRoomFx.done, (_, { result }) => result)
-  .on(setRooms, (_, result) => {
-    console.log(23424234, result);
-    return result;
-  })
-  .on(removePlayerFromRoomFx.done, (_, { result }) => result);
+  .on(setRooms, (_, result) => result);
 
 export const isWaitingForGame = sample({
   clock: roomsStore,
