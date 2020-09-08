@@ -16,6 +16,9 @@ export default function ShuffleGameParams({ isVip }: { isVip: boolean }) {
       <Grid container direction="column" spacing={GRID_SPACING}>
         <Grid item>
           <Typography variant="h6">{t("GMS Shuffle")}</Typography>
+          <Typography variant="subtitle2" color="error">
+            {!isVip && t("Open VIP status for all available options")}
+          </Typography>
         </Grid>
         <Grid item>
           <PlayersNumber isVip={isVip} battleClosed={true} />

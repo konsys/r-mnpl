@@ -15,6 +15,9 @@ export default function RetroGameParams({ isVip }: { isVip: boolean }) {
     <Grid container direction="column" spacing={1}>
       <Grid item>
         <Typography variant="h6">{t("Retro")}</Typography>
+        <Typography variant="subtitle2" color="error">
+          {!isVip && t("Open VIP status for all available options")}
+        </Typography>
       </Grid>
       <Grid item>
         <Typography variant="body2">

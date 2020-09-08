@@ -15,6 +15,9 @@ export default function RegularGameParams({ isVip }: { isVip: boolean }) {
     <Grid container direction="column" spacing={GRID_SPACING}>
       <Grid item>
         <Typography variant="h6">{t("Regular game")}</Typography>
+        <Typography variant="subtitle2" color="error">
+          {!isVip && t("Open VIP status for all available options")}
+        </Typography>
       </Grid>
       <Grid item>
         <PlayersNumber isVip={isVip} />
