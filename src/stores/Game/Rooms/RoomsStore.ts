@@ -212,7 +212,9 @@ export const isWaitingForGame = sample({
     userId: userStore.map((v) => v.userId),
     playerIds: roomsStore.map((v) =>
       flattenDeep(
-        v.rooms.map((room) => room.players.map((player) => player?.userId))
+        v.rooms
+          .filter((r) => r.roomStatus === RoomStatus.PENDING)
+          .map((room) => room.players.map((player) => player?.userId))
       )
     ),
   }),
