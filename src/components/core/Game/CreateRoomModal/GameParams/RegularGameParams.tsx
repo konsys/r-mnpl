@@ -17,7 +17,7 @@ export default function RegularGameParams({ isVip }: { isVip: boolean }) {
         <Typography variant="h6">{t("Regular game")}</Typography>
       </Grid>
       <Grid item>
-        <PlayersNumber />
+        <PlayersNumber isVip={isVip} />
       </Grid>
       <Grid item>
         <Grid container spacing={GRID_SPACING}>

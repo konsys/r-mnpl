@@ -22,7 +22,7 @@ export default function RouletteGameParams({ isVip }: { isVip: boolean }) {
         </Typography>
       </Grid>
       <Grid item>
-        <PlayersNumber battleClosed={true} />
+        <PlayersNumber battleClosed={true} isVip={isVip} />
       </Grid>
       <Grid item>
         <Grid container spacing={GRID_SPACING}>

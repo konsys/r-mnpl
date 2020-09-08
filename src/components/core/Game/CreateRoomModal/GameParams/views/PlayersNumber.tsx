@@ -7,8 +7,10 @@ import { useTranslation } from "react-i18next";
 
 export default function PlayersNumber({
   battleClosed,
+  isVip,
 }: {
   battleClosed?: boolean;
+  isVip: boolean;
 }) {
   const { t } = useTranslation();
   const room = useStore(newRoomStore);
@@ -58,7 +60,7 @@ export default function PlayersNumber({
           </Button>
           {!battleClosed && (
             <Button
-              disabled={false}
+              disabled={!isVip}
               variant="contained"
               color={room.playersNumber === 6 ? "primary" : "default"}
               onClick={() => updateRoom({ ...room, playersNumber: 6 })}

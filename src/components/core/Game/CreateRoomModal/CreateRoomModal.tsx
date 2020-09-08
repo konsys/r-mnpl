@@ -165,6 +165,12 @@ export default function CreateRoomModal() {
       </DialogContent>
       <DialogActions>
         <Button
+          disabled={
+            !user.vip &&
+            (roomType === RoomType.QUICK ||
+              roomType === RoomType.RETRO ||
+              roomType === RoomType.ROULETTE)
+          }
           onClick={() => {
             createRoom();
             closeRoomModal();

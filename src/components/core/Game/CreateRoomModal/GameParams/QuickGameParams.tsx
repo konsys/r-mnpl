@@ -39,7 +39,7 @@ export default function QuickGameParams({ isVip }: { isVip: boolean }) {
         </Typography>
       </Grid>
       <Grid item>
-        <PlayersNumber />
+        <PlayersNumber isVip={isVip} />
       </Grid>
       <Grid item>
         <Grid container spacing={GRID_SPACING}>

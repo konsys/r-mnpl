@@ -18,7 +18,7 @@ export default function ShuffleGameParams({ isVip }: { isVip: boolean }) {
           <Typography variant="h6">{t("GMS Shuffle")}</Typography>
         </Grid>
         <Grid item>
-          <PlayersNumber />
+          <PlayersNumber isVip={isVip} battleClosed={true} />
         </Grid>
         <Grid item>
           <Grid container spacing={GRID_SPACING}>
