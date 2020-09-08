@@ -8,7 +8,6 @@ export default function RoomsSocket() {
   useEffect(() => {
     const gameSocket = io(`http://localhost:8002/rooms`);
     gameSocket.on(SocketActions.ROOMS_MESSAGE, (m: IRoomResponce) => {
-      console.log(33333, m);
       try {
         setRooms(m);
       } catch (e) {
