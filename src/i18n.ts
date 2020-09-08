@@ -11,6 +11,7 @@ i18n
       ru: {
         translations: {
           Error: "Ошибка",
+          "Login to create room": "Войдите, чтобы создать комнату",
           "Only for VIP": "Только для VIP статуса",
           "Enter room": "Присоединиться",
           "Unknown error": "Неизвестная ошибка",

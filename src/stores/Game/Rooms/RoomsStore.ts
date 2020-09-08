@@ -72,20 +72,23 @@ export const createRoomFx = RoomDomain.effect<IRoomState, IRoomResponce, Error>(
   }
 );
 
-export const getRoomsFx = RoomDomain.effect<undefined, IRoomResponce, Error>({
-  handler: fetchRooms,
-});
-
 createRoomFx.fail.watch((v: any) => {
   try {
     openGameModal({
       open: true,
       title: "Oops!",
-      text: ErrorCode[v.error.response.data.code],
+      text:
+        v.error.response.status === 401
+          ? ErrorCode[v.error.response.status]
+          : ErrorCode[v.error.response.data.code],
     });
   } catch (err) {
     closeGameModal();
   }
+});
+
+export const getRoomsFx = RoomDomain.effect<undefined, IRoomResponce, Error>({
+  handler: fetchRooms,
 });
 
 export const addPlayerToRoomFx = RoomDomain.effect<
