@@ -10,6 +10,7 @@ i18n
     resources: {
       ru: {
         translations: {
+          Reconnect: "Подключиться",
           "You can`t join the room": "Вы не можете присоединиться к игре",
           "You are already waiting for game": "Вы уже ожидаете игру",
           "Open VIP status for all available options":

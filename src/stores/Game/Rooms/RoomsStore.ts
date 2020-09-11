@@ -11,7 +11,6 @@ import { combine, sample } from "effector";
 
 import { ErrorCode } from "utils/errors";
 import { createGate } from "effector-react";
-import { flattenDeep } from "lodash";
 import nanoid from "nanoid";
 
 export enum RoomPortalFieldType {
@@ -218,19 +217,21 @@ export const roomsStore = RoomDomain.store<IRoomResponce>({
   .on(getRoomsFx.done, (_, { result }) => result)
   .on(setRooms, (_, result) => result);
 
-export const isWaitingForGameIndex = sample({
+export const myRooms$ = sample({
   clock: roomsStore,
   source: combine({
     userId: userStore.map((v) => v.userId),
-    playerIds: roomsStore.map((v) =>
-      flattenDeep(
-        v.rooms
-          .filter((r) => r.roomStatus === RoomStatus.PENDING)
-          .map((room) => room.players.map((player) => player?.userId))
-      )
-    ),
+    rooms: roomsStore,
   }),
-  fn: ({ userId, playerIds }) => playerIds.findIndex((v) => v === userId),
+  fn: ({ userId, rooms }) => {
+    const myRooms = rooms.rooms.filter(
+      (r) =>
+        (r.roomStatus === RoomStatus.PENDING ||
+          r.roomStatus === RoomStatus.STARTED) &&
+        r.players.some((pl) => pl?.userId === userId)
+    );
+    return myRooms || [];
+  },
 });
 
 sample({

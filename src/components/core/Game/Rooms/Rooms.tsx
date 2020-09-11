@@ -2,17 +2,18 @@ import "./styles.scss";
 
 import { Button, Divider, Grid, Typography } from "@material-ui/core";
 import {
+  IRoomState,
   RoomStatus,
-  isWaitingForGameIndex,
+  myRooms$,
   roomsGate,
   roomsStore,
 } from "stores/Game/Rooms/RoomsStore";
+import { Redirect, useHistory } from "react-router-dom";
 import { useGate, useStore } from "effector-react";
 
 import { BLOCK_SPACING } from "../../../../theme";
 import CreateRoomModal from "../CreateRoomModal/CreateRoomModal";
 import React from "react";
-import { Redirect } from "react-router-dom";
 import RoomBlock from "./RoomBlock/RoomBlock";
 import Template from "../../../views/Template/Template";
 import { openRoomModal } from "stores/Game/Rooms/RoomsModalStore";
@@ -21,15 +22,14 @@ import { userStore } from "stores/Game/UserStore";
 
 export const Rooms = () => {
   useGate(roomsGate);
+  const myRooms = useStore(myRooms$);
   const rooms = useStore(roomsStore);
-  const waitingGameIndex = useStore(isWaitingForGameIndex);
   const { t } = useTranslation();
   const { userId } = useStore(userStore);
-  const myRoom = rooms.rooms[waitingGameIndex];
-
-  console.log(234234234, waitingGameIndex);
-
-  console.log(1111, myRoom);
+  const history = useHistory();
+  const myRoom: IRoomState | null = myRooms.length
+    ? (myRooms[0] as IRoomState)
+    : null;
 
   return (
     <>
@@ -37,7 +37,6 @@ export const Rooms = () => {
         <Redirect
           to={{
             pathname: `/board/${myRoom.roomId}`,
-            search: "?utm=your+face",
           }}
         />
       ) : (
@@ -54,14 +53,32 @@ export const Rooms = () => {
               <Grid item>
                 <Typography variant="h6">{t("Waiting for games")}</Typography>
               </Grid>
-
+              {myRoom && myRoom.roomStatus === RoomStatus.STARTED && (
+                <Grid item>
+                  <Typography variant="body2">
+                    <Button
+                      variant="outlined"
+                      color="secondary"
+                      onClick={() =>
+                        history.push(
+                          myRoom && myRoom.roomStatus === RoomStatus.STARTED
+                            ? `/board/${myRoom.roomId}`
+                            : "/games"
+                        )
+                      }
+                    >
+                      {t("Reconnect")}
+                    </Button>
+                  </Typography>
+                </Grid>
+              )}
               <Grid item>
                 <Typography variant="body2">
                   <Button
                     variant="outlined"
                     color="primary"
                     onClick={() => openRoomModal()}
-                    disabled={waitingGameIndex > -1}
+                    disabled={!!myRoom}
                   >
                     {t("Create room")}
                   </Button>
@@ -93,7 +110,7 @@ export const Rooms = () => {
                         <RoomBlock
                           room={room}
                           userId={userId}
-                          iHaveRoom={waitingGameIndex > -1}
+                          iHaveRoom={myRooms.length > 0}
                         />
                       </Grid>
                     )
