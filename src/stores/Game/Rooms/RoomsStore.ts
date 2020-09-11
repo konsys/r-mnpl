@@ -43,10 +43,19 @@ export enum RoomTypeName {
   ROULETTE = "Russian roulette",
 }
 
+export enum PlayerRoomStatus {
+  ACITVE = "active",
+  SURRENDERED = "surrendered",
+}
+
+export interface RoomPlayer extends IUser {
+  playerRoomStatus: PlayerRoomStatus;
+}
+
 export interface IRoomState {
   roomId: string;
   creatorId: number;
-  players: Partial<IUser[]>;
+  players: Partial<RoomPlayer[]>;
   createTime: Date;
   roomType: RoomType;
   playersNumber: number;
@@ -185,7 +194,10 @@ sample({
   clock: createRoom,
   source: combine({
     room: newRoomStore.map((v) => v),
-    user: userStore,
+    user: userStore.map((v) => ({
+      ...v,
+      playerRoomStatus: PlayerRoomStatus.ACITVE,
+    })),
   }),
   fn: ({ room, user }) => ({
     ...room,
@@ -206,7 +218,7 @@ export const roomsStore = RoomDomain.store<IRoomResponce>({
   .on(getRoomsFx.done, (_, { result }) => result)
   .on(setRooms, (_, result) => result);
 
-export const isWaitingForGame = sample({
+export const isWaitingForGameIndex = sample({
   clock: roomsStore,
   source: combine({
     userId: userStore.map((v) => v.userId),
@@ -218,7 +230,7 @@ export const isWaitingForGame = sample({
       )
     ),
   }),
-  fn: ({ userId, playerIds }) => playerIds.some((v) => v === userId),
+  fn: ({ userId, playerIds }) => playerIds.findIndex((v) => v === userId),
 });
 
 sample({
