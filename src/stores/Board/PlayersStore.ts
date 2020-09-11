@@ -6,12 +6,13 @@ import {
 
 import { BoardDomain } from "./BoardDomain";
 import { IPlayer } from "../../types/types";
+import { createGate } from "effector-react";
 import { fieldPositions } from "../../utils/fields.utils";
 import { getPlayer } from "../../utils/players.utils";
 import { sample } from "effector";
 import { usersFetch } from "../../models/Users/api";
 
-const PlayersDomain = BoardDomain.domain("PlayersDomain");
+export const PlayersDomain = BoardDomain.domain("PlayersDomain");
 
 export interface IPlayerAction {
   fromUserId: number;
@@ -49,6 +50,8 @@ const init: IPlayerAction = {
   report: false,
   restart: false,
 };
+
+export const playersGate = createGate("playersGate");
 
 export const playerActionStore = PlayersDomain.store<IPlayerAction>(init)
   .on(openPlayerActionEvent, (_, data) => data)
