@@ -1,3 +1,4 @@
+import { combine, sample } from "effector";
 import {
   moveTokenAfterPlayerUpdate,
   tokensStore,
@@ -9,7 +10,7 @@ import { IPlayer } from "../../types/types";
 import { createGate } from "effector-react";
 import { fieldPositions } from "../../utils/fields.utils";
 import { getPlayer } from "../../utils/players.utils";
-import { sample } from "effector";
+import { getUserFx } from "stores/Game/UserStore";
 import { usersFetch } from "../../models/Users/api";
 
 export const PlayersDomain = BoardDomain.domain("PlayersDomain");
@@ -51,7 +52,9 @@ const init: IPlayerAction = {
   restart: false,
 };
 
-export const playersGate = createGate("playersGate");
+export const playersGate = createGate<{ userIds: number[]; user: string }>(
+  "playersGate"
+);
 
 export const playerActionStore = PlayersDomain.store<IPlayerAction>(init)
   .on(openPlayerActionEvent, (_, data) => data)
@@ -110,3 +113,21 @@ playersPositionChange.watch((v) => {
     return player && token && moveTokenAfterPlayerUpdate(token, player);
   });
 });
+
+sample({
+  clock: playersGate.open,
+  source: combine({
+    userIds: playersGate.state.map(({ userIds }) => userIds),
+  }),
+  fn: ({ userIds }) => userIds,
+  target: getPlayersFx,
+});
+
+sample({
+  clock: playersGate.open,
+  source: playersGate.state,
+  fn: ({ user }) => user,
+  target: getUserFx,
+});
+
+playersGate.close.watch(() => resetPlayersEvent());
