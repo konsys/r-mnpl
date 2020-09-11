@@ -59,11 +59,7 @@ export interface IPlayersStore {
   players: IPlayer[];
 }
 export const resetPlayersEvent = PlayersDomain.event();
-export const getPlayersEffect = PlayersDomain.effect<
-  number[],
-  IPlayer[],
-  Error
->({
+export const getPlayersFx = PlayersDomain.effect<number[], IPlayer[], Error>({
   handler: usersFetch,
 });
 export const setPlayersEvent = PlayersDomain.event<IPlayersStore>();
@@ -72,7 +68,7 @@ export const playersStore = PlayersDomain.store<IPlayersStore>({
   players: [],
   version: 0,
 })
-  .on(getPlayersEffect.done, (_, data) => {
+  .on(getPlayersFx.done, (_, data) => {
     // Init token position
     const fields = fieldPositions();
     const players = data.result.map((player) => {
@@ -93,7 +89,7 @@ export const playersStore = PlayersDomain.store<IPlayersStore>({
       version: 1,
     };
   })
-  .on(getPlayersEffect.fail, (err: any) => console.error("error", err))
+  .on(getPlayersFx.fail, (err: any) => console.error("error", err))
   .on(setPlayersEvent, (_, state) => state)
   .reset(resetPlayersEvent);
 

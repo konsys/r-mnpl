@@ -3,7 +3,7 @@ import { clearToken, saveToken } from "./TokenModel";
 
 import { LocalStorageParams } from "../../../../../types/types";
 import { createDomain } from "effector";
-import { getUserEffect } from "../../../../../stores/Game/UserStore";
+import { getUserFx } from "../../../../../stores/Game/UserStore";
 import { loginFetch } from "../../../../../models/Login/api";
 
 const AuthDomain = createDomain("AuthDomain");
@@ -22,7 +22,7 @@ export const LoginStore = AuthDomain.store<ILoginResponce | null>(null)
   .on(loginEffect.done, (_, data) => {
     clearToken();
     data.result && saveToken(data.result.access_token);
-    data.result.access_token && getUserEffect("me");
+    data.result.access_token && getUserFx("me");
     return data.result;
   })
   .on(loginEffect.fail, (err) =>

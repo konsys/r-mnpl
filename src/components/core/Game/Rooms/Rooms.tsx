@@ -33,6 +33,7 @@ export const Rooms = () => {
 
   return (
     <>
+      <CreateRoomModal />
       {myRoom && myRoom.roomStatus === RoomStatus.STARTED ? (
         <Redirect
           to={{
@@ -41,8 +42,6 @@ export const Rooms = () => {
         />
       ) : (
         <div className="findGame">
-          <CreateRoomModal />
-
           <Template columns={2} title={"Find games"}>
             <Grid
               container

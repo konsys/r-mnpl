@@ -11,7 +11,7 @@ export const resetUserEvent = UserDomain.event();
 
 export const profileGate = createGate<any>();
 
-export const getUserEffect = UserDomain.effect<string, IUser, Error>({
+export const getUserFx = UserDomain.effect<string, IUser, Error>({
   handler: fetchUserProfile,
 });
 
@@ -19,7 +19,7 @@ sample({
   clock: profileGate.open,
   source: profileGate.state,
   fn: () => "me",
-  target: getUserEffect,
+  target: getUserFx,
 });
 
 export const setUserEvent = UserDomain.event<IUser>();
@@ -37,7 +37,7 @@ export const userStore = UserDomain.store<IUser>({
   updatedAt: new Date(),
 })
   .on(setUserEvent, (_, data) => data)
-  .on(getUserEffect.done, (_, data) => data.result)
+  .on(getUserFx.done, (_, data) => data.result)
   .reset(resetUserEvent);
 
 // userStore.updates.watch((v) => console.log("userStore.updates.watch", v));

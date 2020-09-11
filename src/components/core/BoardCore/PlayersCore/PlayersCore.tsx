@@ -1,23 +1,23 @@
 import React, { useEffect } from "react";
 import {
-  getPlayersEffect,
+  getPlayersFx,
   playersStore,
   resetPlayersEvent,
 } from "../../../../stores/Board/PlayersStore";
 
 import { Players } from "../../../views/BoardViews/Players/Players";
 import { gameStore } from "../../../../stores/Board/GameStore";
-import { getUserEffect } from "../../../../stores/Game/UserStore";
+import { getUserFx } from "../../../../stores/Game/UserStore";
 import { useStore } from "effector-react";
 
 export const PlayersCore = () => {
   const game = gameStore.getState();
   const data = useStore(playersStore);
-  const pending = useStore(getPlayersEffect.pending);
+  const pending = useStore(getPlayersFx.pending);
 
   useEffect(() => {
-    getPlayersEffect(game.players);
-    getUserEffect("me");
+    getPlayersFx(game.players);
+    getUserFx("me");
     return () => resetPlayersEvent();
   }, [game.players]);
 

@@ -24,6 +24,7 @@ export const BoardWrapper = () => {
   const action = useStore(actionsStore);
   const user = useStore(userStore);
 
+  console.log(12121212, action);
   return (
     <>
       <div
