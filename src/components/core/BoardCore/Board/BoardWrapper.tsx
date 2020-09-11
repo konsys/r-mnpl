@@ -20,11 +20,10 @@ import { actionsStore } from "../../../../stores/Board/ActionStore";
 import { useStore } from "effector-react";
 import { userStore } from "../../../../stores/Game/UserStore";
 
-export const BoardWrapper = () => {
+export const BoardWrapper = ({ playerIds }: { playerIds: number[] }) => {
   const action = useStore(actionsStore);
   const user = useStore(userStore);
 
-  console.log(12121212, action);
   return (
     <>
       <div
@@ -38,7 +37,7 @@ export const BoardWrapper = () => {
       >
         <div className="table _shakehack">
           <div className="table-body">
-            <PlayersCore />
+            <PlayersCore playerIds={playerIds} />
             <div className="table-body-board">
               <BoardSocket />
               <div className="table-body-board-center">
