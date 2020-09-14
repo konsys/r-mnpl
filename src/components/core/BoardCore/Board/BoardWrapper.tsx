@@ -24,6 +24,22 @@ export const BoardWrapper = ({ playerIds }: { playerIds: number[] }) => {
   const action = useStore(actionsStore);
   const user = useStore(userStore);
 
+  const modal = () => {
+    try {
+      return (
+        user &&
+        action &&
+        user.userId === action.event.action.userId && (
+          <BoardModal
+            isModal={
+              (action.event.action && action.event.action.isModal) || false
+            }
+          />
+        )
+      );
+    } catch (err) {}
+  };
+
   return (
     <>
       <div
@@ -42,16 +58,7 @@ export const BoardWrapper = ({ playerIds }: { playerIds: number[] }) => {
               <BoardSocket />
               <div className="table-body-board-center">
                 <M1tv />
-                {user &&
-                  action &&
-                  user.userId === action.event.action.userId && (
-                    <BoardModal
-                      isModal={
-                        (action.event.action && action.event.action.isModal) ||
-                        false
-                      }
-                    />
-                  )}
+                {modal()}
                 <Arbitr />
                 <Ticket />
                 <Chat />
