@@ -2,7 +2,7 @@ import {
   IRoomState,
   addPlayerToRoomFx,
   removePlayerFromRoomFx,
-} from "stores/Game/Rooms/RoomsStore";
+} from "stores/Game/Rooms/RoomsModel";
 
 import { Grid } from "@material-ui/core";
 import { IPlayer } from "types/types";
@@ -10,7 +10,7 @@ import React from "react";
 import RoomAvatar from "./RoomAvatar";
 import RoomTypeView from "./RoomTypeView";
 import { concat } from "lodash";
-import { openGameModal } from "stores/Game/GameModal/GameModalStore";
+import { openGameModal } from "stores/Game/GameModal/GameModalModel";
 import { useTranslation } from "react-i18next";
 
 export default function RoomBlock({

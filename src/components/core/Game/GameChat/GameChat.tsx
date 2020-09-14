@@ -13,7 +13,7 @@ import {
   replyStore,
   resetReplyToEvent,
   sendChatMessageEffect,
-} from "../../../../stores/Game/Chat/GameChatStore";
+} from "../../../../stores/Game/Chat/GameChatModel";
 import { useGate, useStore } from "effector-react";
 
 import ChatMessage from "./ChatMessage";

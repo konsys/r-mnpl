@@ -7,7 +7,7 @@ import {
   myRooms$,
   roomsGate,
   roomsStore,
-} from "stores/Game/Rooms/RoomsStore";
+} from "stores/Game/Rooms/RoomsModel";
 import { Redirect, useHistory } from "react-router-dom";
 import { useGate, useStore } from "effector-react";
 
@@ -16,7 +16,7 @@ import CreateRoomModal from "../CreateRoomModal/CreateRoomModal";
 import React from "react";
 import RoomBlock from "./RoomBlock/RoomBlock";
 import Template from "../../../views/Template/Template";
-import { openRoomModal } from "stores/Game/Rooms/RoomsModalStore";
+import { openRoomModal } from "stores/Game/Rooms/RoomsModalModel";
 import { useTranslation } from "react-i18next";
 import { userStore } from "stores/Game/UserStore";
 

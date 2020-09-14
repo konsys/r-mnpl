@@ -1,5 +1,5 @@
 import { GameDomain } from "../UserStore";
-import { IRoomState } from "../Rooms/RoomsStore";
+import { IRoomState } from "../Rooms/RoomsModel";
 import { client } from "http/client";
 import { createGate } from "effector-react";
 import { sample } from "effector";

@@ -1,4 +1,4 @@
-import { IRoomResponce, setRooms } from "stores/Game/Rooms/RoomsStore";
+import { IRoomResponce, setRooms } from "stores/Game/Rooms/RoomsModel";
 import React, { useEffect } from "react";
 
 import { SocketActions } from "types/Socket/SocketTypes";

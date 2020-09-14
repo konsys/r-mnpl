@@ -6,7 +6,7 @@ import {
   fetchRooms,
   removePlayerFromRoomFetch,
 } from "./api";
-import { closeGameModal, openGameModal } from "../GameModal/GameModalStore";
+import { closeGameModal, openGameModal } from "../GameModal/GameModalModel";
 import { combine, sample } from "effector";
 
 import { ErrorCode } from "utils/errors";

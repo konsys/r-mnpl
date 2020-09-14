@@ -1,4 +1,4 @@
-import { IAddPlayerToRoom, IRoomResponce, IRoomState } from "./RoomsStore";
+import { IAddPlayerToRoom, IRoomResponce, IRoomState } from "./RoomsModel";
 
 import { IResponceCode } from "types/types";
 import { client } from "http/client";

@@ -1,5 +1,5 @@
 import { GameDomain } from "../UserStore";
-import { resetRoomsStore } from "./RoomsStore";
+import { resetRoomsStore } from "./RoomsModel";
 import { sample } from "effector";
 
 const RoomModalDomain = GameDomain.domain("GameModalDomain");

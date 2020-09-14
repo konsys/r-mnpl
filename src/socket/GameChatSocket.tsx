@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 import { SocketActions } from "types/Socket/SocketTypes";
 import io from "socket.io-client";
-import { setChatMessages } from "stores/Game/Chat/GameChatStore";
+import { setChatMessages } from "stores/Game/Chat/GameChatModel";
 
 export default function GameChatSocket() {
   useEffect(() => {

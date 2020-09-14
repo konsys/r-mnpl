@@ -10,7 +10,7 @@ import {
   newRoomStore,
   toggleRoomSwitch,
   updateRoom,
-} from "stores/Game/Rooms/RoomsStore";
+} from "stores/Game/Rooms/RoomsModel";
 
 import { GRID_SPACING } from "../../../../../theme";
 import PlayersNumber from "./views/PlayersNumber";

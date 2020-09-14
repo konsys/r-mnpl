@@ -10,7 +10,7 @@ import {
 import {
   closeGameModal,
   gameModalStore,
-} from "stores/Game/GameModal/GameModalStore";
+} from "stores/Game/GameModal/GameModalModel";
 
 import React from "react";
 import { useStore } from "effector-react";
