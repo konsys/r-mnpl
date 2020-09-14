@@ -27,13 +27,14 @@ enum KeyName {
 }
 
 export default function GameChat() {
+  useGate(profileGate);
+  useGate(chatGate);
+
   const { t } = useTranslation();
   const messages = useStore(chatStore);
   const replies = useStore(replyStore);
   const [m, setM] = useState<string>("");
 
-  useGate(profileGate);
-  useGate(chatGate);
   sendChatMessageEffect.done.watch(() => {
     resetReplyToEvent();
     setM("");
