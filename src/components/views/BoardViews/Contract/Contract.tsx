@@ -7,7 +7,7 @@ import {
 } from "../../../../stores/Board/ContractStore";
 
 import { ContractCompany } from "./ContractCompany";
-import { gameActionEffect } from "../../../../models/Board/model";
+import { gameActionFx } from "../../../../models/Board/model";
 import { getField } from "../../../../utils/fields.utils";
 import { getPlayer } from "../../../../utils/players.utils";
 import { showDialog } from "../../../../stores/Board/DialogStore";
@@ -26,7 +26,7 @@ export const Contract = () => {
   const [valueFrom, setValueFrom] = useState<string>("");
   const [valueTo, setValueTo] = useState<string>("");
 
-  gameActionEffect.done.watch(() => {
+  gameActionFx.done.watch(() => {
     (user.userId === contract.fromUserId ||
       user.userId === contract.toUserId) &&
       closeContractModal();
@@ -89,7 +89,7 @@ export const Contract = () => {
           "Разница между суммой предлагаемого и запрашиваемого не может превышать 50%.",
       });
     } else {
-      gameActionEffect({
+      gameActionFx({
         action: OutcomeMessageType.OUTCOME_CONTRACT_START,
         contract,
       });
@@ -273,7 +273,7 @@ export const Contract = () => {
                   <div
                     className="_button"
                     onClick={() =>
-                      gameActionEffect({
+                      gameActionFx({
                         action: OutcomeMessageType.OUTCOME_CONTRACT_ACCEPT,
                         contract,
                       })
@@ -283,7 +283,7 @@ export const Contract = () => {
                   </div>
                   <div
                     onClick={() =>
-                      gameActionEffect({
+                      gameActionFx({
                         action: OutcomeMessageType.OUTCOME_CONTRACT_DECLINE,
                         contract,
                       })

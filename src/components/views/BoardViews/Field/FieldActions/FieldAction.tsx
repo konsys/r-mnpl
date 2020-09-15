@@ -11,7 +11,7 @@ import { FieldActionCompany } from "./FieldActionCompany";
 import { FieldActionIT } from "./FieldActionIT";
 import React from "react";
 import { closeFieldActionEvent } from "../../../../../stores/Board/FieldsStore";
-import { gameActionEffect } from "../../../../../models/Board/model";
+import { gameActionFx } from "../../../../../models/Board/model";
 import { getActingPlayer } from "../../../../../utils/players.utils";
 
 export interface IFieldModal extends IField {
@@ -55,7 +55,7 @@ export const FieldActions = ({
               <div
                 className="_mortgage"
                 onClick={() => {
-                  gameActionEffect({
+                  gameActionFx({
                     action: OutcomeMessageType.OUTCOME_MORTGAGE_FIELD_CLICKED,
                     fieldId,
                   });
@@ -72,7 +72,7 @@ export const FieldActions = ({
               <div
                 className="_unmortgage"
                 onClick={() => {
-                  gameActionEffect({
+                  gameActionFx({
                     action:
                       OutcomeMessageType.OUTCOME_UN_MORTGAGE_FIELD_CLICKED,
                     fieldId,
@@ -90,7 +90,7 @@ export const FieldActions = ({
               <div
                 className="_level_up"
                 onClick={() => {
-                  gameActionEffect({
+                  gameActionFx({
                     action: OutcomeMessageType.OUTCOME_LEVEL_UP_FIELD_CLICKED,
                     fieldId,
                   });
@@ -107,7 +107,7 @@ export const FieldActions = ({
               <div
                 className="_level_down"
                 onClick={() => {
-                  gameActionEffect({
+                  gameActionFx({
                     action: OutcomeMessageType.OUTCOME_LEVEL_DOWN_FIELD_CLICKED,
                     fieldId,
                   });

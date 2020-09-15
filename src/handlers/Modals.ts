@@ -1,6 +1,6 @@
 import { BoardAction, OutcomeMessageType } from "../types/types";
 
-import { gameActionEffect } from "../models/Board/model";
+import { gameActionFx } from "../models/Board/model";
 import { getField } from "../utils/fields.utils";
 import { getPlayer } from "../utils/players.utils";
 
@@ -14,7 +14,7 @@ export const rollDicesModal = (act: BoardAction): BoardAction => {
       {
         title: "Бросить кубики",
         onClick: () => {
-          gameActionEffect({
+          gameActionFx({
             action: OutcomeMessageType.OUTCOME_ROLL_DICES_CLICKED,
           });
         },
@@ -43,7 +43,7 @@ export const canBuyModal = (act: BoardAction): BoardAction => {
       {
         title: "Купить",
         onClick: () => {
-          gameActionEffect({
+          gameActionFx({
             action: OutcomeMessageType.OUTCOME_BUY_FIELD_CLICKED,
           });
         },
@@ -52,7 +52,7 @@ export const canBuyModal = (act: BoardAction): BoardAction => {
       {
         title: "На аукцион",
         onClick: () => {
-          gameActionEffect({
+          gameActionFx({
             action: OutcomeMessageType.OUTCOME_AUCTION_START_CLICKED,
           });
         },
@@ -75,7 +75,7 @@ export const taxModal = (act: BoardAction): BoardAction => {
       {
         title: `Заплатить ${act.money && Math.abs(act.money)}k`,
         onClick: () => {
-          gameActionEffect({
+          gameActionFx({
             action: OutcomeMessageType.OUTCOME_TAX_PAID_CLICKED,
           });
         },
@@ -99,7 +99,7 @@ export const unJailModal = (act: BoardAction): BoardAction => {
       {
         title: "Выйти под залог 500k",
         onClick: () => {
-          gameActionEffect({
+          gameActionFx({
             action: OutcomeMessageType.OUTCOME_UN_JAIL_PAID_CLICKED,
           });
         },
@@ -108,7 +108,7 @@ export const unJailModal = (act: BoardAction): BoardAction => {
       {
         title: "Бросить кубики",
         onClick: () => {
-          gameActionEffect({
+          gameActionFx({
             action: OutcomeMessageType.OUTCOME_ROLL_DICES_CLICKED,
           });
         },
@@ -131,7 +131,7 @@ export const unJailPayingModal = (act: BoardAction): BoardAction => {
       {
         title: `Заплатить ${act.money && Math.abs(act.money)}k`,
         onClick: () => {
-          gameActionEffect({
+          gameActionFx({
             action: OutcomeMessageType.OUTCOME_UN_JAIL_PAID_CLICKED,
           });
         },
@@ -153,7 +153,7 @@ export const auctionModal = (act: BoardAction): BoardAction => {
       {
         title: `Поднять до ${act.bet}k`,
         onClick: () => {
-          gameActionEffect({
+          gameActionFx({
             action: OutcomeMessageType.OUTCOME_AUCTION_ACCEPT_CLICKED,
           });
         },
@@ -162,7 +162,7 @@ export const auctionModal = (act: BoardAction): BoardAction => {
       {
         title: `Отказаться`,
         onClick: () => {
-          gameActionEffect({
+          gameActionFx({
             action: OutcomeMessageType.OUTCOME_AUCTION_DECLINE_CLICKED,
           });
         },

@@ -25,7 +25,17 @@ export const PlayerActions = ({
       {restart && <div className="_restart" />}
       {creditTake && <div className="_credit_take" />}
       {creditPay && <div className="_credit_pay" />}
-      {leave && <div className="_leave" />}
+      {leave && (
+        <div
+          className="_leave"
+          onClick={() =>
+            leaveBoard({
+              fromUserId,
+              toUserId,
+            })
+          }
+        />
+      )}
       {contract && (
         <div
           className="_contract"
