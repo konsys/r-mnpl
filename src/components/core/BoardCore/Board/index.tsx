@@ -13,7 +13,6 @@ export const Board = (props: RouteComponentProps | any) => {
     ? room.room.players.map((v) => (v ? v.userId : 0))
     : [];
 
-  console.log(66666, playerIds);
   return (
     <>
       <ModalDialog />
