@@ -47,7 +47,7 @@ export default function RoomBlock({
           justify="flex-start"
           alignItems="center"
           direction="row"
-          spacing={2}
+          spacing={1}
         >
           {g.map((v, k: number) => (
             <Grid key={k} item className="newRoomOneAvatar">

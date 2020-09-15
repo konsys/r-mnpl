@@ -9,10 +9,11 @@ import { RouteComponentProps } from "react-router";
 export const Board = (props: RouteComponentProps | any) => {
   useGate(boardGate, { gameId: props.match.params.id });
   const room = useStore(board$);
+
   const playerIds =
     room && room.room && Array.isArray(room.room.players)
-      ? room.room.players.map((v) => (v ? v.userId : 0))
-      : [0];
+      ? room.room.players.map((v) => v?.userId || 0)
+      : [];
 
   return (
     <>

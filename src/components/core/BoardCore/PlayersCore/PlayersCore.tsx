@@ -9,6 +9,7 @@ import { Players } from "../../../views/BoardViews/Players/Players";
 import React from "react";
 
 export const PlayersCore = ({ playerIds }: { playerIds: number[] }) => {
+  console.log(222222, playerIds);
   useGate(playersGate, { userIds: playerIds, user: "me" });
 
   const data = useStore(playersStore);
