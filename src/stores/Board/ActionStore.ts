@@ -13,7 +13,7 @@ import {
 } from "../../handlers/Modals";
 
 import { BoardDomain } from "./BoardDomain";
-import { fetchGameAction } from "api/Board/api";
+import { fetchBoardAction } from "api/Board/api";
 import { hideDicesEvent } from "./DicesStore";
 import { incomeContract } from "./ContractStore";
 import nanoid from "nanoid";
@@ -32,7 +32,7 @@ export const gameActionFx = GameActionDomain.effect<
   Promise<any>,
   Error
 >({
-  handler: fetchGameAction,
+  handler: fetchBoardAction,
 });
 
 const ActionDomain = BoardDomain.domain("BoardActionDomain");
