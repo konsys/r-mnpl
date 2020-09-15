@@ -1,8 +1,11 @@
-import { GameDomain } from "../UserStore";
+import { GameDomain, user$ } from "../UserStore";
+import { combine, sample } from "effector";
+
 import { IRoomState } from "../Rooms/RoomsModel";
-import { client } from "http/client";
+import { IUser } from "types/types";
 import { createGate } from "effector-react";
-import { sample } from "effector";
+import { fetchRoom } from "api/Rooms/api";
+import { surrenderBoardFetch } from "api/Board/api";
 
 export interface IBoardParams {
   room: IRoomState;
@@ -10,9 +13,7 @@ export interface IBoardParams {
 
 export const BoardDomain = GameDomain.domain("BoardDomain");
 
-async function fetchRoom(gameId: string): Promise<IRoomState> {
-  return await (await client.get(`/rooms/${gameId}`)).data;
-}
+export const surrenderRoom = GameDomain.event<void>();
 
 export const getRoomFX = GameDomain.effect<string, IRoomState, Error>({
   handler: fetchRoom,
@@ -24,9 +25,28 @@ export const board$ = BoardDomain.store<IBoardParams | null>(
 
 export const boardGate = createGate<{ gameId: string }>("boardGate");
 
+export const surrenderBoardFx = GameDomain.effect<
+  { userId: number; roomId: string },
+  boolean,
+  Error
+>({
+  handler: surrenderBoardFetch,
+});
+
 sample({
   clock: boardGate.open,
   source: boardGate.state.map(({ gameId }) => gameId),
-  fn: (gameId) => gameId,
+  fn: (gameId) => {
+    return gameId;
+  },
   target: getRoomFX,
+});
+
+sample({
+  clock: surrenderRoom,
+  source: combine({
+    userId: user$.map((v: IUser) => v.userId),
+    roomId: board$.map((v: IBoardParams) => v.room.roomId),
+  }),
+  target: surrenderBoardFx,
 });

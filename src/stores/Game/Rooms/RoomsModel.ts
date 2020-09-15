@@ -5,8 +5,7 @@ import {
   createRoomFetch,
   fetchRooms,
   removePlayerFromRoomFetch,
-  surrenderRoomFetch,
-} from "./api";
+} from "../../../api/Rooms/api";
 import { closeGameModal, openGameModal } from "../GameModal/GameModalModel";
 import { combine, sample } from "effector";
 
@@ -135,16 +134,8 @@ addPlayerToRoomFx.fail.watch((v: any) => {
   }
 });
 
-export const surrenderRoomFx = RoomDomain.effect<
-  { userId: number; roomId: string },
-  boolean,
-  Error
->({
-  handler: surrenderRoomFetch,
-});
-
 export const createRoom = RoomDomain.event<void>();
-export const surrenderRoom = RoomDomain.event<void>();
+
 export const updateRoom = RoomDomain.event<IRoomState>();
 export const toggleAutostart = RoomDomain.event<void>();
 export const togglePrivateRoom = RoomDomain.event<void>();
@@ -248,13 +239,4 @@ sample({
   clock: roomsGate.open,
   source: roomsGate.state,
   target: getRoomsFx,
-});
-
-sample({
-  clock: surrenderRoom,
-  source: combine({
-    userId: user$.map((v: IUser) => v.userId),
-    roomId: currentRoom$.map((v: IRoomState) => v.roomId),
-  }),
-  target: surrenderRoomFx,
 });
