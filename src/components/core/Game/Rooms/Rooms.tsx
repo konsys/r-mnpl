@@ -31,10 +31,11 @@ export const Rooms = () => {
     ? (myRooms[0] as IRoomState)
     : null;
 
+  console.log(5555555, myRooms);
   return (
     <>
       <CreateRoomModal />
-      {myRoom && myRoom.roomStatus === RoomStatus.STARTED ? (
+      {myRoom && myRoom.roomStatus === RoomStatus.PLAYING ? (
         <Redirect
           to={{
             pathname: `/board/${myRoom.roomId}`,
@@ -52,7 +53,7 @@ export const Rooms = () => {
               <Grid item>
                 <Typography variant="h6">{t("Waiting for games")}</Typography>
               </Grid>
-              {myRoom && myRoom.roomStatus === RoomStatus.STARTED && (
+              {myRoom && myRoom.roomStatus === RoomStatus.PLAYING && (
                 <Grid item>
                   <Typography variant="body2">
                     <Button
@@ -60,7 +61,7 @@ export const Rooms = () => {
                       color="secondary"
                       onClick={() =>
                         history.push(
-                          myRoom && myRoom.roomStatus === RoomStatus.STARTED
+                          myRoom && myRoom.roomStatus === RoomStatus.PLAYING
                             ? `/board/${myRoom.roomId}`
                             : "/games"
                         )

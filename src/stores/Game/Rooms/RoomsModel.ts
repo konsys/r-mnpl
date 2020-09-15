@@ -31,7 +31,7 @@ export enum RoomStatus {
   NOT_CREATED = "notCreated",
   PENDING = "pending",
   DELETED = "deleted",
-  STARTED = "started",
+  PLAYING = "playing",
   COMPLETED = "completed",
 }
 export enum RoomTypeName {
@@ -218,6 +218,8 @@ export const roomsStore = RoomDomain.store<IRoomResponce>({
   .on(getRoomsFx.done, (_, { result }) => result)
   .on(setRooms, (_, result) => result);
 
+export const playingRooms$ = RoomDomain.store<IRoomState[]>([]);
+
 export const myRooms$ = sample({
   clock: roomsStore,
   source: combine({
@@ -228,11 +230,19 @@ export const myRooms$ = sample({
     const myRooms = rooms.rooms.filter(
       (r) =>
         (r.roomStatus === RoomStatus.PENDING ||
-          r.roomStatus === RoomStatus.STARTED) &&
+          r.roomStatus === RoomStatus.PLAYING) &&
         r.players.some((pl) => pl?.userId === userId)
     );
     return myRooms || [];
   },
+});
+
+sample({
+  clock: myRooms$.updates,
+  source: roomsStore.map((v) =>
+    v.rooms.filter((v1) => v1.roomStatus === RoomStatus.PLAYING)
+  ),
+  target: playingRooms$,
 });
 
 sample({
