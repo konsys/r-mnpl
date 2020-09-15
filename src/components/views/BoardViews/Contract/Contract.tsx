@@ -12,7 +12,7 @@ import { getField } from "../../../../utils/fields.utils";
 import { getPlayer } from "../../../../utils/players.utils";
 import { showDialog } from "../../../../stores/Board/DialogStore";
 import { useStore } from "effector-react";
-import { userStore } from "../../../../stores/Game/UserStore";
+import { user$ } from "../../../../stores/Game/user$";
 
 export enum KeyCode {
   ENTER = 13,
@@ -20,7 +20,7 @@ export enum KeyCode {
 
 export const Contract = () => {
   const contract = useStore(contractStore);
-  const user = useStore(userStore);
+  const user = useStore(user$);
 
   const [activeInput, setActiveInput] = useState<number>(0);
   const [valueFrom, setValueFrom] = useState<string>("");

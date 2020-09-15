@@ -18,14 +18,14 @@ import RoomBlock from "./RoomBlock/RoomBlock";
 import Template from "../../../views/Template/Template";
 import { openRoomModal } from "stores/Game/Rooms/RoomsModalModel";
 import { useTranslation } from "react-i18next";
-import { userStore } from "stores/Game/UserStore";
+import { user$ } from "stores/Game/user$";
 
 export const Rooms = () => {
   useGate(roomsGate);
   const myRooms = useStore(myRooms$);
   const rooms = useStore(roomsStore);
   const { t } = useTranslation();
-  const { userId } = useStore(userStore);
+  const { userId } = useStore(user$);
   const history = useHistory();
   const myRoom: IRoomState | null = myRooms.length
     ? (myRooms[0] as IRoomState)

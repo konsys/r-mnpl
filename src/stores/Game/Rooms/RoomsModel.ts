@@ -1,4 +1,4 @@
-import { GameDomain, userStore } from "../UserStore";
+import { GameDomain, user$ } from "../user$";
 import { IResponceCode, IUser } from "types/types";
 import {
   addPlayerToRoomFetch,
@@ -199,7 +199,7 @@ sample({
   clock: createRoom,
   source: combine({
     room: currentRoom$.map((v) => v),
-    user: userStore.map((v) => ({
+    user: user$.map((v) => ({
       ...v,
       playerRoomStatus: PlayerRoomStatus.ACITVE,
     })),
@@ -226,7 +226,7 @@ export const roomsStore = RoomDomain.store<IRoomResponce>({
 export const myRooms$ = sample({
   clock: roomsStore,
   source: combine({
-    userId: userStore.map((v) => v.userId),
+    userId: user$.map((v) => v.userId),
     rooms: roomsStore,
   }),
   fn: ({ userId, rooms }) => {
@@ -249,8 +249,8 @@ sample({
 sample({
   clock: surrenderRoom,
   source: combine({
-    userId: userStore.map((v) => v.userId),
-    gameId: r,
+    userId: user$.map((v) => v.userId),
+    gameId:  currentRoom$.,
   }),
   target: getRoomsFx,
 });

@@ -1,4 +1,4 @@
-import { GameDomain } from "../UserStore";
+import { GameDomain } from "../user$";
 import { IRoomState } from "../Rooms/RoomsModel";
 import { client } from "http/client";
 import { createGate } from "effector-react";

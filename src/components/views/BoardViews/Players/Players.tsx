@@ -11,7 +11,7 @@ import { PlayerActions } from "./PlayerActions/PlayerActions";
 import { actionsStore } from "../../../../stores/Board/ActionStore";
 import { closeFieldActionEvent } from "../../../../stores/Board/FieldsStore";
 import { useStore } from "effector-react";
-import { userStore } from "../../../../stores/Game/UserStore";
+import { user$ } from "../../../../stores/Game/user$";
 
 interface Prop {
   players: IPlayer[];
@@ -19,7 +19,7 @@ interface Prop {
 
 export const Players = (prop: Prop) => {
   const action = useStore(actionsStore);
-  const user = useStore(userStore);
+  const user = useStore(user$);
   const actionStore = useStore(playerActionStore);
 
   const closePlayerAction = (event: any) => {

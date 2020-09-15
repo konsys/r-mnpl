@@ -18,11 +18,11 @@ import { ToastContainer } from "react-toastify";
 import { Tokens } from "../../../views/BoardViews/Tokens/Tokens";
 import { actionsStore } from "../../../../stores/Board/ActionStore";
 import { useStore } from "effector-react";
-import { userStore } from "../../../../stores/Game/UserStore";
+import { user$ } from "../../../../stores/Game/user$";
 
 export const BoardWrapper = ({ playerIds }: { playerIds: number[] }) => {
   const action = useStore(actionsStore);
-  const user = useStore(userStore);
+  const user = useStore(user$);
 
   const modal = () => {
     try {

@@ -24,7 +24,7 @@ sample({
 
 export const setUserEvent = UserDomain.event<IUser>();
 
-export const userStore = UserDomain.store<IUser>({
+export const user$ = UserDomain.store<IUser>({
   isActive: false,
   isBlocked: false,
   name: "",
@@ -40,4 +40,4 @@ export const userStore = UserDomain.store<IUser>({
   .on(getUserFx.done, (_, data) => data.result)
   .reset(resetUserEvent);
 
-// userStore.updates.watch((v) => console.log("userStore.updates.watch", v));
+// user$.updates.watch((v) => console.log("user$.updates.watch", v));

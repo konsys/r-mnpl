@@ -4,7 +4,7 @@ import { BOARD_PARAMS } from "../../params/boardParams";
 import { BoardDomain } from "./BoardDomain";
 import _ from "lodash";
 import { actionsStore } from "./ActionStore";
-import { userStore } from "../Game/UserStore";
+import { user$ } from "../Game/user$";
 
 const ContractDomain = BoardDomain.domain("UserDomain");
 
@@ -47,7 +47,7 @@ export const contractStore = ContractDomain.store<IContract>(initContract)
   .on(setContract, (_, data) => data)
   .on(incomeContract, (state) => {
     const action = actionsStore.getState();
-    const user = userStore.getState();
+    const user = user$.getState();
     if (user && action && action.event.action.contract) {
       if (user.userId === action.event.action.contract.toUserId) {
         return action.event.action.contract;

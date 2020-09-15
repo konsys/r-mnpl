@@ -28,10 +28,10 @@ import RouletteGameParams from "./GameParams/RouletteGameParams";
 import ShuffleGameParams from "./GameParams/ShuffleGameParams";
 import { useStore } from "effector-react";
 import { useTranslation } from "react-i18next";
-import { userStore } from "stores/Game/UserStore";
+import { user$ } from "stores/Game/user$";
 
 export default function CreateRoomModal() {
-  const user = useStore(userStore);
+  const user = useStore(user$);
   const open = useStore(roomModalStore);
   const { t } = useTranslation();
   const room = useStore(currentRoom$);

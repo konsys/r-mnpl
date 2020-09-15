@@ -19,13 +19,13 @@ import { BOARD_PARAMS } from "../../../../params/boardParams";
 import { Field } from "../Field/Field";
 import { FieldActions } from "../Field/FieldActions/FieldAction";
 import { useStore } from "effector-react";
-import { userStore } from "../../../../stores/Game/UserStore";
+import { user$ } from "../../../../stores/Game/user$";
 
 export const Board = () => {
   const { fields } = useStore(fieldsStore);
   const fieldActionId = useStore(fieldActionStore);
   const contract = useStore(contractStore);
-  const user = useStore(userStore);
+  const user = useStore(user$);
 
   const getFieldActionPosition = (field: IField): IFieldModalPosition => {
     switch (field.fieldLine) {

@@ -8,7 +8,7 @@ import { addReplyToEvent } from "../../../../stores/Game/Chat/GameChatModel";
 import moment from "moment";
 import { theme } from "../../../../theme";
 import { useStore } from "effector-react";
-import { userStore } from "../../../../stores/Game/UserStore";
+import { user$ } from "../../../../stores/Game/user$";
 
 export interface IChatMessage {
   fromUser: IUser;
@@ -20,7 +20,7 @@ export interface IChatMessage {
 export interface IChatMessageProps extends IChatMessage {}
 
 export default function ChatMessage(props: IChatMessageProps) {
-  const user = useStore(userStore);
+  const user = useStore(user$);
   return (
     <>
       <Grid
