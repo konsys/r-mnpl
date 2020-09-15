@@ -46,7 +46,9 @@ sample({
   clock: surrenderRoom,
   source: combine({
     userId: user$.map((v: IUser) => v.userId),
-    roomId: board$.map((v: any) => v.room.roomId),
+    roomId: board$.map((v: any) => {
+      return v ? v.room.roomId : "";
+    }),
   }),
   target: surrenderBoardFx,
 });
