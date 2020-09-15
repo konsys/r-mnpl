@@ -210,7 +210,7 @@ sample({
 });
 
 export const resetRoomsStore = RoomDomain.event();
-export const roomsStore = RoomDomain.store<IRoomResponce>({
+export const rooms$ = RoomDomain.store<IRoomResponce>({
   playersInRooms: 0,
   rooms: [],
 })
@@ -218,13 +218,11 @@ export const roomsStore = RoomDomain.store<IRoomResponce>({
   .on(getRoomsFx.done, (_, { result }) => result)
   .on(setRooms, (_, result) => result);
 
-export const playingRooms$ = RoomDomain.store<IRoomState[]>([]);
-
 export const myRooms$ = sample({
-  clock: roomsStore,
+  clock: rooms$,
   source: combine({
     userId: user$.map((v) => v.userId),
-    rooms: roomsStore,
+    rooms: rooms$,
   }),
   fn: ({ userId, rooms }) => {
     const myRooms = rooms.rooms.filter(
@@ -237,12 +235,19 @@ export const myRooms$ = sample({
   },
 });
 
-sample({
-  clock: myRooms$.updates,
-  source: roomsStore.map((v) =>
-    v.rooms.filter((v1) => v1.roomStatus === RoomStatus.PLAYING)
-  ),
-  target: playingRooms$,
+rooms$.watch((v) => console.log("myRooms$", v));
+
+export const playingRooms$ = sample({
+  clock: rooms$,
+  source: combine({
+    rooms: rooms$,
+  }),
+  fn: ({ rooms }) => {
+    const playing = rooms.rooms.filter(
+      (r) => r.roomStatus === RoomStatus.PLAYING
+    );
+    return playing || [];
+  },
 });
 
 sample({

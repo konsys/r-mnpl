@@ -5,8 +5,8 @@ import {
   IRoomState,
   RoomStatus,
   myRooms$,
+  rooms$,
   roomsGate,
-  roomsStore,
 } from "stores/Game/Rooms/RoomsModel";
 import { Redirect, useHistory } from "react-router-dom";
 import { useGate, useStore } from "effector-react";
@@ -23,7 +23,7 @@ import { user$ } from "stores/Game/UserStore";
 export const Rooms = () => {
   useGate(roomsGate);
   const myRooms = useStore(myRooms$);
-  const rooms = useStore(roomsStore);
+  const rooms = useStore(rooms$);
   const { t } = useTranslation();
   const { userId } = useStore(user$);
   const history = useHistory();
@@ -31,7 +31,6 @@ export const Rooms = () => {
     ? (myRooms[0] as IRoomState)
     : null;
 
-  console.log(5555555, myRooms);
   return (
     <>
       <CreateRoomModal />

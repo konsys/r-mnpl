@@ -17,7 +17,8 @@ export const Board = (props: RouteComponentProps | any) => {
       ? board.room.players.map((v) => v?.userId || 0)
       : [];
 
-  console.log(33333, playingRooms);
+  const amIPlaying = playingRooms.some((v) => v.roomId === board?.room.roomId);
+  console.log(33333, board?.room);
   return (
     <>
       {!board ||
