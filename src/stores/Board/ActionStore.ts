@@ -1,4 +1,8 @@
-import { IBoardEvent, IncomeMessageType } from "../../types/types";
+import {
+  IBoardEvent,
+  IGameActionRequest,
+  IncomeMessageType,
+} from "../../types/types";
 import {
   auctionModal,
   canBuyModal,
@@ -9,6 +13,7 @@ import {
 } from "../../handlers/Modals";
 
 import { BoardDomain } from "./BoardDomain";
+import { fetchGameAction } from "models/Board/api";
 import { hideDicesEvent } from "./DicesStore";
 import { incomeContract } from "./ContractStore";
 import nanoid from "nanoid";
@@ -19,7 +24,17 @@ export interface ICurrentAction {
   actionId: string;
   event: IBoardEvent;
 }
-// Current
+
+const GameActionDomain = BoardDomain.domain("ModalDomain");
+
+export const gameActionFx = GameActionDomain.effect<
+  IGameActionRequest,
+  Promise<any>,
+  Error
+>({
+  handler: fetchGameAction,
+});
+
 const ActionDomain = BoardDomain.domain("BoardActionDomain");
 export const resetActionEvent = ActionDomain.event();
 
