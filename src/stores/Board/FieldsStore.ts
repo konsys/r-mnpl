@@ -1,6 +1,6 @@
 import { BoardDomain } from "./BoardDomain";
 import { IField } from "../../types/types";
-import { fetchInitFields } from "../../models/Fields/api";
+import { fetchInitFields } from "../../api/Fields/api";
 
 export interface IFieldsStore {
   version: number;

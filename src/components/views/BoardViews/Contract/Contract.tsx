@@ -7,7 +7,7 @@ import {
 } from "../../../../stores/Board/ContractStore";
 
 import { ContractCompany } from "./ContractCompany";
-import { gameActionFx } from "../../../../models/Board/model";
+import { gameActionFx } from "stores/Board/ActionStore";
 import { getField } from "../../../../utils/fields.utils";
 import { getPlayer } from "../../../../utils/players.utils";
 import { showDialog } from "../../../../stores/Board/DialogStore";

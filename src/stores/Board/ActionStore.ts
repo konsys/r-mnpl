@@ -13,7 +13,7 @@ import {
 } from "../../handlers/Modals";
 
 import { BoardDomain } from "./BoardDomain";
-import { fetchGameAction } from "models/Board/api";
+import { fetchGameAction } from "api/Board/api";
 import { hideDicesEvent } from "./DicesStore";
 import { incomeContract } from "./ContractStore";
 import nanoid from "nanoid";

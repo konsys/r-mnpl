@@ -4,7 +4,7 @@ import { clearToken, saveToken } from "./TokenModel";
 import { LocalStorageParams } from "../../../../../types/types";
 import { createDomain } from "effector";
 import { getUserFx } from "../../../../../stores/Game/UserStore";
-import { loginFetch } from "../../../../../models/Login/api";
+import { loginFetch } from "../../../../../api/Login/api";
 
 const AuthDomain = createDomain("AuthDomain");
 export const clearTokenStore = AuthDomain.event();

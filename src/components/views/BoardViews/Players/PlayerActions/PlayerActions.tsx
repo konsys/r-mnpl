@@ -28,12 +28,12 @@ export const PlayerActions = ({
       {leave && (
         <div
           className="_leave"
-          onClick={() =>
-            leaveBoard({
-              fromUserId,
-              toUserId,
-            })
-          }
+          // onClick={() =>
+          //   leaveBoard({
+          //     fromUserId,
+          //     toUserId,
+          //   })
+          // }
         />
       )}
       {contract && (

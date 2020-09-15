@@ -11,7 +11,7 @@ import { FieldActionCompany } from "./FieldActionCompany";
 import { FieldActionIT } from "./FieldActionIT";
 import React from "react";
 import { closeFieldActionEvent } from "../../../../../stores/Board/FieldsStore";
-import { gameActionFx } from "../../../../../models/Board/model";
+import { gameActionFx } from "stores/Board/ActionStore";
 import { getActingPlayer } from "../../../../../utils/players.utils";
 
 export interface IFieldModal extends IField {

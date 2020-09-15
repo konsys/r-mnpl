@@ -2,7 +2,7 @@ import { GameDomain } from "../UserStore";
 import { IChatMessage } from "../../../components/core/Game/GameChat/ChatMessage";
 import { IUser } from "../../../types/types";
 import { createGate } from "effector-react";
-import { fetchChat } from "../../../models/GameChat/api";
+import { fetchChat } from "../../../api/GameChat/api";
 import { fetchChatMessages } from "./api";
 import { sample } from "effector";
 

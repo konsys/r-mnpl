@@ -1,6 +1,6 @@
 import { BoardAction, OutcomeMessageType } from "../types/types";
 
-import { gameActionFx } from "../models/Board/model";
+import { gameActionFx } from "stores/Board/ActionStore";
 import { getField } from "../utils/fields.utils";
 import { getPlayer } from "../utils/players.utils";
 
