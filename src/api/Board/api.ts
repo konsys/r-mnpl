@@ -14,5 +14,5 @@ export const surrenderBoardFetch = async ({
   userId: number;
   roomId: string;
 }): Promise<boolean> => {
-  return await (await client.post(`rooms/surrender`, { userId, roomId })).data;
+  return await (await client.post(`board/surrender`, { userId, roomId })).data;
 };
