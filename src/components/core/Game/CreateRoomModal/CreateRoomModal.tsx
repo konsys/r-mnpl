@@ -11,7 +11,7 @@ import {
 import {
   RoomType,
   createRoom,
-  newRoomStore,
+  currentRoom$,
   updateRoom,
 } from "stores/Game/Rooms/RoomsModel";
 import {
@@ -34,7 +34,7 @@ export default function CreateRoomModal() {
   const user = useStore(userStore);
   const open = useStore(roomModalStore);
   const { t } = useTranslation();
-  const room = useStore(newRoomStore);
+  const room = useStore(currentRoom$);
   const { roomType } = room;
   return (
     <Dialog open={open} onClose={() => null}>

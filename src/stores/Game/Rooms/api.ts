@@ -9,6 +9,10 @@ export const fetchRooms = async (): Promise<IRoomResponce> => {
   return await (await client.get(roomsUrl)).data;
 };
 
+export const surrenderRoomFetch = async (): Promise<boolean> => {
+  return await (await client.post(`${roomsUrl}/surrender`)).data;
+};
+
 export const createRoomFetch = async (
   params: IRoomState
 ): Promise<IResponceCode> => {

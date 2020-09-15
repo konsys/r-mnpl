@@ -1,5 +1,5 @@
 import { Button, ButtonGroup, Grid } from "@material-ui/core";
-import { newRoomStore, updateRoom } from "stores/Game/Rooms/RoomsModel";
+import { currentRoom$, updateRoom } from "stores/Game/Rooms/RoomsModel";
 
 import React from "react";
 import { useStore } from "effector-react";
@@ -13,7 +13,7 @@ export default function PlayersNumber({
   isVip: boolean;
 }) {
   const { t } = useTranslation();
-  const room = useStore(newRoomStore);
+  const room = useStore(currentRoom$);
   return (
     <Grid
       container

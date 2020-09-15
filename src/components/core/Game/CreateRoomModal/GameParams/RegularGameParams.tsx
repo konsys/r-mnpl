@@ -1,5 +1,5 @@
 import { Grid, Typography } from "@material-ui/core";
-import { newRoomStore, toggleRoomSwitch } from "stores/Game/Rooms/RoomsModel";
+import { currentRoom$, toggleRoomSwitch } from "stores/Game/Rooms/RoomsModel";
 
 import { GRID_SPACING } from "../../../../../theme";
 import PlayersNumber from "./views/PlayersNumber";
@@ -10,7 +10,7 @@ import { useTranslation } from "react-i18next";
 
 export default function RegularGameParams({ isVip }: { isVip: boolean }) {
   const { t } = useTranslation();
-  const room = useStore(newRoomStore);
+  const room = useStore(currentRoom$);
   return (
     <Grid container direction="column" spacing={GRID_SPACING}>
       <Grid item>

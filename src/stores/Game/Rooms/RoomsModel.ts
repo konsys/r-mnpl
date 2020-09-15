@@ -5,6 +5,7 @@ import {
   createRoomFetch,
   fetchRooms,
   removePlayerFromRoomFetch,
+  surrenderRoomFetch,
 } from "./api";
 import { closeGameModal, openGameModal } from "../GameModal/GameModalModel";
 import { combine, sample } from "effector";
@@ -134,15 +135,20 @@ addPlayerToRoomFx.fail.watch((v: any) => {
   }
 });
 
+export const surrenderRoomFx = RoomDomain.effect<void, boolean, Error>({
+  handler: surrenderRoomFetch,
+});
+
 export const createRoom = RoomDomain.event<void>();
+export const surrenderRoom = RoomDomain.event<void>();
 export const updateRoom = RoomDomain.event<IRoomState>();
 export const toggleAutostart = RoomDomain.event<void>();
 export const togglePrivateRoom = RoomDomain.event<void>();
 export const togglRestarts = RoomDomain.event<void>();
 export const toggleRoomSwitch = RoomDomain.event<string>();
-export const resetNewRoomStore = RoomDomain.event<void>();
+export const resetcurrentRoom$ = RoomDomain.event<void>();
 
-export const newRoomStore = RoomDomain.store<IRoomState>({
+export const currentRoom$ = RoomDomain.store<IRoomState>({
   roomId: "",
   creatorId: 0,
   players: [],
@@ -169,7 +175,7 @@ export const newRoomStore = RoomDomain.store<IRoomState>({
     ...state,
     restarts: !state.restarts,
   }))
-  .reset(resetNewRoomStore);
+  .reset(resetcurrentRoom$);
 
 sample({
   clock: toggleRoomSwitch,
@@ -192,7 +198,7 @@ sample({
 sample({
   clock: createRoom,
   source: combine({
-    room: newRoomStore.map((v) => v),
+    room: currentRoom$.map((v) => v),
     user: userStore.map((v) => ({
       ...v,
       playerRoomStatus: PlayerRoomStatus.ACITVE,
@@ -237,5 +243,14 @@ export const myRooms$ = sample({
 sample({
   clock: roomsGate.open,
   source: roomsGate.state,
+  target: getRoomsFx,
+});
+
+sample({
+  clock: surrenderRoom,
+  source: combine({
+    userId: userStore.map((v) => v.userId),
+    gameId: r,
+  }),
   target: getRoomsFx,
 });
