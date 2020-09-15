@@ -135,7 +135,11 @@ addPlayerToRoomFx.fail.watch((v: any) => {
   }
 });
 
-export const surrenderRoomFx = RoomDomain.effect<void, boolean, Error>({
+export const surrenderRoomFx = RoomDomain.effect<
+  { userId: number; roomId: string },
+  boolean,
+  Error
+>({
   handler: surrenderRoomFetch,
 });
 

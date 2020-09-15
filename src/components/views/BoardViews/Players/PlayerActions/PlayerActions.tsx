@@ -1,7 +1,7 @@
 import { IPlayerAction } from "../../../../../stores/Board/PlayersStore";
 import React from "react";
 import { openContractModal } from "../../../../../stores/Board/ContractStore";
-import { surrenderRoomFx } from "../../../../../stores/Game/Rooms/RoomsModel";
+import { surrenderRoom } from "../../../../../stores/Game/Rooms/RoomsModel";
 
 export const PlayerActions = ({
   profile,
@@ -26,7 +26,7 @@ export const PlayerActions = ({
       {restart && <div className="_restart" />}
       {creditTake && <div className="_credit_take" />}
       {creditPay && <div className="_credit_pay" />}
-      {leave && <div className="_leave" onClick={() => surrenderRoomFx()} />}
+      {leave && <div className="_leave" onClick={() => surrenderRoom()} />}
       {contract && (
         <div
           className="_contract"
