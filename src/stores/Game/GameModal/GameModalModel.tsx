@@ -1,4 +1,4 @@
-import { GameDomain } from "../user$";
+import { GameDomain } from "../UserStore";
 
 const GameModalDomain = GameDomain.domain("ModalDomain");
 export interface IGameModal {

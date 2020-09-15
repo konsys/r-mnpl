@@ -19,7 +19,7 @@ import { useGate, useStore } from "effector-react";
 import ChatMessage from "./ChatMessage";
 import { GRID_SPACING } from "../../../../theme";
 import PlayerChip from "./PlayerChip";
-import { profileGate } from "../../../../stores/Game/user$";
+import { profileGate } from "stores/Game/UserStore";
 import { useTranslation } from "react-i18next";
 
 enum KeyName {

@@ -1,4 +1,4 @@
-import { GameDomain, user$ } from "../user$";
+import { GameDomain, user$ } from "../UserStore";
 import { IResponceCode, IUser } from "types/types";
 import {
   addPlayerToRoomFetch,
@@ -249,8 +249,8 @@ sample({
 sample({
   clock: surrenderRoom,
   source: combine({
-    userId: user$.map((v) => v.userId),
-    gameId:  currentRoom$.,
+    userId: user$.map((v: IUser) => v.userId),
+    roomId: currentRoom$.map((v: IRoomState) => v.roomId),
   }),
-  target: getRoomsFx,
+  target: surrenderRoomFx,
 });

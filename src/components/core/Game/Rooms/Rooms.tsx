@@ -18,7 +18,7 @@ import RoomBlock from "./RoomBlock/RoomBlock";
 import Template from "../../../views/Template/Template";
 import { openRoomModal } from "stores/Game/Rooms/RoomsModalModel";
 import { useTranslation } from "react-i18next";
-import { user$ } from "stores/Game/user$";
+import { user$ } from "stores/Game/UserStore";
 
 export const Rooms = () => {
   useGate(roomsGate);

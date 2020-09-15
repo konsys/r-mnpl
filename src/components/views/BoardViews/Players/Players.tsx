@@ -11,7 +11,7 @@ import { PlayerActions } from "./PlayerActions/PlayerActions";
 import { actionsStore } from "../../../../stores/Board/ActionStore";
 import { closeFieldActionEvent } from "../../../../stores/Board/FieldsStore";
 import { useStore } from "effector-react";
-import { user$ } from "../../../../stores/Game/user$";
+import { user$ } from "../../../../stores/Game/UserStore";
 
 interface Prop {
   players: IPlayer[];

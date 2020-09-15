@@ -1,4 +1,4 @@
-import { GameDomain } from "../user$";
+import { GameDomain } from "../UserStore";
 import { IChatMessage } from "../../../components/core/Game/GameChat/ChatMessage";
 import { IUser } from "../../../types/types";
 import { createGate } from "effector-react";
