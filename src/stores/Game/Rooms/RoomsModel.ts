@@ -225,28 +225,10 @@ export const myRooms$ = sample({
     rooms: rooms$,
   }),
   fn: ({ userId, rooms }) => {
-    const myRooms = rooms.rooms.filter(
-      (r) =>
-        (r.roomStatus === RoomStatus.PENDING ||
-          r.roomStatus === RoomStatus.PLAYING) &&
-        r.players.some((pl) => pl?.userId === userId)
+    const myRooms = rooms.rooms.filter((r) =>
+      r.players.some((pl) => pl?.userId === userId)
     );
     return myRooms || [];
-  },
-});
-
-rooms$.watch((v) => console.log("myRooms$", v));
-
-export const playingRooms$ = sample({
-  clock: rooms$,
-  source: combine({
-    rooms: rooms$,
-  }),
-  fn: ({ rooms }) => {
-    const playing = rooms.rooms.filter(
-      (r) => r.roomStatus === RoomStatus.PLAYING
-    );
-    return playing || [];
   },
 });
 
@@ -255,3 +237,5 @@ sample({
   source: roomsGate.state,
   target: getRoomsFx,
 });
+
+rooms$.watch((v) => console.log(333323, v));

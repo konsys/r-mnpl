@@ -8,14 +8,15 @@ import {
   rooms$,
   roomsGate,
 } from "stores/Game/Rooms/RoomsModel";
-import { Redirect, useHistory } from "react-router-dom";
 import { useGate, useStore } from "effector-react";
 
 import { BLOCK_SPACING } from "../../../../theme";
 import CreateRoomModal from "../CreateRoomModal/CreateRoomModal";
 import React from "react";
+import { Redirect } from "react-router-dom";
 import RoomBlock from "./RoomBlock/RoomBlock";
 import Template from "../../../views/Template/Template";
+import { head } from "lodash";
 import { openRoomModal } from "stores/Game/Rooms/RoomsModalModel";
 import { useTranslation } from "react-i18next";
 import { user$ } from "stores/Game/UserStore";
@@ -26,18 +27,25 @@ export const Rooms = () => {
   const rooms = useStore(rooms$);
   const { t } = useTranslation();
   const { userId } = useStore(user$);
-  const history = useHistory();
-  const myRoom: IRoomState | null = myRooms.length
-    ? (myRooms[0] as IRoomState)
-    : null;
+  const myPendingRoom: IRoomState | undefined = myRooms.length
+    ? (head(
+        myRooms.filter((v) => v.roomStatus === RoomStatus.PENDING)
+      ) as IRoomState)
+    : undefined;
+
+  const myPlayingRoom: IRoomState | undefined = myRooms.length
+    ? (head(
+        myRooms.filter((v) => v.roomStatus === RoomStatus.PLAYING)
+      ) as IRoomState)
+    : undefined;
 
   return (
     <>
       <CreateRoomModal />
-      {myRoom && myRoom.roomStatus === RoomStatus.PLAYING ? (
+      {myPlayingRoom ? (
         <Redirect
           to={{
-            pathname: `/board/${myRoom.roomId}`,
+            pathname: `/board/${myPlayingRoom.roomId}`,
           }}
         />
       ) : (
@@ -52,32 +60,14 @@ export const Rooms = () => {
               <Grid item>
                 <Typography variant="h6">{t("Waiting for games")}</Typography>
               </Grid>
-              {myRoom && myRoom.roomStatus === RoomStatus.PLAYING && (
-                <Grid item>
-                  <Typography variant="body2">
-                    <Button
-                      variant="outlined"
-                      color="secondary"
-                      onClick={() =>
-                        history.push(
-                          myRoom && myRoom.roomStatus === RoomStatus.PLAYING
-                            ? `/board/${myRoom.roomId}`
-                            : "/games"
-                        )
-                      }
-                    >
-                      {t("Reconnect")}
-                    </Button>
-                  </Typography>
-                </Grid>
-              )}
+
               <Grid item>
                 <Typography variant="body2">
                   <Button
                     variant="outlined"
                     color="primary"
                     onClick={() => openRoomModal()}
-                    disabled={!!myRoom}
+                    disabled={!!myPendingRoom}
                   >
                     {t("Create room")}
                   </Button>
