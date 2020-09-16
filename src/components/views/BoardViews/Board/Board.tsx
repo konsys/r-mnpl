@@ -6,7 +6,7 @@ import {
 import React, { useEffect } from "react";
 import {
   addFieldToContract,
-  contractStore,
+  contract$,
 } from "../../../../stores/Board/ContractStore";
 import {
   closeFieldActionEvent,
@@ -24,7 +24,7 @@ import { user$ } from "../../../../stores/Game/UserStore";
 export const Board = () => {
   const { fields } = useStore(fieldsStore);
   const fieldActionId = useStore(fieldActionStore);
-  const contract = useStore(contractStore);
+  const contract = useStore(contract$);
   const user = useStore(user$);
 
   const getFieldActionPosition = (field: IField): IFieldModalPosition => {

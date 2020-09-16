@@ -36,7 +36,7 @@ const initContract: IContract = {
   moneyTo: 0,
 };
 
-export const contractStore = ContractDomain.store<IContract>(initContract)
+export const contract$ = ContractDomain.store<IContract>(initContract)
   .on(openContractModal, (state, next) => {
     return {
       ...state,
@@ -121,6 +121,6 @@ export const contractStore = ContractDomain.store<IContract>(initContract)
   })
   .reset(closeContractModal);
 
-// contractStore.watch((v) =>
+// contract$.watch((v) =>
 //   console.log("contractStoreWatch", v.fromUserId, v.toUserId)
 // );

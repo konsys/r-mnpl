@@ -32,10 +32,13 @@ export enum IFieldAction {
   LEVEL_DOWN = 3,
 }
 
-export interface IGameActionRequest {
+export interface IBoardAction {
   action: OutcomeMessageType;
   fieldId?: number;
   contract?: any;
+}
+export interface IBoardActionRequest extends IBoardAction {
+  gameId: string;
 }
 
 export enum OutcomeMessageType {

@@ -3,11 +3,11 @@ import React, { useState } from "react";
 import {
   addMoneyToContract,
   closeContractModal,
-  contractStore,
+  contract$,
 } from "../../../../stores/Board/ContractStore";
+import { gameActionFx, sendBoardAction } from "stores/Board/ActionStore";
 
 import { ContractCompany } from "./ContractCompany";
-import { gameActionFx } from "stores/Board/ActionStore";
 import { getField } from "../../../../utils/fields.utils";
 import { getPlayer } from "../../../../utils/players.utils";
 import { showDialog } from "../../../../stores/Board/DialogStore";
@@ -19,7 +19,7 @@ export enum KeyCode {
 }
 
 export const Contract = () => {
-  const contract = useStore(contractStore);
+  const contract = useStore(contract$);
   const user = useStore(user$);
 
   const [activeInput, setActiveInput] = useState<number>(0);
@@ -89,7 +89,7 @@ export const Contract = () => {
           "Разница между суммой предлагаемого и запрашиваемого не может превышать 50%.",
       });
     } else {
-      gameActionFx({
+      sendBoardAction({
         action: OutcomeMessageType.OUTCOME_CONTRACT_START,
         contract,
       });
@@ -273,7 +273,7 @@ export const Contract = () => {
                   <div
                     className="_button"
                     onClick={() =>
-                      gameActionFx({
+                      sendBoardAction({
                         action: OutcomeMessageType.OUTCOME_CONTRACT_ACCEPT,
                         contract,
                       })
@@ -283,7 +283,7 @@ export const Contract = () => {
                   </div>
                   <div
                     onClick={() =>
-                      gameActionFx({
+                      sendBoardAction({
                         action: OutcomeMessageType.OUTCOME_CONTRACT_DECLINE,
                         contract,
                       })

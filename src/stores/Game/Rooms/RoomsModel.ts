@@ -11,6 +11,7 @@ import { combine, sample } from "effector";
 
 import { ErrorCode } from "utils/errors";
 import { createGate } from "effector-react";
+import { head } from "lodash";
 import nanoid from "nanoid";
 
 export enum RoomPortalFieldType {
@@ -232,10 +233,14 @@ export const myRooms$ = sample({
   },
 });
 
+export const myPlayingRoom$ = RoomDomain.store<IRoomState | null>(
+  null
+).on(myRooms$, (_, rooms) =>
+  head(rooms.filter((v) => v.roomStatus === RoomStatus.PLAYING))
+);
+
 sample({
   clock: roomsGate.open,
   source: roomsGate.state,
   target: getRoomsFx,
 });
-
-rooms$.watch((v) => console.log(333323, v));

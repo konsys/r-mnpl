@@ -1,9 +1,11 @@
-import { IGameActionRequest } from "../../types/types";
+import { IBoardActionRequest } from "../../types/types";
 import { client } from "../../http/client";
 
 const URL = `/board/action`;
 
-export async function fetchBoardAction(data: IGameActionRequest): Promise<any> {
+export async function fetchBoardAction(
+  data: IBoardActionRequest
+): Promise<any> {
   return await (await client.post(URL, { data })).data;
 }
 

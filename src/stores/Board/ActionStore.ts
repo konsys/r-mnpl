@@ -1,6 +1,7 @@
 import {
+  IBoardAction,
+  IBoardActionRequest,
   IBoardEvent,
-  IGameActionRequest,
   IncomeMessageType,
 } from "../../types/types";
 import {
@@ -27,13 +28,27 @@ export interface ICurrentAction {
 
 const GameActionDomain = BoardDomain.domain("ModalDomain");
 
+export const sendBoardAction = GameActionDomain.event<IBoardAction>();
+
 export const gameActionFx = GameActionDomain.effect<
-  IGameActionRequest,
+  IBoardActionRequest,
   Promise<any>,
   Error
 >({
   handler: fetchBoardAction,
 });
+
+// sample({
+//   clock: sendBoardAction,
+//   source: combine({
+//     gameId: myRooms$.map(({ room }) => room),
+//     // action,
+//   }),
+//   fn: (p1, p2) => {
+//     console.log(111111, p1, p2);
+//   },
+//   // target: gameActionFx,
+// });
 
 const ActionDomain = BoardDomain.domain("BoardActionDomain");
 export const resetActionEvent = ActionDomain.event();
