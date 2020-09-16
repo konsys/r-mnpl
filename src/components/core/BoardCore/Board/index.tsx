@@ -12,20 +12,17 @@ export const Board = (props: RouteComponentProps | any) => {
   useGate(boardGate, { gameId: props.match.params.id });
   const board = useStore(board$);
 
-  console.log(23423423423, board);
-
   const playerIds =
     board && board.room && Array.isArray(board.room.players)
       ? board.room.players.map((v) => v?.userId || 0)
       : [];
 
-  console.log(33333, board?.room);
   return (
     <>
       <ModalDialog />
-      {!board ||
-      (board && board.room.roomStatus === RoomStatus.COMPLETED) ||
-      !playerIds.length ? (
+      {!playerIds.length ||
+      !board ||
+      (board && board.room.roomStatus === RoomStatus.COMPLETED) ? (
         <GameNotFound />
       ) : (
         <BoardWrapper playerIds={playerIds} />
