@@ -139,6 +139,7 @@ addPlayerToRoomFx.fail.watch((v: any) => {
 export const createRoom = RoomDomain.event<void>();
 
 export const updateRoom = RoomDomain.event<IRoomState>();
+export const myRoomsUpdate = RoomDomain.event<IRoomState[]>();
 export const toggleAutostart = RoomDomain.event<void>();
 export const togglePrivateRoom = RoomDomain.event<void>();
 export const togglRestarts = RoomDomain.event<void>();
@@ -222,7 +223,7 @@ export const rooms$ = RoomDomain.store<IRoomResponce>({
   .on(setRooms, (_, result) => result);
 
 export const myRooms$ = sample({
-  clock: rooms$,
+  clock: rooms$.updates,
   source: combine({
     userId: user$.map((v) => v.userId),
     rooms: rooms$,
@@ -233,10 +234,11 @@ export const myRooms$ = sample({
     );
     return myRooms || [];
   },
+  target: myRoomsUpdate,
 });
 
 export const myPendingRoom$ = RoomDomain.store<IRoomState | null>(null).on(
-  myRooms$,
+  myRoomsUpdate,
   (_, rooms) => {
     const updatedRoom = head(
       rooms.filter((v) => v.roomStatus === RoomStatus.PENDING)
@@ -247,7 +249,7 @@ export const myPendingRoom$ = RoomDomain.store<IRoomState | null>(null).on(
 );
 
 export const myPlayingRoom$ = RoomDomain.store<IRoomState | null>(null).on(
-  myRooms$,
+  myRoomsUpdate,
   (_, rooms) => {
     const updatedRoom = head(
       rooms.filter((v) => v.roomStatus === RoomStatus.PLAYING)
@@ -258,7 +260,7 @@ export const myPlayingRoom$ = RoomDomain.store<IRoomState | null>(null).on(
 );
 
 export const myCompletedRoom$ = RoomDomain.store<IRoomState | null>(null).on(
-  myRooms$,
+  myRoomsUpdate,
   (_, rooms) => {
     const updatedRoom = head(
       rooms.filter((v) => v.roomStatus === RoomStatus.COMPLETED)

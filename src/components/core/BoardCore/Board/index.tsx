@@ -12,7 +12,8 @@ import { RouteComponentProps } from "react-router";
 import { head } from "lodash";
 
 export const Board = (props: RouteComponentProps | any) => {
-  useGate(boardGate, { gameId: props.match.params.id });
+  const gameId = props.match.params.id;
+  useGate(boardGate, { gameId: gameId });
   const board = useStore(board$);
   const playing = useStore(myPlayingRoom$);
   const completed = useStore(myCompletedRoom$);
@@ -21,16 +22,17 @@ export const Board = (props: RouteComponentProps | any) => {
       ? board.room.players.map((v) => v?.userId || 0)
       : [];
 
+  console.log(1111, playing);
   return (
     <>
       <ModalDialog />
       <GameLoading />
-      {!playerIds.length || !board || !playing ? (
-        <GameNotFound />
-      ) : !!completed ? (
+      {gameId && completed ? (
         <GameCompleted winner={completed && head(completed.players)} />
-      ) : (
+      ) : playing ? (
         <BoardWrapper playerIds={playerIds} />
+      ) : (
+        <GameNotFound p={playing} />
       )}
     </>
   );
