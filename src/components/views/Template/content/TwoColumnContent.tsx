@@ -1,7 +1,7 @@
 import { BLOCK_SIZE, GRID_SPACING } from "../../../../theme";
 import { Box, Container, Grid } from "@material-ui/core";
 
-import BuyGallery from "../../../core/Game/BuyGallery/BuyGallery";
+// import BuyGallery from "../../../core/Game/BuyGallery/BuyGallery";
 import ContentBlock from "./ContentBlock";
 import FriendsOnline from "../../GameVievs/LeftBlock/FriendsOnline";
 import GameChat from "../../../core/Game/GameChat/GameChat";
@@ -43,9 +43,7 @@ export default function TwoColumnContent({ children }: { children?: any[] }) {
           </Grid>
           <Grid item md={8} sm={12} xs={12}>
             <Grid container direction="column" spacing={GRID_SPACING}>
-              <ContentBlock>
-                <BuyGallery />
-              </ContentBlock>
+              <ContentBlock>{/* <BuyGallery /> */}</ContentBlock>
               <ContentBlock>
                 <GameChat />
               </ContentBlock>

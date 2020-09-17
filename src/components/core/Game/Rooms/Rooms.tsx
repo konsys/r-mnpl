@@ -2,9 +2,9 @@ import "./styles.scss";
 
 import { Button, Divider, Grid, Typography } from "@material-ui/core";
 import {
-  IRoomState,
   RoomStatus,
-  myRooms$,
+  myPendingRoom$,
+  myPlayingRoom$,
   rooms$,
   roomsGate,
 } from "stores/Game/Rooms/RoomsModel";
@@ -16,28 +16,17 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 import RoomBlock from "./RoomBlock/RoomBlock";
 import Template from "../../../views/Template/Template";
-import { head } from "lodash";
 import { openRoomModal } from "stores/Game/Rooms/RoomsModalModel";
 import { useTranslation } from "react-i18next";
 import { user$ } from "stores/Game/UserStore";
 
 export const Rooms = () => {
   useGate(roomsGate);
-  const myRooms = useStore(myRooms$);
+  const myPlayingRoom = useStore(myPlayingRoom$);
+  const myPendingRoom = useStore(myPendingRoom$);
   const rooms = useStore(rooms$);
   const { t } = useTranslation();
   const { userId } = useStore(user$);
-  const myPendingRoom: IRoomState | undefined = myRooms.length
-    ? (head(
-        myRooms.filter((v) => v.roomStatus === RoomStatus.PENDING)
-      ) as IRoomState)
-    : undefined;
-
-  const myPlayingRoom: IRoomState | undefined = myRooms.length
-    ? (head(
-        myRooms.filter((v) => v.roomStatus === RoomStatus.PLAYING)
-      ) as IRoomState)
-    : undefined;
 
   return (
     <>
@@ -99,7 +88,7 @@ export const Rooms = () => {
                         <RoomBlock
                           room={room}
                           userId={userId}
-                          iHaveRoom={myRooms.length > 0}
+                          iHaveRoom={!!myPendingRoom}
                         />
                       </Grid>
                     )

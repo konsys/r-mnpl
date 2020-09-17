@@ -55,6 +55,7 @@ export interface RoomPlayer extends IUser {
 export interface IRoomState {
   roomId: string;
   creatorId: number;
+  winnerId: RoomPlayer | null;
   players: Partial<RoomPlayer[]>;
   createTime: Date;
   roomType: RoomType;
@@ -147,6 +148,7 @@ export const resetcurrentRoom$ = RoomDomain.event<void>();
 export const currentRoom$ = RoomDomain.store<IRoomState>({
   roomId: "",
   creatorId: 0,
+  winnerId: null,
   players: [],
   createTime: new Date(),
   roomType: RoomType.REGULAR,
@@ -233,10 +235,37 @@ export const myRooms$ = sample({
   },
 });
 
-export const myPlayingRoom$ = RoomDomain.store<IRoomState | null>(
-  null
-).on(myRooms$, (_, rooms) =>
-  head(rooms.filter((v) => v.roomStatus === RoomStatus.PLAYING))
+export const myPendingRoom$ = RoomDomain.store<IRoomState | null>(null).on(
+  myRooms$,
+  (_, rooms) => {
+    const updatedRoom = head(
+      rooms.filter((v) => v.roomStatus === RoomStatus.PENDING)
+    );
+
+    return updatedRoom || null;
+  }
+);
+
+export const myPlayingRoom$ = RoomDomain.store<IRoomState | null>(null).on(
+  myRooms$,
+  (_, rooms) => {
+    const updatedRoom = head(
+      rooms.filter((v) => v.roomStatus === RoomStatus.PLAYING)
+    );
+
+    return updatedRoom || null;
+  }
+);
+
+export const myCompletedRoom$ = RoomDomain.store<IRoomState | null>(null).on(
+  myRooms$,
+  (_, rooms) => {
+    const updatedRoom = head(
+      rooms.filter((v) => v.roomStatus === RoomStatus.COMPLETED)
+    );
+
+    return updatedRoom || null;
+  }
 );
 
 sample({
