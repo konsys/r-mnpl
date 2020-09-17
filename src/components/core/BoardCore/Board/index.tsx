@@ -5,12 +5,13 @@ import { BoardWrapper } from "./BoardWrapper";
 import GameNotFound from "components/core/Game/GameNotFound/GameNotFound";
 import { ModalDialog } from "../../../views/BoardViews/ModalDialog/ModalDialog";
 import React from "react";
-import { RoomStatus } from "stores/Game/Rooms/RoomsModel";
 import { RouteComponentProps } from "react-router";
+import { myPlayingRoom$ } from "stores/Game/Rooms/RoomsModel";
 
 export const Board = (props: RouteComponentProps | any) => {
   useGate(boardGate, { gameId: props.match.params.id });
   const board = useStore(board$);
+  const playing = useStore(myPlayingRoom$);
 
   const playerIds =
     board && board.room && Array.isArray(board.room.players)
@@ -20,9 +21,7 @@ export const Board = (props: RouteComponentProps | any) => {
   return (
     <>
       <ModalDialog />
-      {!playerIds.length ||
-      !board ||
-      (board && board.room.roomStatus === RoomStatus.COMPLETED) ? (
+      {!playerIds.length || !board || !playing ? (
         <GameNotFound />
       ) : (
         <BoardWrapper playerIds={playerIds} />
