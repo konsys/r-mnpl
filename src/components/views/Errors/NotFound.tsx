@@ -1,13 +1,16 @@
 import { Button, Grid, Hidden, Typography } from "@material-ui/core";
 
 import { GRID_SPACING } from "../../../theme";
+import { Helmet } from "react-helmet";
 import { ReactComponent as NotFoundIcon } from "../../../theme/svg/404.svg";
 import React from "react";
 import Template from "../Template/Template";
+import ToMainPage from "./ToMainPage";
 import { useTranslation } from "react-i18next";
 
 export default function NotFound() {
   const { t } = useTranslation();
+
   const component = (
     <Grid
       container
@@ -49,19 +52,15 @@ export default function NotFound() {
         </Grid>{" "}
       </Hidden>
       <Grid item>
-        <Button size={"medium"} variant="contained" color="primary">
-          <Typography variant="overline" noWrap>
-            {t("To main page")}
-          </Typography>
-        </Button>
+        <ToMainPage />
       </Grid>
     </Grid>
   );
   return (
     <>
-      {/* <Helmet>
+      <Helmet>
         <title>{t("Page not found")}</title>
-      </Helmet> */}
+      </Helmet>
       <Template columns={1} title={"Page not found"}>
         {component}
       </Template>

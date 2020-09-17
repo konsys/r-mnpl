@@ -75,7 +75,7 @@ i18n
           "No cards but you play russian roulette!":
             "Тут нет полей, тут нечего покупать и продавать. Но всегда можно (и нужно!) играть в рулетку!",
           "Page not found": "Страница не найдена",
-          "To main page": "На главную",
+          "Main page": "На главную",
           "This page doesn`t exist yet": "Вы попали на несуществующую страницу",
           "Week top": "Топ недели",
           "Usual rating match.": "Обычный рейтинговый матч.",

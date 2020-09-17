@@ -8,7 +8,6 @@ import { BoardSocket } from "../../../../socket/BoardSocket";
 import { Chat } from "../../../views/BoardViews/Chat/Chat";
 import { Contract } from "../../../views/BoardViews/Contract/Contract";
 import { Dices } from "../../../views/BoardViews/Dices/Dices";
-import { GameLoading } from "../../../views/BoardViews/GameLoading/GameLoading";
 import { M1tv } from "../../../views/BoardViews/M1tv/M1tv";
 import { PlayersCore } from "../PlayersCore/PlayersCore";
 import React from "react";
@@ -76,7 +75,7 @@ export const BoardWrapper = ({ playerIds }: { playerIds: number[] }) => {
         </div>
         <div className="table-jokes"></div>
       </div>
-      <GameLoading />
+
       <ToastContainer />
     </>
   );
