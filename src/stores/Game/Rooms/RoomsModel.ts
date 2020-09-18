@@ -13,7 +13,6 @@ import { ErrorCode } from "utils/errors";
 import { createGate } from "effector-react";
 import { head } from "lodash";
 import nanoid from "nanoid";
-import { surrenderBoardFetch } from "api/Board/api";
 
 export enum RoomPortalFieldType {
   PORTAL = "Portal",
@@ -146,16 +145,6 @@ export const togglRestarts = RoomDomain.event<void>();
 export const toggleRoomSwitch = RoomDomain.event<string>();
 export const resetcurrentRoom$ = RoomDomain.event<void>();
 
-export const surrenderRoom = GameDomain.event<void>();
-
-export const surrenderBoardFx = GameDomain.effect<
-  { userId: number; roomId: string },
-  boolean,
-  Error
->({
-  handler: surrenderBoardFetch,
-});
-
 export const currentRoom$ = RoomDomain.store<IRoomState>({
   roomId: "",
   creatorId: 0,
@@ -266,14 +255,3 @@ sample({
   source: roomsGate.state,
   target: getRoomsFx,
 });
-
-// sample({
-//   clock: surrenderRoom,
-//   source: combine({
-//     userId: user$.map((v: IUser) => v.userId),
-//     roomId: myPlayingRoom$.map((v: any) => {
-//       return v && v.room ? v.room.roomId : "";
-//     }),
-//   }),
-//   target: surrenderBoardFx,
-// });
