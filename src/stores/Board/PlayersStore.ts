@@ -96,8 +96,8 @@ export const playersStore = PlayersDomain.store<IPlayersStore>({
     };
   })
   .on(getPlayersFx.fail, (err: any) => console.error("error", err))
-  .on(setPlayersEvent, (_, state) => state);
-.reset(resetPlayersEvent);
+  .on(setPlayersEvent, (_, state) => state)
+  .reset(resetPlayersEvent);
 
 playersStore.watch((v) => console.log("playersStoreWatch", v));
 
