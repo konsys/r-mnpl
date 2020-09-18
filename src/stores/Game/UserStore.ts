@@ -15,6 +15,12 @@ export const getUserFx = UserDomain.effect<string, IUser, Error>({
   handler: fetchUserProfile,
 });
 
+export const getMyProfile = UserDomain.event();
+
+getMyProfile.watch(() => {
+  getUserFx("me");
+});
+
 sample({
   clock: profileGate.open,
   source: profileGate.state,

@@ -33,7 +33,6 @@ export enum RoomStatus {
   NOT_CREATED = "notCreated",
   PENDING = "pending",
   PLAYING = "playing",
-  COMPLETED = "completed",
 }
 export enum RoomTypeName {
   REGULAR = "Regular game",
@@ -236,14 +235,22 @@ export const rooms$ = RoomDomain.store<IRoomResponce>({
 export const myRooms$ = sample({
   clock: rooms$.updates,
   source: combine({
-    userId: user$.map((v) => v.userId),
-    rooms: rooms$,
+    userId: user$.map((v) => {
+      console.log(123123123123, v);
+      return v.userId;
+    }),
+    rooms: rooms$.map((v) => v),
   }),
   fn: ({ userId, rooms }) => {
     const myRooms = rooms.rooms.filter((r) =>
       r.players.some((pl) => pl?.userId === userId)
     );
-    myRoomsReset();
+    // console.log(
+    //   "myRooms",
+    //   myRooms,
+    //   userId,
+    //   user$.map((v) => v.userId).getState()
+    // );
     return myRooms || [];
   },
   target: myRoomsUpdate,
@@ -251,6 +258,7 @@ export const myRooms$ = sample({
 
 export const myPendingRoom$ = RoomDomain.store<IRoomState | null>(null)
   .on(myRoomsUpdate, (_, rooms) => {
+    console.log("UPDATE PENDING");
     const updatedRoom = head(
       rooms.filter((v) => v.roomStatus === RoomStatus.PENDING)
     );
@@ -261,18 +269,9 @@ export const myPendingRoom$ = RoomDomain.store<IRoomState | null>(null)
 
 export const myPlayingRoom$ = RoomDomain.store<IRoomState | null>(null)
   .on(myRoomsUpdate, (_, rooms) => {
+    console.log("UPDATE PLAYING", rooms);
     const updatedRoom = head(
       rooms.filter((v) => v.roomStatus === RoomStatus.PLAYING)
-    );
-
-    return updatedRoom || null;
-  })
-  .reset(myRoomsReset);
-
-export const myCompletedRoom$ = RoomDomain.store<IRoomState | null>(null)
-  .on(myRoomsUpdate, (_, rooms) => {
-    const updatedRoom = head(
-      rooms.filter((v) => v.roomStatus === RoomStatus.COMPLETED)
     );
 
     return updatedRoom || null;
