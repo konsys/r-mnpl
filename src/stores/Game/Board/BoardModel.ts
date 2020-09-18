@@ -1,6 +1,6 @@
 import { GameDomain, getMyProfile } from "../UserStore";
+import { IRoomState, getRoomsFx } from "../Rooms/RoomsModel";
 
-import { IRoomState } from "../Rooms/RoomsModel";
 import { createGate } from "effector-react";
 import { fetchRoom } from "api/Rooms/api";
 import { sample } from "effector";
@@ -27,6 +27,7 @@ sample({
   source: boardGate.state,
   fn: ({ gameId }: { gameId: string }) => {
     getMyProfile();
+    getRoomsFx();
     return gameId;
   },
   target: getRoomFx,

@@ -28,6 +28,10 @@ export const Board = (props: RouteComponentProps | any) => {
       ? board.players.map((v) => v?.userId || 0)
       : [];
 
+  // console.log(1111, pending);
+  // console.log(2222, playing);
+  // console.log(3333, completed);
+  // console.log(4444, rooms);
   return (
     <>
       <ModalDialog />
