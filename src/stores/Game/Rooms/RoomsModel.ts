@@ -236,7 +236,6 @@ export const myRooms$ = sample({
   clock: rooms$.updates,
   source: combine({
     userId: user$.map((v) => {
-      console.log(123123123123, v);
       return v.userId;
     }),
     rooms: rooms$.map((v) => v),
@@ -245,12 +244,7 @@ export const myRooms$ = sample({
     const myRooms = rooms.rooms.filter((r) =>
       r.players.some((pl) => pl?.userId === userId)
     );
-    // console.log(
-    //   "myRooms",
-    //   myRooms,
-    //   userId,
-    //   user$.map((v) => v.userId).getState()
-    // );
+
     return myRooms || [];
   },
   target: myRoomsUpdate,
@@ -267,30 +261,19 @@ export const myPendingRoom$ = RoomDomain.store<IRoomState | null>(null)
   })
   .reset(myRoomsReset);
 
-export const myPlayingRoom$ = RoomDomain.store<IRoomState | null>(null)
-  .on(myRoomsUpdate, (_, rooms) => {
-    console.log("UPDATE PLAYING", rooms);
-    const updatedRoom = head(
-      rooms.filter((v) => v.roomStatus === RoomStatus.PLAYING)
-    );
-
-    return updatedRoom || null;
-  })
-  .reset(myRoomsReset);
-
 sample({
   clock: roomsGate.open,
   source: roomsGate.state,
   target: getRoomsFx,
 });
 
-sample({
-  clock: surrenderRoom,
-  source: combine({
-    userId: user$.map((v: IUser) => v.userId),
-    roomId: myPlayingRoom$.map((v: any) => {
-      return v && v.room ? v.room.roomId : "";
-    }),
-  }),
-  target: surrenderBoardFx,
-});
+// sample({
+//   clock: surrenderRoom,
+//   source: combine({
+//     userId: user$.map((v: IUser) => v.userId),
+//     roomId: myPlayingRoom$.map((v: any) => {
+//       return v && v.room ? v.room.roomId : "";
+//     }),
+//   }),
+//   target: surrenderBoardFx,
+// });

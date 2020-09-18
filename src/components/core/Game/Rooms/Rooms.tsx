@@ -2,9 +2,9 @@ import "./styles.scss";
 
 import { Button, Divider, Grid, Typography } from "@material-ui/core";
 import {
+  PlayerRoomStatus,
   RoomStatus,
   myPendingRoom$,
-  myPlayingRoom$,
   rooms$,
   roomsGate,
 } from "stores/Game/Rooms/RoomsModel";
@@ -22,12 +22,22 @@ import { user$ } from "stores/Game/UserStore";
 
 export const Rooms = () => {
   useGate(roomsGate);
-  const myPlayingRoom = useStore(myPlayingRoom$);
   const myPendingRoom = useStore(myPendingRoom$);
   const rooms = useStore(rooms$);
   const { t } = useTranslation();
   const { userId } = useStore(user$);
 
+  const playingRooms = rooms.rooms.filter(
+    (v) => v.roomStatus === RoomStatus.PLAYING
+  );
+
+  const myPlayingRoom = playingRooms.find((v) =>
+    v.players.some(
+      (v1) =>
+        v1?.userId === userId && v1.playerRoomStatus === PlayerRoomStatus.ACITVE
+    )
+  );
+  console.log(1111, myPlayingRoom);
   return (
     <>
       <CreateRoomModal />
