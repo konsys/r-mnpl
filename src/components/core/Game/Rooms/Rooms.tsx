@@ -31,6 +31,7 @@ export const Rooms = () => {
     (v) => v.roomStatus === RoomStatus.PLAYING
   );
 
+  console.log(234234234, rooms.rooms);
   const myPlayingRoom = playingRooms.find((v) =>
     v.players.some(
       (v1) =>

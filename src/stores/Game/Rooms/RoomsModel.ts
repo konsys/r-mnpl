@@ -137,7 +137,6 @@ addPlayerToRoomFx.fail.watch((v: any) => {
 export const createRoom = RoomDomain.event<void>();
 
 export const updateRoom = RoomDomain.event<IRoomState>();
-export const myRoomsUpdate = RoomDomain.event<IRoomState[]>();
 export const myRoomsReset = RoomDomain.event();
 export const toggleAutostart = RoomDomain.event<void>();
 export const togglePrivateRoom = RoomDomain.event<void>();
@@ -221,29 +220,14 @@ export const rooms$ = RoomDomain.store<IRoomResponce>({
   .on(getRoomsFx.done, (_, { result }) => result)
   .on(setRooms, (_, result) => result);
 
-export const myRooms$ = sample({
-  clock: rooms$.updates,
-  source: combine({
-    userId: user$.map((v) => {
-      return v.userId;
-    }),
-    rooms: rooms$.map((v) => v),
-  }),
-  fn: ({ userId, rooms }) => {
-    const myRooms = rooms.rooms.filter((r) =>
-      r.players.some((pl) => pl?.userId === userId)
-    );
-
-    return myRooms || [];
-  },
-  target: myRoomsUpdate,
-});
-
 export const myPendingRoom$ = RoomDomain.store<IRoomState | null>(null)
-  .on(myRoomsUpdate, (_, rooms) => {
-    console.log("UPDATE PENDING");
+  .on(rooms$.updates, (_, { rooms }) => {
     const updatedRoom = head(
-      rooms.filter((v) => v.roomStatus === RoomStatus.PENDING)
+      rooms.filter(
+        (v) =>
+          v.roomStatus === RoomStatus.PENDING &&
+          v.players.some((v1) => v1?.userId === user$.getState().userId)
+      )
     );
 
     return updatedRoom || null;
