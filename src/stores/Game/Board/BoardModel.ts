@@ -1,10 +1,16 @@
 import { GameDomain, getMyProfile, user$ } from "../UserStore";
-import { IRoomState, getRoomsFx } from "../Rooms/RoomsModel";
+import {
+  IRoomState,
+  RoomStatus,
+  getRoomsFx,
+  rooms$,
+} from "../Rooms/RoomsModel";
 import { combine, sample } from "effector";
 
 import { IUser } from "types/types";
 import { createGate } from "effector-react";
 import { fetchRoom } from "api/Rooms/api";
+import { head } from "lodash";
 import { surrenderBoardFetch } from "api/Board/api";
 
 export interface IBoardParams {
@@ -14,10 +20,14 @@ export const getRoomFx = GameDomain.effect<string, IRoomState, Error>({
   handler: fetchRoom,
 });
 
-export const boardGame$ = GameDomain.store<IRoomState | null>(null).on(
-  getRoomFx.done,
-  (_, { result }) => result
-);
+export const boardGame$ = GameDomain.store<IRoomState | null>(null)
+  .on(getRoomFx.done, (_, { result }) => result)
+  .on(rooms$.updates, (_, { rooms }) => {
+    const updatedRoom = head(
+      rooms.filter((v) => v.roomStatus === RoomStatus.PLAYING)
+    );
+    return updatedRoom || null;
+  });
 
 export const boardCompleted$ = GameDomain.store<IRoomState | null>(null);
 export const BoardDomain = GameDomain.domain("BoardDomain");

@@ -229,7 +229,7 @@ export const myPendingRoom$ = RoomDomain.store<IRoomState | null>(null)
           v.players.some((v1) => v1?.userId === user$.getState().userId)
       )
     );
-
+    console.log("PENDING", updatedRoom);
     return updatedRoom || null;
   })
   .reset(myRoomsReset);
