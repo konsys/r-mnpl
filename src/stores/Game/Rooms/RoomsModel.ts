@@ -13,6 +13,7 @@ import { ErrorCode } from "utils/errors";
 import { createGate } from "effector-react";
 import { head } from "lodash";
 import nanoid from "nanoid";
+import { surrenderBoardFetch } from "api/Board/api";
 
 export enum RoomPortalFieldType {
   PORTAL = "Portal",
@@ -31,7 +32,6 @@ export enum RoomType {
 export enum RoomStatus {
   NOT_CREATED = "notCreated",
   PENDING = "pending",
-  DELETED = "deleted",
   PLAYING = "playing",
   COMPLETED = "completed",
 }
@@ -104,7 +104,7 @@ createRoomFx.fail.watch((v: any) => {
   }
 });
 
-export const getRoomsFx = RoomDomain.effect<undefined, IRoomResponce, Error>({
+export const getRoomsFx = RoomDomain.effect<void, IRoomResponce, Error>({
   handler: fetchRooms,
 });
 
@@ -140,11 +140,22 @@ export const createRoom = RoomDomain.event<void>();
 
 export const updateRoom = RoomDomain.event<IRoomState>();
 export const myRoomsUpdate = RoomDomain.event<IRoomState[]>();
+export const myRoomsReset = RoomDomain.event();
 export const toggleAutostart = RoomDomain.event<void>();
 export const togglePrivateRoom = RoomDomain.event<void>();
 export const togglRestarts = RoomDomain.event<void>();
 export const toggleRoomSwitch = RoomDomain.event<string>();
 export const resetcurrentRoom$ = RoomDomain.event<void>();
+
+export const surrenderRoom = GameDomain.event<void>();
+
+export const surrenderBoardFx = GameDomain.effect<
+  { userId: number; roomId: string },
+  boolean,
+  Error
+>({
+  handler: surrenderBoardFetch,
+});
 
 export const currentRoom$ = RoomDomain.store<IRoomState>({
   roomId: "",
@@ -232,46 +243,55 @@ export const myRooms$ = sample({
     const myRooms = rooms.rooms.filter((r) =>
       r.players.some((pl) => pl?.userId === userId)
     );
+    myRoomsReset();
     return myRooms || [];
   },
   target: myRoomsUpdate,
 });
 
-export const myPendingRoom$ = RoomDomain.store<IRoomState | null>(null).on(
-  myRoomsUpdate,
-  (_, rooms) => {
+export const myPendingRoom$ = RoomDomain.store<IRoomState | null>(null)
+  .on(myRoomsUpdate, (_, rooms) => {
     const updatedRoom = head(
       rooms.filter((v) => v.roomStatus === RoomStatus.PENDING)
     );
 
     return updatedRoom || null;
-  }
-);
+  })
+  .reset(myRoomsReset);
 
-export const myPlayingRoom$ = RoomDomain.store<IRoomState | null>(null).on(
-  myRoomsUpdate,
-  (_, rooms) => {
+export const myPlayingRoom$ = RoomDomain.store<IRoomState | null>(null)
+  .on(myRoomsUpdate, (_, rooms) => {
     const updatedRoom = head(
       rooms.filter((v) => v.roomStatus === RoomStatus.PLAYING)
     );
 
     return updatedRoom || null;
-  }
-);
+  })
+  .reset(myRoomsReset);
 
-export const myCompletedRoom$ = RoomDomain.store<IRoomState | null>(null).on(
-  myRoomsUpdate,
-  (_, rooms) => {
+export const myCompletedRoom$ = RoomDomain.store<IRoomState | null>(null)
+  .on(myRoomsUpdate, (_, rooms) => {
     const updatedRoom = head(
       rooms.filter((v) => v.roomStatus === RoomStatus.COMPLETED)
     );
 
     return updatedRoom || null;
-  }
-);
+  })
+  .reset(myRoomsReset);
 
 sample({
   clock: roomsGate.open,
   source: roomsGate.state,
   target: getRoomsFx,
+});
+
+sample({
+  clock: surrenderRoom,
+  source: combine({
+    userId: user$.map((v: IUser) => v.userId),
+    roomId: myPlayingRoom$.map((v: any) => {
+      return v && v.room ? v.room.roomId : "";
+    }),
+  }),
+  target: surrenderBoardFx,
 });

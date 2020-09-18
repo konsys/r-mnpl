@@ -1,7 +1,7 @@
 import { IPlayerAction } from "../../../../../stores/Board/PlayersStore";
 import React from "react";
 import { openContractModal } from "../../../../../stores/Board/ContractStore";
-import { surrenderRoom } from "stores/Game/Board/BoardModel";
+import { surrenderRoom } from "stores/Game/Rooms/RoomsModel";
 
 export const PlayerActions = ({
   profile,
