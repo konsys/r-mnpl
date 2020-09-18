@@ -1,4 +1,4 @@
-import { combine, sample } from "effector";
+import { combine, merge, sample } from "effector";
 import {
   moveTokenAfterPlayerUpdate,
   tokensStore,
@@ -96,10 +96,10 @@ export const playersStore = PlayersDomain.store<IPlayersStore>({
     };
   })
   .on(getPlayersFx.fail, (err: any) => console.error("error", err))
-  .on(setPlayersEvent, (_, state) => state)
-  .reset(resetPlayersEvent);
+  .on(setPlayersEvent, (_, state) => state);
+.reset(resetPlayersEvent);
 
-// playersStore.watch((v) => console.log("playersStoreWatch", v));
+playersStore.watch((v) => console.log("playersStoreWatch", v));
 
 export const playersPositionChange = sample(
   playersStore,
@@ -115,11 +115,13 @@ playersPositionChange.watch((v) => {
 });
 
 sample({
-  clock: playersGate.open,
+  clock: merge([playersGate.open]),
   source: combine({
     userIds: playersGate.state.map(({ userIds }) => userIds),
   }),
-  fn: ({ userIds }) => userIds,
+  fn: ({ userIds }) => {
+    return userIds;
+  },
   target: getPlayersFx,
 });
 
@@ -129,5 +131,3 @@ sample({
   fn: ({ user }) => user,
   target: getUserFx,
 });
-
-playersGate.close.watch(() => resetPlayersEvent());

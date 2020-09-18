@@ -31,14 +31,12 @@ export const Rooms = () => {
     (v) => v.roomStatus === RoomStatus.PLAYING
   );
 
-  console.log(234234234, rooms.rooms);
   const myPlayingRoom = playingRooms.find((v) =>
     v.players.some(
       (v1) =>
         v1?.userId === userId && v1.playerRoomStatus === PlayerRoomStatus.ACITVE
     )
   );
-  console.log(1111, myPlayingRoom);
   return (
     <>
       <CreateRoomModal />
