@@ -2,12 +2,12 @@ import { IUser } from "../../types/types";
 import { MainDomain } from "../Board/BoardDomain";
 import { createGate } from "effector-react";
 import { fetchUserProfile } from "../../api/Users/api";
+import { logout } from "components/core/Registration/Login/model/LoginModel";
 import { sample } from "effector";
 
 export const GameDomain = MainDomain.domain("GameDomain");
 
 const UserDomain = GameDomain.domain("UserDomain");
-export const resetUserEvent = UserDomain.event();
 
 export const profileGate = createGate<any>();
 
@@ -44,6 +44,6 @@ export const user$ = UserDomain.store<IUser>({
 })
   .on(setUserEvent, (_, data) => data)
   .on(getUserFx.done, (_, data) => data.result)
-  .reset(resetUserEvent);
+  .reset(logout);
 
 // user$.updates.watch((v) => console.log("user$.updates.watch", v));

@@ -15,7 +15,9 @@ export const loginEffect = AuthDomain.effect<ILoginForm, ILoginResponce, Error>(
   }
 );
 
-export const LoginStore = AuthDomain.store<ILoginResponce | null>(null)
+export const logout = AuthDomain.event();
+
+export const login$ = AuthDomain.store<ILoginResponce | null>(null)
   .on(loginEffect.pending, () =>
     localStorage.setItem(LocalStorageParams.TOKEN, "")
   )
@@ -26,8 +28,9 @@ export const LoginStore = AuthDomain.store<ILoginResponce | null>(null)
     return data.result;
   })
   .on(loginEffect.fail, (err) =>
-    localStorage.setItem(LocalStorageParams.TOKEN, "")
+    localStorage.removeItem(LocalStorageParams.TOKEN)
   )
+  .on(logout, () => localStorage.removeItem(LocalStorageParams.TOKEN))
   .reset(clearTokenStore);
 
-// LoginStore.updates.watch((v) => console.log("LoginStoreWatch", v));
+// login$.updates.watch((v) => console.log("LoginStoreWatch", v));

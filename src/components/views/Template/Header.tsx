@@ -1,12 +1,22 @@
 import { BLOCK_SIZE, GRID_SPACING } from "../../../theme";
-import { Box, Button, Container, Grid, Hidden } from "@material-ui/core";
+import {
+  Box,
+  Button,
+  Container,
+  Grid,
+  Hidden,
+  Typography,
+} from "@material-ui/core";
 
 import Logo from "./logo/Logo";
 import MobileMenu from "./menu/MobileMenu";
 import React from "react";
 import TopMenu from "./menu/TopMenu";
+import { logout } from "components/core/Registration/Login/model/LoginModel";
 import { useHistory } from "react-router-dom";
+import { useStore } from "effector-react";
 import { useTranslation } from "react-i18next";
+import { user$ } from "stores/Game/UserStore";
 
 // xs: 0
 // sm: 600
@@ -16,7 +26,7 @@ import { useTranslation } from "react-i18next";
 
 export default function Header() {
   const { t } = useTranslation();
-
+  const user = useStore(user$);
   const history = useHistory();
   return (
     <Box
@@ -74,14 +84,20 @@ export default function Header() {
 
           <Grid item md={2} sm={4} xs={5}>
             <Grid container justify="flex-end">
-              <Button
-                variant="outlined"
-                color="primary"
-                size={"small"}
-                onClick={() => history.push("login")}
-              >
-                {t("Login")}
-              </Button>
+              {!user.name ? (
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  size={"small"}
+                  onClick={() => history.push("login")}
+                >
+                  {t("Login")}
+                </Button>
+              ) : (
+                <Typography color={"error"}>
+                  <Button onClick={() => logout()}>{user.name}</Button>
+                </Typography>
+              )}
             </Grid>
           </Grid>
         </Grid>

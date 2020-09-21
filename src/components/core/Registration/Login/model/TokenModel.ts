@@ -1,9 +1,9 @@
-import { LoginStore, clearTokenStore } from "./LoginModel";
+import { clearTokenStore, login$ } from "./LoginModel";
 
 import { LocalStorageParams } from "../../../../../types/types";
 
 export const getToken = (): string | null => {
-  const storeToken = LoginStore.getState();
+  const storeToken = login$.getState();
   const storage = localStorage.getItem(LocalStorageParams.TOKEN);
   return storeToken && storeToken.access_token
     ? storeToken.access_token
