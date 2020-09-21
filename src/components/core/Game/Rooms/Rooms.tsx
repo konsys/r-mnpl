@@ -25,7 +25,8 @@ export const Rooms = () => {
   const myPendingRoom = useStore(myPendingRoom$);
   const rooms = useStore(rooms$);
   const { t } = useTranslation();
-  const { userId } = useStore(user$);
+  const user = useStore(user$);
+  const userId = user && user.userId;
 
   const playingRooms = rooms.rooms.filter(
     (v) => v.roomStatus === RoomStatus.PLAYING
@@ -88,7 +89,8 @@ export const Rooms = () => {
               direction="column"
               spacing={BLOCK_SPACING}
             >
-              {rooms &&
+              {userId &&
+                rooms &&
                 Array.isArray(rooms.rooms) &&
                 rooms.rooms.map(
                   (room, k) =>

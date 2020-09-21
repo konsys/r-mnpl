@@ -145,19 +145,19 @@ export default function CreateRoomModal() {
           <Grid item sm={6} className="roomParams">
             <Grid container justify="space-between" alignItems="center">
               {roomType === RoomType.REGULAR && (
-                <RegularGameParams isVip={user.vip} />
+                <RegularGameParams isVip={!!user && user.vip} />
               )}
               {roomType === RoomType.QUICK && (
-                <QuickGameParams isVip={user.vip} />
+                <QuickGameParams isVip={!!user && user.vip} />
               )}
               {roomType === RoomType.RETRO && (
-                <RetroGameParams isVip={user.vip} />
+                <RetroGameParams isVip={!!user && user.vip} />
               )}
               {roomType === RoomType.ROULETTE && (
-                <RouletteGameParams isVip={user.vip} />
+                <RouletteGameParams isVip={!!user && user.vip} />
               )}
               {roomType === RoomType.SHUFFLE && (
-                <ShuffleGameParams isVip={user.vip} />
+                <ShuffleGameParams isVip={!!user && user.vip} />
               )}
             </Grid>
           </Grid>
@@ -166,10 +166,11 @@ export default function CreateRoomModal() {
       <DialogActions>
         <Button
           disabled={
-            !user.vip &&
-            (roomType === RoomType.QUICK ||
-              roomType === RoomType.RETRO ||
-              roomType === RoomType.ROULETTE)
+            !user ||
+            (!user.vip &&
+              (roomType === RoomType.QUICK ||
+                roomType === RoomType.RETRO ||
+                roomType === RoomType.ROULETTE))
           }
           onClick={() => {
             createRoom();

@@ -27,8 +27,9 @@ export const Contract = () => {
   const [valueTo, setValueTo] = useState<string>("");
 
   gameActionFx.done.watch(() => {
-    (user.userId === contract.fromUserId ||
-      user.userId === contract.toUserId) &&
+    user &&
+      (user.userId === contract.fromUserId ||
+        user.userId === contract.toUserId) &&
       closeContractModal();
   });
 
@@ -99,11 +100,13 @@ export const Contract = () => {
   const fromUser = getPlayer(contract.fromUserId);
   const toUser = getPlayer(contract.toUserId);
 
-  const contractType = contract.fromUserId === user.userId ? "from" : "to";
+  const contractType =
+    user && contract.fromUserId === user.userId ? "from" : "to";
 
   return (
     <>
       {contract &&
+        user &&
         (contract.fromUserId === user.userId ||
           contract.toUserId === user.userId) && (
           <div className="TableContract" style={{}}>

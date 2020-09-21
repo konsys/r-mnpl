@@ -20,7 +20,7 @@ export default function RoomBlock({
 }: {
   room: IRoomState;
   iHaveRoom: boolean;
-  userId: number;
+  userId?: number;
 }) {
   const g: IPlayer[] | null = room.players.length
     ? concat(
@@ -49,28 +49,29 @@ export default function RoomBlock({
           direction="row"
           spacing={1}
         >
-          {g.map((v, k: number) => (
-            <Grid key={k} item className="newRoomOneAvatar">
-              <RoomAvatar
-                avatar={(v && v.avatar) || ""}
-                name={(v && v.name) || ""}
-                addPlayer={(roomId: string) =>
-                  !iHaveRoom
-                    ? addPlayerToRoomFx({ roomId, userId })
-                    : openGameModal({
-                        open: true,
-                        text: t("You can`t join the room"),
-                        title: t("You are already waiting for game"),
-                      })
-                }
-                removePlayer={(roomId: string) =>
-                  removePlayerFromRoomFx({ roomId, userId })
-                }
-                roomId={room.roomId}
-                isMe={v ? userId === v.userId : false}
-              />
-            </Grid>
-          ))}
+          {userId &&
+            g.map((v, k: number) => (
+              <Grid key={k} item className="newRoomOneAvatar">
+                <RoomAvatar
+                  avatar={(v && v.avatar) || ""}
+                  name={(v && v.name) || ""}
+                  addPlayer={(roomId: string) =>
+                    !iHaveRoom
+                      ? addPlayerToRoomFx({ roomId, userId })
+                      : openGameModal({
+                          open: true,
+                          text: t("You can`t join the room"),
+                          title: t("You are already waiting for game"),
+                        })
+                  }
+                  removePlayer={(roomId: string) =>
+                    removePlayerFromRoomFx({ roomId, userId })
+                  }
+                  roomId={room.roomId}
+                  isMe={v ? userId === v.userId : false}
+                />
+              </Grid>
+            ))}
         </Grid>
       </Grid>
     </Grid>

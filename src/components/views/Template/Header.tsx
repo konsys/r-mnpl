@@ -84,7 +84,7 @@ export default function Header() {
 
           <Grid item md={2} sm={4} xs={5}>
             <Grid container justify="flex-end">
-              {!user.name ? (
+              {!user ? (
                 <Button
                   variant="outlined"
                   color="primary"

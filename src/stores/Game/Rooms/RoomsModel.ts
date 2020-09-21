@@ -196,15 +196,21 @@ sample({
   clock: createRoom,
   source: combine({
     room: currentRoom$.map((v) => v),
-    user: user$.map((v) => ({
-      ...v,
-      playerRoomStatus: PlayerRoomStatus.ACITVE,
-    })),
+    user:
+      user$ &&
+      user$.map((v: IUser | null) => {
+        return v
+          ? {
+              ...v,
+              playerRoomStatus: PlayerRoomStatus.ACITVE,
+            }
+          : null;
+      }),
   }),
   fn: ({ room, user }) => ({
     ...room,
-    creatorId: user.userId,
-    players: [user],
+    creatorId: user ? user.userId : 0,
+    players: user ? [user] : [],
     roomId: `${nanoid(4)}-${Date.now()}`,
   }),
 
@@ -222,11 +228,12 @@ export const rooms$ = RoomDomain.store<IRoomResponce>({
 
 export const myPendingRoom$ = RoomDomain.store<IRoomState | null>(null)
   .on(rooms$.updates, (_, { rooms }) => {
+    const user = user$.getState();
     const updatedRoom = head(
       rooms.filter(
         (v) =>
           v.roomStatus === RoomStatus.PENDING &&
-          v.players.some((v1) => v1?.userId === user$.getState().userId)
+          v.players.some((v1) => user && v1?.userId === user.userId)
       )
     );
     return updatedRoom || null;

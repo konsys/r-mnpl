@@ -76,11 +76,15 @@ export default function ChatMessage(props: IChatMessageProps) {
               {props.replies.map((v, k) => (
                 <Grid item key={k}>
                   <Chip
-                    variant={v.userId === user.userId ? "default" : "outlined"}
+                    variant={
+                      !!user && v.userId === user.userId
+                        ? "default"
+                        : "outlined"
+                    }
                     color={
                       v.vip
                         ? "secondary"
-                        : v.userId === user.userId
+                        : v.userId === (user && user.userId)
                         ? "primary"
                         : "default"
                     }
@@ -100,7 +104,7 @@ export default function ChatMessage(props: IChatMessageProps) {
                     style={{
                       color: v.vip
                         ? "white"
-                        : v.userId !== user.userId
+                        : v.userId !== (user && user.userId)
                         ? theme.palette.text.primary
                         : "white",
                     }}

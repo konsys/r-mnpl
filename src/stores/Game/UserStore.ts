@@ -30,18 +30,7 @@ sample({
 
 export const setUserEvent = UserDomain.event<IUser>();
 
-export const user$ = UserDomain.store<IUser>({
-  isActive: false,
-  isBlocked: false,
-  name: "",
-  userId: -1,
-  vip: false,
-  avatar: "",
-  createdAt: new Date(),
-  registrationType: "",
-  team: undefined,
-  updatedAt: new Date(),
-})
+export const user$ = UserDomain.store<IUser | null>(null)
   .on(setUserEvent, (_, data) => data)
   .on(getUserFx.done, (_, data) => data.result)
   .reset(logout);

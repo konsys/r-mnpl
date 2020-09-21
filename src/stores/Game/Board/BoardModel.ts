@@ -57,7 +57,7 @@ sample({
 sample({
   clock: surrenderRoom,
   source: combine({
-    userId: user$.map((v: IUser) => v.userId),
+    userId: user$?.map((v: IUser | null) => (v ? v.userId : 0)),
     roomId: boardGame$.map((v: any) => {
       return v && v.roomId;
     }),
