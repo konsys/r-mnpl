@@ -3,6 +3,8 @@ import "./app.scss";
 import "../../../theme/styles/vars.scss";
 
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import { getUserFx, profileGate } from "stores/Game/UserStore";
+import { useGate, useStore } from "effector-react";
 
 import { Board } from "../BoardCore/Board";
 import { Game } from "../Game/Game";
@@ -16,22 +18,29 @@ import TopFivePage from "../Game/TopFivePage/TopFivePage";
 import { theme } from "../../../theme";
 
 const App = () => {
+  useGate(profileGate);
+
+  const pending = useStore(getUserFx.pending);
   return (
     <>
       {/* <React.StrictMode> */}
-      <MuiThemeProvider theme={theme}>
-        <GameModal />
-        <GameChatSocket />
-        <RoomsSocket />
-        <Router>
-          <Switch>
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/board/:id" component={Board} />
-            <Route exact path="/" default component={Game} />
-            <Route path="/top-five" component={TopFivePage} />
-          </Switch>
-        </Router>
-      </MuiThemeProvider>
+      {pending ? (
+        "wait"
+      ) : (
+        <MuiThemeProvider theme={theme}>
+          <GameModal />
+          <GameChatSocket />
+          <RoomsSocket />
+          <Router>
+            <Switch>
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/board/:id" component={Board} />
+              <Route exact path="/" default component={Game} />
+              <Route path="/top-five" component={TopFivePage} />
+            </Switch>
+          </Router>
+        </MuiThemeProvider>
+      )}
       {/* </React.StrictMode> */}
     </>
   );

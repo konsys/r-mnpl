@@ -19,7 +19,6 @@ import { useGate, useStore } from "effector-react";
 import ChatMessage from "./ChatMessage";
 import { GRID_SPACING } from "../../../../theme";
 import PlayerChip from "./PlayerChip";
-import { profileGate } from "stores/Game/UserStore";
 import { useTranslation } from "react-i18next";
 
 enum KeyName {
@@ -27,7 +26,6 @@ enum KeyName {
 }
 
 export default function GameChat() {
-  useGate(profileGate);
   useGate(chatGate);
 
   const { t } = useTranslation();
