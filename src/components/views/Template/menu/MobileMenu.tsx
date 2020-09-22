@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 export const menuItems: any = {
   M1TV: "/m1tv",
   Friends: "/friends",
-  Inventory: "/invemtory",
+  Inventory: "/inventory",
   Market: "/market",
 };
 

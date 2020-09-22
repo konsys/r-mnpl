@@ -8,6 +8,7 @@ import { Board } from "../BoardCore/Board";
 import { Game } from "../Game/Game";
 import GameChatSocket from "socket/GameChatSocket";
 import GameModal from "../Game/GameModal/GameModal";
+import Inventory from "../Game/Inventory/Inventory";
 import { Login } from "../Registration/Login/Login";
 import { MuiThemeProvider } from "@material-ui/core";
 import React from "react";
@@ -33,6 +34,7 @@ const App = () => {
             <Route exact path="/board/:id" component={Board} />
             <Route exact path="/" default component={Game} />
             <Route path="/top-five" component={TopFivePage} />
+            <Route path="/inventory" component={Inventory} />
           </Switch>
         </Router>
       </MuiThemeProvider>
