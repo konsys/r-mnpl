@@ -49,29 +49,28 @@ export default function RoomBlock({
           direction="row"
           spacing={1}
         >
-          {userId &&
-            g.map((v, k: number) => (
-              <Grid key={k} item className="newRoomOneAvatar">
-                <RoomAvatar
-                  avatar={(v && v.avatar) || ""}
-                  name={(v && v.name) || ""}
-                  addPlayer={(roomId: string) =>
-                    !iHaveRoom
-                      ? addPlayerToRoomFx({ roomId, userId })
-                      : openGameModal({
-                          open: true,
-                          text: t("You can`t join the room"),
-                          title: t("You are already waiting for game"),
-                        })
-                  }
-                  removePlayer={(roomId: string) =>
-                    removePlayerFromRoomFx({ roomId, userId })
-                  }
-                  roomId={room.roomId}
-                  isMe={v ? userId === v.userId : false}
-                />
-              </Grid>
-            ))}
+          {g.map((v, k: number) => (
+            <Grid key={k} item className="newRoomOneAvatar">
+              <RoomAvatar
+                avatar={(v && v.avatar) || ""}
+                name={(v && v.name) || ""}
+                addPlayer={(roomId: string) =>
+                  !iHaveRoom && userId
+                    ? addPlayerToRoomFx({ roomId, userId })
+                    : openGameModal({
+                        open: true,
+                        text: t("You can`t join the room"),
+                        title: t("You are already waiting for game"),
+                      })
+                }
+                removePlayer={(roomId: string) =>
+                  userId && removePlayerFromRoomFx({ roomId, userId })
+                }
+                roomId={room.roomId}
+                isMe={v ? userId === v.userId : false}
+              />
+            </Grid>
+          ))}
         </Grid>
       </Grid>
     </Grid>

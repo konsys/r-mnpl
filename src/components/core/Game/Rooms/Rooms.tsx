@@ -38,6 +38,7 @@ export const Rooms = () => {
         v1?.userId === userId && v1.playerRoomStatus === PlayerRoomStatus.ACITVE
     )
   );
+  console.log(234234234, rooms);
   return (
     <>
       <CreateRoomModal />
@@ -89,18 +90,13 @@ export const Rooms = () => {
               direction="column"
               spacing={BLOCK_SPACING}
             >
-              {userId &&
-                rooms &&
+              {rooms &&
                 Array.isArray(rooms.rooms) &&
                 rooms.rooms.map(
                   (room, k) =>
                     room.roomStatus === RoomStatus.PENDING && (
                       <Grid item key={k}>
-                        <RoomBlock
-                          room={room}
-                          userId={userId}
-                          iHaveRoom={!!myPendingRoom}
-                        />
+                        <RoomBlock room={room} iHaveRoom={!!myPendingRoom} />
                       </Grid>
                     )
                 )}
