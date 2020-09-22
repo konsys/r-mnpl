@@ -10,13 +10,15 @@ import GameChatSocket from "socket/GameChatSocket";
 import GameModal from "../Game/GameModal/GameModal";
 import { Login } from "../Registration/Login/Login";
 import { MuiThemeProvider } from "@material-ui/core";
-import Profile from "../Profile/Profile";
 import React from "react";
 import RoomsSocket from "socket/RoomsSocket";
 import TopFivePage from "../Game/TopFivePage/TopFivePage";
+import { profileGate } from "stores/Game/UserStore";
 import { theme } from "../../../theme";
+import { useGate } from "effector-react";
 
 const App = () => {
+  useGate(profileGate);
   return (
     <>
       {/* <React.StrictMode> */}
@@ -27,12 +29,10 @@ const App = () => {
         <RoomsSocket />
         <Router>
           <Switch>
-            <Profile>
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/board/:id" component={Board} />
-              <Route exact path="/" default component={Game} />
-              <Route path="/top-five" component={TopFivePage} />
-            </Profile>
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/board/:id" component={Board} />
+            <Route exact path="/" default component={Game} />
+            <Route path="/top-five" component={TopFivePage} />
           </Switch>
         </Router>
       </MuiThemeProvider>
