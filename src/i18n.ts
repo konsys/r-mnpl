@@ -10,6 +10,8 @@ i18n
     resources: {
       ru: {
         translations: {
+          "Login to play": "Войдите, чтобы присоединиться к игре",
+          "You are not logged in": "Мы не знаем, кто Вы",
           Ok: "Ok",
           Reconnect: "Подключиться",
           "You can`t join the room": "Вы не можете присоединиться к игре",
