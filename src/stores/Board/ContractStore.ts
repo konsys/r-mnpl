@@ -4,7 +4,7 @@ import { BOARD_PARAMS } from "../../params/boardParams";
 import { BoardDomain } from "./BoardDomain";
 import _ from "lodash";
 import { actionsStore } from "./ActionStore";
-import { user$ } from "../Game/UserModel";
+import { user$ } from "../Game/User/UserModel";
 
 const ContractDomain = BoardDomain.domain("UserDomain");
 

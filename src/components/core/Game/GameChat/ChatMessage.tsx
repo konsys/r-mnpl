@@ -8,7 +8,7 @@ import { addReplyToEvent } from "../../../../stores/Game/Chat/GameChatModel";
 import moment from "moment";
 import { theme } from "../../../../theme";
 import { useStore } from "effector-react";
-import { user$ } from "stores/Game/UserModel";
+import { user$ } from "stores/Game/User/UserModel";
 
 export interface IChatMessage {
   fromUser: IUser;

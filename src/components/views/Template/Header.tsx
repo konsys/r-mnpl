@@ -16,7 +16,7 @@ import { logout } from "components/core/Registration/Login/model/LoginModel";
 import { useHistory } from "react-router-dom";
 import { useStore } from "effector-react";
 import { useTranslation } from "react-i18next";
-import { user$ } from "stores/Game/UserModel";
+import { user$ } from "stores/Game/User/UserModel";
 
 // xs: 0
 // sm: 600

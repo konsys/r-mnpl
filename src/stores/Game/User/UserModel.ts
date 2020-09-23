@@ -1,7 +1,7 @@
-import { IUser } from "../../types/types";
-import { MainDomain } from "../Board/BoardDomain";
+import { IUser } from "../../../types/types";
+import { MainDomain } from "../../Board/BoardDomain";
 import { createGate } from "effector-react";
-import { fetchUserProfile } from "../../api/Users/api";
+import { fetchUserProfile } from "../../../api/Users/api";
 import { logout } from "components/core/Registration/Login/model/LoginModel";
 import { sample } from "effector";
 

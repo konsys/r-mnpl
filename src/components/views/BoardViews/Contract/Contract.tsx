@@ -12,7 +12,7 @@ import { getField } from "../../../../utils/fields.utils";
 import { getPlayer } from "../../../../utils/players.utils";
 import { showDialog } from "../../../../stores/Board/DialogStore";
 import { useStore } from "effector-react";
-import { user$ } from "../../../../stores/Game/UserModel";
+import { user$ } from "../../../../stores/Game/User/UserModel";
 
 export enum KeyCode {
   ENTER = 13,

@@ -19,7 +19,7 @@ import { BOARD_PARAMS } from "../../../../params/boardParams";
 import { Field } from "../Field/Field";
 import { FieldActions } from "../Field/FieldActions/FieldAction";
 import { useStore } from "effector-react";
-import { user$ } from "../../../../stores/Game/UserModel";
+import { user$ } from "../../../../stores/Game/User/UserModel";
 
 export const Board = () => {
   const { fields } = useStore(fieldsStore);

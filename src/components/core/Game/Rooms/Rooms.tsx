@@ -19,7 +19,7 @@ import Template from "../../../views/Template/Template";
 import { TemplateModules } from "types/types";
 import { openRoomModal } from "stores/Game/Rooms/RoomsModalModel";
 import { useTranslation } from "react-i18next";
-import { user$ } from "stores/Game/UserModel";
+import { user$ } from "stores/Game/User/UserModel";
 
 export const Rooms = () => {
   useGate(roomsGate);

@@ -1,4 +1,4 @@
-import { GameDomain } from "../UserModel";
+import { GameDomain } from "../User/UserModel";
 import { resetRoomsStore } from "./RoomsModel";
 import { sample } from "effector";
 

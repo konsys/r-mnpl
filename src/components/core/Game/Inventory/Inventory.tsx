@@ -3,7 +3,7 @@ import React from "react";
 import Template from "components/views/Template/Template";
 import { useStore } from "effector-react";
 import { useTranslation } from "react-i18next";
-import { user$ } from "stores/Game/UserModel";
+import { user$ } from "stores/Game/User/UserModel";
 
 export default function Inventory() {
   const user = useStore(user$);

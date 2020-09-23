@@ -3,7 +3,7 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 import { loginEffect } from "./model/LoginModel";
 import { useStore } from "effector-react";
-import { user$ } from "stores/Game/UserModel";
+import { user$ } from "stores/Game/User/UserModel";
 
 export interface ILoginForm {
   email: string;
