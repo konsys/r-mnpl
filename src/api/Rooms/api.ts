@@ -4,7 +4,7 @@ import {
   IRoomState,
 } from "../../stores/Game/Rooms/RoomsModel";
 
-import { IResponceCode } from "types/types";
+import { IApiResponceCode } from "types/types";
 import { client } from "http/client";
 
 const roomsUrl = `/rooms`;
@@ -15,20 +15,20 @@ export const fetchRooms = async (): Promise<IRoomResponce> => {
 
 export const createRoomFetch = async (
   params: IRoomState
-): Promise<IResponceCode> => {
+): Promise<IApiResponceCode> => {
   return await (await client.post(roomsUrl, { room: params })).data;
 };
 
 export const addPlayerToRoomFetch = async (
   params?: IAddPlayerToRoom
-): Promise<IResponceCode> => {
+): Promise<IApiResponceCode> => {
   return await (await client.post(`${roomsUrl}/addPlayer`, { add: params }))
     .data;
 };
 
 export const removePlayerFromRoomFetch = async (
   params?: IAddPlayerToRoom
-): Promise<IResponceCode> => {
+): Promise<IApiResponceCode> => {
   return await (
     await client.post(`${roomsUrl}/removePlayer`, { remove: params })
   ).data;

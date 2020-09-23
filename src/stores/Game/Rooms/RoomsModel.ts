@@ -1,5 +1,5 @@
 import { GameDomain, user$ } from "../UserStore";
-import { IResponceCode, IUser } from "types/types";
+import { IApiResponceCode, IUser } from "types/types";
 import {
   addPlayerToRoomFetch,
   createRoomFetch,
@@ -81,11 +81,13 @@ export const roomsGate = createGate<any>();
 
 export const setRooms = RoomDomain.event<IRoomResponce>();
 
-export const createRoomFx = RoomDomain.effect<IRoomState, IResponceCode, Error>(
-  {
-    handler: createRoomFetch,
-  }
-);
+export const createRoomFx = RoomDomain.effect<
+  IRoomState,
+  IApiResponceCode,
+  Error
+>({
+  handler: createRoomFetch,
+});
 
 createRoomFx.fail.watch((v: any) => {
   try {
@@ -108,7 +110,7 @@ export const getRoomsFx = RoomDomain.effect<void, IRoomResponce, Error>({
 
 export const addPlayerToRoomFx = RoomDomain.effect<
   IAddPlayerToRoom,
-  IResponceCode,
+  IApiResponceCode,
   Error
 >({
   handler: addPlayerToRoomFetch,
@@ -116,7 +118,7 @@ export const addPlayerToRoomFx = RoomDomain.effect<
 
 export const removePlayerFromRoomFx = RoomDomain.effect<
   IAddPlayerToRoom,
-  IResponceCode,
+  IApiResponceCode,
   Error
 >({
   handler: removePlayerFromRoomFetch,

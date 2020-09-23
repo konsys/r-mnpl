@@ -289,7 +289,14 @@ export interface IContract {
   moneyFrom: number;
   moneyTo: number;
 }
-export interface IResponceCode {
+export interface IApiResponceCode {
   code: number;
   message?: string;
+}
+
+export enum TemplateModules {
+  BUY_GALLERY = "buyGallery",
+  GAME_CHAT = "gameChat",
+  FRIENDS_ONLINE = "friendsOnline",
+  TOP_FIVE = "topFive",
 }
