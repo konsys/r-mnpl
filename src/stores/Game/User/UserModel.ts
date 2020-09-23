@@ -9,7 +9,7 @@ export const GameDomain = MainDomain.domain("GameDomain");
 
 const UserDomain = GameDomain.domain("UserDomain");
 
-export const profileGate = createGate<any>();
+export const ProfileGate = createGate<any>();
 
 export const getUserFx = UserDomain.effect<string, IUser, Error>({
   handler: fetchUserProfile,
@@ -22,8 +22,8 @@ getMyProfile.watch(() => {
 });
 
 sample({
-  clock: profileGate.open,
-  source: profileGate.state,
+  clock: ProfileGate.open,
+  source: ProfileGate.state,
   fn: () => "me",
   target: getUserFx,
 });

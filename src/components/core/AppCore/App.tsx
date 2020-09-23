@@ -11,15 +11,15 @@ import GameModal from "../Game/GameModal/GameModal";
 import Inventory from "../Game/Inventory/Inventory";
 import { Login } from "../Registration/Login/Login";
 import { MuiThemeProvider } from "@material-ui/core";
+import { ProfileGate } from "stores/Game/User/UserModel";
 import React from "react";
 import RoomsSocket from "socket/RoomsSocket";
 import TopFivePage from "../Game/TopFivePage/TopFivePage";
-import { profileGate } from "stores/Game/User/UserModel";
 import { theme } from "../../../theme";
 import { useGate } from "effector-react";
 
 const App = () => {
-  useGate(profileGate);
+  useGate(ProfileGate);
   return (
     <>
       {/* <React.StrictMode> */}
