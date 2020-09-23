@@ -16,9 +16,10 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 import RoomBlock from "./RoomBlock/RoomBlock";
 import Template from "../../../views/Template/Template";
+import { TemplateModules } from "types/types";
 import { openRoomModal } from "stores/Game/Rooms/RoomsModalModel";
 import { useTranslation } from "react-i18next";
-import { user$ } from "stores/Game/UserStore";
+import { user$ } from "stores/Game/UserModel";
 
 export const Rooms = () => {
   useGate(roomsGate);
@@ -49,7 +50,16 @@ export const Rooms = () => {
         />
       ) : (
         <div className="findGame">
-          <Template columns={2} title={"Find games"}>
+          <Template
+            columns={2}
+            title={"Find games"}
+            modules={[
+              TemplateModules.FRIENDS_ONLINE,
+              TemplateModules.TOP_FIVE,
+              TemplateModules.BUY_GALLERY,
+              TemplateModules.GAME_CHAT,
+            ]}
+          >
             <Grid
               container
               justify="space-between"

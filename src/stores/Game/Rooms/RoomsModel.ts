@@ -1,4 +1,4 @@
-import { GameDomain, user$ } from "../UserStore";
+import { GameDomain, user$ } from "../UserModel";
 import { IApiResponceCode, IUser } from "types/types";
 import {
   addPlayerToRoomFetch,

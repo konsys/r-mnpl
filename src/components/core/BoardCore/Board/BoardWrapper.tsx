@@ -17,7 +17,7 @@ import { ToastContainer } from "react-toastify";
 import { Tokens } from "../../../views/BoardViews/Tokens/Tokens";
 import { actionsStore } from "../../../../stores/Board/ActionStore";
 import { useStore } from "effector-react";
-import { user$ } from "stores/Game/UserStore";
+import { user$ } from "stores/Game/UserModel";
 
 export const BoardWrapper = ({ playerIds }: { playerIds: number[] }) => {
   const action = useStore(actionsStore);

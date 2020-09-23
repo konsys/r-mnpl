@@ -14,10 +14,12 @@ export default function Template({
   children,
   columns,
   title,
+  modules,
 }: {
   children?: any;
   columns: 1 | 2;
   title: string;
+  modules?: TemplateModules[];
 }) {
   const { t } = useTranslation();
   return (
@@ -28,16 +30,7 @@ export default function Template({
       <Header />
       {columns === 1 && <OneColumnContent>{children}</OneColumnContent>}
       {columns === 2 && (
-        <TwoColumnContent
-          modules={[
-            TemplateModules.FRIENDS_ONLINE,
-            TemplateModules.TOP_FIVE,
-            // TemplateModules.BUY_GALLERY,
-            TemplateModules.GAME_CHAT,
-          ]}
-        >
-          {children}
-        </TwoColumnContent>
+        <TwoColumnContent modules={modules}>{children}</TwoColumnContent>
       )}
       <Footer />
       <Counters />

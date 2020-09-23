@@ -10,7 +10,7 @@ import { IPlayer } from "../../types/types";
 import { createGate } from "effector-react";
 import { fieldPositions } from "../../utils/fields.utils";
 import { getPlayer } from "../../utils/players.utils";
-import { getUserFx } from "stores/Game/UserStore";
+import { getUserFx } from "stores/Game/UserModel";
 import { usersFetch } from "../../api/Users/api";
 
 export const PlayersDomain = BoardDomain.domain("PlayersDomain");

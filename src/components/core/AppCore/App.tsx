@@ -14,7 +14,7 @@ import { MuiThemeProvider } from "@material-ui/core";
 import React from "react";
 import RoomsSocket from "socket/RoomsSocket";
 import TopFivePage from "../Game/TopFivePage/TopFivePage";
-import { profileGate } from "stores/Game/UserStore";
+import { profileGate } from "stores/Game/UserModel";
 import { theme } from "../../../theme";
 import { useGate } from "effector-react";
 

@@ -1,4 +1,4 @@
-import { GameDomain, getMyProfile, user$ } from "../UserStore";
+import { GameDomain, getMyProfile, user$ } from "../UserModel";
 import {
   IRoomState,
   RoomStatus,
