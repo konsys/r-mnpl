@@ -1,18 +1,22 @@
-.inventory {
+@import "../../../../theme/styles/vars.scss";
+.inventoryHeader {
   font-size: 28px;
   a {
     text-decoration: none;
   }
   .avatar {
-    height: 50px;
+    height: 40px;
     img {
       height: 100%;
       border-radius: 50%;
     }
   }
   .profileName {
-    color: #3bafda;
+    color: $shuffleСolor;
     font-size: 26px;
-    border-bottom: 1px dotted #3bafda;
+    border-bottom: 1px dotted $shuffleСolor;
   }
+}
+.inventoryFilters {
+  color: red;
 }
