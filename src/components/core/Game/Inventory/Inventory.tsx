@@ -1,5 +1,9 @@
+import "./inventory.scss";
+
 import { Button, Grid } from "@material-ui/core";
 
+import { Link } from "react-router-dom";
+import { Params } from "config/params";
 import React from "react";
 import Template from "components/views/Template/Template";
 import { useStore } from "effector-react";
@@ -14,15 +18,25 @@ export default function Inventory() {
       <Template columns={1} title={"Inventory"}>
         <Grid
           container
-          alignContent="flex-start"
           alignItems="center"
-          justify="center"
+          justify="space-between"
           direction="row"
-          style={{ border: "2px solid red" }}
+          className={"inventory"}
         >
           <Grid item>
-            <Grid container spacing={1}>
-              <Grid item>{user?.avatar}</Grid>
+            <Grid container spacing={1} alignItems="center">
+              <Grid item>
+                <div className="avatar">
+                  {user?.avatar && (
+                    <Link to={`/profile/${user.userId}`}>
+                      <img
+                        alt={user.name}
+                        src={Params.BASE_URL + "/" + user.avatar}
+                      />
+                    </Link>
+                  )}
+                </div>
+              </Grid>
               <Grid item>{user?.name}</Grid>
               <Grid item>{">"}</Grid>
               <Grid item>{t("Inventory")}</Grid>
