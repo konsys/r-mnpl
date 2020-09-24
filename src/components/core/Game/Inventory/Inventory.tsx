@@ -26,11 +26,9 @@ export default function Inventory() {
       <Template columns={1} title={`${t("Inventory")} ${user?.name}`}>
         <Grid
           container
-          alignItems="center"
-          justify="space-between"
-          direction="row"
-          className={"inventoryFilters"}
+          direction="column"
           spacing={GRID_SPACING}
+          className={"inventory"}
         >
           <Grid item>
             <Grid
