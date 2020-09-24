@@ -1,6 +1,6 @@
 import "./inventory.scss";
 
-import { Button, Grid } from "@material-ui/core";
+import { Button, Grid, Typography } from "@material-ui/core";
 
 import { Link } from "react-router-dom";
 import { Params } from "config/params";
@@ -37,10 +37,18 @@ export default function Inventory() {
                   )}
                 </div>
               </Grid>
-              <Grid item>{user?.name}</Grid>
+              <Grid item>
+                <Link to={`/profile/${user?.userId}`}>
+                  <Typography className="profileName">
+                    {(user && user.name.toUpperCase()) || ""}
+                  </Typography>
+                </Link>
+              </Grid>
               <Grid item>{">"}</Grid>
               <Grid item>{t("Inventory")}</Grid>
-              <Grid item>12</Grid>
+              <Grid item>
+                <Typography color="textSecondary">12</Typography>
+              </Grid>
             </Grid>
           </Grid>
           <Grid item>
