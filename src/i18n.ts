@@ -10,6 +10,14 @@ i18n
     resources: {
       ru: {
         translations: {
+          "Input words for items search": "Введите слова для поиска предметов",
+          "All items": "Все предметы",
+          Cards: "Карточки",
+          "Cases and sets": "Кейсы и наборы",
+          "Dices and generators": "Кубики и генераторы",
+          Badges: "Значки",
+          Stickers: "Стикеры",
+          Others: "Остальное",
           "Login to play": "Войдите, чтобы присоединиться к игре",
           "You are not logged in": "Мы не знаем, кто Вы",
           Ok: "Ok",
@@ -20,6 +28,8 @@ i18n
             "Откройте VIP статус чтобы выбрать все возможные опции",
           Error: "Ошибка",
           "Login to create room": "Войдите, чтобы создать комнату",
+          "Login to manage your inventory":
+            "Войдите, чтобы управлять Вашим инвентарем",
           "Only for VIP": "Только для VIP статуса",
           "Enter room": "Присоединиться",
           "Unknown error": "Неизвестная ошибка",

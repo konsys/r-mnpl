@@ -300,3 +300,12 @@ export enum TemplateModules {
   FRIENDS_ONLINE = "friendsOnline",
   TOP_FIVE = "topFive",
 }
+
+export enum InventoryType {
+  CARDS = "cards",
+  CASES = "cases",
+  DICES = "dices",
+  BADGES = "badges",
+  STICKERS = "stickers",
+  OTHERS = "others",
+}

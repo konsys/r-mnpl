@@ -3,4 +3,4 @@ import { createGate } from "effector-react";
 
 export const InventoryDomain = GameDomain.domain("InventoryDomain");
 
-export const InventoryGate = createGate<any>();
+export const InventoryGate = createGate<number>();

@@ -10,6 +10,12 @@ import { TemplateModules } from "types/types";
 import TwoColumnContent from "./content/TwoColumnContent";
 import { useTranslation } from "react-i18next";
 
+// xs: 0
+// sm: 600
+// md: 960
+// lg: 1280
+// xl: 1920
+
 export default function Template({
   children,
   columns,
