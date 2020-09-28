@@ -3,18 +3,20 @@ import "./inventory.scss";
 import { Button, Grid, Select, TextField, Typography } from "@material-ui/core";
 import InventoryItem, { ItemLevel } from "./InventoryItem";
 import React, { useState } from "react";
+import { useGate, useStore } from "effector-react";
 
 import Alert from "@material-ui/lab/Alert";
+import { InventoryGate } from "./InventoryModel";
 import { InventoryType } from "types/types";
 import { Link } from "react-router-dom";
 import { Params } from "config/params";
 import Template from "components/views/Template/Template";
-import { useStore } from "effector-react";
 import { useTranslation } from "react-i18next";
 import { user$ } from "stores/Game/User/UserModel";
 
 export default function Inventory() {
   const user = useStore(user$);
+  useGate(InventoryGate, user?.userId || 0);
   const { t } = useTranslation();
   const [inventory, setInventory] = useState<string>("all");
   return (
@@ -58,7 +60,7 @@ export default function Inventory() {
                     <Grid item>
                       <Link to={`/profile/${user?.userId}`}>
                         <Typography className="profileName">
-                          {(user && user.name.toUpperCase()) || ""}
+                          {(user && user.name && user.name.toUpperCase()) || ""}
                         </Typography>
                       </Link>
                     </Grid>
