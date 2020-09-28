@@ -126,13 +126,15 @@ export default function Inventory() {
             <Grid item>
               <Grid container direction="row" className="inventoryItems">
                 <Grid item>
-                  <InventoryItem
-                    img={
-                      "https://cdn2.kirick.me/libs/monopoly/fields/brands/0_auto/kia.svg"
-                    }
-                    name={"KIA"}
-                    level={ItemLevel.USUAL}
-                  />
+                  {new Array(10).fill(0).map(() => (
+                    <InventoryItem
+                      img={
+                        "https://cdn2.kirick.me/libs/monopoly/fields/brands/0_auto/kia.svg"
+                      }
+                      name={"KIA"}
+                      level={ItemLevel.USUAL}
+                    />
+                  ))}
                 </Grid>
               </Grid>
             </Grid>
