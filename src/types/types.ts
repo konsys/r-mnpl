@@ -309,3 +309,7 @@ export enum InventoryType {
   STICKERS = "stickers",
   OTHERS = "others",
 }
+
+export interface IInventory {
+  fields: IField[];
+}

@@ -131,7 +131,7 @@ export default function Inventory() {
               <Grid container direction="row" className="inventoryItems">
                 <Grid item>
                   {inventoryData &&
-                    inventoryData.map((v: IField) => (
+                    inventoryData.fields.map((v: IField) => (
                       <InventoryItem
                         key={v.fieldId}
                         img={v.imgSrc ? createImgPath(v.imgSrc) : ""}
