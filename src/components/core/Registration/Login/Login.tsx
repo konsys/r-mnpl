@@ -18,7 +18,6 @@ export const login = (data: ILoginForm) => loginEffect(data);
 
 export const Login = () => {
   const user = useStore(user$);
-  console.log(23424234, user);
   return user ? <Redirect to="/" /> : <LoginForm onSubmit={login} />;
   // return <LoginForm onSubmit={login} />;
 };

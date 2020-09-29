@@ -14,7 +14,6 @@ export const PlayersCore = ({ playerIds }: { playerIds: number[] }) => {
   const data = useStore(playersStore);
   const pending = useStore(getPlayersFx.pending);
 
-  console.log("PlayersCore", playerIds);
   return !pending && data.players.length ? (
     <Players players={data.players} />
   ) : (

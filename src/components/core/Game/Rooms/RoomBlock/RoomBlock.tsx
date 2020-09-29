@@ -31,7 +31,6 @@ export default function RoomBlock({
 
   const { t } = useTranslation();
 
-  console.log(23423434, userId);
   return (
     <Grid
       container

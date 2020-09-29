@@ -1,13 +1,13 @@
 import "./inventory.scss";
 
 import { Button, Grid, Select, TextField, Typography } from "@material-ui/core";
+import { IField, InventoryType } from "types/types";
+import { InventoryGate, inventory$ } from "./InventoryModel";
 import InventoryItem, { ItemLevel } from "./InventoryItem";
 import React, { useState } from "react";
 import { useGate, useStore } from "effector-react";
 
 import Alert from "@material-ui/lab/Alert";
-import { InventoryGate } from "./InventoryModel";
-import { InventoryType } from "types/types";
 import { Link } from "react-router-dom";
 import { Params } from "config/params";
 import Template from "components/views/Template/Template";
@@ -16,9 +16,11 @@ import { user$ } from "stores/Game/User/UserModel";
 
 export default function Inventory() {
   const user = useStore(user$);
-  useGate(InventoryGate, user?.userId || 0);
+  useGate(InventoryGate, { userId: user && user.userId });
   const { t } = useTranslation();
   const [inventory, setInventory] = useState<string>("all");
+  const inventoryData = useStore(inventory$);
+  console.log(111111, inventoryData);
   return (
     <>
       <Template columns={1} title={`${t("Inventory")} ${user?.name || ""}`}>
@@ -128,15 +130,14 @@ export default function Inventory() {
             <Grid item>
               <Grid container direction="row" className="inventoryItems">
                 <Grid item>
-                  {new Array(10).fill(0).map(() => (
-                    <InventoryItem
-                      img={
-                        "https://cdn2.kirick.me/libs/monopoly/fields/brands/0_auto/kia.svg"
-                      }
-                      name={"KIA"}
-                      level={ItemLevel.USUAL}
-                    />
-                  ))}
+                  {inventoryData &&
+                    inventoryData.map((v: IField) => (
+                      <InventoryItem
+                        img={v.imgSrc || ""}
+                        name={v.name}
+                        level={ItemLevel.USUAL}
+                      />
+                    ))}
                 </Grid>
               </Grid>
             </Grid>
