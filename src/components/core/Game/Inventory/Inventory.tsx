@@ -8,6 +8,7 @@ import React, { useState } from "react";
 import { useGate, useStore } from "effector-react";
 
 import Alert from "@material-ui/lab/Alert";
+import { GRID_SPACING } from "theme";
 import { Link } from "react-router-dom";
 import { Params } from "config/params";
 import Template from "components/views/Template/Template";
@@ -37,7 +38,7 @@ export default function Inventory() {
             spacing={5}
             className={"inventory"}
           >
-            <Grid item style={{ border: "3px solid blue" }}>
+            <Grid item>
               <Grid
                 container
                 alignItems="center"
@@ -91,6 +92,7 @@ export default function Inventory() {
                 justify="flex-start"
                 direction="row"
                 className={"inventoryFilters"}
+                spacing={GRID_SPACING}
               >
                 <Grid item>
                   <TextField

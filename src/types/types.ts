@@ -301,6 +301,10 @@ export enum TemplateModules {
   TOP_FIVE = "topFive",
 }
 
+export interface IInventory {
+  fields: IField[];
+}
+
 export enum InventoryType {
   CARDS = "cards",
   CASES = "cases",
@@ -310,6 +314,10 @@ export enum InventoryType {
   OTHERS = "others",
 }
 
-export interface IInventory {
-  fields: IField[];
+export interface IInventoryItems {
+  inventoryId: number;
+  inventoryType: InventoryType;
+  gameId: string;
+  date: Date;
+  quantity: number;
 }
