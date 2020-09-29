@@ -11,6 +11,7 @@ import Alert from "@material-ui/lab/Alert";
 import { Link } from "react-router-dom";
 import { Params } from "config/params";
 import Template from "components/views/Template/Template";
+import { createImgPath } from "utils/fields.utils";
 import { useTranslation } from "react-i18next";
 import { user$ } from "stores/Game/User/UserModel";
 
@@ -20,7 +21,6 @@ export default function Inventory() {
   const { t } = useTranslation();
   const [inventory, setInventory] = useState<string>("all");
   const inventoryData = useStore(inventory$);
-  console.log(111111, inventoryData);
   return (
     <>
       <Template columns={1} title={`${t("Inventory")} ${user?.name || ""}`}>
@@ -133,7 +133,8 @@ export default function Inventory() {
                   {inventoryData &&
                     inventoryData.map((v: IField) => (
                       <InventoryItem
-                        img={v.imgSrc || ""}
+                        key={v.fieldId}
+                        img={v.imgSrc ? createImgPath(v.imgSrc) : ""}
                         name={v.name}
                         level={ItemLevel.USUAL}
                       />

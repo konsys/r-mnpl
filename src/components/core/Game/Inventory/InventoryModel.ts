@@ -14,7 +14,7 @@ export const getInventoryFx = InventoryDomain.effect<number, any, Error>({
 
 export const inventory$ = InventoryDomain.store<any | null>(null).on(
   getInventoryFx.done,
-  ({ result }) => result
+  (prev, { result }) => result
 );
 
 const inventorySample = sample({

@@ -1,7 +1,7 @@
 import { FieldType, IField } from "../../../../types/types";
 
-import { Params } from "../../../../config/params";
 import React from "react";
+import { createImgPath } from "utils/fields.utils";
 import { playersStore } from "../../../../stores/Board/PlayersStore";
 import { useStore } from "effector-react";
 
@@ -70,7 +70,7 @@ export const Field = ({
           <div
             className="_logo"
             id={`field-${fieldPosition}`}
-            style={{ backgroundImage: `url(${Params.BASE_URL}/${imgSrc}` }}
+            style={{ backgroundImage: `url(${createImgPath(imgSrc || "")}` }}
           />
         </div>
         {type === FieldType.COMPANY &&
