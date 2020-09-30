@@ -15,7 +15,6 @@ import { RouteComponentProps } from "react-router";
 import { head } from "lodash";
 
 export const Board = (props: RouteComponentProps | any) => {
-  console.log(234234234, props);
   let gameId = "";
   try {
     gameId = props.match.params.id;
@@ -28,8 +27,6 @@ export const Board = (props: RouteComponentProps | any) => {
   const board: IRoomState | null = useStore(boardGame$);
   const completed: IRoomState | null = useStore(boardCompleted$);
 
-  console.log(555555, completed);
-  console.log(444444, board);
   return (
     <>
       <ModalDialog />
