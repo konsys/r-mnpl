@@ -1,9 +1,13 @@
-import { IField, OutcomeMessageType } from "../../../../types/types";
+import {
+  IContract,
+  IField,
+  IUser,
+  OutcomeMessageType,
+} from "../../../../types/types";
 import React, { useState } from "react";
 import {
   addMoneyToContract,
   closeContractModal,
-  contract$,
 } from "../../../../stores/Board/ContractStore";
 import { gameActionFx, sendBoardAction } from "stores/Board/ActionStore";
 
@@ -11,17 +15,18 @@ import { ContractCompany } from "./ContractCompany";
 import { getField } from "../../../../utils/fields.utils";
 import { getPlayer } from "../../../../utils/players.utils";
 import { showDialog } from "../../../../stores/Board/DialogStore";
-import { useStore } from "effector-react";
-import { user$ } from "../../../../stores/Game/User/UserModel";
 
 export enum KeyCode {
   ENTER = 13,
 }
 
-export const Contract = () => {
-  const contract = useStore(contract$);
-  const user = useStore(user$);
-
+export const Contract = ({
+  contract,
+  user,
+}: {
+  contract: IContract;
+  user: IUser;
+}) => {
   const [activeInput, setActiveInput] = useState<number>(0);
   const [valueFrom, setValueFrom] = useState<string>("");
   const [valueTo, setValueTo] = useState<string>("");

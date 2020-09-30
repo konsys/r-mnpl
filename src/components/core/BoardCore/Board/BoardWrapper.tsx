@@ -136,7 +136,7 @@ export const BoardWrapper = ({ board }: { board: IRoomState }) => {
     playersData && playersData.players && playersData.players.length
       ? playersData.players
       : null;
-  console.log(234234234, players);
+
   const modal = () => {
     try {
       return (
@@ -155,7 +155,7 @@ export const BoardWrapper = ({ board }: { board: IRoomState }) => {
 
   return (
     <>
-      {players && fields && (
+      {players && fields && tokens && user && (
         <div
           className="boardWrapper"
           style={{ width: "100%", height: "100%" }}
@@ -187,7 +187,7 @@ export const BoardWrapper = ({ board }: { board: IRoomState }) => {
                   <Tokens tokens={tokens} fields={fields} />
                 </div>
                 <Dices />
-                <Contract />
+                <Contract user={user} contract={contract} />
                 <TableHelper />
               </div>
             </div>
