@@ -7,11 +7,12 @@ import {
 
 import { BoardDomain } from "./BoardDomain";
 import { IPlayer } from "../../types/types";
+import { boardGame$ } from "stores/Game/Board/BoardModel";
 import { createGate } from "effector-react";
 import { fieldPositions } from "../../utils/fields.utils";
 import { getPlayer } from "../../utils/players.utils";
 import { getUserFx } from "stores/Game/User/UserModel";
-import { usersFetch } from "../../api/Users/api";
+import { initUsersFetch } from "../../api/Users/api";
 
 export const PlayersDomain = BoardDomain.domain("PlayersDomain");
 
@@ -65,8 +66,15 @@ export interface Iplayers$ {
   players: IPlayer[];
 }
 export const resetPlayersEvent = PlayersDomain.event();
-export const getPlayersFx = PlayersDomain.effect<number[], IPlayer[], Error>({
-  handler: usersFetch,
+export const getInitPlayersFx = PlayersDomain.effect<
+  {
+    ids: number[];
+    gameId: string;
+  },
+  IPlayer[],
+  Error
+>({
+  handler: initUsersFetch,
 });
 export const setPlayersEvent = PlayersDomain.event<Iplayers$>();
 
@@ -74,7 +82,7 @@ export const players$ = PlayersDomain.store<Iplayers$>({
   players: [],
   version: 0,
 })
-  .on(getPlayersFx.done, (_, data) => {
+  .on(getInitPlayersFx.done, (_, data) => {
     // Init token position
     const fields = fieldPositions();
     const players = data.result.map((player) => {
@@ -95,11 +103,9 @@ export const players$ = PlayersDomain.store<Iplayers$>({
       version: 1,
     };
   })
-  .on(getPlayersFx.fail, (err: any) => console.error("error", err))
+  .on(getInitPlayersFx.fail, (err: any) => console.error("error", err))
   .on(setPlayersEvent, (_, state) => state)
   .reset(resetPlayersEvent);
-
-players$.watch((v) => console.log("players$Watch", v));
 
 export const playersPositionChange = sample(
   players$,
@@ -117,12 +123,13 @@ playersPositionChange.watch((v) => {
 sample({
   clock: merge([playersGate.open]),
   source: combine({
-    userIds: playersGate.state.map(({ userIds }) => userIds),
+    ids: playersGate.state.map(({ userIds }) => userIds),
+    gameId: boardGame$.map((v) => v?.roomId),
   }),
-  fn: ({ userIds }) => {
-    return userIds;
+  fn: ({ ids, gameId }) => {
+    return { ids, gameId: gameId || "" };
   },
-  target: getPlayersFx,
+  target: getInitPlayersFx,
 });
 
 sample({
