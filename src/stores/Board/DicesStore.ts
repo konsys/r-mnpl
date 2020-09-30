@@ -6,7 +6,7 @@ import {
 } from "../../types/types";
 
 import { BoardDomain } from "./BoardDomain";
-import { boardSocket } from "../../socket/BoardSocket";
+import { boardSocket } from "components/core/BoardCore/Board/BoardWrapper";
 
 const DiceDomain = BoardDomain.domain("DiceDomain");
 export const hideDicesEvent = DiceDomain.event();
