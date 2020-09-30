@@ -26,7 +26,7 @@ import { Contract } from "../../../views/BoardViews/Contract/Contract";
 import { Dices } from "../../../views/BoardViews/Dices/Dices";
 import { IRoomState } from "stores/Game/Rooms/RoomsModel";
 import { M1tv } from "../../../views/BoardViews/M1tv/M1tv";
-import { PlayersCore } from "../PlayersCore/PlayersCore";
+import { Players } from "components/views/BoardViews/Players/Players";
 import { SocketActions } from "types/Socket/SocketTypes";
 import { TableHelper } from "../../../views/BoardViews/TableHelper/TableHelper";
 import { Ticket } from "../../../views/BoardViews/Ticket/ticket";
@@ -108,7 +108,9 @@ export const playersHandler = (players: IPlayer[]) => updateAllPlayers(players);
 export let boardSocket: SocketIOClient.Socket;
 
 export const BoardWrapper = ({ board }: { board: IRoomState }) => {
-  useGate(playersGate, { userIds: [1, 2], user: "me" });
+  const playerIds = board ? board.players.map((v) => (v ? v.userId : -1)) : [];
+
+  useGate(playersGate, { userIds: playerIds, user: "me" });
 
   useEffect(() => {
     boardSocket = openSocket("http://localhost:8000/board");
@@ -121,12 +123,17 @@ export const BoardWrapper = ({ board }: { board: IRoomState }) => {
   }, []);
 
   const action = useStore(actions$);
-  const players = useStore(players$);
+  const playersData = useStore(players$);
   const { fields } = useStore(fields$);
   const fieldActionId = useStore(fieldAction$);
   const contract = useStore(contract$);
   const user = useStore(user$);
 
+  const players =
+    playersData && playersData.players && playersData.players.length
+      ? playersData.players
+      : null;
+  console.log(234234234, players);
   const modal = () => {
     try {
       return (
@@ -145,45 +152,48 @@ export const BoardWrapper = ({ board }: { board: IRoomState }) => {
 
   return (
     <>
-      <div
-        className="boardWrapper"
-        style={{ width: "100%", height: "100%" }}
-        mnpl-newcolors="1"
-        cz-shortcut-listen="true"
-        mnpl-mouse="1"
-        data-os="null"
-        data-browser="chrome"
-      >
-        <div className="table _shakehack">
-          <div className="table-body">
-            <PlayersCore players={players.players} />
-            <div className="table-body-board">
-              <BoardView
-                fields={fields}
-                fieldActionId={fieldActionId}
-                contract={contract}
-                user={user}
-              />
-              <div className="table-body-board-center">
-                <M1tv />
-                {modal()}
-                <Arbitr />
-                <Ticket />
-                <Chat />
-              </div>
-              <div className="table-body-board-tokens">
-                <Tokens />
-              </div>
-              <Dices />
-              <Contract />
-              <TableHelper />
-            </div>
-          </div>
+      {players && fields && (
+        <div
+          className="boardWrapper"
+          style={{ width: "100%", height: "100%" }}
+          mnpl-newcolors="1"
+          cz-shortcut-listen="true"
+          mnpl-mouse="1"
+          data-os="null"
+          data-browser="chrome"
+        >
+          <div className="table _shakehack">
+            <div className="table-body">
+              <Players players={players} />
+              <div className="table-body-board">
+                <BoardView
+                  fields={Array.isArray(fields) ? fields : []}
+                  fieldActionId={fieldActionId}
+                  contract={contract}
+                  user={user}
+                />
 
-          <div id="placeholder_gameover"></div>
+                <div className="table-body-board-center">
+                  <M1tv />
+                  {modal()}
+                  <Arbitr />
+                  <Ticket />
+                  <Chat />
+                </div>
+                <div className="table-body-board-tokens">
+                  <Tokens />
+                </div>
+                <Dices />
+                <Contract />
+                <TableHelper />
+              </div>
+            </div>
+
+            <div id="placeholder_gameover"></div>
+          </div>
+          <div className="table-jokes"></div>
         </div>
-        <div className="table-jokes"></div>
-      </div>
+      )}
 
       <ToastContainer />
     </>

@@ -105,27 +105,25 @@ export const BoardView = ({
   return (
     <>
       <div id="ui-fields" className="table-body-board-fields">
-        {fields &&
-          fields.map((f, index) => (
-            <Field
-              key={(f && f.fieldId) || index}
-              {...f}
-              onClick={() => onClick(f)}
-            />
-          ))}
-        {fields &&
-          fields.map((field, index) => {
-            return (
-              field.fieldGroupName && (
-                <FieldActions
-                  key={(field && field.fieldId) || index}
-                  {...field}
-                  position={getFieldActionPosition(field)}
-                  isActive={field.fieldId === fieldActionId}
-                />
-              )
-            );
-          })}
+        {fields.map((f, index) => (
+          <Field
+            key={(f && f.fieldId) || index}
+            {...f}
+            onClick={() => onClick(f)}
+          />
+        ))}
+        {fields.map((field, index) => {
+          return (
+            field.fieldGroupName && (
+              <FieldActions
+                key={(field && field.fieldId) || index}
+                {...field}
+                position={getFieldActionPosition(field)}
+                isActive={field.fieldId === fieldActionId}
+              />
+            )
+          );
+        })}
       </div>
     </>
   );
