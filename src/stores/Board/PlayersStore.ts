@@ -1,7 +1,7 @@
 import { combine, merge, sample } from "effector";
 import {
   moveTokenAfterPlayerUpdate,
-  tokensStore,
+  tokens$,
   updateToken,
 } from "./TokensStore";
 
@@ -108,7 +108,7 @@ export const playersPositionChange = sample(
 );
 
 playersPositionChange.watch((v) => {
-  tokensStore.getState().tokens.map((token) => {
+  tokens$.getState().tokens.map((token) => {
     const player = getPlayer(token.userId);
     return player && token && moveTokenAfterPlayerUpdate(token, player);
   });

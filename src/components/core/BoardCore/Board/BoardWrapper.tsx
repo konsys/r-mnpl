@@ -38,6 +38,7 @@ import { errorHandler } from "../../../../handlers/ErrorHandler";
 import { isEqual } from "lodash";
 import nanoid from "nanoid";
 import openSocket from "socket.io-client";
+import { tokens$ } from "stores/Board/TokensStore";
 import { updateAllPlayers } from "utils/players.utils";
 import { user$ } from "stores/Game/User/UserModel";
 
@@ -128,6 +129,8 @@ export const BoardWrapper = ({ board }: { board: IRoomState }) => {
   const fieldActionId = useStore(fieldAction$);
   const contract = useStore(contract$);
   const user = useStore(user$);
+  const tokensData = useStore(tokens$);
+  const tokens = tokensData && tokensData.tokens ? tokensData.tokens : [];
 
   const players =
     playersData && playersData.players && playersData.players.length
@@ -181,7 +184,7 @@ export const BoardWrapper = ({ board }: { board: IRoomState }) => {
                   <Chat />
                 </div>
                 <div className="table-body-board-tokens">
-                  <Tokens />
+                  <Tokens tokens={tokens} fields={fields} />
                 </div>
                 <Dices />
                 <Contract />

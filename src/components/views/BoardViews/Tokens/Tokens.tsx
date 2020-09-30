@@ -3,14 +3,14 @@ import { IField, IToken } from "../../../../types/types";
 import { LINE_TRANSITION_TIMEOUT } from "../../../../utils/boardParams";
 import React from "react";
 import _ from "lodash";
-import { fields$ } from "../../../../stores/Board/FieldsStore";
-import { tokensStore } from "../../../../stores/Board/TokensStore";
-import { useStore } from "effector-react";
 
-export const Tokens = () => {
-  const tokens = useStore(tokensStore).tokens;
-  const f = useStore(fields$).fields;
-
+export const Tokens = ({
+  tokens,
+  fields,
+}: {
+  tokens: IToken[];
+  fields: IField[];
+}) => {
   const group = (ar: any[]) => {
     return _(ar).groupBy("meanPosition").value();
   };
@@ -22,8 +22,7 @@ export const Tokens = () => {
 
   const getLine = (meanPosition: number): number => {
     return (
-      (f &&
-        f.find((v: IField) => v.fieldPosition === meanPosition)?.fieldLine) ||
+      fields.find((v: IField) => v.fieldPosition === meanPosition)?.fieldLine ||
       0
     );
   };

@@ -72,7 +72,7 @@ const TokensDomain = BoardDomain.domain("PlayersDomain");
 export const setTokensEvent = TokensDomain.event<TokenStore>();
 export const resetTokensEvent = TokensDomain.event<TokenStore>();
 
-export const tokensStore = TokensDomain.store<TokenStore>({
+export const tokens$ = TokensDomain.store<TokenStore>({
   tokens: [],
   version: 0,
 })
@@ -80,7 +80,7 @@ export const tokensStore = TokensDomain.store<TokenStore>({
   .reset(resetTokens);
 
 export const updateToken = (token: IToken, from: string) => {
-  const tokens = tokensStore.getState().tokens;
+  const tokens = tokens$.getState().tokens;
   const index = tokens.findIndex((v) => v.userId === token.userId);
   index === -1 ? tokens.push(token) : (tokens[index] = token);
   updateAllTokens(tokens);
@@ -88,9 +88,9 @@ export const updateToken = (token: IToken, from: string) => {
 
 export const updateAllTokens = (tokens: IToken[]) => {
   setTokensEvent({
-    version: ++tokensStore.getState().version,
+    version: ++tokens$.getState().version,
     tokens,
   });
 };
 
-// tokensStore.watch((v) => console.log("tokensStorewatch", v));
+// tokens$.watch((v) => console.log("tokensStorewatch", v));
