@@ -19,7 +19,7 @@ import { useGate, useStore } from "effector-react";
 import { Arbitr } from "../../../views/BoardViews/Arbitr/Arbitr";
 import { BoardDomain } from "stores/Board/BoardDomain";
 import { BoardModal } from "../../../views/BoardViews/BoardModal/BoardModal";
-import { BoardSocket } from "socket/BoardSocket";
+import { BoardView } from "components/views/BoardViews/Board/BoardView";
 import { Chat } from "../../../views/BoardViews/Chat/Chat";
 import { Contract } from "../../../views/BoardViews/Contract/Contract";
 import { Dices } from "../../../views/BoardViews/Dices/Dices";
@@ -106,6 +106,7 @@ export const playersHandler = (players: IPlayer[]) => updateAllPlayers(players);
 export let boardSocket: SocketIOClient.Socket;
 
 export const BoardWrapper = ({ board }: { board: IRoomState }) => {
+  useGate(playersGate, { userIds: [1, 2], user: "me" });
   useEffect(() => {
     boardSocket = openSocket("http://localhost:8000/board");
     getInitFieldsEffect();
@@ -118,7 +119,6 @@ export const BoardWrapper = ({ board }: { board: IRoomState }) => {
 
   const action = useStore(actionsStore);
   const user = useStore(user$);
-  useGate(playersGate, { userIds: [1, 2], user: "me" });
 
   const players = useStore(players$);
 
@@ -153,7 +153,7 @@ export const BoardWrapper = ({ board }: { board: IRoomState }) => {
           <div className="table-body">
             <PlayersCore players={players.players} />
             <div className="table-body-board">
-              <BoardSocket />
+              <BoardView />
               <div className="table-body-board-center">
                 <M1tv />
                 {modal()}

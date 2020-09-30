@@ -21,7 +21,7 @@ import { FieldActions } from "../Field/FieldActions/FieldAction";
 import { useStore } from "effector-react";
 import { user$ } from "../../../../stores/Game/User/UserModel";
 
-export const Board = () => {
+export const BoardView = () => {
   const { fields } = useStore(fieldsStore);
   const fieldActionId = useStore(fieldActionStore);
   const contract = useStore(contract$);
