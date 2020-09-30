@@ -2,7 +2,7 @@ import { FieldType, IField } from "../../../../types/types";
 
 import React from "react";
 import { createImgPath } from "utils/fields.utils";
-import { playersStore } from "../../../../stores/Board/PlayersStore";
+import { players$ } from "../../../../stores/Board/PlayersStore";
 import { useStore } from "effector-react";
 
 export const Field = ({
@@ -20,7 +20,7 @@ export const Field = ({
   fieldPosition,
   onClick,
 }: IField) => {
-  const players = useStore(playersStore).players;
+  const players = useStore(players$).players;
   return (
     <>
       <div

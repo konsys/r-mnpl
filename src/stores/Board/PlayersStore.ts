@@ -60,7 +60,7 @@ export const playerActionStore = PlayersDomain.store<IPlayerAction>(init)
   .on(openPlayerActionEvent, (_, data) => data)
   .reset(closePlayerActionEvent);
 
-export interface IPlayersStore {
+export interface Iplayers$ {
   version: number;
   players: IPlayer[];
 }
@@ -68,9 +68,9 @@ export const resetPlayersEvent = PlayersDomain.event();
 export const getPlayersFx = PlayersDomain.effect<number[], IPlayer[], Error>({
   handler: usersFetch,
 });
-export const setPlayersEvent = PlayersDomain.event<IPlayersStore>();
+export const setPlayersEvent = PlayersDomain.event<Iplayers$>();
 
-export const playersStore = PlayersDomain.store<IPlayersStore>({
+export const players$ = PlayersDomain.store<Iplayers$>({
   players: [],
   version: 0,
 })
@@ -99,10 +99,10 @@ export const playersStore = PlayersDomain.store<IPlayersStore>({
   .on(setPlayersEvent, (_, state) => state)
   .reset(resetPlayersEvent);
 
-playersStore.watch((v) => console.log("playersStoreWatch", v));
+players$.watch((v) => console.log("players$Watch", v));
 
 export const playersPositionChange = sample(
-  playersStore,
+  players$,
   setPlayersEvent,
   (v) => v
 );

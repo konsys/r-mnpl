@@ -23,18 +23,13 @@ export const Board = (props: RouteComponentProps | any) => {
   const board: IRoomState | null = useStore(boardGame$);
   const completed: IRoomState | null = useStore(boardCompleted$);
 
-  const playerIds =
-    board && Array.isArray(board.players)
-      ? board.players.map((v) => v?.userId || 0)
-      : [];
-
   return (
     <>
       <ModalDialog />
       {completed ? (
         <GameCompleted winner={head(completed.players)} />
       ) : board ? (
-        <BoardWrapper playerIds={playerIds} />
+        <BoardWrapper board={board} />
       ) : (
         <GameNotFound p={board} />
       )}

@@ -2,12 +2,16 @@ import "./style.scss";
 import "react-toastify/dist/ReactToastify.css";
 import "../../../../theme/styles/board/theme.scss";
 
+import { players$, playersGate } from "stores/Board/PlayersStore";
+import { useGate, useStore } from "effector-react";
+
 import { Arbitr } from "../../../views/BoardViews/Arbitr/Arbitr";
 import { BoardModal } from "../../../views/BoardViews/BoardModal/BoardModal";
 import { BoardSocket } from "../../../../socket/BoardSocket";
 import { Chat } from "../../../views/BoardViews/Chat/Chat";
 import { Contract } from "../../../views/BoardViews/Contract/Contract";
 import { Dices } from "../../../views/BoardViews/Dices/Dices";
+import { IRoomState } from "stores/Game/Rooms/RoomsModel";
 import { M1tv } from "../../../views/BoardViews/M1tv/M1tv";
 import { PlayersCore } from "../PlayersCore/PlayersCore";
 import React from "react";
@@ -16,12 +20,14 @@ import { Ticket } from "../../../views/BoardViews/Ticket/ticket";
 import { ToastContainer } from "react-toastify";
 import { Tokens } from "../../../views/BoardViews/Tokens/Tokens";
 import { actionsStore } from "../../../../stores/Board/ActionStore";
-import { useStore } from "effector-react";
 import { user$ } from "stores/Game/User/UserModel";
 
-export const BoardWrapper = ({ playerIds }: { playerIds: number[] }) => {
+export const BoardWrapper = ({ board }: { board: IRoomState }) => {
   const action = useStore(actionsStore);
   const user = useStore(user$);
+  useGate(playersGate, { userIds: [1, 2], user: "me" });
+
+  const players = useStore(players$);
 
   const modal = () => {
     try {
@@ -52,7 +58,7 @@ export const BoardWrapper = ({ playerIds }: { playerIds: number[] }) => {
       >
         <div className="table _shakehack">
           <div className="table-body">
-            <PlayersCore playerIds={playerIds} />
+            <PlayersCore players={players.players} />
             <div className="table-body-board">
               <BoardSocket />
               <div className="table-body-board-center">

@@ -1,22 +1,11 @@
-import {
-  getPlayersFx,
-  playersGate,
-  playersStore,
-} from "../../../../stores/Board/PlayersStore";
-import { useGate, useStore } from "effector-react";
-
+import { IPlayer } from "types/types";
 import { Players } from "../../../views/BoardViews/Players/Players";
 import React from "react";
 
-export const PlayersCore = ({ playerIds }: { playerIds: number[] }) => {
-  useGate(playersGate, { userIds: playerIds, user: "me" });
-
-  const data = useStore(playersStore);
-  const pending = useStore(getPlayersFx.pending);
-
-  return !pending && data.players.length ? (
-    <Players players={data.players} />
-  ) : (
-    <>wait</>
+export const PlayersCore = ({ players }: { players: IPlayer[] }) => {
+  return (
+    <>
+      <Players players={players} />
+    </>
   );
 };

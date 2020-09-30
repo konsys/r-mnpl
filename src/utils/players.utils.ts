@@ -1,27 +1,27 @@
-import { playersStore, setPlayersEvent } from "../stores/Board/PlayersStore";
+import { players$, setPlayersEvent } from "../stores/Board/PlayersStore";
 
 import { IPlayer } from "../types/types";
 
 export const getPlayer = (userId: number): IPlayer | undefined => {
-  const players = playersStore.getState();
+  const players = players$.getState();
   return players ? players.players.find((v) => v.userId === userId) : undefined;
 };
 
 export const getActingPlayer = () => {
-  const pStore = playersStore.getState();
+  const pStore = players$.getState();
   return pStore.players && pStore.players.find((v) => v.isActing === true);
 };
 
 export const getActingPlayerIndex = () => {
-  const pStore = playersStore.getState();
+  const pStore = players$.getState();
   return pStore.players.findIndex((v) => v.isActing === true);
 };
 
 export const getPlayerIndexById = (userId: number) =>
-  playersStore.getState().players.findIndex((v) => v.userId === userId);
+  players$.getState().players.findIndex((v) => v.userId === userId);
 
 export const updatePlayer = (player: IPlayer): boolean => {
-  const playersState = playersStore.getState();
+  const playersState = players$.getState();
   const currentPLayerIndex = getPlayerIndexById(player.userId);
   if (currentPLayerIndex === -1) throw new Error("player not found");
 
@@ -33,7 +33,7 @@ export const updatePlayer = (player: IPlayer): boolean => {
 };
 
 export const updateAllPlayers = (players: IPlayer[]): boolean => {
-  let version = playersStore.getState().version;
+  let version = players$.getState().version;
   setPlayersEvent({
     version: version < 100 ? ++version : 0,
     players: players,
