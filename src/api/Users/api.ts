@@ -3,6 +3,7 @@ import { IPlayer, IUser } from "../../types/types";
 import { client } from "../../http/client";
 
 const usersUrl = `/users`;
+const initUsersUrl = `/users/init`;
 export const initUsersFetch = async ({
   ids,
   gameId,
@@ -10,8 +11,8 @@ export const initUsersFetch = async ({
   ids: number[];
   gameId: string;
 }): Promise<IPlayer[]> => {
-  console.log(234234234234, ids, gameId);
-  return await (await client.get(usersUrl, { params: { ids, gameId } })).data;
+  return await (await client.get(initUsersUrl, { params: { ids, gameId } }))
+    .data;
 };
 
 export const usersFetch = async (ids: number[]): Promise<IPlayer[]> => {
