@@ -8,7 +8,7 @@ import {
 import { Avatar } from "../Avatar/Avatar";
 import { IPlayer } from "../../../../types/types";
 import { PlayerActions } from "./PlayerActions/PlayerActions";
-import { actionsStore } from "../../../../stores/Board/ActionStore";
+import { actions$ } from "../../../../stores/Board/ActionStore";
 import { closeFieldActionEvent } from "../../../../stores/Board/FieldsStore";
 import { useStore } from "effector-react";
 import { user$ } from "../../../../stores/Game/User/UserModel";
@@ -18,7 +18,7 @@ interface Prop {
 }
 
 export const Players = (prop: Prop) => {
-  const action = useStore(actionsStore);
+  const action = useStore(actions$);
   const user = useStore(user$);
   const actionStore = useStore(playerActionStore);
 

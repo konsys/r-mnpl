@@ -1,32 +1,32 @@
 import {
   FieldType,
+  IContract,
   IField,
   IFieldModalPosition,
+  IUser,
 } from "../../../../types/types";
 import React, { useEffect } from "react";
 import {
-  addFieldToContract,
-  contract$,
-} from "../../../../stores/Board/ContractStore";
-import {
   closeFieldActionEvent,
-  fieldActionStore,
-  fieldsStore,
   setFieldActionEffect,
 } from "../../../../stores/Board/FieldsStore";
 
 import { BOARD_PARAMS } from "../../../../params/boardParams";
 import { Field } from "../Field/Field";
 import { FieldActions } from "../Field/FieldActions/FieldAction";
-import { useStore } from "effector-react";
-import { user$ } from "../../../../stores/Game/User/UserModel";
+import { addFieldToContract } from "../../../../stores/Board/ContractStore";
 
-export const BoardView = () => {
-  const { fields } = useStore(fieldsStore);
-  const fieldActionId = useStore(fieldActionStore);
-  const contract = useStore(contract$);
-  const user = useStore(user$);
-
+export const BoardView = ({
+  fields,
+  fieldActionId,
+  contract,
+  user,
+}: {
+  fields: IField[];
+  fieldActionId: number;
+  contract: IContract;
+  user: IUser | null;
+}) => {
   const getFieldActionPosition = (field: IField): IFieldModalPosition => {
     switch (field.fieldLine) {
       case 0:

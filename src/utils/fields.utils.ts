@@ -2,7 +2,7 @@ import { FIELD_WIDTH, MARGIN_CENTER, TABLE_SIZE } from "./boardParams";
 
 import { IField } from "../types/types";
 import { Params as config } from "../config/params";
-import { fieldsStore } from "../stores/Board/FieldsStore";
+import { fields$ } from "../stores/Board/FieldsStore";
 
 export const createTurnsArray = (
   position: number,
@@ -83,7 +83,7 @@ export const fieldPositions = () => {
 };
 
 export const getField = (fieldId: number): IField | undefined => {
-  const f = fieldsStore.getState();
+  const f = fields$.getState();
   return f ? f.fields.find((v) => v.fieldId === fieldId) : undefined;
 };
 

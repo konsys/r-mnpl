@@ -3,7 +3,7 @@ import { IContract, IField } from "../../types/types";
 import { BOARD_PARAMS } from "../../params/boardParams";
 import { BoardDomain } from "./BoardDomain";
 import _ from "lodash";
-import { actionsStore } from "./ActionStore";
+import { actions$ } from "./ActionStore";
 import { user$ } from "../Game/User/UserModel";
 
 const ContractDomain = BoardDomain.domain("UserDomain");
@@ -46,7 +46,7 @@ export const contract$ = ContractDomain.store<IContract>(initContract)
   })
   .on(setContract, (_, data) => data)
   .on(incomeContract, (state) => {
-    const action = actionsStore.getState();
+    const action = actions$.getState();
     const user = user$.getState();
     if (user && action && action.event.action.contract) {
       if (user.userId === action.event.action.contract.toUserId) {

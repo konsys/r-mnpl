@@ -5,11 +5,12 @@ import "../../../../theme/styles/board/theme.scss";
 import { BoardMessage, FieldStatus, IPlayer } from "types/types";
 import React, { useEffect } from "react";
 import {
-  actionsStore,
+  actions$,
   setCurrentActionEvent,
 } from "../../../../stores/Board/ActionStore";
 import {
-  fieldsStore,
+  fieldAction$,
+  fields$,
   getInitFieldsEffect,
   setFieldsEvent,
 } from "stores/Board/FieldsStore";
@@ -32,6 +33,7 @@ import { Ticket } from "../../../views/BoardViews/Ticket/ticket";
 import { ToastContainer } from "react-toastify";
 import { Tokens } from "../../../views/BoardViews/Tokens/Tokens";
 import { clearNode } from "effector";
+import { contract$ } from "stores/Board/ContractStore";
 import { errorHandler } from "../../../../handlers/ErrorHandler";
 import { isEqual } from "lodash";
 import nanoid from "nanoid";
@@ -45,7 +47,7 @@ export const fieldsHandler = (messageFieldsStatus: FieldStatus[]) => {
 
 // Not used
 export const statusFieldsIterate = (messageFieldsStatus: FieldStatus[]) => {
-  const store = fieldsStore.getState();
+  const store = fields$.getState();
   let toUpdateStore = false;
 
   messageFieldsStatus.forEach((status) => {
@@ -68,7 +70,7 @@ export const statusFieldsIterate = (messageFieldsStatus: FieldStatus[]) => {
 };
 
 const allFieldsIterate = (messageFieldsStatus: FieldStatus[]) => {
-  const store = fieldsStore.getState();
+  const store = fields$.getState();
 
   store.fields &&
     store.fields.forEach((storeField, index) => {
@@ -107,6 +109,7 @@ export let boardSocket: SocketIOClient.Socket;
 
 export const BoardWrapper = ({ board }: { board: IRoomState }) => {
   useGate(playersGate, { userIds: [1, 2], user: "me" });
+
   useEffect(() => {
     boardSocket = openSocket("http://localhost:8000/board");
     getInitFieldsEffect();
@@ -117,10 +120,12 @@ export const BoardWrapper = ({ board }: { board: IRoomState }) => {
     };
   }, []);
 
-  const action = useStore(actionsStore);
-  const user = useStore(user$);
-
+  const action = useStore(actions$);
   const players = useStore(players$);
+  const { fields } = useStore(fields$);
+  const fieldActionId = useStore(fieldAction$);
+  const contract = useStore(contract$);
+  const user = useStore(user$);
 
   const modal = () => {
     try {
@@ -153,7 +158,12 @@ export const BoardWrapper = ({ board }: { board: IRoomState }) => {
           <div className="table-body">
             <PlayersCore players={players.players} />
             <div className="table-body-board">
-              <BoardView />
+              <BoardView
+                fields={fields}
+                fieldActionId={fieldActionId}
+                contract={contract}
+                user={user}
+              />
               <div className="table-body-board-center">
                 <M1tv />
                 {modal()}

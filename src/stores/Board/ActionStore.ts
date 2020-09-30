@@ -43,7 +43,7 @@ export const resetActionEvent = ActionDomain.event();
 
 export const setCurrentActionEvent = ActionDomain.event<ICurrentAction>();
 
-export const actionsStore = ActionDomain.store<ICurrentAction>({
+export const actions$ = ActionDomain.store<ICurrentAction>({
   actionId: "",
   event: {
     action: {
@@ -57,7 +57,7 @@ export const actionsStore = ActionDomain.store<ICurrentAction>({
   .on(setCurrentActionEvent, (_, data) => data)
   .reset(resetActionEvent);
 
-export const getCurrentAction = () => actionsStore.getState();
+export const getCurrentAction = () => actions$.getState();
 
 export const doNothing = (userId: number) => {
   setCurrentActionEvent({
@@ -73,7 +73,7 @@ export const doNothing = (userId: number) => {
   });
 };
 
-actionsStore.watch((v) => {
+actions$.watch((v) => {
   const action = v.event.action;
   hideDicesEvent();
   if (action) {
