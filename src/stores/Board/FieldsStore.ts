@@ -38,7 +38,7 @@ export const fieldAction$ = FieldsDomain.store<number>(0)
   .on(closeFieldActionEvent, () => 0);
 
 export const resetFieldsEvent = FieldsDomain.event();
-export const getInitFieldsEffect = FieldsDomain.effect<void, IField[], Error>({
+export const getInitFieldsFx = FieldsDomain.effect<void, IField[], Error>({
   handler: fetchInitFields,
 });
 
@@ -48,13 +48,13 @@ export const fields$ = FieldsDomain.store<IFieldsStore>({
   fields: [],
   version: 0,
 })
-  .on(getInitFieldsEffect.done, (_, data) => ({
+  .on(getInitFieldsFx.done, (_, data) => ({
     fields: data.result,
     version: 1,
   }))
   .reset(resetFieldsEvent)
 
-  .on(getInitFieldsEffect.fail, (err: any) => console.error("error", err))
+  .on(getInitFieldsFx.fail, (err: any) => console.error("error", err))
   .on(setFieldsEvent, (_, state: IFieldsStore) => state)
   .reset(resetFieldsEvent);
 

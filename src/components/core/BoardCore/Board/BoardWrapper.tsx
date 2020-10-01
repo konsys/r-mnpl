@@ -11,7 +11,6 @@ import {
 import {
   fieldAction$,
   fields$,
-  getInitFieldsEffect,
   setFieldsEvent,
 } from "stores/Board/FieldsStore";
 import { players$, playersGate } from "stores/Board/PlayersStore";
@@ -20,6 +19,7 @@ import { useGate, useStore } from "effector-react";
 import { Arbitr } from "../../../views/BoardViews/Arbitr/Arbitr";
 import { BoardDomain } from "stores/Board/BoardDomain";
 import { BoardModal } from "../../../views/BoardViews/BoardModal/BoardModal";
+import { BoardSocketGate } from "stores/Board/SocketConnetcModel";
 import { BoardView } from "components/views/BoardViews/Board/BoardView";
 import { Chat } from "../../../views/BoardViews/Chat/Chat";
 import { Contract } from "../../../views/BoardViews/Contract/Contract";
@@ -27,17 +27,14 @@ import { Dices } from "../../../views/BoardViews/Dices/Dices";
 import { IRoomState } from "stores/Game/Rooms/RoomsModel";
 import { M1tv } from "../../../views/BoardViews/M1tv/M1tv";
 import { Players } from "components/views/BoardViews/Players/Players";
-import { SocketActions } from "types/Socket/SocketTypes";
 import { TableHelper } from "../../../views/BoardViews/TableHelper/TableHelper";
 import { Ticket } from "../../../views/BoardViews/Ticket/ticket";
 import { ToastContainer } from "react-toastify";
 import { Tokens } from "../../../views/BoardViews/Tokens/Tokens";
 import { clearNode } from "effector";
 import { contract$ } from "stores/Board/ContractStore";
-import { errorHandler } from "../../../../handlers/ErrorHandler";
 import { isEqual } from "lodash";
 import nanoid from "nanoid";
-import openSocket from "socket.io-client";
 import { tokens$ } from "stores/Board/TokensStore";
 import { updateAllPlayers } from "utils/players.utils";
 import { user$ } from "stores/Game/User/UserModel";
@@ -106,18 +103,13 @@ export const MessageHandler = (message: BoardMessage) => {
 };
 export const playersHandler = (players: IPlayer[]) => updateAllPlayers(players);
 
-export let boardSocket: SocketIOClient.Socket;
-
 export const BoardWrapper = ({ board }: { board: IRoomState }) => {
   const playerIds = board ? board.players.map((v) => (v ? v.userId : -1)) : [];
 
   useGate(playersGate, { userIds: playerIds, user: "me" });
+  useGate(BoardSocketGate);
 
   useEffect(() => {
-    boardSocket = openSocket("http://localhost:8000/board");
-    getInitFieldsEffect();
-    boardSocket.on(SocketActions.BOARD_MESSAGE, MessageHandler);
-    boardSocket.on(SocketActions.ERROR_MESSAGE, errorHandler);
     return () => {
       clearNode(BoardDomain, { deep: true });
     };

@@ -10,8 +10,8 @@ import { IPlayer } from "../../types/types";
 import { boardGame$ } from "stores/Game/Board/BoardModel";
 import { createGate } from "effector-react";
 import { fieldPositions } from "../../utils/fields.utils";
+import { getInitFieldsFx } from "./FieldsStore";
 import { getPlayer } from "../../utils/players.utils";
-import { getUserFx } from "stores/Game/User/UserModel";
 import { initUsersFetch } from "../../api/Users/api";
 
 export const PlayersDomain = BoardDomain.domain("PlayersDomain");
@@ -61,7 +61,7 @@ export const playerActionStore = PlayersDomain.store<IPlayerAction>(init)
   .on(openPlayerActionEvent, (_, data) => data)
   .reset(closePlayerActionEvent);
 
-export interface Iplayers$ {
+export interface Iplayers {
   version: number;
   players: IPlayer[];
 }
@@ -76,9 +76,9 @@ export const getInitPlayersFx = PlayersDomain.effect<
 >({
   handler: initUsersFetch,
 });
-export const setPlayersEvent = PlayersDomain.event<Iplayers$>();
+export const setPlayersEvent = PlayersDomain.event<Iplayers>();
 
-export const players$ = PlayersDomain.store<Iplayers$>({
+export const players$ = PlayersDomain.store<Iplayers>({
   players: [],
   version: 0,
 })
@@ -127,14 +127,8 @@ sample({
     gameId: boardGame$.map((v) => v?.roomId),
   }),
   fn: ({ ids, gameId }) => {
+    getInitFieldsFx();
     return { ids, gameId: gameId || "" };
   },
   target: getInitPlayersFx,
-});
-
-sample({
-  clock: playersGate.open,
-  source: playersGate.state,
-  fn: ({ user }) => user,
-  target: getUserFx,
 });
