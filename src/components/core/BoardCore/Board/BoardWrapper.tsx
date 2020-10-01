@@ -10,10 +10,6 @@ import {
   setCurrentActionEvent,
 } from "../../../../stores/Board/ActionStore";
 import {
-  closeFieldActionEvent,
-  setFieldActionEffect,
-} from "../../../../stores/Board/FieldsStore";
-import {
   fieldAction$,
   fields$,
   setFieldsEvent,
@@ -35,7 +31,6 @@ import { TableHelper } from "../../../views/BoardViews/TableHelper/TableHelper";
 import { Ticket } from "../../../views/BoardViews/Ticket/ticket";
 import { ToastContainer } from "react-toastify";
 import { Tokens } from "../../../views/BoardViews/Tokens/Tokens";
-import { addFieldToContract } from "../../../../stores/Board/ContractStore";
 import { clearNode } from "effector";
 import { contract$ } from "stores/Board/ContractStore";
 import { isEqual } from "lodash";
@@ -176,9 +171,6 @@ export const BoardWrapper = ({ board }: { board: IRoomState }) => {
                     fieldActionId={fieldActionId}
                     contract={contract}
                     user={user}
-                    setFieldActionEffect={setFieldActionEffect}
-                    addFieldToContract={addFieldToContract}
-                    closeFieldActionEvent={closeFieldActionEvent}
                   />
 
                   <div className="table-body-board-center">

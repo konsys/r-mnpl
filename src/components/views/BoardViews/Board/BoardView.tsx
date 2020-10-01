@@ -6,28 +6,26 @@ import {
   IUser,
 } from "../../../../types/types";
 import React, { useEffect } from "react";
+import {
+  closeFieldActionEvent,
+  setFieldActionEffect,
+} from "../../../../stores/Board/FieldsStore";
 
 import { BOARD_PARAMS } from "../../../../params/boardParams";
 import { Field } from "../Field/Field";
 import { FieldActions } from "../Field/FieldActions/FieldAction";
-import { IOpenContractModal } from "../../../../stores/Board/ContractStore";
+import { addFieldToContract } from "../../../../stores/Board/ContractStore";
 
 export const BoardView = ({
   fields,
   fieldActionId,
   contract,
   user,
-  setFieldActionEffect,
-  addFieldToContract,
-  closeFieldActionEvent,
 }: {
   fields: IField[];
   fieldActionId: number;
   contract: IContract;
   user: IUser | null;
-  setFieldActionEffect: (params: any) => any;
-  addFieldToContract: (params: IOpenContractModal) => any;
-  closeFieldActionEvent: any;
 }) => {
   const getFieldActionPosition = (field: IField): IFieldModalPosition => {
     switch (field.fieldLine) {
@@ -80,7 +78,7 @@ export const BoardView = ({
     return () => {
       document.removeEventListener("click", closeFieldAction, false);
     };
-  });
+  }, []);
 
   const onClick = (f: IField) => {
     if (
