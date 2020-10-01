@@ -36,7 +36,7 @@ export const updateAllPlayers = (players: IPlayer[]): boolean => {
   let version = players$.getState().version;
   setPlayersEvent({
     version: version < 100 ? ++version : 0,
-    players: players,
+    players,
   });
 
   return true;

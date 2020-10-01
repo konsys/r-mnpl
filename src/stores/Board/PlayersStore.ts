@@ -108,11 +108,10 @@ export const players$ = PlayersDomain.store<Iplayers>({
   .on(setPlayersEvent, (_, state) => state)
   .reset(resetPlayersEvent);
 
-export const playersPositionChange = sample(
-  players$,
-  setPlayersEvent,
-  (v) => v
-);
+export const playersPositionChange = sample({
+  source: players$,
+  clock: setPlayersEvent,
+});
 
 playersPositionChange.watch((v) => {
   tokens$.getState().tokens.map((token) => {
