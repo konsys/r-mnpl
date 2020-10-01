@@ -46,7 +46,6 @@ export default function Header() {
 
           <Hidden mdUp>
             <Grid item sm={4} xs={2} className="top-menu">
-              control-panel control-panel
               <MobileMenu />
             </Grid>
           </Hidden>
