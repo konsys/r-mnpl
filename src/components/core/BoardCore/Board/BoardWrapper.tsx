@@ -107,7 +107,7 @@ export const BoardWrapper = ({ board }: { board: IRoomState }) => {
   const playerIds = board ? board.players.map((v) => (v ? v.userId : -1)) : [];
 
   useGate(playersGate, { userIds: playerIds, user: "me" });
-  useGate(BoardSocketGate);
+  useGate(BoardSocketGate, "");
 
   useEffect(() => {
     return () => {
