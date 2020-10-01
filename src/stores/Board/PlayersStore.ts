@@ -53,9 +53,10 @@ const init: IPlayerAction = {
   restart: false,
 };
 
-export const playersGate = createGate<{ userIds: number[]; user: string }>(
-  "playersGate"
-);
+export const InitBoardPlayersGate = createGate<{
+  userIds: number[];
+  user: string;
+}>("InitBoardPlayersGate");
 
 export const playerActionStore = PlayersDomain.store<IPlayerAction>(init)
   .on(openPlayerActionEvent, (_, data) => data)
@@ -121,9 +122,9 @@ playersPositionChange.watch((v) => {
 });
 
 sample({
-  clock: merge([playersGate.open]),
+  clock: merge([InitBoardPlayersGate.open]),
   source: combine({
-    ids: playersGate.state.map(({ userIds }) => userIds),
+    ids: InitBoardPlayersGate.state.map(({ userIds }) => userIds),
     gameId: boardGame$.map((v) => v?.roomId),
   }),
   fn: ({ ids, gameId }) => {

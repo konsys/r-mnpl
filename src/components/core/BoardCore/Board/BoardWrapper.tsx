@@ -3,6 +3,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "../../../../theme/styles/board/theme.scss";
 
 import { BoardMessage, FieldStatus, IPlayer } from "types/types";
+import { InitBoardPlayersGate, players$ } from "stores/Board/PlayersStore";
 import React, { useEffect } from "react";
 import {
   actions$,
@@ -13,7 +14,6 @@ import {
   fields$,
   setFieldsEvent,
 } from "stores/Board/FieldsStore";
-import { players$, playersGate } from "stores/Board/PlayersStore";
 import { useGate, useStore } from "effector-react";
 
 import { Arbitr } from "../../../views/BoardViews/Arbitr/Arbitr";
@@ -106,7 +106,7 @@ export const playersHandler = (players: IPlayer[]) => updateAllPlayers(players);
 export const BoardWrapper = ({ board }: { board: IRoomState }) => {
   const playerIds = board ? board.players.map((v) => (v ? v.userId : -1)) : [];
 
-  useGate(playersGate, { userIds: playerIds, user: "me" });
+  useGate(InitBoardPlayersGate, { userIds: playerIds, user: "me" });
   useGate(BoardSocketGate, "");
 
   useEffect(() => {
