@@ -164,7 +164,7 @@ export const BoardWrapper = ({ board }: { board: IRoomState }) => {
           >
             <div className="table _shakehack">
               <div className="table-body">
-                <Players players={players} />
+                <Players players={players} user={user} action={action} />
                 <div className="table-body-board">
                   <BoardView
                     fields={Array.isArray(fields) ? fields : []}

@@ -1,3 +1,4 @@
+import { IPlayer, IUser } from "../../../../types/types";
 import React, { useEffect } from "react";
 import {
   closePlayerActionEvent,
@@ -6,20 +7,18 @@ import {
 } from "../../../../stores/Board/PlayersStore";
 
 import { Avatar } from "../Avatar/Avatar";
-import { IPlayer } from "../../../../types/types";
+import { ICurrentAction } from "../../../../stores/Board/ActionStore";
 import { PlayerActions } from "./PlayerActions/PlayerActions";
-import { actions$ } from "../../../../stores/Board/ActionStore";
 import { closeFieldActionEvent } from "../../../../stores/Board/FieldsStore";
 import { useStore } from "effector-react";
-import { user$ } from "../../../../stores/Game/User/UserModel";
 
 interface Prop {
   players: IPlayer[];
+  user: IUser;
+  action: ICurrentAction;
 }
 
-export const Players = (prop: Prop) => {
-  const action = useStore(actions$);
-  const user = useStore(user$);
+export const Players = ({ players, user, action }: Prop) => {
   const actionStore = useStore(playerActionStore);
 
   const closePlayerAction = (event: any) => {
@@ -39,8 +38,8 @@ export const Players = (prop: Prop) => {
   return (
     <>
       <div className="table-body-players">
-        {prop.players &&
-          prop.players.map((player: IPlayer, index) => {
+        {players &&
+          players.map((player: IPlayer, index) => {
             return (
               <div
                 key={index}
