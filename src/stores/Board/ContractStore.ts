@@ -15,7 +15,7 @@ export const addMoneyToContract = ContractDomain.event<IOpenContractModal>();
 export const incomeContract = ContractDomain.event();
 export const setContract = ContractDomain.event<IContract>();
 
-interface IOpenContractModal {
+export interface IOpenContractModal {
   fromUserId: number;
   toUserId: number;
   field?: IField;
