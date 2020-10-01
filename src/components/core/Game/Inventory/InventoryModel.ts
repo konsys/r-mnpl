@@ -28,7 +28,6 @@ const inventorySample = sample({
 
 guard({
   source: inventorySample,
-  filter:
-    InventoryGate.status && user$.map((v) => (v && v.userId > 0) || false),
+  filter: InventoryGate.status && user$.map((v) => !!v?.userId),
   target: getInventoryFx,
 });

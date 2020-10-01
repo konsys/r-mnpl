@@ -83,7 +83,6 @@ i18n
           M1TV: "M1TV",
           Login: "Войти",
           Market: "Маркет",
-          "Find games": "Поиск игр",
           "No cards but you play russian roulette!":
             "Тут нет полей, тут нечего покупать и продавать. Но всегда можно (и нужно!) играть в рулетку!",
           "Page not found": "Страница не найдена",

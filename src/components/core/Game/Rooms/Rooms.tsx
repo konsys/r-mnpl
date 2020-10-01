@@ -52,7 +52,7 @@ export const Rooms = () => {
         <div className="findGame">
           <Template
             columns={2}
-            title={"Find games"}
+            title={"Search games"}
             modules={[
               TemplateModules.FRIENDS_ONLINE,
               TemplateModules.TOP_FIVE,

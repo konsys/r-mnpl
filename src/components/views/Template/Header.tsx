@@ -57,7 +57,7 @@ export default function Header() {
               variant="outlined"
               color="primary"
               style={{ whiteSpace: "nowrap" }}
-              onClick={() => history.push("games")}
+              onClick={() => history.push("/")}
             >
               {t("Search games")}
             </Button>
