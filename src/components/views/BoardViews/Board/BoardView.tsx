@@ -3,6 +3,7 @@ import {
   IContract,
   IField,
   IFieldModalPosition,
+  IPlayer,
   IUser,
 } from "../../../../types/types";
 import React, { useEffect } from "react";
@@ -21,11 +22,13 @@ export const BoardView = ({
   fieldActionId,
   contract,
   user,
+  players,
 }: {
   fields: IField[];
   fieldActionId: number;
   contract: IContract;
   user: IUser | null;
+  players: IPlayer[];
 }) => {
   const getFieldActionPosition = (field: IField): IFieldModalPosition => {
     switch (field.fieldLine) {
@@ -110,6 +113,7 @@ export const BoardView = ({
             key={(f && f.fieldId) || index}
             {...f}
             onClick={() => onClick(f)}
+            players={players}
           />
         ))}
         {fields.map((field, index) => {

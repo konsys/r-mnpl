@@ -171,6 +171,7 @@ export const BoardWrapper = ({ board }: { board: IRoomState }) => {
                     fieldActionId={fieldActionId}
                     contract={contract}
                     user={user}
+                    players={players}
                   />
 
                   <div className="table-body-board-center">

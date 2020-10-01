@@ -1,10 +1,11 @@
-import { FieldType, IField } from "../../../../types/types";
+import { FieldType, IField, IPlayer } from "../../../../types/types";
 
 import React from "react";
 import { createImgPath } from "utils/fields.utils";
-import { players$ } from "../../../../stores/Board/PlayersStore";
-import { useStore } from "effector-react";
 
+interface IProps extends IField {
+  players: IPlayer[];
+}
 export const Field = ({
   fieldCorner,
   fieldLine,
@@ -19,8 +20,8 @@ export const Field = ({
   rent,
   fieldPosition,
   onClick,
-}: IField) => {
-  const players = useStore(players$).players;
+  players,
+}: IProps) => {
   return (
     <>
       <div
