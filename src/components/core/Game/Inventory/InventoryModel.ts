@@ -15,15 +15,14 @@ export const getInventoryFx = InventoryDomain.effect<number, IInventory, Error>(
   }
 );
 
-export const inventory$ = InventoryDomain.store<IInventory | null>(null).on(
-  getInventoryFx.done,
-  (prev, { result }) => result
-);
+export const inventory$ = InventoryDomain.store<IInventory | null>(null)
+  .on(getInventoryFx.done, (prev, { result }) => result)
+  .reset(InventoryGate.close);
 
 const inventorySample = sample({
   clock: merge([InventoryGate.open, user$]),
   source: user$,
-  fn: (v) => v?.userId || 0,
+  fn: (v) => v?.userId,
 });
 
 guard({
