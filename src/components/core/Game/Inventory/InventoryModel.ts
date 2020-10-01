@@ -20,9 +20,9 @@ export const inventory$ = InventoryDomain.store<IInventory | null>(null)
   .reset(InventoryGate.close);
 
 const inventorySample = sample({
-  clock: merge([InventoryGate.open, user$]),
+  clock: merge([InventoryGate.open]),
   source: user$,
-  fn: (v) => v?.userId,
+  fn: (v) => v?.userId || 0,
 });
 
 guard({
