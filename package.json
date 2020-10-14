@@ -31,6 +31,8 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "@types/enzyme": "^3.10.7",
+    "@types/enzyme-adapter-react-16": "^1.0.6",
     "@types/jest": "^24.0.0",
     "@types/lodash": "^4.14.155",
     "@types/nanoid": "^2.1.0",
@@ -55,6 +57,7 @@
     "dotenv": "8.2.0",
     "dotenv-expand": "5.1.0",
     "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.5",
     "eslint": "^6.6.0",
     "eslint-config-react-app": "^5.2.0",
     "eslint-loader": "3.0.3",
@@ -128,7 +131,7 @@
       "react-app-polyfill/jsdom"
     ],
     "setupFilesAfterEnv": [
-      "<rootDir>/src/setupTests.ts"
+      "<rootDir>test/jestsetup.js"
     ],
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
