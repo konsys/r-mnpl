@@ -24,11 +24,7 @@ describe("A suite", function () {
   it("should render without throwing an error", () => {
     expect(
       shallow(
-        <ActionPanel
-          text={"test2"}
-          disabled={false}
-          onClick={() => console.log(2323)}
-        />
+        <ActionPanel text={"test2"} disabled={false} onClick={() => null} />
       ).contains("test2")
     ).toBeTruthy();
   });

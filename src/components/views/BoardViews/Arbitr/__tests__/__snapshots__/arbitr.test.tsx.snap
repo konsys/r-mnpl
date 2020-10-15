@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`A suite renders correctly 1`] = `
+<div
+  className="table-body-board-center-arbitr"
+>
+  <input
+    className="button button-small button-free button-grass"
+    id="arbitr-pause"
+    type="button"
+    value="Приостановить игру"
+  />
+  <input
+    className="button button-small button-free button-grass"
+    id="arbitr-unpause"
+    style={
+      Object {
+        "display": "none",
+      }
+    }
+    type="button"
+    value="Возобновить игру"
+  />
+  <input
+    className="button button-small button-free button-grapefruit"
+    id="arbitr-uncontract"
+    style={
+      Object {
+        "display": "none",
+      }
+    }
+    type="button"
+    value="Откатить договор"
+  />
+</div>
+`;
