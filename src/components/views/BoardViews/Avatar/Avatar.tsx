@@ -14,6 +14,7 @@ export const Avatar = (props: AvatarProps) => (
       <div className="table-body-players-card-body-avatar">
         <div>
           <div
+            className={"table-body-players-card-body-avatar-background"}
             style={{
               backgroundImage: `url(${Params.BASE_URL}/${props.avatar})`,
             }}

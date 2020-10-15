@@ -9,6 +9,7 @@ exports[`Test Avatar view renders correctly 1`] = `
   >
     <div>
       <div
+        className="table-body-players-card-body-avatar-background"
         style={
           Object {
             "backgroundImage": "url(http://localhost:3001/testAvatareSrc)",
