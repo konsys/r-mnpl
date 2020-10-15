@@ -4,7 +4,7 @@ import { ActionPanel } from "../ActionPanel";
 import React from "react";
 import renderer from "react-test-renderer";
 
-describe("A suite", function () {
+describe("Test action panel", () => {
   it("renders correctly", () => {
     const tree = renderer
       .create(

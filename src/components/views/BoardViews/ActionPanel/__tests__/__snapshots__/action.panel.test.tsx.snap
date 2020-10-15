@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`A suite renders correctly 1`] = `
+exports[`Test action panel renders correctly 1`] = `
 <div
   className="_action"
   onClick={[Function]}
@@ -9,6 +9,6 @@ exports[`A suite renders correctly 1`] = `
 </div>
 `;
 
-exports[`A suite should pass a selected value to the onChange handler 1`] = `ShallowWrapper {}`;
+exports[`Test action panel should pass a selected value to the onChange handler 1`] = `ShallowWrapper {}`;
 
-exports[`A suite should render an action panel 1`] = `ShallowWrapper {}`;
+exports[`Test action panel should render an action panel 1`] = `ShallowWrapper {}`;
