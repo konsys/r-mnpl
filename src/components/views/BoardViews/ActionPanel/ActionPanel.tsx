@@ -3,7 +3,7 @@ import React from "react";
 export interface ActionPanelProps {
   text: string;
   disabled: boolean;
-  onClick: () => void;
+  onClick: (v: any) => any;
 }
 export const ActionPanel = (props: ActionPanelProps) => (
   <div
