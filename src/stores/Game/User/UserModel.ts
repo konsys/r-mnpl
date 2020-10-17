@@ -2,7 +2,7 @@ import { IUser } from "../../../types/types";
 import { MainDomain } from "../../Board/BoardDomain";
 import { createGate } from "effector-react";
 import { fetchUserProfile } from "../../../api/Users/api";
-import { logout } from "components/core/Registration/Login/model/LoginModel";
+import { logout } from "../../../components/core/Registration/Login/model/LoginModel";
 import { sample } from "effector";
 
 export const GameDomain = MainDomain.domain("GameDomain");

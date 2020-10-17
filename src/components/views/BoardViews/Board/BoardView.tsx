@@ -24,11 +24,11 @@ export const BoardView = ({
   user,
   players,
 }: {
-  fields: IField[];
-  fieldActionId: number;
-  contract: IContract;
-  user: IUser | null;
-  players: IPlayer[];
+  fields?: IField[];
+  fieldActionId?: number;
+  contract?: IContract;
+  user?: IUser | null;
+  players?: IPlayer[];
 }) => {
   const getFieldActionPosition = (field: IField): IFieldModalPosition => {
     switch (field.fieldLine) {
