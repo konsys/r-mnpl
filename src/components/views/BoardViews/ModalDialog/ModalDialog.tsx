@@ -1,3 +1,11 @@
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+} from "@material-ui/core";
 import { dialogStore, hideDialog } from "../../../../stores/Board/DialogStore";
 
 import React from "react";
@@ -7,30 +15,25 @@ export const ModalDialog = () => {
   const dialog = useStore(dialogStore);
   return (
     <>
-      {dialog.title && dialog.message && (
-        <div className="designDialog" style={{}}>
-          <div className="designDialog-one">
-            <div className="_container">
-              <div className="vueDesignDialog" style={{ overflow: "visible" }}>
-                <div className="vueDesignDialog-title">{dialog.title}</div>
-                <div className="vueDesignDialog-content">
-                  <div className="vueDesignDialog-content">
-                    {dialog.message}
-                  </div>
-                </div>
-                <div className="vueDesignDialog-buttons">
-                  <button
-                    type="button"
-                    className="button button-free button-small"
-                    onClick={() => hideDialog()}
-                  >
-                    OK
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      {true && (
+        <Dialog
+          open={!!(dialog.title && dialog.message)}
+          onClose={() => hideDialog()}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">{dialog.title}</DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              {dialog.message}
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => hideDialog()} color="primary">
+              Ok
+            </Button>
+          </DialogActions>
+        </Dialog>
       )}
     </>
   );

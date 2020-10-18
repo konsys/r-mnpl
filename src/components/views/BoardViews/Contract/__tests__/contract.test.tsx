@@ -1,10 +1,11 @@
 import { Contract, validateContract } from "../Contract";
 import { gameActionFx, sendBoardAction } from "stores/Board/ActionStore";
 import { mount, shallow } from "enzyme";
+import { testContract, testContractErrorMoney } from "testMocks/contract";
 
 import React from "react";
+import { closeContractModal } from "stores/Board/ContractStore";
 import renderer from "react-test-renderer";
-import { testContract } from "testMocks/contract";
 import { testPlayer1 } from "testMocks/user";
 
 jest.mock("stores/Board/ActionStore", () => ({
@@ -12,8 +13,12 @@ jest.mock("stores/Board/ActionStore", () => ({
   gameActionFx: jest.fn(),
 }));
 
-jest.mock("../../../../../stores/Board/ActionStore", () => ({
+jest.mock("stores/Board/ActionStore", () => ({
   gameActionFx: { done: { watch: jest.fn() } },
+}));
+
+jest.mock("stores/Board/ContractStore", () => ({
+  closeContractModal: jest.fn(),
 }));
 
 describe("Contract test", () => {
@@ -125,14 +130,18 @@ describe("Contract test", () => {
   });
 
   it.skip("validates error modal", () => {
-    const comp = mount(<Contract contract={testContract} user={testPlayer1} />);
+    const comp = mount(
+      <Contract contract={testContractErrorMoney} user={testPlayer1} />
+    );
     comp.find("._accept").simulate("click");
 
     (sendBoardAction as any).mockReturnValue(2);
     (gameActionFx as any).mockReturnValue(2);
+    (closeContractModal as any).mockReturnValue(2);
 
     expect(sendBoardAction).toHaveBeenCalledTimes(1);
     expect(gameActionFx).toHaveBeenCalledTimes(1);
     expect(gameActionFx.done.watch).toHaveBeenCalledTimes(1);
+    expect(closeContractModal).toHaveBeenCalledTimes(1);
   });
 });

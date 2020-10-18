@@ -77,12 +77,15 @@ export const Contract = ({
   const onContractSubmit = () => {
     setActiveInput(0);
     const res = validateContract(contract);
-    res
-      ? showDialog(res)
-      : sendBoardAction({
-          action: OutcomeMessageType.OUTCOME_CONTRACT_START,
-          contract,
-        });
+    console.log(11111111, res);
+    if (res) {
+      showDialog(res);
+    } else {
+      sendBoardAction({
+        action: OutcomeMessageType.OUTCOME_CONTRACT_START,
+        contract,
+      });
+    }
   };
 
   const onChange = (e: any) => {
