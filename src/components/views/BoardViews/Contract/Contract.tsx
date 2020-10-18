@@ -4,6 +4,7 @@ import {
   IUser,
   OutcomeMessageType,
 } from "../../../../types/types";
+import { IDialogStore, showDialog } from "../../../../stores/Board/DialogStore";
 import React, { useState } from "react";
 import {
   addMoneyToContract,
@@ -14,11 +15,36 @@ import { gameActionFx, sendBoardAction } from "stores/Board/ActionStore";
 import { ContractCompany } from "./ContractCompany";
 import { getField } from "../../../../utils/fields.utils";
 import { getPlayer } from "../../../../utils/players.utils";
-import { showDialog } from "../../../../stores/Board/DialogStore";
 
 export enum KeyCode {
   ENTER = 13,
 }
+
+export const validateContract = (contract: IContract): null | IDialogStore => {
+  if (contract.moneyFrom && contract.moneyTo) {
+    return {
+      title: "Ошибка",
+      message: "Наличные в договоре могут быть только с одной стороны.",
+    };
+  } else if (!contract.fieldIdsFrom.length && !contract.fieldIdsTo.length) {
+    return {
+      title: "Ошибка",
+      message: "В договоре должно быть хотя бы одно поле.",
+    };
+  } else if (
+    (contract.moneyFrom + contract.fieldFromPrice) / 2 >
+      contract.moneyTo + contract.fieldToPrice ||
+    (contract.moneyTo + contract.fieldToPrice) / 2 >
+      contract.moneyFrom + contract.fieldFromPrice
+  ) {
+    return {
+      title: "Ошибка",
+      message:
+        "Разница между суммой предлагаемого и запрашиваемого не может превышать 50%.",
+    };
+  }
+  return null;
+};
 
 export const Contract = ({
   contract,
@@ -37,6 +63,17 @@ export const Contract = ({
         user.userId === contract.toUserId) &&
       closeContractModal();
   });
+
+  const onContractSubmit = () => {
+    setActiveInput(0);
+    const res = validateContract(contract);
+    res
+      ? showDialog(res)
+      : sendBoardAction({
+          action: OutcomeMessageType.OUTCOME_CONTRACT_START,
+          contract,
+        });
+  };
 
   const onChange = (e: any) => {
     const v = e.target.value.slice(0, 6);
@@ -69,37 +106,6 @@ export const Contract = ({
 
     setValueFrom("");
     setValueTo("");
-  };
-
-  const onSubmit = () => {
-    setActiveInput(0);
-    if (contract.moneyFrom && contract.moneyTo) {
-      showDialog({
-        title: "Ошибка",
-        message: "Наличные в договоре могут быть только с одной стороны.",
-      });
-    } else if (!contract.fieldIdsFrom.length && !contract.fieldIdsTo.length) {
-      showDialog({
-        title: "Ошибка",
-        message: "В договоре должно быть хотя бы одно поле.",
-      });
-    } else if (
-      (contract.moneyFrom + contract.fieldFromPrice) / 2 >
-        contract.moneyTo + contract.fieldToPrice ||
-      (contract.moneyTo + contract.fieldToPrice) / 2 >
-        contract.moneyFrom + contract.fieldFromPrice
-    ) {
-      showDialog({
-        title: "Ошибка",
-        message:
-          "Разница между суммой предлагаемого и запрашиваемого не может превышать 50%.",
-      });
-    } else {
-      sendBoardAction({
-        action: OutcomeMessageType.OUTCOME_CONTRACT_START,
-        contract,
-      });
-    }
   };
 
   const fromUser = getPlayer(contract.fromUserId);
@@ -273,7 +279,7 @@ export const Contract = ({
             </div>
             <div className="TableContract-actions">
               {contractType === "from" ? (
-                <div className="_button" onClick={onSubmit}>
+                <div className="_button _accept" onClick={onContractSubmit}>
                   Предложить
                 </div>
               ) : (

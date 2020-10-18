@@ -1,0 +1,257 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Contract test matches snapshot 1`] = `
+<div
+  className="TableContract"
+  style={Object {}}
+>
+  <div
+    className="TableContract-top"
+  >
+    <div
+      className="TableContract-top-title"
+    >
+      Договор
+    </div>
+    <div
+      className="TableContract-top-close"
+      onClick={[Function]}
+    />
+  </div>
+  <div
+    className="TableContract-content"
+  >
+    <div
+      className="TableContract-content-head"
+    >
+      <div
+        className="_user_index_0"
+      >
+        <div
+          className="_avatar"
+          style={
+            Object {
+              "backgroundImage": "url(\\"undefined\\")",
+            }
+          }
+        />
+        <div
+          className="_info"
+        >
+          <div
+            className="_nick"
+          >
+            Вы
+          </div>
+          <div
+            className="_subtitle"
+          >
+            предлагаете
+          </div>
+        </div>
+      </div>
+      <div
+        className="_user_index_1"
+      >
+        <div
+          className="_avatar"
+          style={
+            Object {
+              "backgroundImage": "url(\\"undefined\\")",
+            }
+          }
+        />
+        <div
+          className="_info"
+        >
+          <div
+            className="_nick"
+          >
+            undefined
+          </div>
+          <div
+            className="_subtitle"
+          >
+            отдаёт
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="TableContract-content-list"
+    >
+      <div>
+        <div
+          className="scr"
+          scr-active="1"
+        >
+          <div
+            className="scr-window"
+            style={
+              Object {
+                "height": "294px",
+                "width": "262px",
+              }
+            }
+          >
+            <div
+              className="scr-content"
+              style={
+                Object {
+                  "width": "212px",
+                }
+              }
+            >
+              <div
+                className="_one _cash _clickable"
+              >
+                <div
+                  className="_image"
+                />
+                <div
+                  className="_info"
+                >
+                  <div
+                    className="_title"
+                    onClick={[Function]}
+                  >
+                    <input
+                      name="from"
+                      onChange={[Function]}
+                      onKeyPress={[Function]}
+                      type="number"
+                      value=""
+                    />
+                  </div>
+                  <div
+                    className="_subtitle"
+                  >
+                    Наличные
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              className="scr-pane"
+              style={
+                Object {
+                  "display": "none",
+                }
+              }
+            >
+              <div
+                className="scr-pane-handler"
+                style={
+                  Object {
+                    "transform": "translateY(0px)}",
+                  }
+                }
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div
+          className="scr"
+          scr-active="1"
+        >
+          <div
+            className="scr-window"
+            style={
+              Object {
+                "height": "294px",
+                "width": "261px",
+              }
+            }
+          >
+            <div
+              className="scr-content"
+              style={
+                Object {
+                  "width": "211px",
+                }
+              }
+            >
+              <div
+                className="_one _cash _clickable"
+              >
+                <div
+                  className="_image"
+                />
+                <div
+                  className="_info"
+                >
+                  <div
+                    className="_title"
+                    onClick={[Function]}
+                  >
+                    <input
+                      name="to"
+                      onChange={[Function]}
+                      onKeyPress={[Function]}
+                      type="number"
+                      value=""
+                    />
+                  </div>
+                  <div
+                    className="_subtitle"
+                  >
+                    Наличные
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              className="scr-pane"
+              style={
+                Object {
+                  "display": "none",
+                }
+              }
+            >
+              <div
+                className="scr-pane-handler"
+                style={
+                  Object {
+                    "transform": "translateY(0px)",
+                  }
+                }
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="TableContract-content-bottom"
+    >
+      <div
+        className="_sum"
+      >
+        1000
+      </div>
+      <div
+        className="_text"
+      >
+        Общая сумма
+      </div>
+      <div
+        className="_sum"
+      >
+        2000
+      </div>
+    </div>
+  </div>
+  <div
+    className="TableContract-actions"
+  >
+    <div
+      className="_button _accept"
+      onClick={[Function]}
+    >
+      Предложить
+    </div>
+  </div>
+</div>
+`;
