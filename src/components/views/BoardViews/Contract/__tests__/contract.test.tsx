@@ -32,12 +32,36 @@ describe("Contract test", () => {
       )
     ).toHaveLength(1);
   });
-
-  it("shows error when money from both sides", () => {
-    const res = validateContract(testContract);
+  it("validates right contract with null result", () => {
+    const res = validateContract({
+      fieldIdsFrom: [],
+      fieldIdsTo: [],
+      fieldFromPrice: 0,
+      fieldToPrice: 0,
+      moneyFrom: 0,
+      moneyTo: 0,
+      fromUserId: 1,
+      toUserId: 2,
+    });
     expect(res).toMatchObject({
       title: "Ошибка",
-      message: "Наличные в договоре могут быть только с одной стороны.",
+      message: "В договоре должно быть хотя бы одно поле.",
+    });
+  });
+  it("shows error when money from both sides", () => {
+    const res = validateContract({
+      fieldIdsFrom: [2],
+      fieldIdsTo: [3],
+      fieldFromPrice: 200,
+      fieldToPrice: 200,
+      moneyFrom: 0,
+      moneyTo: 1000,
+      fromUserId: 1,
+      toUserId: 2,
+    });
+    expect(res).toMatchObject({
+      title: "Ошибка",
+      message: "В договоре должно быть хотя бы одно поле.",
     });
   });
 });
