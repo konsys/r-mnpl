@@ -34,11 +34,25 @@ describe("Contract test", () => {
   });
   it("validates right contract with null result", () => {
     const res = validateContract({
+      fieldIdsFrom: [1],
+      fieldIdsTo: [2],
+      fieldFromPrice: 120,
+      fieldToPrice: 120,
+      moneyFrom: 120,
+      moneyTo: 0,
+      fromUserId: 1,
+      toUserId: 2,
+    });
+    expect(res).toStrictEqual(null);
+  });
+
+  it("validates error with no fields", () => {
+    const res = validateContract({
       fieldIdsFrom: [],
       fieldIdsTo: [],
       fieldFromPrice: 0,
       fieldToPrice: 0,
-      moneyFrom: 0,
+      moneyFrom: 100,
       moneyTo: 0,
       fromUserId: 1,
       toUserId: 2,
@@ -48,20 +62,39 @@ describe("Contract test", () => {
       message: "В договоре должно быть хотя бы одно поле.",
     });
   });
-  it("shows error when money from both sides", () => {
+
+  it("validates money fron both sides", () => {
     const res = validateContract({
-      fieldIdsFrom: [2],
-      fieldIdsTo: [3],
-      fieldFromPrice: 200,
+      fieldIdsFrom: [1],
+      fieldIdsTo: [2],
+      fieldFromPrice: 100,
       fieldToPrice: 200,
-      moneyFrom: 0,
-      moneyTo: 1000,
+      moneyFrom: 100,
+      moneyTo: 100,
       fromUserId: 1,
       toUserId: 2,
     });
     expect(res).toMatchObject({
       title: "Ошибка",
-      message: "В договоре должно быть хотя бы одно поле.",
+      message: "Наличные в договоре могут быть только с одной стороны.",
+    });
+  });
+
+  it("validates money sum", () => {
+    const res = validateContract({
+      fieldIdsFrom: [1],
+      fieldIdsTo: [2],
+      fieldFromPrice: 100,
+      fieldToPrice: 99,
+      moneyFrom: 100,
+      moneyTo: 0,
+      fromUserId: 1,
+      toUserId: 2,
+    });
+    expect(res).toMatchObject({
+      title: "Ошибка",
+      message:
+        "Разница между суммой предлагаемого и запрашиваемого не может превышать 50%.",
     });
   });
 });

@@ -21,15 +21,15 @@ export enum KeyCode {
 }
 
 export const validateContract = (contract: IContract): null | IDialogStore => {
-  if (contract.moneyFrom && contract.moneyTo) {
-    return {
-      title: "Ошибка",
-      message: "Наличные в договоре могут быть только с одной стороны.",
-    };
-  } else if (!contract.fieldIdsFrom.length && !contract.fieldIdsTo.length) {
+  if (!contract.fieldIdsFrom.length && !contract.fieldIdsTo.length) {
     return {
       title: "Ошибка",
       message: "В договоре должно быть хотя бы одно поле.",
+    };
+  } else if (contract.moneyFrom && contract.moneyTo) {
+    return {
+      title: "Ошибка",
+      message: "Наличные в договоре могут быть только с одной стороны.",
     };
   } else if (
     (contract.moneyFrom + contract.fieldFromPrice) / 2 >
