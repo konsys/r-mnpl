@@ -1,4 +1,5 @@
 import * as action from "stores/Board/ActionStore";
+import * as modal from "stores/Board/ContractStore";
 
 import { Contract, validateContract } from "../Contract";
 import { mount, shallow } from "enzyme";
@@ -7,8 +8,6 @@ import React from "react";
 import renderer from "react-test-renderer";
 import { testContract } from "testMocks/contract";
 import { testPlayer1 } from "testMocks/user";
-
-// import * as modal from "stores/Board/ContractStore";
 
 jest.mock("stores/Board/ActionStore", () => ({
   sendBoardAction: jest.fn(),
@@ -122,12 +121,8 @@ describe("Contract test", () => {
     const comp = mount(<Contract contract={testContract} user={testPlayer1} />);
     comp.find("._accept").simulate("click");
 
-    // (sendBoardAction as any).mockReturnValue(2);
-    // (gameActionFx as any).mockReturnValue(2);
-    // (closeContractModal as any).mockReturnValue(2);
-
     expect(action.sendBoardAction).toHaveBeenCalledTimes(1);
-    // expect(gameActionFx).toHaveBeenCalledTimes(1);
+    expect(action.gameActionFx.done.watch).toHaveBeenCalledTimes(1);
     // expect(gameActionFx.done.watch).toHaveBeenCalledTimes(1);
     // expect(closeContractModal).toHaveBeenCalledTimes(1);
   });
