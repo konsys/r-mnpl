@@ -7,9 +7,8 @@ import React from "react";
 import renderer from "react-test-renderer";
 import { testContract } from "testMocks/contract";
 import { testPlayer1 } from "testMocks/user";
+
 // import * as modal from "stores/Board/ContractStore";
-
-
 
 jest.mock("stores/Board/ActionStore", () => ({
   sendBoardAction: jest.fn(),
@@ -45,16 +44,7 @@ describe("Contract test", () => {
     ).toHaveLength(1);
   });
   it("validates right contract with null result", () => {
-    const res = validateContract({
-      fieldIdsFrom: [1],
-      fieldIdsTo: [2],
-      fieldFromPrice: 120,
-      fieldToPrice: 120,
-      moneyFrom: 120,
-      moneyTo: 0,
-      fromUserId: 1,
-      toUserId: 2,
-    });
+    const res = validateContract(testContract);
     expect(res).toStrictEqual(null);
   });
 
@@ -132,7 +122,6 @@ describe("Contract test", () => {
     const comp = mount(<Contract contract={testContract} user={testPlayer1} />);
     comp.find("._accept").simulate("click");
 
-    console.log(111111, action);
     // (sendBoardAction as any).mockReturnValue(2);
     // (gameActionFx as any).mockReturnValue(2);
     // (closeContractModal as any).mockReturnValue(2);

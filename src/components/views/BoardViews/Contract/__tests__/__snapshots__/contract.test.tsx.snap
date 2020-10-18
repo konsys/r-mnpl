@@ -229,7 +229,7 @@ exports[`Contract test matches snapshot 1`] = `
       <div
         className="_sum"
       >
-        1000
+        240
       </div>
       <div
         className="_text"
@@ -239,7 +239,7 @@ exports[`Contract test matches snapshot 1`] = `
       <div
         className="_sum"
       >
-        2000
+        120
       </div>
     </div>
   </div>

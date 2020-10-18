@@ -1,23 +1,12 @@
 import { IContract } from "types/types";
 
 export const testContract: IContract = {
-  fieldFromPrice: 0,
-  fieldIdsFrom: [1, 2],
-  fieldIdsTo: [3],
-  fieldToPrice: 1000,
+  fieldIdsFrom: [1],
+  fieldIdsTo: [2],
+  fieldFromPrice: 120,
+  fieldToPrice: 120,
+  moneyFrom: 120,
+  moneyTo: 0,
   fromUserId: 1,
-  moneyFrom: 1000,
-  moneyTo: 1000,
-  toUserId: 2,
-};
-
-export const testContractErrorMoney: IContract = {
-  fieldFromPrice: 1000,
-  fieldIdsFrom: [1, 2],
-  fieldIdsTo: [3],
-  fieldToPrice: 1000,
-  fromUserId: 1,
-  moneyFrom: 1000,
-  moneyTo: 1000,
   toUserId: 2,
 };
