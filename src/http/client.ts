@@ -4,10 +4,10 @@ import {
   getToken,
 } from "../components/core/Registration/Login/model/TokenModel";
 
-import { config } from "./config";
+import { Params } from "config/params";
 
 export const client = axios.create({
-  baseURL: config.baseURL,
+  baseURL: Params.BASE_URL,
   headers: {
     Authorization: `Bearer ${getToken()}`,
   },
