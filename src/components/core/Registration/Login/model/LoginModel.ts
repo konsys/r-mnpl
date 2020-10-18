@@ -1,16 +1,14 @@
 import { ILoginForm, ILoginResponce } from "../Login";
-import { clearToken, saveToken } from "./TokenModel";
-import {
-  getMyProfile,
-  logout,
-} from "../../../../../stores/Game/User/UserModel";
 
-import { LocalStorageParams } from "../../../../../types/types";
+import { LocalStorageParams } from "types/types";
 import { createDomain } from "effector";
-import { loginFetch } from "../../../../../api/Login/api";
+import { getMyProfile } from "../../../../../stores/Game/User/UserModel";
+import { loginFetch } from "api/Login/api";
+import { saveToken } from "./TokenModel";
 
 const AuthDomain = createDomain("AuthDomain");
 export const clearTokenStore = AuthDomain.event();
+export const clearToken = AuthDomain.event();
 
 export const loginEffect = AuthDomain.effect<ILoginForm, ILoginResponce, Error>(
   {
@@ -31,7 +29,6 @@ export const login$ = AuthDomain.store<ILoginResponce | null>(null)
   .on(loginEffect.fail, (err) =>
     localStorage.removeItem(LocalStorageParams.TOKEN)
   )
-  .on(logout, () => localStorage.removeItem(LocalStorageParams.TOKEN))
   .reset(clearTokenStore);
 
 // login$.updates.watch((v) => console.log("LoginStoreWatch", v));

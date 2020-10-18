@@ -1,12 +1,15 @@
 import { Contract, validateContract } from "../Contract";
 import { mount, shallow } from "enzyme";
-import { testContract, testContractErrorMoney } from "testMocks/contract";
 
 import React from "react";
 import renderer from "react-test-renderer";
+import { sendBoardActionTest } from "../../../../../stores/Board/ActionStore";
+import { testContract } from "testMocks/contract";
 import { testPlayer1 } from "testMocks/user";
 
-// jest.mock("node-fetch");
+jest.mock("../../../../../stores/Board/ActionStore", () => ({
+  sendBoardActionTest: jest.fn(),
+}));
 
 describe("Contract test", () => {
   it("renders correctly", () => {
@@ -96,5 +99,32 @@ describe("Contract test", () => {
       message:
         "Разница между суммой предлагаемого и запрашиваемого не может превышать 50%.",
     });
+  });
+
+  it("validates money sum", () => {
+    const res = validateContract({
+      fieldIdsFrom: [1],
+      fieldIdsTo: [2],
+      fieldFromPrice: 100,
+      fieldToPrice: 49,
+      moneyFrom: 0,
+      moneyTo: 0,
+      fromUserId: 1,
+      toUserId: 2,
+    });
+    expect(res).toMatchObject({
+      title: "Ошибка",
+      message:
+        "Разница между суммой предлагаемого и запрашиваемого не может превышать 50%.",
+    });
+  });
+
+  it.skip("validates error modal", () => {
+    const comp = mount(<Contract contract={testContract} user={testPlayer1} />);
+    comp.find("._accept").simulate("click");
+
+    (sendBoardActionTest as any).mockReturnValue(2);
+
+    expect(sendBoardActionTest).toHaveBeenCalledTimes(1);
   });
 });
