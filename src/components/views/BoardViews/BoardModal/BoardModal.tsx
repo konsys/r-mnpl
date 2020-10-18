@@ -7,11 +7,11 @@ interface Props {
   isModal: boolean;
 }
 
-export const BoardModal = (props: Props) => {
+export const BoardModal = ({ isModal }: Props) => {
   const modal = useStore(boardModalStore);
   return (
     <>
-      {props.isModal && (
+      {isModal && (
         <div className="TableAction">
           <div className="TableAction-top">
             <div className="TableAction-top-title">{modal.title}</div>
