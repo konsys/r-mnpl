@@ -123,8 +123,14 @@ describe("Contract test", () => {
 
     expect(action.sendBoardAction).toHaveBeenCalledTimes(1);
     expect(action.gameActionFx.done.watch).toHaveBeenCalledTimes(1);
-    // expect(gameActionFx.done.watch).toHaveBeenCalledTimes(1);
-    // expect(closeContractModal).toHaveBeenCalledTimes(1);
+  });
+
+  // TODO test all Contract view functionality
+  it.skip("validates  modal is closed", () => {
+    const comp = mount(<Contract contract={testContract} user={testPlayer1} />);
+    comp.find("._accept").simulate("click");
+
+    expect(modal.closeContractModal).toHaveBeenCalledTimes(1);
   });
 
   beforeEach(() => jest.clearAllMocks());
