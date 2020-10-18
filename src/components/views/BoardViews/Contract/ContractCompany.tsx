@@ -2,6 +2,7 @@ import { IField } from "../../../../types/types";
 import React from "react";
 
 export const ContractCompany = ({ field }: { field: IField }) => {
+  const price = `${field.price?.startPrice}k` || "0k";
   return (
     <>
       {field.fieldId && (
@@ -14,7 +15,7 @@ export const ContractCompany = ({ field }: { field: IField }) => {
           ></div>
           <div className="_info">
             <div className="_title">{field.name}</div>
-            <div className="_subtitle">{field.price?.startPrice}k</div>
+            <div className="_subtitle">{price}</div>
           </div>
         </div>
       )}

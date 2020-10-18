@@ -126,12 +126,12 @@ describe("Contract test", () => {
   });
 
   // TODO test all Contract view functionality
-  it.skip("validates  modal is closed", () => {
-    const comp = mount(<Contract contract={testContract} user={testPlayer1} />);
-    comp.find("._accept").simulate("click");
+  // it.skip("validates  modal is closed", () => {
+  //   const comp = mount(<Contract contract={testContract} user={testPlayer1} />);
+  //   comp.find("._accept").simulate("click");
 
-    expect(modal.closeContractModal).toHaveBeenCalledTimes(1);
-  });
+  //   expect(modal.closeContractModal).toHaveBeenCalledTimes(1);
+  // });
 
   beforeEach(() => jest.clearAllMocks());
 });
