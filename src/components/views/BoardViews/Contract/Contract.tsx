@@ -77,7 +77,6 @@ export const Contract = ({
   const onContractSubmit = () => {
     setActiveInput(0);
     const res = validateContract(contract);
-    console.log(11111111, res);
     if (res) {
       showDialog(res);
     } else {
