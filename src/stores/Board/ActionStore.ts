@@ -122,4 +122,3 @@ actions$.watch((v) => {
     }
   }
 });
-export const sendBoardActionTest = () => console.log("sendBoardAction");

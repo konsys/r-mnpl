@@ -18,7 +18,7 @@ import {
 import { ContractCompany } from "./ContractCompany";
 import { getField } from "../../../../utils/fields.utils";
 import { getPlayer } from "../../../../utils/players.utils";
-import { sample } from "lodash";
+import { sample } from "effector";
 
 export enum KeyCode {
   ENTER = 13,
@@ -61,18 +61,19 @@ export const Contract = ({
   const [valueFrom, setValueFrom] = useState<string>("");
   const [valueTo, setValueTo] = useState<string>("");
 
-  // gameActionFx.done.watch(() => {
-  //   user &&
-  //     (user.userId === contract.fromUserId ||
-  //       user.userId === contract.toUserId) &&
-  //     closeContractModal();
+  gameActionFx.done.watch(() => {
+    user &&
+      (user.userId === contract.fromUserId ||
+        user.userId === contract.toUserId) &&
+      closeContractModal();
+  });
+
+  // sample({
+  //   clock: gameActionFx.done,
+  //   source: gameActionFx,
+  //   fn: () => closeContractModal(),
   // });
 
-  sample({
-    clock: gameActionFx.done,
-    source: gameActionFx,
-    fn: () => closeContractModal(),
-  });
   const onContractSubmit = () => {
     setActiveInput(0);
     const res = validateContract(contract);
