@@ -2,7 +2,7 @@ import axios, { AxiosError, AxiosResponse } from "axios";
 import {
   clearToken,
   getToken,
-} from "../components/core/Registration/Login/model/TokenModel";
+} from "components/core/Registration/Login/model/TokenModel";
 
 import { Params } from "config/params";
 

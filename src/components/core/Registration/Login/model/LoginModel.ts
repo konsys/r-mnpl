@@ -1,9 +1,12 @@
 import { ILoginForm, ILoginResponce } from "../Login";
 import { clearToken, saveToken } from "./TokenModel";
+import {
+  getMyProfile,
+  logout,
+} from "../../../../../stores/Game/User/UserModel";
 
 import { LocalStorageParams } from "../../../../../types/types";
 import { createDomain } from "effector";
-import { getMyProfile } from "../../../../../stores/Game/User/UserModel";
 import { loginFetch } from "../../../../../api/Login/api";
 
 const AuthDomain = createDomain("AuthDomain");
@@ -14,8 +17,6 @@ export const loginEffect = AuthDomain.effect<ILoginForm, ILoginResponce, Error>(
     handler: loginFetch,
   }
 );
-
-export const logout = AuthDomain.event();
 
 export const login$ = AuthDomain.store<ILoginResponce | null>(null)
   .on(loginEffect.pending, () =>

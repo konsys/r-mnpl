@@ -225,7 +225,6 @@ interface UserGameStatus extends IUser {
   isActing: boolean;
   doublesRolledAsCombo: number;
   jailed: number;
-  justUnjailed: boolean;
   unjailAttempts: number;
   meanPosition: number;
   money: number;

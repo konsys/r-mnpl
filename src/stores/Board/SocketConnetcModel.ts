@@ -22,7 +22,7 @@ export const connectBoardSocketFx = BoardSocketDomain.effect<string, any>({
   handler: connectBoardSocket,
 });
 
-BoardSocketGate.state.watch((v) => console.log(111111, v));
+// BoardSocketGate.state.watch((v) => console.log(111111, v));
 
 sample({
   clock: BoardSocketGate.open,

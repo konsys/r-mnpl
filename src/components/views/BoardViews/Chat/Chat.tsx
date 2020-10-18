@@ -464,7 +464,7 @@ export const Chat = () => (
             className="scr-pane-handler"
             style={{
               transform: "translateY(284px)",
-              height: "153.499px"
+              height: "153.499px",
             }}
           ></div>
         </div>
@@ -478,7 +478,7 @@ export const Chat = () => (
           mnpl-emote="Clap"
           className="emotes-button"
           style={{
-            backgroundImage: `url("//m1.dogecdn.wtf/chat/eClap.svg")`
+            backgroundImage: `url("//m1.dogecdn.wtf/chat/eClap.svg")`,
           }}
         ></div>
         <div className="_hint _hint_tab">

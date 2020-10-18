@@ -7,16 +7,15 @@ import {
   Hidden,
   Typography,
 } from "@material-ui/core";
+import { logout, user$ } from "../../../stores/Game/User/UserModel";
 
 import Logo from "./logo/Logo";
 import MobileMenu from "./menu/MobileMenu";
 import React from "react";
 import TopMenu from "./menu/TopMenu";
-import { logout } from "../../../components/core/Registration/Login/model/LoginModel";
 import { useHistory } from "react-router-dom";
 import { useStore } from "effector-react";
 import { useTranslation } from "react-i18next";
-import { user$ } from "../../../stores/Game/User/UserModel";
 
 export default function Header() {
   const { t } = useTranslation();
