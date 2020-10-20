@@ -15,7 +15,6 @@ import {
 
 import { BoardDomain } from "./BoardDomain";
 import { fetchBoardAction } from "api/Board/api";
-import { hideDicesEvent } from "./DicesStore";
 import { incomeContract } from "./ContractStore";
 import nanoid from "nanoid";
 import { rollDicesAction } from "../../handlers/DicesHandler";
@@ -75,7 +74,7 @@ export const doNothing = (userId: number) => {
 
 actions$.watch((v) => {
   const action = v.event.action;
-  hideDicesEvent();
+
   if (action) {
     switch (action.type) {
       case IncomeMessageType.INCOME_ROLL_DICES_MODAL:

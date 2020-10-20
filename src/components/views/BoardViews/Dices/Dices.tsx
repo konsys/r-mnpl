@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 
-import { dicesStore } from "../../../../stores/Board/DicesStore";
+import { dicesStore } from "stores/Board/DicesStore";
 import { useStore } from "effector-react";
 
 export const Dices = () => {
