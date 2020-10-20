@@ -12,7 +12,6 @@ import {
   unJailModal,
   unJailPayingModal,
 } from "../../handlers/Modals";
-import { combine, sample } from "effector";
 
 import { BoardDomain } from "./BoardDomain";
 import { boardGame$ } from "stores/Game/Board/BoardModel";
@@ -20,6 +19,7 @@ import { incomeContract } from "./ContractStore";
 import nanoid from "nanoid";
 import { postBoardAction } from "api/Board/api";
 import { rollDicesAction } from "../../handlers/DicesHandler";
+import { sample } from "effector";
 import { showBoardModalEvent } from "./ModalStore";
 
 export interface ICurrentAction {
@@ -39,7 +39,7 @@ export const gameActionFx = GameActionDomain.effect<
   handler: postBoardAction,
 });
 
-const actionSample = sample({
+sample({
   source: boardGame$,
   clock: sendBoardAction,
   fn: (action, board) => {
