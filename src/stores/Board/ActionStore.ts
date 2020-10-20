@@ -18,6 +18,7 @@ import { incomeContract } from "./ContractStore";
 import nanoid from "nanoid";
 import { postBoardAction } from "api/Board/api";
 import { rollDicesAction } from "../../handlers/DicesHandler";
+import { sample } from "effector";
 import { showBoardModalEvent } from "./ModalStore";
 
 export interface ICurrentAction {
@@ -36,6 +37,8 @@ export const gameActionFx = GameActionDomain.effect<
 >({
   handler: postBoardAction,
 });
+
+sample({ source: actions$, clock: sendBoardAction, target: gameActionFx });
 
 const ActionDomain = BoardDomain.domain("BoardActionDomain");
 export const resetActionEvent = ActionDomain.event();
