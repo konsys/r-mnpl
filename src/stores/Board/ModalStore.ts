@@ -21,3 +21,5 @@ export const showBoardModalEvent = ModalDomain.event<BoardAction>();
 export const boardModalStore = ModalDomain.store<BoardAction>(init)
   .on(showBoardModalEvent, (_, data) => data)
   .reset(resetBoardModalEvent);
+
+// boardModalStore.watch(console.log);

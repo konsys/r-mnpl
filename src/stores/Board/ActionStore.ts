@@ -14,9 +14,9 @@ import {
 } from "../../handlers/Modals";
 
 import { BoardDomain } from "./BoardDomain";
-import { fetchBoardAction } from "api/Board/api";
 import { incomeContract } from "./ContractStore";
 import nanoid from "nanoid";
+import { postBoardAction } from "api/Board/api";
 import { rollDicesAction } from "../../handlers/DicesHandler";
 import { showBoardModalEvent } from "./ModalStore";
 
@@ -34,7 +34,7 @@ export const gameActionFx = GameActionDomain.effect<
   Promise<any>,
   Error
 >({
-  handler: fetchBoardAction,
+  handler: postBoardAction,
 });
 
 const ActionDomain = BoardDomain.domain("BoardActionDomain");

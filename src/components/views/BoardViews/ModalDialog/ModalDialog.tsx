@@ -6,7 +6,7 @@ import {
   DialogContentText,
   DialogTitle,
 } from "@material-ui/core";
-import { dialogStore, hideDialog } from "../../../../stores/Board/DialogStore";
+import { dialogStore, hideDialog } from "stores/Board/DialogStore";
 
 import React from "react";
 import { useStore } from "effector-react";

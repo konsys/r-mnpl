@@ -20,7 +20,6 @@ describe("Test contract company", () => {
   it("should render name", () => {
     const tree = shallow(<ContractCompany field={testField} />);
     const price = testField && testField.price && testField.price.startPrice;
-    console.log(23232323, price, `${price}k`, tree.find("._subtitle").debug());
     expect(tree.find("._subtitle").contains(`${price}k`)).toBeTruthy();
   });
 });

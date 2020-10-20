@@ -3,9 +3,7 @@ import { client } from "../../http/client";
 
 const URL = `/board/action`;
 
-export async function fetchBoardAction(
-  data: IBoardActionRequest
-): Promise<any> {
+export async function postBoardAction(data: IBoardActionRequest): Promise<any> {
   return await (await client.post(URL, { data })).data;
 }
 
