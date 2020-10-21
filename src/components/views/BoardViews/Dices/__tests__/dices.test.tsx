@@ -22,9 +22,8 @@ describe("Dices test", () => {
   });
 
   it("should set propriate class", () => {
-    const d1 = shallow(<Dices />).debug();
-    console.log(3333, d1, dices$.getState());
-
-    expect(shallow(<Dices />).find(".dicesWrapper")).toHaveLength(1);
+    expect(
+      shallow(<Dices />).find(".table-body-board-generators")
+    ).toHaveLength(1);
   });
 });
