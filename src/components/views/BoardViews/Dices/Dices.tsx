@@ -1,10 +1,10 @@
 import React, { useRef } from "react";
 
-import { dicesStore } from "stores/Board/DicesStore";
+import { dices$ } from "stores/Board/DicesStore";
 import { useStore } from "effector-react";
 
 export const Dices = () => {
-  const d = useStore(dicesStore);
+  const d = useStore(dices$);
   const dice1 = (d.dices?.length === 3 && d.dices[0]) || 0;
   const dice2 = (d.dices?.length === 3 && d.dices[1]) || 0;
   const dice3 = (d.dices?.length === 3 && d.dices[2]) || 0;

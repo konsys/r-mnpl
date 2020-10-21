@@ -1,17 +1,32 @@
-import * as dices from "stores/Board/DicesStore";
-
 import { mount, shallow } from "enzyme";
 
 import { Dices } from "../Dices";
+import { IncomeMessageType } from "types/types";
 import React from "react";
-
-// jest.mock("stores/Board/DicesStore", () => ({
-//   hideDicesEvent: jest.fn(),
-// }));
+import { dices$ } from "stores/Board/DicesStore";
+import { setDicesEvent } from "stores/Board/DicesStore";
 
 describe("Dices test", () => {
+  beforeEach(() => {
+    setDicesEvent({
+      type: IncomeMessageType.DO_NOTHING,
+      userId: 1,
+      dices: [1, 1, 0],
+      dicesSum: 2,
+      _id: "",
+      isModal: false,
+    });
+  });
   it("should render", () => {
-    mount(<Dices />);
-    // expect(dices.hideDicesEvent).toHaveBeenCalledTimes(1);f
+    expect(shallow(<Dices />)).toMatchSnapshot();
+  });
+
+  it("should set propriate class", () => {
+    const d1 = mount(<Dices />).debug();
+
+    console.log(1111, d1);
+    console.log(dices$.getState());
+
+    // expect(shallow(<Dices />).hasClass("r2")).toBeTruthy();
   });
 });

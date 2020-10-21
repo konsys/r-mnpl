@@ -34,11 +34,11 @@ const init: IDices = {
   isModal: false,
 };
 
-export const dicesStore = DiceDomain.store<IDices>(init)
+export const dices$ = DiceDomain.store<IDices>(init)
   .on(setDicesEvent, (_, data) => {
     setTimeout(() => hideDicesEvent(), 3000);
     return data;
   })
   .reset(hideDicesEvent);
 
-// dicesStore.watch((v) => console.log("dicesStoreWatch", v));
+// dices$.watch((v) => console.log("dicesStoreWatch", v));
