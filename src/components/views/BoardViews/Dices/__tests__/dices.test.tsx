@@ -22,11 +22,9 @@ describe("Dices test", () => {
   });
 
   it("should set propriate class", () => {
-    const d1 = mount(<Dices />).debug();
+    const d1 = shallow(<Dices />).debug();
+    console.log(3333, d1, dices$.getState());
 
-    console.log(1111, d1);
-    console.log(dices$.getState());
-
-    // expect(shallow(<Dices />).hasClass("r2")).toBeTruthy();
+    expect(shallow(<Dices />).find(".dicesWrapper")).toHaveLength(1);
   });
 });

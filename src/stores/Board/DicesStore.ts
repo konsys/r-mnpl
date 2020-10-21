@@ -36,7 +36,7 @@ const init: IDices = {
 
 export const dices$ = DiceDomain.store<IDices>(init)
   .on(setDicesEvent, (_, data) => {
-    setTimeout(() => hideDicesEvent(), 3000);
+    // setTimeout(() => hideDicesEvent(), 3000);
     return data;
   })
   .reset(hideDicesEvent);
