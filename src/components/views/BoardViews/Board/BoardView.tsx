@@ -14,7 +14,7 @@ import {
 
 import { BOARD_PARAMS } from "../../../../params/boardParams";
 import { Field } from "../Field/Field";
-import { FieldActions } from "../Field/FieldActions/FieldAction";
+import { FieldActions } from "../Field/FieldActions/FieldActions";
 import { addFieldToContract } from "../../../../stores/Board/ContractStore";
 
 export const BoardView = ({

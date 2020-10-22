@@ -1,6 +1,6 @@
 import { FieldStatus, FieldType, IField, IFieldAction } from "types/types";
 
-import { FieldActions } from "components/views/BoardViews/Field/FieldActions/FieldAction";
+import { FieldActions } from "components/views/BoardViews/Field/FieldActions/FieldActions";
 
 // import {FieldStatus} from ""
 
