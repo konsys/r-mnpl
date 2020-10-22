@@ -41,7 +41,7 @@ export const Field = ({
           type === FieldType.IT) && (
           <div
             mnpl-currency={currency}
-            className={`table-body-board-fields-one-label `}
+            className={`table-body-board-fields-one-label`}
           >
             <div>
               {status?.userId
