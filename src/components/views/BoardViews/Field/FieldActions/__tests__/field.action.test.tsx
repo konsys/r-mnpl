@@ -20,4 +20,16 @@ describe("Field action test", () => {
         .get(0).props.style
     ).toHaveProperty("left", `${testFieldActions.position.left}px`);
   });
+  it("should render active", () => {
+    expect(
+      shallow(<FieldActions {...testFieldActions} isActive={false} />)
+        .find(".TableFieldcard")
+        .get(0).props.style
+    ).toHaveProperty("display", "none");
+    expect(
+      shallow(<FieldActions {...testFieldActions} isActive={true} />)
+        .find(".TableFieldcard")
+        .get(0).props.style
+    ).toHaveProperty("display", "block");
+  });
 });
