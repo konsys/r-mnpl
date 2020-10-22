@@ -9,8 +9,6 @@ describe("Field action test", () => {
   });
 
   it("should render position", () => {
-    // const top = `${testFieldActions.position.top}px`;
-
     expect(
       shallow(<FieldActions {...testFieldActions} />)
         .find(".TableFieldcard")
