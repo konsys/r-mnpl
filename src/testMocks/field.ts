@@ -56,3 +56,13 @@ export const testOwnedField: IField = {
     bigStar: 3000,
   },
 };
+
+export const testJailField: IField = {
+  fieldId: 10,
+  fieldPosition: 10,
+  name: "jail",
+  type: FieldType.JAIL,
+  fieldCorner: 2,
+  fieldLine: 1,
+  isJail: true,
+};
