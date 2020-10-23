@@ -46,7 +46,7 @@ export default function GameModal() {
             >
               {t("Ok")}
             </Button>
-          </Grid>{" "}
+          </Grid>
         </Grid>
       </DialogContent>
     </Dialog>

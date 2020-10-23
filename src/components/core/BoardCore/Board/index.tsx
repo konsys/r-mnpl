@@ -9,7 +9,6 @@ import { BoardWrapper } from "./BoardWrapper";
 import GameCompleted from "components/core/Game/GameCompleted/GameCompleted";
 import GameNotFound from "components/core/Game/GameNotFound/GameNotFound";
 import { IRoomState } from "stores/Game/Rooms/RoomsModel";
-import { ModalDialog } from "../../../views/BoardViews/ModalDialog/ModalDialog";
 import React from "react";
 import { RouteComponentProps } from "react-router";
 import { head } from "lodash";
@@ -29,7 +28,6 @@ export const Board = (props: RouteComponentProps | any) => {
 
   return (
     <>
-      <ModalDialog />
       {completed ? (
         <GameCompleted winner={head(completed.players)} />
       ) : board && board.roomId ? (
