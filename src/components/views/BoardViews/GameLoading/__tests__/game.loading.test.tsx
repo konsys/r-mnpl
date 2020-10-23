@@ -1,4 +1,3 @@
-import { FieldActionIT } from "../FieldActionIT";
 import { GameLoading } from "../GameLoading";
 import React from "react";
 import { shallow } from "enzyme";
