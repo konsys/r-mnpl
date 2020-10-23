@@ -22,8 +22,6 @@ const App = () => {
   useGate(ProfileGate);
   return (
     <>
-      {/* <React.StrictMode> */}
-
       <MuiThemeProvider theme={theme}>
         <GameModal />
         <GameChatSocket />
@@ -38,8 +36,6 @@ const App = () => {
           </Switch>
         </Router>
       </MuiThemeProvider>
-
-      {/* </React.StrictMode> */}
     </>
   );
 };
