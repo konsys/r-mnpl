@@ -1,4 +1,4 @@
-import { testField, testOwnedField } from "./field";
+import { testField, testMortgagedField, testOwnedField } from "./field";
 
 import { IFieldModal } from "components/views/BoardViews/Field/FieldActions/FieldActions";
 
@@ -11,6 +11,13 @@ export const testFieldActions: IFieldModal = {
 
 export const testOwnedFieldActions: IFieldModal = {
   ...testOwnedField,
+  isActive: true,
+
+  position: { top: 20, left: 20 },
+};
+
+export const testMortgagedFieldActions: IFieldModal = {
+  ...testMortgagedField,
   isActive: true,
 
   position: { top: 20, left: 20 },

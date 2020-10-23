@@ -3,6 +3,7 @@ import * as field from "stores/Board/FieldsStore";
 
 import {
   testFieldActions,
+  testMortgagedFieldActions,
   testOwnedFieldActions,
 } from "testMocks/field.actions";
 import { testPlayer1, testPlayer2 } from "testMocks/user";
@@ -22,7 +23,10 @@ jest.mock("stores/Board/FieldsStore", () => ({
 }));
 
 describe("Field action test", () => {
-  beforeEach(() => updateAllPlayers([testPlayer1, testPlayer2]));
+  beforeEach(() => {
+    jest.clearAllMocks();
+    updateAllPlayers([testPlayer1, testPlayer2]);
+  });
   it("should render", () => {
     expect(shallow(<FieldActions {...testFieldActions} />)).toMatchSnapshot();
   });
@@ -99,6 +103,25 @@ describe("Field action test", () => {
     expect(act.sendBoardAction).toHaveBeenCalledTimes(1);
     expect(act.sendBoardAction.mock.calls[0][0]).toStrictEqual({
       action: OutcomeMessageType.OUTCOME_MORTGAGE_FIELD_CLICKED,
+      fieldId: testOwnedFieldActions.fieldId,
+    });
+    expect(field.closeFieldActionEvent).toHaveBeenCalledTimes(1);
+  });
+
+  it("should render mortgage", () => {
+    shallow(
+      <FieldActions
+        {...testMortgagedFieldActions}
+        // status={{ ...testMortgagedFieldActions.status }}
+        isActive={true}
+      />
+    )
+      .find("._unmortgage")
+      .simulate("click");
+
+    expect(act.sendBoardAction).toHaveBeenCalledTimes(1);
+    expect(act.sendBoardAction.mock.calls[0][0]).toStrictEqual({
+      action: OutcomeMessageType.OUTCOME_UN_MORTGAGE_FIELD_CLICKED,
       fieldId: testOwnedFieldActions.fieldId,
     });
     expect(field.closeFieldActionEvent).toHaveBeenCalledTimes(1);
