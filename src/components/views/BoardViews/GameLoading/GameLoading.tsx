@@ -1,10 +1,12 @@
 import React from "react";
 
-export const GameLoading = () => (
+export const GameLoading = ({ isDisplayed }: { isDisplayed: boolean }) => (
   <>
-    <div className="table-loading" style={{ display: "none" }}>
-      <div className="table-loading-logo _animated"></div>
-      <div className="table-loading-status">Всё готово!</div>
-    </div>
+    {isDisplayed && (
+      <div className="table-loading">
+        <div className="table-loading-logo _animated"></div>
+        <div className="table-loading-status">Всё готово!</div>
+      </div>
+    )}
   </>
 );
