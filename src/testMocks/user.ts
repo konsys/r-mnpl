@@ -13,7 +13,7 @@ export const testPlayer1: IPlayer = {
   updatedAt: new Date(),
   isActive: false,
   isBlocked: true,
-  isActing: false,
+  isActing: true,
   gameId: "",
   doublesRolledAsCombo: 0,
   jailed: 0,

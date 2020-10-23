@@ -6,6 +6,8 @@ import { FieldActions } from "components/views/BoardViews/Field/FieldActions/Fie
 
 export const testField: IField = {
   fieldId: 1,
+  fieldGroup: 1,
+  fieldGroupName: "testGroupName",
   fieldPosition: 1,
   name: "testName",
   type: FieldType.COMPANY,
