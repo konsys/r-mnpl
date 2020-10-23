@@ -1,4 +1,5 @@
 import * as act from "stores/Board/ActionStore";
+import * as field from "stores/Board/FieldsStore";
 
 import {
   testFieldActions,
@@ -7,12 +8,17 @@ import {
 import { testPlayer1, testPlayer2 } from "testMocks/user";
 
 import { FieldActions } from "../FieldActions";
+import { OutcomeMessageType } from "types/types";
 import React from "react";
 import { shallow } from "enzyme";
 import { updateAllPlayers } from "utils/players.utils";
 
 jest.mock("stores/Board/ActionStore", () => ({
   sendBoardAction: jest.fn(),
+}));
+
+jest.mock("stores/Board/FieldsStore", () => ({
+  closeFieldActionEvent: jest.fn(),
 }));
 
 describe("Field action test", () => {
@@ -91,5 +97,10 @@ describe("Field action test", () => {
       .simulate("click");
 
     expect(act.sendBoardAction).toHaveBeenCalledTimes(1);
+    expect(act.sendBoardAction.mock.calls[0][0]).toStrictEqual({
+      action: OutcomeMessageType.OUTCOME_MORTGAGE_FIELD_CLICKED,
+      fieldId: testOwnedFieldActions.fieldId,
+    });
+    expect(field.closeFieldActionEvent).toHaveBeenCalledTimes(1);
   });
 });
