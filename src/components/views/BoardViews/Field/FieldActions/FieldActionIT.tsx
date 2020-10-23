@@ -15,7 +15,7 @@ export const FieldActionIT = (rent: IFieldRent) => {
                 n-fill-rule="evenodd"
               ></path>
             </svg>
-            × {rent && rent.baseRent}
+            × <span className="_mult_one">{rent && rent.baseRent}</span>
           </div>
         </div>
         <div>
@@ -28,7 +28,7 @@ export const FieldActionIT = (rent: IFieldRent) => {
                 n-fill-rule="evenodd"
               ></path>
             </svg>
-            × {rent && rent.oneStar}
+            × <span className="_mult_two">{rent && rent.oneStar}</span>
           </div>
         </div>
       </div>
