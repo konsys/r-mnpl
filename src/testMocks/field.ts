@@ -36,7 +36,47 @@ export const testOwnedField: IField = {
     fieldId: 1,
     userId: 1,
     mortgaged: 0,
-    fieldActions: [IFieldAction.MORTGAGE],
+    fieldActions: [
+      IFieldAction.MORTGAGE,
+      IFieldAction.LEVEL_UP,
+      IFieldAction.LEVEL_DOWN,
+    ],
+  },
+  fieldId: 1,
+  fieldPosition: 1,
+  description: "testDescription",
+  name: "testName",
+  type: FieldType.COMPANY,
+  price: {
+    branchPrice: 1000,
+    buyoutPrice: 900,
+    pledgePrice: 500,
+    startPrice: 2000,
+  },
+  rent: {
+    baseRent: 200,
+    monopolyRent: 250,
+    oneStar: 300,
+    twoStar: 1000,
+    freeStar: 1500,
+    fourStar: 2000,
+    bigStar: 3000,
+  },
+};
+
+export const testStaredField: IField = {
+  status: {
+    level: 0,
+    branches: 1,
+    isMonopoly: false,
+    fieldId: 1,
+    userId: 1,
+    mortgaged: 0,
+    fieldActions: [
+      IFieldAction.MORTGAGE,
+      IFieldAction.LEVEL_UP,
+      IFieldAction.LEVEL_DOWN,
+    ],
   },
   fieldId: 1,
   fieldPosition: 1,

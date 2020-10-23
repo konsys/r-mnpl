@@ -132,26 +132,26 @@ export const FieldActions = ({
           <div className="TableFieldcard-data-rows">
             <div>
               <div className="_title">Стоимость поля</div>
-              <div className="_value _type_money">
+              <div className="_value _type_money _start_price">
                 {price && price.startPrice}
               </div>
             </div>
             <div>
               <div className="_title">Залог поля</div>
-              <div className="_value _type_money">
+              <div className="_value _type_money _pledge_price">
                 {price && price.pledgePrice}
               </div>
             </div>
             <div>
               <div className="_title">Выкуп поля</div>
-              <div className="_value _type_money">
+              <div className="_value _type_money _buyout_price">
                 {price && price.buyoutPrice}
               </div>
             </div>
             {price && price.branchPrice > 0 && (
               <div>
                 <div className="_title">Покупка филиала</div>
-                <div className="_value _type_money">
+                <div className="_value _type_money _branch_price">
                   {price && price.branchPrice}
                 </div>
               </div>

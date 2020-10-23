@@ -16,6 +16,13 @@ export const testOwnedFieldActions: IFieldModal = {
   position: { top: 20, left: 20 },
 };
 
+export const testStaredFieldActions: IFieldModal = {
+  ...testOwnedField,
+  isActive: true,
+
+  position: { top: 20, left: 20 },
+};
+
 export const testMortgagedFieldActions: IFieldModal = {
   ...testMortgagedField,
   isActive: true,

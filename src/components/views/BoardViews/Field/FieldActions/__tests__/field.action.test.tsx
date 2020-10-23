@@ -89,7 +89,7 @@ describe("Field action test", () => {
       ).find("._mortgage")
     ).toHaveLength(1);
   });
-  it("should render mortgage", () => {
+  it("should mortgage", () => {
     shallow(
       <FieldActions
         {...testOwnedFieldActions}
@@ -108,14 +108,8 @@ describe("Field action test", () => {
     expect(field.closeFieldActionEvent).toHaveBeenCalledTimes(1);
   });
 
-  it("should render mortgage", () => {
-    shallow(
-      <FieldActions
-        {...testMortgagedFieldActions}
-        // status={{ ...testMortgagedFieldActions.status }}
-        isActive={true}
-      />
-    )
+  it("should unmortgage", () => {
+    shallow(<FieldActions {...testMortgagedFieldActions} isActive={true} />)
       .find("._unmortgage")
       .simulate("click");
 
@@ -125,5 +119,73 @@ describe("Field action test", () => {
       fieldId: testOwnedFieldActions.fieldId,
     });
     expect(field.closeFieldActionEvent).toHaveBeenCalledTimes(1);
+  });
+  it("should level up", () => {
+    shallow(<FieldActions {...testOwnedFieldActions} isActive={true} />)
+      .find("._level_up")
+      .simulate("click");
+
+    expect(act.sendBoardAction).toHaveBeenCalledTimes(1);
+    expect(act.sendBoardAction.mock.calls[0][0]).toStrictEqual({
+      action: OutcomeMessageType.OUTCOME_LEVEL_UP_FIELD_CLICKED,
+      fieldId: testOwnedFieldActions.fieldId,
+    });
+    expect(field.closeFieldActionEvent).toHaveBeenCalledTimes(1);
+  });
+  it("should level down", () => {
+    shallow(<FieldActions {...testOwnedFieldActions} isActive={true} />)
+      .find("._level_down")
+      .simulate("click");
+
+    expect(act.sendBoardAction).toHaveBeenCalledTimes(1);
+    expect(act.sendBoardAction.mock.calls[0][0]).toStrictEqual({
+      action: OutcomeMessageType.OUTCOME_LEVEL_DOWN_FIELD_CLICKED,
+      fieldId: testOwnedFieldActions.fieldId,
+    });
+    expect(field.closeFieldActionEvent).toHaveBeenCalledTimes(1);
+  });
+
+  it("should render description", () => {
+    expect(
+      shallow(<FieldActions {...testOwnedFieldActions} />)
+        .find(".TableFieldcard-data-rich > div")
+        .text()
+    ).toBe(testOwnedFieldActions.description);
+  });
+
+  it("should render description", () => {
+    expect(
+      shallow(<FieldActions {...testOwnedFieldActions} />)
+        .find(".TableFieldcard-data-rich > div")
+        .text()
+    ).toBe(testOwnedFieldActions.description);
+  });
+  it("should render start price", () => {
+    expect(
+      shallow(<FieldActions {...testOwnedFieldActions} />)
+        .find("._start_price")
+        .text()
+    ).toBe(testOwnedFieldActions.price?.startPrice.toString());
+  });
+  it("should render pledge price", () => {
+    expect(
+      shallow(<FieldActions {...testOwnedFieldActions} />)
+        .find("._pledge_price")
+        .text()
+    ).toBe(testOwnedFieldActions.price?.pledgePrice.toString());
+  });
+  it("should render pledge price", () => {
+    expect(
+      shallow(<FieldActions {...testOwnedFieldActions} />)
+        .find("._buyout_price")
+        .text()
+    ).toBe(testOwnedFieldActions.price?.buyoutPrice.toString());
+  });
+  it("should render pledge price", () => {
+    expect(
+      shallow(<FieldActions {...testOwnedFieldActions} />)
+        .find("._branch_price")
+        .text()
+    ).toBe(testOwnedFieldActions.price?.branchPrice.toString());
   });
 });
