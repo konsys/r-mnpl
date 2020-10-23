@@ -5,6 +5,6 @@ import { testRoom } from "testMocks/room";
 
 describe("Board wrapper test", () => {
   it("should renders", () => {
-    shallow(<BoardWrapper board={testRoom} />);
+    expect(shallow(<BoardWrapper board={testRoom} />)).toMatchSnapshot();
   });
 });
