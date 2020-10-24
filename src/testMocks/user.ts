@@ -1,4 +1,4 @@
-import { IPlayer } from "types/types";
+import { IPlayer, IUser } from "types/types";
 
 export const testPlayer1: IPlayer = {
   frags: "",
@@ -56,4 +56,19 @@ export const testPlayer2: IPlayer = {
   creditToPay: 0,
   canUseCredit: false,
   moveOrder: 0,
+};
+
+export const testUser: IUser = {
+  userId: 1,
+  vip: false,
+  name: "IVAN",
+  isActive: true,
+  isBlocked: false,
+};
+export const testVipUser: IUser = {
+  userId: 3,
+  vip: true,
+  name: "OLEG",
+  isActive: true,
+  isBlocked: false,
 };

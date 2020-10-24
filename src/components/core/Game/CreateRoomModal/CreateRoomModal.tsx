@@ -63,9 +63,10 @@ export default function CreateRoomModal() {
               <Grid
                 item
                 className={
-                  roomType === RoomType.REGULAR
+                  "regular " +
+                  (roomType === RoomType.REGULAR
                     ? RoomType.REGULAR + " _selected"
-                    : RoomType.REGULAR
+                    : RoomType.REGULAR)
                 }
                 onClick={() =>
                   updateRoom({ ...room, roomType: RoomType.REGULAR })
@@ -79,9 +80,10 @@ export default function CreateRoomModal() {
               <Grid
                 item
                 className={
-                  roomType === RoomType.QUICK
+                  "quick " +
+                  (roomType === RoomType.QUICK
                     ? RoomType.QUICK + " _selected"
-                    : RoomType.QUICK
+                    : RoomType.QUICK)
                 }
                 onClick={() =>
                   updateRoom({ ...room, roomType: RoomType.QUICK })
@@ -95,9 +97,10 @@ export default function CreateRoomModal() {
               <Grid
                 item
                 className={
-                  roomType === RoomType.SHUFFLE
+                  "shuffle " +
+                  (roomType === RoomType.SHUFFLE
                     ? RoomType.SHUFFLE + " _selected"
-                    : RoomType.SHUFFLE
+                    : RoomType.SHUFFLE)
                 }
                 onClick={() =>
                   updateRoom({ ...room, roomType: RoomType.SHUFFLE })
@@ -111,9 +114,10 @@ export default function CreateRoomModal() {
               <Grid
                 item
                 className={
-                  roomType === RoomType.RETRO
+                  "retro " +
+                  (roomType === RoomType.RETRO
                     ? RoomType.RETRO + " _selected"
-                    : RoomType.RETRO
+                    : RoomType.RETRO)
                 }
                 onClick={() =>
                   updateRoom({ ...room, roomType: RoomType.RETRO })
@@ -127,9 +131,10 @@ export default function CreateRoomModal() {
               <Grid
                 item
                 className={
-                  roomType === RoomType.ROULETTE
+                  "roulette " +
+                  (roomType === RoomType.ROULETTE
                     ? RoomType.ROULETTE + " _selected"
-                    : RoomType.ROULETTE
+                    : RoomType.ROULETTE)
                 }
                 onClick={() =>
                   updateRoom({ ...room, roomType: RoomType.ROULETTE })
@@ -165,6 +170,7 @@ export default function CreateRoomModal() {
       </DialogContent>
       <DialogActions>
         <Button
+          className="_create-game-button"
           disabled={
             !user ||
             (!user.vip &&
