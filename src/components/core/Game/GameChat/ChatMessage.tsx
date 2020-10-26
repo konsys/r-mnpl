@@ -67,7 +67,9 @@ export default function ChatMessage(props: IChatMessageProps) {
         </Grid>
         {props.replies && props.replies.length ? (
           <Grid item>
-            <Typography variant="body2">-</Typography>
+            <Typography variant="body2" className={"_reply-sign"}>
+              -
+            </Typography>
           </Grid>
         ) : (
           ""
@@ -78,6 +80,7 @@ export default function ChatMessage(props: IChatMessageProps) {
               {props.replies.map((v, k) => (
                 <Grid item key={k}>
                   <Chip
+                    className="_reply-message"
                     variant={
                       !!user && v.userId === user.userId
                         ? "default"
@@ -118,7 +121,9 @@ export default function ChatMessage(props: IChatMessageProps) {
           </Grid>
         )}
         <Grid item>-</Grid>
-        <Grid item>{props.message}</Grid>
+        <Grid item className={"_chat-message"}>
+          {props.message}
+        </Grid>
         <Grid item></Grid>
       </Grid>
     </>

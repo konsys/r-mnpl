@@ -7,13 +7,17 @@ import ChatMessage from "../ChatMessage";
 import { Chip } from "@material-ui/core";
 import React from "react";
 import moment from "moment";
+import { setUserEvent } from "stores/Game/User/UserModel";
 import { shallow } from "enzyme";
+import { theme } from "theme";
 
 jest.mock("stores/Game/Chat/GameChatModel", () => ({
   addReplyToEvent: jest.fn(),
 }));
 
 describe("Chat message test", () => {
+  //   beforeAll(() => setUserEvent(testUser));
+
   it("should render", () => {
     expect(
       shallow(
@@ -56,6 +60,22 @@ describe("Chat message test", () => {
         .find("._chat-time")
         .text()
     ).toBe(moment(date).format("HH:mm").toString());
+  });
+
+  it("should show message", () => {
+    const date = new Date();
+    expect(
+      shallow(
+        <ChatMessage
+          fromUser={testUser}
+          replies={[testUser]}
+          message={"testMessage"}
+          time={date}
+        />
+      )
+        .find("._chat-message")
+        .text()
+    ).toBe("testMessage");
   });
 
   it("should show right chip color", () => {
@@ -106,5 +126,129 @@ describe("Chat message test", () => {
     );
     expect(vipMessage.find(Chip).get(0).props.icon).toBeDefined();
     expect(message.find(Chip).get(0).props.icon).toBeUndefined();
+  });
+
+  it("should show render reply sign", () => {
+    const date = new Date();
+    let vipMessage = shallow(
+      <ChatMessage
+        fromUser={testVipUser}
+        replies={[testUser]}
+        message={"testMessage"}
+        time={date}
+      />
+    );
+    expect(vipMessage.find("._reply-sign")).toHaveLength(1);
+
+    vipMessage = shallow(
+      <ChatMessage
+        fromUser={testVipUser}
+        replies={[]}
+        message={"testMessage"}
+        time={date}
+      />
+    );
+    expect(vipMessage.find("._reply-sign")).toHaveLength(0);
+  });
+
+  it("should show render reply message", () => {
+    const date = new Date();
+    const testUserArray = [testUser, testVipUser];
+    let vipMessage = shallow(
+      <ChatMessage
+        fromUser={testVipUser}
+        replies={testUserArray}
+        message={"testMessage"}
+        time={date}
+      />
+    );
+    expect(vipMessage.find("._reply-message")).toHaveLength(
+      testUserArray.length
+    );
+
+    vipMessage = shallow(
+      <ChatMessage
+        fromUser={testVipUser}
+        replies={[]}
+        message={"testMessage"}
+        time={date}
+      />
+    );
+    expect(vipMessage.find("._reply-message")).toHaveLength(0);
+  });
+
+  it("should show render reply variant", () => {
+    setUserEvent(testVipUser);
+    const date = new Date();
+    let vipMessage = shallow(
+      <ChatMessage
+        fromUser={testVipUser}
+        replies={[testVipUser]}
+        message={"testMessage"}
+        time={date}
+      />
+    );
+
+    let props = vipMessage.find("._reply-message").get(0).props;
+    expect(props.variant).toStrictEqual("default");
+
+    setUserEvent(testUser);
+    vipMessage = shallow(
+      <ChatMessage
+        fromUser={testVipUser}
+        replies={[testVipUser]}
+        message={"testMessage"}
+        time={date}
+      />
+    );
+    props = vipMessage.find("._reply-message").get(0).props;
+    expect(props.variant).toStrictEqual("outlined");
+  });
+
+  it("should show render reply color", () => {
+    setUserEvent(testVipUser);
+    const date = new Date();
+    let vipMessage = shallow(
+      <ChatMessage
+        fromUser={testVipUser}
+        replies={[testVipUser]}
+        message={"testMessage"}
+        time={date}
+      />
+    );
+
+    let props = vipMessage.find("._reply-message").get(0).props;
+    expect(props.color).toStrictEqual("secondary");
+    expect(props.style).toHaveProperty("color", "white");
+    expect(vipMessage.find("._reply-message").get(0).props.icon).toBeDefined();
+
+    setUserEvent(testUser);
+    vipMessage = shallow(
+      <ChatMessage
+        fromUser={testUser}
+        replies={[testUser]}
+        message={"testMessage"}
+        time={date}
+      />
+    );
+    props = vipMessage.find("._reply-message").get(0).props;
+    expect(props.color).toStrictEqual("primary");
+    expect(props.style).toHaveProperty("color", "white");
+    expect(
+      vipMessage.find("._reply-message").get(0).props.icon
+    ).toBeUndefined();
+
+    setUserEvent(testVipUser);
+    vipMessage = shallow(
+      <ChatMessage
+        fromUser={testUser}
+        replies={[testUser]}
+        message={"testMessage"}
+        time={date}
+      />
+    );
+    props = vipMessage.find("._reply-message").get(0).props;
+    expect(props.color).toStrictEqual("default");
+    expect(props.style).toHaveProperty("color", theme.palette.text.primary);
   });
 });
