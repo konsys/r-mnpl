@@ -1,13 +1,14 @@
 import { Button } from "@material-ui/core";
 import PlayersNumber from "../PlayersNumber";
 import React from "react";
+import { ShallowRendererProps } from "enzyme";
 import { createShallow } from "@material-ui/core/test-utils";
 
 describe("Players number test", () => {
-  let shallow: any;
+  let shallow: ShallowRendererProps | any;
 
   beforeAll(() => {
-    shallow = createShallow();
+    shallow = createShallow() as ShallowRendererProps;
   });
 
   afterAll(() => {
@@ -22,9 +23,21 @@ describe("Players number test", () => {
   });
 
   it("should render 5 buttons", () => {
-    console.log(shallow(<PlayersNumber isVip={false} />).debug());
     expect(shallow(<PlayersNumber isVip={false} />).find(Button)).toHaveLength(
       5
     );
+  });
+
+  it("should render vip", () => {
+    expect(
+      shallow(<PlayersNumber isVip={false} />)
+        .find(Button)
+        .get(4).props.disabled
+    ).toBeTruthy();
+    expect(
+      shallow(<PlayersNumber isVip={true} />)
+        .find(Button)
+        .get(4).props.disabled
+    ).toBeFalsy();
   });
 });
