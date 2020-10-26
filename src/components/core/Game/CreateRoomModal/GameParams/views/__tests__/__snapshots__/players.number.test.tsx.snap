@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Players number test should render not vip 1`] = `ShallowWrapper {}`;
+
+exports[`Players number test should render vip 1`] = `ShallowWrapper {}`;
