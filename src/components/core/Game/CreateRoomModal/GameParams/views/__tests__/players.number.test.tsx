@@ -28,6 +28,15 @@ describe("Players number test", () => {
     );
   });
 
+  it("should render right text on buttons", () => {
+    const wrap = shallow(<PlayersNumber isVip={true} />);
+    expect(wrap.find(Button).get(0).props.children).toBe("2");
+    expect(wrap.find(Button).get(1).props.children).toBe("3");
+    expect(wrap.find(Button).get(2).props.children).toBe("4");
+    expect(wrap.find(Button).get(3).props.children).toBe("5");
+    expect(wrap.find(Button).get(4).props.children).toBe("2x2");
+  });
+
   it("should render vip", () => {
     expect(
       shallow(<PlayersNumber isVip={false} />)
