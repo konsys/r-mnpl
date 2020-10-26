@@ -40,9 +40,9 @@ describe("Rooms switch test", () => {
         disabled={false}
       />
     );
-    expect(wrap.find(Switch).props("name").name).toStrictEqual("testName");
-    expect(wrap.find(Switch).props("name").checked).toStrictEqual(false);
-    expect(wrap.find(Switch).props("name").disabled).toStrictEqual(false);
+    expect(wrap.find(Switch).get(0).props.name).toStrictEqual("testName");
+    expect(wrap.find(Switch).get(0).props.checked).toStrictEqual(false);
+    expect(wrap.find(Switch).get(0).props.disabled).toStrictEqual(false);
   });
 
   it("should render false props", () => {
@@ -55,7 +55,22 @@ describe("Rooms switch test", () => {
         disabled={true}
       />
     );
-    expect(wrap.find(Switch).props("name").checked).toStrictEqual(true);
-    expect(wrap.find(Switch).props("name").disabled).toStrictEqual(true);
+    expect(wrap.find(Switch).get(0).props.checked).toStrictEqual(true);
+    expect(wrap.find(Switch).get(0).props.disabled).toStrictEqual(true);
+  });
+
+  it("should onclick", () => {
+    const fnct = jest.fn();
+    const wrap = shallow(
+      <RoomSwitch
+        text={"testText"}
+        name={"testName"}
+        checked={true}
+        onChange={fnct}
+        disabled={true}
+      />
+    );
+    wrap.find(Switch).get(0).props.onChange.call(null);
+    expect(fnct).toHaveBeenCalledTimes(1);
   });
 });
