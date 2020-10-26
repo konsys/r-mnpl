@@ -93,6 +93,7 @@ export default function QuickGameParams({ isVip }: { isVip: boolean }) {
                   control={<Radio color="primary" />}
                   label={t(RoomPortalFieldType.ROULETTE)}
                 />
+
                 <FormControlLabel
                   disabled={!isVip}
                   value={RoomPortalFieldType.RUSSIAN_ROULETTE}

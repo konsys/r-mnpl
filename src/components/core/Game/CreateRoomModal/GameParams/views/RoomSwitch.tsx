@@ -10,6 +10,7 @@ export default function RoomSwitch({
   checked,
   onChange,
   disabled,
+  className,
 }: {
   text: string;
   name: string;
