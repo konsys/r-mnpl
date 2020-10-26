@@ -1,12 +1,12 @@
 import { Chip, Grid, Typography } from "@material-ui/core";
 
-import { IUser } from "../../../../types/types";
+import { IUser } from "types/types";
 import React from "react";
 import Reply from "@material-ui/icons/Reply";
 import StarOutlined from "@material-ui/icons/StarOutlined";
-import { addReplyToEvent } from "../../../../stores/Game/Chat/GameChatModel";
+import { addReplyToEvent } from "stores/Game/Chat/GameChatModel";
 import moment from "moment";
-import { theme } from "../../../../theme";
+import { theme } from "theme";
 import { useStore } from "effector-react";
 import { user$ } from "stores/Game/User/UserModel";
 
@@ -30,7 +30,9 @@ export default function ChatMessage(props: IChatMessageProps) {
         justify="center"
         spacing={1}
       >
-        <Grid item>{moment(props.time).format("HH:mm").toString()}</Grid>{" "}
+        <Grid item className={"_chat-time"}>
+          {moment(props.time).format("HH:mm").toString()}
+        </Grid>
         <Grid item>
           <Typography variant="body2">
             <Reply
