@@ -43,7 +43,7 @@ export interface IReply {
   n: number;
   users: IUser[];
 }
-export const replyStore = ChatDomain.store<IReply>({ n: 0, users: [] })
+export const repliesTo$ = ChatDomain.store<IReply>({ n: 0, users: [] })
   .on(addReplyToEvent, (prev, v) => {
     const users = prev.users.filter((user) => user.userId !== v.userId);
     users.push(v);

@@ -1,24 +1,17 @@
-import {
-  Grid,
-  Input,
-  InputAdornment,
-  Switch,
-  Typography,
-} from "@material-ui/core";
+import { Grid, Input, Switch, Typography } from "@material-ui/core";
 import React, { useRef, useState } from "react";
 import {
   chatGate,
   chatStore,
-  deleteReplyToEvent,
-  replyStore,
+  repliesTo$,
   resetReplyToEvent,
   sendChatMessageEffect,
 } from "stores/Game/Chat/GameChatModel";
 import { useGate, useStore } from "effector-react";
 
+import ChatInputAdornment from "./ChatInputAdornment";
 import ChatMessage from "./ChatMessage";
 import { GRID_SPACING } from "theme";
-import PlayerChip from "./PlayerChip";
 import { useTranslation } from "react-i18next";
 
 enum KeyName {
@@ -26,11 +19,11 @@ enum KeyName {
 }
 
 export default function GameChat() {
-  // useGate(chatGate);
+  useGate(chatGate);
 
   const { t } = useTranslation();
   const messages = useStore(chatStore);
-  const replyTo = useStore(replyStore);
+  const replyTo = useStore(repliesTo$);
   const [message, setMessage] = useState<string>("");
 
   sendChatMessageEffect.done.watch(() => {
@@ -104,22 +97,7 @@ export default function GameChat() {
           <Input
             style={{ width: "100%" }}
             placeholder={t("Type message and press Enter")}
-            startAdornment={
-              <InputAdornment position="start" variant="outlined">
-                {replyTo && replyTo.users
-                  ? replyTo.users.map((v, k) => (
-                      // TODO make standart spacing
-                      <div style={{ marginRight: "5px" }} key={k}>
-                        <PlayerChip
-                          key={k}
-                          handleDelete={() => deleteReplyToEvent(v)}
-                          name={v.name}
-                        />
-                      </div>
-                    ))
-                  : ""}
-              </InputAdornment>
-            }
+            startAdornment={<ChatInputAdornment />}
             value={message}
             onChange={(e: any) => {
               setMessage(e.target.value);

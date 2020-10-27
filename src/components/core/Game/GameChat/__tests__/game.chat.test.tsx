@@ -1,28 +1,29 @@
+import { Input, Switch } from "@material-ui/core";
 import {
   addReplyToEvent,
+  repliesTo$,
   setChatMessages,
 } from "stores/Game/Chat/GameChatModel";
+import { testUser, testVipUser } from "testMocks/user";
 
 import ChatMessage from "../ChatMessage";
 import GameChat from "../GameChat";
 import React from "react";
-import { Switch } from "@material-ui/core";
-import { createMount } from "@material-ui/core/test-utils";
-import { mount } from "enzyme";
+import { act } from "react-test-renderer";
+import { createShallow } from "@material-ui/core/test-utils";
+import { shallow } from "enzyme";
 import { testChatMessage } from "testMocks/game.chat.message";
-import { testUser } from "testMocks/user";
 
 describe("Game chat test", () => {
-  let shall: typeof mount;
+  let shall: typeof shallow;
   const messages = [testChatMessage, testChatMessage];
 
-  beforeEach(() => {
+  beforeEach(async () => {
     jest.clearAllMocks();
-    setChatMessages(messages);
   });
+
   beforeAll(() => {
-    shall = createMount();
-    addReplyToEvent(testUser);
+    shall = createShallow();
   });
 
   afterAll(() => {
@@ -33,6 +34,7 @@ describe("Game chat test", () => {
   it("should render", () => {
     expect(shall(<GameChat />)).toMatchSnapshot();
   });
+
   // TODO add online players
   it("should show online players", () => {
     expect(
@@ -47,15 +49,23 @@ describe("Game chat test", () => {
     expect(wrap.find(Switch).get(0).props.checked).toBeTruthy();
   });
 
-  it("shouldn`t show chat messages", () => {
-    setChatMessages([]);
+  it("shouldn`t show chat messages", async () => {
     const wrap = shall(<GameChat />);
+
+    act(() => {
+      setChatMessages([]);
+    });
+    wrap.update();
     expect(wrap.find(ChatMessage)).toHaveLength(0);
   });
 
   it("should show chat messages", () => {
     const wrap = shall(<GameChat />);
-    expect(wrap.find(ChatMessage)).toHaveLength(messages.length);
+    act(() => {
+      setChatMessages(messages);
+    });
+    wrap.update();
+    expect(shall(<GameChat />).find(ChatMessage)).toHaveLength(messages.length);
   });
 
   it("should show chat message props", () => {
@@ -70,5 +80,22 @@ describe("Game chat test", () => {
     expect(wrap.find(ChatMessage).get(0).props.replies).toStrictEqual(
       messages[0].replies
     );
+  });
+
+  it("should show InputAdornment", async () => {
+    expect(shall(<GameChat />).find(Input)).toHaveLength(1);
+  });
+
+  it("should show InputAdornment", async () => {
+    addReplyToEvent(testUser);
+    addReplyToEvent(testVipUser);
+
+    console.log(1111111111, repliesTo$.getState());
+
+    const input = shall(<GameChat />)
+      .find(Input)
+      .get(0).props;
+
+    // expect(input).toStrictEqual(1);
   });
 });
