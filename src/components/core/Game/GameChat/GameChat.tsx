@@ -1,11 +1,11 @@
 import { Grid, Input, Switch, Typography } from "@material-ui/core";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import {
   chatGate,
   chatStore,
   repliesTo$,
   resetReplyToEvent,
-  sendChatMessageEffect,
+  sendChatMessageFx,
 } from "stores/Game/Chat/GameChatModel";
 import { useGate, useStore } from "effector-react";
 
@@ -26,13 +26,10 @@ export default function GameChat() {
   const replyTo = useStore(repliesTo$);
   const [message, setMessage] = useState<string>("");
 
-  sendChatMessageEffect.done.watch(() => {
+  sendChatMessageFx.done.watch(() => {
     resetReplyToEvent();
     setMessage("");
   });
-
-  // TODO focus on added message
-  const inputEl = useRef<HTMLInputElement>(null);
 
   return (
     <>
@@ -101,12 +98,6 @@ export default function GameChat() {
             value={message}
             onChange={(e: any) => {
               setMessage(e.target.value);
-
-              try {
-                if (inputEl && inputEl.current && inputEl?.current.focus) {
-                  inputEl.current.focus();
-                }
-              } catch (er) {}
             }}
             onKeyPress={(e: any) => {
               const message = e.target.value;
@@ -114,7 +105,7 @@ export default function GameChat() {
                 (e.keyCode === KeyName.ENTER || e.which === KeyName.ENTER) &&
                 message.length
               ) {
-                sendChatMessageEffect({
+                sendChatMessageFx({
                   message,
                   replies: replyTo ? replyTo.users : [],
                 });

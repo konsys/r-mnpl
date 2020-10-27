@@ -16,7 +16,7 @@ export const chatGate = createGate();
 
 export const resetChatEvent = ChatDomain.event();
 
-export const sendChatMessageEffect = ChatDomain.effect<
+export const sendChatMessageFx = ChatDomain.effect<
   IChatMessageRequest,
   IChatMessage[]
 >({

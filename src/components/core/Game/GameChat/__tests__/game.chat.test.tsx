@@ -96,6 +96,11 @@ describe("Game chat test", () => {
       .find(Input)
       .get(0).props;
 
-    // expect(input).toStrictEqual(1);
+    // const mockFn = jest.fn();
+
+    // input.on;
+
+    // expect(mockFn.mock.calls).toBe("TestVal");
+    expect(input).toStrictEqual(1);
   });
 });
