@@ -8,7 +8,7 @@ export const GameDomain = MainDomain.domain("GameDomain");
 
 const UserDomain = GameDomain.domain("UserDomain");
 
-export const ProfileGate = createGate<any>();
+export const ProfileGate = createGate();
 
 export const getUserFx = UserDomain.effect<string, IUser, Error>({
   handler: fetchUserProfile,

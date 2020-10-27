@@ -1,11 +1,11 @@
 import * as chat from "stores/Game/Chat/GameChatModel";
 
-import { Reply, StarOutlined } from "@material-ui/icons";
 import { testUser, testVipUser } from "testMocks/user";
 
 import ChatMessage from "../ChatMessage";
 import { Chip } from "@material-ui/core";
 import React from "react";
+import { Reply } from "@material-ui/icons";
 import moment from "moment";
 import { setUserEvent } from "stores/Game/User/UserModel";
 import { shallow } from "enzyme";
@@ -16,8 +16,6 @@ jest.mock("stores/Game/Chat/GameChatModel", () => ({
 }));
 
 describe("Chat message test", () => {
-  //   beforeAll(() => setUserEvent(testUser));
-
   it("should render", () => {
     expect(
       shallow(

@@ -1,24 +1,31 @@
 import { GameDomain } from "../User/UserModel";
-import { IChatMessage } from "../../../components/core/Game/GameChat/ChatMessage";
-import { IUser } from "../../../types/types";
+import { IChatMessage } from "components/core/Game/GameChat/ChatMessage";
+import { IUser } from "types/types";
 import { createGate } from "effector-react";
-import { fetchChat } from "../../../api/GameChat/api";
+import { fetchChat } from "api/GameChat/api";
 import { fetchChatMessages } from "./api";
-import { sample } from "effector";
 
 const ChatDomain = GameDomain.domain("ChatDomain");
 
-export const chatGate = createGate<any>();
+export interface IChatMessageRequest {
+  message: string;
+  replies: IUser[];
+}
+
+export const chatGate = createGate();
 
 export const resetChatEvent = ChatDomain.event();
 
-export const sendChatMessageEffect = ChatDomain.effect<any, IChatMessage[]>({
+export const sendChatMessageEffect = ChatDomain.effect<
+  IChatMessageRequest,
+  IChatMessage[]
+>({
   handler: fetchChat,
 });
 
 export const setChatMessages = ChatDomain.event<IChatMessage[]>();
 
-export const getChatMessagesFx = ChatDomain.effect<undefined, IChatMessage[]>({
+export const getChatMessagesFx = ChatDomain.effect<void, IChatMessage[]>({
   name: "getChatMessagesFx",
   handler: fetchChatMessages,
 });
@@ -51,8 +58,4 @@ export const replyStore = ChatDomain.store<IReply>({ n: 0, users: [] })
   })
   .reset(resetReplyToEvent);
 
-sample({
-  clock: chatGate.open,
-  source: chatGate.state,
-  target: getChatMessagesFx,
-});
+chatGate.open.watch(() => getChatMessagesFx());

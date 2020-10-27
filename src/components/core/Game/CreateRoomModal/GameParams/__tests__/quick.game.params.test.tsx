@@ -7,7 +7,7 @@ import RoomSwitch from "../views/RoomSwitch";
 import { createShallow } from "@material-ui/core/test-utils";
 import { shallow } from "enzyme";
 
-describe("Test quick geame params", () => {
+describe("Test quick game params", () => {
   let shall: typeof shallow;
 
   beforeAll(() => {

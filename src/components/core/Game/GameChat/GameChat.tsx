@@ -13,11 +13,11 @@ import {
   replyStore,
   resetReplyToEvent,
   sendChatMessageEffect,
-} from "../../../../stores/Game/Chat/GameChatModel";
+} from "stores/Game/Chat/GameChatModel";
 import { useGate, useStore } from "effector-react";
 
 import ChatMessage from "./ChatMessage";
-import { GRID_SPACING } from "../../../../theme";
+import { GRID_SPACING } from "theme";
 import PlayerChip from "./PlayerChip";
 import { useTranslation } from "react-i18next";
 
@@ -31,11 +31,11 @@ export default function GameChat() {
   const { t } = useTranslation();
   const messages = useStore(chatStore);
   const replies = useStore(replyStore);
-  const [m, setM] = useState<string>("");
+  const [message, setMessage] = useState<string>("");
 
   sendChatMessageEffect.done.watch(() => {
     resetReplyToEvent();
-    setM("");
+    setMessage("");
   });
 
   // TODO focus on added message
@@ -115,9 +115,9 @@ export default function GameChat() {
                   : ""}
               </InputAdornment>
             }
-            value={m}
+            value={message}
             onChange={(e: any) => {
-              setM(e.target.value);
+              setMessage(e.target.value);
 
               try {
                 if (inputEl && inputEl.current && inputEl?.current.focus) {
@@ -132,7 +132,7 @@ export default function GameChat() {
                 message.length
               ) {
                 sendChatMessageEffect({
-                  message: message,
+                  message,
                   replies: replies ? replies.users : [],
                 });
               }
