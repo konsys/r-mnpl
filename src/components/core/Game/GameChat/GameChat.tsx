@@ -101,6 +101,7 @@ export default function GameChat() {
             }}
             onKeyPress={(e: any) => {
               const message = e.target.value;
+              console.log(2222, message);
               if (
                 (e.keyCode === KeyName.ENTER || e.which === KeyName.ENTER) &&
                 message.length
