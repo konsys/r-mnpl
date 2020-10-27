@@ -26,11 +26,11 @@ enum KeyName {
 }
 
 export default function GameChat() {
-  useGate(chatGate);
+  // useGate(chatGate);
 
   const { t } = useTranslation();
   const messages = useStore(chatStore);
-  const replies = useStore(replyStore);
+  const replyTo = useStore(replyStore);
   const [message, setMessage] = useState<string>("");
 
   sendChatMessageEffect.done.watch(() => {
@@ -50,14 +50,18 @@ export default function GameChat() {
               <Typography variant="h6">{t("Chat")}</Typography>
             </Grid>
             <Grid item>
-              <Typography variant="body2"> {123456}</Typography>{" "}
+              {/* TODO online players */}
+              <Typography variant="body2" className="_online-players">
+                {"2900"}
+              </Typography>
               <Typography variant="body2">{t("now online")}</Typography>
             </Grid>
             <Grid item>
+              {/* TODO Show bots messages */}
               <Switch
                 checked={true}
                 onChange={() => null}
-                name="checkedA"
+                name="botSwitch"
                 inputProps={{ "aria-label": "secondary checkbox" }}
                 color={"primary"}
               />
@@ -102,14 +106,15 @@ export default function GameChat() {
             placeholder={t("Type message and press Enter")}
             startAdornment={
               <InputAdornment position="start" variant="outlined">
-                {replies && replies.users
-                  ? replies.users.map((v, k) => (
+                {replyTo && replyTo.users
+                  ? replyTo.users.map((v, k) => (
                       // TODO make standart spacing
-                      <div style={{ marginRight: "5px" }}>
+                      <div style={{ marginRight: "5px" }} key={k}>
                         <PlayerChip
+                          key={k}
                           handleDelete={() => deleteReplyToEvent(v)}
                           name={v.name}
-                        />{" "}
+                        />
                       </div>
                     ))
                   : ""}
@@ -133,7 +138,7 @@ export default function GameChat() {
               ) {
                 sendChatMessageEffect({
                   message,
-                  replies: replies ? replies.users : [],
+                  replies: replyTo ? replyTo.users : [],
                 });
               }
             }}
