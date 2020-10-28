@@ -66,6 +66,14 @@ export const testUser: IUser = {
   isActive: true,
   isBlocked: false,
 };
+export const testAvatarUser: IUser = {
+  avatar: "/test/avatar.jpg",
+  userId: 1,
+  vip: false,
+  name: "IVAN",
+  isActive: true,
+  isBlocked: false,
+};
 export const testVipUser: IUser = {
   userId: 3,
   vip: true,

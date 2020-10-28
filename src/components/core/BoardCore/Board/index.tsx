@@ -33,7 +33,7 @@ export const Board = (props: RouteComponentProps | any) => {
       ) : board && board.roomId ? (
         <BoardWrapper board={board} />
       ) : (
-        <GameNotFound p={"Not found"} />
+        <GameNotFound text={"Not found"} />
       )}
     </>
   );

@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Buy gallery test should render Inventory 1`] = `ShallowWrapper {}`;
+
+exports[`Buy gallery test should render Inventory 2`] = `ShallowWrapper {}`;
