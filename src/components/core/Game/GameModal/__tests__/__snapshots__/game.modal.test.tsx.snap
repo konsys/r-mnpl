@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Buy gallery test should render undefined 1`] = `ShallowWrapper {}`;
