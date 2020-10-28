@@ -7,8 +7,10 @@ import { inventoryFetch } from "api/Inventory/api";
 
 export const InventoryDomain = GameDomain.domain("InventoryDomain");
 
-export const InventoryGate = createGate<{ userId: number | null }>();
-export const setInventory = GameDomain.event();
+export const InventoryGate = createGate<{
+  userId: number | null;
+}>();
+export const setInventory = GameDomain.event<IInventory>();
 export const getInventoryFx = InventoryDomain.effect<number, IInventory, Error>(
   {
     handler: inventoryFetch,
@@ -21,7 +23,7 @@ export const inventory$ = InventoryDomain.store<IInventory | null>(null)
   .reset(InventoryGate.close);
 
 const inventorySample = sample({
-  clock: merge([InventoryGate.open]),
+  clock: merge([InventoryGate.open, InventoryGate.state]),
   source: user$,
   fn: (v) => v?.userId || 0,
 });

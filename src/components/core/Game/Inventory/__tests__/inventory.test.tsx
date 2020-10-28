@@ -1,12 +1,14 @@
+import { Grid, Typography } from "@material-ui/core";
 import { logout, setUserEvent } from "stores/Game/User/UserModel";
 import { testAvatarUser, testUser } from "testMocks/user";
 
 import Alert from "@material-ui/lab/Alert";
-import { Grid } from "@material-ui/core";
 import Inventory from "../Inventory";
 import { Link } from "react-router-dom";
 import React from "react";
+import { setInventory } from "../InventoryModel";
 import { shallow } from "enzyme";
+import { testInventory } from "testMocks/inventory";
 
 describe("Buy gallery test", () => {
   it("should render Inventory", () => {
@@ -51,14 +53,24 @@ describe("Buy gallery test", () => {
       `/profile/${testAvatarUser.userId}`
     );
   });
+
   it("should show inventory num", () => {
     setUserEvent(testAvatarUser);
+    setInventory(testInventory);
+
     const wrap = shallow(<Inventory />);
-    expect(wrap.find(Link).get(0).props.to).toBe(
-      `/profile/${testAvatarUser.userId}`
+    expect(wrap.find(Typography).get(2).props.children).toBe(
+      testInventory.inventoryQuantity
     );
-    expect(wrap.find(Link).get(1).props.to).toStrictEqual(
-      `/profile/${testAvatarUser.userId}`
+  });
+
+  it("should change select", () => {
+    setUserEvent(testAvatarUser);
+    setInventory(testInventory);
+
+    const wrap = shallow(<Inventory />);
+    expect(wrap.find(Typography).get(2).props.children).toBe(
+      testInventory.inventoryQuantity
     );
   });
 });

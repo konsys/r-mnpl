@@ -18,9 +18,11 @@ import { user$ } from "stores/Game/User/UserModel";
 
 export default function Inventory() {
   const user = useStore(user$);
-  useGate(InventoryGate, { userId: user && user.userId });
+  useGate(InventoryGate, {
+    userId: user && user.userId,
+  });
   const { t } = useTranslation();
-  const [inventory, setInventory] = useState<string>("all");
+  const [inventory, setInventory] = useState<InventoryType | null>(null);
   const inventoryData = useStore(inventory$);
 
   return (
@@ -109,7 +111,7 @@ export default function Inventory() {
                     variant="outlined"
                     native
                     value={inventory}
-                    onChange={(e) => setInventory(InventoryType.CARDS)}
+                    onChange={() => setInventory(InventoryType.CARDS)}
                     inputProps={{
                       name: "age",
                       id: "filled-age-native-simple",
