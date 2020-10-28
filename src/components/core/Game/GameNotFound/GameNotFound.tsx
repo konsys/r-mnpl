@@ -1,12 +1,13 @@
 import React from "react";
 import ToMainPage from "components/views/Errors/ToMainPage";
+import { Typography } from "@material-ui/core";
 
-export default function GameNotFound({ p }: { p: any }) {
+export default function GameNotFound({ text }: { text: any }) {
   // TODO make page
   return (
-    <>
-      GNotFound {JSON.stringify(p)}
+    <div>
+      <Typography>GNotFound {text}</Typography>
       <ToMainPage />
-    </>
+    </div>
   );
 }
