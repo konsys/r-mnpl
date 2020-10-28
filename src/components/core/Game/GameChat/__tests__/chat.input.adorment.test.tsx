@@ -1,12 +1,10 @@
 import * as chat from "stores/Game/Chat/GameChatModel";
 
-import { mount, shallow } from "enzyme";
-
 import ChatInputAdornment from "../ChatInputAdornment";
-import { Delete } from "@material-ui/icons";
 import PlayerChip from "../PlayerChip";
 import React from "react";
 import { addReplyToEvent } from "stores/Game/Chat/GameChatModel";
+import { shallow } from "enzyme";
 import { testUser } from "testMocks/user";
 
 describe("test input adorment", () => {
