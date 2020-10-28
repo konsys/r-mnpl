@@ -1,3 +1,5 @@
+import * as chat from "stores/Game/Chat/GameChatModel";
+
 import { Input, Switch } from "@material-ui/core";
 import {
   addReplyToEvent,
@@ -7,6 +9,7 @@ import { testUser, testVipUser } from "testMocks/user";
 
 import ChatMessage from "../ChatMessage";
 import GameChat from "../GameChat";
+import { Key } from "ts-keycode-enum";
 import React from "react";
 import { act } from "react-test-renderer";
 import { shallow } from "enzyme";
@@ -84,14 +87,39 @@ describe("Game chat test", () => {
     expect(input.find(Input).get(0).props.value).toStrictEqual("testValue");
   });
 
-  it("should change input value", async () => {
-    addReplyToEvent(testUser);
-    addReplyToEvent(testVipUser);
+  it("should send input value", async () => {
+    const testMock = chat as any;
+    const chatMock = jest.spyOn(testMock, "sendChatMessageFx");
+    testMock.sendChatMessageFx.done = {
+      watch: () => null,
+    };
     const input = shallow(<GameChat />);
-    input
-      .find(Input)
-      .simulate("keypress", { key: "Enter", target: { value: "testValue" } });
-    // expect(chat.sendChatMessageFx).toHaveBeenCalledTimes(1);
+    input.find(Input).simulate("change", { target: { value: "testValue" } });
+    input.find(Input).simulate("keypress", {
+      keyCode: Key.Enter,
+      target: { value: "testValue" },
+    });
+    expect(chatMock).toHaveBeenCalledTimes(1);
+    expect(chatMock).toHaveBeenCalledWith({
+      message: "testValue",
+      replies: [testUser, testVipUser],
+    });
+  });
+
+  it("shouldn't change input value", async () => {
+    const testMock = chat as any;
+    const chatMock = jest.spyOn(testMock, "sendChatMessageFx");
+    testMock.sendChatMessageFx.done = {
+      watch: () => null,
+    };
+
+    const input = shallow(<GameChat />);
+
+    input.find(Input).simulate("keypress", {
+      keyCode: Key.K,
+      target: { value: "testValue" },
+    });
+    expect(chatMock).toHaveBeenCalledTimes(0);
   });
 });
 

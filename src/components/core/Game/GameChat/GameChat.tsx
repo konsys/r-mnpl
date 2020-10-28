@@ -12,11 +12,8 @@ import { useGate, useStore } from "effector-react";
 import ChatInputAdornment from "./ChatInputAdornment";
 import ChatMessage from "./ChatMessage";
 import { GRID_SPACING } from "theme";
+import { Key } from "ts-keycode-enum";
 import { useTranslation } from "react-i18next";
-
-enum KeyName {
-  "ENTER" = 13,
-}
 
 export default function GameChat() {
   useGate(chatGate);
@@ -101,9 +98,8 @@ export default function GameChat() {
             }}
             onKeyPress={(e: any) => {
               const message = e.target.value;
-              console.log(2222, message);
               if (
-                (e.keyCode === KeyName.ENTER || e.which === KeyName.ENTER) &&
+                (e.keyCode === Key.Enter || e.which === Key.Enter) &&
                 message.length
               ) {
                 sendChatMessageFx({
