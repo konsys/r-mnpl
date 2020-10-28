@@ -1,12 +1,14 @@
-import { FieldStatus, FieldType, IField, IFieldAction } from "types/types";
+import { FieldType, IField, IFieldAction } from "types/types";
 
-import { FieldActions } from "components/views/BoardViews/Field/FieldActions/FieldActions";
+import { ItemLevel } from "components/core/Game/Inventory/InventoryItem";
 
 // import {FieldStatus} from ""
 
 export const testField: IField = {
   fieldId: 1,
+  level: ItemLevel.ECONOM,
   fieldGroup: 1,
+  imgSrc: "testImgSrc",
   fieldGroupName: "testGroupName",
   fieldPosition: 1,
   name: "testName",
@@ -30,7 +32,6 @@ export const testField: IField = {
 
 export const testOwnedField: IField = {
   status: {
-    level: 0,
     branches: 0,
     isMonopoly: false,
     fieldId: 1,
@@ -44,6 +45,7 @@ export const testOwnedField: IField = {
   },
   fieldId: 1,
   fieldPosition: 1,
+  level: ItemLevel.ECONOM,
   description: "testDescription",
   name: "testName",
   type: FieldType.COMPANY,
@@ -66,8 +68,7 @@ export const testOwnedField: IField = {
 
 export const testStaredField: IField = {
   status: {
-    level: 0,
-    branches: 1,
+    branches: 0,
     isMonopoly: false,
     fieldId: 1,
     userId: 1,
@@ -79,6 +80,7 @@ export const testStaredField: IField = {
     ],
   },
   fieldId: 1,
+  level: ItemLevel.ECONOM,
   fieldPosition: 1,
   name: "testName",
   type: FieldType.COMPANY,
@@ -101,7 +103,6 @@ export const testStaredField: IField = {
 
 export const testMortgagedField: IField = {
   status: {
-    level: 0,
     branches: 0,
     isMonopoly: false,
     fieldId: 1,
@@ -110,6 +111,7 @@ export const testMortgagedField: IField = {
     fieldActions: [IFieldAction.UNMORTGAGE],
   },
   fieldId: 1,
+  level: ItemLevel.ECONOM,
   fieldPosition: 1,
   name: "testName",
   type: FieldType.COMPANY,
@@ -132,6 +134,7 @@ export const testMortgagedField: IField = {
 
 export const testJailField: IField = {
   fieldId: 10,
+  level: ItemLevel.ECONOM,
   fieldPosition: 10,
   name: "jail",
   type: FieldType.JAIL,

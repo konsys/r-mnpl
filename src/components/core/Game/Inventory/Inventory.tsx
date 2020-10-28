@@ -3,12 +3,12 @@ import "./inventory.scss";
 import { Button, Grid, Select, TextField, Typography } from "@material-ui/core";
 import { IField, InventoryType } from "types/types";
 import { InventoryGate, inventory$ } from "./InventoryModel";
-import InventoryItem, { ItemLevel } from "./InventoryItem";
 import React, { useState } from "react";
 import { useGate, useStore } from "effector-react";
 
 import Alert from "@material-ui/lab/Alert";
 import { GRID_SPACING } from "theme";
+import InventoryItem from "./InventoryItem";
 import { Link } from "react-router-dom";
 import { Params } from "config/params";
 import Template from "components/views/Template/Template";

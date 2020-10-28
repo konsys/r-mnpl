@@ -7,6 +7,7 @@ import Inventory from "../Inventory";
 import InventoryItem from "../InventoryItem";
 import { Link } from "react-router-dom";
 import React from "react";
+import { createImgPath } from "utils/fields.utils";
 import { setInventory } from "../InventoryModel";
 import { shallow } from "enzyme";
 import { testInventory } from "testMocks/inventory";
@@ -81,11 +82,15 @@ describe("Buy gallery test", () => {
     expect(wrap.find(InventoryItem)).toHaveLength(testInventory.fields.length);
   });
 
-  it("should show inventory", () => {
+  it("should show inventory props", () => {
     setUserEvent(testAvatarUser);
     setInventory(testInventory);
 
-    const wrap = shallow(<Inventory />);
-    expect(wrap.find(InventoryItem)).toHaveLength(testInventory.fields.length);
+    const wrap = shallow(<Inventory />)
+      .find(InventoryItem)
+      .get(0).props;
+    expect(wrap.name).toBe(testInventory.fields[0].name);
+    expect(wrap.level).toBe(testInventory.fields[0].level);
+    expect(wrap.img).toBe(createImgPath(testInventory.fields[0].imgSrc));
   });
 });
