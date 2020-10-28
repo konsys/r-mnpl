@@ -143,7 +143,7 @@ export default function Inventory() {
                         key={v.fieldId}
                         img={v.imgSrc ? createImgPath(v.imgSrc) : ""}
                         name={v.name}
-                        level={ItemLevel.USUAL}
+                        level={v.level}
                       />
                     ))}
                 </Grid>

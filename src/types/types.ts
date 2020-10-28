@@ -127,6 +127,7 @@ export interface IFieldModalPosition {
 
 export interface IField {
   fieldId?: number;
+  level?: number;
   fieldPosition: number;
   imgSrc?: string;
   name: string;

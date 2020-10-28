@@ -10,7 +10,7 @@ export const InventoryDomain = GameDomain.domain("InventoryDomain");
 export const InventoryGate = createGate<{
   userId: number | null;
 }>();
-export const setInventory = GameDomain.event<IInventory>();
+export const setInventory = GameDomain.event<IInventory | null>();
 export const getInventoryFx = InventoryDomain.effect<number, IInventory, Error>(
   {
     handler: inventoryFetch,

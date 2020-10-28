@@ -1,11 +1,11 @@
 import React from "react";
 
 export enum ItemLevel {
-  USUAL = "1",
-  STANDARD = "2",
-  SPECIAL = "3",
-  HIGHEST = "4",
-  EXCLUSIVE = "5",
+  ECONOM = 1,
+  STANDARD = 2,
+  SPECIAL = 3,
+  HIGHEST = 4,
+  EXCLUSIVE = 5,
 }
 
 export interface IInventoryItem {

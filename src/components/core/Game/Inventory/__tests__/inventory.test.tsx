@@ -4,6 +4,7 @@ import { testAvatarUser, testUser } from "testMocks/user";
 
 import Alert from "@material-ui/lab/Alert";
 import Inventory from "../Inventory";
+import InventoryItem from "../InventoryItem";
 import { Link } from "react-router-dom";
 import React from "react";
 import { setInventory } from "../InventoryModel";
@@ -64,13 +65,27 @@ describe("Buy gallery test", () => {
     );
   });
 
-  it("should change select", () => {
+  it("shouldn`t show inventory", () => {
+    setUserEvent(testAvatarUser);
+    setInventory(null);
+
+    const wrap = shallow(<Inventory />);
+    expect(wrap.find(InventoryItem)).toHaveLength(0);
+  });
+
+  it("should show inventory", () => {
     setUserEvent(testAvatarUser);
     setInventory(testInventory);
 
     const wrap = shallow(<Inventory />);
-    expect(wrap.find(Typography).get(2).props.children).toBe(
-      testInventory.inventoryQuantity
-    );
+    expect(wrap.find(InventoryItem)).toHaveLength(testInventory.fields.length);
+  });
+
+  it("should show inventory", () => {
+    setUserEvent(testAvatarUser);
+    setInventory(testInventory);
+
+    const wrap = shallow(<Inventory />);
+    expect(wrap.find(InventoryItem)).toHaveLength(testInventory.fields.length);
   });
 });
