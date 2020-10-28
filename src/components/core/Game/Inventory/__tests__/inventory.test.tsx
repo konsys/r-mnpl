@@ -51,4 +51,14 @@ describe("Buy gallery test", () => {
       `/profile/${testAvatarUser.userId}`
     );
   });
+  it("should show inventory num", () => {
+    setUserEvent(testAvatarUser);
+    const wrap = shallow(<Inventory />);
+    expect(wrap.find(Link).get(0).props.to).toBe(
+      `/profile/${testAvatarUser.userId}`
+    );
+    expect(wrap.find(Link).get(1).props.to).toStrictEqual(
+      `/profile/${testAvatarUser.userId}`
+    );
+  });
 });

@@ -22,6 +22,7 @@ export default function Inventory() {
   const { t } = useTranslation();
   const [inventory, setInventory] = useState<string>("all");
   const inventoryData = useStore(inventory$);
+
   return (
     <>
       <Template columns={1} title={`${t("Inventory")} ${user?.name || ""}`}>
@@ -74,7 +75,9 @@ export default function Inventory() {
                     </Grid>
                     <Grid item>{t("Inventory")}</Grid>
                     <Grid item>
-                      <Typography color="textSecondary">12</Typography>
+                      <Typography color="textSecondary">
+                        {inventoryData?.inventoryQuantity}
+                      </Typography>
                     </Grid>
                   </Grid>
                 </Grid>

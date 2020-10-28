@@ -302,6 +302,7 @@ export enum TemplateModules {
 
 export interface IInventory {
   fields: IField[];
+  inventoryQuantity: number;
 }
 
 export enum InventoryType {
