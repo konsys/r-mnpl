@@ -119,5 +119,11 @@ describe("Buy gallery test", () => {
     expect(wrap.find(Select).get(0).props.value).toStrictEqual(
       InventoryType.FIELDS
     );
+
+    wrap.find(Select).simulate("change", {
+      target: { value: null },
+    });
+
+    expect(wrap.find(Select).get(0).props.value).toStrictEqual(null);
   });
 });
