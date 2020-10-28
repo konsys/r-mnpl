@@ -92,7 +92,6 @@ export const createRoomFx = RoomDomain.effect<
 createRoomFx.fail.watch((v: any) => {
   try {
     openGameModal({
-      open: true,
       title: "Oops!",
       text:
         v.error.response.status === 401
@@ -127,7 +126,6 @@ export const removePlayerFromRoomFx = RoomDomain.effect<
 addPlayerToRoomFx.fail.watch((v: any) => {
   try {
     openGameModal({
-      open: true,
       title: "Oops!",
       text: ErrorCode[v.error.response.data.code] || "Unknown error",
     });

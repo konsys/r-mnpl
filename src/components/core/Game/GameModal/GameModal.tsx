@@ -9,7 +9,7 @@ import {
 } from "@material-ui/core";
 import {
   closeGameModal,
-  gameModalStore,
+  gameModal$,
 } from "stores/Game/GameModal/GameModalModel";
 
 import React from "react";
@@ -17,10 +17,10 @@ import { useStore } from "effector-react";
 import { useTranslation } from "react-i18next";
 
 export default function GameModal() {
-  const modal = useStore(gameModalStore);
+  const modal = useStore(gameModal$);
   const { t } = useTranslation();
   return (
-    <Dialog open={modal.open} onClose={() => null}>
+    <Dialog open={!!modal.text || !!modal.title} onClose={() => null}>
       <DialogContent className={"gameModal"}>
         <Grid
           container

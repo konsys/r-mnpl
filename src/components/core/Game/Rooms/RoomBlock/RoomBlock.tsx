@@ -60,12 +60,10 @@ export default function RoomBlock({
                     ? userId
                       ? addPlayerToRoomFx({ roomId, userId })
                       : openGameModal({
-                          open: true,
                           text: t("Login to play"),
                           title: t("You are not logged in"),
                         })
                     : openGameModal({
-                        open: true,
                         text: t("You can`t join the room"),
                         title: t("You are already waiting for game"),
                       })
