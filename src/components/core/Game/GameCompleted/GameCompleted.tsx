@@ -2,6 +2,7 @@ import React from "react";
 import { RoomPlayer } from "stores/Game/Rooms/RoomsModel";
 import ToMainPage from "components/views/Errors/ToMainPage";
 
+// TODO add winner page template
 export default function GameCompleted({
   winner,
 }: {
@@ -9,7 +10,8 @@ export default function GameCompleted({
 }) {
   return (
     <>
-      Победитель {winner && winner.name} <ToMainPage />
+      <div className="_winner">Победитель {winner && winner.name}</div>
+      <ToMainPage />
     </>
   );
 }

@@ -1,4 +1,5 @@
 import { IPlayer, IUser } from "types/types";
+import { PlayerRoomStatus, RoomPlayer } from "stores/Game/Rooms/RoomsModel";
 
 export const testPlayer1: IPlayer = {
   frags: "",
@@ -66,6 +67,15 @@ export const testUser: IUser = {
   isBlocked: false,
 };
 export const testVipUser: IUser = {
+  userId: 3,
+  vip: true,
+  name: "OLEG",
+  isActive: true,
+  isBlocked: false,
+};
+
+export const testRoomUser: RoomPlayer = {
+  playerRoomStatus: PlayerRoomStatus.ACITVE,
   userId: 3,
   vip: true,
   name: "OLEG",
