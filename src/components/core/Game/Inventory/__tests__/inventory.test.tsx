@@ -1,6 +1,5 @@
 import { Grid, Select, Typography } from "@material-ui/core";
 import { logout, setUserEvent } from "stores/Game/User/UserModel";
-import { mount, shallow } from "enzyme";
 import { testAvatarUser, testUser } from "testMocks/user";
 
 import Alert from "@material-ui/lab/Alert";
@@ -9,9 +8,9 @@ import InventoryItem from "../InventoryItem";
 import { InventoryType } from "types/types";
 import { Link } from "react-router-dom";
 import React from "react";
-import { act } from "react-test-renderer";
 import { createImgPath } from "utils/fields.utils";
 import { setInventory } from "../InventoryModel";
+import { shallow } from "enzyme";
 import { testInventory } from "testMocks/inventory";
 
 describe("Buy gallery test", () => {
