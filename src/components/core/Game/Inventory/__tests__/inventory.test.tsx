@@ -1,5 +1,6 @@
 import { Grid, Select, Typography } from "@material-ui/core";
 import { logout, setUserEvent } from "stores/Game/User/UserModel";
+import { mount, shallow } from "enzyme";
 import { testAvatarUser, testUser } from "testMocks/user";
 
 import Alert from "@material-ui/lab/Alert";
@@ -11,7 +12,6 @@ import React from "react";
 import { act } from "react-test-renderer";
 import { createImgPath } from "utils/fields.utils";
 import { setInventory } from "../InventoryModel";
-import { shallow } from "enzyme";
 import { testInventory } from "testMocks/inventory";
 
 describe("Buy gallery test", () => {
@@ -102,12 +102,22 @@ describe("Buy gallery test", () => {
     setUserEvent(testAvatarUser);
     setInventory(testInventory);
 
-    const wrap = shallow(<Inventory />)
-      .find(Select)
-      .get(0).props;
+    const wrap = shallow(<Inventory />);
 
-    wrap.onChange({ target: { value: InventoryType.BADGES } });
+    wrap.find(Select).simulate("change", {
+      target: { value: InventoryType.BADGES },
+    });
 
-    expect(wrap).toStrictEqual(InventoryType.BADGES);
+    expect(wrap.find(Select).get(0).props.value).toStrictEqual(
+      InventoryType.BADGES
+    );
+
+    wrap.find(Select).simulate("change", {
+      target: { value: InventoryType.FIELDS },
+    });
+
+    expect(wrap.find(Select).get(0).props.value).toStrictEqual(
+      InventoryType.FIELDS
+    );
   });
 });

@@ -116,11 +116,6 @@ export default function Inventory() {
                     onChange={(e) => {
                       if (e.target.value) {
                         setStateInventory(e.target.value as InventoryType);
-                        console.log(
-                          111113333333333333333333333333333333,
-                          e,
-                          stateInventory
-                        );
                         return;
                       }
                       setStateInventory(null);
