@@ -22,7 +22,9 @@ export default function Inventory() {
     userId: user && user.userId,
   });
   const { t } = useTranslation();
-  const [inventory, setInventory] = useState<InventoryType | null>(null);
+  const [stateInventory, setStateInventory] = useState<InventoryType | null>(
+    null
+  );
   const inventoryData = useStore(inventory$);
 
   return (
@@ -110,14 +112,22 @@ export default function Inventory() {
                   <Select
                     variant="outlined"
                     native
-                    value={inventory}
-                    onChange={() => setInventory(InventoryType.CARDS)}
-                    inputProps={{
-                      name: "age",
-                      id: "filled-age-native-simple",
+                    value={stateInventory}
+                    onChange={(e) => {
+                      if (e.target.value) {
+                        setStateInventory(e.target.value as InventoryType);
+                        console.log(
+                          111113333333333333333333333333333333,
+                          e,
+                          stateInventory
+                        );
+                        return;
+                      }
+                      setStateInventory(null);
                     }}
                   >
                     <option value={""}>{t("All items")}</option>
+                    <option value={InventoryType.FIELDS}>{t("Fields")}</option>
                     <option value={InventoryType.CARDS}>{t("Cards")}</option>
                     <option value={InventoryType.CASES}>
                       {t("Cases and sets")}

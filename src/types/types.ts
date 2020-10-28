@@ -306,6 +306,7 @@ export interface IInventory {
 }
 
 export enum InventoryType {
+  FIELDS = "fields",
   CARDS = "cards",
   CASES = "cases",
   DICES = "dices",

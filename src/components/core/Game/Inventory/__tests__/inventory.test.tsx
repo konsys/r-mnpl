@@ -1,12 +1,14 @@
-import { Grid, Typography } from "@material-ui/core";
+import { Grid, Select, Typography } from "@material-ui/core";
 import { logout, setUserEvent } from "stores/Game/User/UserModel";
 import { testAvatarUser, testUser } from "testMocks/user";
 
 import Alert from "@material-ui/lab/Alert";
 import Inventory from "../Inventory";
 import InventoryItem from "../InventoryItem";
+import { InventoryType } from "types/types";
 import { Link } from "react-router-dom";
 import React from "react";
+import { act } from "react-test-renderer";
 import { createImgPath } from "utils/fields.utils";
 import { setInventory } from "../InventoryModel";
 import { shallow } from "enzyme";
@@ -91,6 +93,21 @@ describe("Buy gallery test", () => {
       .get(0).props;
     expect(wrap.name).toBe(testInventory.fields[0].name);
     expect(wrap.level).toBe(testInventory.fields[0].level);
-    expect(wrap.img).toBe(createImgPath(testInventory.fields[0].imgSrc));
+    expect(wrap.img).toBe(
+      createImgPath(testInventory.fields[0].imgSrc || "somethingGoesWrong")
+    );
+  });
+
+  it("should select work", () => {
+    setUserEvent(testAvatarUser);
+    setInventory(testInventory);
+
+    const wrap = shallow(<Inventory />)
+      .find(Select)
+      .get(0).props;
+
+    wrap.onChange({ target: { value: InventoryType.BADGES } });
+
+    expect(wrap).toStrictEqual(InventoryType.BADGES);
   });
 });
