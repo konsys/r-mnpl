@@ -1,4 +1,4 @@
-import { RoomType, currentRoom$ } from "stores/Game/Rooms/RoomsModel";
+import { RoomType, preparatoryRoom$ } from "stores/Game/Rooms/RoomsModel";
 import {
   closeRoomModal,
   openRoomModal,
@@ -22,33 +22,39 @@ describe("Create room modal test", () => {
     shallow(<CreateRoomModal />)
       .find(".regular")
       .simulate("click");
-    expect(currentRoom$.getState().roomType).toStrictEqual(RoomType.REGULAR);
+    expect(preparatoryRoom$.getState().roomType).toStrictEqual(
+      RoomType.REGULAR
+    );
   });
 
   it("should render quick", () => {
     shallow(<CreateRoomModal />)
       .find(".quick")
       .simulate("click");
-    expect(currentRoom$.getState().roomType).toStrictEqual(RoomType.QUICK);
+    expect(preparatoryRoom$.getState().roomType).toStrictEqual(RoomType.QUICK);
   });
 
   it("should render shuffle", () => {
     shallow(<CreateRoomModal />)
       .find(".shuffle")
       .simulate("click");
-    expect(currentRoom$.getState().roomType).toStrictEqual(RoomType.SHUFFLE);
+    expect(preparatoryRoom$.getState().roomType).toStrictEqual(
+      RoomType.SHUFFLE
+    );
   });
   it("should render retro", () => {
     shallow(<CreateRoomModal />)
       .find(".retro")
       .simulate("click");
-    expect(currentRoom$.getState().roomType).toStrictEqual(RoomType.RETRO);
+    expect(preparatoryRoom$.getState().roomType).toStrictEqual(RoomType.RETRO);
   });
   it("should render roulette", () => {
     shallow(<CreateRoomModal />)
       .find(".roulette")
       .simulate("click");
-    expect(currentRoom$.getState().roomType).toStrictEqual(RoomType.ROULETTE);
+    expect(preparatoryRoom$.getState().roomType).toStrictEqual(
+      RoomType.ROULETTE
+    );
   });
 
   it("should render enabled button", () => {

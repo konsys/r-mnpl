@@ -7,9 +7,9 @@ import {
 } from "@material-ui/core";
 import {
   RoomPortalFieldType,
-  currentRoom$,
+  preparatoryRoom$,
   toggleRoomSwitch,
-  updateRoom,
+  updatePreparatoryRoom,
 } from "stores/Game/Rooms/RoomsModel";
 
 import { GRID_SPACING } from "../../../../../theme";
@@ -21,7 +21,7 @@ import { useTranslation } from "react-i18next";
 
 export default function QuickGameParams({ isVip }: { isVip: boolean }) {
   const { t } = useTranslation();
-  const room = useStore(currentRoom$);
+  const room = useStore(preparatoryRoom$);
 
   return (
     <Grid container direction="column" spacing={GRID_SPACING}>
@@ -84,7 +84,7 @@ export default function QuickGameParams({ isVip }: { isVip: boolean }) {
                 name="portal"
                 value={room?.portalType}
                 onChange={(v: any) =>
-                  updateRoom({ ...room, portalType: v.target.value })
+                  updatePreparatoryRoom({ ...room, portalType: v.target.value })
                 }
               >
                 <FormControlLabel

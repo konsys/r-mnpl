@@ -11,8 +11,8 @@ import {
 import {
   RoomType,
   createRoom,
-  currentRoom$,
-  updateRoom,
+  preparatoryRoom$,
+  updatePreparatoryRoom,
 } from "stores/Game/Rooms/RoomsModel";
 import {
   closeRoomModal,
@@ -34,7 +34,7 @@ export default function CreateRoomModal() {
   const user = useStore(user$);
   const open = useStore(roomModalStore);
   const { t } = useTranslation();
-  const room = useStore(currentRoom$);
+  const room = useStore(preparatoryRoom$);
   const { roomType } = room;
   return (
     <Dialog open={open} onClose={() => null}>
@@ -69,7 +69,7 @@ export default function CreateRoomModal() {
                     : RoomType.REGULAR)
                 }
                 onClick={() =>
-                  updateRoom({ ...room, roomType: RoomType.REGULAR })
+                  updatePreparatoryRoom({ ...room, roomType: RoomType.REGULAR })
                 }
               >
                 <Typography variant="h6">{t("Regular game")}</Typography>
@@ -86,7 +86,7 @@ export default function CreateRoomModal() {
                     : RoomType.QUICK)
                 }
                 onClick={() =>
-                  updateRoom({ ...room, roomType: RoomType.QUICK })
+                  updatePreparatoryRoom({ ...room, roomType: RoomType.QUICK })
                 }
               >
                 <Typography variant="h6">{t("Quick game")}</Typography>
@@ -103,7 +103,7 @@ export default function CreateRoomModal() {
                     : RoomType.SHUFFLE)
                 }
                 onClick={() =>
-                  updateRoom({ ...room, roomType: RoomType.SHUFFLE })
+                  updatePreparatoryRoom({ ...room, roomType: RoomType.SHUFFLE })
                 }
               >
                 <Typography variant="h6">{t("GMS Shuffle")}</Typography>
@@ -120,7 +120,7 @@ export default function CreateRoomModal() {
                     : RoomType.RETRO)
                 }
                 onClick={() =>
-                  updateRoom({ ...room, roomType: RoomType.RETRO })
+                  updatePreparatoryRoom({ ...room, roomType: RoomType.RETRO })
                 }
               >
                 <Typography variant="h6">{t("Retro")}</Typography>
@@ -137,7 +137,10 @@ export default function CreateRoomModal() {
                     : RoomType.ROULETTE)
                 }
                 onClick={() =>
-                  updateRoom({ ...room, roomType: RoomType.ROULETTE })
+                  updatePreparatoryRoom({
+                    ...room,
+                    roomType: RoomType.ROULETTE,
+                  })
                 }
               >
                 <Typography variant="h6">{t("Russian roulette")}</Typography>

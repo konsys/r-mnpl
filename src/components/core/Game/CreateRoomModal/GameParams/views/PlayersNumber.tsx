@@ -1,5 +1,8 @@
 import { Button, ButtonGroup, Grid } from "@material-ui/core";
-import { currentRoom$, updateRoom } from "stores/Game/Rooms/RoomsModel";
+import {
+  preparatoryRoom$,
+  updatePreparatoryRoom,
+} from "stores/Game/Rooms/RoomsModel";
 
 import React from "react";
 import { useStore } from "effector-react";
@@ -13,7 +16,7 @@ export default function PlayersNumber({
   isVip: boolean;
 }) {
   const { t } = useTranslation();
-  const room = useStore(currentRoom$);
+  const room = useStore(preparatoryRoom$);
   return (
     <Grid
       container
@@ -30,7 +33,7 @@ export default function PlayersNumber({
             disabled={false}
             variant="contained"
             color={room.playersNumber === 2 ? "primary" : "default"}
-            onClick={() => updateRoom({ ...room, playersNumber: 2 })}
+            onClick={() => updatePreparatoryRoom({ ...room, playersNumber: 2 })}
           >
             2
           </Button>
@@ -38,7 +41,7 @@ export default function PlayersNumber({
             disabled={false}
             variant="contained"
             color={room.playersNumber === 3 ? "primary" : "default"}
-            onClick={() => updateRoom({ ...room, playersNumber: 3 })}
+            onClick={() => updatePreparatoryRoom({ ...room, playersNumber: 3 })}
           >
             3
           </Button>
@@ -46,7 +49,7 @@ export default function PlayersNumber({
             disabled={false}
             variant="contained"
             color={room.playersNumber === 4 ? "primary" : "default"}
-            onClick={() => updateRoom({ ...room, playersNumber: 4 })}
+            onClick={() => updatePreparatoryRoom({ ...room, playersNumber: 4 })}
           >
             4
           </Button>
@@ -54,7 +57,7 @@ export default function PlayersNumber({
             disabled={false}
             variant="contained"
             color={room.playersNumber === 5 ? "primary" : "default"}
-            onClick={() => updateRoom({ ...room, playersNumber: 5 })}
+            onClick={() => updatePreparatoryRoom({ ...room, playersNumber: 5 })}
           >
             5
           </Button>
@@ -63,7 +66,9 @@ export default function PlayersNumber({
               disabled={!isVip}
               variant="contained"
               color={room.playersNumber === 6 ? "primary" : "default"}
-              onClick={() => updateRoom({ ...room, playersNumber: 6 })}
+              onClick={() =>
+                updatePreparatoryRoom({ ...room, playersNumber: 6 })
+              }
             >
               2x2
             </Button>

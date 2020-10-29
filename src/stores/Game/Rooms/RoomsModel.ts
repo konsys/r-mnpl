@@ -136,7 +136,7 @@ addPlayerToRoomFx.fail.watch((v: any) => {
 
 export const createRoom = RoomDomain.event<void>();
 
-export const updateRoom = RoomDomain.event<IRoomState>();
+export const updatePreparatoryRoom = RoomDomain.event<IRoomState>();
 export const myRoomsReset = RoomDomain.event();
 export const toggleAutostart = RoomDomain.event<void>();
 export const togglePrivateRoom = RoomDomain.event<void>();
@@ -144,7 +144,7 @@ export const togglRestarts = RoomDomain.event<void>();
 export const toggleRoomSwitch = RoomDomain.event<string>();
 export const resetcurrentRoom$ = RoomDomain.event<void>();
 
-export const currentRoom$ = RoomDomain.store<IRoomState>({
+export const preparatoryRoom$ = RoomDomain.store<IRoomState>({
   roomId: "",
   creatorId: 0,
   winnerId: null,
@@ -158,7 +158,7 @@ export const currentRoom$ = RoomDomain.store<IRoomState>({
   privateRoom: false,
   roomStatus: RoomStatus.NOT_CREATED,
 })
-  .on(updateRoom, (_, v) => v)
+  .on(updatePreparatoryRoom, (_, v) => v)
 
   .on(toggleAutostart, (state) => ({
     ...state,
@@ -195,7 +195,7 @@ sample({
 sample({
   clock: createRoom,
   source: combine({
-    room: currentRoom$.map((v) => v),
+    room: preparatoryRoom$.map((v) => v),
     user:
       user$ &&
       user$.map((v: IUser | null) => {

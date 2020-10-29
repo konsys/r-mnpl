@@ -56,7 +56,7 @@ export const Rooms = () => {
             modules={[
               TemplateModules.FRIENDS_ONLINE,
               TemplateModules.TOP_FIVE,
-              TemplateModules.BUY_GALLERY,
+              // TemplateModules.BUY_GALLERY,
               TemplateModules.GAME_CHAT,
             ]}
           >

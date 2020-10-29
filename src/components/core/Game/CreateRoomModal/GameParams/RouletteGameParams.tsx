@@ -1,5 +1,8 @@
 import { Grid, Typography } from "@material-ui/core";
-import { currentRoom$, toggleRoomSwitch } from "stores/Game/Rooms/RoomsModel";
+import {
+  preparatoryRoom$,
+  toggleRoomSwitch,
+} from "stores/Game/Rooms/RoomsModel";
 
 import { GRID_SPACING } from "../../../../../theme";
 import PlayersNumber from "./views/PlayersNumber";
@@ -10,7 +13,7 @@ import { useTranslation } from "react-i18next";
 
 export default function RouletteGameParams({ isVip }: { isVip: boolean }) {
   const { t } = useTranslation();
-  const room = useStore(currentRoom$);
+  const room = useStore(preparatoryRoom$);
   return (
     <Grid container direction="column" spacing={1}>
       <Grid item>
