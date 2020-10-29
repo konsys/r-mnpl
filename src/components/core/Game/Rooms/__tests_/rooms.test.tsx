@@ -36,6 +36,6 @@ describe("Room block test", () => {
       shallow(<Rooms />)
         .find(Redirect)
         .get(0).props.to
-    ).toBe(`/board/${testRoom.roomId}`);
+    ).toStrictEqual({ pathname: `/board/${testRoom.roomId}` });
   });
 });
