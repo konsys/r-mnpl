@@ -10,12 +10,12 @@ import {
 } from "stores/Game/Rooms/RoomsModel";
 import { useGate, useStore } from "effector-react";
 
-import { BLOCK_SPACING } from "../../../../theme";
+import { BLOCK_SPACING } from "theme";
 import CreateRoomModal from "../CreateRoomModal/CreateRoomModal";
 import React from "react";
 import { Redirect } from "react-router-dom";
 import RoomBlock from "./RoomBlock/RoomBlock";
-import Template from "../../../views/Template/Template";
+import Template from "components/views/Template/Template";
 import { TemplateModules } from "types/types";
 import { openRoomModal } from "stores/Game/Rooms/RoomsModalModel";
 import { useTranslation } from "react-i18next";
@@ -77,7 +77,7 @@ export const Rooms = () => {
                     variant="outlined"
                     color="primary"
                     onClick={() => openRoomModal()}
-                    disabled={!!myPendingRoom}
+                    disabled={!!myPendingRoom || !user}
                   >
                     {t("Create room")}
                   </Button>
