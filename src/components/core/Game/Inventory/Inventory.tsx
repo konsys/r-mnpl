@@ -2,7 +2,10 @@ import "./inventory.scss";
 
 import { Button, Grid, Select, TextField, Typography } from "@material-ui/core";
 import { IField, InventoryType } from "types/types";
-import { InventoryGate, inventory$ } from "./InventoryModel";
+import {
+  InventoryGate,
+  inventory$,
+} from "../../../../stores/Game/Inventory/InventoryModel";
 import React, { useState } from "react";
 import { useGate, useStore } from "effector-react";
 

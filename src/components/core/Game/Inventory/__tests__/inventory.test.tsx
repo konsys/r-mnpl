@@ -9,7 +9,7 @@ import { InventoryType } from "types/types";
 import { Link } from "react-router-dom";
 import React from "react";
 import { createImgPath } from "utils/fields.utils";
-import { setInventory } from "../InventoryModel";
+import { setInventory } from "../../../../../stores/Game/Inventory/InventoryModel";
 import { shallow } from "enzyme";
 import { testInventory } from "testMocks/inventory";
 
