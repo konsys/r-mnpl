@@ -1,3 +1,5 @@
+import * as modal from "stores/Game/Rooms/RoomsModalModel";
+
 import { testRoom, testRoomsResponce } from "testMocks/room";
 
 import { Button } from "@material-ui/core";
@@ -41,8 +43,13 @@ describe("Room block test", () => {
       playersInRooms: 0,
       rooms: [],
     });
-    console.log(shallow(<Rooms />).debug());
+    const testMock = modal as any;
+    jest.spyOn(testMock, "openRoomModal");
     expect(shallow(<Rooms />).find(Template)).toHaveLength(1);
     expect(shallow(<Rooms />).find(Button)).toHaveLength(1);
+    shallow(<Rooms />)
+      .find(Button)
+      .simulate("click");
+    expect(testMock.openRoomModal).toHaveBeenCalledTimes(1);
   });
 });
