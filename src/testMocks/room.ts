@@ -1,4 +1,5 @@
 import {
+  IRoomResponce,
   IRoomState,
   PlayerRoomStatus,
   RoomPortalFieldType,
@@ -23,4 +24,9 @@ export const testRoom: IRoomState = {
   restarts: false,
   portalType: RoomPortalFieldType.NOP,
   roomStatus: RoomStatus.PLAYING,
+};
+
+export const testRoomsResponce: IRoomResponce = {
+  playersInRooms: 2,
+  rooms: [testRoom],
 };

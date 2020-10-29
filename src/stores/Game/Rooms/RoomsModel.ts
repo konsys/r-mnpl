@@ -222,9 +222,9 @@ export const rooms$ = RoomDomain.store<IRoomResponce>({
   playersInRooms: 0,
   rooms: [],
 })
-  .reset(resetRoomsStore)
   .on(getRoomsFx.done, (_, { result }) => result)
-  .on(setRooms, (_, result) => result);
+  .on(setRooms, (_, result) => result)
+  .reset(resetRoomsStore);
 
 export const myPendingRoom$ = RoomDomain.store<IRoomState | null>(null)
   .on(rooms$.updates, (_, { rooms }) => {
