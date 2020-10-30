@@ -100,21 +100,25 @@ export default function RoomTypeView({ room }: { room: IRoomState }) {
       <Grid item>
         {room.portalType === RoomPortalFieldType.PORTAL && (
           <Typography color="textSecondary" variant="subtitle2">
-            <Grid container alignItems="center">
+            <Grid container alignItems="center" className="_with-portal">
               {t("With portal")}
             </Grid>
           </Typography>
         )}
         {room.portalType === RoomPortalFieldType.ROULETTE && (
           <Typography color="textSecondary" variant="subtitle2">
-            <Grid container alignItems="center">
+            <Grid container alignItems="center" className="_with-roulette">
               <CasinoIcon />
               {t("Roulette")}
             </Grid>
           </Typography>
         )}
         {room.portalType === RoomPortalFieldType.RUSSIAN_ROULETTE && (
-          <Typography color="textSecondary" variant="subtitle2">
+          <Typography
+            color="textSecondary"
+            variant="subtitle2"
+            className="_with-russian-roulette"
+          >
             <Grid container alignItems="center">
               <EvStationIcon />
               {t("Russian roulette")}
