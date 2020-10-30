@@ -13,14 +13,14 @@ import { concat } from "lodash";
 import { openGameModal } from "stores/Game/GameModal/GameModalModel";
 import { useTranslation } from "react-i18next";
 
-export default function RoomBlock({
+export default function PendingRoomBlock({
   room,
   iHaveRoom,
   userId,
 }: {
   room: IRoomState;
   iHaveRoom: boolean;
-  userId?: number;
+  userId: number | null;
 }) {
   const g: IPlayer[] | null = room.players.length
     ? concat(

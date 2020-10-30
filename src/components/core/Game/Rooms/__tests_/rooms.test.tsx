@@ -1,7 +1,5 @@
 import * as modal from "stores/Game/Rooms/RoomsModalModel";
 
-import { myPendingRoom$, setRooms } from "stores/Game/Rooms/RoomsModel";
-import { setUserEvent, user$ } from "stores/Game/User/UserModel";
 import { test5User, testUser } from "testMocks/user";
 import {
   testPendingRoomsResponce,
@@ -13,9 +11,11 @@ import { Button } from "@material-ui/core";
 import CreateRoomModal from "../../CreateRoomModal/CreateRoomModal";
 import React from "react";
 import { Redirect } from "react-router-dom";
-import RoomBlock from "../RoomBlock/RoomBlock";
+import RoomBlock from "../RoomBlock/PendingRoomBlock";
 import { Rooms } from "../Rooms";
 import Template from "components/views/Template/Template";
+import { setRooms } from "stores/Game/Rooms/RoomsModel";
+import { setUserEvent } from "stores/Game/User/UserModel";
 import { shallow } from "enzyme";
 
 describe("Room block test", () => {

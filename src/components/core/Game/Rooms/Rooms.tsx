@@ -14,7 +14,7 @@ import { BLOCK_SPACING } from "theme";
 import CreateRoomModal from "../CreateRoomModal/CreateRoomModal";
 import React from "react";
 import { Redirect } from "react-router-dom";
-import RoomBlock from "./RoomBlock/RoomBlock";
+import RoomBlock from "./RoomBlock/PendingRoomBlock";
 import Template from "components/views/Template/Template";
 import { TemplateModules } from "types/types";
 import { openRoomModal } from "stores/Game/Rooms/RoomsModalModel";
