@@ -19,7 +19,6 @@ import VideogameAssetIcon from "@material-ui/icons/VideogameAsset";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 import { shallow } from "enzyme";
 import { testRoom } from "testMocks/room";
-import { useTranslation } from "react-i18next";
 
 describe("Room type view test", () => {
   it("should render", () => {
@@ -178,6 +177,13 @@ describe("Room type view test", () => {
     expect(
       shallow(
         <RoomTypeView
+          room={{ ...testRoom, portalType: RoomPortalFieldType.NOP }}
+        />
+      ).find(CasinoIcon)
+    ).toHaveLength(0);
+    expect(
+      shallow(
+        <RoomTypeView
           room={{ ...testRoom, portalType: RoomPortalFieldType.ROULETTE }}
         />
       ).find("._with-roulette")
@@ -198,6 +204,17 @@ describe("Room type view test", () => {
         />
       ).find("._with-russian-roulette")
     ).toHaveLength(0);
+    expect(
+      shallow(
+        <RoomTypeView
+          room={{
+            ...testRoom,
+            portalType: RoomPortalFieldType.NOP,
+          }}
+        />
+      ).find(EvStationIcon)
+    ).toHaveLength(0);
+
     expect(
       shallow(
         <RoomTypeView
