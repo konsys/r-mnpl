@@ -26,6 +26,24 @@ export const testRoom: IRoomState = {
   roomStatus: RoomStatus.PLAYING,
 };
 
+export const test4Room: IRoomState = {
+  roomId: "testRoomId",
+  creatorId: 1,
+  winnerId: null,
+  players: [
+    { ...testPlayer1, playerRoomStatus: PlayerRoomStatus.ACITVE },
+    { ...testPlayer2, playerRoomStatus: PlayerRoomStatus.ACITVE },
+  ],
+  createTime: new Date(),
+  roomType: RoomType.REGULAR,
+  playersNumber: 4,
+  autostart: false,
+  privateRoom: false,
+  restarts: false,
+  portalType: RoomPortalFieldType.NOP,
+  roomStatus: RoomStatus.PLAYING,
+};
+
 export const testPendingRoom1: IRoomState = {
   roomId: "testRoomId",
   creatorId: 1,
