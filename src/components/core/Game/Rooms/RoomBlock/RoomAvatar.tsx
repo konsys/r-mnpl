@@ -2,8 +2,8 @@ import { Grid, Typography } from "@material-ui/core";
 
 import AddIcon from "@material-ui/icons/Add";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
-import { Params } from "config/params";
 import React from "react";
+import { createImgPath } from "utils/fields.utils";
 import { useTranslation } from "react-i18next";
 
 export default function RoomAvatar({
@@ -41,7 +41,7 @@ export default function RoomAvatar({
                     {isMe && removePlayer && (
                       <HighlightOffIcon onClick={() => removePlayer(roomId)} />
                     )}
-                    <img src={`${Params.BASE_URL}/${avatar}`} alt={name} />
+                    <img src={createImgPath(avatar)} alt={name} />
                   </div>
                 </>
               ) : (
