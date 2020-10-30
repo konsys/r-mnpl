@@ -108,44 +108,57 @@ describe("Room block test", () => {
     ).toBe("testName");
   });
 
-  //   it("should render HighlightOffIcon", () => {
-  //     expect(
-  //       shallow(
-  //         <RoomAvatar
-  //           avatar={""}
-  //           name={"testName"}
-  //           addPlayer={() => null}
-  //           removePlayer={() => null}
-  //           roomId="testRoomId"
-  //           isMe={false}
-  //         />
-  //       ).find(HighlightOffIcon)
-  //     ).toHaveLength(0);
+  it("should render HighlightOffIcon", () => {
+    expect(
+      shallow(
+        <RoomAvatar
+          avatar={"testAvatar"}
+          name={"testName"}
+          addPlayer={() => null}
+          removePlayer={() => null}
+          roomId="testRoomId"
+          isMe={true}
+        />
+      ).find(HighlightOffIcon)
+    ).toHaveLength(1);
 
-  //     expect(
-  //       shallow(
-  //         <RoomAvatar
-  //           avatar={""}
-  //           name={"testName"}
-  //           addPlayer={() => null}
-  //           removePlayer={null}
-  //           roomId="testRoomId"
-  //           isMe={true}
-  //         />
-  //       ).find(HighlightOffIcon)
-  //     ).toHaveLength(0);
+    expect(
+      shallow(
+        <RoomAvatar
+          avatar={"testAvatar"}
+          name={""}
+          addPlayer={() => null}
+          removePlayer={() => null}
+          roomId="testRoomId"
+          isMe={false}
+        />
+      ).find(HighlightOffIcon)
+    ).toHaveLength(0);
 
-  //     expect(
-  //       shallow(
-  //         <RoomAvatar
-  //           avatar={"avatar"}
-  //           name={""}
-  //           addPlayer={() => null}
-  //           removePlayer={() => null}
-  //           roomId="testRoomId"
-  //           isMe={true}
-  //         />
-  //       ).find(HighlightOffIcon)
-  //     ).toHaveLength(1);
-  //   });
+    expect(
+      shallow(
+        <RoomAvatar
+          avatar={""}
+          name={"testName"}
+          addPlayer={() => null}
+          removePlayer={null}
+          roomId="testRoomId"
+          isMe={true}
+        />
+      ).find(HighlightOffIcon)
+    ).toHaveLength(0);
+
+    expect(
+      shallow(
+        <RoomAvatar
+          avatar={"testAvatar"}
+          name={"testName"}
+          addPlayer={() => null}
+          removePlayer={() => null}
+          roomId="testRoomId"
+          isMe={true}
+        />
+      ).find(HighlightOffIcon)
+    ).toHaveLength(1);
+  });
 });
