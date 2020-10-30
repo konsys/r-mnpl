@@ -49,4 +49,22 @@ describe("Room block test", () => {
     expect(wrap2.avatar).toStrictEqual("");
     expect(wrap2.name).toStrictEqual("");
   });
+
+  it("should render RoomTypeView removePlayer func", () => {
+    const wrap = shallow(
+      <PendingRoomBlock room={test4Room} iHaveRoom={true} userId={undefined} />
+    )
+      .find(RoomAvatar)
+      .get(0).props;
+
+    expect(wrap.removePlayer).toStrictEqual(null);
+
+    const wrap1 = shallow(
+      <PendingRoomBlock room={test4Room} iHaveRoom={true} userId={1} />
+    )
+      .find(RoomAvatar)
+      .get(0).props;
+
+    expect(typeof wrap1.removePlayer).toBe("function");
+  });
 });

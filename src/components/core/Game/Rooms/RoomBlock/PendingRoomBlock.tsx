@@ -20,7 +20,7 @@ export default function PendingRoomBlock({
 }: {
   room: IRoomState;
   iHaveRoom: boolean;
-  userId: number | null;
+  userId?: number;
 }) {
   const g: IPlayer[] | null = room.players.length
     ? concat(
@@ -68,8 +68,11 @@ export default function PendingRoomBlock({
                         title: t("You are already waiting for game"),
                       })
                 }
-                removePlayer={(roomId: string) =>
-                  userId && removePlayerFromRoomFx({ roomId, userId })
+                removePlayer={
+                  userId
+                    ? (roomId: string) =>
+                        removePlayerFromRoomFx({ roomId, userId })
+                    : null
                 }
                 roomId={room.roomId}
                 isMe={v ? userId === v.userId : false}

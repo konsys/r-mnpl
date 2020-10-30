@@ -17,7 +17,7 @@ export default function RoomAvatar({
   avatar: string;
   name: string;
   addPlayer: (id: string) => void;
-  removePlayer: (id: string) => void;
+  removePlayer: ((id: string) => void) | null;
   roomId: string;
   isMe: boolean;
 }) {
@@ -38,7 +38,7 @@ export default function RoomAvatar({
               {avatar && name ? (
                 <>
                   <div className="avatarWrap">
-                    {isMe && (
+                    {isMe && removePlayer && (
                       <HighlightOffIcon onClick={() => removePlayer(roomId)} />
                     )}
                     <img src={`${Params.BASE_URL}/${avatar}`} alt={name} />

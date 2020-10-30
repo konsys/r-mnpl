@@ -9,9 +9,9 @@ import {
 
 import { Button } from "@material-ui/core";
 import CreateRoomModal from "../../CreateRoomModal/CreateRoomModal";
+import PendingRoomBlock from "../RoomBlock/PendingRoomBlock";
 import React from "react";
 import { Redirect } from "react-router-dom";
-import RoomBlock from "../RoomBlock/PendingRoomBlock";
 import { Rooms } from "../Rooms";
 import Template from "components/views/Template/Template";
 import { setRooms } from "stores/Game/Rooms/RoomsModel";
@@ -66,21 +66,23 @@ describe("Room block test", () => {
     const wrap = shallow(<Rooms />);
 
     expect(wrap.find(Redirect)).toHaveLength(0);
-    expect(wrap.find(RoomBlock)).toHaveLength(
+    expect(wrap.find(PendingRoomBlock)).toHaveLength(
       testPendingRoomsResponce.rooms.length
     );
 
-    expect(wrap.find(RoomBlock).get(0).props.room).toStrictEqual(
+    expect(wrap.find(PendingRoomBlock).get(0).props.room).toStrictEqual(
       testPendingRoomsResponce.rooms[0]
     );
-    expect(wrap.find(RoomBlock).get(0).props.iHaveRoom).toStrictEqual(true);
+    expect(wrap.find(PendingRoomBlock).get(0).props.iHaveRoom).toStrictEqual(
+      true
+    );
 
     setRooms(testPendingRoomsResponce);
     setUserEvent(test5User);
 
     expect(
       shallow(<Rooms />)
-        .find(RoomBlock)
+        .find(PendingRoomBlock)
         .get(0).props.iHaveRoom
     ).toStrictEqual(false);
 
@@ -88,7 +90,7 @@ describe("Room block test", () => {
     setUserEvent(testUser);
     expect(
       shallow(<Rooms />)
-        .find(RoomBlock)
+        .find(PendingRoomBlock)
         .get(0).props.iHaveRoom
     ).toStrictEqual(true);
   });
@@ -97,22 +99,22 @@ describe("Room block test", () => {
     setUserEvent(test5User);
     expect(
       shallow(<Rooms />)
-        .find(RoomBlock)
+        .find(PendingRoomBlock)
         .get(0).props.userId
     ).toBe(test5User.userId);
 
     setUserEvent(testUser);
     expect(
       shallow(<Rooms />)
-        .find(RoomBlock)
+        .find(PendingRoomBlock)
         .get(0).props.userId
     ).toBe(testUser.userId);
 
     setUserEvent(null);
     expect(
       shallow(<Rooms />)
-        .find(RoomBlock)
+        .find(PendingRoomBlock)
         .get(0).props.userId
-    ).toBe(null);
+    ).toBeUndefined();
   });
 });
