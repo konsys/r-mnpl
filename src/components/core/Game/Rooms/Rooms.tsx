@@ -23,6 +23,7 @@ import { user$ } from "stores/Game/User/UserModel";
 
 export const Rooms = () => {
   useGate(roomsGate);
+  // TODO test pending rooms
   const myPendingRoom = useStore(myPendingRoom$);
   const rooms = useStore(rooms$);
   const { t } = useTranslation();
@@ -109,7 +110,7 @@ export const Rooms = () => {
                         <RoomBlock
                           room={room}
                           iHaveRoom={!!myPendingRoom}
-                          userId={userId || undefined}
+                          userId={userId || null}
                         />
                       </Grid>
                     )

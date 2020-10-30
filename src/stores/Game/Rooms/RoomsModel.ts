@@ -1,5 +1,5 @@
 import { GameDomain, user$ } from "../User/UserModel";
-import { IApiResponceCode, IUser } from "types/types";
+import { IApiResponceCode, IPlayer, IUser } from "types/types";
 import {
   addPlayerToRoomFetch,
   createRoomFetch,
@@ -7,7 +7,7 @@ import {
   removePlayerFromRoomFetch,
 } from "../../../api/Rooms/api";
 import { closeGameModal, openGameModal } from "../GameModal/GameModalModel";
-import { combine, sample } from "effector";
+import { combine, merge, sample } from "effector";
 
 import { ErrorCode } from "utils/errors";
 import { createGate } from "effector-react";
@@ -226,19 +226,32 @@ export const rooms$ = RoomDomain.store<IRoomResponce>({
   .on(setRooms, (_, result) => result)
   .reset(resetRoomsStore);
 
+const setMyPendingRoom = RoomDomain.event<IRoomState | null>();
+
 export const myPendingRoom$ = RoomDomain.store<IRoomState | null>(null)
-  .on(rooms$.updates, (_, { rooms }) => {
-    const user = user$.getState();
-    const updatedRoom = head(
-      rooms.filter(
-        (v) =>
-          v.roomStatus === RoomStatus.PENDING &&
-          v.players.some((v1) => user && v1?.userId === user.userId)
-      )
-    );
-    return updatedRoom || null;
-  })
+  .on(setMyPendingRoom, (_, v) => v)
   .reset(myRoomsReset);
+
+sample({
+  source: [rooms$, user$],
+  clock: merge([rooms$.updates, user$.updates]),
+  fn: (source: [IRoomResponce, IUser]) => {
+    const updatedRoom =
+      Array.isArray(source) && source.length === 2
+        ? head(
+            source[0].rooms.filter(
+              (v: IRoomState) =>
+                v.roomStatus === RoomStatus.PENDING &&
+                v.players.some(
+                  (v1: any) => source[1] && v1?.userId === source[1].userId
+                )
+            )
+          ) || null
+        : null;
+    return updatedRoom;
+  },
+  target: setMyPendingRoom,
+});
 
 sample({
   clock: roomsGate.open,

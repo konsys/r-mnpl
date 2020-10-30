@@ -66,9 +66,16 @@ export const testUser: IUser = {
   isActive: true,
   isBlocked: false,
 };
+export const test5User: IUser = {
+  userId: 5,
+  vip: false,
+  name: "NIKOLA",
+  isActive: true,
+  isBlocked: false,
+};
 export const testAvatarUser: IUser = {
   avatar: "/test/avatar.jpg",
-  userId: 1,
+  userId: 2,
   vip: false,
   name: "IVAN",
   isActive: true,
@@ -84,9 +91,9 @@ export const testVipUser: IUser = {
 
 export const testRoomUser: RoomPlayer = {
   playerRoomStatus: PlayerRoomStatus.ACITVE,
-  userId: 3,
+  userId: 4,
   vip: true,
-  name: "OLEG",
+  name: "MISHA",
   isActive: true,
   isBlocked: false,
 };

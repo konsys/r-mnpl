@@ -28,7 +28,7 @@ sample({
   target: getUserFx,
 });
 
-export const setUserEvent = UserDomain.event<IUser>();
+export const setUserEvent = UserDomain.event<IUser | null>();
 
 export const user$ = UserDomain.store<IUser | null>(null)
   .on(setUserEvent, (_, data) => data)
