@@ -16,7 +16,7 @@ export default function RoomAvatar({
 }: {
   avatar: string;
   name: string;
-  addPlayer: (id: string) => void;
+  addPlayer: () => void;
   removePlayer: ((id: string) => void) | null;
   roomId: string;
   isMe: boolean;
@@ -53,7 +53,7 @@ export default function RoomAvatar({
                   direction="column"
                 >
                   <Grid item className="addPlayerWrap">
-                    <AddIcon onClick={() => addPlayer(roomId)} />
+                    <AddIcon onClick={addPlayer} />
                   </Grid>
                 </Grid>
               )}

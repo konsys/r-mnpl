@@ -31,6 +31,21 @@ export default function PendingRoomBlock({
 
   const { t } = useTranslation();
 
+  const addPlayer = () => {
+    console.log(222222222222, iHaveRoom);
+    return !iHaveRoom
+      ? userId
+        ? addPlayerToRoomFx({ roomId: room.roomId, userId })
+        : openGameModal({
+            text: t("Login to play"),
+            title: t("You are not logged in"),
+          })
+      : openGameModal({
+          text: t("You can`t join the room"),
+          title: t("You are already waiting for game"),
+        });
+  };
+
   return (
     <Grid
       container
@@ -55,19 +70,7 @@ export default function PendingRoomBlock({
               <RoomAvatar
                 avatar={(v && v.avatar) || ""}
                 name={(v && v.name) || ""}
-                addPlayer={(roomId: string) =>
-                  !iHaveRoom
-                    ? userId
-                      ? addPlayerToRoomFx({ roomId, userId })
-                      : openGameModal({
-                          text: t("Login to play"),
-                          title: t("You are not logged in"),
-                        })
-                    : openGameModal({
-                        text: t("You can`t join the room"),
-                        title: t("You are already waiting for game"),
-                      })
-                }
+                addPlayer={addPlayer}
                 removePlayer={
                   userId
                     ? (roomId: string) =>
