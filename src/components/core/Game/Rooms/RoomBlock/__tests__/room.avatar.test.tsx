@@ -1,3 +1,4 @@
+import AddIcon from "@material-ui/icons/Add";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 import React from "react";
 import RoomAvatar from "../RoomAvatar";
@@ -160,5 +161,81 @@ describe("Room block test", () => {
         />
       ).find(HighlightOffIcon)
     ).toHaveLength(1);
+
+    const mockFn = jest.fn();
+
+    shallow(
+      <RoomAvatar
+        avatar={"testAvatar"}
+        name={"testName"}
+        addPlayer={() => null}
+        removePlayer={mockFn}
+        roomId="testRoomId"
+        isMe={true}
+      />
+    )
+      .find(HighlightOffIcon)
+      .simulate("click");
+
+    expect(mockFn).toHaveBeenCalledTimes(1);
+    expect(mockFn).toHaveBeenCalledWith("testRoomId");
+  });
+
+  it("should render AddIcon", () => {
+    expect(
+      shallow(
+        <RoomAvatar
+          avatar={"testAvatar"}
+          name={"testName"}
+          addPlayer={() => null}
+          removePlayer={() => null}
+          roomId="testRoomId"
+          isMe={true}
+        />
+      ).find(AddIcon)
+    ).toHaveLength(0);
+
+    expect(
+      shallow(
+        <RoomAvatar
+          avatar={"testAvatar"}
+          name={""}
+          addPlayer={() => null}
+          removePlayer={() => null}
+          roomId="testRoomId"
+          isMe={false}
+        />
+      ).find(AddIcon)
+    ).toHaveLength(1);
+
+    expect(
+      shallow(
+        <RoomAvatar
+          avatar={""}
+          name={"testName"}
+          addPlayer={() => null}
+          removePlayer={null}
+          roomId="testRoomId"
+          isMe={true}
+        />
+      ).find(AddIcon)
+    ).toHaveLength(1);
+
+    const mockFn = jest.fn();
+
+    shallow(
+      <RoomAvatar
+        avatar={""}
+        name={"testName"}
+        addPlayer={mockFn}
+        removePlayer={() => null}
+        roomId="testRoomId"
+        isMe={true}
+      />
+    )
+      .find(AddIcon)
+      .simulate("click");
+
+    expect(mockFn).toHaveBeenCalledTimes(1);
   });
 });
