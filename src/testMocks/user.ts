@@ -27,7 +27,7 @@ export const testPlayer1: IPlayer = {
   timeReduceLevel: 0,
   creditToPay: 0,
   canUseCredit: false,
-  moveOrder: 0,
+  moveOrder: 3,
 };
 
 export const testPlayer2: IPlayer = {
@@ -37,7 +37,7 @@ export const testPlayer2: IPlayer = {
   vip: true,
   registrationType: "none",
   name: "DIMAN",
-  team: undefined,
+  team: "testTeam",
   avatar: "testAvatar2",
   createdAt: new Date(),
   updatedAt: new Date(),
