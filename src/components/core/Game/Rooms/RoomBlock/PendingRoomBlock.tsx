@@ -32,7 +32,6 @@ export default function PendingRoomBlock({
   const { t } = useTranslation();
 
   const addPlayer = () => {
-    console.log(222222222222, iHaveRoom);
     return !iHaveRoom
       ? userId
         ? addPlayerToRoomFx({ roomId: room.roomId, userId })

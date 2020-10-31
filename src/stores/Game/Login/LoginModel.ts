@@ -13,25 +13,19 @@ const AuthDomain = createDomain("AuthDomain");
 export const clearTokenStore = AuthDomain.event();
 export const clearToken = AuthDomain.event();
 
-export const loginEffect = AuthDomain.effect<ILoginForm, ILoginResponce, Error>(
-  {
-    handler: loginFetch,
-  }
-);
+export const loginFx = AuthDomain.effect<ILoginForm, ILoginResponce, Error>({
+  handler: loginFetch,
+});
 
 export const login$ = AuthDomain.store<ILoginResponce | null>(null)
-  .on(loginEffect.pending, () =>
-    localStorage.setItem(LocalStorageParams.TOKEN, "")
-  )
-  .on(loginEffect.done, (_, data) => {
+  .on(loginFx.pending, () => localStorage.setItem(LocalStorageParams.TOKEN, ""))
+  .on(loginFx.done, (_, data) => {
     clearToken();
     data.result && saveToken(data.result.access_token);
     data.result.access_token && getMyProfile();
     return data.result;
   })
-  .on(loginEffect.fail, (err) =>
-    localStorage.removeItem(LocalStorageParams.TOKEN)
-  )
+  .on(loginFx.fail, (err) => localStorage.removeItem(LocalStorageParams.TOKEN))
   .reset(clearTokenStore);
 
 // login$.updates.watch((v) => console.log("LoginStoreWatch", v));
