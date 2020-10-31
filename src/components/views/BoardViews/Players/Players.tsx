@@ -38,61 +38,67 @@ export const Players = ({ players, user, action }: Prop) => {
   return (
     <>
       <div className="table-body-players">
-        {players.map((player: IPlayer, index) => {
-          return (
-            <div
-              key={index}
-              className="table-body-players-card"
-              id={"player_card_" + player.userId}
-              mnpl-order={player.moveOrder}
-              mnpl-team={player.team}
-              mnpl-action_player={
-                player &&
-                action.event.action &&
-                action.event.action.userId === player.userId
-                  ? 1
-                  : 0
-              }
-              mnpl-opened={
-                actionStore.isVisible && actionStore.toUserId === player.userId
-                  ? actionStore.position * 1
-                  : 0
-              }
-              onClick={() => {
-                closeFieldActionEvent();
-                const user1 = (user && user.userId) || player.userId;
-                const user2 = player.userId;
-
-                return openPlayerActionEvent({
-                  fromUserId: user1,
-                  toUserId: user2,
-                  position: 1,
-                  isVisible: !actionStore.isVisible,
-                  ignore: user1 !== user2,
-                  ignoreOff: user1 !== user2,
-                  profile: user1 !== user2,
-                  contract: user1 !== user2,
-                  creditTake: user1 === user2,
-                  creditPay: false,
-                  kick: user1 !== user2,
-                  leave: user1 === user2,
-                  report: user1 !== user2,
-                  restart: user1 === user2,
-                });
-              }}
-            >
-              <Avatar
+        {Array.isArray(players) &&
+          players.map((player: IPlayer, index) => {
+            return player && player.userId ? (
+              <div
                 key={index}
-                name={player.name}
-                money={player.money}
-                remainTime={53}
-                avatar={player.avatar ? player.avatar : ""}
-                isVip={player.vip}
-              />
-              <PlayerActions {...actionStore} />
-            </div>
-          );
-        })}
+                className="table-body-players-card"
+                id={`player_card_${player.userId}`}
+                mnpl-order={player.moveOrder}
+                mnpl-team={player.team}
+                mnpl-action_player={
+                  player &&
+                  action &&
+                  action.event &&
+                  action.event.action &&
+                  action.event.action.userId === player.userId
+                    ? 1
+                    : 0
+                }
+                mnpl-opened={
+                  actionStore.isVisible &&
+                  actionStore.toUserId === player.userId
+                    ? actionStore.position * 1
+                    : 0
+                }
+                onClick={() => {
+                  closeFieldActionEvent();
+                  const user1 = (user && user.userId) || player.userId;
+                  const user2 = player.userId;
+
+                  return openPlayerActionEvent({
+                    fromUserId: user1,
+                    toUserId: user2,
+                    position: 1,
+                    isVisible: !actionStore.isVisible,
+                    ignore: user1 !== user2,
+                    ignoreOff: user1 !== user2,
+                    profile: user1 !== user2,
+                    contract: user1 !== user2,
+                    creditTake: user1 === user2,
+                    creditPay: false,
+                    kick: user1 !== user2,
+                    leave: user1 === user2,
+                    report: user1 !== user2,
+                    restart: user1 === user2,
+                  });
+                }}
+              >
+                <Avatar
+                  key={index}
+                  name={player.name}
+                  money={player.money}
+                  remainTime={53}
+                  avatar={player.avatar ? player.avatar : ""}
+                  isVip={player.vip}
+                />
+                <PlayerActions {...actionStore} />
+              </div>
+            ) : (
+              ""
+            );
+          })}
       </div>
     </>
   );

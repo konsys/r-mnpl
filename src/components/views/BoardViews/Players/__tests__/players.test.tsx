@@ -36,6 +36,28 @@ describe("Room top five test", () => {
     ).toHaveLength(2);
   });
 
+  it("should render all players", () => {
+    expect(
+      shallow(
+        <Players players={[]} user={testUser} action={testDoNothingAction} />
+      ).find(Avatar)
+    ).toHaveLength(0);
+    expect(
+      shallow(
+        <Players players={[{}]} user={testUser} action={testDoNothingAction} />
+      ).find(".table-body-players-card")
+    ).toHaveLength(0);
+    expect(
+      shallow(
+        <Players
+          players={[testUser]}
+          user={testUser}
+          action={testDoNothingAction}
+        />
+      ).find(".table-body-players-card")
+    ).toHaveLength(1);
+  });
+
   it("should have all properties", () => {
     const props = shallow(
       <Players
@@ -50,4 +72,17 @@ describe("Room top five test", () => {
     expect(props["mnpl-order"]).toBe(testPlayer1.moveOrder);
     expect(props["mnpl-team"]).toBe(testPlayer1.team);
   });
+
+  //   it("should render action player", () => {
+  //     const props = shallow(
+  //       <Players
+  //         players={[undefined]}
+  //         user={testUser}
+  //         action={testDoNothingAction}
+  //       />
+  //     )
+  //       .find(".table-body-players-card")
+  //       .get(0).props;
+  //     expect(props["mnpl-action_player"]).toBe(1);
+  //   });
 });
