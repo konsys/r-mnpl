@@ -1,3 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Room top five test should render 1`] = `ShallowWrapper {}`;
+
+exports[`Room top five test should render all players 1`] = `ShallowWrapper {}`;
