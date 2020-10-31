@@ -48,7 +48,6 @@ export const Players = ({ players, user, action }: Prop) => {
                 mnpl-order={player.moveOrder}
                 mnpl-team={player.team}
                 mnpl-action_player={
-                  player &&
                   action &&
                   action.event &&
                   action.event.action &&

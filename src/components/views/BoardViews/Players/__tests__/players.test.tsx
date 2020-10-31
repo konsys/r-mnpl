@@ -50,12 +50,75 @@ describe("Room top five test", () => {
     expect(
       shallow(
         <Players
-          players={[testUser]}
+          players={[testPlayer1]}
           user={testUser}
           action={testDoNothingAction}
         />
       ).find(".table-body-players-card")
     ).toHaveLength(1);
+  });
+
+  it("should render all players", () => {
+    expect(
+      shallow(<Players players={[testPlayer1]} user={testUser} action={{}} />)
+        .find(".table-body-players-card")
+        .get(0).props["mnpl-action_player"]
+    ).toBe(0);
+    expect(
+      shallow(
+        <Players
+          players={[testPlayer1]}
+          user={testUser}
+          action={{ action: null }}
+        />
+      )
+        .find(".table-body-players-card")
+        .get(0).props["mnpl-action_player"]
+    ).toBe(0);
+    expect(
+      shallow(
+        <Players
+          players={[testPlayer1]}
+          user={testUser}
+          action={{ action: { event: null } }}
+        />
+      )
+        .find(".table-body-players-card")
+        .get(0).props["mnpl-action_player"]
+    ).toBe(0);
+    expect(
+      shallow(
+        <Players
+          players={[testPlayer1]}
+          user={testUser}
+          action={{ action: { event: { action: null } } }}
+        />
+      )
+        .find(".table-body-players-card")
+        .get(0).props["mnpl-action_player"]
+    ).toBe(0);
+    expect(
+      shallow(
+        <Players
+          players={[testPlayer1]}
+          user={testUser}
+          action={{ action: { event: { action: { userId: 111 } } } }}
+        />
+      )
+        .find(".table-body-players-card")
+        .get(0).props["mnpl-action_player"]
+    ).toBe(0);
+    expect(
+      shallow(
+        <Players
+          players={[testPlayer1]}
+          user={testUser}
+          action={testDoNothingAction}
+        />
+      )
+        .find(".table-body-players-card")
+        .get(0).props["mnpl-action_player"]
+    ).toBe(1);
   });
 
   it("should have all properties", () => {
