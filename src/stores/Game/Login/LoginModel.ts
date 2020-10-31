@@ -1,10 +1,13 @@
-import { ILoginForm, ILoginResponce } from "../Login";
+import {
+  ILoginForm,
+  ILoginResponce,
+} from "../../../components/core/Registration/Login/Login";
 
 import { LocalStorageParams } from "types/types";
 import { createDomain } from "effector";
-import { getMyProfile } from "../../../../../stores/Game/User/UserModel";
+import { getMyProfile } from "../User/UserModel";
 import { loginFetch } from "api/Login/api";
-import { saveToken } from "./TokenModel";
+import { saveToken } from "../Token/TokenModel";
 
 const AuthDomain = createDomain("AuthDomain");
 export const clearTokenStore = AuthDomain.event();

@@ -1,8 +1,5 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
-import {
-  clearToken,
-  getToken,
-} from "components/core/Registration/Login/model/TokenModel";
+import { clearToken, getToken } from "stores/Game/Token/TokenModel";
 
 import { Params } from "config/params";
 
