@@ -1,10 +1,9 @@
-import { mount, shallow } from "enzyme";
-
 import { Login } from "../Login";
 import { LoginForm } from "components/views/Registration/LoginForm/LoginForm";
 import React from "react";
 import { Redirect } from "react-router-dom";
 import { setUserEvent } from "stores/Game/User/UserModel";
+import { shallow } from "enzyme";
 import { testUser } from "testMocks/user";
 
 describe("Room top five test", () => {

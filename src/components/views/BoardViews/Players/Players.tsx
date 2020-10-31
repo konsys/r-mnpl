@@ -1,15 +1,15 @@
-import { IPlayer, IUser } from "../../../../types/types";
+import { IPlayer, IUser } from "types/types";
 import React, { useEffect } from "react";
 import {
   closePlayerActionEvent,
   openPlayerActionEvent,
   playerActionStore,
-} from "../../../../stores/Board/PlayersStore";
+} from "stores/Board/PlayersStore";
 
 import { Avatar } from "../Avatar/Avatar";
-import { ICurrentAction } from "../../../../stores/Board/ActionStore";
+import { ICurrentAction } from "stores/Board/ActionStore";
 import { PlayerActions } from "./PlayerActions/PlayerActions";
-import { closeFieldActionEvent } from "../../../../stores/Board/FieldsStore";
+import { closeFieldActionEvent } from "stores/Board/FieldsStore";
 import { useStore } from "effector-react";
 
 interface Prop {
