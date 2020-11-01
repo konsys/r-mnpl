@@ -28,7 +28,7 @@ import { IRoomState } from "stores/Game/Rooms/RoomsModel";
 import { M1tv } from "../../../views/BoardViews/M1tv/M1tv";
 import { Players } from "components/views/BoardViews/Players/Players";
 import { TableHelper } from "../../../views/BoardViews/TableHelper/TableHelper";
-import { Ticket } from "../../../views/BoardViews/Ticket/ticket";
+import { Ticket } from "../../../views/BoardViews/Ticket/Ticket";
 import { ToastContainer } from "react-toastify";
 import { Tokens } from "../../../views/BoardViews/Tokens/Tokens";
 import { clearNode } from "effector";
