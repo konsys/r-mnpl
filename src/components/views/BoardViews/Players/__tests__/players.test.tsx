@@ -1,13 +1,12 @@
 import * as playerStore from "stores/Board/PlayersStore";
 
 import { fieldAction$, setFieldAction } from "stores/Board/FieldsStore";
-import { test5User, testPlayer1, testPlayer2, testUser } from "testMocks/user";
+import { testPlayer1, testPlayer2, testUser } from "testMocks/user";
 
 import { Avatar } from "../../Avatar/Avatar";
 import { Players } from "../Players";
 import React from "react";
 import { openPlayerAction } from "stores/Board/PlayersStore";
-import { setUserEvent } from "stores/Game/User/UserModel";
 import { shallow } from "enzyme";
 import { testDoNothingAction } from "testMocks/action";
 import { testPlayerAction } from "testMocks/player.action";
