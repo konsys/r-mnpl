@@ -2,14 +2,14 @@ import { IPlayer, IUser } from "types/types";
 import React, { useEffect } from "react";
 import {
   closePlayerActionEvent,
-  openPlayerActionEvent,
+  openPlayerAction,
   playerActionStore,
 } from "stores/Board/PlayersStore";
 
 import { Avatar } from "../Avatar/Avatar";
 import { ICurrentAction } from "stores/Board/ActionStore";
 import { PlayerActions } from "./PlayerActions/PlayerActions";
-import { closeFieldActionEvent } from "stores/Board/FieldsStore";
+import { closeFieldAction } from "stores/Board/FieldsStore";
 import { useStore } from "effector-react";
 
 interface Prop {
@@ -62,11 +62,11 @@ export const Players = ({ players, user, action }: Prop) => {
                     : 0
                 }
                 onClick={() => {
-                  closeFieldActionEvent();
+                  closeFieldAction();
                   const user1 = (user && user.userId) || player.userId;
                   const user2 = player.userId;
 
-                  return openPlayerActionEvent({
+                  return openPlayerAction({
                     fromUserId: user1,
                     toUserId: user2,
                     position: 1,
@@ -76,7 +76,7 @@ export const Players = ({ players, user, action }: Prop) => {
                     profile: user1 !== user2,
                     contract: user1 !== user2,
                     creditTake: user1 === user2,
-                    creditPay: false,
+                    creditPay: user1 === user2,
                     kick: user1 !== user2,
                     leave: user1 === user2,
                     report: user1 !== user2,

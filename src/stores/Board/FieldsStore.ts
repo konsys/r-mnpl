@@ -8,7 +8,7 @@ export interface IFieldsStore {
 }
 const FieldsDomain = BoardDomain.domain("BoardDomain");
 
-export const closeFieldActionEvent = FieldsDomain.event();
+export const closeFieldAction = FieldsDomain.event();
 
 const waitForNumber = async (n: number): Promise<number> => {
   const store = fieldAction$.getState();
@@ -17,7 +17,7 @@ const waitForNumber = async (n: number): Promise<number> => {
   }
 
   if (store > 0) {
-    closeFieldActionEvent();
+    closeFieldAction();
 
     return new Promise((resolve) => {
       return setTimeout(() => resolve(n), 200);
@@ -26,16 +26,16 @@ const waitForNumber = async (n: number): Promise<number> => {
   return n;
 };
 
-export const setFieldActionEvent = FieldsDomain.event<number>();
+export const setFieldAction = FieldsDomain.event<number>();
 
-export const setFieldActionEffect = FieldsDomain.effect<number, number>({
+export const setFieldActionFx = FieldsDomain.effect<number, number>({
   handler: waitForNumber,
 });
 
 export const fieldAction$ = FieldsDomain.store<number>(0)
-  .on(setFieldActionEffect.done, (_, data) => data.result)
-  .on(setFieldActionEvent, (_, data) => data)
-  .on(closeFieldActionEvent, () => 0);
+  .on(setFieldActionFx.done, (_, data) => data.result)
+  .on(setFieldAction, (_, data) => data)
+  .on(closeFieldAction, () => 0);
 
 export const resetFieldsEvent = FieldsDomain.event();
 export const getInitFieldsFx = FieldsDomain.effect<void, IField[], Error>({

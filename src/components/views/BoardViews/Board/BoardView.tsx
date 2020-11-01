@@ -8,8 +8,8 @@ import {
 } from "../../../../types/types";
 import React, { useEffect } from "react";
 import {
-  closeFieldActionEvent,
-  setFieldActionEffect,
+  closeFieldAction,
+  setFieldActionFx,
 } from "../../../../stores/Board/FieldsStore";
 
 import { BOARD_PARAMS } from "../../../../params/boardParams";
@@ -70,10 +70,10 @@ export const BoardView = ({
   };
 
   const closeFieldAction = (event: any) => {
-    (!event.target && !event.target.id && closeFieldActionEvent()) ||
+    (!event.target && !event.target.id && closeFieldAction()) ||
       (event.target.id &&
         !(event.target.id.indexOf("field") > -1) &&
-        closeFieldActionEvent());
+        closeFieldAction());
   };
 
   useEffect(() => {
@@ -96,10 +96,10 @@ export const BoardView = ({
           field: f,
         });
       } else {
-        setFieldActionEffect(f.fieldId || 0);
+        setFieldActionFx(f.fieldId || 0);
       }
     } else {
-      closeFieldActionEvent();
+      closeFieldAction();
     }
 
     return false;

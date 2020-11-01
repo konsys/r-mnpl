@@ -19,7 +19,7 @@ jest.mock("stores/Board/ActionStore", () => ({
 }));
 
 jest.mock("stores/Board/FieldsStore", () => ({
-  closeFieldActionEvent: jest.fn(),
+  closeFieldAction: jest.fn(),
 }));
 
 describe("Field action test", () => {
@@ -105,7 +105,7 @@ describe("Field action test", () => {
       action: OutcomeMessageType.OUTCOME_MORTGAGE_FIELD_CLICKED,
       fieldId: testOwnedFieldActions.fieldId,
     });
-    expect(field.closeFieldActionEvent).toHaveBeenCalledTimes(1);
+    expect(field.closeFieldAction).toHaveBeenCalledTimes(1);
   });
 
   it("should unmortgage", () => {
@@ -118,7 +118,7 @@ describe("Field action test", () => {
       action: OutcomeMessageType.OUTCOME_UN_MORTGAGE_FIELD_CLICKED,
       fieldId: testOwnedFieldActions.fieldId,
     });
-    expect(field.closeFieldActionEvent).toHaveBeenCalledTimes(1);
+    expect(field.closeFieldAction).toHaveBeenCalledTimes(1);
   });
   it("should level up", () => {
     shallow(<FieldActions {...testOwnedFieldActions} isActive={true} />)
@@ -130,7 +130,7 @@ describe("Field action test", () => {
       action: OutcomeMessageType.OUTCOME_LEVEL_UP_FIELD_CLICKED,
       fieldId: testOwnedFieldActions.fieldId,
     });
-    expect(field.closeFieldActionEvent).toHaveBeenCalledTimes(1);
+    expect(field.closeFieldAction).toHaveBeenCalledTimes(1);
   });
   it("should level down", () => {
     shallow(<FieldActions {...testOwnedFieldActions} isActive={true} />)
@@ -142,7 +142,7 @@ describe("Field action test", () => {
       action: OutcomeMessageType.OUTCOME_LEVEL_DOWN_FIELD_CLICKED,
       fieldId: testOwnedFieldActions.fieldId,
     });
-    expect(field.closeFieldActionEvent).toHaveBeenCalledTimes(1);
+    expect(field.closeFieldAction).toHaveBeenCalledTimes(1);
   });
 
   it("should render description", () => {

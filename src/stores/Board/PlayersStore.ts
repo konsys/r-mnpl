@@ -33,7 +33,7 @@ export interface IPlayerAction {
   kick: boolean;
 }
 
-export const openPlayerActionEvent = PlayersDomain.event<IPlayerAction>();
+export const openPlayerAction = PlayersDomain.event<IPlayerAction>();
 export const closePlayerActionEvent = PlayersDomain.event();
 
 const init: IPlayerAction = {
@@ -59,7 +59,7 @@ export const InitBoardPlayersGate = createGate<{
 }>("InitBoardPlayersGate");
 
 export const playerActionStore = PlayersDomain.store<IPlayerAction>(init)
-  .on(openPlayerActionEvent, (_, data) => data)
+  .on(openPlayerAction, (_, data) => data)
   .reset(closePlayerActionEvent);
 
 export interface Iplayers {

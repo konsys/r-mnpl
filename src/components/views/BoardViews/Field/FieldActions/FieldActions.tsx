@@ -10,7 +10,7 @@ import { FieldActionAuto } from "./FieldActionAuto";
 import { FieldActionCompany } from "./FieldActionCompany";
 import { FieldActionIT } from "./FieldActionIT";
 import React from "react";
-import { closeFieldActionEvent } from "stores/Board/FieldsStore";
+import { closeFieldAction } from "stores/Board/FieldsStore";
 import { getActingPlayer } from "utils/players.utils";
 import { sendBoardAction } from "stores/Board/ActionStore";
 
@@ -59,7 +59,7 @@ export const FieldActions = ({
                     action: OutcomeMessageType.OUTCOME_MORTGAGE_FIELD_CLICKED,
                     fieldId,
                   });
-                  closeFieldActionEvent();
+                  closeFieldAction();
                 }}
               >
                 Заложить
@@ -77,7 +77,7 @@ export const FieldActions = ({
                       OutcomeMessageType.OUTCOME_UN_MORTGAGE_FIELD_CLICKED,
                     fieldId,
                   });
-                  closeFieldActionEvent();
+                  closeFieldAction();
                 }}
               >
                 Выкупить
@@ -94,7 +94,7 @@ export const FieldActions = ({
                     action: OutcomeMessageType.OUTCOME_LEVEL_UP_FIELD_CLICKED,
                     fieldId,
                   });
-                  closeFieldActionEvent();
+                  closeFieldAction();
                 }}
               >
                 Построить
@@ -111,7 +111,7 @@ export const FieldActions = ({
                     action: OutcomeMessageType.OUTCOME_LEVEL_DOWN_FIELD_CLICKED,
                     fieldId,
                   });
-                  closeFieldActionEvent();
+                  closeFieldAction();
                 }}
               >
                 Продать
