@@ -1,9 +1,9 @@
 import React from "react";
-import { Ticket } from "../Ticket";
+import { Tokens } from "../Tokens";
 import { shallow } from "enzyme";
 
 describe("Table helper  test", () => {
   it("should render", () => {
-    expect(shallow(<Ticket />)).toMatchSnapshot();
+    expect(shallow(<Tokens />)).toMatchSnapshot();
   });
 });
