@@ -69,9 +69,20 @@ describe("Room top five test", () => {
 
   it("tests player can send contract", () => {
     const testContract = jest.spyOn(contract, "openContractModal");
-    let wrap = shallow(<PlayerActions {...testPlayerAction} contract={true} />);
+    let wrap = shallow(
+      <PlayerActions
+        {...testPlayerAction}
+        contract={true}
+        fromUserId={159}
+        toUserId={7563}
+      />
+    );
     expect(wrap.find("._contract")).toHaveLength(1);
     wrap.find("._contract").simulate("click");
     expect(testContract).toHaveBeenCalledTimes(1);
+    expect(testContract).toHaveBeenCalledWith({
+      fromUserId: 159,
+      toUserId: 7563,
+    });
   });
 });
