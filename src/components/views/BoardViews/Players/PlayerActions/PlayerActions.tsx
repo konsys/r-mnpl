@@ -1,6 +1,6 @@
-import { IPlayerAction } from "../../../../../stores/Board/PlayersStore";
+import { IPlayerAction } from "stores/Board/PlayersStore";
 import React from "react";
-import { openContractModal } from "../../../../../stores/Board/ContractStore";
+import { openContractModal } from "stores/Board/ContractStore";
 import { surrenderRoom } from "stores/Game/Board/BoardModel";
 
 export const PlayerActions = ({
