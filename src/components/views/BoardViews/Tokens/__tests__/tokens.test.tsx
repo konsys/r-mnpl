@@ -27,17 +27,9 @@ describe("Tokens test", () => {
     expect(t).toBe(0);
   });
 
-  it("should test token position", () => {
-    let t = getTokensPositionOnTheSameField([testToken], 1, 10, 10);
+  it("shouldtest first line test", () => {
+    let t = getTokensPositionOnTheSameField([testToken], 1, 10, 10, 1);
     expect(t).toStrictEqual({ left: 10, top: 10 });
-
-    // jailed: 0, left: 32, top: 35, meanPosition: 0, userId: 2
-
-    // t: IToken[],
-    // userId: number,
-    // line: number,
-    // leftS: number,
-    // topS: number
 
     t = getTokensPositionOnTheSameField(
       [
@@ -45,10 +37,11 @@ describe("Tokens test", () => {
         { ...testToken, userId: 2 },
       ],
       1,
-      55,
-      55
+      20,
+      20,
+      0
     );
-    expect(t).toStrictEqual({ left: 70, top: 70 });
+    expect(t).toStrictEqual({ left: 20 + 15, top: 20 + 25 });
 
     t = getTokensPositionOnTheSameField(
       [
@@ -56,10 +49,11 @@ describe("Tokens test", () => {
         { ...testToken, userId: 2 },
       ],
       2,
-      55,
-      55
+      20,
+      20,
+      0
     );
-    expect(t).toStrictEqual({ left: 40, top: 40 });
+    expect(t).toStrictEqual({ left: 20 - 15, top: 20 - 25 });
 
     t = getTokensPositionOnTheSameField(
       [
@@ -68,10 +62,11 @@ describe("Tokens test", () => {
         { ...testToken, userId: 3 },
       ],
       3,
-      55,
-      55
+      20,
+      20,
+      0
     );
-    expect(t).toStrictEqual({ left: 55, top: 55 });
+    expect(t).toStrictEqual({ left: 20, top: 20 });
 
     t = getTokensPositionOnTheSameField(
       [
@@ -81,10 +76,11 @@ describe("Tokens test", () => {
         { ...testToken, userId: 4 },
       ],
       4,
-      70,
-      40
+      20,
+      20,
+      0
     );
-    expect(t).toStrictEqual({ left: 55, top: 55 });
+    expect(t).toStrictEqual({ left: 20 + 15, top: 20 - 25 });
 
     t = getTokensPositionOnTheSameField(
       [
@@ -95,9 +91,78 @@ describe("Tokens test", () => {
         { ...testToken, userId: 5 },
       ],
       5,
-      40,
-      70
+      20,
+      20,
+      0
     );
-    expect(t).toStrictEqual({ left: 55, top: 55 });
+    expect(t).toStrictEqual({ left: 20 - 15, top: 20 + 25 });
+  });
+
+  it("shouldtest second line test", () => {
+    let t = getTokensPositionOnTheSameField(
+      [
+        { ...testToken, userId: 1 },
+        { ...testToken, userId: 2 },
+      ],
+      1,
+      20,
+      20,
+      1
+    );
+    expect(t).toStrictEqual({ left: 20 + 25, top: 20 + 15 });
+
+    t = getTokensPositionOnTheSameField(
+      [
+        { ...testToken, userId: 1 },
+        { ...testToken, userId: 2 },
+      ],
+      2,
+      20,
+      20,
+      1
+    );
+    expect(t).toStrictEqual({ left: 20 - 25, top: 20 - 15 });
+
+    t = getTokensPositionOnTheSameField(
+      [
+        { ...testToken, userId: 1 },
+        { ...testToken, userId: 2 },
+        { ...testToken, userId: 3 },
+      ],
+      3,
+      20,
+      20,
+      1
+    );
+    expect(t).toStrictEqual({ left: 20, top: 20 });
+
+    t = getTokensPositionOnTheSameField(
+      [
+        { ...testToken, userId: 1 },
+        { ...testToken, userId: 2 },
+        { ...testToken, userId: 3 },
+        { ...testToken, userId: 4 },
+      ],
+      4,
+      20,
+      20,
+      1
+    );
+    expect(t).toStrictEqual({ left: 20 + 25, top: 20 - 15 });
+
+    t = getTokensPositionOnTheSameField(
+      [
+        { ...testToken, userId: 1 },
+        { ...testToken, userId: 2 },
+        { ...testToken, userId: 3 },
+        { ...testToken, userId: 4 },
+        { ...testToken, userId: 5 },
+      ],
+      5,
+      20,
+      20,
+      1
+    );
+    expect(t).toStrictEqual({ left: 20 - 25, top: 20 + 15 });
   });
 });

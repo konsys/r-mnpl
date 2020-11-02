@@ -22,25 +22,36 @@ export const getTokensPositionOnTheSameField = (
   t: IToken[],
   userId: number,
   leftS: number,
-  topS: number
+  topS: number,
+  line: number
 ): ITokenPosition => {
   let top = topS;
   let left = leftS;
+  let topChange = 20;
+  let leftChange = 20;
+  const changeParam = 5;
+  if (line === 0 || line === 2) {
+    topChange += changeParam;
+    leftChange -= changeParam;
+  } else {
+    topChange -= changeParam;
+    leftChange += changeParam;
+  }
 
   if (t.length > 1) {
     const index = t.findIndex((v) => v.userId === userId);
     if (index === 0) {
-      top += 15;
-      left += 15;
+      top += topChange;
+      left += leftChange;
     } else if (index === 1) {
-      top -= 15;
-      left -= 15;
+      top -= topChange;
+      left -= leftChange;
     } else if (index === 3) {
-      top += 15;
-      left -= 15;
+      top -= topChange;
+      left += leftChange;
     } else if (index === 4) {
-      top -= 15;
-      left += 15;
+      top += topChange;
+      left -= leftChange;
     }
   }
 
@@ -66,8 +77,15 @@ export const Tokens = ({
   return (
     <>
       {tokens.map((v: IToken, k) => {
+        const line = getFieldLine(fields, v.meanPosition);
         const s = grouppedTokens[v.meanPosition];
-        const t = getTokensPositionOnTheSameField(s, v.userId, v.left, v.top);
+        const t = getTokensPositionOnTheSameField(
+          s,
+          v.userId,
+          v.left,
+          v.top,
+          line
+        );
         return (
           <div
             key={k}
