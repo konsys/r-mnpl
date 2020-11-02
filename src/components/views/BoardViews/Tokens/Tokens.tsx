@@ -3,6 +3,7 @@ import { IField, IToken } from "../../../../types/types";
 import { LINE_TRANSITION_TIMEOUT } from "../../../../utils/boardParams";
 import React from "react";
 import _ from "lodash";
+import { getField } from "utils/fields.utils";
 
 export interface ITokenPosition {
   left: number;
@@ -23,14 +24,19 @@ export const getTokensPositionOnTheSameField = (
   userId: number,
   leftS: number,
   topS: number,
-  line: number
+  field: IField
 ): ITokenPosition => {
   let top = topS;
   let left = leftS;
   let topChange = 20;
   let leftChange = 20;
-  const changeParam = 5;
-  if (line === 0 || line === 2) {
+  let changeParam = 5;
+  if (field.isJail) {
+    changeParam = 0;
+    topChange = 15;
+    leftChange = 15;
+  }
+  if (field.fieldLine === 0 || field.fieldLine === 2) {
     topChange += changeParam;
     leftChange -= changeParam;
   } else {
@@ -61,6 +67,11 @@ export const getTokensPositionOnTheSameField = (
   };
 };
 
+export const groupTokensByMeanPosition = (ar: any[]) => {
+  const res = _(ar).groupBy("meanPosition").value();
+  console.log(23424234234, res);
+  return res;
+};
 export const Tokens = ({
   tokens,
   fields,
@@ -68,23 +79,18 @@ export const Tokens = ({
   tokens: IToken[];
   fields: IField[];
 }) => {
-  const group = (ar: any[]) => {
-    return _(ar).groupBy("meanPosition").value();
-  };
-
-  const grouppedTokens = group(tokens);
+  const grouppedTokens = groupTokensByMeanPosition(tokens);
 
   return (
     <>
       {tokens.map((v: IToken, k) => {
-        const line = getFieldLine(fields, v.meanPosition);
         const s = grouppedTokens[v.meanPosition];
         const t = getTokensPositionOnTheSameField(
           s,
           v.userId,
           v.left,
           v.top,
-          line
+          fields.find((f) => f.fieldPosition === v.meanPosition) || fields[0]
         );
         return (
           <div

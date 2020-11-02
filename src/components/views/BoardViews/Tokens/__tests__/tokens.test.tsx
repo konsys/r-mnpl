@@ -28,7 +28,7 @@ describe("Tokens test", () => {
   });
 
   it("shouldtest first line test", () => {
-    let t = getTokensPositionOnTheSameField([testToken], 1, 10, 10, 1);
+    let t = getTokensPositionOnTheSameField([testToken], 1, 10, 10, {...testField};
     expect(t).toStrictEqual({ left: 10, top: 10 });
 
     t = getTokensPositionOnTheSameField(
@@ -39,7 +39,7 @@ describe("Tokens test", () => {
       1,
       20,
       20,
-      0
+      {...testField}
     );
     expect(t).toStrictEqual({ left: 20 + 15, top: 20 + 25 });
 
@@ -51,7 +51,7 @@ describe("Tokens test", () => {
       2,
       20,
       20,
-      0
+      {...testField}
     );
     expect(t).toStrictEqual({ left: 20 - 15, top: 20 - 25 });
 
@@ -64,7 +64,7 @@ describe("Tokens test", () => {
       3,
       20,
       20,
-      0
+      {...testField}
     );
     expect(t).toStrictEqual({ left: 20, top: 20 });
 
@@ -78,7 +78,7 @@ describe("Tokens test", () => {
       4,
       20,
       20,
-      0
+      {...testField}
     );
     expect(t).toStrictEqual({ left: 20 + 15, top: 20 - 25 });
 
@@ -93,7 +93,7 @@ describe("Tokens test", () => {
       5,
       20,
       20,
-      0
+      {...testField}
     );
     expect(t).toStrictEqual({ left: 20 - 15, top: 20 + 25 });
   });
@@ -107,7 +107,7 @@ describe("Tokens test", () => {
       1,
       20,
       20,
-      1
+      {...testField}
     );
     expect(t).toStrictEqual({ left: 20 + 25, top: 20 + 15 });
 
@@ -119,7 +119,7 @@ describe("Tokens test", () => {
       2,
       20,
       20,
-      1
+      {...testField}
     );
     expect(t).toStrictEqual({ left: 20 - 25, top: 20 - 15 });
 
@@ -132,7 +132,7 @@ describe("Tokens test", () => {
       3,
       20,
       20,
-      1
+      {...testField}
     );
     expect(t).toStrictEqual({ left: 20, top: 20 });
 
@@ -146,7 +146,7 @@ describe("Tokens test", () => {
       4,
       20,
       20,
-      1
+      {...testField}
     );
     expect(t).toStrictEqual({ left: 20 + 25, top: 20 - 15 });
 
@@ -161,7 +161,7 @@ describe("Tokens test", () => {
       5,
       20,
       20,
-      1
+      {...testField}
     );
     expect(t).toStrictEqual({ left: 20 - 25, top: 20 + 15 });
   });
