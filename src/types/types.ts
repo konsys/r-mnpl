@@ -130,17 +130,17 @@ export interface IField {
   fieldPosition: number;
   imgSrc?: string;
   name: string;
-  fieldSpecial?: number;
-  fieldGroup?: number;
+  fieldSpecial?: number | null;
+  fieldGroup?: number | null;
   fieldGroupName?: string;
   fieldCorner?: number;
-  fieldLine?: number;
+  fieldLine?: number | null;
   isJail?: boolean;
   status?: FieldStatus;
   type: FieldType;
   currency?: string;
-  price?: IFieldPrice;
-  rent?: IFieldRent;
+  price?: IFieldPrice | null;
+  rent?: IFieldRent | null;
   description?: string;
   onClick?: () => any;
 }
