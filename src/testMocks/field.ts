@@ -143,7 +143,7 @@ export const testJailField: IField = {
   isJail: true,
 };
 
-export default (): IField[] => [
+export const testAllFields: IField[] = [
   {
     fieldId: 1,
     fieldPosition: 0,

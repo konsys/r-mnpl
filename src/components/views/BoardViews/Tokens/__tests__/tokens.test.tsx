@@ -1,14 +1,18 @@
-import { Tokens, getFieldLine, getTokenPosition } from "../Tokens";
+import {
+  Tokens,
+  getFieldLine,
+  getTokensPositionOnTheSameField,
+} from "../Tokens";
+import { testAllFields, testField } from "testMocks/field";
 
 import React from "react";
 import { shallow } from "enzyme";
-import { testField } from "testMocks/field";
 import { testToken } from "testMocks/tokens";
 
 describe("Tokens test", () => {
   it("should render", () => {
     expect(
-      shallow(<Tokens fields={[testField]} tokens={[testToken]} />)
+      shallow(<Tokens fields={testAllFields} tokens={[testToken]} />)
     ).toMatchSnapshot();
   });
 
@@ -24,16 +28,76 @@ describe("Tokens test", () => {
   });
 
   it("should test token position", () => {
-    let t = getTokenPosition([testToken], 1, 1, 10, 10);
+    let t = getTokensPositionOnTheSameField([testToken], 1, 10, 10);
     expect(t).toStrictEqual({ left: 10, top: 10 });
 
-    t = getTokenPosition(
-      [testToken, { ...testToken, userId: 2 }],
+    // jailed: 0, left: 32, top: 35, meanPosition: 0, userId: 2
+
+    // t: IToken[],
+    // userId: number,
+    // line: number,
+    // leftS: number,
+    // topS: number
+
+    t = getTokensPositionOnTheSameField(
+      [
+        { ...testToken, userId: 1 },
+        { ...testToken, userId: 2 },
+      ],
       1,
-      1,
-      10,
-      10
+      55,
+      55
     );
-    expect(t).toStrictEqual({ left: 10, top: 10 });
+    expect(t).toStrictEqual({ left: 70, top: 70 });
+
+    t = getTokensPositionOnTheSameField(
+      [
+        { ...testToken, userId: 1 },
+        { ...testToken, userId: 2 },
+      ],
+      2,
+      55,
+      55
+    );
+    expect(t).toStrictEqual({ left: 40, top: 40 });
+
+    t = getTokensPositionOnTheSameField(
+      [
+        { ...testToken, userId: 1 },
+        { ...testToken, userId: 2 },
+        { ...testToken, userId: 3 },
+      ],
+      3,
+      55,
+      55
+    );
+    expect(t).toStrictEqual({ left: 55, top: 55 });
+
+    t = getTokensPositionOnTheSameField(
+      [
+        { ...testToken, userId: 1 },
+        { ...testToken, userId: 2 },
+        { ...testToken, userId: 3 },
+        { ...testToken, userId: 4 },
+      ],
+      4,
+      70,
+      40
+    );
+    expect(t).toStrictEqual({ left: 55, top: 55 });
+
+    t = getTokensPositionOnTheSameField(
+      [
+        { ...testToken, userId: 1 },
+        { ...testToken, userId: 2 },
+        { ...testToken, userId: 3 },
+        { ...testToken, userId: 4 },
+        { ...testToken, userId: 5 },
+      ],
+      5,
+      40,
+      70
+    );
+    expect(t).toStrictEqual({ left: 55, top: 55 });
   });
 });
