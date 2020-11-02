@@ -69,7 +69,7 @@ export const BoardView = ({
     }
   };
 
-  const closeFieldAction = (event: any) => {
+  const closeField = (event: any) => {
     (!event.target && !event.target.id && closeFieldAction()) ||
       (event.target.id &&
         !(event.target.id.indexOf("field") > -1) &&
@@ -77,9 +77,9 @@ export const BoardView = ({
   };
 
   useEffect(() => {
-    document.addEventListener("click", closeFieldAction, false);
+    document.addEventListener("click", closeField, false);
     return () => {
-      document.removeEventListener("click", closeFieldAction, false);
+      document.removeEventListener("click", closeField, false);
     };
   }, []);
 

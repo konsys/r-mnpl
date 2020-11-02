@@ -5,5 +5,5 @@ export const testToken: IToken = {
   left: 10,
   top: 10,
   jailed: 0,
-  meanPosition: 101,
+  meanPosition: 1,
 };
