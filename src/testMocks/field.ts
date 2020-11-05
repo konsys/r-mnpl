@@ -8,6 +8,7 @@ export const testField: IField = {
   fieldId: 1,
   level: ItemLevel.ECONOM,
   fieldGroup: 1,
+  fieldLine: 0,
   imgSrc: "testImgSrc",
   fieldGroupName: "testGroupName",
   fieldPosition: 1,

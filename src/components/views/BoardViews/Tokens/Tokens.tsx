@@ -3,7 +3,6 @@ import { IField, IToken } from "../../../../types/types";
 import { LINE_TRANSITION_TIMEOUT } from "../../../../utils/boardParams";
 import React from "react";
 import _ from "lodash";
-import { getField } from "utils/fields.utils";
 
 export interface ITokenPosition {
   left: number;
@@ -28,14 +27,10 @@ export const getTokensPositionOnTheSameField = (
 ): ITokenPosition => {
   let top = topS;
   let left = leftS;
-  let topChange = 20;
-  let leftChange = 20;
-  let changeParam = 5;
-  if (field.isJail) {
-    changeParam = 0;
-    topChange = 15;
-    leftChange = 15;
-  }
+  let topChange = field.isJail || field.fieldPosition === 10 ? 9 : 20;
+  let leftChange = field.isJail || field.fieldPosition === 10 ? 9 : 20;
+  let changeParam = field.isJail || field.fieldPosition === 10 ? 0 : 5;
+
   if (field.fieldLine === 0 || field.fieldLine === 2) {
     topChange += changeParam;
     leftChange -= changeParam;
@@ -44,6 +39,7 @@ export const getTokensPositionOnTheSameField = (
     leftChange += changeParam;
   }
 
+  //TODO jail field position for 3+ tokens and for fieldLine===null (corner fields)
   if (t.length > 1) {
     const index = t.findIndex((v) => v.userId === userId);
     if (index === 0) {
@@ -67,11 +63,12 @@ export const getTokensPositionOnTheSameField = (
   };
 };
 
-export const groupTokensByMeanPosition = (ar: any[]) => {
+export const groupTokensByMeanPosition = (ar: IToken[]) => {
   const res = _(ar).groupBy("meanPosition").value();
   console.log(23424234234, res);
   return res;
 };
+
 export const Tokens = ({
   tokens,
   fields,
