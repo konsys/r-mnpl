@@ -7,13 +7,14 @@ import { useTranslation } from "react-i18next";
 export default function ToMainPageButton() {
   const history = useHistory();
   const { t } = useTranslation();
+
   return (
     <>
       <Button
         size={"medium"}
         variant="contained"
         color="primary"
-        onClick={() => history.push("")}
+        onClick={() => history.push("/")}
       >
         <Typography variant="overline" noWrap>
           {t("Main page")}
