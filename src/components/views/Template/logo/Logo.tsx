@@ -23,7 +23,7 @@ export default function Logo() {
           </svg>
         </Grid>
         <Grid item>
-          <Typography color={"textSecondary"}>Monopoly One</Typography>
+          <Typography color={"textSecondary"}>Monopoly</Typography>
         </Grid>
       </Grid>
     </>
