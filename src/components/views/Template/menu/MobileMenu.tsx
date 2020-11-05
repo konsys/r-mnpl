@@ -17,6 +17,7 @@ export default function MobileMenu() {
   const { t } = useTranslation();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+
   const handleClick = (event: any) => {
     setAnchorEl(event.currentTarget);
   };
@@ -24,6 +25,7 @@ export default function MobileMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
   return (
     <>
       <MenuIcon onClick={handleClick} style={{ cursor: "pointer" }} />
