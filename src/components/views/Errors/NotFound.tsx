@@ -1,8 +1,8 @@
-import { Button, Grid, Hidden, Typography } from "@material-ui/core";
+import { Grid, Hidden, Typography } from "@material-ui/core";
 
-import { GRID_SPACING } from "../../../theme";
+import { GRID_SPACING } from "theme";
 import { Helmet } from "react-helmet";
-import { ReactComponent as NotFoundIcon } from "../../../theme/svg/404.svg";
+import { ReactComponent as NotFoundIcon } from "theme/svg/404.svg";
 import React from "react";
 import Template from "../Template/Template";
 import ToMainPage from "./ToMainPage";
