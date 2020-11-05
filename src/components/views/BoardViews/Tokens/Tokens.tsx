@@ -65,7 +65,6 @@ export const getTokensPositionOnTheSameField = (
 
 export const groupTokensByMeanPosition = (ar: IToken[]) => {
   const res = _(ar).groupBy("meanPosition").value();
-  console.log(23424234234, res);
   return res;
 };
 
@@ -95,7 +94,7 @@ export const Tokens = ({
             mnpl-jailed={v.jailed}
             style={{
               left: `${t.left}px`,
-              top: `${t.top}px `,
+              top: `${t.top}px`,
               transitionDuration: `${LINE_TRANSITION_TIMEOUT}ms`,
               transitionProperty: "left top ease",
               transform: `scale(${s.length === 1 ? 1 : 0.75})`,
