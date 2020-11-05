@@ -5,7 +5,7 @@ import { Helmet } from "react-helmet";
 import { ReactComponent as NotFoundIcon } from "theme/svg/404.svg";
 import React from "react";
 import Template from "../Template/Template";
-import ToMainPage from "./ToMainPage";
+import ToMainPage from "./ToMainPageButton";
 import { useTranslation } from "react-i18next";
 
 export default function NotFound() {
@@ -42,14 +42,14 @@ export default function NotFound() {
           <Typography variant="body1">
             {t("This page doesn`t exist yet")}
           </Typography>
-        </Grid>{" "}
+        </Grid>
       </Hidden>
       <Hidden mdUp>
         <Grid item>
           <Typography variant="body2">
             {t("This page doesn`t exist yet")}
           </Typography>
-        </Grid>{" "}
+        </Grid>
       </Hidden>
       <Grid item>
         <ToMainPage />

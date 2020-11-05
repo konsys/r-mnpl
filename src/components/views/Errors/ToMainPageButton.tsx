@@ -4,7 +4,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-export default function ToMainPage() {
+export default function ToMainPageButton() {
   const history = useHistory();
   const { t } = useTranslation();
   return (

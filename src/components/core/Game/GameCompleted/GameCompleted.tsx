@@ -1,6 +1,6 @@
 import React from "react";
 import { RoomPlayer } from "stores/Game/Rooms/RoomsModel";
-import ToMainPage from "components/views/Errors/ToMainPage";
+import ToMainPage from "components/views/Errors/ToMainPageButton";
 
 // TODO add winner page template
 export default function GameCompleted({

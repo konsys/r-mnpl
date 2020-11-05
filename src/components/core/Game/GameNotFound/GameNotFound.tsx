@@ -1,5 +1,5 @@
 import React from "react";
-import ToMainPage from "components/views/Errors/ToMainPage";
+import ToMainPage from "components/views/Errors/ToMainPageButton";
 import { Typography } from "@material-ui/core";
 
 export default function GameNotFound({ text }: { text: any }) {
