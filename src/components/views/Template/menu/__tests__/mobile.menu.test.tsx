@@ -23,4 +23,12 @@ describe("Friends online test", () => {
       Object.keys(menuItems).length
     );
   });
+
+  it("should render text in menu item", () => {
+    expect(
+      shallow(<MobileMenu />)
+        .find(Typography)
+        .get(0).props.children
+    ).toBe(Object.keys(menuItems)[0]);
+  });
 });
