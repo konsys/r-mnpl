@@ -3,16 +3,11 @@ import React, { useState } from "react";
 
 import { Link } from "react-router-dom";
 import MenuIcon from "@material-ui/icons/Menu";
+import { menuItems } from "./MenuItems";
 import { useTranslation } from "react-i18next";
 
-export const menuItems: any = {
-  M1TV: "/m1tv",
-  Friends: "/friends",
-  Inventory: "/inventory",
-  Market: "/market",
-};
-
 const ITEM_HEIGHT = 48;
+
 export default function MobileMenu() {
   const { t } = useTranslation();
   const [anchorEl, setAnchorEl] = useState(null);
@@ -41,7 +36,7 @@ export default function MobileMenu() {
           },
         }}
       >
-        {Object.keys(menuItems).map((v: any, k: number) => (
+        {Object.keys(menuItems).map((v: string, k: number) => (
           <Link to={menuItems[v]} key={k}>
             <MenuItem component={"span"}>
               <Typography color={"textSecondary"}>{t(v)}</Typography>

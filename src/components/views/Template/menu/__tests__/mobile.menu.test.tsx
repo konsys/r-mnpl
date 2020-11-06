@@ -1,8 +1,9 @@
 import { Menu, Typography } from "@material-ui/core";
-import MobileMenu, { menuItems } from "../MobileMenu";
 
 import MenuIcon from "@material-ui/icons/Menu";
+import MobileMenu from "../MobileMenu";
 import React from "react";
+import { menuItems } from "../MenuItems";
 import { shallow } from "enzyme";
 
 describe("Friends online test", () => {
