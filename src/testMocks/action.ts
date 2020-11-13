@@ -1,5 +1,5 @@
 import { ICurrentAction } from "stores/Board/ActionStore";
-import { IncomeMessageType } from "types/types";
+import { BoardAction, IncomeMessageType } from "types/types";
 
 export const testDoNothingAction: ICurrentAction = {
   actionId: "testActionId",
@@ -13,4 +13,13 @@ export const testDoNothingAction: ICurrentAction = {
   },
 };
 
+export const testRollDicesModal: BoardAction = {
+  _id: 'testBoardAction',
+  type: IncomeMessageType.INCOME_ROLL_DICES_MODAL,
 
+  userId: 1,
+  title: 'testTitleRollDices',
+  text: 'testTextRollDices',
+  isModal: true,
+  
+};

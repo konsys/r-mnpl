@@ -1,17 +1,18 @@
-import * as toasty from "react-toastify";
-import { errorHandler, IGameError } from "handlers/ErrorHandler";
-import { ErrorCode } from "utils/errors";
+import { rollDicesModal } from "handlers/Modals";
+import * as actions from "stores/Board/ActionStore";
+import { testRollDicesModal } from "testMocks/action";
+import { OutcomeMessageType } from "types/types";
 
 describe("Modals test", () => {
   it("should handle error", () => {
-    const mochDicesFn = jest.spyOn(toasty, "toast");
-    const error: IGameError = {
-      code: 101,
-      message: "testErrorMessage",
-    };
+    const mochActionFn = jest.spyOn(actions, "sendBoardAction");
 
-    errorHandler(error);
-    expect(mochDicesFn).toBeCalledTimes(1);
-    expect(mochDicesFn).toBeCalledWith(ErrorCode[error.code]);
+    const res = rollDicesModal(testRollDicesModal);
+    // @ts-ignore
+    res.actionButtons[0].onClick();
+    expect(mochActionFn).toBeCalledTimes(1);
+    expect(mochActionFn).toBeCalledWith({
+      action: OutcomeMessageType.OUTCOME_ROLL_DICES_CLICKED,
+    });
   });
 });
