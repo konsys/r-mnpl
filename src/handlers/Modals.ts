@@ -6,10 +6,7 @@ import { sendBoardAction } from "stores/Board/ActionStore";
 
 export const rollDicesModal = (act: BoardAction): BoardAction => {
   return {
-    type: act.type,
-    userId: act.userId,
-    title: act.title,
-    text: act.text,
+   ...act,
     actionButtons: [
       {
         title: "Бросить кубики",
@@ -21,8 +18,6 @@ export const rollDicesModal = (act: BoardAction): BoardAction => {
         disabled: false,
       },
     ],
-    _id: act._id,
-    isModal: act.isModal,
   };
 };
 

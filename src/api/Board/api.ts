@@ -1,4 +1,4 @@
-import { IBoardActionRequest } from "../../types/types";
+import { IBoardActionRequest } from "types/types";
 import { client } from "../../http/client";
 
 const URL = `/board/action`;
