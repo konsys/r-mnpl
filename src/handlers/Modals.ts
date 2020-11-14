@@ -104,13 +104,10 @@ export const unJailModal = (act: BoardAction): BoardAction => {
 export const unJailPayingModal = (act: BoardAction): BoardAction => {
   const p = getPlayer(act.userId);
   return {
-    type: act.type,
-    userId: act.userId,
-    title: act.title,
-    text: act.text,
+    ...act,
     actionButtons: [
       {
-        title: `Заплатить ${act.money && Math.abs(act.money)}k`,
+        title: `Заплатить ${act.money ? Math.abs(act.money):0}k`,
         onClick: () => {
           sendBoardAction({
             action: OutcomeMessageType.OUTCOME_UN_JAIL_PAID_CLICKED,
@@ -119,8 +116,6 @@ export const unJailPayingModal = (act: BoardAction): BoardAction => {
         disabled: !p || !act.money || p?.money < Math.abs(act.money),
       },
     ],
-    _id: act._id,
-    isModal: act.isModal,
   };
 };
 
