@@ -29,7 +29,7 @@ export const canBuyModal = (act: BoardAction): BoardAction => {
   if (!p || !f) {
     throw new Error("User or Field not found in buy modal");
   }
-  
+
   return {
     ...act,
     actionButtons: [
@@ -58,13 +58,10 @@ export const canBuyModal = (act: BoardAction): BoardAction => {
 export const taxModal = (act: BoardAction): BoardAction => {
   const p = getPlayer(act.userId);
   return {
-    type: act.type,
-    userId: act.userId,
-    title: act.title,
-    text: act.text,
+    ...act,
     actionButtons: [
       {
-        title: `Заплатить ${act.money && Math.abs(act.money)}k`,
+        title: `Заплатить ${act.money ? Math.abs(act.money) : 0}k`,
         onClick: () => {
           sendBoardAction({
             action: OutcomeMessageType.OUTCOME_TAX_PAID_CLICKED,
@@ -73,8 +70,6 @@ export const taxModal = (act: BoardAction): BoardAction => {
         disabled: !p || !act.money || p?.money < Math.abs(act.money),
       },
     ],
-    _id: act._id,
-    isModal: act.isModal,
   };
 };
 
@@ -82,10 +77,7 @@ export const unJailModal = (act: BoardAction): BoardAction => {
   const p = getPlayer(act.userId);
 
   return {
-    type: act.type,
-    userId: act.userId,
-    title: act.title,
-    text: act.text,
+    ...act,
     actionButtons: [
       {
         title: "Выйти под залог 500k",
@@ -105,9 +97,7 @@ export const unJailModal = (act: BoardAction): BoardAction => {
         },
         disabled: false,
       },
-    ],
-    _id: act._id,
-    isModal: act.isModal,
+    ]
   };
 };
 
