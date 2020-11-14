@@ -22,18 +22,16 @@ export const rollDicesModal = (act: BoardAction): BoardAction => {
 };
 
 export const canBuyModal = (act: BoardAction): BoardAction => {
+  
   const p = getPlayer(act.userId);
   const f = act.field && act.field.fieldId && getField(act.field.fieldId);
 
   if (!p || !f) {
-    throw new Error("User or Field not found inbuy modal");
+    throw new Error("User or Field not found in buy modal");
   }
-
+  
   return {
-    type: act.type,
-    userId: act.userId,
-    title: act.title,
-    text: act.text,
+    ...act,
     actionButtons: [
       {
         title: "Купить",
@@ -54,8 +52,6 @@ export const canBuyModal = (act: BoardAction): BoardAction => {
         disabled: false,
       },
     ],
-    _id: act._id,
-    isModal: act.isModal,
   };
 };
 
