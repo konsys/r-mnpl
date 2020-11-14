@@ -80,7 +80,7 @@ export const unJailModal = (act: BoardAction): BoardAction => {
     ...act,
     actionButtons: [
       {
-        title: "Выйти под залог 500k",
+        title: `Выйти под залог 500k`,
         onClick: () => {
           sendBoardAction({
             action: OutcomeMessageType.OUTCOME_UN_JAIL_PAID_CLICKED,
