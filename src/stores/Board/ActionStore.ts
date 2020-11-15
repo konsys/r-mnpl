@@ -3,7 +3,7 @@ import {
   IBoardActionRequest,
   IBoardEvent,
   IncomeMessageType,
-} from "../../types/types";
+} from "types/types";
 import {
   auctionModal,
   canBuyModal,
@@ -11,14 +11,14 @@ import {
   taxModal,
   unJailModal,
   unJailPayingModal,
-} from "../../handlers/Modals";
+} from "handlers/Modals";
 
 import { BoardDomain } from "./BoardDomain";
 import { boardGame$ } from "stores/Game/Board/BoardModel";
 import { incomeContract } from "./ContractStore";
 import nanoid from "nanoid";
 import { postBoardAction } from "api/Board/api";
-import { rollDicesAction } from "../../handlers/DicesHandler";
+import { rollDicesAction } from "handlers/DicesHandler";
 import { sample } from "effector";
 import { showBoardModalEvent } from "./ModalStore";
 
@@ -129,7 +129,6 @@ actions$.watch((v) => {
         break;
 
       case IncomeMessageType.INCOME_CONTRACT_MODAL:
-        // action && action.contract && setContract(action.contract);
         incomeContract();
         break;
     }

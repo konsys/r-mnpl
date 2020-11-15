@@ -1,5 +1,5 @@
 import { ICurrentAction } from "stores/Board/ActionStore";
-import { BoardAction, IncomeMessageType } from "types/types";
+import { BoardAction, IncomeMessageType, OutcomeMessageType } from "types/types";
 
 export const testDoNothingAction: ICurrentAction = {
   actionId: "testActionId",
@@ -22,4 +22,10 @@ export const testRollDicesModal: BoardAction = {
   text: 'testTextRollDices',
   isModal: true,
   
+};
+export const testRollDicesClicked: BoardAction = {
+  _id: 'testBoardAction',
+  type: OutcomeMessageType.OUTCOME_ROLL_DICES_CLICKED,
+  userId: 1,
+  isModal:false
 };

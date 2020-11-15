@@ -1,13 +1,13 @@
-import axios, { AxiosError, AxiosResponse } from "axios";
+import axios, { AxiosError, AxiosInstance, AxiosResponse } from "axios";
 import { clearToken, getToken } from "stores/Game/Token/TokenModel";
 
 import { Params } from "config/params";
 
-export const client = axios.create({
+export const client: AxiosInstance = axios.create({
   baseURL: Params.BASE_URL,
-  headers: {
-    Authorization: `Bearer ${getToken()}`,
-  },
+  // headers: {
+  //   Authorization: `Bearer ${getToken()}`,
+  // },
 });
 
 client.interceptors.request.use((config) => {
