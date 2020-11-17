@@ -8,7 +8,7 @@ import {
 } from "stores/Game/Rooms/RoomsModel";
 import { testPlayer1, testPlayer2 } from "./user";
 
-export const testRoom: IRoomState = {
+export const testPlayingRoom: IRoomState = {
   roomId: "testRoomId",
   creatorId: 1,
   winnerId: null,
@@ -82,7 +82,7 @@ export const testPendingRoom2: IRoomState = {
 
 export const testRoomsResponce: IRoomResponce = {
   playersInRooms: 2,
-  rooms: [testRoom],
+  rooms: [testPlayingRoom],
 };
 
 export const testPendingRoomsResponce: IRoomResponce = {

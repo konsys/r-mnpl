@@ -19,9 +19,10 @@ import { incomeContract } from "./ContractStore";
 import nanoid from "nanoid";
 import { postBoardAction } from "api/Board/api";
 import { rollDicesAction } from "handlers/DicesHandler";
-import { sample } from "effector";
-import { showBoardModalEvent } from "./ModalStore";
+import { guard, sample } from "effector";
+import { showBoardActionModal } from "./ModalStore";
 
+const ActionDomain = BoardDomain.domain("BoardActionDomain");
 export interface ICurrentAction {
   actionId: string;
   event: IBoardEvent;
@@ -39,7 +40,7 @@ export const gameActionFx = GameActionDomain.effect<
   handler: postBoardAction,
 });
 
-sample({
+const sendBoardGuard = sample({
   source: boardGame$,
   clock: sendBoardAction,
   fn: (action, board) => {
@@ -48,13 +49,17 @@ sample({
       gameId: action?.roomId,
     } as IBoardActionRequest;
   },
+});
+
+guard({
+  source: sendBoardGuard,
+  filter: boardGame$.map((v) => !!v?.roomId),
   target: gameActionFx,
 });
 
-const ActionDomain = BoardDomain.domain("BoardActionDomain");
 export const resetActionEvent = ActionDomain.event();
 
-export const setCurrentActionEvent = ActionDomain.event<ICurrentAction>();
+export const setCurrentAction = ActionDomain.event<ICurrentAction>();
 
 export const actions$ = ActionDomain.store<ICurrentAction>({
   actionId: "",
@@ -67,17 +72,15 @@ export const actions$ = ActionDomain.store<ICurrentAction>({
     },
   },
 })
-  .on(setCurrentActionEvent, (_, data) => data)
+  .on(setCurrentAction, (_, data) => data)
   .reset(resetActionEvent);
 
-export const getCurrentAction = () => actions$.getState();
-
-export const doNothing = (userId: number) => {
-  setCurrentActionEvent({
-    actionId: nanoid(4),
+export const doNothingAction = (userId: number) => {
+  setCurrentAction({
+    actionId: "startActionId",
     event: {
       action: {
-        _id: nanoid(),
+        _id: "actionEventId",
         userId,
         type: IncomeMessageType.DO_NOTHING,
         isModal: false,
@@ -92,16 +95,7 @@ actions$.watch((v) => {
   if (action) {
     switch (action.type) {
       case IncomeMessageType.INCOME_ROLL_DICES_MODAL:
-        showBoardModalEvent(
-          rollDicesModal({
-            type: action.type,
-            _id: action._id,
-            userId: action.userId,
-            text: action.text,
-            title: action.title,
-            isModal: action.isModal,
-          })
-        );
+        showBoardActionModal(rollDicesModal(action));
         break;
 
       case IncomeMessageType.INCOME_ROLL_DICES_ACTION:
@@ -109,23 +103,23 @@ actions$.watch((v) => {
         break;
 
       case IncomeMessageType.INCOME_CAN_BUY_MODAL:
-        showBoardModalEvent(canBuyModal(action));
+        showBoardActionModal(canBuyModal(action));
         break;
 
       case IncomeMessageType.INCOME_TAX_PAYING_MODAL:
-        showBoardModalEvent(taxModal(action));
+        showBoardActionModal(taxModal(action));
         break;
 
       case IncomeMessageType.INCOME_UN_JAIL_MODAL:
-        showBoardModalEvent(unJailModal(action));
+        showBoardActionModal(unJailModal(action));
         break;
 
       case IncomeMessageType.INCOME_UNJAIL_PAYING_MODAL:
-        showBoardModalEvent(unJailPayingModal(action));
+        showBoardActionModal(unJailPayingModal(action));
         break;
 
       case IncomeMessageType.INCOME_AUCTION_MODAL:
-        showBoardModalEvent(auctionModal(action));
+        showBoardActionModal(auctionModal(action));
         break;
 
       case IncomeMessageType.INCOME_CONTRACT_MODAL:

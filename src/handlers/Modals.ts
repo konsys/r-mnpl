@@ -3,10 +3,11 @@ import { BoardAction, OutcomeMessageType } from "../types/types";
 import { getField } from "../utils/fields.utils";
 import { getPlayer } from "../utils/players.utils";
 import { sendBoardAction } from "stores/Board/ActionStore";
+import { ErrorCode } from "utils/errors";
 
 export const rollDicesModal = (act: BoardAction): BoardAction => {
   return {
-   ...act,
+    ...act,
     actionButtons: [
       {
         title: "Бросить кубики",
@@ -22,12 +23,14 @@ export const rollDicesModal = (act: BoardAction): BoardAction => {
 };
 
 export const canBuyModal = (act: BoardAction): BoardAction => {
-  
   const p = getPlayer(act.userId);
   const f = act.field && act.field.fieldId && getField(act.field.fieldId);
 
-  if (!p || !f) {
-    throw new Error("User or Field not found in buy modal");
+  if (!p) {
+    throw new Error(ErrorCode[1001]);
+  }
+  if (!f) {
+    throw new Error(ErrorCode[1002]);
   }
 
   return {
@@ -97,7 +100,7 @@ export const unJailModal = (act: BoardAction): BoardAction => {
         },
         disabled: false,
       },
-    ]
+    ],
   };
 };
 
@@ -107,7 +110,7 @@ export const unJailPayingModal = (act: BoardAction): BoardAction => {
     ...act,
     actionButtons: [
       {
-        title: `Заплатить ${act.money ? Math.abs(act.money):0}k`,
+        title: `Заплатить ${act.money ? Math.abs(act.money) : 0}k`,
         onClick: () => {
           sendBoardAction({
             action: OutcomeMessageType.OUTCOME_UN_JAIL_PAID_CLICKED,

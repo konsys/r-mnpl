@@ -6,19 +6,25 @@ import { OutcomeMessageType } from "types/types";
 import { testPlayer1 } from "testMocks/user";
 import { setFieldsEvent } from "stores/Board/FieldsStore";
 import { testField } from "testMocks/field";
+import { ErrorCode } from "utils/errors";
 
 describe("Modals test", () => {
   beforeEach(() => jest.clearAllMocks());
 
   it("should throw error in can modal", () => {
-    expect(() => canBuyModal(testRollDicesModal)).toThrow(
-      "User or Field not found in buy modal"
-    );
+    expect(() => canBuyModal(testRollDicesModal)).toThrow(ErrorCode[1001]);
+  });
+
+  it("should throw error in can modal", () => {
+    expect(() => canBuyModal(testRollDicesModal)).toThrow(ErrorCode[1001]);
+
     setPlayersEvent({ version: 1, players: [testPlayer1] });
     expect(() =>
       canBuyModal({ ...testRollDicesModal, userId: testPlayer1.userId })
-    ).toThrow("User or Field not found in buy modal");
+    ).toThrow(ErrorCode[1002]);
+
     setFieldsEvent({ version: 1, fields: [testField] });
+
     expect(() =>
       canBuyModal({
         ...testRollDicesModal,

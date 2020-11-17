@@ -35,6 +35,5 @@ export const removePlayerFromRoomFetch = async (
 };
 
 export const fetchRoom = async (gameId: string): Promise<IRoomState> => {
-  console.log(23424242423);
   return await (await client.get(`/rooms/${gameId}`)).data;
 };

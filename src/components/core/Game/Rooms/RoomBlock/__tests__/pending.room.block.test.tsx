@@ -1,7 +1,7 @@
 import * as modal from "stores/Game/GameModal/GameModalModel";
 import * as rooms from "stores/Game/Rooms/RoomsModel";
 
-import { test4Room, testRoom } from "testMocks/room";
+import { test4Room, testPlayingRoom } from "testMocks/room";
 
 import PendingRoomBlock from "../PendingRoomBlock";
 import React from "react";
@@ -14,14 +14,16 @@ describe("Room block test", () => {
 
   it("should render", () => {
     expect(
-      shallow(<PendingRoomBlock room={testRoom} iHaveRoom={true} userId={1} />)
+      shallow(
+        <PendingRoomBlock room={testPlayingRoom} iHaveRoom={true} userId={1} />
+      )
     ).toMatchSnapshot();
   });
 
   it("should render RoomTypeView", () => {
     expect(
       shallow(
-        <PendingRoomBlock room={testRoom} iHaveRoom={true} userId={1} />
+        <PendingRoomBlock room={testPlayingRoom} iHaveRoom={true} userId={1} />
       ).find(RoomTypeView)
     ).toHaveLength(1);
   });
@@ -29,9 +31,9 @@ describe("Room block test", () => {
   it("should render RoomTypeViewp imgs", () => {
     expect(
       shallow(
-        <PendingRoomBlock room={testRoom} iHaveRoom={true} userId={1} />
+        <PendingRoomBlock room={testPlayingRoom} iHaveRoom={true} userId={1} />
       ).find(RoomAvatar)
-    ).toHaveLength(testRoom.playersNumber);
+    ).toHaveLength(testPlayingRoom.playersNumber);
   });
 
   it("should render RoomTypeView props", () => {

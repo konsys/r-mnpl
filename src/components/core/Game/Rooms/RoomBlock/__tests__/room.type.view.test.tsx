@@ -18,16 +18,16 @@ import ShuffleIcon from "@material-ui/icons/Shuffle";
 import VideogameAssetIcon from "@material-ui/icons/VideogameAsset";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 import { shallow } from "enzyme";
-import { testRoom } from "testMocks/room";
+import { testPlayingRoom } from "testMocks/room";
 
 describe("Room type view test", () => {
   it("should render", () => {
-    expect(shallow(<RoomTypeView room={testRoom} />)).toMatchSnapshot();
+    expect(shallow(<RoomTypeView room={testPlayingRoom} />)).toMatchSnapshot();
   });
 
   it("should render className and icon", () => {
     let wrap = shallow(
-      <RoomTypeView room={{ ...testRoom, roomType: RoomType.REGULAR }} />
+      <RoomTypeView room={{ ...testPlayingRoom, roomType: RoomType.REGULAR }} />
     );
     expect(wrap.find(Grid).get(1).props.className).toStrictEqual(
       RoomType.REGULAR
@@ -35,7 +35,7 @@ describe("Room type view test", () => {
     expect(wrap.find(VideogameAssetIcon)).toHaveLength(1);
 
     wrap = shallow(
-      <RoomTypeView room={{ ...testRoom, roomType: RoomType.QUICK }} />
+      <RoomTypeView room={{ ...testPlayingRoom, roomType: RoomType.QUICK }} />
     );
     expect(wrap.find(Grid).get(1).props.className).toStrictEqual(
       RoomType.QUICK
@@ -43,7 +43,7 @@ describe("Room type view test", () => {
     expect(wrap.find(SendIcon)).toHaveLength(1);
 
     wrap = shallow(
-      <RoomTypeView room={{ ...testRoom, roomType: RoomType.RETRO }} />
+      <RoomTypeView room={{ ...testPlayingRoom, roomType: RoomType.RETRO }} />
     );
     expect(wrap.find(Grid).get(1).props.className).toStrictEqual(
       RoomType.RETRO
@@ -51,7 +51,9 @@ describe("Room type view test", () => {
     expect(wrap.find(RadioIcon)).toHaveLength(1);
 
     wrap = shallow(
-      <RoomTypeView room={{ ...testRoom, roomType: RoomType.ROULETTE }} />
+      <RoomTypeView
+        room={{ ...testPlayingRoom, roomType: RoomType.ROULETTE }}
+      />
     );
     expect(wrap.find(Grid).get(1).props.className).toStrictEqual(
       RoomType.ROULETTE
@@ -59,7 +61,7 @@ describe("Room type view test", () => {
     expect(wrap.find(LocationSearchingIcon)).toHaveLength(1);
 
     wrap = shallow(
-      <RoomTypeView room={{ ...testRoom, roomType: RoomType.SHUFFLE }} />
+      <RoomTypeView room={{ ...testPlayingRoom, roomType: RoomType.SHUFFLE }} />
     );
     expect(wrap.find(Grid).get(1).props.className).toStrictEqual(
       RoomType.SHUFFLE
@@ -69,7 +71,7 @@ describe("Room type view test", () => {
 
   it("should render className and name", () => {
     let wrap = shallow(
-      <RoomTypeView room={{ ...testRoom, roomType: RoomType.REGULAR }} />
+      <RoomTypeView room={{ ...testPlayingRoom, roomType: RoomType.REGULAR }} />
     );
     expect(wrap.find(Grid).get(2).props.className).toStrictEqual(
       RoomType.REGULAR
@@ -77,7 +79,7 @@ describe("Room type view test", () => {
     expect(wrap.find(Grid).get(2).props.children).toBe(RoomTypeName.REGULAR);
 
     wrap = shallow(
-      <RoomTypeView room={{ ...testRoom, roomType: RoomType.QUICK }} />
+      <RoomTypeView room={{ ...testPlayingRoom, roomType: RoomType.QUICK }} />
     );
     expect(wrap.find(Grid).get(2).props.className).toStrictEqual(
       RoomType.QUICK
@@ -85,7 +87,7 @@ describe("Room type view test", () => {
     expect(wrap.find(Grid).get(2).props.children).toBe(RoomTypeName.QUICK);
 
     wrap = shallow(
-      <RoomTypeView room={{ ...testRoom, roomType: RoomType.RETRO }} />
+      <RoomTypeView room={{ ...testPlayingRoom, roomType: RoomType.RETRO }} />
     );
     expect(wrap.find(Grid).get(2).props.className).toStrictEqual(
       RoomType.RETRO
@@ -93,7 +95,9 @@ describe("Room type view test", () => {
     expect(wrap.find(Grid).get(2).props.children).toBe(RoomTypeName.RETRO);
 
     wrap = shallow(
-      <RoomTypeView room={{ ...testRoom, roomType: RoomType.ROULETTE }} />
+      <RoomTypeView
+        room={{ ...testPlayingRoom, roomType: RoomType.ROULETTE }}
+      />
     );
     expect(wrap.find(Grid).get(2).props.className).toStrictEqual(
       RoomType.ROULETTE
@@ -101,7 +105,7 @@ describe("Room type view test", () => {
     expect(wrap.find(Grid).get(2).props.children).toBe(RoomTypeName.ROULETTE);
 
     wrap = shallow(
-      <RoomTypeView room={{ ...testRoom, roomType: RoomType.SHUFFLE }} />
+      <RoomTypeView room={{ ...testPlayingRoom, roomType: RoomType.SHUFFLE }} />
     );
     expect(wrap.find(Grid).get(2).props.className).toStrictEqual(
       RoomType.SHUFFLE
@@ -111,43 +115,43 @@ describe("Room type view test", () => {
 
   it("should show restarts", () => {
     expect(
-      shallow(<RoomTypeView room={{ ...testRoom, restarts: false }} />).find(
-        RestoreIcon
-      )
+      shallow(
+        <RoomTypeView room={{ ...testPlayingRoom, restarts: false }} />
+      ).find(RestoreIcon)
     ).toHaveLength(0);
 
     expect(
-      shallow(<RoomTypeView room={{ ...testRoom, restarts: true }} />).find(
-        RestoreIcon
-      )
+      shallow(
+        <RoomTypeView room={{ ...testPlayingRoom, restarts: true }} />
+      ).find(RestoreIcon)
     ).toHaveLength(1);
   });
 
   it("should show autostart", () => {
     expect(
-      shallow(<RoomTypeView room={{ ...testRoom, autostart: false }} />).find(
-        Autorenew
-      )
+      shallow(
+        <RoomTypeView room={{ ...testPlayingRoom, autostart: false }} />
+      ).find(Autorenew)
     ).toHaveLength(0);
 
     expect(
-      shallow(<RoomTypeView room={{ ...testRoom, autostart: true }} />).find(
-        Autorenew
-      )
+      shallow(
+        <RoomTypeView room={{ ...testPlayingRoom, autostart: true }} />
+      ).find(Autorenew)
     ).toHaveLength(1);
   });
 
   it("should show private room", () => {
     expect(
-      shallow(<RoomTypeView room={{ ...testRoom, privateRoom: false }} />).find(
-        VisibilityOffIcon
-      )
+      shallow(
+        <RoomTypeView room={{ ...testPlayingRoom, privateRoom: false }} />
+      ).find(VisibilityOffIcon)
     ).toHaveLength(0);
 
     expect(
-      shallow(<RoomTypeView room={{ ...testRoom, privateRoom: true }} />).find(
-        VisibilityOffIcon
-      )
+      shallow(
+        <RoomTypeView room={{ ...testPlayingRoom, privateRoom: true }} />
+      ).find(VisibilityOffIcon)
     ).toHaveLength(1);
   });
 
@@ -155,14 +159,14 @@ describe("Room type view test", () => {
     expect(
       shallow(
         <RoomTypeView
-          room={{ ...testRoom, portalType: RoomPortalFieldType.NOP }}
+          room={{ ...testPlayingRoom, portalType: RoomPortalFieldType.NOP }}
         />
       ).find("._with-portal")
     ).toHaveLength(0);
     expect(
       shallow(
         <RoomTypeView
-          room={{ ...testRoom, portalType: RoomPortalFieldType.PORTAL }}
+          room={{ ...testPlayingRoom, portalType: RoomPortalFieldType.PORTAL }}
         />
       ).find("._with-portal")
     ).toHaveLength(1);
@@ -170,21 +174,24 @@ describe("Room type view test", () => {
     expect(
       shallow(
         <RoomTypeView
-          room={{ ...testRoom, portalType: RoomPortalFieldType.NOP }}
+          room={{ ...testPlayingRoom, portalType: RoomPortalFieldType.NOP }}
         />
       ).find("._with-roulette")
     ).toHaveLength(0);
     expect(
       shallow(
         <RoomTypeView
-          room={{ ...testRoom, portalType: RoomPortalFieldType.NOP }}
+          room={{ ...testPlayingRoom, portalType: RoomPortalFieldType.NOP }}
         />
       ).find(CasinoIcon)
     ).toHaveLength(0);
     expect(
       shallow(
         <RoomTypeView
-          room={{ ...testRoom, portalType: RoomPortalFieldType.ROULETTE }}
+          room={{
+            ...testPlayingRoom,
+            portalType: RoomPortalFieldType.ROULETTE,
+          }}
         />
       ).find("._with-roulette")
     ).toHaveLength(1);
@@ -192,7 +199,10 @@ describe("Room type view test", () => {
     expect(
       shallow(
         <RoomTypeView
-          room={{ ...testRoom, portalType: RoomPortalFieldType.ROULETTE }}
+          room={{
+            ...testPlayingRoom,
+            portalType: RoomPortalFieldType.ROULETTE,
+          }}
         />
       ).find(CasinoIcon)
     ).toHaveLength(1);
@@ -200,7 +210,7 @@ describe("Room type view test", () => {
     expect(
       shallow(
         <RoomTypeView
-          room={{ ...testRoom, portalType: RoomPortalFieldType.NOP }}
+          room={{ ...testPlayingRoom, portalType: RoomPortalFieldType.NOP }}
         />
       ).find("._with-russian-roulette")
     ).toHaveLength(0);
@@ -208,7 +218,7 @@ describe("Room type view test", () => {
       shallow(
         <RoomTypeView
           room={{
-            ...testRoom,
+            ...testPlayingRoom,
             portalType: RoomPortalFieldType.NOP,
           }}
         />
@@ -219,7 +229,7 @@ describe("Room type view test", () => {
       shallow(
         <RoomTypeView
           room={{
-            ...testRoom,
+            ...testPlayingRoom,
             portalType: RoomPortalFieldType.RUSSIAN_ROULETTE,
           }}
         />
@@ -230,7 +240,7 @@ describe("Room type view test", () => {
       shallow(
         <RoomTypeView
           room={{
-            ...testRoom,
+            ...testPlayingRoom,
             portalType: RoomPortalFieldType.RUSSIAN_ROULETTE,
           }}
         />

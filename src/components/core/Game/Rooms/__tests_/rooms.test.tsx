@@ -3,7 +3,7 @@ import * as modal from "stores/Game/Rooms/RoomsModalModel";
 import { test5User, testUser } from "testMocks/user";
 import {
   testPendingRoomsResponce,
-  testRoom,
+  testPlayingRoom,
   testRoomsResponce,
 } from "testMocks/room";
 
@@ -41,7 +41,7 @@ describe("Room block test", () => {
       shallow(<Rooms />)
         .find(Redirect)
         .get(0).props.to
-    ).toStrictEqual({ pathname: `/board/${testRoom.roomId}` });
+    ).toStrictEqual({ pathname: `/board/${testPlayingRoom.roomId}` });
   });
 
   it("should show create room page", () => {

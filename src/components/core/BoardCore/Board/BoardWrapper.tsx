@@ -7,7 +7,7 @@ import { InitBoardPlayersGate, players$ } from "stores/Board/PlayersStore";
 import React, { useEffect } from "react";
 import {
   actions$,
-  setCurrentActionEvent,
+  setCurrentAction,
 } from "../../../../stores/Board/ActionStore";
 import {
   fieldAction$,
@@ -96,7 +96,7 @@ export const MessageHandler = (message: BoardMessage) => {
   fieldsHandler(message.data.boardStatus.fields);
   playersHandler(message.data.boardStatus.players);
 
-  setCurrentActionEvent({
+  setCurrentAction({
     actionId: (event && event._id) || nanoid(4),
     event: message.data.event,
   });
