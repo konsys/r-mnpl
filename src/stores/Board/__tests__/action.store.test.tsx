@@ -26,8 +26,8 @@ describe("Test action store", () => {
     // @ts-ignore
     jest.clearAllMocks();
   });
-  it("should send post on game action", async () => {
-    await gameActionFx(testBoardActionRequest);
+  it("should send post on game action", () => {
+    gameActionFx(testBoardActionRequest);
     const data = { action: "rollDicesClicked", gameId: "testGameId" };
 
     expect(http.client.post).toHaveBeenCalledTimes(1);
@@ -37,7 +37,8 @@ describe("Test action store", () => {
     });
   });
 
-  it("should not call gameActionFx on emty room", async () => {
+  it("should not call gameActionFx on emty room", () => {
+    // Don`t worry about 'TypeError: Cannot read property 'filter' of undefined' in console
     // @ts-ignore
     setRooms({});
     sendBoardAction(testBoardActionRequest);
@@ -45,7 +46,7 @@ describe("Test action store", () => {
     expect(http.client.post).not.toBeCalled();
   });
 
-  it("should call gameActionFx on sendBoardAction", async () => {
+  it("should call gameActionFx on sendBoardAction", () => {
     setRooms({ playersInRooms: 1, rooms: [testPlayingRoom] });
     sendBoardAction(testBoardActionRequest);
     const data = { action: "rollDicesClicked", gameId: "testRoomId" };
@@ -55,25 +56,25 @@ describe("Test action store", () => {
     });
   });
 
-  it("should set current action", async () => {
+  it("should set current action", () => {
     // @ts-ignore
     setCurrentAction({});
     expect(actions$.getState()).toStrictEqual({});
   });
 
-  it("should set current action", async () => {
+  it("should set current action", () => {
     // @ts-ignore
     setCurrentAction(null);
     expect(actions$.getState()).toStrictEqual(null);
   });
 
-  it("should set current action", async () => {
-    // @ts-ignore
+  it("should set current action", () => {
     setCurrentAction(testDoNothingAction);
-    expect(actions$.getState()).toStrictEqual(testDoNothingAction);
+    const state = actions$.getState();
+    expect(state).toStrictEqual(testDoNothingAction);
   });
 
-  it("should set current action", async () => {
+  it("should set current action", () => {
     resetActionEvent();
     expect(actions$.getState()).toStrictEqual({
       actionId: "",
@@ -88,7 +89,7 @@ describe("Test action store", () => {
     });
   });
 
-  it("should set do nothing action", async () => {
+  it("should set do nothing action", () => {
     doNothingAction(2342883424);
     expect(actions$.getState()).toStrictEqual({
       actionId: "startActionId",
