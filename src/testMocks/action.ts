@@ -70,4 +70,50 @@ export const testIncomeBuyModal: ICurrentAction = {
   },
 };
 
+export const testIncomeTaxPaying: ICurrentAction = {
+  actionId: "testActionId",
+  event: {
+    action: {
+      _id: "testID",
+      isModal: false,
+      userId: 1,
+      type: IncomeMessageType.INCOME_TAX_PAYING_MODAL,
+    },
+  },
+};
+
+export const testIncomeUnjailModal: ICurrentAction = {
+  actionId: "testActionId",
+  event: {
+    action: {
+      _id: "testID",
+      isModal: false,
+      userId: 1,
+      type: IncomeMessageType.INCOME_UN_JAIL_MODAL,
+    },
+  },
+};
+export const testIncomeAuctionModal: ICurrentAction = {
+  actionId: "testActionId",
+  event: {
+    action: {
+      _id: "testID",
+      isModal: false,
+      userId: 1,
+      type: IncomeMessageType.INCOME_AUCTION_MODAL,
+    },
+  },
+};
+
+export const testIncomeCOntract: ICurrentAction = {
+  actionId: "testActionId",
+  event: {
+    action: {
+      _id: "testID",
+      isModal: false,
+      userId: 1,
+      type: IncomeMessageType.INCOME_CONTRACT_MODAL,
+    },
+  },
+};
 // 4334663 archive

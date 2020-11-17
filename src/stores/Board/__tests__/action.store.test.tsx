@@ -12,6 +12,7 @@ import * as http from "http/client";
 import * as modals from "handlers/Modals";
 import * as modalsStore from "../ModalStore";
 import * as dices from "handlers/DicesHandler";
+import * as contract from "../ContractStore";
 import { setRooms } from "stores/Game/Rooms/RoomsModel";
 import { testPlayingRoom } from "testMocks/room";
 import { IncomeMessageType } from "types/types";
@@ -20,6 +21,10 @@ import {
   testRollDIcesAction,
   testRollDIcesModal,
   testIncomeBuyModal,
+  testIncomeTaxPaying,
+  testIncomeUnjailModal,
+  testIncomeAuctionModal,
+  testIncomeCOntract,
 } from "testMocks/action";
 
 jest.mock("http/client", () => ({
@@ -33,11 +38,20 @@ jest.mock("handlers/Modals", () => ({
   ...jest.requireActual("handlers/Modals"),
   rollDicesModal: jest.fn(),
   canBuyModal: jest.fn(),
+  taxModal: jest.fn(),
+  unJailModal: jest.fn(),
+  unJailPayingModal: jest.fn(),
+  auctionModal: jest.fn(),
 }));
 
 jest.mock("../ModalStore", () => ({
   ...jest.requireActual("../ModalStore"),
   showBoardActionModal: jest.fn(),
+}));
+
+jest.mock("../ContractStore", () => ({
+  ...jest.requireActual("../ContractStore"),
+  incomeContract: jest.fn(),
 }));
 
 jest.mock("handlers/DicesHandler", () => ({
@@ -150,5 +164,39 @@ describe("Test action store", () => {
     expect(modalsStore.showBoardActionModal).toBeCalledTimes(1);
     expect(modals.canBuyModal).toBeCalledTimes(1);
     expect(modals.canBuyModal).toBeCalledWith(testIncomeBuyModal.event.action);
+  });
+
+  it("should handle income buy modal action", () => {
+    setCurrentAction(testIncomeTaxPaying);
+
+    expect(modalsStore.showBoardActionModal).toBeCalledTimes(1);
+    expect(modals.taxModal).toBeCalledTimes(1);
+    expect(modals.taxModal).toBeCalledWith(testIncomeTaxPaying.event.action);
+  });
+
+  it("should handle income unjail modal action", () => {
+    setCurrentAction(testIncomeUnjailModal);
+
+    expect(modalsStore.showBoardActionModal).toBeCalledTimes(1);
+    expect(modals.unJailModal).toBeCalledTimes(1);
+    expect(modals.unJailModal).toBeCalledWith(
+      testIncomeUnjailModal.event.action
+    );
+  });
+  it("should handle income unjail modal action", () => {
+    setCurrentAction(testIncomeAuctionModal);
+
+    expect(modalsStore.showBoardActionModal).toBeCalledTimes(1);
+    expect(modals.auctionModal).toBeCalledTimes(1);
+    expect(modals.auctionModal).toBeCalledWith(
+      testIncomeAuctionModal.event.action
+    );
+  });
+
+  it("should handle income unjail modal action", () => {
+    setCurrentAction(testIncomeCOntract);
+
+    expect(contract.incomeContract).toBeCalledTimes(1);
+    expect(contract.incomeContract).toBeCalledWith();
   });
 });
