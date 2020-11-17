@@ -21,7 +21,7 @@ import { postBoardAction } from "api/Board/api";
 import { rollDicesAction } from "handlers/DicesHandler";
 import { guard, sample } from "effector";
 import { showBoardActionModal } from "./ModalStore";
-import { pick } from "lodash";
+import { get } from "lodash";
 
 const ActionDomain = BoardDomain.domain("BoardActionDomain");
 export interface ICurrentAction {
@@ -95,8 +95,7 @@ sample({
   clock: actions$.updates,
   fn: (action) => {
     const currentAction =
-      (pick(action, "input.event.action") as BoardAction) || undefined;
-
+      (get(action, "event.action") as BoardAction) || undefined;
     if (currentAction && currentAction.type) {
       actionHandler(currentAction);
     }
@@ -135,10 +134,6 @@ const actionHandler = (action: BoardAction) => {
 
     case IncomeMessageType.INCOME_CONTRACT_MODAL:
       incomeContract();
-      break;
-
-    default:
-      doNothingAction(action.userId);
       break;
   }
 };

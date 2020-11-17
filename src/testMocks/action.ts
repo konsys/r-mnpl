@@ -26,9 +26,48 @@ export const testRollDicesModal: BoardAction = {
   text: "testTextRollDices",
   isModal: true,
 };
+
 export const testRollDicesClicked: BoardAction = {
   _id: "testBoardAction",
   type: OutcomeMessageType.OUTCOME_ROLL_DICES_CLICKED,
   userId: 1,
   isModal: false,
 };
+
+export const testRollDIcesModal: ICurrentAction = {
+  actionId: "testActionId",
+  event: {
+    action: {
+      _id: "testID",
+      isModal: false,
+      userId: 1,
+      type: IncomeMessageType.INCOME_ROLL_DICES_MODAL,
+    },
+  },
+};
+
+export const testRollDIcesAction: ICurrentAction = {
+  actionId: "testActionId",
+  event: {
+    action: {
+      _id: "testID",
+      isModal: false,
+      userId: 1,
+      type: IncomeMessageType.INCOME_ROLL_DICES_ACTION,
+    },
+  },
+};
+
+export const testIncomeBuyModal: ICurrentAction = {
+  actionId: "testActionId",
+  event: {
+    action: {
+      _id: "testID",
+      isModal: false,
+      userId: 1,
+      type: IncomeMessageType.INCOME_CAN_BUY_MODAL,
+    },
+  },
+};
+
+// 4334663 archive

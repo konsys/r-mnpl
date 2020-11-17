@@ -9,16 +9,40 @@ import {
 } from "../ActionStore";
 
 import * as http from "http/client";
+import * as modals from "handlers/Modals";
+import * as modalsStore from "../ModalStore";
+import * as dices from "handlers/DicesHandler";
 import { setRooms } from "stores/Game/Rooms/RoomsModel";
 import { testPlayingRoom } from "testMocks/room";
 import { IncomeMessageType } from "types/types";
-import { testDoNothingAction } from "testMocks/action";
+import {
+  testDoNothingAction,
+  testRollDIcesAction,
+  testRollDIcesModal,
+  testIncomeBuyModal,
+} from "testMocks/action";
 
 jest.mock("http/client", () => ({
   ...jest.requireActual("http/client"),
   client: {
     post: jest.fn().mockImplementation(() => ({ data: { result: true } })),
   },
+}));
+
+jest.mock("handlers/Modals", () => ({
+  ...jest.requireActual("handlers/Modals"),
+  rollDicesModal: jest.fn(),
+  canBuyModal: jest.fn(),
+}));
+
+jest.mock("../ModalStore", () => ({
+  ...jest.requireActual("../ModalStore"),
+  showBoardActionModal: jest.fn(),
+}));
+
+jest.mock("handlers/DicesHandler", () => ({
+  ...jest.requireActual("handlers/DicesHandler"),
+  rollDicesAction: jest.fn(),
 }));
 
 describe("Test action store", () => {
@@ -68,7 +92,7 @@ describe("Test action store", () => {
     expect(actions$.getState()).toStrictEqual(null);
   });
 
-  it("should set current action", () => {
+  it("should set current action do nothing", () => {
     setCurrentAction(testDoNothingAction);
     const state = actions$.getState();
     expect(state).toStrictEqual(testDoNothingAction);
@@ -102,5 +126,29 @@ describe("Test action store", () => {
         },
       },
     });
+  });
+
+  it("should handle income roll dices modal", () => {
+    setCurrentAction(testRollDIcesModal);
+    expect(modals.rollDicesModal).toBeCalledTimes(1);
+    expect(modalsStore.showBoardActionModal).toBeCalledTimes(1);
+    expect(modals.rollDicesModal).toBeCalledWith(
+      testRollDIcesModal.event.action
+    );
+  });
+  it("should handle income roll dices action", () => {
+    setCurrentAction(testRollDIcesAction);
+    expect(dices.rollDicesAction).toBeCalledTimes(1);
+    expect(dices.rollDicesAction).toBeCalledWith(
+      testRollDIcesAction.event.action
+    );
+  });
+
+  it("should handle income buy modal action", () => {
+    setCurrentAction(testIncomeBuyModal);
+
+    expect(modalsStore.showBoardActionModal).toBeCalledTimes(1);
+    expect(modals.canBuyModal).toBeCalledTimes(1);
+    expect(modals.canBuyModal).toBeCalledWith(testIncomeBuyModal.event.action);
   });
 });
