@@ -34,7 +34,12 @@ describe("Modals test", () => {
   });
 
   it("should send pay action", () => {
-    setPlayersEvent({ version: 1, players: [{ ...testPlayer1, money: 1000 }] });
+    setPlayersEvent({
+      version: 1,
+      players: [
+        { ...testPlayer1, userId: testRollDicesModal.userId, money: 1000 },
+      ],
+    });
     // @ts-ignore
     const res = auctionModal({ ...testRollDicesModal, bet: -999 });
     // @ts-ignore

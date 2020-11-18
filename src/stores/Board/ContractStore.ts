@@ -120,9 +120,9 @@ export const contract$ = ContractDomain.store<IContract>(initContract)
 sample({
   clock: incomeContract,
   source: combine({
-    action: actions$.map((v) => v),
-    user: user$.map((v) => v),
-    contract: contract$.map((v) => v),
+    action: actions$ && actions$.map((v) => v),
+    user: user$ && user$.map((v) => v),
+    contract: contract$ && contract$.map((v) => v),
   }),
   fn: ({ action, user, contract }) => {
     const toUserId = get(action, "action.event.action.contract.toUserId");

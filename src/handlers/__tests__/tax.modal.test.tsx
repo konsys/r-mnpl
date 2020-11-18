@@ -60,7 +60,12 @@ describe("Modals test", () => {
   });
 
   it("should send pay action", () => {
-    setPlayersEvent({ version: 1, players: [{ ...testPlayer1, money: 1000 }] });
+    setPlayersEvent({
+      version: 1,
+      players: [
+        { ...testPlayer1, userId: testRollDicesModal.userId, money: 1000 },
+      ],
+    });
     // @ts-ignore
     const res = taxModal({ ...testRollDicesModal, money: 999 });
     // @ts-ignore
@@ -70,10 +75,15 @@ describe("Modals test", () => {
   it("should send pay action", () => {
     setPlayersEvent({
       version: 1,
-      players: [{ ...testPlayer1, money: 1000 }],
+      players: [
+        { ...testPlayer1, userId: testRollDicesModal.userId, money: 1000 },
+      ],
     });
     // @ts-ignore
-    const res = taxModal({ ...testRollDicesModal, money: -999 });
+    const res = taxModal({
+      ...testRollDicesModal,
+      money: -999,
+    });
     // @ts-ignore
     expect(res.actionButtons[0].disabled).toBe(false);
   });

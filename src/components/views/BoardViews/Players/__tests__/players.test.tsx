@@ -130,7 +130,7 @@ describe("Room top five test", () => {
       )
         .find(".table-body-players-card")
         .get(0).props["mnpl-action_player"]
-    ).toBe(1);
+    ).toBe(testUser.userId);
   });
 
   it("should have all properties", () => {
