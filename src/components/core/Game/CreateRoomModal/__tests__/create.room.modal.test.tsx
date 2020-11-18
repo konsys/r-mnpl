@@ -1,13 +1,10 @@
 import { RoomType, preparatoryRoom$ } from "stores/Game/Rooms/RoomsModel";
-import {
-  closeRoomModal,
-  openRoomModal,
-} from "stores/Game/Rooms/RoomsModalModel";
+import { openRoomModal } from "stores/Game/Rooms/RoomsModalModel";
 import { testUser, testVipUser } from "testMocks/user";
 
 import CreateRoomModal from "../CreateRoomModal";
 import React from "react";
-import { setUserEvent } from "stores/Game/User/UserModel";
+import { setUser } from "stores/Game/User/UserModel";
 import { shallow } from "enzyme";
 
 describe("Create room modal test", () => {
@@ -58,14 +55,14 @@ describe("Create room modal test", () => {
   });
 
   it("should render enabled button", () => {
-    setUserEvent(testVipUser);
+    setUser(testVipUser);
 
     expect(
       shallow(<CreateRoomModal />)
         .find("._create-game-button")
         .prop("disabled")
     ).toBe(false);
-    setUserEvent(testUser);
+    setUser(testUser);
     expect(
       shallow(<CreateRoomModal />)
         .find("._create-game-button")

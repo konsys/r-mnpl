@@ -60,7 +60,7 @@ guard({
 
 export const resetActionEvent = ActionDomain.event();
 
-export const setCurrentAction = ActionDomain.event<ICurrentAction>();
+export const setBoardAction = ActionDomain.event<ICurrentAction>();
 
 export const actions$ = ActionDomain.store<ICurrentAction>({
   actionId: "",
@@ -73,11 +73,11 @@ export const actions$ = ActionDomain.store<ICurrentAction>({
     },
   },
 })
-  .on(setCurrentAction, (_, data) => data)
+  .on(setBoardAction, (_, data) => data)
   .reset(resetActionEvent);
 
 export const doNothingAction = (userId: number) => {
-  setCurrentAction({
+  setBoardAction({
     actionId: "startActionId",
     event: {
       action: {

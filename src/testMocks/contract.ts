@@ -1,6 +1,5 @@
 import { IOpenContractModal } from "stores/Board/ContractStore";
 import { IContract } from "types/types";
-import { testField } from "./field";
 
 export const testContract: IContract = {
   fieldIdsFrom: [1],
@@ -16,6 +15,5 @@ export const testContract: IContract = {
 export const testOpenContractModal: IOpenContractModal = {
   fromUserId: 1234,
   toUserId: 34535345,
-  field: testField,
   money: 5352348,
 };

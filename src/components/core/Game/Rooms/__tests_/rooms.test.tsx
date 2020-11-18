@@ -15,7 +15,7 @@ import { Redirect } from "react-router-dom";
 import { Rooms } from "../Rooms";
 import Template from "components/views/Template/Template";
 import { setRooms } from "stores/Game/Rooms/RoomsModel";
-import { setUserEvent } from "stores/Game/User/UserModel";
+import { setUser } from "stores/Game/User/UserModel";
 import { shallow } from "enzyme";
 
 describe("Room block test", () => {
@@ -28,12 +28,12 @@ describe("Room block test", () => {
   });
 
   it("should show create room page", () => {
-    setUserEvent(test5User);
+    setUser(test5User);
     expect(shallow(<Rooms />).find(Template)).toHaveLength(1);
   });
 
   it("should redirect", () => {
-    setUserEvent(testUser);
+    setUser(testUser);
     setRooms(testRoomsResponce);
 
     expect(shallow(<Rooms />).find(Redirect)).toHaveLength(1);
@@ -61,7 +61,7 @@ describe("Room block test", () => {
 
   it("should disable button when I have room", () => {
     setRooms(testPendingRoomsResponce);
-    setUserEvent(testUser);
+    setUser(testUser);
 
     const wrap = shallow(<Rooms />);
 
@@ -78,7 +78,7 @@ describe("Room block test", () => {
     );
 
     setRooms(testPendingRoomsResponce);
-    setUserEvent(test5User);
+    setUser(test5User);
 
     expect(
       shallow(<Rooms />)
@@ -87,7 +87,7 @@ describe("Room block test", () => {
     ).toStrictEqual(false);
 
     setRooms(testPendingRoomsResponce);
-    setUserEvent(testUser);
+    setUser(testUser);
     expect(
       shallow(<Rooms />)
         .find(PendingRoomBlock)
@@ -96,21 +96,21 @@ describe("Room block test", () => {
   });
 
   it("should send userId in props", () => {
-    setUserEvent(test5User);
+    setUser(test5User);
     expect(
       shallow(<Rooms />)
         .find(PendingRoomBlock)
         .get(0).props.userId
     ).toBe(test5User.userId);
 
-    setUserEvent(testUser);
+    setUser(testUser);
     expect(
       shallow(<Rooms />)
         .find(PendingRoomBlock)
         .get(0).props.userId
     ).toBe(testUser.userId);
 
-    setUserEvent(null);
+    setUser(null);
     expect(
       shallow(<Rooms />)
         .find(PendingRoomBlock)

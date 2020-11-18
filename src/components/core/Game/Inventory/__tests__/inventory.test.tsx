@@ -1,5 +1,5 @@
 import { Grid, Select, Typography } from "@material-ui/core";
-import { logout, setUserEvent } from "stores/Game/User/UserModel";
+import { logout, setUser } from "stores/Game/User/UserModel";
 import { testAvatarUser, testUser } from "testMocks/user";
 
 import Alert from "@material-ui/lab/Alert";
@@ -20,7 +20,7 @@ describe("Buy gallery test", () => {
   });
 
   it("should render Inventory", () => {
-    setUserEvent(testUser);
+    setUser(testUser);
     expect(shallow(<Inventory />)).toMatchSnapshot();
   });
 
@@ -33,21 +33,21 @@ describe("Buy gallery test", () => {
   });
 
   it("should show logged page", () => {
-    setUserEvent(testUser);
+    setUser(testUser);
     const wrap = shallow(<Inventory />);
     expect(wrap.find(Alert)).toHaveLength(0);
     expect(wrap.find(Grid)).toHaveLength(18);
   });
 
   it("should show logged page", () => {
-    setUserEvent(testUser);
+    setUser(testUser);
     expect(shallow(<Inventory />).find(Link)).toHaveLength(1);
-    setUserEvent(testAvatarUser);
+    setUser(testAvatarUser);
     expect(shallow(<Inventory />).find(Link)).toHaveLength(2);
   });
 
   it("should show links", () => {
-    setUserEvent(testAvatarUser);
+    setUser(testAvatarUser);
     const wrap = shallow(<Inventory />);
     expect(wrap.find(Link).get(0).props.to).toBe(
       `/profile/${testAvatarUser.userId}`
@@ -58,7 +58,7 @@ describe("Buy gallery test", () => {
   });
 
   it("should show inventory num", () => {
-    setUserEvent(testAvatarUser);
+    setUser(testAvatarUser);
     setInventory(testInventory);
 
     const wrap = shallow(<Inventory />);
@@ -68,7 +68,7 @@ describe("Buy gallery test", () => {
   });
 
   it("shouldn`t show inventory", () => {
-    setUserEvent(testAvatarUser);
+    setUser(testAvatarUser);
     setInventory(null);
 
     const wrap = shallow(<Inventory />);
@@ -76,7 +76,7 @@ describe("Buy gallery test", () => {
   });
 
   it("should show inventory", () => {
-    setUserEvent(testAvatarUser);
+    setUser(testAvatarUser);
     setInventory(testInventory);
 
     const wrap = shallow(<Inventory />);
@@ -84,7 +84,7 @@ describe("Buy gallery test", () => {
   });
 
   it("should show inventory props", () => {
-    setUserEvent(testAvatarUser);
+    setUser(testAvatarUser);
     setInventory(testInventory);
 
     const wrap = shallow(<Inventory />)
@@ -98,7 +98,7 @@ describe("Buy gallery test", () => {
   });
 
   it("should select work", () => {
-    setUserEvent(testAvatarUser);
+    setUser(testAvatarUser);
     setInventory(testInventory);
 
     const wrap = shallow(<Inventory />);

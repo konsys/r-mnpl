@@ -7,7 +7,7 @@ import { Chip } from "@material-ui/core";
 import React from "react";
 import { Reply } from "@material-ui/icons";
 import moment from "moment";
-import { setUserEvent } from "stores/Game/User/UserModel";
+import { setUser } from "stores/Game/User/UserModel";
 import { shallow } from "enzyme";
 import { theme } from "theme";
 
@@ -176,7 +176,7 @@ describe("Chat message test", () => {
   });
 
   it("should show render reply variant", () => {
-    setUserEvent(testVipUser);
+    setUser(testVipUser);
     const date = new Date();
     let vipMessage = shallow(
       <ChatMessage
@@ -190,7 +190,7 @@ describe("Chat message test", () => {
     let props = vipMessage.find("._reply-message").get(0).props;
     expect(props.variant).toStrictEqual("default");
 
-    setUserEvent(testUser);
+    setUser(testUser);
     vipMessage = shallow(
       <ChatMessage
         fromUser={testVipUser}
@@ -204,7 +204,7 @@ describe("Chat message test", () => {
   });
 
   it("should show render reply color", () => {
-    setUserEvent(testVipUser);
+    setUser(testVipUser);
     const date = new Date();
     let vipMessage = shallow(
       <ChatMessage
@@ -220,7 +220,7 @@ describe("Chat message test", () => {
     expect(props.style).toHaveProperty("color", "white");
     expect(vipMessage.find("._reply-message").get(0).props.icon).toBeDefined();
 
-    setUserEvent(testUser);
+    setUser(testUser);
     vipMessage = shallow(
       <ChatMessage
         fromUser={testUser}
@@ -236,7 +236,7 @@ describe("Chat message test", () => {
       vipMessage.find("._reply-message").get(0).props.icon
     ).toBeUndefined();
 
-    setUserEvent(testVipUser);
+    setUser(testVipUser);
     vipMessage = shallow(
       <ChatMessage
         fromUser={testUser}

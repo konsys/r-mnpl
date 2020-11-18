@@ -2,7 +2,7 @@ import { Login } from "../Login";
 import { LoginForm } from "components/views/Registration/LoginForm/LoginForm";
 import React from "react";
 import { Redirect } from "react-router-dom";
-import { setUserEvent } from "stores/Game/User/UserModel";
+import { setUser } from "stores/Game/User/UserModel";
 import { shallow } from "enzyme";
 import { testUser } from "testMocks/user";
 
@@ -12,7 +12,7 @@ describe("Room top five test", () => {
   });
 
   it("should render login form", () => {
-    setUserEvent(null);
+    setUser(null);
     expect(shallow(<Login />).find(Redirect)).toHaveLength(0);
     expect(shallow(<Login />).find(LoginForm)).toHaveLength(1);
     expect(
@@ -23,7 +23,7 @@ describe("Room top five test", () => {
   });
 
   it("should render login form", () => {
-    setUserEvent(testUser);
+    setUser(testUser);
     expect(shallow(<Login />).find(Redirect)).toHaveLength(1);
     expect(shallow(<Login />).find(LoginForm)).toHaveLength(0);
     expect(
@@ -34,7 +34,7 @@ describe("Room top five test", () => {
   });
 
   it("should involve onSubmit", () => {
-    setUserEvent(null);
+    setUser(null);
 
     expect(
       shallow(<Login />)

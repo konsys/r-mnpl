@@ -5,7 +5,7 @@ import "theme/styles/board/theme.scss";
 import { BoardMessage, FieldStatus, IPlayer } from "types/types";
 import { InitBoardPlayersGate, players$ } from "stores/Board/PlayersStore";
 import React, { useEffect } from "react";
-import { actions$, setCurrentAction } from "stores/Board/ActionStore";
+import { actions$, setBoardAction } from "stores/Board/ActionStore";
 import {
   fieldAction$,
   fields$,
@@ -93,7 +93,7 @@ export const MessageHandler = (message: BoardMessage) => {
   fieldsHandler(message.data.boardStatus.fields);
   playersHandler(message.data.boardStatus.players);
 
-  setCurrentAction({
+  setBoardAction({
     actionId: (event && event._id) || nanoid(4),
     event: message.data.event,
   });

@@ -28,10 +28,10 @@ sample({
   target: getUserFx,
 });
 
-export const setUserEvent = UserDomain.event<IUser | null>();
+export const setUser = UserDomain.event<IUser | null>();
 
 export const user$ = UserDomain.store<IUser | null>(null)
-  .on(setUserEvent, (_, data) => data)
+  .on(setUser, (_, data) => data)
   .on(getUserFx.done, (_, data) => data.result)
   .reset(logout);
 

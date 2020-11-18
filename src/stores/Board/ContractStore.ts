@@ -2,9 +2,10 @@ import { IContract, IField } from "../../types/types";
 
 import { BOARD_PARAMS } from "../../params/boardParams";
 import { BoardDomain } from "./BoardDomain";
-import _ from "lodash";
+import _, { get } from "lodash";
 import { actions$ } from "./ActionStore";
 import { user$ } from "../Game/User/UserModel";
+import { combine, sample } from "effector";
 
 const ContractDomain = BoardDomain.domain("UserDomain");
 
@@ -22,7 +23,7 @@ export interface IOpenContractModal {
   money?: number;
 }
 
-const initContract: IContract = {
+export const initContract: IContract = {
   // TODO getPlayer shld return player always
   fromUserId: BOARD_PARAMS.BANK_USER_ID,
   toUserId: BOARD_PARAMS.BANK_USER_ID,
@@ -41,17 +42,17 @@ export const contract$ = ContractDomain.store<IContract>(initContract)
     toUserId: next.toUserId,
   }))
   .on(setContract, (_, data) => data)
-  .on(incomeContract, (state) => {
-    const action = actions$.getState();
-    const user = user$.getState();
-    if (user && action && action.event.action.contract) {
-      if (user.userId === action.event.action.contract.toUserId) {
-        return action.event.action.contract;
-      }
-    }
+  // .on(incomeContract, (state) => {
+  //   const action = actions$.getState();
+  //   const user = user$.getState();
+  //   if (user && action && action.event.action.contract) {
+  //     if (user.userId === action.event.action.contract.toUserId) {
+  //       return action.event.action.contract;
+  //     }
+  //   }
 
-    return state;
-  })
+  //   return state;
+  // })
   .on(addFieldToContract, (prev, data) => {
     const fieldId = (data.field && data.field.fieldId) || 0;
     const price =
@@ -115,6 +116,25 @@ export const contract$ = ContractDomain.store<IContract>(initContract)
     return prev;
   })
   .reset(closeContractModal);
+
+sample({
+  clock: incomeContract,
+  source: combine({
+    action: actions$.map((v) => v),
+    user: user$.map((v) => v),
+    contract: contract$.map((v) => v),
+  }),
+  fn: ({ action, user, contract }) => {
+    const toUserId = get(action, "action.event.action.contract.toUserId");
+    const payloadContract = get(action, "action.event.action.contract");
+
+    if (toUserId && user && user.userId === toUserId) {
+      return payloadContract;
+    }
+    return contract;
+  },
+  target: setContract,
+});
 
 // contract$.watch((v) =>
 //   console.log("contractStoreWatch", v.fromUserId, v.toUserId)

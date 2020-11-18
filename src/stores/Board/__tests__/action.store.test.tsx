@@ -4,7 +4,7 @@ import {
   gameActionFx,
   resetActionEvent,
   sendBoardAction,
-  setCurrentAction,
+  setBoardAction,
   doNothingAction,
 } from "../ActionStore";
 
@@ -24,7 +24,7 @@ import {
   testIncomeTaxPaying,
   testIncomeUnjailModal,
   testIncomeAuctionModal,
-  testIncomeCOntract,
+  testIncomeContract,
 } from "testMocks/action";
 
 jest.mock("http/client", () => ({
@@ -96,18 +96,18 @@ describe("Test action store", () => {
 
   it("should set current action", () => {
     // @ts-ignore
-    setCurrentAction({});
+    setBoardAction({});
     expect(actions$.getState()).toStrictEqual({});
   });
 
   it("should set current action", () => {
     // @ts-ignore
-    setCurrentAction(null);
+    setBoardAction(null);
     expect(actions$.getState()).toStrictEqual(null);
   });
 
   it("should set current action do nothing", () => {
-    setCurrentAction(testDoNothingAction);
+    setBoardAction(testDoNothingAction);
     const state = actions$.getState();
     expect(state).toStrictEqual(testDoNothingAction);
   });
@@ -143,7 +143,7 @@ describe("Test action store", () => {
   });
 
   it("should handle income roll dices modal", () => {
-    setCurrentAction(testRollDIcesModal);
+    setBoardAction(testRollDIcesModal);
     expect(modals.rollDicesModal).toBeCalledTimes(1);
     expect(modalsStore.showBoardActionModal).toBeCalledTimes(1);
     expect(modals.rollDicesModal).toBeCalledWith(
@@ -151,7 +151,7 @@ describe("Test action store", () => {
     );
   });
   it("should handle income roll dices action", () => {
-    setCurrentAction(testRollDIcesAction);
+    setBoardAction(testRollDIcesAction);
     expect(dices.rollDicesAction).toBeCalledTimes(1);
     expect(dices.rollDicesAction).toBeCalledWith(
       testRollDIcesAction.event.action
@@ -159,7 +159,7 @@ describe("Test action store", () => {
   });
 
   it("should handle income buy modal action", () => {
-    setCurrentAction(testIncomeBuyModal);
+    setBoardAction(testIncomeBuyModal);
 
     expect(modalsStore.showBoardActionModal).toBeCalledTimes(1);
     expect(modals.canBuyModal).toBeCalledTimes(1);
@@ -167,7 +167,7 @@ describe("Test action store", () => {
   });
 
   it("should handle income buy modal action", () => {
-    setCurrentAction(testIncomeTaxPaying);
+    setBoardAction(testIncomeTaxPaying);
 
     expect(modalsStore.showBoardActionModal).toBeCalledTimes(1);
     expect(modals.taxModal).toBeCalledTimes(1);
@@ -175,7 +175,7 @@ describe("Test action store", () => {
   });
 
   it("should handle income unjail modal action", () => {
-    setCurrentAction(testIncomeUnjailModal);
+    setBoardAction(testIncomeUnjailModal);
 
     expect(modalsStore.showBoardActionModal).toBeCalledTimes(1);
     expect(modals.unJailModal).toBeCalledTimes(1);
@@ -184,7 +184,7 @@ describe("Test action store", () => {
     );
   });
   it("should handle income unjail modal action", () => {
-    setCurrentAction(testIncomeAuctionModal);
+    setBoardAction(testIncomeAuctionModal);
 
     expect(modalsStore.showBoardActionModal).toBeCalledTimes(1);
     expect(modals.auctionModal).toBeCalledTimes(1);
@@ -194,7 +194,7 @@ describe("Test action store", () => {
   });
 
   it("should handle income unjail modal action", () => {
-    setCurrentAction(testIncomeCOntract);
+    setBoardAction(testIncomeContract);
 
     expect(contract.incomeContract).toBeCalledTimes(1);
     expect(contract.incomeContract).toBeCalledWith();
