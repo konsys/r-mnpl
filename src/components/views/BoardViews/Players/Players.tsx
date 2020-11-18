@@ -11,6 +11,7 @@ import { ICurrentAction } from "stores/Board/ActionStore";
 import { PlayerActions } from "./PlayerActions/PlayerActions";
 import { closeFieldAction } from "stores/Board/FieldsStore";
 import { useStore } from "effector-react";
+import { get } from "lodash";
 
 interface Prop {
   players: IPlayer[];
@@ -35,6 +36,7 @@ export const Players = ({ players, user, action }: Prop) => {
     };
   }, []);
 
+  const actionUserId = get(action, "event.action.userId");
   return (
     <>
       <div className="table-body-players">
@@ -47,14 +49,7 @@ export const Players = ({ players, user, action }: Prop) => {
                 id={`player_card_${player.userId}`}
                 mnpl-order={player.moveOrder}
                 mnpl-team={player.team}
-                mnpl-action_player={
-                  action &&
-                  action.event &&
-                  action.event.action &&
-                  action.event.action.userId === player.userId
-                    ? 1
-                    : 0
-                }
+                mnpl-action_player={actionUserId === player.userId ? 1 : 0}
                 mnpl-opened={
                   actionStore.isVisible &&
                   actionStore.toUserId === player.userId

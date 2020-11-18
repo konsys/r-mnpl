@@ -10,6 +10,7 @@ import { openPlayerAction } from "stores/Board/PlayersStore";
 import { shallow } from "enzyme";
 import { testDoNothingAction } from "testMocks/action";
 import { testPlayerAction } from "testMocks/player.action";
+import { actions$ } from "stores/Board/ActionStore";
 
 describe("Room top five test", () => {
   beforeEach(() => jest.clearAllMocks());
@@ -17,7 +18,10 @@ describe("Room top five test", () => {
     expect(
       shallow(
         <Players
-          players={[testPlayer1, testPlayer2]}
+          players={[
+            testPlayer1,
+            { ...testPlayer2, userId: testDoNothingAction.event.action.userId },
+          ]}
           user={testUser}
           action={testDoNothingAction}
         />
@@ -31,6 +35,8 @@ describe("Room top five test", () => {
         <Players players={[]} user={testUser} action={testDoNothingAction} />
       ).find(Avatar)
     ).toHaveLength(0);
+  });
+  it("should render all players", () => {
     expect(
       shallow(
         <Players
@@ -48,12 +54,16 @@ describe("Room top five test", () => {
         <Players players={[]} user={testUser} action={testDoNothingAction} />
       ).find(Avatar)
     ).toHaveLength(0);
+  });
+  it("should render all players", () => {
     expect(
       shallow(
         // @ts-ignore
         <Players players={[{}]} user={testUser} action={testDoNothingAction} />
       ).find(".table-body-players-card")
     ).toHaveLength(0);
+  });
+  it("should render all players", () => {
     expect(
       shallow(
         <Players
@@ -72,6 +82,8 @@ describe("Room top five test", () => {
         .find(".table-body-players-card")
         .get(0).props["mnpl-action_player"]
     ).toBe(0);
+  });
+  it("should render all players", () => {
     expect(
       shallow(
         <Players
@@ -84,6 +96,8 @@ describe("Room top five test", () => {
         .find(".table-body-players-card")
         .get(0).props["mnpl-action_player"]
     ).toBe(0);
+  });
+  it("should render monopoly action", () => {
     expect(
       shallow(
         <Players
@@ -96,6 +110,8 @@ describe("Room top five test", () => {
         .find(".table-body-players-card")
         .get(0).props["mnpl-action_player"]
     ).toBe(0);
+  });
+  it("should render monopoly action", () => {
     expect(
       shallow(
         <Players
@@ -108,29 +124,55 @@ describe("Room top five test", () => {
         .find(".table-body-players-card")
         .get(0).props["mnpl-action_player"]
     ).toBe(0);
+  });
+
+  it("should render monopoly action", () => {
     expect(
       shallow(
         <Players
           players={[testPlayer1]}
           user={testUser}
           // @ts-ignore
-          action={{ action: { event: { action: { userId: 111 } } } }}
+          action={{ action: { event: { action: { userId: 42343646 } } } }}
         />
       )
         .find(".table-body-players-card")
         .get(0).props["mnpl-action_player"]
-    ).toBe(0);
+    ).toStrictEqual(0);
+  });
+
+  it("should render monopoly action", () => {
     expect(
       shallow(
         <Players
-          players={[testPlayer1]}
+          players={[
+            { ...testPlayer1, userId: testDoNothingAction.event.action.userId },
+          ]}
           user={testUser}
           action={testDoNothingAction}
         />
       )
         .find(".table-body-players-card")
         .get(0).props["mnpl-action_player"]
-    ).toBe(testUser.userId);
+    ).toBe(1);
+  });
+
+  it("should render monopoly action", () => {
+    expect(
+      shallow(
+        <Players
+          players={[{ ...testPlayer1, userId: 3453345345 }]}
+          user={testUser}
+          action={{
+            ...testDoNothingAction,
+            // @ts-ignore
+            event: { action: { userId: 3453345345 } },
+          }}
+        />
+      )
+        .find(".table-body-players-card")
+        .get(0).props["mnpl-action_player"]
+    ).toBe(1);
   });
 
   it("should have all properties", () => {
@@ -182,7 +224,8 @@ describe("Room top five test", () => {
         .find(".table-body-players-card")
         .get(0).props["mnpl-opened"]
     ).toBe(0);
-
+  });
+  it("should render all players", () => {
     openPlayerAction({
       ...testPlayerAction,
       isVisible: true,
@@ -201,7 +244,8 @@ describe("Room top five test", () => {
         .find(".table-body-players-card")
         .get(0).props["mnpl-opened"]
     ).toBe(1);
-
+  });
+  it("should render all players", () => {
     openPlayerAction({
       ...testPlayerAction,
       isVisible: false,
@@ -220,7 +264,8 @@ describe("Room top five test", () => {
         .find(".table-body-players-card")
         .get(0).props["mnpl-opened"]
     ).toBe(0);
-
+  });
+  it("should render all players", () => {
     openPlayerAction({
       ...testPlayerAction,
       isVisible: true,
@@ -336,7 +381,6 @@ describe("Room top five test", () => {
         user={{
           ...testPlayer1,
           name: "testName",
-          money: 230000,
           avatar: "testAvatar",
           vip: true,
         }}
