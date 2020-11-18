@@ -125,8 +125,8 @@ sample({
     contract: contract$ && contract$.map((v) => v),
   }),
   fn: ({ action, user, contract }) => {
-    const toUserId = get(action, "action.event.action.contract.toUserId");
-    const payloadContract = get(action, "action.event.action.contract");
+    const toUserId = get(action, "event.action.contract.toUserId");
+    const payloadContract = get(action, "event.action.contract");
 
     if (toUserId && user && user.userId === toUserId) {
       return payloadContract;

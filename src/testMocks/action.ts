@@ -4,6 +4,7 @@ import {
   IncomeMessageType,
   OutcomeMessageType,
 } from "types/types";
+import { testContract } from "./contract";
 
 export const testDoNothingAction: ICurrentAction = {
   actionId: "testActionId",
@@ -109,6 +110,7 @@ export const testIncomeContract: ICurrentAction = {
   actionId: "testActionId",
   event: {
     action: {
+      contract: testContract,
       _id: "testID",
       isModal: false,
       userId: 1424236,

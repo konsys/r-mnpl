@@ -10,6 +10,7 @@ import { setUser } from "stores/Game/User/UserModel";
 import { testIncomeContract } from "testMocks/action";
 import { testContract } from "testMocks/contract";
 import { testUser } from "testMocks/user";
+import { setBoardAction } from "../ActionStore";
 
 describe("Contract store test", () => {
   beforeEach(() => closeContractModal());
@@ -32,14 +33,25 @@ describe("Contract store test", () => {
     expect(contract$.getState()).toStrictEqual(testContract);
   });
 
-  it("should handle income contract", () => {
-    setUser(testUser);
+  it("should not change contract", () => {
+    const r = Math.random();
+    // @ts-ignore
+    setContract(r);
     incomeContract();
-    expect(contract$.getState()).toStrictEqual(initContract);
+    expect(contract$.getState()).toStrictEqual(r);
+  });
 
-    // setUser(testUser);
-    // setBoardAction(testIncomeContract);
-    // incomeContract();
-    // expect(contract$.getState()).toStrictEqual(initContract);
+  it("should change contract", () => {
+    const r = Math.random();
+    // @ts-ignore
+    setContract(r);
+    setUser({
+      ...testUser,
+      userId: testIncomeContract.event.action.contract?.toUserId || 0,
+    });
+
+    setBoardAction(testIncomeContract);
+    incomeContract();
+    expect(contract$.getState()).toStrictEqual(testContract);
   });
 });
