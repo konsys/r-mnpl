@@ -1,14 +1,11 @@
 import "./style.scss";
 import "react-toastify/dist/ReactToastify.css";
-import "../../../../theme/styles/board/theme.scss";
+import "theme/styles/board/theme.scss";
 
 import { BoardMessage, FieldStatus, IPlayer } from "types/types";
 import { InitBoardPlayersGate, players$ } from "stores/Board/PlayersStore";
 import React, { useEffect } from "react";
-import {
-  actions$,
-  setCurrentAction,
-} from "../../../../stores/Board/ActionStore";
+import { actions$, setCurrentAction } from "stores/Board/ActionStore";
 import {
   fieldAction$,
   fields$,

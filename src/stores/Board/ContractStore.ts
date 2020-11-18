@@ -26,8 +26,6 @@ const initContract: IContract = {
   // TODO getPlayer shld return player always
   fromUserId: BOARD_PARAMS.BANK_USER_ID,
   toUserId: BOARD_PARAMS.BANK_USER_ID,
-  // fromUserId: 2,
-  // toUserId: 3,
   fieldIdsFrom: [],
   fieldFromPrice: 0,
   fieldIdsTo: [],
@@ -37,13 +35,11 @@ const initContract: IContract = {
 };
 
 export const contract$ = ContractDomain.store<IContract>(initContract)
-  .on(openContractModal, (state, next) => {
-    return {
-      ...state,
-      fromUserId: next.fromUserId,
-      toUserId: next.toUserId,
-    };
-  })
+  .on(openContractModal, (state, next) => ({
+    ...state,
+    fromUserId: next.fromUserId,
+    toUserId: next.toUserId,
+  }))
   .on(setContract, (_, data) => data)
   .on(incomeContract, (state) => {
     const action = actions$.getState();
@@ -56,7 +52,6 @@ export const contract$ = ContractDomain.store<IContract>(initContract)
 
     return state;
   })
-
   .on(addFieldToContract, (prev, data) => {
     const fieldId = (data.field && data.field.fieldId) || 0;
     const price =
