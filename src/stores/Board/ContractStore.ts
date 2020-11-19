@@ -99,15 +99,16 @@ export const contract$ = ContractDomain.store<IContract>(initContract)
   .on(addMoneyToContract, (prev, data) => {
     const fromUserId = get(data, "fromUserId") || 0;
     const prevFromUserId = get(prev, "fromUserId") || 0;
-    const toUserId = get(data, "fromUserId") || 0;
-    const prevToUserId = get(prev, "fromUserId") || 0;
+    const toUserId = get(data, "toUserId") || 0;
+    const prevToUserId = get(prev, "toUserId") || 0;
+    let money = get(data, "money") || 0;
+    money = money > 0 ? money : 0;
 
     if (fromUserId > 0 && prevFromUserId > 0 && fromUserId === prevFromUserId) {
-      prev.moneyFrom = data.money || 0;
+      prev.moneyFrom = money;
     } else if (toUserId > 0 && prevToUserId > 0 && toUserId === prevToUserId) {
-      prev.moneyTo = data.money || 0;
+      prev.moneyTo = money;
     }
-
     return prev;
   })
   .reset(closeContractModal);

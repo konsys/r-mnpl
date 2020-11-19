@@ -536,4 +536,67 @@ describe("Contract store test", () => {
 
     expect(contract$.getState()).toStrictEqual(r);
   });
+
+  it("should add money to contract ", () => {
+    // @ts-ignore
+    setContract(r);
+    // @ts-ignore
+    addMoneyToContract({
+      fromUserId,
+      money,
+    });
+
+    expect(contract$.getState()).toStrictEqual(r);
+  });
+
+  it("should add money to contract ", () => {
+    // @ts-ignore
+    setContract({
+      fromUserId,
+    });
+    // @ts-ignore
+    addMoneyToContract({
+      fromUserId,
+      money,
+    });
+
+    expect(contract$.getState()).toStrictEqual({
+      fromUserId,
+      moneyFrom: money,
+    });
+  });
+
+  it("should add money to contract ", () => {
+    // @ts-ignore
+    setContract({
+      toUserId,
+    });
+    // @ts-ignore
+    addMoneyToContract({
+      toUserId,
+      money: -1560,
+    });
+
+    expect(contract$.getState()).toStrictEqual({
+      toUserId,
+      moneyTo: 0,
+    });
+  });
+
+  it("should add money to contract ", () => {
+    // @ts-ignore
+    setContract({
+      toUserId,
+    });
+    // @ts-ignore
+    addMoneyToContract({
+      toUserId,
+      money,
+    });
+
+    expect(contract$.getState()).toStrictEqual({
+      toUserId,
+      moneyTo: money,
+    });
+  });
 });
