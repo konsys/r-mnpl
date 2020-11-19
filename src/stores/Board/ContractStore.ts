@@ -97,11 +97,17 @@ export const contract$ = ContractDomain.store<IContract>(initContract)
     return prev;
   })
   .on(addMoneyToContract, (prev, data) => {
-    if (data.fromUserId === prev.fromUserId) {
+    const fromUserId = get(data, "fromUserId") || 0;
+    const prevFromUserId = get(prev, "fromUserId") || 0;
+    const toUserId = get(data, "fromUserId") || 0;
+    const prevToUserId = get(prev, "fromUserId") || 0;
+
+    if (fromUserId > 0 && prevFromUserId > 0 && fromUserId === prevFromUserId) {
       prev.moneyFrom = data.money || 0;
-    } else {
+    } else if (toUserId > 0 && prevToUserId > 0 && toUserId === prevToUserId) {
       prev.moneyTo = data.money || 0;
     }
+
     return prev;
   })
   .reset(closeContractModal);

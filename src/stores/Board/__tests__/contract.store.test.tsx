@@ -6,6 +6,7 @@ import {
   incomeContract,
   closeContractModal,
   addFieldToContract,
+  addMoneyToContract,
 } from "stores/Board/ContractStore";
 import { setUser } from "stores/Game/User/UserModel";
 import { testIncomeContract } from "testMocks/action";
@@ -504,5 +505,35 @@ describe("Contract store test", () => {
       fieldToPrice: 0,
       fieldIdsTo: [12],
     });
+  });
+
+  it("should add money to contract ", () => {
+    // @ts-ignore
+    setContract(r);
+    // @ts-ignore
+    addMoneyToContract();
+
+    expect(contract$.getState()).toStrictEqual(r);
+  });
+
+  it("should add money to contract ", () => {
+    // @ts-ignore
+    setContract(null);
+    // @ts-ignore
+    addMoneyToContract();
+
+    expect(contract$.getState()).toStrictEqual(null);
+  });
+
+  it("should add money to contract ", () => {
+    // @ts-ignore
+    setContract(r);
+    // @ts-ignore
+    addMoneyToContract({
+      fromUserId: 0,
+      money,
+    });
+
+    expect(contract$.getState()).toStrictEqual(r);
   });
 });
