@@ -10,7 +10,7 @@ export interface IDialogStore {
   message: string;
 }
 
-export const dialogStore = DialogDomain.store<IDialogStore>({
+export const dialog$ = DialogDomain.store<IDialogStore>({
   message: "",
   title: "",
 })
