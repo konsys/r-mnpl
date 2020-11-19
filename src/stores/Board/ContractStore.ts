@@ -2,7 +2,7 @@ import { IContract, IField } from "../../types/types";
 
 import { BOARD_PARAMS } from "../../params/boardParams";
 import { BoardDomain } from "./BoardDomain";
-import _, { get } from "lodash";
+import { concat, get, indexOf } from "lodash";
 import { actions$ } from "./ActionStore";
 import { user$ } from "../Game/User/UserModel";
 import { combine, sample } from "effector";
@@ -42,70 +42,59 @@ export const contract$ = ContractDomain.store<IContract>(initContract)
     toUserId: next.toUserId,
   }))
   .on(setContract, (_, data) => data)
-  // .on(incomeContract, (state) => {
-  //   const action = actions$.getState();
-  //   const user = user$.getState();
-  //   if (user && action && action.event.action.contract) {
-  //     if (user.userId === action.event.action.contract.toUserId) {
-  //       return action.event.action.contract;
-  //     }
-  //   }
-
-  //   return state;
-  // })
   .on(addFieldToContract, (prev, data) => {
-    const fieldId = (data.field && data.field.fieldId) || 0;
-    const price =
-      data.field && data.field.price && data.field.status
-        ? data.field.status.mortgaged
-          ? data.field.price.startPrice / 2
-          : data.field.price.startPrice
-        : 0;
-    const ownerId =
-      (data.field &&
-        data.field.price &&
-        data.field.status &&
-        data.field.status.userId) ||
-      0;
+    const fieldId = get(data, "field.fieldId") || 0;
+    const fieldPrice = get(data, "field.price.startPrice") || 0;
+    const mortaged = get(data, "field.status.mortgaged") || false;
+    const ownerId = get(data, "field.status.userId") || 0;
+    const price = mortaged ? fieldPrice / 2 : fieldPrice;
+    const fromUserId = get(data, "fromUserId") || 0;
+    const toUserId = get(data, "toUserId") || 0;
+    const priceFrom = get(prev, "fieldFromPrice") || 0;
+    const priceTo = get(prev, "fieldToPrice") || 0;
+    const fieldsFrom = Array.isArray(get(prev, "fieldIdsFrom"))
+      ? prev.fieldIdsFrom
+      : [];
+    const fieldsTo = Array.isArray(get(prev, "fieldIdsTo"))
+      ? prev.fieldIdsTo
+      : [];
 
-    if (fieldId && ownerId && price) {
-      if (ownerId === data.fromUserId && !prev.fieldIdsFrom.includes(fieldId)) {
+    if (fieldId && ownerId && price && fromUserId && toUserId) {
+      const prevFromIncludes = fieldsFrom.includes(fieldId);
+      const prevToIncludes = fieldsTo.includes(fieldId);
+      // Add field to given fields
+      if (ownerId === fromUserId && !prevFromIncludes) {
         return {
           ...prev,
-          fieldIdsFrom: _.concat(prev.fieldIdsFrom, fieldId),
-          fieldFromPrice: prev.fieldFromPrice + price,
+          fieldIdsFrom: concat(fieldsFrom, fieldId),
+          fieldFromPrice: priceFrom + price,
         };
-      } else if (
-        ownerId === data.fromUserId &&
-        prev.fieldIdsFrom.includes(fieldId)
-      ) {
-        prev.fieldIdsFrom.splice(_.indexOf(prev.fieldIdsFrom, fieldId), 1);
+        // Remove field from given fields
+      } else if (ownerId === fromUserId && prevFromIncludes) {
+        fieldsFrom.splice(indexOf(fieldsFrom, fieldId), 1);
         return {
           ...prev,
-          fieldIdsFrom: prev.fieldIdsFrom,
-          fieldFromPrice: prev.fieldFromPrice - price,
+          fieldIdsFrom: fieldsFrom,
+          fieldFromPrice: priceFrom - price > 0 ? priceFrom - price : 0,
         };
-      } else if (
-        ownerId === data.toUserId &&
-        !prev.fieldIdsTo.includes(fieldId)
-      ) {
+        // Add field to taken fields
+      } else if (ownerId === toUserId && !prevToIncludes) {
         return {
           ...prev,
-          fieldIdsTo: _.concat(prev.fieldIdsTo, fieldId),
-          fieldToPrice: prev.fieldToPrice + price,
+          fieldIdsTo: concat(fieldsTo, fieldId),
+          fieldToPrice: priceTo + price,
         };
-      } else if (
-        ownerId === data.toUserId &&
-        prev.fieldIdsTo.includes(fieldId)
-      ) {
-        prev.fieldIdsTo.splice(_.indexOf(prev.fieldIdsTo, fieldId), 1);
+        // Remove field from taken fields
+      } else if (ownerId === toUserId && prevToIncludes) {
+        fieldsTo.splice(indexOf(fieldsTo, fieldId), 1);
         return {
           ...prev,
-          fieldIdsTo: prev.fieldIdsTo,
-          fieldToPrice: prev.fieldToPrice - price,
+          fieldIdsTo: fieldsTo,
+          fieldToPrice: priceTo - price > 0 ? priceTo - price : 0,
         };
       }
     }
+    return prev;
   })
   .on(addMoneyToContract, (prev, data) => {
     if (data.fromUserId === prev.fromUserId) {
