@@ -3,9 +3,6 @@ import { IContract, IField } from "../../types/types";
 import { BOARD_PARAMS } from "../../params/boardParams";
 import { BoardDomain } from "./BoardDomain";
 import { concat, get, indexOf } from "lodash";
-import { actions$ } from "./ActionStore";
-import { user$ } from "../Game/User/UserModel";
-import { combine, sample } from "effector";
 
 const ContractDomain = BoardDomain.domain("UserDomain");
 
@@ -112,25 +109,6 @@ export const contract$ = ContractDomain.store<IContract>(initContract)
     return prev;
   })
   .reset(closeContractModal);
-
-sample({
-  clock: incomeContract,
-  source: combine({
-    action: actions$ && actions$.map((v) => v),
-    user: user$ && user$.map((v) => v),
-    contract: contract$ && contract$.map((v) => v),
-  }),
-  fn: ({ action, user, contract }) => {
-    const toUserId = get(action, "event.action.contract.toUserId");
-    const payloadContract = get(action, "event.action.contract");
-
-    if (toUserId && user && user.userId === toUserId) {
-      return payloadContract;
-    }
-    return contract;
-  },
-  target: setContract,
-});
 
 // contract$.watch((v) =>
 //   console.log("contractStoreWatch", v.fromUserId, v.toUserId)

@@ -16,12 +16,13 @@ import {
 
 import { BoardDomain } from "./BoardDomain";
 import { boardGame$ } from "stores/Game/Board/BoardModel";
-import { incomeContract } from "./ContractStore";
+import { contract$, incomeContract, setContract } from "./ContractStore";
 import { postBoardAction } from "api/Board/api";
 import { rollDicesAction } from "handlers/DicesHandler";
-import { guard, sample } from "effector";
+import { combine, guard, sample } from "effector";
 import { showBoardActionModal } from "./ModalStore";
 import { get } from "lodash";
+import { user$ } from "stores/Game/User/UserModel";
 
 const ActionDomain = BoardDomain.domain("BoardActionDomain");
 export interface ICurrentAction {
@@ -137,3 +138,22 @@ const actionHandler = (action: BoardAction) => {
       break;
   }
 };
+
+sample({
+  clock: incomeContract,
+  source: combine({
+    action: actions$ && actions$.map((v) => v),
+    user: user$ && user$.map((v) => v),
+    contract: contract$ && contract$.map((v) => v),
+  }),
+  fn: ({ action, user, contract }) => {
+    const toUserId = get(action, "event.action.contract.toUserId");
+    const payloadContract = get(action, "event.action.contract");
+
+    if (toUserId && user && user.userId === toUserId) {
+      return payloadContract;
+    }
+    return contract;
+  },
+  target: setContract,
+});
