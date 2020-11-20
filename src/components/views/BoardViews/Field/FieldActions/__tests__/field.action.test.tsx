@@ -14,7 +14,7 @@ import React from "react";
 import { shallow } from "enzyme";
 import { updateAllPlayers } from "utils/players.utils";
 
-jest.mock("stores/Board/FieldActionStore", () => ({
+jest.mock("stores/Board/ActionStore", () => ({
   sendBoardAction: jest.fn(),
 }));
 
@@ -118,7 +118,7 @@ describe("Field action test", () => {
       action: OutcomeMessageType.OUTCOME_UN_MORTGAGE_FIELD_CLICKED,
       fieldId: testOwnedFieldActions.fieldId,
     });
-    expect(field.closeFieldAction).toHaveBeenCalledTimes(1);
+    expect(fieldAction.closeFieldAction).toHaveBeenCalledTimes(1);
   });
   it("should level up", () => {
     shallow(<FieldActions {...testOwnedFieldActions} isActive={true} />)
@@ -130,7 +130,7 @@ describe("Field action test", () => {
       action: OutcomeMessageType.OUTCOME_LEVEL_UP_FIELD_CLICKED,
       fieldId: testOwnedFieldActions.fieldId,
     });
-    expect(field.closeFieldAction).toHaveBeenCalledTimes(1);
+    expect(fieldAction.closeFieldAction).toHaveBeenCalledTimes(1);
   });
   it("should level down", () => {
     shallow(<FieldActions {...testOwnedFieldActions} isActive={true} />)
@@ -142,7 +142,7 @@ describe("Field action test", () => {
       action: OutcomeMessageType.OUTCOME_LEVEL_DOWN_FIELD_CLICKED,
       fieldId: testOwnedFieldActions.fieldId,
     });
-    expect(field.closeFieldAction).toHaveBeenCalledTimes(1);
+    expect(fieldAction.closeFieldAction).toHaveBeenCalledTimes(1);
   });
 
   it("should render description", () => {
