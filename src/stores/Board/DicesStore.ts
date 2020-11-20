@@ -9,7 +9,7 @@ import { BoardDomain } from "./BoardDomain";
 import { boardSocket } from "./SocketConnetcModel";
 
 const DiceDomain = BoardDomain.domain("DiceDomain");
-export const hideDicesEvent = DiceDomain.event();
+export const hideDices = DiceDomain.event();
 
 export const tokenTransitionCompleted = DiceDomain.effect<
   IActionId,
@@ -23,9 +23,9 @@ export const tokenTransitionCompleted = DiceDomain.effect<
     ),
 });
 
-export const setDicesEvent = DiceDomain.event<IDices>();
+export const showDices = DiceDomain.event<IDices>();
 
-const init: IDices = {
+export const initDices: IDices = {
   type: IncomeMessageType.DO_NOTHING,
   userId: 1,
   dices: [0, 0, 0],
@@ -34,11 +34,11 @@ const init: IDices = {
   isModal: false,
 };
 
-export const dices$ = DiceDomain.store<IDices>(init)
-  .on(setDicesEvent, (_, data) => {
-    setTimeout(() => hideDicesEvent(), 2500);
+export const dices$ = DiceDomain.store<IDices>(initDices)
+  .on(showDices, (_, data) => {
+    setTimeout(() => hideDices(), 2500);
     return data;
   })
-  .reset(hideDicesEvent);
+  .reset(hideDices);
 
 // dices$.watch((v) => console.log("dices$Watch", v));

@@ -4,11 +4,11 @@ import { Dices } from "../Dices";
 import { IncomeMessageType } from "types/types";
 import React from "react";
 import { dices$ } from "stores/Board/DicesStore";
-import { setDicesEvent } from "stores/Board/DicesStore";
+import { showDices } from "stores/Board/DicesStore";
 
 describe("Dices test", () => {
   beforeEach(() => {
-    setDicesEvent({
+    showDices({
       type: IncomeMessageType.DO_NOTHING,
       userId: 1,
       dices: [1, 1, 0],
