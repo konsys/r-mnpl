@@ -1,5 +1,5 @@
 import * as act from "stores/Board/ActionStore";
-import * as field from "stores/Board/FieldsStore";
+import * as fieldAction from "stores/Board/FieldActionStore";
 
 import {
   testFieldActions,
@@ -14,11 +14,11 @@ import React from "react";
 import { shallow } from "enzyme";
 import { updateAllPlayers } from "utils/players.utils";
 
-jest.mock("stores/Board/ActionStore", () => ({
+jest.mock("stores/Board/FieldActionStore", () => ({
   sendBoardAction: jest.fn(),
 }));
 
-jest.mock("stores/Board/FieldsStore", () => ({
+jest.mock("stores/Board/FieldActionStore", () => ({
   closeFieldAction: jest.fn(),
 }));
 
@@ -105,7 +105,7 @@ describe("Field action test", () => {
       action: OutcomeMessageType.OUTCOME_MORTGAGE_FIELD_CLICKED,
       fieldId: testOwnedFieldActions.fieldId,
     });
-    expect(field.closeFieldAction).toHaveBeenCalledTimes(1);
+    expect(fieldAction.closeFieldAction).toHaveBeenCalledTimes(1);
   });
 
   it("should unmortgage", () => {

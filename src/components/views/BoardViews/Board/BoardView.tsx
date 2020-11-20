@@ -7,15 +7,15 @@ import {
   IUser,
 } from "../../../../types/types";
 import React, { useEffect } from "react";
-import {
-  closeFieldAction,
-  setFieldActionFx,
-} from "../../../../stores/Board/FieldsStore";
 
 import { BOARD_PARAMS } from "../../../../params/boardParams";
 import { Field } from "../Field/Field";
 import { FieldActions } from "../Field/FieldActions/FieldActions";
 import { addFieldToContract } from "../../../../stores/Board/ContractStore";
+import {
+  closeFieldAction,
+  setFieldActionFx,
+} from "stores/Board/FieldActionStore";
 
 export const BoardView = ({
   fields,

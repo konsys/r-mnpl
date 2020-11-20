@@ -6,11 +6,7 @@ import { BoardMessage, FieldStatus, IPlayer } from "types/types";
 import { InitBoardPlayersGate, players$ } from "stores/Board/PlayersStore";
 import React, { useEffect } from "react";
 import { actions$, setBoardAction } from "stores/Board/ActionStore";
-import {
-  fieldAction$,
-  fields$,
-  setFieldsEvent,
-} from "stores/Board/FieldsStore";
+import { fields$, setFieldsEvent } from "stores/Board/FieldsStore";
 import { useGate, useStore } from "effector-react";
 
 import { Arbitr } from "../../../views/BoardViews/Arbitr/Arbitr";
@@ -35,6 +31,7 @@ import nanoid from "nanoid";
 import { tokens$ } from "stores/Board/TokensStore";
 import { updateAllPlayers } from "utils/players.utils";
 import { user$ } from "stores/Game/User/UserModel";
+import { fieldAction$ } from "stores/Board/FieldActionStore";
 
 export const fieldsHandler = (messageFieldsStatus: FieldStatus[]) => {
   allFieldsIterate(messageFieldsStatus);

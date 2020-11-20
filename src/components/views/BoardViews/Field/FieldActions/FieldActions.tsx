@@ -10,9 +10,9 @@ import { FieldActionAuto } from "./FieldActionAuto";
 import { FieldActionCompany } from "./FieldActionCompany";
 import { FieldActionIT } from "./FieldActionIT";
 import React from "react";
-import { closeFieldAction } from "stores/Board/FieldsStore";
 import { getActingPlayer } from "utils/players.utils";
 import { sendBoardAction } from "stores/Board/ActionStore";
+import { closeFieldAction } from "stores/Board/FieldActionStore";
 
 export interface IFieldModal extends IField {
   position: IFieldModalPosition;

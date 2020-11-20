@@ -9,9 +9,9 @@ import {
 import { Avatar } from "../Avatar/Avatar";
 import { ICurrentAction } from "stores/Board/ActionStore";
 import { PlayerActions } from "./PlayerActions/PlayerActions";
-import { closeFieldAction } from "stores/Board/FieldsStore";
 import { useStore } from "effector-react";
 import { get } from "lodash";
+import { closeFieldAction } from "stores/Board/FieldActionStore";
 
 interface Prop {
   players: IPlayer[];

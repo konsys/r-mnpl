@@ -1,4 +1,4 @@
-import { canBuyModal, rollDicesModal } from "handlers/Modals";
+import { canBuyModal } from "handlers/Modals";
 import * as actions from "stores/Board/ActionStore";
 import { setPlayersEvent } from "stores/Board/PlayersStore";
 import { testRollDicesModal } from "testMocks/action";
