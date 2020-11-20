@@ -4,7 +4,7 @@ import { setPlayersEvent } from "stores/Board/PlayersStore";
 import { testRollDicesModal } from "testMocks/action";
 import { OutcomeMessageType } from "types/types";
 import { testPlayer1 } from "testMocks/user";
-import { setFieldsEvent } from "stores/Board/FieldsStore";
+import { setBoardFields } from "stores/Board/FieldsStore";
 import { testField } from "testMocks/field";
 import { ErrorCode } from "utils/errors";
 
@@ -23,7 +23,7 @@ describe("Modals test", () => {
       canBuyModal({ ...testRollDicesModal, userId: testPlayer1.userId })
     ).toThrow(ErrorCode[1002]);
 
-    setFieldsEvent({ version: 1, fields: [testField] });
+    setBoardFields({ version: 1, fields: [testField] });
 
     expect(() =>
       canBuyModal({
@@ -37,7 +37,7 @@ describe("Modals test", () => {
   it("should send buy field action", () => {
     const mochActionFn = jest.spyOn(actions, "sendBoardAction");
     setPlayersEvent({ version: 1, players: [testPlayer1] });
-    setFieldsEvent({ version: 1, fields: [testField] });
+    setBoardFields({ version: 1, fields: [testField] });
 
     const res = canBuyModal({
       ...testRollDicesModal,
@@ -61,7 +61,7 @@ describe("Modals test", () => {
       version: 1,
       players: [{ ...testPlayer1, money: 2000 }],
     });
-    setFieldsEvent({
+    setBoardFields({
       version: 1,
       fields: [
         // @ts-ignore
@@ -85,7 +85,7 @@ describe("Modals test", () => {
       version: 1,
       players: [{ ...testPlayer1, money: 1999 }],
     });
-    setFieldsEvent({
+    setBoardFields({
       version: 1,
       fields: [
         // @ts-ignore
@@ -107,7 +107,7 @@ describe("Modals test", () => {
   it("should send to auction field", () => {
     const mochActionFn = jest.spyOn(actions, "sendBoardAction");
     setPlayersEvent({ version: 1, players: [testPlayer1] });
-    setFieldsEvent({ version: 1, fields: [testField] });
+    setBoardFields({ version: 1, fields: [testField] });
 
     const res = canBuyModal({
       ...testRollDicesModal,

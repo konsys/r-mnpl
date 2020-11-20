@@ -1,6 +1,5 @@
 import * as playerStore from "stores/Board/PlayersStore";
 
-import { fieldAction$, setBoardFields } from "stores/Board/FieldsStore";
 import { testPlayer1, testPlayer2, testUser } from "testMocks/user";
 
 import { Avatar } from "../../Avatar/Avatar";
@@ -10,6 +9,7 @@ import { openPlayerAction } from "stores/Board/PlayersStore";
 import { shallow } from "enzyme";
 import { testDoNothingAction } from "testMocks/action";
 import { testPlayerAction } from "testMocks/player.action";
+import { fieldAction$, setFieldAction } from "stores/Board/FieldActionStore";
 
 describe("Room top five test", () => {
   beforeEach(() => jest.clearAllMocks());
@@ -286,7 +286,7 @@ describe("Room top five test", () => {
   });
 
   it("should close field action", () => {
-    setBoardFields(1);
+    setFieldAction(1);
     let res = fieldAction$.getState();
     expect(res).toBe(1);
     shallow(

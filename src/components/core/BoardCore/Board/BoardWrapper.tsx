@@ -6,7 +6,7 @@ import { BoardMessage, FieldStatus, IPlayer } from "types/types";
 import { InitBoardPlayersGate, players$ } from "stores/Board/PlayersStore";
 import React, { useEffect } from "react";
 import { actions$, setBoardAction } from "stores/Board/ActionStore";
-import { fields$, setFieldsEvent } from "stores/Board/FieldsStore";
+import { fields$, setBoardFields } from "stores/Board/FieldsStore";
 import { useGate, useStore } from "effector-react";
 
 import { Arbitr } from "../../../views/BoardViews/Arbitr/Arbitr";
@@ -58,7 +58,7 @@ export const statusFieldsIterate = (messageFieldsStatus: FieldStatus[]) => {
     }
   });
 
-  toUpdateStore && setFieldsEvent({ ...store, version: ++store.version });
+  toUpdateStore && setBoardFields({ ...store, version: ++store.version });
 };
 
 const allFieldsIterate = (messageFieldsStatus: FieldStatus[]) => {
@@ -82,7 +82,7 @@ const allFieldsIterate = (messageFieldsStatus: FieldStatus[]) => {
         };
       }
     });
-  setFieldsEvent({ ...store, version: ++store.version });
+  setBoardFields({ ...store, version: ++store.version });
 };
 
 export const MessageHandler = (message: BoardMessage) => {

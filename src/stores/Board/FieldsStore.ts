@@ -12,7 +12,7 @@ export const getInitFieldsFx = FieldsDomain.effect<void, IField[], Error>({
   handler: fetchInitFields,
 });
 
-export const setFieldsEvent = FieldsDomain.event<IFieldsStore>();
+export const setBoardFields = FieldsDomain.event<IFieldsStore>();
 
 export const fields$ = FieldsDomain.store<IFieldsStore>({
   fields: [],
@@ -23,7 +23,7 @@ export const fields$ = FieldsDomain.store<IFieldsStore>({
     version: 1,
   }))
   .on(getInitFieldsFx.fail, (err: any) => console.error("error", err))
-  .on(setFieldsEvent, (_, state: IFieldsStore) => state)
+  .on(setBoardFields, (_, state: IFieldsStore) => state)
   .reset(resetFields);
 
 // fields$.watch((v) => console.log("fieldsStoreWatch", v.fields[1]));
