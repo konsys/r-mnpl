@@ -1,10 +1,10 @@
 import { IPlayer, IUser } from "types/types";
 import React, { useEffect } from "react";
 import {
-  closePlayerAction,
   openPlayerAction,
   playerAction$,
-} from "stores/Board/playerAction$";
+  closePlayerAction,
+} from "stores/Board/PLayerActionStore";
 
 import { Avatar } from "../Avatar/Avatar";
 import { ICurrentAction } from "stores/Board/ActionStore";
@@ -20,9 +20,9 @@ interface Prop {
 }
 
 export const Players = ({ players, user, action }: Prop) => {
-  const actionStore = useStore(playerAction$);
+  const plAction = useStore(playerAction$);
 
-  const closePlayerAction = (event: any) => {
+  const closePlayerModal = (event: any) => {
     (!event.target && !event.target.id && closePlayerAction()) ||
       (event.target.id &&
         !(event.target.id.indexOf("player_card") > -1) &&
@@ -30,9 +30,9 @@ export const Players = ({ players, user, action }: Prop) => {
   };
 
   useEffect(() => {
-    document.addEventListener("click", closePlayerAction, false);
+    document.addEventListener("click", closePlayerModal, false);
     return () => {
-      document.removeEventListener("click", closePlayerAction, false);
+      document.removeEventListener("click", closePlayerModal, false);
     };
   }, []);
 
@@ -51,9 +51,8 @@ export const Players = ({ players, user, action }: Prop) => {
                 mnpl-team={player.team}
                 mnpl-action_player={actionUserId === player.userId ? 1 : 0}
                 mnpl-opened={
-                  actionStore.isVisible &&
-                  actionStore.toUserId === player.userId
-                    ? actionStore.position * 1
+                  plAction.isVisible && plAction.toUserId === player.userId
+                    ? plAction.position * 1
                     : 0
                 }
                 onClick={() => {
@@ -65,7 +64,7 @@ export const Players = ({ players, user, action }: Prop) => {
                     fromUserId: user1,
                     toUserId: user2,
                     position: 1,
-                    isVisible: !actionStore.isVisible,
+                    isVisible: !plAction.isVisible,
                     ignore: user1 !== user2,
                     ignoreOff: user1 !== user2,
                     profile: user1 !== user2,
@@ -87,7 +86,7 @@ export const Players = ({ players, user, action }: Prop) => {
                   avatar={player.avatar ? player.avatar : ""}
                   isVip={player.vip}
                 />
-                <PlayerActions {...actionStore} />
+                <PlayerActions {...plAction} />
               </div>
             ) : (
               ""
