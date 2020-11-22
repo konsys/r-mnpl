@@ -2,20 +2,18 @@ import { FieldsDomain } from "./FieldsStore";
 
 export const closeFieldAction = FieldsDomain.event();
 
-const waitForNumber = async (n: number): Promise<number> => {
+export const waitForNumber = async (n: number): Promise<number> => {
   const store = fieldAction$.getState();
-  if (n === store) {
-    return n;
-  }
 
-  if (store > 0) {
+  if (store > 0 && n !== store) {
     closeFieldAction();
 
     return new Promise((resolve) => {
       return setTimeout(() => resolve(n), 200);
     });
   }
-  return n;
+  console.log(234234234, n);
+  return Promise.resolve(n);
 };
 
 export const setFieldAction = FieldsDomain.event<number>();
