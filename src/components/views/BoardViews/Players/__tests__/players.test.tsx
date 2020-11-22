@@ -1,19 +1,18 @@
-import * as playerStore from "stores/Board/PlayersStore";
+import * as playerActionStore from "stores/Board/PLayerActionStore";
 
 import { testPlayer1, testPlayer2, testUser } from "testMocks/user";
 
 import { Avatar } from "../../Avatar/Avatar";
 import { Players } from "../Players";
 import React from "react";
-import { openPlayerAction } from "stores/Board/PlayersStore";
 import { shallow } from "enzyme";
 import { testDoNothingAction } from "testMocks/action";
 import { testPlayerAction } from "testMocks/player.action";
 import { fieldAction$, setFieldAction } from "stores/Board/FieldActionStore";
 
-describe("Room top five test", () => {
+describe("PLayers view test", () => {
   beforeEach(() => jest.clearAllMocks());
-  it("should render", () => {
+  it("should render1", () => {
     expect(
       shallow(
         <Players
@@ -28,14 +27,14 @@ describe("Room top five test", () => {
     ).toMatchSnapshot();
   });
 
-  it("should render all players", () => {
+  it("should render all players1", () => {
     expect(
       shallow(
         <Players players={[]} user={testUser} action={testDoNothingAction} />
       ).find(Avatar)
     ).toHaveLength(0);
   });
-  it("should render all players", () => {
+  it("should render all players2", () => {
     expect(
       shallow(
         <Players
@@ -47,14 +46,14 @@ describe("Room top five test", () => {
     ).toHaveLength(2);
   });
 
-  it("should render all players", () => {
+  it("should render all players3", () => {
     expect(
       shallow(
         <Players players={[]} user={testUser} action={testDoNothingAction} />
       ).find(Avatar)
     ).toHaveLength(0);
   });
-  it("should render all players", () => {
+  it("should render all players4", () => {
     expect(
       shallow(
         // @ts-ignore
@@ -62,7 +61,7 @@ describe("Room top five test", () => {
       ).find(".table-body-players-card")
     ).toHaveLength(0);
   });
-  it("should render all players", () => {
+  it("should render all players5", () => {
     expect(
       shallow(
         <Players
@@ -74,7 +73,7 @@ describe("Room top five test", () => {
     ).toHaveLength(1);
   });
 
-  it("should render monopoly action", () => {
+  it("should render monopoly action6", () => {
     expect(
       // @ts-ignore
       shallow(<Players players={[testPlayer1]} user={testUser} action={{}} />)
@@ -82,7 +81,7 @@ describe("Room top five test", () => {
         .get(0).props["mnpl-action_player"]
     ).toBe(0);
   });
-  it("should render all players", () => {
+  it("should render all players7", () => {
     expect(
       shallow(
         <Players
@@ -96,7 +95,7 @@ describe("Room top five test", () => {
         .get(0).props["mnpl-action_player"]
     ).toBe(0);
   });
-  it("should render monopoly action", () => {
+  it("should render monopoly action8", () => {
     expect(
       shallow(
         <Players
@@ -110,7 +109,7 @@ describe("Room top five test", () => {
         .get(0).props["mnpl-action_player"]
     ).toBe(0);
   });
-  it("should render monopoly action", () => {
+  it("should render monopoly action9", () => {
     expect(
       shallow(
         <Players
@@ -125,7 +124,7 @@ describe("Room top five test", () => {
     ).toBe(0);
   });
 
-  it("should render monopoly action", () => {
+  it("should render monopoly action10", () => {
     expect(
       shallow(
         <Players
@@ -140,7 +139,7 @@ describe("Room top five test", () => {
     ).toStrictEqual(0);
   });
 
-  it("should render monopoly action", () => {
+  it("should render monopoly action11", () => {
     expect(
       shallow(
         <Players
@@ -156,7 +155,7 @@ describe("Room top five test", () => {
     ).toBe(1);
   });
 
-  it("should render monopoly action", () => {
+  it("should render monopoly action12", () => {
     expect(
       shallow(
         <Players
@@ -174,7 +173,7 @@ describe("Room top five test", () => {
     ).toBe(1);
   });
 
-  it("should have all properties", () => {
+  it("should have all properties13", () => {
     const props = shallow(
       <Players
         players={[testPlayer1]}
@@ -189,7 +188,7 @@ describe("Room top five test", () => {
     expect(props["mnpl-team"]).toBe(testPlayer1.team);
   });
 
-  it("should have all properties", () => {
+  it("should have all properties14", () => {
     const props = shallow(
       <Players
         players={[testPlayer1]}
@@ -204,8 +203,8 @@ describe("Room top five test", () => {
     expect(props["mnpl-team"]).toBe(testPlayer1.team);
   });
 
-  it("should render monopoly opened", () => {
-    openPlayerAction({
+  it("should render monopoly opened15", () => {
+    playerActionStore.openPlayerAction({
       ...testPlayerAction,
       isVisible: true,
       toUserId: 2,
@@ -224,8 +223,8 @@ describe("Room top five test", () => {
         .get(0).props["mnpl-opened"]
     ).toBe(0);
   });
-  it("should render all players", () => {
-    openPlayerAction({
+  it("should render all players16", () => {
+    playerActionStore.openPlayerAction({
       ...testPlayerAction,
       isVisible: true,
       toUserId: 1,
@@ -244,8 +243,8 @@ describe("Room top five test", () => {
         .get(0).props["mnpl-opened"]
     ).toBe(1);
   });
-  it("should render all players", () => {
-    openPlayerAction({
+  it("should render all players17", () => {
+    playerActionStore.openPlayerAction({
       ...testPlayerAction,
       isVisible: false,
       toUserId: 1,
@@ -264,8 +263,8 @@ describe("Room top five test", () => {
         .get(0).props["mnpl-opened"]
     ).toBe(0);
   });
-  it("should render all players", () => {
-    openPlayerAction({
+  it("should render all players18", () => {
+    playerActionStore.openPlayerAction({
       ...testPlayerAction,
       isVisible: true,
       toUserId: 1,
@@ -285,7 +284,7 @@ describe("Room top five test", () => {
     ).toBe(1);
   });
 
-  it("should close field action", () => {
+  it("should close field action19", () => {
     setFieldAction(1);
     let res = fieldAction$.getState();
     expect(res).toBe(1);
@@ -303,8 +302,8 @@ describe("Room top five test", () => {
     expect(res).toBe(0);
   });
 
-  it("should call openPlayerAction", () => {
-    const testFunc = jest.spyOn(playerStore, "openPlayerAction");
+  it("should call openPlayerAction20", () => {
+    const testFunc = jest.spyOn(playerActionStore, "openPlayerAction");
     shallow(
       <Players
         players={[testPlayer1]}
@@ -335,7 +334,7 @@ describe("Room top five test", () => {
     });
   });
 
-  const testFunc = jest.spyOn(playerStore, "openPlayerAction");
+  const testFunc = jest.spyOn(playerActionStore, "openPlayerAction");
   shallow(
     <Players
       players={[testPlayer2]}
@@ -365,7 +364,7 @@ describe("Room top five test", () => {
     toUserId: 1,
   });
 
-  it("should render Avatar with props", () => {
+  it("should render Avatar with props21", () => {
     const props = shallow(
       <Players
         players={[

@@ -4,7 +4,7 @@ import {
   closePlayerActionEvent,
   openPlayerAction,
   playerActionStore,
-} from "stores/Board/PlayersStore";
+} from "stores/Board/PLayerActionStore";
 
 import { Avatar } from "../Avatar/Avatar";
 import { ICurrentAction } from "stores/Board/ActionStore";
