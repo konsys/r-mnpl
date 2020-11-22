@@ -17,9 +17,9 @@ export interface IPlayerAction {
   kick: boolean;
 }
 export const openPlayerAction = PlayersDomain.event<IPlayerAction>();
-export const closePlayerActionEvent = PlayersDomain.event();
+export const closePlayerAction = PlayersDomain.event();
 
-const init: IPlayerAction = {
+export const initPlayerAction: IPlayerAction = {
   fromUserId: 0,
   toUserId: 0,
   position: 1,
@@ -36,6 +36,8 @@ const init: IPlayerAction = {
   restart: false,
 };
 
-export const playerActionStore = PlayersDomain.store<IPlayerAction>(init)
+export const playerAction$ = PlayersDomain.store<IPlayerAction>(
+  initPlayerAction
+)
   .on(openPlayerAction, (_, data) => data)
-  .reset(closePlayerActionEvent);
+  .reset(closePlayerAction);

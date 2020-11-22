@@ -1,10 +1,10 @@
 import { IPlayer, IUser } from "types/types";
 import React, { useEffect } from "react";
 import {
-  closePlayerActionEvent,
+  closePlayerAction,
   openPlayerAction,
-  playerActionStore,
-} from "stores/Board/PLayerActionStore";
+  playerAction$,
+} from "stores/Board/playerAction$";
 
 import { Avatar } from "../Avatar/Avatar";
 import { ICurrentAction } from "stores/Board/ActionStore";
@@ -20,13 +20,13 @@ interface Prop {
 }
 
 export const Players = ({ players, user, action }: Prop) => {
-  const actionStore = useStore(playerActionStore);
+  const actionStore = useStore(playerAction$);
 
   const closePlayerAction = (event: any) => {
-    (!event.target && !event.target.id && closePlayerActionEvent()) ||
+    (!event.target && !event.target.id && closePlayerAction()) ||
       (event.target.id &&
         !(event.target.id.indexOf("player_card") > -1) &&
-        closePlayerActionEvent());
+        closePlayerAction());
   };
 
   useEffect(() => {

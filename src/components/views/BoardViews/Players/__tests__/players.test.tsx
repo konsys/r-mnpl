@@ -1,4 +1,4 @@
-import * as playerActionStore from "stores/Board/PLayerActionStore";
+import * as playerAction$ from "stores/Board/playerAction$";
 
 import { testPlayer1, testPlayer2, testUser } from "testMocks/user";
 
@@ -204,7 +204,7 @@ describe("PLayers view test", () => {
   });
 
   it("should render monopoly opened15", () => {
-    playerActionStore.openPlayerAction({
+    playerAction$.openPlayerAction({
       ...testPlayerAction,
       isVisible: true,
       toUserId: 2,
@@ -224,7 +224,7 @@ describe("PLayers view test", () => {
     ).toBe(0);
   });
   it("should render all players16", () => {
-    playerActionStore.openPlayerAction({
+    playerAction$.openPlayerAction({
       ...testPlayerAction,
       isVisible: true,
       toUserId: 1,
@@ -244,7 +244,7 @@ describe("PLayers view test", () => {
     ).toBe(1);
   });
   it("should render all players17", () => {
-    playerActionStore.openPlayerAction({
+    playerAction$.openPlayerAction({
       ...testPlayerAction,
       isVisible: false,
       toUserId: 1,
@@ -264,7 +264,7 @@ describe("PLayers view test", () => {
     ).toBe(0);
   });
   it("should render all players18", () => {
-    playerActionStore.openPlayerAction({
+    playerAction$.openPlayerAction({
       ...testPlayerAction,
       isVisible: true,
       toUserId: 1,
@@ -303,7 +303,7 @@ describe("PLayers view test", () => {
   });
 
   it("should call openPlayerAction20", () => {
-    const testFunc = jest.spyOn(playerActionStore, "openPlayerAction");
+    const testFunc = jest.spyOn(playerAction$, "openPlayerAction");
     shallow(
       <Players
         players={[testPlayer1]}
@@ -334,7 +334,7 @@ describe("PLayers view test", () => {
     });
   });
 
-  const testFunc = jest.spyOn(playerActionStore, "openPlayerAction");
+  const testFunc = jest.spyOn(playerAction$, "openPlayerAction");
   shallow(
     <Players
       players={[testPlayer2]}

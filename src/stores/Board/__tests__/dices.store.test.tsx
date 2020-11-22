@@ -1,7 +1,7 @@
 import { IncomeMessageType } from "types/types";
 import { showDices, dices$, hideDices, initDices } from "../DicesStore";
 
-describe("Contract store test", () => {
+describe("Dices store test", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     jest.clearAllTimers();
