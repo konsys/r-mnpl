@@ -1,4 +1,4 @@
-import { IPlayerAction } from "stores/Board/PlayersStore";
+import { IPlayerAction } from "stores/Board/PLayerActionStore";
 import React from "react";
 import { openContractModal } from "stores/Board/ContractStore";
 import { surrenderRoom } from "stores/Game/Board/BoardModel";

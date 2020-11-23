@@ -1,4 +1,4 @@
-import { IPlayerAction } from "stores/Board/PlayersStore";
+import { IPlayerAction } from "stores/Board/PLayerActionStore";
 
 export const testPlayerAction: IPlayerAction = {
   fromUserId: 1,

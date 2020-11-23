@@ -262,6 +262,7 @@ export interface TokenMoveStore {
   version: number;
   tokens: TokenMove[];
 }
+
 export enum FieldType {
   CHANCE = "chance",
   COMPANY = "company",

@@ -21,10 +21,16 @@ export const InitBoardPlayersGate = createGate<{
   user: string;
 }>("InitBoardPlayersGate");
 
-export interface Iplayers {
+export interface IPlayers {
   version: number;
   players: IPlayer[];
 }
+
+export const initPlayers: IPlayers = {
+  players: [],
+  version: 0,
+};
+export const setPlayersEvent = PlayersDomain.event<IPlayers>();
 export const resetPlayersEvent = PlayersDomain.event();
 export const getInitPlayersFx = PlayersDomain.effect<
   {
@@ -36,26 +42,19 @@ export const getInitPlayersFx = PlayersDomain.effect<
 >({
   handler: initUsersFetch,
 });
-export const setPlayersEvent = PlayersDomain.event<Iplayers>();
 
-export const players$ = PlayersDomain.store<Iplayers>({
-  players: [],
-  version: 0,
-})
+export const players$ = PlayersDomain.store<IPlayers>(initPlayers)
   .on(getInitPlayersFx.done, (_, data) => {
     // Init token position
     const fields = fieldPositions();
     const players = data.result.map((player) => {
-      updateToken(
-        {
-          jailed: player.jailed,
-          left: fields[player.meanPosition].left,
-          top: fields[player.meanPosition].top,
-          meanPosition: player.meanPosition,
-          userId: player.userId,
-        },
-        "getPlayersEffect.done"
-      );
+      updateToken({
+        jailed: player.jailed,
+        left: fields[player.meanPosition].left,
+        top: fields[player.meanPosition].top,
+        meanPosition: player.meanPosition,
+        userId: player.userId,
+      });
       return player;
     });
     return {
@@ -67,17 +66,25 @@ export const players$ = PlayersDomain.store<Iplayers>({
   .on(setPlayersEvent, (_, state) => state)
   .reset(resetPlayersEvent);
 
-export const playersPositionChange = sample({
-  source: players$,
+sample({
+  source: combine({
+    tokens: tokens$.map((v) => v),
+  }),
   clock: setPlayersEvent,
+  fn: ({ tokens }) => {
+    tokens.tokens.map((token: any) => {
+      const player = getPlayer(token.userId);
+      return player && token && moveTokenAfterPlayerUpdate(token, player);
+    });
+  },
 });
 
-playersPositionChange.watch((v) => {
-  tokens$.getState().tokens.map((token: any) => {
-    const player = getPlayer(token.userId);
-    return player && token && moveTokenAfterPlayerUpdate(token, player);
-  });
-});
+// playersPositionChange.watch((v) => {
+//   tokens$.getState().tokens.map((token: any) => {
+//     const player = getPlayer(token.userId);
+//     return player && token && moveTokenAfterPlayerUpdate(token, player);
+//   });
+// });
 
 sample({
   clock: merge([InitBoardPlayersGate.open]),
