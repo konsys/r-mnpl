@@ -7,8 +7,11 @@ import {
 } from "../PlayersStore";
 
 import * as tokens from "../TokensStore";
+import { testToken } from "testMocks/tokens";
+import { testPlayer1, testPlayer2 } from "testMocks/user";
 
-jest.describe("Name of the group", () => {
+describe("Name of the group", () => {
+  beforeEach(() => jest.clearAllMocks());
   it("should have init value", () => {
     expect(players$.getState()).toStrictEqual(initPlayers);
   });
@@ -42,7 +45,29 @@ jest.describe("Name of the group", () => {
   });
 
   it("should move tokens after set players", async () => {
-    // @ts-ignore
-    setPlayersEvent(4234234234);
+    const testMock = jest.spyOn(tokens, "moveTokenAfterPlayerUpdate");
+    tokens.setTokensEvent({
+      version: 1,
+      tokens: [
+        { ...testToken, userId: 1 },
+        { ...testToken, userId: 2 },
+      ],
+    });
+
+    const players = [
+      {
+        ...testPlayer1,
+        userId: 1,
+      },
+      {
+        ...testPlayer2,
+        userId: 2,
+      },
+    ];
+    setPlayersEvent({
+      version: 1,
+      players,
+    });
+    expect(testMock).toBeCalledTimes(players.length);
   });
 });
