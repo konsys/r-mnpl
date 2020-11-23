@@ -11,9 +11,7 @@ import { boardGame$ } from "stores/Game/Board/BoardModel";
 import { createGate } from "effector-react";
 import { fieldPositions } from "../../utils/fields.utils";
 import { getInitFieldsFx } from "./FieldsStore";
-import { getPlayer } from "../../utils/players.utils";
 import { initUsersFetch } from "../../api/Users/api";
-import { user$ } from "stores/Game/User/UserModel";
 import { get } from "lodash";
 
 export const PlayersDomain = BoardDomain.domain("PlayersDomain");
@@ -79,6 +77,7 @@ sample({
       const player =
         Array.isArray(playersAr) &&
         playersAr.find((v) => v.userId === token.userId);
+
       return player && token && moveTokenAfterPlayerUpdate(token, player);
     });
   },

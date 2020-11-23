@@ -9,9 +9,21 @@ import {
 import * as tokens from "../TokensStore";
 import { testToken } from "testMocks/tokens";
 import { testPlayer1, testPlayer2 } from "testMocks/user";
+import * as http from "http/client";
 
+jest.mock("http/client", () => ({
+  ...jest.requireActual("http/client"),
+
+  client: {
+    get: jest.fn().mockImplementation(() => ({ data: [{ fieldId: 3246435 }] })),
+  },
+}));
 describe("Name of the group", () => {
   beforeEach(() => jest.clearAllMocks());
+  // afterEach(()=> {
+  //   // @ts-ignore
+  //   tokens.setTokensEvent({})
+  // }
   it("should have init value", () => {
     expect(players$.getState()).toStrictEqual(initPlayers);
   });
@@ -44,6 +56,35 @@ describe("Name of the group", () => {
     expect(players$.getState()).toStrictEqual(initPlayers);
   });
 
+  it("should not move tokens after set players if no tokens", async () => {
+    // @ts-ignore
+    tokens.setTokensEvent(null);
+    const testMock1 = jest.spyOn(tokens, "moveTokenAfterPlayerUpdate");
+
+    setPlayersEvent({
+      version: 1,
+      players: [testPlayer1],
+    });
+    expect(testMock1).not.toBeCalled();
+  });
+
+  it("should not move tokens after set players if no players", async () => {
+    const testMock = jest.spyOn(tokens, "moveTokenAfterPlayerUpdate");
+    tokens.setTokensEvent({
+      version: 1,
+      tokens: [
+        { ...testToken, userId: 1 },
+        { ...testToken, userId: 2 },
+        { ...testToken, userId: 3 },
+      ],
+    });
+    setPlayersEvent({
+      version: 1,
+      players: [],
+    });
+    expect(testMock).not.toBeCalled();
+  });
+
   it("should move tokens after set players", async () => {
     const testMock = jest.spyOn(tokens, "moveTokenAfterPlayerUpdate");
     tokens.setTokensEvent({
@@ -51,6 +92,7 @@ describe("Name of the group", () => {
       tokens: [
         { ...testToken, userId: 1 },
         { ...testToken, userId: 2 },
+        { ...testToken, userId: 3 },
       ],
     });
 
@@ -63,11 +105,48 @@ describe("Name of the group", () => {
         ...testPlayer2,
         userId: 2,
       },
+      {
+        ...testPlayer2,
+        userId: 3,
+      },
     ];
     setPlayersEvent({
       version: 1,
       players,
     });
     expect(testMock).toBeCalledTimes(players.length);
+    expect(testMock).toHaveBeenNthCalledWith(
+      1,
+      { ...testToken, userId: 1 },
+      {
+        ...testPlayer1,
+        userId: 1,
+      }
+    );
+    expect(testMock).toHaveBeenNthCalledWith(
+      2,
+      { ...testToken, userId: 2 },
+      {
+        ...testPlayer2,
+        userId: 2,
+      }
+    );
+    expect(testMock).toHaveBeenNthCalledWith(
+      3,
+      { ...testToken, userId: 3 },
+      {
+        ...testPlayer2,
+        userId: 3,
+      }
+    );
+  });
+
+  it("should set init players and tokens", async () => {
+    // const testMock = jest.spyOn(tokens, "moveTokenAfterPlayerUpdate");
+    getInitPlayersFx({ ids: [1, 2], gameId: "testGameId" });
+
+    // expect(http.client.get).toHaveBeenCalledTimes(1);
+    //
+    expect(http.client.get).toHaveBeenCalledWith("/users/init", null);
   });
 });
