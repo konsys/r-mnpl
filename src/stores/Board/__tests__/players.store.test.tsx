@@ -12,18 +12,17 @@ import { testPlayer1, testPlayer2 } from "testMocks/user";
 import * as http from "http/client";
 
 jest.mock("http/client", () => ({
-  ...jest.requireActual("http/client"),
+  // ...jest.requireActual("http/client"),
 
   client: {
-    get: jest.fn().mockImplementation(() => ({ data: [{ fieldId: 3246435 }] })),
+    get: jest.fn().mockImplementation(() => ({
+      data: [{ userId: 3246435, meanPosition: 0, jailed: 0 }],
+    })),
   },
 }));
 describe("Name of the group", () => {
-  beforeEach(() => jest.clearAllMocks());
-  // afterEach(()=> {
-  //   // @ts-ignore
-  //   tokens.setTokensEvent({})
-  // }
+  afterEach(() => jest.clearAllMocks());
+
   it("should have init value", () => {
     expect(players$.getState()).toStrictEqual(initPlayers);
   });
@@ -141,12 +140,16 @@ describe("Name of the group", () => {
     );
   });
 
-  it("should set init players and tokens", async () => {
-    // const testMock = jest.spyOn(tokens, "moveTokenAfterPlayerUpdate");
-    getInitPlayersFx({ ids: [1, 2], gameId: "testGameId" });
+  it("should init players", async () => {
+    await getInitPlayersFx({ ids: [1, 2], gameId: "testGameId" });
 
-    // expect(http.client.get).toHaveBeenCalledTimes(1);
-    //
-    expect(http.client.get).toHaveBeenCalledWith("/users/init", null);
+    expect(http.client.get).toHaveBeenCalledTimes(1);
+    expect(http.client.get).toHaveBeenCalledWith("/users/init", {
+      params: { gameId: "testGameId", ids: [1, 2] },
+    });
+    expect(players$.getState()).toStrictEqual({
+      version: 1,
+      players: [{ jailed: 0, meanPosition: 0, userId: 3246435 }],
+    });
   });
 });

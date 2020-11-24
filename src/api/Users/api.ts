@@ -10,11 +10,8 @@ export const initUsersFetch = async ({
 }: {
   ids: number[];
   gameId: string;
-}): Promise<IPlayer[]> => {
-  console.log(111111111111, ids);
-  return await (await client.get(initUsersUrl, { params: { ids, gameId } }))
-    .data;
-};
+}): Promise<IPlayer[]> =>
+  await (await client.get(initUsersUrl, { params: { ids, gameId } })).data;
 
 export const usersFetch = async (ids: number[]): Promise<IPlayer[]> => {
   return await (await client.get(usersUrl, { params: { ids } })).data;

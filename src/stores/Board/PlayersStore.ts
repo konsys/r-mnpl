@@ -6,12 +6,12 @@ import {
 } from "./TokensStore";
 
 import { BoardDomain } from "./BoardDomain";
-import { IPlayer, IToken } from "../../types/types";
+import { IPlayer, IToken } from "types/types";
 import { boardGame$ } from "stores/Game/Board/BoardModel";
 import { createGate } from "effector-react";
-import { fieldPositions } from "../../utils/fields.utils";
+import { fieldPositions } from "utils/fields.utils";
 import { getInitFieldsFx } from "./FieldsStore";
-import { initUsersFetch } from "../../api/Users/api";
+import { initUsersFetch } from "api/Users/api";
 import { get } from "lodash";
 
 export const PlayersDomain = BoardDomain.domain("PlayersDomain");
@@ -44,10 +44,10 @@ export const getInitPlayersFx = PlayersDomain.effect<
 });
 
 export const players$ = PlayersDomain.store<IPlayers>(initPlayers)
-  .on(getInitPlayersFx.done, (_, data) => {
+  .on(getInitPlayersFx.done, (_, { result }) => {
     // Init token position
     const fields = fieldPositions();
-    const players = data.result.map((player) => {
+    const players = result.map((player) => {
       updateToken({
         jailed: player.jailed,
         left: fields[player.meanPosition].left,
