@@ -12,8 +12,6 @@ import { testPlayer1, testPlayer2 } from "testMocks/user";
 import * as http from "http/client";
 
 jest.mock("http/client", () => ({
-  // ...jest.requireActual("http/client"),
-
   client: {
     get: jest.fn().mockImplementation(() => ({
       data: [{ userId: 3246435, meanPosition: 0, jailed: 0 }],

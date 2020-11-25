@@ -12,7 +12,7 @@ import { useGate, useStore } from "effector-react";
 import { Arbitr } from "../../../views/BoardViews/Arbitr/Arbitr";
 import { BoardDomain } from "stores/Board/BoardDomain";
 import { BoardModal } from "../../../views/BoardViews/BoardModal/BoardModal";
-import { BoardSocketGate } from "stores/Board/SocketConnetcModel";
+import { BoardSocketGate } from "stores/Board/BoardSocketConnect";
 import { BoardView } from "components/views/BoardViews/Board/BoardView";
 import { Chat } from "../../../views/BoardViews/Chat/Chat";
 import { Contract } from "../../../views/BoardViews/Contract/Contract";
@@ -101,7 +101,7 @@ export const BoardWrapper = ({ board }: { board: IRoomState }) => {
   const playerIds = board ? board.players.map((v) => (v ? v.userId : -1)) : [];
 
   useGate(InitBoardPlayersGate, { userIds: playerIds, user: "me" });
-  useGate(BoardSocketGate, "");
+  useGate(BoardSocketGate);
 
   useEffect(() => {
     return () => {
