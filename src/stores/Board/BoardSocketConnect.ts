@@ -5,25 +5,20 @@ import { createGate } from "effector-react";
 import { errorHandler } from "handlers/ErrorHandler";
 import socket from "socket.io-client";
 import { sample } from "effector";
-
-export let boardSocket: SocketIOClient.Socket;
+import { SOCKET_PARAMS } from "params/socketParams";
 
 export const BoardSocketDomain = BoardDomain.domain("PlayersDomain");
 
 export const BoardSocketGate = createGate<void>();
 
-const connectBoardSocket = () => {
-  boardSocket = socket("http://localhost:8000/board");
-  boardSocket.on(SocketActions.BOARD_MESSAGE, MessageHandler);
-  boardSocket.on(SocketActions.ERROR_MESSAGE, errorHandler);
+const openSocket = () => {
+  socket(SOCKET_PARAMS.BOARD_SOCKET)
+    .on(SocketActions.BOARD_MESSAGE, MessageHandler)
+    .on(SocketActions.ERROR_MESSAGE, errorHandler);
 };
-
-export const connectBoardSocketFx = BoardSocketDomain.effect<void, any>({
-  handler: connectBoardSocket,
-});
 
 sample({
   clock: BoardSocketGate.open,
   source: BoardSocketGate.state,
-  target: connectBoardSocketFx,
+  fn: () => openSocket(),
 });
