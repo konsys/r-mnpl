@@ -11,7 +11,7 @@ export const BoardSocketDomain = BoardDomain.domain("PlayersDomain");
 
 export const BoardSocketGate = createGate<void>();
 
-const openSocket = () => {
+export const openSocket = () => {
   socket(SOCKET_PARAMS.BOARD_SOCKET)
     .on(SocketActions.BOARD_MESSAGE, MessageHandler)
     .on(SocketActions.ERROR_MESSAGE, errorHandler);
@@ -20,5 +20,7 @@ const openSocket = () => {
 sample({
   clock: BoardSocketGate.open,
   source: BoardSocketGate.state,
-  fn: () => openSocket(),
+  fn: () => {
+    openSocket();
+  },
 });
