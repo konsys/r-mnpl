@@ -56,7 +56,7 @@ describe("Name of the group", () => {
   it("should not move tokens after set players if no tokens", async () => {
     // @ts-ignore
     tokens.setTokensEvent(null);
-    const testMock1 = jest.spyOn(tokens, "moveTokenAfterPlayerUpdate");
+    const testMock1 = jest.spyOn(tokens, "tokenTransition");
 
     setPlayersEvent({
       version: 1,
@@ -66,7 +66,7 @@ describe("Name of the group", () => {
   });
 
   it("should not move tokens after set players if no players", async () => {
-    const testMock = jest.spyOn(tokens, "moveTokenAfterPlayerUpdate");
+    const testMock = jest.spyOn(tokens, "tokenTransition");
     tokens.setTokensEvent({
       version: 1,
       tokens: [
@@ -83,7 +83,7 @@ describe("Name of the group", () => {
   });
 
   it("should move tokens after set players", async () => {
-    const testMock = jest.spyOn(tokens, "moveTokenAfterPlayerUpdate");
+    const testMock = jest.spyOn(tokens, "tokenTransition");
     tokens.setTokensEvent({
       version: 1,
       tokens: [

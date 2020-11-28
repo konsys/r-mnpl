@@ -1,9 +1,5 @@
 import { combine, merge, sample } from "effector";
-import {
-  moveTokenAfterPlayerUpdate,
-  tokens$,
-  updateToken,
-} from "./TokensStore";
+import { tokens$, tokenTransition, updateToken } from "./TokensStore";
 
 import { BoardDomain } from "./BoardDomain";
 import { IPlayer, IToken } from "types/types";
@@ -78,7 +74,7 @@ sample({
         Array.isArray(playersAr) &&
         playersAr.find((v) => v.userId === token.userId);
 
-      return player && token && moveTokenAfterPlayerUpdate(token, player);
+      return player && token && tokenTransition(token, player);
     });
   },
 });

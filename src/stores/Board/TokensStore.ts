@@ -14,7 +14,7 @@ export const resetTokens = TokenDomain.event();
 
 const fields = fieldPositions();
 
-const tokenTransition = (token: IToken, player: IPlayer) => {
+export const tokenTransition = (token: IToken, player: IPlayer) => {
   let stopPosition = player.meanPosition ? player.meanPosition : 0;
   const usedFields = createTurnsArray(token.meanPosition, stopPosition);
 
@@ -54,10 +54,6 @@ const tokenTransition = (token: IToken, player: IPlayer) => {
       player.jailed ? 0 : LINE_TRANSITION_TIMEOUT
     );
   }
-};
-
-export const moveTokenAfterPlayerUpdate = (token: IToken, player: IPlayer) => {
-  tokenTransition(token, player);
 };
 
 const TokensDomain = BoardDomain.domain("PlayersDomain");

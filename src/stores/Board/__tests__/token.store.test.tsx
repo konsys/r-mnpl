@@ -1,12 +1,8 @@
 import { testToken } from "testMocks/tokens";
+import { testPlayer1 } from "testMocks/user";
+import { LINE_TRANSITION_TIMEOUT } from "utils/boardParams";
 import { fieldPositions } from "utils/fields.utils";
-import {
-  tokens$,
-  setTokensEvent,
-  resetTokens,
-  updateAllTokens,
-  updateToken,
-} from "../TokensStore";
+import * as token from "../TokensStore";
 
 describe("Token store test", () => {
   it("should ", () => {
@@ -57,27 +53,30 @@ describe("Token store test", () => {
 
   it("should set tokens store", async () => {
     // @ts-ignore
-    setTokensEvent({ test: "rgwrf34r989reg09whfwfewfe" });
-    expect(tokens$.getState()).toStrictEqual({
+    token.setTokensEvent({ test: "rgwrf34r989reg09whfwfewfe" });
+    expect(token.tokens$.getState()).toStrictEqual({
       test: "rgwrf34r989reg09whfwfewfe",
     });
   });
 
   it("should reset tokens store", async () => {
     // @ts-ignore
-    setTokensEvent({ test: "rgwrf34r989reg09whfwfewfe" });
-    expect(tokens$.getState()).toStrictEqual({
+    token.setTokensEvent({ test: "rgwrf34r989reg09whfwfewfe" });
+    expect(token.tokens$.getState()).toStrictEqual({
       test: "rgwrf34r989reg09whfwfewfe",
     });
-    resetTokens();
-    expect(tokens$.getState()).toStrictEqual({ tokens: [], version: 0 });
+    token.resetTokens();
+    expect(token.tokens$.getState()).toStrictEqual({ tokens: [], version: 0 });
   });
 
   it("should update all tokens", () => {
     //
-    setTokensEvent({ version: 342, tokens: [{ ...testToken, userId: 43 }] });
-    updateAllTokens([{ ...testToken, userId: 463 }]);
-    expect(tokens$.getState()).toStrictEqual({
+    token.setTokensEvent({
+      version: 342,
+      tokens: [{ ...testToken, userId: 43 }],
+    });
+    token.updateAllTokens([{ ...testToken, userId: 463 }]);
+    expect(token.tokens$.getState()).toStrictEqual({
       version: 343,
       tokens: [{ ...testToken, userId: 463 }],
     });
@@ -85,14 +84,84 @@ describe("Token store test", () => {
 
   it("should update one token", () => {
     //
-    setTokensEvent({ version: 465, tokens: [{ ...testToken, userId: 43 }] });
-    updateToken({ ...testToken, userId: 245 });
-    expect(tokens$.getState()).toStrictEqual({
+    token.setTokensEvent({
+      version: 465,
+      tokens: [{ ...testToken, userId: 43 }],
+    });
+    token.updateToken({ ...testToken, userId: 245 });
+    expect(token.tokens$.getState()).toStrictEqual({
       version: 466,
       tokens: [
         { ...testToken, userId: 43 },
         { ...testToken, userId: 245 },
       ],
     });
+  });
+
+  it("should update one token", () => {
+    //
+    token.setTokensEvent({
+      version: 434,
+      tokens: [{ ...testToken, userId: 43 }],
+    });
+    token.updateToken({ ...testToken, userId: 43 });
+    expect(token.tokens$.getState()).toStrictEqual({
+      version: 435,
+      tokens: [{ ...testToken, userId: 43 }],
+    });
+  });
+
+  it("should run token transition one line", () => {
+    jest.useFakeTimers();
+
+    token.tokenTransition(
+      { ...testToken, meanPosition: 0 },
+      { ...testPlayer1, meanPosition: 10 }
+    );
+    expect(setTimeout).toHaveBeenCalledTimes(1);
+    expect(setTimeout).toHaveBeenLastCalledWith(
+      expect.any(Function),
+      LINE_TRANSITION_TIMEOUT
+    );
+  });
+
+  it("should run token transition two line", () => {
+    jest.useFakeTimers();
+
+    token.tokenTransition(
+      { ...testToken, meanPosition: 0 },
+      { ...testPlayer1, meanPosition: 20 }
+    );
+    expect(setTimeout).toHaveBeenCalledTimes(2);
+    expect(setTimeout).toHaveBeenLastCalledWith(
+      expect.any(Function),
+      LINE_TRANSITION_TIMEOUT * 2
+    );
+  });
+  it("should run token transition three line", () => {
+    jest.useFakeTimers();
+
+    token.tokenTransition(
+      { ...testToken, meanPosition: 0 },
+      { ...testPlayer1, meanPosition: 30 }
+    );
+    expect(setTimeout).toHaveBeenCalledTimes(3);
+    expect(setTimeout).toHaveBeenLastCalledWith(
+      expect.any(Function),
+      LINE_TRANSITION_TIMEOUT * 3
+    );
+  });
+  it("should run token transition three line", () => {
+    jest.useFakeTimers();
+
+    token.tokenTransition(
+      { ...testToken, meanPosition: 0 },
+      { ...testPlayer1, meanPosition: 39 }
+    );
+    expect(setTimeout).toHaveBeenCalledTimes(4);
+    expect(setTimeout).toHaveBeenLastCalledWith(
+      expect.any(Function),
+      LINE_TRANSITION_TIMEOUT * 4
+    );
   });
 });
