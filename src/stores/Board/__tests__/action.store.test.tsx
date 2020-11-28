@@ -87,7 +87,7 @@ describe("Test action store", () => {
   it("should call gameActionFx on sendBoardAction", () => {
     setRooms({ playersInRooms: 1, rooms: [testPlayingRoom] });
     sendBoardAction(testBoardActionRequest);
-    const data = { action: "rollDicesClicked", gameId: "testRoomId" };
+    const data = { action: "rollDicesClicked", gameId: testPlayingRoom.roomId };
     expect(http.client.post).toHaveBeenCalledTimes(1);
     expect(http.client.post).toHaveBeenCalledWith("/board/action", {
       data,

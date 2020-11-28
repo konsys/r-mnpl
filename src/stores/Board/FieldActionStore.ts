@@ -12,7 +12,6 @@ export const waitForNumber = async (n: number): Promise<number> => {
       return setTimeout(() => resolve(n), 200);
     });
   }
-  console.log(234234234, n);
   return Promise.resolve(n);
 };
 

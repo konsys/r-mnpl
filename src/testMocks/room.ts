@@ -9,7 +9,7 @@ import {
 import { testPlayer1, testPlayer2 } from "./user";
 
 export const testPlayingRoom: IRoomState = {
-  roomId: "testRoomId",
+  roomId: "testRoomIdtestPlayingRoom",
   creatorId: 1,
   winnerId: null,
   players: [
@@ -27,7 +27,7 @@ export const testPlayingRoom: IRoomState = {
 };
 
 export const test4Room: IRoomState = {
-  roomId: "testRoomId",
+  roomId: "testRoomIdtest4Room",
   creatorId: 1,
   winnerId: null,
   players: [
@@ -45,7 +45,7 @@ export const test4Room: IRoomState = {
 };
 
 export const testPendingRoom1: IRoomState = {
-  roomId: "testRoomId",
+  roomId: "testRoomIdtestPendingRoom1",
   creatorId: 1,
   winnerId: null,
   players: [
@@ -63,7 +63,7 @@ export const testPendingRoom1: IRoomState = {
 };
 
 export const testPendingRoom2: IRoomState = {
-  roomId: "testRoomId",
+  roomId: "testRoomIdtestPendingRoom2",
   creatorId: 2,
   winnerId: null,
   players: [

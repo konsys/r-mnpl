@@ -20,6 +20,7 @@ export const getRoomFx = GameDomain.effect<string, IRoomState, Error>({
   handler: fetchRoom,
 });
 
+export const resetBoardGame = GameDomain.event();
 export const boardGame$ = GameDomain.store<IRoomState | null>(null)
   .on(getRoomFx.done, (_, { result }) => result)
   .on(rooms$.updates, (_, { rooms }) => {
@@ -27,7 +28,8 @@ export const boardGame$ = GameDomain.store<IRoomState | null>(null)
       rooms.filter((v) => v.roomStatus === RoomStatus.PLAYING)
     );
     return updatedRoom || null;
-  });
+  })
+  .reset(resetBoardGame);
 
 export const boardCompleted$ = GameDomain.store<IRoomState | null>(null);
 export const BoardDomain = GameDomain.domain("BoardDomain");
