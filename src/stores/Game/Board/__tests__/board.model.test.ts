@@ -22,7 +22,10 @@ jest.mock("http/client", () => ({
 }));
 
 describe("Name of the group", () => {
-  beforeEach(() => jest.clearAllMocks());
+  beforeEach(() => {
+    jest.clearAllMocks();
+    board.resetBoardGame();
+  });
   it("should get room", async () => {
     await board.getRoomFx("testRoomIdp423tjo3rkf=w0kjg-34ju");
 
@@ -78,8 +81,6 @@ describe("Name of the group", () => {
   });
 
   it("should surrender player", async () => {
-    board.resetBoardGame();
-
     setRooms({
       ...testRoomsResponce,
       rooms: [
