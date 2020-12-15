@@ -4,7 +4,7 @@ import { IUser } from "types/types";
 import React from "react";
 import Reply from "@material-ui/icons/Reply";
 import StarOutlined from "@material-ui/icons/StarOutlined";
-import { addReplyToEvent } from "stores/Game/Chat/GameChatModel";
+import { addReplyToChatMessage } from "stores/Game/Chat/GameChatModel";
 import moment from "moment";
 import { theme } from "theme";
 import { useStore } from "effector-react";
@@ -37,7 +37,7 @@ export default function ChatMessage(props: IChatMessageProps) {
           <Typography variant="body2">
             <Reply
               onClick={() => {
-                addReplyToEvent(props.fromUser);
+                addReplyToChatMessage(props.fromUser);
               }}
               style={{ width: "15px", height: "15px", cursor: "pointer" }}
             />

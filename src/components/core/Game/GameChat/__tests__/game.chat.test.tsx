@@ -2,7 +2,7 @@ import * as chat from "stores/Game/Chat/GameChatModel";
 
 import { Input, Switch } from "@material-ui/core";
 import {
-  addReplyToEvent,
+  addReplyToChatMessage,
   setChatMessages,
 } from "stores/Game/Chat/GameChatModel";
 import { testUser, testVipUser } from "testMocks/user";
@@ -80,8 +80,8 @@ describe("Game chat test", () => {
   });
 
   it("should change input value", async () => {
-    addReplyToEvent(testUser);
-    addReplyToEvent(testVipUser);
+    addReplyToChatMessage(testUser);
+    addReplyToChatMessage(testVipUser);
     const input = shallow(<GameChat />);
     input.find(Input).simulate("change", { target: { value: "testValue" } });
     expect(input.find(Input).get(0).props.value).toStrictEqual("testValue");

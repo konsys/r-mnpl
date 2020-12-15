@@ -12,7 +12,7 @@ import { shallow } from "enzyme";
 import { theme } from "theme";
 
 jest.mock("stores/Game/Chat/GameChatModel", () => ({
-  addReplyToEvent: jest.fn(),
+  addReplyToChatMessage: jest.fn(),
 }));
 
 describe("Chat message test", () => {
@@ -41,7 +41,7 @@ describe("Chat message test", () => {
       .find(Reply)
       .get(0)
       .props.onClick.call(null);
-    expect(chat.addReplyToEvent).toHaveBeenCalledTimes(1);
+    expect(chat.addReplyToChatMessage).toHaveBeenCalledTimes(1);
   });
 
   it("should show message time", () => {

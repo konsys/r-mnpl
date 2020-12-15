@@ -3,7 +3,7 @@ import { IChatMessageRequest } from "stores/Game/Chat/GameChatModel";
 import { client } from "http/client";
 
 const url = `/chat`;
-export const fetchChat = async ({
+export const postChat = async ({
   message,
   replies,
 }: IChatMessageRequest): Promise<IChatMessage[]> => {

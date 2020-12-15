@@ -1,4 +1,7 @@
-import { deleteReplyToEvent, repliesTo$ } from "stores/Game/Chat/GameChatModel";
+import {
+  deleteReplyToChatMessage,
+  repliesToChatMessage$,
+} from "stores/Game/Chat/GameChatModel";
 
 import { InputAdornment } from "@material-ui/core";
 import PlayerChip from "./PlayerChip";
@@ -6,7 +9,7 @@ import React from "react";
 import { useStore } from "effector-react";
 
 export default function ChatInputAdornment() {
-  const replyTo = useStore(repliesTo$);
+  const replyTo = useStore(repliesToChatMessage$);
   return (
     <div>
       <InputAdornment position="start" variant="outlined">
@@ -16,7 +19,7 @@ export default function ChatInputAdornment() {
               <div style={{ marginRight: "5px" }} key={k}>
                 <PlayerChip
                   key={k}
-                  handleDelete={() => deleteReplyToEvent(v)}
+                  handleDelete={() => deleteReplyToChatMessage(v)}
                   name={v.name}
                 />
               </div>

@@ -3,7 +3,7 @@ import * as chat from "stores/Game/Chat/GameChatModel";
 import { Chip } from "@material-ui/core";
 import PlayerChip from "../PlayerChip";
 import React from "react";
-import { addReplyToEvent } from "stores/Game/Chat/GameChatModel";
+import { addReplyToChatMessage } from "stores/Game/Chat/GameChatModel";
 import { shallow } from "enzyme";
 import { testUser } from "testMocks/user";
 
@@ -22,7 +22,7 @@ describe("test input adorment", () => {
   });
 
   it("should render replies", () => {
-    addReplyToEvent(testUser);
+    addReplyToChatMessage(testUser);
     expect(
       shallow(<PlayerChip name="testName" handleDelete={deleteFn} />)
         .find(Chip)

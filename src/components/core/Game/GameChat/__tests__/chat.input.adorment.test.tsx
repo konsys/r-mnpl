@@ -3,7 +3,7 @@ import * as chat from "stores/Game/Chat/GameChatModel";
 import ChatInputAdornment from "../ChatInputAdornment";
 import PlayerChip from "../PlayerChip";
 import React from "react";
-import { addReplyToEvent } from "stores/Game/Chat/GameChatModel";
+import { addReplyToChatMessage } from "stores/Game/Chat/GameChatModel";
 import { shallow } from "enzyme";
 import { testUser } from "testMocks/user";
 
@@ -16,12 +16,12 @@ describe("test input adorment", () => {
   });
 
   it("shouldn't render replies", () => {
-    addReplyToEvent(testUser);
+    addReplyToChatMessage(testUser);
     expect(shallow(<ChatInputAdornment />).find(PlayerChip)).toHaveLength(1);
   });
 
   it("should render replies", () => {
-    addReplyToEvent(testUser);
+    addReplyToChatMessage(testUser);
     expect(
       shallow(<ChatInputAdornment />)
         .find(PlayerChip)
@@ -30,9 +30,9 @@ describe("test input adorment", () => {
   });
 
   it("should delete chip", () => {
-    addReplyToEvent(testUser);
+    addReplyToChatMessage(testUser);
     const testMock = chat as any;
-    const deleteMock = jest.spyOn(testMock, "deleteReplyToEvent");
+    const deleteMock = jest.spyOn(testMock, "deleteReplyToChatMessage");
     shallow(<ChatInputAdornment />)
       .find(PlayerChip)
       .get(0)

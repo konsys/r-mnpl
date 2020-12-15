@@ -2,9 +2,9 @@ import { Grid, Input, Switch, Typography } from "@material-ui/core";
 import React, { useState } from "react";
 import {
   chatGate,
-  chatStore,
-  repliesTo$,
-  resetReplyToEvent,
+  gameChat$,
+  repliesToChatMessage$,
+  resetReplyToChatMessage,
   sendChatMessageFx,
 } from "stores/Game/Chat/GameChatModel";
 import { useGate, useStore } from "effector-react";
@@ -19,12 +19,12 @@ export default function GameChat() {
   useGate(chatGate);
 
   const { t } = useTranslation();
-  const messages = useStore(chatStore);
-  const replyTo = useStore(repliesTo$);
+  const messages = useStore(gameChat$);
+  const replyTo = useStore(repliesToChatMessage$);
   const [message, setMessage] = useState<string>("");
 
   sendChatMessageFx.done.watch(() => {
-    resetReplyToEvent();
+    resetReplyToChatMessage();
     setMessage("");
   });
 
