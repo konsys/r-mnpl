@@ -14,10 +14,7 @@ export interface ILoginResponce {
   access_token: string;
 }
 
-export const onSubmit = (data: ILoginForm) => {
-  console.log(232323232323, data);
-  return loginFx(data);
-};
+export const onSubmit = (data: ILoginForm) => loginFx(data);
 
 export const Login = () => {
   const user = useStore(user$);
