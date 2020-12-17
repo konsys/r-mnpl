@@ -21,7 +21,9 @@ export const login$ = AuthDomain.store<ILoginResponce | null>(null)
   .on(loginFx.pending, () => localStorage.setItem(LocalStorageParams.TOKEN, ""))
   .on(loginFx.done, (_, data) => {
     clearToken();
-    data.result && saveToken(data.result.access_token);
+    data.result &&
+      data.result.access_token &&
+      saveToken(data.result.access_token);
     data.result.access_token && getMyProfile();
     return data.result;
   })

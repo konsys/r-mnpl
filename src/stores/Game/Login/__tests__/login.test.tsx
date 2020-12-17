@@ -1,17 +1,25 @@
-import { loginFx, login$ } from "../LoginModel";
+import { loginFx, login$, clearTokenStore } from "../LoginModel";
 import * as http from "http/client";
+import * as user from "../../User/UserModel";
 import { LocalStorageParams } from "types/types";
 
 jest.mock("http/client", () => ({
   ...jest.requireActual("http/client"),
   client: {
     post: jest.fn().mockImplementation(() => ({
-      data: "he4rr3rtg6wscfokwnef324o85y2hbfklsjbf45rqwe6gerg",
+      data: {
+        access_token: "he4rr3rtg6wscfokwnef324o85y2hbfklsjbf45rqwe6gerg",
+      },
     })),
   },
 }));
 
+jest.mock("../../User/UserModel", () => ({
+  getMyProfile: jest.fn(),
+}));
+
 describe("Login model test", () => {
+  beforeEach(() => jest.clearAllMocks());
   it("should login", async () => {
     expect(login$.getState()).toStrictEqual(null);
     await loginFx({
@@ -25,9 +33,11 @@ describe("Login model test", () => {
       email: "testemail@yandex.ru",
       password: "testPassword",
     });
-    expect(login$.getState()).toStrictEqual(
-      "he4rr3rtg6wscfokwnef324o85y2hbfklsjbf45rqwe6gerg"
-    );
+    expect(login$.getState()).toStrictEqual({
+      // result: {
+      access_token: "he4rr3rtg6wscfokwnef324o85y2hbfklsjbf45rqwe6gerg",
+      // },
+    });
   });
 
   it("should clear token", async () => {
@@ -44,7 +54,27 @@ describe("Login model test", () => {
     });
 
     expect(localStorage.getItem(LocalStorageParams.TOKEN)).toBe(
-      "wqedfwefqwefd45yt4ebaedfbgvergf"
+      "he4rr3rtg6wscfokwnef324o85y2hbfklsjbf45rqwe6gerg"
     );
+  });
+
+  it("should get profile", async () => {
+    await loginFx({
+      email: "testemail@yandex.ru",
+      password: "testPassword",
+    });
+    expect(user.getMyProfile).toBeCalledTimes(1);
+  });
+
+  it("should reset login store", async () => {
+    await loginFx({
+      email: "testemail@yandex.ru",
+      password: "testPassword",
+    });
+    expect(login$.getState()).toStrictEqual({
+      access_token: "he4rr3rtg6wscfokwnef324o85y2hbfklsjbf45rqwe6gerg",
+    });
+    clearTokenStore();
+    expect(login$.getState()).toStrictEqual(null);
   });
 });

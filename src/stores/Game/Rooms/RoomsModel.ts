@@ -142,9 +142,9 @@ export const toggleAutostart = RoomDomain.event<void>();
 export const togglePrivateRoom = RoomDomain.event<void>();
 export const togglRestarts = RoomDomain.event<void>();
 export const toggleRoomSwitch = RoomDomain.event<string>();
-export const resetcurrentRoom$ = RoomDomain.event<void>();
+export const resetCurrentRoom = RoomDomain.event<void>();
 
-export const preparatoryRoom$ = RoomDomain.store<IRoomState>({
+export const initPreparatoryRoom = {
   roomId: "",
   creatorId: 0,
   winnerId: null,
@@ -157,7 +157,11 @@ export const preparatoryRoom$ = RoomDomain.store<IRoomState>({
   restarts: false,
   privateRoom: false,
   roomStatus: RoomStatus.NOT_CREATED,
-})
+};
+
+export const preparatoryRoom$ = RoomDomain.store<IRoomState>(
+  initPreparatoryRoom
+)
   .on(updatePreparatoryRoom, (_, v) => v)
 
   .on(toggleAutostart, (state) => ({
@@ -172,7 +176,7 @@ export const preparatoryRoom$ = RoomDomain.store<IRoomState>({
     ...state,
     restarts: !state.restarts,
   }))
-  .reset(resetcurrentRoom$);
+  .reset(resetCurrentRoom);
 
 sample({
   clock: toggleRoomSwitch,

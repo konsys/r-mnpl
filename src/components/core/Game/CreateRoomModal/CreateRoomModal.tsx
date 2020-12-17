@@ -14,10 +14,7 @@ import {
   preparatoryRoom$,
   updatePreparatoryRoom,
 } from "stores/Game/Rooms/RoomsModel";
-import {
-  closeRoomModal,
-  roomModalStore,
-} from "stores/Game/Rooms/RoomsModalModel";
+import { closeRoomModal, roomModal$ } from "stores/Game/Rooms/RoomsModalModel";
 
 import CloseIcon from "@material-ui/icons/Close";
 import QuickGameParams from "./GameParams/QuickGameParams";
@@ -32,7 +29,7 @@ import { user$ } from "stores/Game/User/UserModel";
 
 export default function CreateRoomModal() {
   const user = useStore(user$);
-  const open = useStore(roomModalStore);
+  const open = useStore(roomModal$);
   const { t } = useTranslation();
   const room = useStore(preparatoryRoom$);
   const { roomType } = room;
