@@ -1,7 +1,7 @@
 import { Button, ButtonGroup, Grid } from "@material-ui/core";
 import {
   preparatoryRoom$,
-  updatePreparatoryRoom,
+  setPreparatoryRoom,
 } from "stores/Game/Rooms/RoomsModel";
 
 import React from "react";
@@ -33,7 +33,7 @@ export default function PlayersNumber({
             disabled={false}
             variant="contained"
             color={room.playersNumber === 2 ? "primary" : "default"}
-            onClick={() => updatePreparatoryRoom({ ...room, playersNumber: 2 })}
+            onClick={() => setPreparatoryRoom({ ...room, playersNumber: 2 })}
           >
             2
           </Button>
@@ -41,7 +41,7 @@ export default function PlayersNumber({
             disabled={false}
             variant="contained"
             color={room.playersNumber === 3 ? "primary" : "default"}
-            onClick={() => updatePreparatoryRoom({ ...room, playersNumber: 3 })}
+            onClick={() => setPreparatoryRoom({ ...room, playersNumber: 3 })}
           >
             3
           </Button>
@@ -49,7 +49,7 @@ export default function PlayersNumber({
             disabled={false}
             variant="contained"
             color={room.playersNumber === 4 ? "primary" : "default"}
-            onClick={() => updatePreparatoryRoom({ ...room, playersNumber: 4 })}
+            onClick={() => setPreparatoryRoom({ ...room, playersNumber: 4 })}
           >
             4
           </Button>
@@ -57,7 +57,7 @@ export default function PlayersNumber({
             disabled={false}
             variant="contained"
             color={room.playersNumber === 5 ? "primary" : "default"}
-            onClick={() => updatePreparatoryRoom({ ...room, playersNumber: 5 })}
+            onClick={() => setPreparatoryRoom({ ...room, playersNumber: 5 })}
           >
             5
           </Button>
@@ -66,9 +66,7 @@ export default function PlayersNumber({
               disabled={!isVip}
               variant="contained"
               color={room.playersNumber === 6 ? "primary" : "default"}
-              onClick={() =>
-                updatePreparatoryRoom({ ...room, playersNumber: 6 })
-              }
+              onClick={() => setPreparatoryRoom({ ...room, playersNumber: 6 })}
             >
               2x2
             </Button>

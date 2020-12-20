@@ -9,7 +9,7 @@ import {
   RoomPortalFieldType,
   preparatoryRoom$,
   toggleRoomSwitch,
-  updatePreparatoryRoom,
+  setPreparatoryRoom,
 } from "stores/Game/Rooms/RoomsModel";
 
 import { GRID_SPACING } from "../../../../../theme";
@@ -84,7 +84,7 @@ export default function QuickGameParams({ isVip }: { isVip: boolean }) {
                 name="portal"
                 value={room?.portalType}
                 onChange={(v: any) =>
-                  updatePreparatoryRoom({ ...room, portalType: v.target.value })
+                  setPreparatoryRoom({ ...room, portalType: v.target.value })
                 }
               >
                 <FormControlLabel

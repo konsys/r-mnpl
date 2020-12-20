@@ -12,7 +12,7 @@ import {
   RoomType,
   createRoom,
   preparatoryRoom$,
-  updatePreparatoryRoom,
+  setPreparatoryRoom,
 } from "stores/Game/Rooms/RoomsModel";
 import { closeRoomModal, roomModal$ } from "stores/Game/Rooms/RoomsModalModel";
 
@@ -66,7 +66,7 @@ export default function CreateRoomModal() {
                     : RoomType.REGULAR)
                 }
                 onClick={() =>
-                  updatePreparatoryRoom({ ...room, roomType: RoomType.REGULAR })
+                  setPreparatoryRoom({ ...room, roomType: RoomType.REGULAR })
                 }
               >
                 <Typography variant="h6">{t("Regular game")}</Typography>
@@ -83,7 +83,7 @@ export default function CreateRoomModal() {
                     : RoomType.QUICK)
                 }
                 onClick={() =>
-                  updatePreparatoryRoom({ ...room, roomType: RoomType.QUICK })
+                  setPreparatoryRoom({ ...room, roomType: RoomType.QUICK })
                 }
               >
                 <Typography variant="h6">{t("Quick game")}</Typography>
@@ -100,7 +100,7 @@ export default function CreateRoomModal() {
                     : RoomType.SHUFFLE)
                 }
                 onClick={() =>
-                  updatePreparatoryRoom({ ...room, roomType: RoomType.SHUFFLE })
+                  setPreparatoryRoom({ ...room, roomType: RoomType.SHUFFLE })
                 }
               >
                 <Typography variant="h6">{t("GMS Shuffle")}</Typography>
@@ -117,7 +117,7 @@ export default function CreateRoomModal() {
                     : RoomType.RETRO)
                 }
                 onClick={() =>
-                  updatePreparatoryRoom({ ...room, roomType: RoomType.RETRO })
+                  setPreparatoryRoom({ ...room, roomType: RoomType.RETRO })
                 }
               >
                 <Typography variant="h6">{t("Retro")}</Typography>
@@ -134,7 +134,7 @@ export default function CreateRoomModal() {
                     : RoomType.ROULETTE)
                 }
                 onClick={() =>
-                  updatePreparatoryRoom({
+                  setPreparatoryRoom({
                     ...room,
                     roomType: RoomType.ROULETTE,
                   })

@@ -5,14 +5,13 @@ import {
   createRoomFetch,
   fetchRooms,
   removePlayerFromRoomFetch,
-} from "../../../api/Rooms/api";
+} from "api/Rooms/api";
 import { closeGameModal, openGameModal } from "../GameModal/GameModalModel";
-import { combine, merge, sample } from "effector";
+import { combine, guard, merge, sample } from "effector";
 
 import { ErrorCode } from "utils/errors";
 import { createGate } from "effector-react";
 import { head } from "lodash";
-import nanoid from "nanoid";
 
 export enum RoomPortalFieldType {
   PORTAL = "Portal",
@@ -134,9 +133,9 @@ addPlayerToRoomFx.fail.watch((v: any) => {
   }
 });
 
-export const createRoom = RoomDomain.event<void>();
+export const createRoom = RoomDomain.event<string>();
 
-export const updatePreparatoryRoom = RoomDomain.event<IRoomState>();
+export const setPreparatoryRoom = RoomDomain.event<IRoomState>();
 export const myRoomsReset = RoomDomain.event();
 export const toggleAutostart = RoomDomain.event<void>();
 export const togglePrivateRoom = RoomDomain.event<void>();
@@ -162,7 +161,7 @@ export const initPreparatoryRoom = {
 export const preparatoryRoom$ = RoomDomain.store<IRoomState>(
   initPreparatoryRoom
 )
-  .on(updatePreparatoryRoom, (_, v) => v)
+  .on(setPreparatoryRoom, (_, v) => v)
 
   .on(toggleAutostart, (state) => ({
     ...state,
@@ -196,7 +195,7 @@ sample({
   },
 });
 
-sample({
+const createRoomSample = sample({
   clock: createRoom,
   source: combine({
     room: preparatoryRoom$.map((v) => v),
@@ -211,13 +210,19 @@ sample({
           : null;
       }),
   }),
-  fn: ({ room, user }) => ({
-    ...room,
-    creatorId: user ? user.userId : 0,
-    players: user ? [user] : [],
-    roomId: `${nanoid(4)}-${Date.now()}`,
-  }),
+  fn: ({ room, user }, roomId) => {
+    return {
+      ...room,
+      creatorId: user ? user.userId : 0,
+      players: user ? [user] : [],
+      roomId,
+    };
+  },
+});
 
+guard({
+  source: createRoomSample,
+  filter: preparatoryRoom$.map((v) => !!v),
   target: createRoomFx,
 });
 
@@ -230,7 +235,7 @@ export const rooms$ = RoomDomain.store<IRoomResponce>({
   .on(setRooms, (_, result) => result)
   .reset(resetRoomsStore);
 
-const setMyPendingRoom = RoomDomain.event<IRoomState | null>();
+export const setMyPendingRoom = RoomDomain.event<IRoomState | null>();
 
 export const myPendingRoom$ = RoomDomain.store<IRoomState | null>(null)
   .on(setMyPendingRoom, (_, v) => v)

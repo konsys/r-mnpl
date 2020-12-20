@@ -27,16 +27,13 @@ describe("Login model test", () => {
       password: "testPassword",
     });
 
-    // expect(login$.getState()).toStrictEqual(2);
     expect(http.client.post).toHaveBeenCalledTimes(1);
     expect(http.client.post).toHaveBeenCalledWith(`/users/auth/login`, {
       email: "testemail@yandex.ru",
       password: "testPassword",
     });
     expect(login$.getState()).toStrictEqual({
-      // result: {
       access_token: "he4rr3rtg6wscfokwnef324o85y2hbfklsjbf45rqwe6gerg",
-      // },
     });
   });
 
