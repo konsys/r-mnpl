@@ -2,7 +2,7 @@ import { IUser } from "types/types";
 import { MainDomain } from "../../Board/BoardDomain";
 import { createGate } from "effector-react";
 import { fetchUserProfile } from "api/Users/api";
-import { sample } from "effector";
+import { merge, sample } from "effector";
 
 export const GameDomain = MainDomain.domain("GameDomain");
 
@@ -16,13 +16,9 @@ export const getUserFx = UserDomain.effect<string, IUser, Error>({
 
 export const getMyProfile = UserDomain.event();
 export const logout = UserDomain.event();
-
-getMyProfile.watch(() => {
-  getUserFx("me");
-});
-
+// TODO test in getMyProfile call getUserFx
 sample({
-  clock: ProfileGate.open,
+  clock: merge([ProfileGate.open, getMyProfile]),
   source: ProfileGate.state,
   fn: () => "me",
   target: getUserFx,

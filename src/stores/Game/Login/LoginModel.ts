@@ -3,31 +3,29 @@ import {
   ILoginResponce,
 } from "../../../components/core/Registration/Login/Login";
 
-import { LocalStorageParams } from "types/types";
 import { createDomain } from "effector";
 import { getMyProfile } from "../User/UserModel";
 import { loginFetch } from "api/Login/api";
-import { saveToken } from "../Token/TokenModel";
+import { clearToken, saveToken } from "../Token/TokenModel";
 
 const AuthDomain = createDomain("AuthDomain");
 export const clearTokenStore = AuthDomain.event();
-export const clearToken = AuthDomain.event();
 
 export const loginFx = AuthDomain.effect<ILoginForm, ILoginResponce, Error>({
   handler: loginFetch,
 });
 
 export const login$ = AuthDomain.store<ILoginResponce | null>(null)
-  .on(loginFx.pending, () => localStorage.setItem(LocalStorageParams.TOKEN, ""))
   .on(loginFx.done, (_, data) => {
     clearToken();
-    data.result &&
-      data.result.access_token &&
+    if (data && data.result) {
       saveToken(data.result.access_token);
-    data.result.access_token && getMyProfile();
+      getMyProfile();
+    }
+
     return data.result;
   })
-  .on(loginFx.fail, (err) => localStorage.removeItem(LocalStorageParams.TOKEN))
+  .on(loginFx.fail, (err) => clearToken())
   .reset(clearTokenStore);
 
 // login$.updates.watch((v) => console.log("LoginStoreWatch", v));
