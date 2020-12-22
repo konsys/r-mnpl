@@ -10,7 +10,9 @@ export const createTurnsArray = (
 ): number[] => {
   const usedFields = [];
   let currentPosition = position;
-
+  if (stopPosition > 39) {
+    stopPosition = 0;
+  }
   while (currentPosition !== stopPosition) {
     currentPosition++;
     if (currentPosition > 39) {
