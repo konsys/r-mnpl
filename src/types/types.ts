@@ -35,6 +35,7 @@ export enum IFieldAction {
 export interface IBoardAction {
   action: OutcomeMessageType;
   fieldId?: number;
+  userId?: number;
   contract?: any;
 }
 export interface IBoardActionRequest extends IBoardAction {
@@ -42,7 +43,6 @@ export interface IBoardActionRequest extends IBoardAction {
 }
 
 export enum OutcomeMessageType {
-  OUTCOME_TOKEN_TRANSITION_COMPLETED = "changeTokenPositionCompleted",
   OUTCOME_AUCTION_START_CLICKED = "auctionStartClicked",
   OUTCOME_AUCTION_ACCEPT_CLICKED = "auctionAcceptClicked",
   OUTCOME_AUCTION_DECLINE_CLICKED = "auctionDeclineClicked",
