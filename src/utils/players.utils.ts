@@ -14,26 +14,28 @@ export const getActingPlayer = () => {
 
 export const getActingPlayerIndex = () => {
   const pStore = players$.getState();
-  return pStore.players.findIndex((v) => v.isActing === true);
+  const res = pStore.players.findIndex((v) => v.isActing === true);
+  return res > -1 ? res : undefined;
 };
 
-export const getPlayerIndexById = (userId: number) =>
-  players$.getState().players.findIndex((v) => v.userId === userId);
+export const getPlayerIndexById = (userId: number) => {
+  const res = players$.getState().players.findIndex((v) => v.userId === userId);
+  return res > -1 ? res : undefined;
+};
 
 export const updatePlayer = (player: IPlayer): boolean => {
   const playersState = players$.getState();
   const currentPLayerIndex = getPlayerIndexById(player.userId);
-  if (currentPLayerIndex === -1) throw new Error("player not found");
-
+  if (!currentPLayerIndex) {
+    return false;
+  }
   playersState.players[currentPLayerIndex] = player;
-
-  updateAllPlayers(playersState.players);
-
-  return true;
+  return updateAllPlayers(playersState.players);
 };
 
 export const updateAllPlayers = (players: IPlayer[]): boolean => {
   let version = players$.getState().version;
+  version = version ? version : 0;
   setPlayersEvent({
     version: version < 100 ? ++version : 0,
     players,
