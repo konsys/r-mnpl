@@ -49,7 +49,7 @@ export interface RoomPlayer extends IUser {
   playerRoomStatus: PlayerRoomStatus;
 }
 
-export interface IRoomState {
+export interface IRoom {
   roomId: string;
   creatorId: number;
   winnerId: RoomPlayer | null;
@@ -71,7 +71,7 @@ export interface IAddPlayerToRoom {
 
 export interface IRoomResponce {
   playersInRooms: number;
-  rooms: IRoomState[];
+  rooms: IRoom[];
 }
 
 const RoomDomain = GameDomain.domain("ChatDomain");
@@ -80,11 +80,7 @@ export const roomsGate = createGate<any>();
 
 export const setRooms = RoomDomain.event<IRoomResponce>();
 
-export const createRoomFx = RoomDomain.effect<
-  IRoomState,
-  IApiResponceCode,
-  Error
->({
+export const createRoomFx = RoomDomain.effect<IRoom, IApiResponceCode, Error>({
   handler: createRoomFetch,
 });
 
@@ -135,7 +131,7 @@ addPlayerToRoomFx.fail.watch((v: any) => {
 
 export const createRoom = RoomDomain.event<string>();
 
-export const setPreparatoryRoom = RoomDomain.event<IRoomState>();
+export const setPreparatoryRoom = RoomDomain.event<IRoom>();
 export const myRoomsReset = RoomDomain.event();
 export const toggleAutostart = RoomDomain.event<void>();
 export const togglePrivateRoom = RoomDomain.event<void>();
@@ -158,9 +154,7 @@ export const initPreparatoryRoom = {
   roomStatus: RoomStatus.NOT_CREATED,
 };
 
-export const preparatoryRoom$ = RoomDomain.store<IRoomState>(
-  initPreparatoryRoom
-)
+export const preparatoryRoom$ = RoomDomain.store<IRoom>(initPreparatoryRoom)
   .on(setPreparatoryRoom, (_, v) => v)
 
   .on(toggleAutostart, (state) => ({
@@ -235,9 +229,9 @@ export const rooms$ = RoomDomain.store<IRoomResponce>({
   .on(setRooms, (_, result) => result)
   .reset(resetRoomsStore);
 
-export const setMyPendingRoom = RoomDomain.event<IRoomState | null>();
+export const setMyPendingRoom = RoomDomain.event<IRoom | null>();
 
-export const myPendingRoom$ = RoomDomain.store<IRoomState | null>(null)
+export const myPendingRoom$ = RoomDomain.store<IRoom | null>(null)
   .on(setMyPendingRoom, (_, v) => v)
   .reset(myRoomsReset);
 
@@ -249,7 +243,7 @@ sample({
       Array.isArray(source) && source.length === 2
         ? head(
             source[0].rooms.filter(
-              (v: IRoomState) =>
+              (v: IRoom) =>
                 v.roomStatus === RoomStatus.PENDING &&
                 v.players.some(
                   (v1: any) => source[1] && v1?.userId === source[1].userId

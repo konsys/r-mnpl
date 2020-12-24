@@ -1,10 +1,5 @@
 import { GameDomain, getMyProfile, user$ } from "../User/UserModel";
-import {
-  IRoomState,
-  RoomStatus,
-  getRoomsFx,
-  rooms$,
-} from "../Rooms/RoomsModel";
+import { IRoom, RoomStatus, getRoomsFx, rooms$ } from "../Rooms/RoomsModel";
 import { combine, sample } from "effector";
 
 import { IUser } from "types/types";
@@ -14,14 +9,14 @@ import { head } from "lodash";
 import { surrenderBoardFetch } from "api/Board/api";
 
 export interface IBoardParams {
-  room: IRoomState;
+  room: IRoom;
 }
-export const getRoomFx = GameDomain.effect<string, IRoomState, Error>({
+export const getRoomFx = GameDomain.effect<string, IRoom, Error>({
   handler: fetchRoom,
 });
 
 export const resetBoardGame = GameDomain.event();
-export const boardGame$ = GameDomain.store<IRoomState | null>(null)
+export const boardGame$ = GameDomain.store<IRoom | null>(null)
   .on(getRoomFx.done, (_, { result }) => result)
   .on(rooms$.updates, (_, { rooms }) => {
     const updatedRoom = head(
@@ -31,7 +26,7 @@ export const boardGame$ = GameDomain.store<IRoomState | null>(null)
   })
   .reset(resetBoardGame);
 
-export const boardCompleted$ = GameDomain.store<IRoomState | null>(null);
+export const boardCompleted$ = GameDomain.store<IRoom | null>(null);
 export const BoardDomain = GameDomain.domain("BoardDomain");
 export const surrenderRoom = GameDomain.event<void>();
 

@@ -1,13 +1,16 @@
 import { createEffect, createStore } from "effector";
 import { client } from "http/client";
 import { gameActionFx } from "stores/Board/ActionStore";
+import { createRoomFx } from "stores/Game/Rooms/RoomsModel";
 import { getToken } from "stores/Game/Token/TokenModel";
+import { test4Room } from "testMocks/room";
 import { OutcomeMessageType } from "types/types";
 import { loginFx } from "../../../stores/Game/Login/LoginModel";
 
 describe("Board api test", () => {
   beforeAll(async () => {
     await loginFx({ email: "TestUser1@yandex.ru", password: "password" });
+    await createRoomFx({ room: test4Room });
   });
 
   it("should get token", async () => {

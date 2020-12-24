@@ -1,5 +1,5 @@
 import {
-  IRoomState,
+  IRoom,
   addPlayerToRoomFx,
   removePlayerFromRoomFx,
 } from "stores/Game/Rooms/RoomsModel";
@@ -18,7 +18,7 @@ export default function PendingRoomBlock({
   iHaveRoom,
   userId,
 }: {
-  room: IRoomState;
+  room: IRoom;
   iHaveRoom: boolean;
   userId?: number;
 }) {

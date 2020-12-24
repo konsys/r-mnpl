@@ -1,6 +1,6 @@
 import {
   IRoomResponce,
-  IRoomState,
+  IRoom,
   PlayerRoomStatus,
   RoomPortalFieldType,
   RoomStatus,
@@ -8,7 +8,7 @@ import {
 } from "stores/Game/Rooms/RoomsModel";
 import { testPlayer1, testPlayer2 } from "./user";
 
-export const testPlayingRoom: IRoomState = {
+export const testPlayingRoom: IRoom = {
   roomId: "testRoomIdtestPlayingRoom",
   creatorId: 1,
   winnerId: null,
@@ -26,7 +26,7 @@ export const testPlayingRoom: IRoomState = {
   roomStatus: RoomStatus.PLAYING,
 };
 
-export const test4Room: IRoomState = {
+export const test4Room: IRoom = {
   roomId: "testRoomIdtest4Room",
   creatorId: 1,
   winnerId: null,
@@ -44,7 +44,7 @@ export const test4Room: IRoomState = {
   roomStatus: RoomStatus.PLAYING,
 };
 
-export const testPendingRoom1: IRoomState = {
+export const testPendingRoom1: IRoom = {
   roomId: "testRoomIdtestPendingRoom1",
   creatorId: 1,
   winnerId: null,
@@ -62,7 +62,7 @@ export const testPendingRoom1: IRoomState = {
   roomStatus: RoomStatus.PENDING,
 };
 
-export const testPendingRoom2: IRoomState = {
+export const testPendingRoom2: IRoom = {
   roomId: "testRoomIdtestPendingRoom2",
   creatorId: 2,
   winnerId: null,

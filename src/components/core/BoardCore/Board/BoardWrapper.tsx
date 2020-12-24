@@ -17,7 +17,7 @@ import { BoardView } from "components/views/BoardViews/Board/BoardView";
 import { Chat } from "../../../views/BoardViews/Chat/Chat";
 import { Contract } from "../../../views/BoardViews/Contract/Contract";
 import { Dices } from "../../../views/BoardViews/Dices/Dices";
-import { IRoomState } from "stores/Game/Rooms/RoomsModel";
+import { IRoom } from "stores/Game/Rooms/RoomsModel";
 import { M1tv } from "../../../views/BoardViews/M1tv/M1tv";
 import { Players } from "components/views/BoardViews/Players/Players";
 import { TableHelper } from "../../../views/BoardViews/TableHelper/TableHelper";
@@ -97,7 +97,7 @@ export const MessageHandler = (message: BoardMessage) => {
 };
 export const playersHandler = (players: IPlayer[]) => updateAllPlayers(players);
 
-export const BoardWrapper = ({ board }: { board: IRoomState }) => {
+export const BoardWrapper = ({ board }: { board: IRoom }) => {
   const playerIds = board ? board.players.map((v) => (v ? v.userId : -1)) : [];
 
   useGate(InitBoardPlayersGate, { userIds: playerIds, user: "me" });

@@ -1,6 +1,6 @@
 import { Grid, Typography } from "@material-ui/core";
 import {
-  IRoomState,
+  IRoom,
   RoomPortalFieldType,
   RoomType,
   RoomTypeName,
@@ -19,7 +19,7 @@ import VideogameAssetIcon from "@material-ui/icons/VideogameAsset";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 import { useTranslation } from "react-i18next";
 
-export default function RoomTypeView({ room }: { room: IRoomState }) {
+export default function RoomTypeView({ room }: { room: IRoom }) {
   const { t } = useTranslation();
   let name = "";
   let className = "";
