@@ -1,18 +1,30 @@
 import { loginFx, clearTokenStore } from "../../Login/LoginModel";
-import { getToken, saveToken, clearToken } from "../TokenModel";
+import {
+  getToken,
+  saveToken,
+  clearToken,
+  saveRefreshToken,
+  clearRefreshToken,
+  getRefreshToken,
+} from "../TokenModel";
 
 jest.mock("http/client", () => ({
   ...jest.requireActual("http/client"),
   client: {
     post: jest.fn().mockImplementation(() => ({
       data: {
-        access_token: "he4rr3rtg6wscfokwnef324o85y2hbfklsjbf45rqwe6gerg",
+        accessToken: "he4rr3rtg6wscfokwnef324o85y2hbfklsjbf45rqwe6gerg",
       },
     })),
   },
 }));
 
 describe("Token model test", () => {
+  afterAll(() => {
+    clearTokenStore();
+    clearToken();
+    clearRefreshToken();
+  });
   beforeEach(() => {
     clearTokenStore();
     clearToken();
@@ -48,5 +60,14 @@ describe("Token model test", () => {
     clearToken();
 
     expect(getToken()).toStrictEqual(null);
+  });
+
+  it("should set Refresh token", async () => {
+    clearRefreshToken();
+    expect(getRefreshToken()).toBe(null);
+    saveRefreshToken("werg345yh4h4h4yh");
+    expect(getRefreshToken()).toBe("werg345yh4h4h4yh");
+    clearRefreshToken();
+    expect(getRefreshToken()).toBe(null);
   });
 });

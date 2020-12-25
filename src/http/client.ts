@@ -5,9 +5,6 @@ import { Params } from "config/params";
 
 export const client: AxiosInstance = axios.create({
   baseURL: Params.BASE_URL,
-  // headers: {
-  //   Authorization: `Bearer ${getToken()}`,
-  // },
 });
 
 client.interceptors.request.use((config) => {
@@ -24,7 +21,6 @@ client.interceptors.response.use(
   (error: AxiosError) => {
     if (error.response && error.response.status === 401) {
       clearToken();
-      console.log(error.response);
       // <Redirect to="/game" />;
     }
     throw error;

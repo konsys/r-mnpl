@@ -138,5 +138,5 @@ export default i18n;
 //   -H 'sec-fetch-dest: empty' \
 //   -H 'accept-language: ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7,la;q=0.6' \
 //   -H 'cookie: __cfduid=d63dbd5af63595aee574d582df1ab015e1596633993; _ga=GA1.2.715472772.1596634069; strg_device_token=6c352bf90a95a9e7; _gid=GA1.2.519667226.1597325512' \
-//   --data-raw 'message=DG4444TEET&access_token=3b79aabcbc9e7dacb9167c8c436e4a22347395f75e94a45d413e818d8addb227cd8ee317ae7230b8c074e455aed354f26ee955734d74c2585b7cbe0a555dc641&sct=1594054142807' \
+//   --data-raw 'message=DG4444TEET&accessToken=3b79aabcbc9e7dacb9167c8c436e4a22347395f75e94a45d413e818d8addb227cd8ee317ae7230b8c074e455aed354f26ee955734d74c2585b7cbe0a555dc641&sct=1594054142807' \
 //   --compressed; done

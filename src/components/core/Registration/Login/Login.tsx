@@ -11,7 +11,7 @@ export interface ILoginForm {
 }
 
 export interface ILoginResponce {
-  access_token: string;
+  accessToken: string;
 }
 
 export const onSubmit = (data: ILoginForm) => loginFx(data);

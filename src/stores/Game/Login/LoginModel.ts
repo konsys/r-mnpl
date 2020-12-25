@@ -19,7 +19,7 @@ export const login$ = AuthDomain.store<ILoginResponce | null>(null)
   .on(loginFx.done, (_, data) => {
     clearToken();
     if (data && data.result) {
-      saveToken(data.result.access_token);
+      saveToken(data.result.accessToken);
       getMyProfile();
     }
 

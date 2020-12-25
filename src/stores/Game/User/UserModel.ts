@@ -14,6 +14,10 @@ export const getUserFx = UserDomain.effect<string, IUser, Error>({
   handler: fetchUserProfile,
 });
 
+export const refreshTokenFx = UserDomain.effect<string, IUser, Error>({
+  handler: fetchUserProfile,
+});
+
 export const getMyProfile = UserDomain.event();
 export const logout = UserDomain.event();
 // TODO test in getMyProfile call getUserFx

@@ -28,7 +28,7 @@ jest.mock("http/client", () => ({
   client: {
     post: jest.fn().mockImplementation(() => ({
       data: {
-        access_token: "he4rr3rtg6wscfokwnef324o85y2hbfklsjbf45rqwe6gerg",
+        accessToken: "he4rr3rtg6wscfokwnef324o85y2hbfklsjbf45rqwe6gerg",
       },
     })),
   },

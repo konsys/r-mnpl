@@ -277,6 +277,7 @@ export enum FieldType {
 }
 export enum LocalStorageParams {
   TOKEN = "token",
+  REFRESH_TOKEN = "refreshToken",
 }
 
 export interface IContract {

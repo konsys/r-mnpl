@@ -8,7 +8,7 @@ jest.mock("http/client", () => ({
   client: {
     post: jest.fn().mockImplementation(() => ({
       data: {
-        access_token: "he4rr3rtg6wscfokwnef324o85y2hbfklsjbf45rqwe6gerg",
+        accessToken: "he4rr3rtg6wscfokwnef324o85y2hbfklsjbf45rqwe6gerg",
       },
     })),
   },
@@ -33,7 +33,7 @@ describe("Login model test", () => {
       password: "testPassword",
     });
     expect(login$.getState()).toStrictEqual({
-      access_token: "he4rr3rtg6wscfokwnef324o85y2hbfklsjbf45rqwe6gerg",
+      accessToken: "he4rr3rtg6wscfokwnef324o85y2hbfklsjbf45rqwe6gerg",
     });
   });
 
@@ -69,7 +69,7 @@ describe("Login model test", () => {
       password: "testPassword",
     });
     expect(login$.getState()).toStrictEqual({
-      access_token: "he4rr3rtg6wscfokwnef324o85y2hbfklsjbf45rqwe6gerg",
+      accessToken: "he4rr3rtg6wscfokwnef324o85y2hbfklsjbf45rqwe6gerg",
     });
     clearTokenStore();
     expect(login$.getState()).toStrictEqual(null);
