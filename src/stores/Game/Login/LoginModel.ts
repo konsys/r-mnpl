@@ -6,7 +6,7 @@ import {
 import { createDomain } from "effector";
 import { getMyProfile } from "../User/UserModel";
 import { loginFetch } from "api/Login/api";
-import { clearToken, saveToken } from "../Token/TokenModel";
+import { clearToken, saveRefreshToken, saveToken } from "../Token/TokenModel";
 
 const AuthDomain = createDomain("AuthDomain");
 export const clearTokenStore = AuthDomain.event();
@@ -20,6 +20,7 @@ export const login$ = AuthDomain.store<ILoginResponce | null>(null)
     clearToken();
     if (data && data.result) {
       saveToken(data.result.accessToken);
+      saveRefreshToken(data.result.refreshToken);
       getMyProfile();
     }
 

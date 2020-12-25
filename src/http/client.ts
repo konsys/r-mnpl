@@ -1,7 +1,12 @@
 import axios, { AxiosError, AxiosInstance, AxiosResponse } from "axios";
-import { clearToken, getToken } from "stores/Game/Token/TokenModel";
+import {
+  clearToken,
+  getRefreshToken,
+  getToken,
+} from "stores/Game/Token/TokenModel";
 
 import { Params } from "config/params";
+import { refreshTokenFx } from "stores/Game/User/UserModel";
 
 export const client: AxiosInstance = axios.create({
   baseURL: Params.BASE_URL,
@@ -18,9 +23,11 @@ client.interceptors.response.use(
   (response: AxiosResponse) => {
     return response;
   },
-  (error: AxiosError) => {
+  async (error: AxiosError) => {
     if (error.response && error.response.status === 401) {
       clearToken();
+      // console.log(1231313, getRefreshToken());
+      refreshTokenFx(getRefreshToken() || "");
       // <Redirect to="/game" />;
     }
     throw error;
