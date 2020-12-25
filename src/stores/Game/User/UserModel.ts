@@ -1,8 +1,9 @@
 import { IUser } from "types/types";
 import { MainDomain } from "../../Board/BoardDomain";
 import { createGate } from "effector-react";
-import { fetchUserProfile } from "api/Users/api";
+import { fetchUserProfile, fetchRefreshToken } from "api/Users/api";
 import { merge, sample } from "effector";
+import { saveToken } from "../Token/TokenModel";
 
 export const GameDomain = MainDomain.domain("GameDomain");
 
@@ -14,8 +15,12 @@ export const getUserFx = UserDomain.effect<string, IUser, Error>({
   handler: fetchUserProfile,
 });
 
-export const refreshTokenFx = UserDomain.effect<string, IUser, Error>({
-  handler: fetchUserProfile,
+export const refreshTokenFx = UserDomain.effect<string, string, Error>({
+  handler: fetchRefreshToken,
+});
+
+refreshTokenFx.done.watch(({ result }) => {
+  saveToken(result);
 });
 
 export const getMyProfile = UserDomain.event();

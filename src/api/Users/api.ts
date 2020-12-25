@@ -22,3 +22,9 @@ const profileUrl = `/users/profile`;
 export async function fetchUserProfile(params?: any): Promise<IUser> {
   return await (await client.get(profileUrl, params)).data;
 }
+
+const refreshUrl = `/users/auth/refresh`;
+
+export async function fetchRefreshToken(accessToken: string): Promise<string> {
+  return await (await client.post(refreshUrl, { accessToken })).data;
+}
