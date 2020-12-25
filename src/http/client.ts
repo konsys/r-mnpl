@@ -26,7 +26,7 @@ client.interceptors.response.use(
   async (error: AxiosError) => {
     if (error.response && error.response.status === 401) {
       clearToken();
-      // console.log(1231313, getRefreshToken());
+
       refreshTokenFx(getRefreshToken() || "");
       // <Redirect to="/game" />;
     }

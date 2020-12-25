@@ -25,6 +25,8 @@ export async function fetchUserProfile(params?: any): Promise<IUser> {
 
 const refreshUrl = `/users/auth/refresh`;
 
-export async function fetchRefreshToken(accessToken: string): Promise<string> {
+export async function fetchRefreshToken(
+  accessToken: string
+): Promise<{ accessToken: string }> {
   return await (await client.post(refreshUrl, { accessToken })).data;
 }

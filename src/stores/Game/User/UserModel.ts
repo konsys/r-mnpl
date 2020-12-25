@@ -15,12 +15,16 @@ export const getUserFx = UserDomain.effect<string, IUser, Error>({
   handler: fetchUserProfile,
 });
 
-export const refreshTokenFx = UserDomain.effect<string, string, Error>({
+export const refreshTokenFx = UserDomain.effect<
+  string,
+  { accessToken: string },
+  Error
+>({
   handler: fetchRefreshToken,
 });
 
 refreshTokenFx.done.watch(({ result }) => {
-  saveToken(result);
+  saveToken(result.accessToken);
 });
 
 export const getMyProfile = UserDomain.event();
