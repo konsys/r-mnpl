@@ -25,10 +25,19 @@ client.interceptors.response.use(
   },
   async (error: AxiosError) => {
     if (error.response && error.response.status === 401) {
+      const originalRequest = error.config;
       clearToken();
 
-      refreshTokenFx(getRefreshToken() || "");
-      // <Redirect to="/game" />;
+      if (!originalRequest.headers._retry) {
+        await refreshTokenFx(getRefreshToken() || "");
+        originalRequest.headers._retry = true;
+        const token = getToken();
+        if (token) {
+          client.defaults.headers.common["Authorization"] = "Bearer " + token;
+          return client.request(error.config);
+        }
+        return;
+      }
     }
     throw error;
   }
