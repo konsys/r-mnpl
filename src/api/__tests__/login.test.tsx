@@ -8,7 +8,9 @@ describe("Login test", () => {
     expect(typeof getToken()).toBe("string");
     expect(getToken()?.length).toBeGreaterThan(10);
     await getUserFx("me");
-    expect(user$.getState()?.name).toBe("TestUser");
+    const name = user$.getState()?.name;
+    expect(name).toBeDefined();
+    expect(name).toBe("TestUser");
   });
 
   it("should not login", async () => {

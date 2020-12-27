@@ -30,3 +30,9 @@ export async function fetchRefreshToken(
 ): Promise<{ accessToken: string }> {
   return await (await client.post(refreshUrl, { accessToken })).data;
 }
+
+const logoutUrl = `/users/auth/logout`;
+
+export async function fetchLogout(refreshToken: string): Promise<boolean> {
+  return await (await client.post(logoutUrl, { refreshToken })).data.result;
+}
