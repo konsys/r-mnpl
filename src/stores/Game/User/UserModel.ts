@@ -28,7 +28,7 @@ export const getProfileFx = UserDomain.effect<number, IUser, Error>({
 export const clearProfile = UserDomain.event();
 
 export const profile$ = UserDomain.store<IUser | null>(null)
-  .on(getProfileFx.done, (_, { result }) => result)
+  .on(getProfileFx.done, (_, { result }) => (result ? result : null))
   .reset(clearProfile);
 
 export const getUserFx = UserDomain.effect<void, IUser, Error>({

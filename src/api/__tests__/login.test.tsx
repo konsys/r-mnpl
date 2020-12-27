@@ -6,13 +6,14 @@ import {
   logout,
   getProfileFx,
   profile$,
+  clearProfile,
 } from "stores/Game/User/UserModel";
 
 jest.setTimeout(60000);
 
 describe("Login test", () => {
   beforeEach(() => {
-    logout();
+    // logout();
   });
 
   it("should login", async () => {
@@ -53,5 +54,17 @@ describe("Login test", () => {
     await getProfileFx(user.userId);
     // @ts-ignore
     expect(profile$.getState().name).toBe("TestUser");
+  });
+
+  it("should get another profile with id", async () => {
+    await loginFx({
+      email: "TestUser1@yandex.ru",
+      password: "password",
+    });
+    clearProfile();
+    // @ts-ignore
+    await getProfileFx(2);
+    // @ts-ignore
+    expect(typeof profile$.getState().name).toBe("string");
   });
 });
