@@ -29,4 +29,10 @@ describe("User model test", () => {
     expect(http.client.get).toBeCalledTimes(1);
     expect(http.client.get).toBeCalledWith("/users/profile");
   });
+
+  it("should get user profile by id", async () => {
+    await user.getProfileFx(123425254234);
+    expect(http.client.get).toBeCalledTimes(1);
+    expect(http.client.get).toBeCalledWith("/users/profile/123425254234");
+  });
 });

@@ -5,6 +5,7 @@ import {
   fetchUserProfile,
   fetchRefreshToken,
   fetchLogout,
+  fetchMyProfile,
 } from "api/Users/api";
 import { merge, sample } from "effector";
 import {
@@ -20,18 +21,18 @@ const UserDomain = GameDomain.domain("UserDomain");
 
 export const ProfileGate = createGate();
 
-export const getProfileFx = UserDomain.effect<string, IUser, Error>({
+export const getProfileFx = UserDomain.effect<number, IUser, Error>({
   handler: fetchUserProfile,
 });
 
 export const clearProfile = UserDomain.event();
 
 export const profile$ = UserDomain.store<IUser | null>(null)
-  .on(getProfileFx.done, (_, data) => data.result)
+  .on(getProfileFx.done, (_, { result }) => result)
   .reset(clearProfile);
 
-export const getUserFx = UserDomain.effect<undefined, IUser, Error>({
-  handler: fetchUserProfile,
+export const getUserFx = UserDomain.effect<void, IUser, Error>({
+  handler: fetchMyProfile,
 });
 
 export const logoutFx = UserDomain.effect<string, boolean, Error>({
@@ -77,7 +78,7 @@ export const setUser = UserDomain.event<IUser | null>();
 
 export const user$ = UserDomain.store<IUser | null>(null)
   .on(setUser, (_, data) => data)
-  .on(getUserFx.done, (_, data) => data.result)
+  .on(getUserFx.done, (_, { result }) => result)
   .reset(logout);
 
 // user$.updates.watch((v) => console.log("user$.updates.watch", v));
