@@ -20,7 +20,17 @@ const UserDomain = GameDomain.domain("UserDomain");
 
 export const ProfileGate = createGate();
 
-export const getUserFx = UserDomain.effect<string, IUser, Error>({
+export const getProfileFx = UserDomain.effect<string, IUser, Error>({
+  handler: fetchUserProfile,
+});
+
+export const clearProfile = UserDomain.event();
+
+export const profile$ = UserDomain.store<IUser | null>(null)
+  .on(getProfileFx.done, (_, data) => data.result)
+  .reset(clearProfile);
+
+export const getUserFx = UserDomain.effect<undefined, IUser, Error>({
   handler: fetchUserProfile,
 });
 
@@ -47,7 +57,7 @@ export const logout = UserDomain.event();
 sample({
   clock: merge([ProfileGate.open, getMyProfile]),
   source: ProfileGate.state,
-  fn: () => "me",
+  fn: () => undefined,
   target: getUserFx,
 });
 

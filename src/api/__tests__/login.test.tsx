@@ -7,7 +7,7 @@ describe("Login test", () => {
     await loginFx({ email: "TestUser1@yandex.ru", password: "password" });
     expect(typeof getToken()).toBe("string");
     expect(getToken()?.length).toBeGreaterThan(10);
-    await getUserFx("me");
+    await getUserFx();
     const name = user$.getState()?.name;
     expect(name).toBeDefined();
     expect(name).toBe("TestUser");
@@ -30,11 +30,14 @@ describe("Login test", () => {
   });
 
   it("should get profile", async () => {
-    const profile = await loginFx({
-      email: "TestUser1111@yandex.ru",
+    await loginFx({
+      email: "TestUser1@yandex.ru",
       password: "password",
     });
 
-    expect(profile).toBeNull();
+    await getUserFx();
+    const user = user$.getState();
+
+    expect(user && user.name).toBe("TestUser");
   });
 });

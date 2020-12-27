@@ -19,8 +19,9 @@ export const usersFetch = async (ids: number[]): Promise<IPlayer[]> => {
 
 const profileUrl = `/users/profile`;
 
-export async function fetchUserProfile(params?: any): Promise<IUser> {
-  return await (await client.get(profileUrl, params)).data;
+export async function fetchUserProfile(id?: string): Promise<IUser> {
+  const url = id ? profileUrl + "/" + id : profileUrl;
+  return await (await client.get(url)).data;
 }
 
 const refreshUrl = `/users/auth/refresh`;

@@ -25,8 +25,8 @@ describe("User model test", () => {
   });
 
   it("should get user from server", async () => {
-    await user.getUserFx("me");
+    await user.getUserFx();
     expect(http.client.get).toBeCalledTimes(1);
-    expect(http.client.get).toBeCalledWith("/users/profile", "me");
+    expect(http.client.get).toBeCalledWith("/users/profile");
   });
 });
