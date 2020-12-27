@@ -36,6 +36,7 @@ refreshTokenFx.done.watch(({ result }) => {
 });
 
 export const getMyProfile = UserDomain.event();
+
 export const logout = UserDomain.event();
 // TODO test in getMyProfile call getUserFx
 sample({
@@ -45,7 +46,12 @@ sample({
   target: getUserFx,
 });
 
-logout.watch(async () => await logoutFx(getRefreshToken() || ""));
+sample({
+  clock: logout,
+  source: ProfileGate.state,
+  fn: () => getRefreshToken() || "",
+  target: logoutFx,
+});
 
 export const setUser = UserDomain.event<IUser | null>();
 

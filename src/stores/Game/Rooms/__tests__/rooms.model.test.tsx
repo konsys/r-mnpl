@@ -22,6 +22,7 @@ import { test4Room, testPendingRoom1 } from "testMocks/room";
 import { test5User } from "testMocks/user";
 import { PlayerRoomStatus } from "../RoomsModel";
 import { testPlayer1 } from "testMocks/user";
+import { saveRefreshToken } from "stores/Game/Token/TokenModel";
 
 jest.mock("http/client", () => ({
   ...jest.requireActual("http/client"),
@@ -36,11 +37,11 @@ jest.mock("http/client", () => ({
 
 describe("Rooms model test", () => {
   beforeEach(() => {
-    resetCurrentRoom();
-    jest.clearAllMocks();
     logout();
     myRoomsReset();
+    resetCurrentRoom();
     resetRoomsStore();
+    jest.clearAllMocks();
   });
   it("should have default value", () => {
     expect(preparatoryRoom$.getState()).toStrictEqual(initPreparatoryRoom);
@@ -102,6 +103,7 @@ describe("Rooms model test", () => {
     setPreparatoryRoom({ ...test4Room, ...initPreparatoryRoom });
     setUser(test5User);
     createRoom("refgewgq34t5g345gtfewrf");
+
     expect(http.client.post).toHaveBeenCalledTimes(1);
     expect(http.client.post).toHaveBeenCalledWith("/rooms", {
       room: {
@@ -159,5 +161,14 @@ describe("Rooms model test", () => {
 
     setUser(testPlayer1);
     expect(myPendingRoom$.getState()).toStrictEqual(null);
+  });
+
+  it("should send logout post request", () => {
+    saveRefreshToken("wqefr34t56u-3w4ujt-34jhtpwedf-03y4t0rhwfhw43rt2");
+    logout();
+    expect(http.client.post).toHaveBeenCalledTimes(1);
+    expect(http.client.post).toHaveBeenCalledWith("/users/auth/logout", {
+      refreshToken: "wqefr34t56u-3w4ujt-34jhtpwedf-03y4t0rhwfhw43rt2",
+    });
   });
 });
