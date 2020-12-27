@@ -1,6 +1,6 @@
 import { loginFx } from "stores/Game/Login/LoginModel";
 import { getToken } from "stores/Game/Token/TokenModel";
-import { user$, getUserFx } from "stores/Game/User/UserModel";
+import { user$, getUserFx, logout } from "stores/Game/User/UserModel";
 
 describe("Login test", () => {
   it("should login", async () => {
@@ -23,7 +23,18 @@ describe("Login test", () => {
 
   it("should logout", async () => {
     await loginFx({ email: "TestUser1@yandex.ru", password: "password" });
-    expect(typeof getToken()).toBe("string");
-    expect(getToken()?.length).toBeGreaterThan(10);
+    expect(getToken()).not.toBeNull();
+    logout();
+
+    expect(getToken()).toBeNull();
+  });
+
+  it("should get profile", async () => {
+    const profile = await loginFx({
+      email: "TestUser1111@yandex.ru",
+      password: "password",
+    });
+
+    expect(profile).toBeNull();
   });
 });

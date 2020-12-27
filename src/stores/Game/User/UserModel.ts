@@ -7,7 +7,12 @@ import {
   fetchLogout,
 } from "api/Users/api";
 import { merge, sample } from "effector";
-import { getRefreshToken, saveToken } from "../Token/TokenModel";
+import {
+  clearToken,
+  getRefreshToken,
+  saveToken,
+  clearRefreshToken,
+} from "../Token/TokenModel";
 
 export const GameDomain = MainDomain.domain("GameDomain");
 
@@ -49,7 +54,12 @@ sample({
 sample({
   clock: logout,
   source: ProfileGate.state,
-  fn: () => getRefreshToken() || "",
+  fn: () => {
+    const token = getRefreshToken();
+    clearRefreshToken();
+    clearToken();
+    return token || "";
+  },
   target: logoutFx,
 });
 
