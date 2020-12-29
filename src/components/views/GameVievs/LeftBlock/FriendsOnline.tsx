@@ -1,6 +1,6 @@
 import { Grid, Typography } from "@material-ui/core";
 
-import { GRID_SPACING } from "../../../../theme";
+import { GRID_SPACING } from "theme";
 import React from "react";
 import { useTranslation } from "react-i18next";
 

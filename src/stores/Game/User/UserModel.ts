@@ -1,4 +1,4 @@
-import { IUser } from "types/types";
+import { IUser, IUserRegistration } from "types/types";
 import { MainDomain } from "../../Board/BoardDomain";
 import { createGate } from "effector-react";
 import {
@@ -6,6 +6,7 @@ import {
   fetchRefreshToken,
   fetchLogout,
   fetchMyProfile,
+  fetchRegister,
 } from "api/Users/api";
 import { merge, sample } from "effector";
 import {
@@ -75,6 +76,17 @@ sample({
 });
 
 export const setUser = UserDomain.event<IUser | null>();
+
+export const registerFx = UserDomain.effect<IUserRegistration, IUser, Error>({
+  handler: fetchRegister,
+});
+
+export const register$ = UserDomain.store<IUser | null>(null).on(
+  registerFx.done,
+  (_, { result }) => {
+    return result;
+  }
+);
 
 export const user$ = UserDomain.store<IUser | null>(null)
   .on(setUser, (_, data) => data)

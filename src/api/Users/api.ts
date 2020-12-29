@@ -1,4 +1,4 @@
-import { IPlayer, IUser } from "../../types/types";
+import { IPlayer, IUser, IUserRegistration } from "../../types/types";
 
 import { client } from "../../http/client";
 
@@ -43,4 +43,8 @@ const logoutUrl = `/users/auth/logout`;
 
 export async function fetchLogout(refreshToken: string): Promise<boolean> {
   return await (await client.post(logoutUrl, { refreshToken })).data.result;
+}
+
+export async function fetchRegister(user: IUserRegistration): Promise<IUser> {
+  return await (await client.post("/users/register", user)).data;
 }
