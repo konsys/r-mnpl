@@ -70,18 +70,22 @@ export const LoginForm = () => {
 
             <Grid item>
               <Button
+                size="small"
                 onClick={() => loginFx(state)}
-                children={
-                  pending ? <CircularProgress color="secondary" /> : t("Login")
-                }
+                children={t("Login")}
                 color="primary"
                 variant="outlined"
+                disabled={pending}
               />
             </Grid>
+
             <Grid item>
               <a href="/restore" style={{ marginLeft: "15px" }}>
                 {t("Forgot password")}?
               </a>
+            </Grid>
+            <Grid item style={{ height: "40px" }}>
+              {pending ? <CircularProgress color="secondary" /> : ""}
             </Grid>
           </Grid>
         </Grid>

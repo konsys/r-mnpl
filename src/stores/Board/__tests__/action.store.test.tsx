@@ -61,7 +61,6 @@ jest.mock("handlers/DicesHandler", () => ({
 
 describe("Test action store", () => {
   beforeEach(() => {
-    // @ts-ignore
     jest.clearAllMocks();
   });
   it("should send post on game action", () => {
