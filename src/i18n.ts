@@ -11,6 +11,21 @@ i18n
     resources: {
       ru: {
         translations: {
+          Email: "Электронная почта",
+          "Register without VK": "Зарегистрироваться без Вконтакте",
+          Password: "Пароль",
+          Enter: "Войти",
+          "Forgot password": "Забыли пароль",
+          "VK login": "Войти через Вконтакте",
+          "If you enter the first time, the new Monopoly account will be create":
+            "Если Вы входите через Вконтакт в превый раз, новый аккаунт будет создан",
+          "By fact of authorization you agree with":
+            "Фактом авторизации, Вы соглашаетесь с",
+          "Site rules": "Правилами сайта",
+          here: "здесь",
+          Autorization: "Авторизация",
+          "Autorization with you login and password from Monopoly":
+            "Авторизуйтесь при помощи логина и пароля от вашего аккаунта на Monopoly.",
           "Input words for items search": "Введите слова для поиска предметов",
           "All items": "Все предметы",
           Cards: "Карточки",

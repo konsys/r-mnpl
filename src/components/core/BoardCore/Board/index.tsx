@@ -2,7 +2,7 @@ import {
   boardCompleted$,
   boardGame$,
   boardGate,
-} from "../../../../stores/Game/Board/BoardModel";
+} from "stores/Game/Board/BoardModel";
 import { useGate, useStore } from "effector-react";
 
 import { BoardWrapper } from "./BoardWrapper";

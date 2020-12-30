@@ -39,6 +39,7 @@ describe("Login test", () => {
       expect(error.response.status).toBe(400);
     }
   });
+
   it("should login", async () => {
     await loginFx({ email, password });
     expect(typeof getToken()).toBe("string");

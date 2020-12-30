@@ -1,97 +1,126 @@
+import { Grid, Typography, TextField, Button } from "@material-ui/core";
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
-import { ILoginForm } from "../../../core/Registration/Login/Login";
+import { ILoginForm } from "components/core/Registration/Login/Login";
 import Template from "../../Template/Template";
+import { loginFx } from "stores/Game/Login/LoginModel";
+import { useStore } from "effector";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
-interface IProps {
-  onSubmit: (data: ILoginForm) => any;
-}
-
-export const LoginForm = ({ onSubmit }: IProps) => {
+export const LoginForm = () => {
   const [state, setState] = useState<ILoginForm>({
     email: "test2@yandex.ru",
     password: "111",
   });
 
-  const comp = (
-    <div className="widther auth">
-      <div className="block">
-        <div className="auth-side">
-          <div className="title title-3">Авторизация</div>
-          <p>
-            Авторизуйтесь при помощи логина и пароля от вашего аккаунта на
-            Monopoly One.
-          </p>
-          <div className="form">
-            <div className="form-row">
-              <label>Электронная почта</label>
+  const { t } = useTranslation();
+  const pending = useStore(loginFx.pendong);
 
-              <input
-                className="form-input"
+  const comp = (
+    <>
+      <Grid
+        container
+        alignItems="center"
+        justify="center"
+        spacing={3}
+        direction="column"
+      >
+        <Grid item>
+          <Grid container direction="column" alignItems="center">
+            <Grid item>
+              <Typography variant="h6">{t("Autorization")}</Typography>
+            </Grid>
+            <Grid item>
+              <Typography variant="body2">
+                {t("Autorization with you login and password from Monopoly")}
+              </Typography>
+            </Grid>
+          </Grid>
+        </Grid>
+
+        <Grid item>
+          <Grid container direction="column" alignItems="center" spacing={2}>
+            <Grid item>
+              <TextField
                 type="email"
+                label={t("Email")}
+                variant="outlined"
                 placeholder=""
+                onChange={(v: any) =>
+                  setState({ ...state, email: v.target.value })
+                }
                 value={state.email}
-                onChange={(v) => setState({ ...state, email: v.target.value })}
               />
-            </div>
-            <div className="form-row">
-              <label>Пароль</label>
-              <input
-                className="form-input"
-                type="text"
+            </Grid>
+
+            <Grid item>
+              <TextField
+                type="password"
+                label={t("Password")}
+                variant="outlined"
                 placeholder=""
-                value={state.password}
-                onChange={(v) =>
+                onChange={(v: any) =>
                   setState({ ...state, password: v.target.value })
                 }
+                value={state.password}
               />
-            </div>
-            <button
-              className="button button-grass"
-              onClick={() => onSubmit(state)}
-            >
-              Войти
-            </button>
-            <a href="/restore" style={{ marginLeft: "15px" }}>
-              Забыли пароль?
-            </a>
-          </div>
-        </div>
-        <div className="auth-separator"></div>
-        <div className="auth-side">
-          <div className="title title-3">&nbsp;</div>
-          <p>Войдите через социальную сеть.</p>
-          <p>
-            Если вы входите через социальную сеть <strong>первый раз</strong>,
-            вам будет создан <strong>новый аккаунт</strong>.
-          </p>
-          <div className="form">
-            <a
-              href="/"
-              className="button button-blueJeans button-maxwidth"
-              id="auth_social_vk"
-              mnpl-newtab="false"
-            >
-              Войти через ВКонтакте
-            </a>
-          </div>
-          <p
-            style={{
-              marginTop: "50px",
-              marginBottom: "0px",
-              opacity: "0.66",
-            }}
-          >
-            Фактом авторизации или регистрации любым способом вы полностью
-            соглашаетесь с<a href="/pages/rules">Правилами Сайта</a>.
-          </p>
-        </div>
-      </div>
-      <div className="auth-more">
-        Зарегистрироваться без помощи социальной сети можно
-        <a href="/reg">здесь</a>.
-      </div>
-    </div>
+            </Grid>
+
+            <Grid item>
+              <Button
+                onClick={() => loginFx(state)}
+                children={
+                  pending ? <CircularProgress color="secondary" /> : t("Login")
+                }
+                color="primary"
+                variant="outlined"
+              />
+            </Grid>
+            <Grid item>
+              <a href="/restore" style={{ marginLeft: "15px" }}>
+                {t("Forgot password")}?
+              </a>
+            </Grid>
+          </Grid>
+        </Grid>
+
+        <Grid item>
+          <Grid container direction="column" alignItems="center" spacing={2}>
+            <Grid item>
+              <a href="/" className="button button-blueJeans button-maxwidth">
+                {t("VK login")}
+              </a>
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid item>
+          <Grid container direction="column" alignItems="center" spacing={1}>
+            <Grid item>
+              <Typography variant="subtitle2">
+                {t(
+                  "If you enter the first time, the new Monopoly account will be create"
+                )}
+              </Typography>
+            </Grid>
+            <Grid item>
+              <Typography variant="subtitle2">
+                {t("By fact of authorization you agree with")}{" "}
+                <Link to="/pages/rules">{t("Site rules")}</Link>
+              </Typography>
+            </Grid>
+
+            <Grid item>
+              <Typography variant="subtitle2">
+                {t("Register without VK")}{" "}
+                <Link to="/registration">{t("here")}</Link>.
+              </Typography>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
+    </>
   );
 
   return (

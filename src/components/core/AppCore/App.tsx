@@ -17,11 +17,15 @@ import RoomsSocket from "socket/RoomsSocket";
 import TopFivePage from "../Game/TopFivePage/TopFivePage";
 import { theme } from "theme";
 import { useGate } from "effector-react";
+import ReactNotifications from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
+import "animate.css";
 
 const App = () => {
   useGate(ProfileGate);
   return (
     <>
+      <ReactNotifications />
       <MuiThemeProvider theme={theme}>
         <GameModal />
         <GameChatSocket />
