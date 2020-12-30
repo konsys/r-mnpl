@@ -35,8 +35,8 @@ describe("Login test", () => {
       await registerFx(user);
       // @ts-ignore
       expect(register$.getState().name).toStrictEqual(user.name);
-    } catch (err) {
-      expect(err).toStrictEqual(1);
+    } catch (error) {
+      expect(error.response.status).toBe(400);
     }
   });
   it("should login", async () => {
