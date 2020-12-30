@@ -238,7 +238,7 @@ export const myPendingRoom$ = RoomDomain.store<IRoom | null>(null)
 sample({
   source: [rooms$, user$],
   clock: merge([rooms$.updates, user$.updates]),
-  fn: (source: [IRoomResponce, IUser]) => {
+  fn: (source: [IRoomResponce, IUser | null]) => {
     const updatedRoom =
       Array.isArray(source) && source.length === 2
         ? head(

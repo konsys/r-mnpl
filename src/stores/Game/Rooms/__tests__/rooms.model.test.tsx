@@ -41,6 +41,7 @@ describe("Rooms model test", () => {
     myRoomsReset();
     resetCurrentRoom();
     resetRoomsStore();
+    myRoomsReset();
     jest.clearAllMocks();
   });
   it("should have default value", () => {

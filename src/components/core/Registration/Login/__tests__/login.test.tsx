@@ -15,11 +15,6 @@ describe("Room top five test", () => {
     setUser(null);
     expect(shallow(<Login />).find(Redirect)).toHaveLength(0);
     expect(shallow(<Login />).find(LoginForm)).toHaveLength(1);
-    expect(
-      shallow(<Login />)
-        .find(LoginForm)
-        .get(0).props.onSubmit
-    ).toBeDefined();
   });
 
   it("should render login form", () => {
@@ -35,11 +30,5 @@ describe("Room top five test", () => {
 
   it("should involve onSubmit", () => {
     setUser(null);
-
-    expect(
-      shallow(<Login />)
-        .find(LoginForm)
-        .get(0).props.onSubmit
-    ).toBeDefined();
   });
 });

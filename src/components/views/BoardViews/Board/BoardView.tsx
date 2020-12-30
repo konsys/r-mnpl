@@ -27,7 +27,7 @@ export const BoardView = ({
   fields: IField[];
   fieldActionId: number;
   contract: IContract;
-  user: IUser | null;
+  user: IUser;
   players: IPlayer[];
 }) => {
   const getFieldActionPosition = (field: IField): IFieldModalPosition => {

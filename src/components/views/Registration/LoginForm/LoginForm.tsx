@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { ILoginForm } from "components/core/Registration/Login/Login";
 import Template from "../../Template/Template";
 import { loginFx } from "stores/Game/Login/LoginModel";
-import { useStore } from "effector";
+import { useStore } from "effector-react";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 export const LoginForm = () => {
@@ -16,7 +16,7 @@ export const LoginForm = () => {
   });
 
   const { t } = useTranslation();
-  const pending = useStore(loginFx.pendong);
+  const pending = useStore(loginFx.pending);
 
   const comp = (
     <>

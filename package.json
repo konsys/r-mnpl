@@ -9,7 +9,7 @@
     "animate.css": "^4.1.1",
     "axios": "^0.19.2",
     "effector": "^21.7.5",
-    "effector-react": "^20.6.2",
+    "effector-react": "^21.2.1",
     "fontsource-roboto": "^3.0.3",
     "i18next": "^19.6.3",
     "i18next-browser-languagedetector": "^5.0.1",
