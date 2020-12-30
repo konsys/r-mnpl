@@ -7,7 +7,6 @@ import { createDomain } from "effector";
 import { getMyProfile } from "../User/UserModel";
 import { loginFetch } from "api/Login/api";
 import { clearToken, saveRefreshToken, saveToken } from "../Token/TokenModel";
-import { store } from "react-notifications-component";
 
 const AuthDomain = createDomain("AuthDomain");
 export const clearTokenStore = AuthDomain.event();
@@ -16,19 +15,10 @@ export const loginFx = AuthDomain.effect<ILoginForm, ILoginResponce, Error>({
   handler: loginFetch,
 });
 
-loginFx.fail.watch(() => {
-  store.addNotification({
-    title: "Error",
-    message: "Connection failed",
-    type: "warning", // 'default', 'success', 'info', 'warning'
-    container: "bottom-right", // where to position the notifications
-    animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
-    animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
-    dismiss: {
-      duration: 2000,
-    },
-  });
-});
+export const loginFail$ = AuthDomain.store<string | null>(null).on(
+  loginFx.fail,
+  () => "Wrong email or password"
+);
 
 export const login$ = AuthDomain.store<ILoginResponce | null>(null)
   .on(loginFx.done, (_, data) => {

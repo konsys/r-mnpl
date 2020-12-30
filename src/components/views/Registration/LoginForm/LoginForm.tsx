@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 import { ILoginForm } from "components/core/Registration/Login/Login";
 import Template from "../../Template/Template";
-import { loginFx } from "stores/Game/Login/LoginModel";
+import { loginFail$, loginFx } from "stores/Game/Login/LoginModel";
 import { useStore } from "effector-react";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
@@ -17,6 +17,7 @@ export const LoginForm = () => {
 
   const { t } = useTranslation();
   const pending = useStore(loginFx.pending);
+  const fail = useStore(loginFail$);
 
   const comp = (
     <>
@@ -42,6 +43,10 @@ export const LoginForm = () => {
 
         <Grid item>
           <Grid container direction="column" alignItems="center" spacing={2}>
+            <Grid item style={{ height: "50px" }}>
+              {fail}
+              {pending ? <CircularProgress color="secondary" /> : ""}
+            </Grid>
             <Grid item>
               <TextField
                 type="email"
@@ -83,9 +88,6 @@ export const LoginForm = () => {
               <a href="/restore" style={{ marginLeft: "15px" }}>
                 {t("Forgot password")}?
               </a>
-            </Grid>
-            <Grid item style={{ height: "40px" }}>
-              {pending ? <CircularProgress color="secondary" /> : ""}
             </Grid>
           </Grid>
         </Grid>
