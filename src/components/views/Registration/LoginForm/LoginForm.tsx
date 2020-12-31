@@ -5,19 +5,27 @@ import { Link } from "react-router-dom";
 
 import { ILoginForm } from "components/core/Registration/Login/Login";
 import Template from "../../Template/Template";
-import { loginFail$, loginFx } from "stores/Game/Login/LoginModel";
-import { useStore } from "effector-react";
+import {
+  loginFail$,
+  loginFx,
+  login,
+  LoginGate,
+} from "stores/Game/Login/LoginModel";
+import { useGate, useStore } from "effector-react";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import Alert from "@material-ui/lab/Alert";
 
 export const LoginForm = () => {
   const [state, setState] = useState<ILoginForm>({
-    email: "test2@yandex.ru",
-    password: "111",
+    email: "TestUser1@yandex.ru",
+    password: "password",
   });
 
   const { t } = useTranslation();
   const pending = useStore(loginFx.pending);
   const fail = useStore(loginFail$);
+
+  useGate(LoginGate);
 
   const comp = (
     <>
@@ -43,9 +51,15 @@ export const LoginForm = () => {
 
         <Grid item>
           <Grid container direction="column" alignItems="center" spacing={2}>
-            <Grid item style={{ height: "50px" }}>
-              {fail}
-              {pending ? <CircularProgress color="secondary" /> : ""}
+            <Grid
+              item
+              style={{ height: "70px", width: "100%", textAlign: "center" }}
+            >
+              {pending ? (
+                <CircularProgress color="secondary" />
+              ) : (
+                fail && <Alert severity="error">{t(fail)}</Alert>
+              )}
             </Grid>
             <Grid item>
               <TextField
@@ -76,7 +90,7 @@ export const LoginForm = () => {
             <Grid item>
               <Button
                 size="small"
-                onClick={() => loginFx(state)}
+                onClick={() => login(state)}
                 children={t("Login")}
                 color="primary"
                 variant="outlined"

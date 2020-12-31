@@ -12,6 +12,7 @@ i18n
       ru: {
         translations: {
           Email: "Электронная почта",
+          "Wrong email or password": "Неправильный пароль или логин",
           "Register without VK": "Зарегистрироваться без Вконтакте",
           Password: "Пароль",
           Enter: "Войти",
