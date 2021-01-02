@@ -32,6 +32,8 @@ sample({
   target: registrationFx,
 });
 
+registrationFx.done.watch(() => (window.location.href = "/registration/code"));
+
 export const login = AuthDomain.event<ILoginForm>();
 export const loginFx = AuthDomain.effect<ILoginForm, ILoginResponce, Error>({
   handler: loginFetch,

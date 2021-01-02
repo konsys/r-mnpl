@@ -21,6 +21,7 @@ import ReactNotifications from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
 import "animate.css";
 import { RegistrationForm } from "components/views/Registration/RegistrationForm";
+import { RegistrationCode } from "components/views/Registration/RegistrationCode";
 
 const App = () => {
   useGate(ProfileGate);
@@ -35,6 +36,11 @@ const App = () => {
           <Switch>
             <Route exact path="/login" component={Login} />
             <Route exact path="/registration" component={RegistrationForm} />
+            <Route
+              exact
+              path="/registration/code"
+              component={RegistrationCode}
+            />
             <Route exact path="/board/:id" component={Board} />
             <Route exact path="/" default component={Rooms} />
             <Route path="/top-five" component={TopFivePage} />

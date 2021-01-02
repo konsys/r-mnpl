@@ -125,7 +125,7 @@ export const RegistrationForm = () => {
               <Button
                 size="small"
                 onClick={() => registration(state)}
-                children={t("Login")}
+                children={t("Register")}
                 color="primary"
                 variant="outlined"
                 disabled={pending}
