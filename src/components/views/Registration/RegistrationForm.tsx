@@ -12,14 +12,6 @@ import { useGate, useStore } from "effector-react";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Alert from "@material-ui/lab/Alert";
 
-export interface IRegistrationForm {
-  email: string;
-  password: string;
-  repeatPassword: string;
-  name: string;
-  description?: string;
-}
-
 export const RegistrationForm = () => {
   const [state, setState] = useState<IRegistrationForm>({
     email: "test@test.ru",

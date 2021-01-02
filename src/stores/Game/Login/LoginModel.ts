@@ -5,34 +5,12 @@ import {
 
 import { createDomain, sample } from "effector";
 import { getMyProfile } from "../User/UserModel";
-import { loginFetch, registrationFetch } from "api/Login/api";
+import { loginFetch } from "api/Login/api";
 import { clearToken, saveRefreshToken, saveToken } from "../Token/TokenModel";
 import { createGate } from "effector-react";
-import { IRegistrationForm } from "components/views/Registration/RegistrationForm";
 
-const AuthDomain = createDomain("AuthDomain");
+export const AuthDomain = createDomain("AuthDomain");
 export const clearTokenStore = AuthDomain.event();
-
-export const registration = AuthDomain.event<IRegistrationForm>();
-export const registrationFx = AuthDomain.effect<
-  IRegistrationForm,
-  ILoginResponce,
-  Error
->({
-  handler: registrationFetch,
-});
-
-sample({
-  source: registration,
-  clock: registration,
-  fn: (rg: IRegistrationForm) => {
-    clearLoginFail();
-    return rg;
-  },
-  target: registrationFx,
-});
-
-registrationFx.done.watch(() => (window.location.href = "/registration/code"));
 
 export const login = AuthDomain.event<ILoginForm>();
 export const loginFx = AuthDomain.effect<ILoginForm, ILoginResponce, Error>({

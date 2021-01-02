@@ -1,3 +1,4 @@
+import { IRegistrationForm } from "components/views/Registration/RegistrationForm";
 import { ILoginResponce } from "../../components/core/Registration/Login/Login";
 import { client } from "../../http/client";
 
@@ -10,7 +11,7 @@ export const loginFetch = async (params?: any): Promise<ILoginResponce> => {
 
 export const registrationFetch = async (
   params?: any
-): Promise<ILoginResponce> => {
+): Promise<IRegistrationForm> => {
   const res = await client.post(`/users/register`, params);
   return res ? await res.data : null;
 };

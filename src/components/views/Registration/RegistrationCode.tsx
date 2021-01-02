@@ -1,4 +1,4 @@
-import { Grid, TextField, Typography } from "@material-ui/core";
+import { Button, Grid, TextField, Typography } from "@material-ui/core";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import Template from "../Template/Template";
@@ -32,6 +32,17 @@ export const RegistrationCode = () => {
               placeholder=""
               onChange={(v: any) => setState({ code: v.target.value })}
               value={state.code}
+            />
+          </Grid>
+
+          <Grid item>
+            <Button
+              size="small"
+              onClick={() => registrationCode(state)}
+              children={t("Register")}
+              color="primary"
+              variant="outlined"
+              disabled={pending}
             />
           </Grid>
         </Grid>
