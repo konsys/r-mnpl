@@ -20,6 +20,7 @@ import { useGate } from "effector-react";
 import ReactNotifications from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
 import "animate.css";
+import { RegistrationForm } from "components/views/Registration/RegistrationForm";
 
 const App = () => {
   useGate(ProfileGate);
@@ -33,6 +34,7 @@ const App = () => {
         <Router>
           <Switch>
             <Route exact path="/login" component={Login} />
+            <Route exact path="/registration" component={RegistrationForm} />
             <Route exact path="/board/:id" component={Board} />
             <Route exact path="/" default component={Rooms} />
             <Route path="/top-five" component={TopFivePage} />

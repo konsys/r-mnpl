@@ -5,12 +5,32 @@ import {
 
 import { createDomain, sample } from "effector";
 import { getMyProfile } from "../User/UserModel";
-import { loginFetch } from "api/Login/api";
+import { loginFetch, registrationFetch } from "api/Login/api";
 import { clearToken, saveRefreshToken, saveToken } from "../Token/TokenModel";
 import { createGate } from "effector-react";
+import { IRegistrationForm } from "components/views/Registration/RegistrationForm";
 
 const AuthDomain = createDomain("AuthDomain");
 export const clearTokenStore = AuthDomain.event();
+
+export const registration = AuthDomain.event<IRegistrationForm>();
+export const registrationFx = AuthDomain.effect<
+  IRegistrationForm,
+  ILoginResponce,
+  Error
+>({
+  handler: registrationFetch,
+});
+
+sample({
+  source: registration,
+  clock: registration,
+  fn: (rg: IRegistrationForm) => {
+    clearLoginFail();
+    return rg;
+  },
+  target: registrationFx,
+});
 
 export const login = AuthDomain.event<ILoginForm>();
 export const loginFx = AuthDomain.effect<ILoginForm, ILoginResponce, Error>({
@@ -30,7 +50,7 @@ LoginGate.open.watch(() => clearLoginFail());
 sample({
   source: login,
   clock: login,
-  fn: (lg) => {
+  fn: (lg: ILoginForm) => {
     clearLoginFail();
     return lg;
   },
@@ -38,17 +58,17 @@ sample({
 });
 
 export const login$ = AuthDomain.store<ILoginResponce | null>(null)
-  .on(loginFx.done, (_, data) => {
+  .on(loginFx.done, (_, { result }: { result: any }) => {
     clearToken();
-    if (data && data.result) {
-      saveToken(data.result.accessToken);
-      saveRefreshToken(data.result.refreshToken);
+    if (result) {
+      saveToken(result.accessToken);
+      saveRefreshToken(result.refreshToken);
       getMyProfile();
     }
 
-    return data.result;
+    return result;
   })
-  .on(loginFx.fail, (err) => clearToken())
+  .on(loginFx.fail, () => clearToken())
   .reset(clearTokenStore);
 
 // login$.updates.watch((v) => console.log("LoginStoreWatch", v));

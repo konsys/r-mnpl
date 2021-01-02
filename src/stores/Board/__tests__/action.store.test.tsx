@@ -93,13 +93,13 @@ describe("Test action store", () => {
     });
   });
 
-  it("should set current action", () => {
+  it("should set current action to empty object", () => {
     // @ts-ignore
     setBoardAction({});
     expect(actions$.getState()).toStrictEqual({});
   });
 
-  it("should set current action", () => {
+  it("should set current action to null", () => {
     // @ts-ignore
     setBoardAction(null);
     expect(actions$.getState()).toStrictEqual(null);
@@ -111,7 +111,7 @@ describe("Test action store", () => {
     expect(state).toStrictEqual(testDoNothingAction);
   });
 
-  it("should set current action", () => {
+  it("should reset current action", () => {
     resetActionEvent();
     expect(actions$.getState()).toStrictEqual({
       actionId: "",
@@ -126,7 +126,7 @@ describe("Test action store", () => {
     });
   });
 
-  it("should set do nothing action", () => {
+  it("should set do nothing action with user id", () => {
     doNothingAction(2342883424);
     expect(actions$.getState()).toStrictEqual({
       actionId: "startActionId",
@@ -157,7 +157,7 @@ describe("Test action store", () => {
     );
   });
 
-  it("should handle income buy modal action", () => {
+  it("should handle testIncomeBuyModal", () => {
     setBoardAction(testIncomeBuyModal);
 
     expect(modalsStore.showBoardActionModal).toBeCalledTimes(1);
@@ -165,7 +165,7 @@ describe("Test action store", () => {
     expect(modals.canBuyModal).toBeCalledWith(testIncomeBuyModal.event.action);
   });
 
-  it("should handle income buy modal action", () => {
+  it("should handle testIncomeTaxPaying", () => {
     setBoardAction(testIncomeTaxPaying);
 
     expect(modalsStore.showBoardActionModal).toBeCalledTimes(1);
@@ -173,7 +173,7 @@ describe("Test action store", () => {
     expect(modals.taxModal).toBeCalledWith(testIncomeTaxPaying.event.action);
   });
 
-  it("should handle income unjail modal action", () => {
+  it("should handle testIncomeUnjailModal", () => {
     setBoardAction(testIncomeUnjailModal);
 
     expect(modalsStore.showBoardActionModal).toBeCalledTimes(1);
@@ -182,7 +182,7 @@ describe("Test action store", () => {
       testIncomeUnjailModal.event.action
     );
   });
-  it("should handle income unjail modal action", () => {
+  it("should handle testIncomeAuctionModal", () => {
     setBoardAction(testIncomeAuctionModal);
 
     expect(modalsStore.showBoardActionModal).toBeCalledTimes(1);
@@ -192,7 +192,7 @@ describe("Test action store", () => {
     );
   });
 
-  it("should handle income unjail modal action", () => {
+  it("should handle testIncomeContract", () => {
     setBoardAction(testIncomeContract);
 
     expect(contract.incomeContract).toBeCalledTimes(1);

@@ -142,9 +142,9 @@ const actionHandler = (action: BoardAction) => {
 sample({
   clock: incomeContract,
   source: combine({
-    action: actions$ && actions$.map((v) => v),
-    user: user$ && user$.map((v) => v),
-    contract: contract$ && contract$.map((v) => v),
+    action: actions$.map((v) => v),
+    user: user$.map((v) => v),
+    contract: contract$.map((v) => v),
   }),
   fn: ({ action, user, contract }) => {
     const toUserId = get(action, "event.action.contract.toUserId");

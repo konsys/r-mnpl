@@ -77,14 +77,13 @@ describe("Contract store test", () => {
     // @ts-ignore
     setContract(r);
 
+    // @ts-ignore
     addFieldToContract({
       toUserId,
       money,
       field: {
         fieldId,
-        // @ts-ignore
         price: { startPrice },
-        // @ts-ignore
         status: { fieldId, mortgaged: 0, userId: fromUserId },
       },
     });
@@ -95,15 +94,13 @@ describe("Contract store test", () => {
   it("should not add field to contract without toUserId", () => {
     // @ts-ignore
     setContract(r);
-
+    // @ts-ignore
     addFieldToContract({
       fromUserId,
       money,
       field: {
         fieldId,
-        // @ts-ignore
         price: { startPrice },
-        // @ts-ignore
         status: { fieldId, mortgaged: 0, userId: fromUserId },
       },
     });
@@ -127,15 +124,13 @@ describe("Contract store test", () => {
   it("should not add field to contract without fieldId", () => {
     // @ts-ignore
     setContract(r);
-
+    // @ts-ignore
     addFieldToContract({
       fromUserId,
       toUserId,
       money,
       field: {
-        // @ts-ignore
         price: { startPrice },
-        // @ts-ignore
         status: { fieldId, mortgaged: 0, userId: fromUserId },
       },
     });
@@ -145,16 +140,15 @@ describe("Contract store test", () => {
   it("should not add field to contract without startPrice", () => {
     // @ts-ignore
     setContract(r);
-
+    // @ts-ignore
     addFieldToContract({
       fromUserId,
       toUserId,
       money,
       field: {
         fieldId,
-        // @ts-ignore
+
         price: {},
-        // @ts-ignore
         status: { fieldId, mortgaged: 0, userId: fromUserId },
       },
     });
@@ -165,14 +159,14 @@ describe("Contract store test", () => {
   it("should not add field to contract without price", () => {
     // @ts-ignore
     setContract(r);
-
+    // @ts-ignore
     addFieldToContract({
       fromUserId,
       toUserId,
       money,
       field: {
         fieldId,
-        // @ts-ignore
+
         status: { fieldId, mortgaged: 0, userId: fromUserId },
       },
     });
@@ -183,14 +177,13 @@ describe("Contract store test", () => {
   it("should not add field to contract without status", () => {
     // @ts-ignore
     setContract(r);
-
+    // @ts-ignore
     addFieldToContract({
       fromUserId,
       toUserId,
       money,
       field: {
         fieldId,
-        // @ts-ignore
         price: { startPrice },
       },
     });
@@ -201,16 +194,14 @@ describe("Contract store test", () => {
   it("should add field to contract ", () => {
     // @ts-ignore
     setContract(r);
-
+    // @ts-ignore
     addFieldToContract({
       fromUserId,
       toUserId,
       money,
       field: {
         fieldId,
-        // @ts-ignore
         price: { startPrice },
-        // @ts-ignore
         status: { fieldId, mortgaged: 0, userId: fromUserId },
       },
     });
@@ -227,16 +218,14 @@ describe("Contract store test", () => {
       fieldFromPrice: 1100,
       fieldIdsFrom: [],
     });
-
+    // @ts-ignore
     addFieldToContract({
       fromUserId,
       toUserId,
       money,
       field: {
         fieldId,
-        // @ts-ignore
         price: { startPrice },
-        // @ts-ignore
         status: { fieldId, mortgaged: 0, userId: fromUserId },
       },
     });
@@ -253,16 +242,14 @@ describe("Contract store test", () => {
       fieldFromPrice: 12,
       fieldIdsFrom: [34],
     });
-
+    // @ts-ignore
     addFieldToContract({
       fromUserId,
       toUserId,
       money,
       field: {
         fieldId,
-        // @ts-ignore
         price: { startPrice },
-        // @ts-ignore
         status: { fieldId, mortgaged: 0, userId: fromUserId },
       },
     });
@@ -279,16 +266,14 @@ describe("Contract store test", () => {
       fieldFromPrice: startPrice,
       fieldIdsFrom: [fieldId],
     });
-
+    // @ts-ignore
     addFieldToContract({
       fromUserId,
       toUserId,
       money,
       field: {
         fieldId,
-        // @ts-ignore
         price: { startPrice },
-        // @ts-ignore
         status: { fieldId, mortgaged: 0, userId: fromUserId },
       },
     });
@@ -305,16 +290,14 @@ describe("Contract store test", () => {
       fieldFromPrice: 100 + startPrice,
       fieldIdsFrom: [12, fieldId],
     });
-
+    // @ts-ignore
     addFieldToContract({
       fromUserId,
       toUserId,
       money,
       field: {
         fieldId,
-        // @ts-ignore
         price: { startPrice },
-        // @ts-ignore
         status: { fieldId, mortgaged: 0, userId: fromUserId },
       },
     });
@@ -331,16 +314,14 @@ describe("Contract store test", () => {
       fieldFromPrice: 100 - startPrice,
       fieldIdsFrom: [12, fieldId],
     });
-
+    // @ts-ignore
     addFieldToContract({
       fromUserId,
       toUserId,
       money,
       field: {
         fieldId,
-        // @ts-ignore
         price: { startPrice },
-        // @ts-ignore
         status: { fieldId, mortgaged: 0, userId: fromUserId },
       },
     });
@@ -357,16 +338,14 @@ describe("Contract store test", () => {
   it("should add field to contract ", () => {
     // @ts-ignore
     setContract(r);
-
+    // @ts-ignore
     addFieldToContract({
       fromUserId,
       toUserId,
       money,
       field: {
         fieldId,
-        // @ts-ignore
         price: { startPrice },
-        // @ts-ignore
         status: { fieldId, mortgaged: 0, userId: toUserId },
       },
     });
@@ -383,16 +362,14 @@ describe("Contract store test", () => {
       fieldToPrice: 1100,
       fieldIdsTo: [],
     });
-
+    // @ts-ignore
     addFieldToContract({
       fromUserId,
       toUserId,
       money,
       field: {
         fieldId,
-        // @ts-ignore
         price: { startPrice },
-        // @ts-ignore
         status: { fieldId, mortgaged: 0, userId: toUserId },
       },
     });
@@ -409,16 +386,14 @@ describe("Contract store test", () => {
       fieldToPrice: 12,
       fieldIdsTo: [34],
     });
-
+    // @ts-ignore
     addFieldToContract({
       fromUserId,
       toUserId,
       money,
       field: {
         fieldId,
-        // @ts-ignore
         price: { startPrice },
-        // @ts-ignore
         status: { fieldId, mortgaged: 0, userId: toUserId },
       },
     });
@@ -435,16 +410,14 @@ describe("Contract store test", () => {
       fieldToPrice: startPrice,
       fieldIdsTo: [fieldId],
     });
-
+    // @ts-ignore
     addFieldToContract({
       fromUserId,
       toUserId,
       money,
       field: {
         fieldId,
-        // @ts-ignore
         price: { startPrice },
-        // @ts-ignore
         status: { fieldId, mortgaged: 0, userId: toUserId },
       },
     });
@@ -461,16 +434,14 @@ describe("Contract store test", () => {
       fieldToPrice: 100 + startPrice,
       fieldIdsTo: [12, fieldId],
     });
-
+    // @ts-ignore
     addFieldToContract({
       fromUserId,
       toUserId,
       money,
       field: {
         fieldId,
-        // @ts-ignore
         price: { startPrice },
-        // @ts-ignore
         status: { fieldId, mortgaged: 0, userId: toUserId },
       },
     });
@@ -487,16 +458,14 @@ describe("Contract store test", () => {
       fieldToPrice: 100 - startPrice,
       fieldIdsTo: [12, fieldId],
     });
-
+    // @ts-ignore
     addFieldToContract({
       fromUserId,
       toUserId,
       money,
       field: {
         fieldId,
-        // @ts-ignore
         price: { startPrice },
-        // @ts-ignore
         status: { fieldId, mortgaged: 0, userId: toUserId },
       },
     });
