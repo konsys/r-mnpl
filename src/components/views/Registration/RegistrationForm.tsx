@@ -8,8 +8,10 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import Alert from "@material-ui/lab/Alert";
 import {
   IRegistrationForm,
-  registration,
+  registration$,
   registrationFx,
+  registrationEvent,
+  sendRegistrationCode,
 } from "stores/Game/Login/RegistrationModel";
 
 export const RegistrationForm = () => {
@@ -18,10 +20,12 @@ export const RegistrationForm = () => {
     password: "password",
     repeatPassword: "password",
     name: "testUser",
+    code: "",
   });
 
   const { t } = useTranslation();
   const pending = useStore(registrationFx.pending);
+  const registration = useStore(registration$);
   const fail = useStore(loginFail$);
 
   useGate(LoginGate);
@@ -116,7 +120,7 @@ export const RegistrationForm = () => {
             <Grid item>
               <Button
                 size="small"
-                onClick={() => registration(state)}
+                onClick={() => registrationEvent(state)}
                 children={t("Register")}
                 color="primary"
                 variant="outlined"
@@ -129,10 +133,59 @@ export const RegistrationForm = () => {
     </>
   );
 
+  const code = (
+    <>
+      <Grid
+        container
+        alignItems="center"
+        justify="center"
+        spacing={3}
+        direction="column"
+      >
+        <Grid
+          item
+          style={{ height: "70px", width: "100%", textAlign: "center" }}
+        >
+          {pending ? (
+            <CircularProgress color="secondary" />
+          ) : (
+            fail && <Alert severity="error">{t(fail)}</Alert>
+          )}
+        </Grid>
+        <Grid item>
+          <Typography variant="h6">
+            {t("Registration code from the letter")}
+          </Typography>
+        </Grid>
+        <Grid item>
+          <TextField
+            type="text"
+            label={t("Registration Code")}
+            variant="outlined"
+            placeholder=""
+            onChange={(v: any) => setState({ ...state, code: v.target.value })}
+            value={state.code}
+          />
+        </Grid>
+
+        <Grid item>
+          <Button
+            size="small"
+            onClick={() => sendRegistrationCode({ code: state.code })}
+            children={t("Register")}
+            color="primary"
+            variant="outlined"
+            disabled={pending}
+          />
+        </Grid>
+      </Grid>
+    </>
+  );
+
   return (
     <>
-      <Template columns={1} title={"Login"}>
-        {comp}
+      <Template columns={1} title={"Registration"}>
+        {registration ? code : comp}
       </Template>
     </>
   );
