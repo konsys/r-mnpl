@@ -34,7 +34,6 @@ export const registrationFx = AuthDomain.effect<IRegistrationForm, any, Error>({
 export const registration$ = AuthDomain.store<IRegistrationCode | null>(
   null
 ).on(registrationFx.done, (_, { result }) => {
-  console.log(555555555555, result);
   return { email: result ? result.email : "" };
 });
 
