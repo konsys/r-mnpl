@@ -1,6 +1,8 @@
 import { Button, Grid, TextField, Typography } from "@material-ui/core";
+import { useStore } from "effector-react";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { registrationCodeFx } from "stores/Game/Login/RegistrationModel";
 import Template from "../Template/Template";
 
 export const RegistrationCode = () => {
@@ -8,7 +10,7 @@ export const RegistrationCode = () => {
     code: "",
   });
   const { t } = useTranslation();
-
+  const pending = useStore(registrationCodeFx.pending);
   return (
     <>
       <Template columns={1} title={"Login"}>
@@ -38,7 +40,7 @@ export const RegistrationCode = () => {
           <Grid item>
             <Button
               size="small"
-              onClick={() => registrationCode(state)}
+              onClick={() => registrationCodeFx({ code: state.code })}
               children={t("Register")}
               color="primary"
               variant="outlined"

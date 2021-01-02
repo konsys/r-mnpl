@@ -1,4 +1,4 @@
-import { registrationFetch } from "api/Login/api";
+import { registrationCodeFetch, registrationFetch } from "api/Registration/api";
 import { sample } from "effector";
 import { AuthDomain, clearLoginFail } from "./LoginModel";
 
@@ -14,6 +14,13 @@ export interface IRegistrationCode {
   email: string;
   code: string;
 }
+export const registrationCodeFx = AuthDomain.effect<
+  { code: string },
+  any,
+  Error
+>({
+  handler: registrationCodeFetch,
+});
 
 export const registration = AuthDomain.event<IRegistrationForm>();
 export const registrationFx = AuthDomain.effect<

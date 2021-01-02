@@ -2,15 +2,15 @@ import { Grid, Typography, TextField, Button } from "@material-ui/core";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import Template from "../Template/Template";
-import {
-  loginFail$,
-  registrationFx,
-  LoginGate,
-  registration,
-} from "stores/Game/Login/LoginModel";
+import { loginFail$, LoginGate } from "stores/Game/Login/LoginModel";
 import { useGate, useStore } from "effector-react";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Alert from "@material-ui/lab/Alert";
+import {
+  IRegistrationForm,
+  registration,
+  registrationFx,
+} from "stores/Game/Login/RegistrationModel";
 
 export const RegistrationForm = () => {
   const [state, setState] = useState<IRegistrationForm>({
