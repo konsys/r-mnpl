@@ -50,9 +50,9 @@ sample({
 sample({
   source: registration$.map((v) => v && v.email),
   clock: sendRegistrationCode,
-  fn: (email, code) => {
+  fn: (email, { code }) => {
     console.log(11111111111, code, email);
-    return { code: "", email: email ? email : "" };
+    return { code, email: email ? email : "" };
   },
   target: registrationCodeFx,
 });

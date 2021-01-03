@@ -11,6 +11,7 @@ i18n
     resources: {
       ru: {
         translations: {
+          "Create your Monopoly account": "Создайте аккаунт в Монополии",
           Email: "Электронная почта",
           "Wrong email or password": "Неправильный пароль или логин",
           "Register without VK": "Зарегистрироваться без Вконтакте",
