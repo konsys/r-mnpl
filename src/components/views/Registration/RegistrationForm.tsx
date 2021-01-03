@@ -20,7 +20,7 @@ export const RegistrationForm = () => {
     password: "password",
     repeatPassword: "password",
     name: "testUser",
-    code: "",
+    registrationCode: "",
   });
 
   const { t } = useTranslation();
@@ -142,6 +142,11 @@ export const RegistrationForm = () => {
         spacing={3}
         direction="column"
       >
+        <Grid item>
+          <Typography variant="h6">
+            {t("Registration code from the letter we sent on your email")}
+          </Typography>
+        </Grid>
         <Grid
           item
           style={{ height: "70px", width: "100%", textAlign: "center" }}
@@ -153,26 +158,24 @@ export const RegistrationForm = () => {
           )}
         </Grid>
         <Grid item>
-          <Typography variant="h6">
-            {t("Registration code from the letter")}
-          </Typography>
-        </Grid>
-        <Grid item>
           <TextField
             type="text"
             label={t("Registration Code")}
             variant="outlined"
             placeholder=""
-            onChange={(v: any) => setState({ ...state, code: v.target.value })}
-            value={state.code}
+            onChange={(v: any) =>
+              setState({ ...state, registrationCode: v.target.value })
+            }
+            value={state.registrationCode}
           />
         </Grid>
-
         <Grid item>
           <Button
             size="small"
-            onClick={() => sendRegistrationCode({ code: state.code })}
-            children={t("Register")}
+            onClick={() =>
+              sendRegistrationCode({ registrationCode: state.registrationCode })
+            }
+            children={t("Ok")}
             color="primary"
             variant="outlined"
             disabled={pending}

@@ -11,12 +11,15 @@ export const registrationFetch = async (
 };
 
 export const registrationCodeFetch = async ({
-  code,
+  registrationCode,
   email,
 }: {
-  code: string;
+  registrationCode: string;
   email: string;
 }): Promise<boolean> => {
-  const res = await client.post(`/users/register/code`, { code, email });
+  const res = await client.post(`/users/register/code`, {
+    registrationCode,
+    email,
+  });
   return res ? await res.data : false;
 };

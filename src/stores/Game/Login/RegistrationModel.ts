@@ -1,6 +1,6 @@
 import { registrationCodeFetch, registrationFetch } from "api/Registration/api";
-import { sample } from "effector";
-import { AuthDomain, clearLoginFail } from "./LoginModel";
+import { createEffect, createEvent, createStore, sample } from "effector";
+import { clearLoginFail } from "./LoginModel";
 
 export interface IRegistrationForm {
   email: string;
@@ -8,34 +8,35 @@ export interface IRegistrationForm {
   repeatPassword: string;
   name: string;
   description?: string;
-  code: string;
+  registrationCode: string;
 }
 
 export interface IRegistrationCode {
   email: string;
-  code?: string;
+  registrationCode?: string;
 }
 
-export const sendRegistrationCode = AuthDomain.event<{ code: string }>();
+export const sendRegistrationCode = createEvent<{ registrationCode: string }>();
 
-export const registrationCodeFx = AuthDomain.effect<
-  { code: string; email: string },
+export const registrationCodeFx = createEffect<
+  { registrationCode: string; email: string },
   any,
   Error
 >({
   handler: registrationCodeFetch,
 });
 
-export const registrationEvent = AuthDomain.event<IRegistrationForm>();
-export const registrationFx = AuthDomain.effect<IRegistrationForm, any, Error>({
+export const registrationEvent = createEvent<IRegistrationForm>();
+export const registrationFx = createEffect<IRegistrationForm, any, Error>({
   handler: registrationFetch,
 });
 
-export const registration$ = AuthDomain.store<IRegistrationCode | null>(
-  null
-).on(registrationFx.done, (_, { result }) => {
-  return { email: result ? result.email : "" };
-});
+export const registration$ = createStore<IRegistrationCode | null>(null).on(
+  registrationFx.done,
+  (_, { result }) => {
+    return { email: result ? result.email : "" };
+  }
+);
 
 sample({
   source: registrationEvent,
@@ -50,12 +51,10 @@ sample({
 sample({
   source: registration$.map((v) => v && v.email),
   clock: sendRegistrationCode,
-  fn: (email, { code }) => {
-    console.log(11111111111, code, email);
-    return { code, email: email ? email : "" };
+  fn: (email, { registrationCode }) => {
+    return { registrationCode, email: email ? email : "" };
   },
   target: registrationCodeFx,
 });
 
-registration$.updates.watch((v) => console.log(555555555555, v));
 // registrationFx.done.watch(() => (window.location.href = "/registration/code/"));

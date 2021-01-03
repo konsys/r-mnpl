@@ -11,6 +11,13 @@ i18n
     resources: {
       ru: {
         translations: {
+          "Registration code from the letter we sent on your email":
+            "Вставьте код, который был отправлен на Ваш почтовый ящик",
+          "Registration Code": "Код из письма",
+          Register: "зарегистрироваться",
+          Name: "Имя",
+          "Repeat password": "Повторите пароль",
+          Registration: "Регистрация",
           "Create your Monopoly account": "Создайте аккаунт в Монополии",
           Email: "Электронная почта",
           "Wrong email or password": "Неправильный пароль или логин",

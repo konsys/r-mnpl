@@ -8,8 +8,10 @@ import { getMyProfile } from "../User/UserModel";
 import { loginFetch } from "api/Login/api";
 import { clearToken, saveRefreshToken, saveToken } from "../Token/TokenModel";
 import { createGate } from "effector-react";
+import { registrationCodeFx, registrationFx } from "./RegistrationModel";
 
 export const AuthDomain = createDomain("AuthDomain");
+
 export const clearTokenStore = AuthDomain.event();
 
 export const login = AuthDomain.event<ILoginForm>();
@@ -22,7 +24,11 @@ export const LoginGate = createGate();
 export const clearLoginFail = AuthDomain.event();
 
 export const loginFail$ = AuthDomain.store<string | null>(null)
-  .on(loginFx.fail, () => "Wrong email or password")
+  .on(loginFx.fail, (k: any, v: any) => v.error.response.data.message)
+  .on(registrationFx.fail, (k: any, v: any) => v.error.response.data.message)
+  .on(registrationCodeFx.fail, (k: any, v: any) => {
+    return v.error.response.data.message;
+  })
   .reset(clearLoginFail);
 
 LoginGate.open.watch(() => clearLoginFail());
