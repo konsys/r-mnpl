@@ -57,4 +57,4 @@ sample({
   target: registrationCodeFx,
 });
 
-// registrationFx.done.watch(() => (window.location.href = "/registration/code/"));
+registrationCodeFx.done.watch(() => (window.location.href = "/login"));
