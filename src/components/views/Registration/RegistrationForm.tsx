@@ -1,5 +1,5 @@
 import { Grid, Typography, TextField, Button } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import Template from "../Template/Template";
 import { loginFail$, LoginGate } from "stores/Game/Login/LoginModel";
@@ -12,7 +12,25 @@ import {
   registrationFx,
   registrationEvent,
   sendRegistrationCode,
+  resendRegistrationEmail,
 } from "stores/Game/Login/RegistrationModel";
+
+const secondsToTime = (secs: number) => {
+  let hours = Math.floor(secs / (60 * 60));
+
+  let divisor_for_minutes = secs % (60 * 60);
+  let minutes = Math.floor(divisor_for_minutes / 60);
+
+  let divisor_for_seconds = divisor_for_minutes % 60;
+  let seconds = Math.ceil(divisor_for_seconds);
+
+  let obj = {
+    h: hours < 10 ? "0" + hours : hours,
+    m: minutes < 10 ? "0" + minutes : minutes,
+    s: seconds < 10 ? "0" + seconds : seconds,
+  };
+  return obj;
+};
 
 export const RegistrationForm = () => {
   const [state, setState] = useState<IRegistrationForm>({
@@ -23,11 +41,23 @@ export const RegistrationForm = () => {
     registrationCode: "",
   });
 
+  const [seconds, setSeconds] = useState<number>(10);
+
+  useEffect(() => {
+    let interval: any = null;
+    interval = setInterval(() => {
+      setSeconds((seconds) => seconds - 1);
+    }, 1000);
+    return () => {
+      clearInterval(interval);
+    };
+  });
+
   const { t } = useTranslation();
   const pending = useStore(registrationFx.pending);
   const registration = useStore(registration$);
   const fail = useStore(loginFail$);
-
+  const remainTime = secondsToTime(seconds);
   useGate(LoginGate);
 
   const comp = (
@@ -170,15 +200,34 @@ export const RegistrationForm = () => {
           />
         </Grid>
         <Grid item>
+          {seconds > 0 ? (
+            <Typography variant="body2">
+              Отправить код повторно можно через {remainTime.m}:{remainTime.s}
+            </Typography>
+          ) : (
+            <Typography
+              style={{ cursor: "pointer", color: "blue" }}
+              variant="caption"
+              onClick={() => {
+                setSeconds(10);
+                resendRegistrationEmail();
+              }}
+            >
+              Отправить код повторно
+            </Typography>
+          )}
+        </Grid>
+        <Grid item>
           <Button
             size="small"
             onClick={() =>
+              state.registrationCode &&
               sendRegistrationCode({ registrationCode: state.registrationCode })
             }
             children={t("Ok")}
             color="primary"
             variant="outlined"
-            disabled={pending}
+            disabled={pending || !state.registrationCode}
           />
         </Grid>
       </Grid>

@@ -17,6 +17,7 @@ export interface IRegistrationCode {
 }
 
 export const sendRegistrationCode = createEvent<{ registrationCode: string }>();
+export const resendRegistrationEmail = createEvent();
 
 export const registrationCodeFx = createEffect<
   { registrationCode: string; email: string },
