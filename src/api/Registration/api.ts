@@ -23,3 +23,12 @@ export const registrationCodeFetch = async ({
   });
   return res ? await res.data : false;
 };
+
+export const sendRegistrationEmailFetch = async (
+  email: string
+): Promise<boolean> => {
+  const res = await client.post(`/users/register/code/resend`, {
+    email,
+  });
+  return res ? await res.data : false;
+};

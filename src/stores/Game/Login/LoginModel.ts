@@ -8,7 +8,11 @@ import { getMyProfile } from "../User/UserModel";
 import { loginFetch } from "api/Login/api";
 import { clearToken, saveRefreshToken, saveToken } from "../Token/TokenModel";
 import { createGate } from "effector-react";
-import { registrationCodeFx, registrationFx } from "./RegistrationModel";
+import {
+  registrationCodeFx,
+  registrationFx,
+  resendRegistrationEmailFx,
+} from "./RegistrationModel";
 
 export const AuthDomain = createDomain("AuthDomain");
 
@@ -27,7 +31,10 @@ export const loginFail$ = AuthDomain.store<string | null>(null)
   .on(loginFx.fail, (k: any, v: any) => v.error.response.data.message)
   .on(registrationFx.fail, (k: any, v: any) => v.error.response.data.message)
   .on(registrationCodeFx.fail, (k: any, v: any) => {
-    return v.error.response.data.message;
+    return v.error.response.data.message || "Network error";
+  })
+  .on(resendRegistrationEmailFx.fail, (k: any, v: any) => {
+    return v.error.response.data.message || "Network error";
   })
   .reset(clearLoginFail);
 

@@ -13,6 +13,7 @@ import {
   registrationEvent,
   sendRegistrationCode,
   resendRegistrationEmail,
+  resendRegistrationEmailFx,
 } from "stores/Game/Login/RegistrationModel";
 
 const secondsToTime = (secs: number) => {
@@ -55,6 +56,7 @@ export const RegistrationForm = () => {
 
   const { t } = useTranslation();
   const pending = useStore(registrationFx.pending);
+  const resendPending = useStore(resendRegistrationEmailFx.pending);
   const registration = useStore(registration$);
   const fail = useStore(loginFail$);
   const remainTime = secondsToTime(seconds);
@@ -181,7 +183,7 @@ export const RegistrationForm = () => {
           item
           style={{ height: "70px", width: "100%", textAlign: "center" }}
         >
-          {pending ? (
+          {pending || resendPending ? (
             <CircularProgress color="secondary" />
           ) : (
             fail && <Alert severity="error">{t(fail)}</Alert>
@@ -206,8 +208,8 @@ export const RegistrationForm = () => {
             </Typography>
           ) : (
             <Typography
-              style={{ cursor: "pointer", color: "blue" }}
-              variant="caption"
+              style={{ cursor: "pointer", color: "#bb0000" }}
+              variant="body2"
               onClick={() => {
                 setSeconds(10);
                 resendRegistrationEmail();
