@@ -4,7 +4,7 @@ import {
   sendRegistrationEmailFetch,
 } from "api/Registration/api";
 import { createEffect, createEvent, createStore, sample } from "effector";
-import { clearLoginFail } from "./LoginModel";
+import { clearError } from "../Error/ErrorModel";
 
 export interface IRegistrationForm {
   email: string;
@@ -52,7 +52,7 @@ sample({
   source: registrationEvent,
   clock: registrationEvent,
   fn: (rg: IRegistrationForm) => {
-    clearLoginFail();
+    clearError();
     return rg;
   },
   target: registrationFx,
@@ -62,7 +62,7 @@ sample({
   source: registration$.map((v) => v && v.email),
   clock: sendRegistrationCode,
   fn: (email, { registrationCode }) => {
-    clearLoginFail();
+    clearError();
     return { registrationCode, email: email ? email : "" };
   },
   target: registrationCodeFx,
@@ -72,7 +72,7 @@ sample({
   source: registration$.map((v) => (v && v.email ? v.email : "")),
   clock: resendRegistrationEmail,
   fn: (email) => {
-    clearLoginFail();
+    clearError();
     return email;
   },
   target: resendRegistrationEmailFx,

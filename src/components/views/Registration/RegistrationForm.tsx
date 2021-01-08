@@ -2,7 +2,8 @@ import { Grid, Typography, TextField, Button } from "@material-ui/core";
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import Template from "../Template/Template";
-import { loginFail$, LoginGate } from "stores/Game/Login/LoginModel";
+import { LoginGate } from "stores/Game/Login/LoginModel";
+import { error$ } from "stores/Game/Error/ErrorModel";
 import { useGate, useStore } from "effector-react";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Alert from "@material-ui/lab/Alert";
@@ -58,7 +59,7 @@ export const RegistrationForm = () => {
   const pending = useStore(registrationFx.pending);
   const resendPending = useStore(resendRegistrationEmailFx.pending);
   const registration = useStore(registration$);
-  const fail = useStore(loginFail$);
+  const fail = useStore(error$);
   const remainTime = secondsToTime(seconds);
   useGate(LoginGate);
 

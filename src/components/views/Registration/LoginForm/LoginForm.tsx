@@ -5,12 +5,8 @@ import { Link } from "react-router-dom";
 
 import { ILoginForm } from "components/core/Registration/Login/Login";
 import Template from "../../Template/Template";
-import {
-  loginFail$,
-  loginFx,
-  login,
-  LoginGate,
-} from "stores/Game/Login/LoginModel";
+import { loginFx, login, LoginGate } from "stores/Game/Login/LoginModel";
+import { error$ } from "stores/Game/Error/ErrorModel";
 import { useGate, useStore } from "effector-react";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Alert from "@material-ui/lab/Alert";
@@ -23,7 +19,7 @@ export const LoginForm = () => {
 
   const { t } = useTranslation();
   const pending = useStore(loginFx.pending);
-  const fail = useStore(loginFail$);
+  const fail = useStore(error$);
 
   useGate(LoginGate);
 

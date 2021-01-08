@@ -8,11 +8,8 @@ import { getMyProfile } from "../User/UserModel";
 import { loginFetch } from "api/Login/api";
 import { clearToken, saveRefreshToken, saveToken } from "../Token/TokenModel";
 import { createGate } from "effector-react";
-import {
-  registrationCodeFx,
-  registrationFx,
-  resendRegistrationEmailFx,
-} from "./RegistrationModel";
+
+import { clearError } from "../Error/ErrorModel";
 
 export const AuthDomain = createDomain("AuthDomain");
 
@@ -25,26 +22,13 @@ export const loginFx = AuthDomain.effect<ILoginForm, ILoginResponce, Error>({
 
 export const LoginGate = createGate();
 
-export const clearLoginFail = AuthDomain.event();
-
-export const loginFail$ = AuthDomain.store<string | null>(null)
-  .on(loginFx.fail, (k: any, v: any) => v.error.response.data.message)
-  .on(registrationFx.fail, (k: any, v: any) => v.error.response.data.message)
-  .on(registrationCodeFx.fail, (k: any, v: any) => {
-    return v.error.response.data.message || "Network error";
-  })
-  .on(resendRegistrationEmailFx.fail, (k: any, v: any) => {
-    return v.error.response.data.message || "Network error";
-  })
-  .reset(clearLoginFail);
-
-LoginGate.open.watch(() => clearLoginFail());
+LoginGate.open.watch(() => clearError());
 
 sample({
   source: login,
   clock: login,
   fn: (lg: ILoginForm) => {
-    clearLoginFail();
+    clearError();
     return lg;
   },
   target: loginFx,
