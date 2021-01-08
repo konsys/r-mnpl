@@ -7,7 +7,6 @@ import {
 
 import { Params } from "config/params";
 import { refreshTokenFx } from "stores/Game/User/UserModel";
-import { setError } from "stores/Game/Error/ErrorModel";
 
 export const client: AxiosInstance = axios.create({
   baseURL: Params.BASE_URL,
@@ -40,8 +39,7 @@ client.interceptors.response.use(
         return;
       }
     }
-    console.log(111111111111111, error);
-    setError(JSON.stringify(error));
+
     throw error;
   }
 );

@@ -9,7 +9,7 @@ import { loginFetch } from "api/Login/api";
 import { clearToken, saveRefreshToken, saveToken } from "../Token/TokenModel";
 import { createGate } from "effector-react";
 
-import { clearError } from "../Error/ErrorModel";
+import { clearError, setError } from "../Error/ErrorModel";
 
 export const AuthDomain = createDomain("AuthDomain");
 
@@ -18,6 +18,14 @@ export const clearTokenStore = AuthDomain.event();
 export const login = AuthDomain.event<ILoginForm>();
 export const loginFx = AuthDomain.effect<ILoginForm, ILoginResponce, Error>({
   handler: loginFetch,
+});
+
+loginFx.fail.watch((v: any) => {
+  if (v.error.response && v.error.response.data) {
+    setError(v.error.response.data.message);
+  } else {
+    setError(v.error.message);
+  }
 });
 
 export const LoginGate = createGate();
