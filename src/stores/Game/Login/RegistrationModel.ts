@@ -4,7 +4,7 @@ import {
   sendRegistrationEmailFetch,
 } from "api/Registration/api";
 import { createEffect, createEvent, createStore, sample } from "effector";
-import { clearError } from "../Error/ErrorModel";
+import { clearError, setError } from "../Error/ErrorModel";
 
 export interface IRegistrationForm {
   email: string;
@@ -30,15 +30,39 @@ export const registrationCodeFx = createEffect<
   handler: registrationCodeFetch,
 });
 
+registrationCodeFx.fail.watch((v: any) => {
+  if (v.error.response && v.error.response.data) {
+    setError(v.error.response.data.message);
+  } else {
+    setError(v.error.message);
+  }
+});
+
 export const resendRegistrationEmail = createEvent();
 
 export const resendRegistrationEmailFx = createEffect<string, any, Error>({
   handler: sendRegistrationEmailFetch,
 });
 
+resendRegistrationEmailFx.fail.watch((v: any) => {
+  if (v.error.response && v.error.response.data) {
+    setError(v.error.response.data.message);
+  } else {
+    setError(v.error.message);
+  }
+});
+
 export const registrationEvent = createEvent<IRegistrationForm>();
 export const registrationFx = createEffect<IRegistrationForm, any, Error>({
   handler: registrationFetch,
+});
+
+registrationFx.fail.watch((v: any) => {
+  if (v.error.response && v.error.response.data) {
+    setError(v.error.response.data.message);
+  } else {
+    setError(v.error.message);
+  }
 });
 
 export const registration$ = createStore<IRegistrationCode | null>(null).on(
