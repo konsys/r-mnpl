@@ -101,4 +101,5 @@ sample({
   },
   target: resendRegistrationEmailFx,
 });
+
 registrationCodeFx.done.watch(() => (window.location.href = "/login"));

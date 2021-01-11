@@ -7,10 +7,8 @@ import {
   getProfileFx,
   profile$,
   clearProfile,
-  registerFx,
-  register$,
 } from "stores/Game/User/UserModel";
-import { IUserRegistration } from "types/types";
+
 
 jest.setTimeout(60000);
 const email = "TestUser1@yandex.ru";
@@ -20,24 +18,6 @@ const name = "TestUserName";
 describe("Login test", () => {
   beforeEach(() => {
     // logout();
-  });
-
-  it("should update user", async () => {
-    const user: IUserRegistration = {
-      userId: 1,
-      email,
-      password,
-      name,
-      vip: true,
-    };
-    try {
-      // @ts-ignore
-      await registerFx(user);
-      // @ts-ignore
-      expect(register$.getState().name).toStrictEqual(user.name);
-    } catch (error) {
-      expect(error.response.status).toBe(400);
-    }
   });
 
   it("should login", async () => {
@@ -54,6 +34,7 @@ describe("Login test", () => {
     try {
       await loginFx({ email, password });
     } catch (error) {
+      console.log(1);
       expect(error.response.status).toBe(401);
     }
   });
