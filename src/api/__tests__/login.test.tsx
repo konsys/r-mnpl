@@ -1,4 +1,6 @@
+import { client } from "http/client";
 import { loginFx } from "stores/Game/Login/LoginModel";
+import { registrationCodeFx } from "stores/Game/Login/RegistrationModel";
 import { getToken } from "stores/Game/Token/TokenModel";
 import {
   user$,
@@ -7,17 +9,39 @@ import {
   getProfileFx,
   profile$,
   clearProfile,
+  registerFx,
+  getUserByEmailFx,
 } from "stores/Game/User/UserModel";
-
+import { IUserRegistration } from "types/types";
 
 jest.setTimeout(60000);
-const email = "TestUser1@yandex.ru";
+const email = "loginTestUser@yandex.ru";
 const password = "password";
 const name = "TestUserName";
 
+const user: IUserRegistration = {
+  isTestUser: true,
+  email,
+  password,
+  name,
+  vip: true,
+};
+
 describe("Login test", () => {
-  beforeEach(() => {
-    // logout();
+  let userId = 0;
+
+  beforeAll(async () => {
+    const res = await registerFx({ ...user });
+    await registrationCodeFx({
+      ...res,
+    });
+    const newUser = await getUserByEmailFx(email);
+    userId = newUser.userId;
+  });
+
+  afterAll(async () => {
+    const { userId } = await getUserByEmailFx(email);
+    userId && (await client.delete(`users/${userId}`));
   });
 
   it("should login", async () => {
@@ -34,7 +58,6 @@ describe("Login test", () => {
     try {
       await loginFx({ email, password });
     } catch (error) {
-      console.log(1);
       expect(error.response.status).toBe(401);
     }
   });
@@ -54,7 +77,7 @@ describe("Login test", () => {
     await getUserFx();
     const curUser = user$.getState();
     expect(curUser && curUser.name).toBe(name);
-    expect(curUser && curUser.userId).toBe(1);
+    expect(curUser && curUser.userId).toBeGreaterThan(0);
     // @ts-ignore
     await getProfileFx(curUser.userId);
     // @ts-ignore
@@ -68,7 +91,7 @@ describe("Login test", () => {
     });
     clearProfile();
     // @ts-ignore
-    await getProfileFx(1);
+    await getProfileFx(userId);
     // @ts-ignore
     expect(profile$.getState().name).toBe(name);
   });

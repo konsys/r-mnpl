@@ -1,4 +1,4 @@
-import { IUser, IUserRegistration } from "types/types";
+import { IRegistrationResponce, IUser, IUserRegistration } from "types/types";
 import { MainDomain } from "../../Board/BoardDomain";
 import { createGate } from "effector-react";
 import {
@@ -7,6 +7,7 @@ import {
   fetchLogout,
   fetchMyProfile,
   fetchRegister,
+  fetchUserEmail,
 } from "api/Users/api";
 import { merge, sample } from "effector";
 import {
@@ -24,6 +25,10 @@ export const ProfileGate = createGate();
 
 export const getProfileFx = UserDomain.effect<number, IUser, Error>({
   handler: fetchUserProfile,
+});
+
+export const getUserByEmailFx = UserDomain.effect<string, IUser, Error>({
+  handler: fetchUserEmail,
 });
 
 export const clearProfile = UserDomain.event();
@@ -77,16 +82,19 @@ sample({
 
 export const setUser = UserDomain.event<IUser | null>();
 
-export const registerFx = UserDomain.effect<IUserRegistration, IUser, Error>({
+export const registerFx = UserDomain.effect<
+  IUserRegistration,
+  IRegistrationResponce,
+  Error
+>({
   handler: fetchRegister,
 });
 
-export const register$ = UserDomain.store<IUser | null>(null).on(
-  registerFx.done,
-  (_, { result }) => {
-    return result;
-  }
-);
+export const register$ = UserDomain.store<IRegistrationResponce | null>(
+  null
+).on(registerFx.done, (_, { result }) => {
+  return result;
+});
 
 export const user$ = UserDomain.store<IUser | null>(null)
   .on(setUser, (_, data) => data)

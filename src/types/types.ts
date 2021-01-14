@@ -220,6 +220,7 @@ export interface IUser {
 
 export interface IUserRegistration {
   userId?: number;
+  isTestUser?: boolean;
   vip: boolean;
   name: string;
   email?: string;
@@ -331,4 +332,8 @@ export interface IInventoryItems {
   gameId: string;
   date: Date;
   quantity: number;
+}
+export interface IRegistrationResponce {
+  registrationCode: string;
+  email: string;
 }

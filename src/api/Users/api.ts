@@ -1,4 +1,9 @@
-import { IPlayer, IUser, IUserRegistration } from "../../types/types";
+import {
+  IPlayer,
+  IRegistrationResponce,
+  IUser,
+  IUserRegistration,
+} from "../../types/types";
 
 import { client } from "../../http/client";
 
@@ -26,8 +31,12 @@ export async function fetchMyProfile(): Promise<IUser> {
 
 export async function fetchUserProfile(id: number): Promise<IUser> {
   const url = profileUrl + "/" + id;
-  console.log("fetchUserProfile", url);
   const user = await client.get(url);
+  return user ? await user.data : undefined;
+}
+
+export async function fetchUserEmail(email: string): Promise<IUser> {
+  const user = await client.get("/users/creds", { params: { email } });
   return user ? await user.data : undefined;
 }
 
@@ -45,6 +54,8 @@ export async function fetchLogout(refreshToken: string): Promise<boolean> {
   return await (await client.post(logoutUrl, { refreshToken })).data.result;
 }
 
-export async function fetchRegister(user: IUserRegistration): Promise<IUser> {
+export async function fetchRegister(
+  user: IUserRegistration
+): Promise<IRegistrationResponce> {
   return await (await client.post("/users/register", user)).data;
 }
