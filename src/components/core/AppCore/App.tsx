@@ -21,6 +21,7 @@ import { Registration } from "components/core/Registration/Registration";
 import ReactNotifications from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
 import "animate.css";
+import NotFound from "components/views/Errors/NotFound";
 
 const App = () => {
   useGate(ProfileGate);
@@ -40,6 +41,7 @@ const App = () => {
             <Route exact path="/" default component={Rooms} />
             <Route path="/top-five" component={TopFivePage} />
             <Route path="/inventory" component={Inventory} />
+            <Route component={NotFound} />
           </Switch>
         </Router>
       </MuiThemeProvider>
