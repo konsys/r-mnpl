@@ -33,7 +33,7 @@ describe("Registration test", () => {
     try {
       for await (let r of Array(5).fill(1)) {
         let res = await registerFx({ ...user, email: email2 });
-        console.log(2222222222222222, res);
+        console.log(2222222222222, res);
         expect(res).not.toBeNull();
 
         // @ts-ignore
@@ -55,22 +55,22 @@ describe("Registration test", () => {
     }
   });
 
-  // it("should resend registration code", async () => {
-  //   let res = await registerFx({ ...user, email: email1 });
-  //   expect(res).not.toBeNull();
+  it("should resend registration code", async () => {
+    let res = await registerFx({ ...user, email: email1 });
+    expect(res).not.toBeNull();
 
-  //   // @ts-ignore
-  //   expect(res.email).toStrictEqual(email1);
-  //   try {
-  //     const register = await resendRegistrationEmailFx(res.email);
-  //     expect(register).toBeTruthy();
-  //   } catch (error) {
-  //     expect(error.response.status).toBe(400);
-  //     expect(error.response.data.message).toBe(
-  //       "Email send period not completed"
-  //     );
-  //   }
-  //   const { userId } = await getUserByEmailFx(email1);
-  //   userId && (await client.delete(`users/${userId}`));
-  // });
+    // @ts-ignore
+    expect(res.email).toStrictEqual(email1);
+    try {
+      const register = await resendRegistrationEmailFx(res.email);
+      expect(register).toBeTruthy();
+    } catch (error) {
+      expect(error.response.status).toBe(400);
+      expect(error.response.data.message).toBe(
+        "Email send period not completed"
+      );
+    }
+    const { userId } = await getUserByEmailFx(email1);
+    userId && (await client.delete(`users/${userId}`));
+  });
 });
