@@ -47,7 +47,6 @@ describe("Registration test", () => {
         userId && (await client.delete(`users/${userId}`));
       }
     } catch (error) {
-      // expect(error).toStrictEqual("Email send period not completed");
       expect(error.response.data.message).toBe(
         "Email send period not completed"
       );
