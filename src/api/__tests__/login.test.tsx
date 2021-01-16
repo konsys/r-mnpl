@@ -89,6 +89,7 @@ describe("Login test", () => {
       email,
       password,
     });
+    console.log("wfwefwefwefwef", userId);
     clearProfile();
     // @ts-ignore
     await getProfileFx(userId);

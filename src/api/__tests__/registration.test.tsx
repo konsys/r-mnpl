@@ -19,16 +19,6 @@ const user: IUserRegistration = {
 jest.setTimeout(60000);
 
 describe("Registration test", () => {
-  // beforeEach(async () => {
-  //   const { userId } = await getUserByEmailFx(email);
-  //   userId && (await client.delete(`users/${userId}`));
-  // });
-
-  // afterEach(async () => {
-  //   const { userId } = await getUserByEmailFx(email);
-  //   userId && (await client.delete(`users/${userId}`));
-  // });
-
   it("should register user", async () => {
     for await (let r of Array(5).fill(1)) {
       let res = await registerFx({ ...user, email: email2 });
@@ -64,5 +54,7 @@ describe("Registration test", () => {
         "Email send period not completed"
       );
     }
+    const { userId } = await getUserByEmailFx(email1);
+    userId && (await client.delete(`users/${userId}`));
   });
 });
