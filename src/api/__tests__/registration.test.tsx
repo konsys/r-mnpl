@@ -33,7 +33,6 @@ describe("Registration test", () => {
     try {
       for await (let r of Array(5).fill(1)) {
         let res = await registerFx({ ...user, email: email2 });
-        console.log(2222222222222, res);
         expect(res).not.toBeNull();
 
         // @ts-ignore
