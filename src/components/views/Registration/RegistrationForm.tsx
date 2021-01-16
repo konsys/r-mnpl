@@ -16,6 +16,7 @@ import {
   resendRegistrationEmail,
   resendRegistrationEmailFx,
 } from "stores/Game/Login/RegistrationModel";
+import { ErrorCode } from "utils/errors";
 
 const secondsToTime = (secs: number) => {
   let hours = Math.floor(secs / (60 * 60));
@@ -94,7 +95,7 @@ export const RegistrationForm = () => {
               {pending ? (
                 <CircularProgress color="secondary" />
               ) : (
-                fail && <Alert severity="error">{t(fail)}</Alert>
+                fail && <Alert severity="error">{t(ErrorCode[fail])}</Alert>
               )}
             </Grid>
 
@@ -187,7 +188,7 @@ export const RegistrationForm = () => {
           {pending || resendPending ? (
             <CircularProgress color="secondary" />
           ) : (
-            fail && <Alert severity="error">{t(fail)}</Alert>
+            fail > 0 && <Alert severity="error">{t(ErrorCode[fail])}</Alert>
           )}
         </Grid>
         <Grid item>

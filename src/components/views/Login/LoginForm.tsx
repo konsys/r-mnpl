@@ -8,6 +8,7 @@ import Template from "../Template/Template";
 import { loginFx, login, LoginGate } from "stores/Game/Login/LoginModel";
 import { error$ } from "stores/Game/Error/ErrorModel";
 import { useGate, useStore } from "effector-react";
+import { ErrorCode } from "utils/errors";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Alert from "@material-ui/lab/Alert";
 
@@ -72,7 +73,7 @@ export const LoginForm = () => {
                 value={state.password}
               />
             </Grid>
-            {(pending || fail) && (
+            {(pending || fail > 0) && (
               <Grid
                 item
                 style={{ height: "70px", width: "100%", textAlign: "center" }}
@@ -80,7 +81,9 @@ export const LoginForm = () => {
                 {pending ? (
                   <CircularProgress color="secondary" />
                 ) : (
-                  fail && <Alert severity="error">{t(fail)}</Alert>
+                  fail > 0 && (
+                    <Alert severity="error">{t(ErrorCode[fail])}</Alert>
+                  )
                 )}
               </Grid>
             )}
