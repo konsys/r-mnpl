@@ -20,9 +20,9 @@ export interface IRegistrationCode {
   registrationCode?: string;
 }
 
-export const sendRegistrationCode = createEvent<{ registrationCode: string }>();
+export const activateUser = createEvent<{ registrationCode: string }>();
 
-export const registrationCodeFx = createEffect<
+export const activateUserFx = createEffect<
   { registrationCode: string; email: string },
   any,
   Error
@@ -30,7 +30,7 @@ export const registrationCodeFx = createEffect<
   handler: registrationCodeFetch,
 });
 
-registrationCodeFx.fail.watch((v: any) => {
+activateUserFx.fail.watch((v: any) => {
   if (v.error.response && v.error.response.data) {
     setError(v.error.response.data.message);
   } else {
@@ -84,12 +84,12 @@ sample({
 
 sample({
   source: registration$.map((v) => v && v.email),
-  clock: sendRegistrationCode,
+  clock: activateUser,
   fn: (email, { registrationCode }) => {
     clearError();
     return { registrationCode, email: email ? email : "" };
   },
-  target: registrationCodeFx,
+  target: activateUserFx,
 });
 
 sample({
@@ -102,4 +102,4 @@ sample({
   target: resendRegistrationEmailFx,
 });
 
-registrationCodeFx.done.watch(() => (window.location.href = "/login"));
+activateUserFx.done.watch(() => (window.location.href = "/login"));

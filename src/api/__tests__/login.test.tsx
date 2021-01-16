@@ -1,6 +1,6 @@
 import { client } from "http/client";
 import { loginFx } from "stores/Game/Login/LoginModel";
-import { registrationCodeFx } from "stores/Game/Login/RegistrationModel";
+import { activateUserFx } from "stores/Game/Login/RegistrationModel";
 import { getToken } from "stores/Game/Token/TokenModel";
 import {
   user$,
@@ -32,7 +32,7 @@ describe("Login test", () => {
 
   beforeAll(async () => {
     const res = await registerFx({ ...user });
-    await registrationCodeFx({
+    await activateUserFx({
       ...res,
     });
     const newUser = await getUserByEmailFx(email);

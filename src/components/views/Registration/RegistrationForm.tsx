@@ -12,7 +12,7 @@ import {
   registration$,
   registrationFx,
   registrationEvent,
-  sendRegistrationCode,
+  activateUser,
   resendRegistrationEmail,
   resendRegistrationEmailFx,
 } from "stores/Game/Login/RegistrationModel";
@@ -225,7 +225,7 @@ export const RegistrationForm = () => {
             size="small"
             onClick={() =>
               state.registrationCode &&
-              sendRegistrationCode({ registrationCode: state.registrationCode })
+              activateUser({ registrationCode: state.registrationCode })
             }
             children={t("Ok")}
             color="primary"
