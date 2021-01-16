@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
-import { ILoginForm } from "components/core/Registration/Login/Login";
-import Template from "../../Template/Template";
+import { ILoginForm } from "components/core/Login/Login";
+import Template from "../Template/Template";
 import { loginFx, login, LoginGate } from "stores/Game/Login/LoginModel";
 import { error$ } from "stores/Game/Error/ErrorModel";
 import { useGate, useStore } from "effector-react";

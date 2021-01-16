@@ -1,4 +1,4 @@
-import { LoginForm } from "components/views/Registration/LoginForm/LoginForm";
+import { LoginForm } from "components/views/Login/LoginForm";
 import React from "react";
 import { Redirect } from "react-router-dom";
 import { useStore } from "effector-react";

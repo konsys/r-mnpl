@@ -8,7 +8,7 @@ import { Board } from "../BoardCore/Board";
 import GameChatSocket from "socket/GameChatSocket";
 import GameModal from "../Game/GameModal/GameModal";
 import Inventory from "../Game/Inventory/Inventory";
-import { Login } from "../Registration/Login/Login";
+import { Login } from "../Login/Login";
 import { MuiThemeProvider } from "@material-ui/core";
 import { ProfileGate } from "stores/Game/User/UserModel";
 import React from "react";
@@ -17,10 +17,10 @@ import RoomsSocket from "socket/RoomsSocket";
 import TopFivePage from "../Game/TopFivePage/TopFivePage";
 import { theme } from "theme";
 import { useGate } from "effector-react";
+import { Registration } from "components/core/Registration/Registration";
 import ReactNotifications from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
 import "animate.css";
-import { RegistrationForm } from "components/views/Registration/RegistrationForm";
 
 const App = () => {
   useGate(ProfileGate);
@@ -34,7 +34,7 @@ const App = () => {
         <Router>
           <Switch>
             <Route exact path="/login" component={Login} />
-            <Route exact path="/registration" component={RegistrationForm} />
+            <Route exact path="/registration" component={Registration} />
 
             <Route exact path="/board/:id" component={Board} />
             <Route exact path="/" default component={Rooms} />

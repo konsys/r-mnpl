@@ -1,7 +1,7 @@
 import {
   ILoginForm,
   ILoginResponce,
-} from "components/core/Registration/Login/Login";
+} from "components/core/Login/Login";
 
 import { createDomain, sample } from "effector";
 import { getMyProfile } from "../User/UserModel";
