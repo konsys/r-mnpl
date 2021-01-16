@@ -13,7 +13,7 @@ import Alert from "@material-ui/lab/Alert";
 
 export const LoginForm = () => {
   const [state, setState] = useState<ILoginForm>({
-    email: "TestUser1@yandex.ru",
+    email: "test@test.ru",
     password: "password",
   });
 
@@ -47,16 +47,6 @@ export const LoginForm = () => {
 
         <Grid item>
           <Grid container direction="column" alignItems="center" spacing={2}>
-            <Grid
-              item
-              style={{ height: "70px", width: "100%", textAlign: "center" }}
-            >
-              {pending ? (
-                <CircularProgress color="secondary" />
-              ) : (
-                fail && <Alert severity="error">{t(fail)}</Alert>
-              )}
-            </Grid>
             <Grid item>
               <TextField
                 type="email"
@@ -82,7 +72,18 @@ export const LoginForm = () => {
                 value={state.password}
               />
             </Grid>
-
+            {(pending || fail) && (
+              <Grid
+                item
+                style={{ height: "70px", width: "100%", textAlign: "center" }}
+              >
+                {pending ? (
+                  <CircularProgress color="secondary" />
+                ) : (
+                  fail && <Alert severity="error">{t(fail)}</Alert>
+                )}
+              </Grid>
+            )}
             <Grid item>
               <Button
                 size="small"

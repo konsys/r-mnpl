@@ -11,6 +11,13 @@ i18n
     resources: {
       ru: {
         translations: {
+          "Fields not found": "Поле не найдено",
+          "Wrong room id": "Комната не найдена",
+          "Wrong login or password": "Неправильный логин или пароль",
+          "User already exists": "Логин занят",
+          "Registration copde is wrong": "Неправильный регистрационный код",
+          "Registration code could not be sent": "Код не может быть послан",
+
           "Registration code from the letter we sent on your email":
             "Вставьте код, который был отправлен на Ваш почтовый ящик",
           "Registration Code": "Код из письма",
