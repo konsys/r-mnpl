@@ -1,11 +1,8 @@
-import {
-  ILoginForm,
-  ILoginResponce,
-} from "components/core/Login/Login";
+import { ILoginForm, ILoginResponce } from "components/core/Login/Login";
 
 import { createDomain, sample } from "effector";
 import { getMyProfile } from "../User/UserModel";
-import { loginFetch } from "api/Login/api";
+import { loginFetch, loginVkFetch } from "api/Login/api";
 import { clearToken, saveRefreshToken, saveToken } from "../Token/TokenModel";
 import { createGate } from "effector-react";
 
@@ -28,9 +25,17 @@ loginFx.fail.watch((v: any) => {
   }
 });
 
-export const LoginGate = createGate();
+export const loginVkFx = AuthDomain.effect<{ code: string }, boolean, Error>({
+  handler: loginVkFetch,
+});
+
+export const LoginGate = createGate<{ code: string }>("LoginGate");
 
 LoginGate.open.watch(() => clearError());
+
+LoginGate.state.updates.watch((code) => {
+  code && loginVkFx(code);
+});
 
 sample({
   source: login,

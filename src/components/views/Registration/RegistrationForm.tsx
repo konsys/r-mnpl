@@ -88,17 +88,6 @@ export const RegistrationForm = () => {
 
         <Grid item>
           <Grid container direction="column" alignItems="center" spacing={2}>
-            <Grid
-              item
-              style={{ height: "70px", width: "100%", textAlign: "center" }}
-            >
-              {pending ? (
-                <CircularProgress color="secondary" />
-              ) : (
-                fail && <Alert severity="error">{t(ErrorCode[fail])}</Alert>
-              )}
-            </Grid>
-
             <Grid item>
               <TextField
                 type="text"
@@ -150,7 +139,20 @@ export const RegistrationForm = () => {
                 value={state.repeatPassword}
               />
             </Grid>
-
+            {fail > 0 && (
+              <Grid
+                item
+                style={{ height: "70px", width: "100%", textAlign: "center" }}
+              >
+                {pending ? (
+                  <CircularProgress color="secondary" />
+                ) : (
+                  fail > 0 && (
+                    <Alert severity="error">{t(ErrorCode[fail])}</Alert>
+                  )
+                )}
+              </Grid>
+            )}
             <Grid item>
               <Button
                 size="small"

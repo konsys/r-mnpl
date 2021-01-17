@@ -11,6 +11,7 @@ import { useGate, useStore } from "effector-react";
 import { ErrorCode } from "utils/errors";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Alert from "@material-ui/lab/Alert";
+import queryString from "query-string";
 
 export const LoginForm = () => {
   const [state, setState] = useState<ILoginForm>({
@@ -22,7 +23,17 @@ export const LoginForm = () => {
   const pending = useStore(loginFx.pending);
   const fail = useStore(error$);
 
-  useGate(LoginGate);
+  const queryObj = queryString.parse(window.location.search);
+  const code = queryObj.code ? queryObj.code.toString() : "";
+
+  useGate(LoginGate, { code });
+
+  const handleRedirect = () => {
+    window.location.href = `https://oauth.vk.com/authorize?redirect_uri=http://127.0.0.1:3000/login&client_id=7731384&scope=email&display=popup&v=5.126&revoke=1"
+    )}`;
+  };
+
+  // if (!isEmptyObj(queryObj) && queryObj["code"]) handleLogin(queryObj.code);
 
   const comp = (
     <>
@@ -109,9 +120,14 @@ export const LoginForm = () => {
         <Grid item>
           <Grid container direction="column" alignItems="center" spacing={2}>
             <Grid item>
-              <a href="/" className="button button-blueJeans button-maxwidth">
+              <button onClick={handleRedirect}>{t("VK login")}</button>
+              {/* <a
+                target="_blank"
+                href="https://oauth.vk.com/authorize?client_id=7731384&redirect_uri=localhost:3000&display=popup"
+                className="button button-blueJeans button-maxwidth"
+              >
                 {t("VK login")}
-              </a>
+              </a> */}
             </Grid>
           </Grid>
         </Grid>
