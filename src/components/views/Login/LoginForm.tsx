@@ -6,11 +6,8 @@ import { Link } from "react-router-dom";
 import { ILoginForm } from "components/core/Login/Login";
 import Template from "../Template/Template";
 import { loginFx, login, LoginGate } from "stores/Game/Login/LoginModel";
-import { error$ } from "stores/Game/Error/ErrorModel";
 import { useGate, useStore } from "effector-react";
-import { ErrorCode } from "utils/errors";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import Alert from "@material-ui/lab/Alert";
 import queryString from "query-string";
 
 export const LoginForm = () => {
@@ -21,7 +18,6 @@ export const LoginForm = () => {
 
   const { t } = useTranslation();
   const pending = useStore(loginFx.pending);
-  const fail = useStore(error$);
 
   const queryObj = queryString.parse(window.location.search);
   const code = queryObj.code ? queryObj.code.toString() : "";
@@ -90,18 +86,12 @@ export const LoginForm = () => {
                 value={state.password}
               />
             </Grid>
-            {(pending || fail > 0) && (
+            {pending && (
               <Grid
                 item
                 style={{ height: "70px", width: "100%", textAlign: "center" }}
               >
-                {pending ? (
-                  <CircularProgress color="secondary" />
-                ) : (
-                  fail > 0 && (
-                    <Alert severity="error">{t(ErrorCode[fail])}</Alert>
-                  )
-                )}
+                <CircularProgress color="secondary" />
               </Grid>
             )}
             <Grid item>
