@@ -43,16 +43,26 @@ sample({
 
 export const login$ = AuthDomain.store<ILoginResponce | null>(null)
   .on(loginFx.done, (_, { result }: { result: any }) => {
-    clearToken();
-    if (result) {
-      saveToken(result.accessToken);
-      saveRefreshToken(result.refreshToken);
-      getMyProfile();
-    }
-
+    auth({ ...result });
+    return result;
+  })
+  .on(loginVkFx.done, (_, { result }: { result: any }) => {
+    auth({ ...result });
     return result;
   })
   .on(loginFx.fail, () => clearToken())
   .reset(clearTokenStore);
 
+const auth = ({
+  accessToken,
+  refreshToken,
+}: {
+  accessToken: string;
+  refreshToken: string;
+}) => {
+  clearToken();
+  saveToken(accessToken);
+  saveRefreshToken(refreshToken);
+  getMyProfile();
+};
 // login$.updates.watch((v) => console.log("LoginStoreWatch", v));
