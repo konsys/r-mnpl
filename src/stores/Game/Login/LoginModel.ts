@@ -34,7 +34,7 @@ export const LoginGate = createGate<{ code: string }>("LoginGate");
 LoginGate.open.watch(() => clearError());
 
 LoginGate.state.updates.watch((code) => {
-  code && loginVkFx(code);
+  code.code && loginVkFx(code);
 });
 
 sample({
