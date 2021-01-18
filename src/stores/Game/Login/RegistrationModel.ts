@@ -30,13 +30,7 @@ export const activateUserFx = createEffect<
   handler: registrationCodeFetch,
 });
 
-activateUserFx.fail.watch((v: any) => {
-  if (v.error.response && v.error.response.data) {
-    setError(v.error.response.data.message);
-  } else {
-    setError(v.error.message);
-  }
-});
+activateUserFx.fail.watch((v: any) => setError(v));
 
 export const resendRegistrationEmail = createEvent();
 
@@ -57,13 +51,7 @@ export const registrationFx = createEffect<IRegistrationForm, any, Error>({
   handler: registrationFetch,
 });
 
-registrationFx.fail.watch((v: any) => {
-  if (v.error.response && v.error.response.data) {
-    setError(v.error.response.data.message);
-  } else {
-    setError(v.error.message);
-  }
-});
+registrationFx.fail.watch((v: any) => setError(v));
 
 export const registration$ = createStore<IRegistrationCode | null>(null).on(
   registrationFx.done,

@@ -102,11 +102,5 @@ export const user$ = UserDomain.store<IUser | null>(null)
   .on(getUserFx.done, (_, { result }) => result)
   .reset(logout);
 
-getUserFx.fail.watch((v: any) => {
-  if (v.error.response && v.error.response.data) {
-    setError(v.error.response.data.message);
-  } else {
-    setError(v.error.message);
-  }
-});
+getUserFx.fail.watch((v: any) => setError(v));
 // user$.updates.watch((v) => console.log("user$.updates.watch", v));

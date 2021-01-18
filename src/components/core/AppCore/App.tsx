@@ -18,16 +18,15 @@ import TopFivePage from "../Game/TopFivePage/TopFivePage";
 import { theme } from "theme";
 import { useGate } from "effector-react";
 import { Registration } from "components/core/Registration/Registration";
-import ReactNotifications from "react-notifications-component";
-import "react-notifications-component/dist/theme.css";
 import "animate.css";
 import NotFound from "components/views/Errors/NotFound";
+import { ToastContainer } from "react-toastify";
 
 const App = () => {
   useGate(ProfileGate);
   return (
     <>
-      <ReactNotifications />
+      <ToastContainer />
       <MuiThemeProvider theme={theme}>
         <GameModal />
         <GameChatSocket />
