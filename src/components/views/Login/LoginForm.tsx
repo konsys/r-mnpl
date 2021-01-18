@@ -29,11 +29,17 @@ export const LoginForm = () => {
   useGate(LoginGate, { code });
 
   const handleRedirect = () => {
-    window.location.href = `https://oauth.vk.com/authorize?redirect_uri=http://127.0.0.1:3000/login&client_id=7731384&scope=email&display=popup&v=5.126&revoke=1"
-    )}`;
+    const params = {
+      redirect_uri: "http://127.0.0.1:3000/login",
+      client_id: 7731384,
+      scope: "email",
+      display: "popup",
+      v: 5.126,
+      revoke: 1,
+    };
+    const stringified = queryString.stringify(params);
+    window.location.href = `https://oauth.vk.com/authorize?${stringified}`;
   };
-
-  // if (!isEmptyObj(queryObj) && queryObj["code"]) handleLogin(queryObj.code);
 
   const comp = (
     <>
