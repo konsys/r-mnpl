@@ -57,6 +57,7 @@ export const refreshTokenFx = UserDomain.effect<
 refreshTokenFx.done.watch(({ result }) => {
   if (!result.accessToken) {
     clearToken();
+    clearRefreshToken();
     logout();
   } else {
     saveToken(result.accessToken);
@@ -85,6 +86,10 @@ sample({
   },
   target: logoutFx,
 });
+
+ProfileGate.state.watch((v) => console.log("Profile gate update", v));
+
+ProfileGate.close.watch(() => console.log("Profile gate closes"));
 
 export const setUser = UserDomain.event<IUser | null>();
 

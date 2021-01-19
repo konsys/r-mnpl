@@ -3,7 +3,7 @@ import * as rooms from "stores/Game/Rooms/RoomsModel";
 
 import { test4Room, testPlayingRoom } from "testMocks/room";
 
-import PendingRoomBlock from "../PendingRoomBlock";
+import PendingRoomBlock from "../WaitingRoomsBlock";
 import React from "react";
 import RoomAvatar from "../RoomAvatar";
 import RoomTypeView from "../RoomTypeView";

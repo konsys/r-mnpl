@@ -13,7 +13,7 @@ import { concat } from "lodash";
 import { openGameModal } from "stores/Game/GameModal/GameModalModel";
 import { useTranslation } from "react-i18next";
 
-export default function PendingRoomBlock({
+export default function WaitingRoomsBlock({
   room,
   iHaveRoom,
   userId,

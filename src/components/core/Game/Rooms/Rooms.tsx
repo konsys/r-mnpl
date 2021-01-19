@@ -12,7 +12,6 @@ import { useGate, useStore } from "effector-react";
 
 import { BLOCK_SPACING } from "theme";
 import CreateRoomModal from "../CreateRoomModal/CreateRoomModal";
-import PendingRoomBlock from "./RoomBlock/PendingRoomBlock";
 import React from "react";
 import { Redirect } from "react-router-dom";
 import Template from "components/views/Template/Template";
@@ -20,6 +19,7 @@ import { TemplateModules } from "types/types";
 import { openRoomModal } from "stores/Game/Rooms/RoomsModalModel";
 import { useTranslation } from "react-i18next";
 import { user$ } from "stores/Game/User/UserModel";
+import WaitingRoomsBlock from "./RoomBlock/WaitingRoomsBlock";
 
 export const Rooms = () => {
   useGate(roomsGate);
@@ -107,7 +107,7 @@ export const Rooms = () => {
                   (room, k) =>
                     room.roomStatus === RoomStatus.PENDING && (
                       <Grid item key={k}>
-                        <PendingRoomBlock
+                        <WaitingRoomsBlock
                           room={room}
                           iHaveRoom={!!myPendingRoom}
                           userId={userId || undefined}

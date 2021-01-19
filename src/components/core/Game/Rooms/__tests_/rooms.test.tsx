@@ -9,7 +9,7 @@ import {
 
 import { Button } from "@material-ui/core";
 import CreateRoomModal from "../../CreateRoomModal/CreateRoomModal";
-import PendingRoomBlock from "../RoomBlock/PendingRoomBlock";
+import PendingRoomBlock from "../RoomBlock/WaitingRoomsBlock";
 import React from "react";
 import { Redirect } from "react-router-dom";
 import { Rooms } from "../Rooms";
