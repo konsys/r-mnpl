@@ -55,7 +55,12 @@ export const refreshTokenFx = UserDomain.effect<
 });
 
 refreshTokenFx.done.watch(({ result }) => {
-  saveToken(result.accessToken);
+  if (!result.accessToken) {
+    clearToken();
+    logout();
+  } else {
+    saveToken(result.accessToken);
+  }
 });
 
 export const getMyProfile = UserDomain.event();
