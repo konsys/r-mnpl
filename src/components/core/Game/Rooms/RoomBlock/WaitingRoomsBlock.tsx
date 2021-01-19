@@ -45,6 +45,7 @@ export default function WaitingRoomsBlock({
         });
   };
 
+  console.log(11111111111111, g, userId);
   return (
     <Grid
       container
@@ -78,6 +79,7 @@ export default function WaitingRoomsBlock({
                 }
                 roomId={room.roomId}
                 isMe={v ? userId === v.userId : false}
+                isMyRoom={true}
               />
             </Grid>
           ))}

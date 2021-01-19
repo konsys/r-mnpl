@@ -52,10 +52,15 @@
         width: 30px;
         height: 30px;
         cursor: pointer;
-        color: #e4e4e4;
+        color: #da4553;
       }
     }
     .addPlayerWrap {
+      .noCursor {
+        svg{
+          cursor:auto !important;
+        }
+      }
       width: 50px;
       height: 50px;
       svg {

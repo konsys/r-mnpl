@@ -1,6 +1,7 @@
 import { Grid, Typography } from "@material-ui/core";
 
 import AddIcon from "@material-ui/icons/Add";
+import { AccessAlarm } from "@material-ui/icons";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 import React from "react";
 import { createImgPath } from "utils/fields.utils";
@@ -13,13 +14,15 @@ export default function RoomAvatar({
   removePlayer,
   roomId,
   isMe,
+  isMyRoom,
 }: {
-  avatar: string;
-  name: string;
+  avatar?: string;
+  name?: string;
   addPlayer: () => void;
   removePlayer: ((id: string) => void) | null;
   roomId: string;
   isMe: boolean;
+  isMyRoom: boolean;
 }) {
   const { t } = useTranslation();
 
@@ -53,7 +56,13 @@ export default function RoomAvatar({
                   direction="column"
                 >
                   <Grid item className="addPlayerWrap">
-                    <AddIcon onClick={addPlayer} />
+                    {!isMyRoom ? (
+                      <AddIcon onClick={addPlayer} />
+                    ) : (
+                      <span className="noCursor">
+                        <AccessAlarm />
+                      </span>
+                    )}
                   </Grid>
                 </Grid>
               )}
@@ -63,7 +72,7 @@ export default function RoomAvatar({
         <Grid item>
           {/* TODO add link to profile */}
           <Typography variant="subtitle2">
-            {name ? name : t("Enter room")}
+            {isMyRoom ? name : t("Enter room")}
           </Typography>
         </Grid>
       </Grid>
