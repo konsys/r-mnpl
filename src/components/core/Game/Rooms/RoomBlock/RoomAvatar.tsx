@@ -14,7 +14,7 @@ export default function RoomAvatar({
   removePlayer,
   roomId,
   isMe,
-  isMyRoom,
+  myRoomId,
 }: {
   avatar?: string;
   name?: string;
@@ -22,7 +22,7 @@ export default function RoomAvatar({
   removePlayer: ((id: string) => void) | null;
   roomId: string;
   isMe: boolean;
-  isMyRoom: boolean;
+  myRoomId: string | null;
 }) {
   const { t } = useTranslation();
 
@@ -56,7 +56,7 @@ export default function RoomAvatar({
                   direction="column"
                 >
                   <Grid item className="addPlayerWrap">
-                    {!isMyRoom ? (
+                    {!myRoomId ? (
                       <AddIcon onClick={addPlayer} />
                     ) : (
                       <span className="noCursor">
@@ -72,7 +72,7 @@ export default function RoomAvatar({
         <Grid item>
           {/* TODO add link to profile */}
           <Typography variant="subtitle2">
-            {isMyRoom ? name : t("Enter room")}
+            {myRoomId ? name : t("Enter room")}
           </Typography>
         </Grid>
       </Grid>

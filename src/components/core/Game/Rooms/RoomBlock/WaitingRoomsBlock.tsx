@@ -15,11 +15,11 @@ import { useTranslation } from "react-i18next";
 
 export default function WaitingRoomsBlock({
   room,
-  iHaveRoom,
+  myRoomId,
   userId,
 }: {
   room: IRoom;
-  iHaveRoom: boolean;
+  myRoomId: string | null;
   userId?: number;
 }) {
   const g: IPlayer[] | null = room.players.length
@@ -32,7 +32,7 @@ export default function WaitingRoomsBlock({
   const { t } = useTranslation();
 
   const addPlayer = () => {
-    return !iHaveRoom
+    return !myRoomId
       ? userId
         ? addPlayerToRoomFx({ roomId: room.roomId, userId })
         : openGameModal({
@@ -45,7 +45,6 @@ export default function WaitingRoomsBlock({
         });
   };
 
-  console.log(11111111111111, g, userId);
   return (
     <Grid
       container
@@ -79,7 +78,7 @@ export default function WaitingRoomsBlock({
                 }
                 roomId={room.roomId}
                 isMe={v ? userId === v.userId : false}
-                isMyRoom={true}
+                myRoomId={myRoomId}
               />
             </Grid>
           ))}

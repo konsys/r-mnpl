@@ -41,6 +41,7 @@ export const Rooms = () => {
     )
   );
 
+  console.log(2222222222222, myPendingRoom);
   return (
     <>
       <CreateRoomModal />
@@ -109,7 +110,9 @@ export const Rooms = () => {
                       <Grid item key={k}>
                         <WaitingRoomsBlock
                           room={room}
-                          iHaveRoom={!!myPendingRoom}
+                          myRoomId={
+                            !!myPendingRoom ? myPendingRoom.roomId : null
+                          }
                           userId={userId || undefined}
                         />
                       </Grid>
