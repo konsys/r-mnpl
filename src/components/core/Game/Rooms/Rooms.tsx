@@ -41,7 +41,17 @@ export const Rooms = () => {
     )
   );
 
-  console.log(2222222222222, myPendingRoom);
+  const notMyRooms = rooms.rooms.filter(
+    (v) => myPendingRoom && myPendingRoom.roomId !== v.roomId
+  );
+
+  const myRoom = rooms.rooms.find(
+    (v) => myPendingRoom && myPendingRoom.roomId === v.roomId
+  );
+
+  console.log(1111111111, myRoom);
+  console.log(222222222222, notMyRooms);
+  const sortedRooms = myRoom ? [myRoom].concat(notMyRooms) : rooms.rooms;
   return (
     <>
       <CreateRoomModal />
@@ -102,8 +112,7 @@ export const Rooms = () => {
               direction="column"
               spacing={BLOCK_SPACING}
             >
-              {rooms &&
-                Array.isArray(rooms.rooms) &&
+              {sortedRooms &&
                 rooms.rooms.map(
                   (room, k) =>
                     room.roomStatus === RoomStatus.PENDING && (

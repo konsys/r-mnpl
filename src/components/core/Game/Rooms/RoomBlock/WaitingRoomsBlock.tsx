@@ -65,7 +65,7 @@ export default function WaitingRoomsBlock({
           spacing={1}
         >
           {g.map((v, k: number) => (
-            <Grid key={k} item className="newRoomOneAvatar">
+            <Grid key={k} item>
               <RoomAvatar
                 avatar={(v && v.avatar) || ""}
                 name={(v && v.name) || ""}

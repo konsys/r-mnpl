@@ -34,6 +34,17 @@ export default function Template({
         <title>{t(title)}</title>
       </Helmet>
       <Header />
+      {/* <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          backgroundImage:
+            "url(https://loft-concept.ru/upload/iblock/80a/Loft_Concept_1.jpg)",
+        }}
+      ></div> */}
       {columns === 1 && <OneColumnContent>{children}</OneColumnContent>}
       {columns === 2 && (
         <TwoColumnContent modules={modules}>{children}</TwoColumnContent>

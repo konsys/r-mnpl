@@ -1,8 +1,69 @@
-$regularСolor: #8cc152;
-$quickСolor: #da4553;
-$shuffleСolor: #3bafda;
-$retroСolor: #000;
-$rouletteСolor: #d870ad;
+$main-width: "1000px";
+$main-gap: "25px";
+$border-radius: "5px";
+$color-light: #fff;
+$color-dark: #1b1c21;
+$color-gray-50: #f4f4f5;
+$color-gray-100: #e9eaec;
+$color-gray-200: #d1d2d6;
+$color-gray-300: #b9bac1;
+$color-gray-400: #989aa4;
+$color-gray-500: #757884;
+$color-gray-600: #5b5d67;
+$color-gray-700: #4a4c54;
+$color-gray-800: #35363b;
+$color-gray-900: #26272b;
+$color-grapefruit: #da4553;
+$color-grapefruit-100: #f8dadd;
+$color-grapefruit-200: rgba(240, 181, 186, 1);
+$color-grapefruit-300: #e98f98;
+$color-grapefruit-400: #e16a75;
+$color-grapefruit-500: #da4553;
+$color-grapefruit-600: #b43d49;
+$color-grapefruit-700: #8e353f;
+$color-grapefruit-800: rgba(103, 44, 53, 1);
+$color-grapefruit-900: #41242b;
+$color-bittersweet: #e9573e;
+$color-bittersweet-100: #fbddd8;
+$color-bittersweet-200: rgba(246, 188, 178, 1);
+$color-bittersweet-300: #f29a8b;
+$color-bittersweet-400: #ed7965;
+$color-bittersweet-500: #e9573e;
+$color-bittersweet-600: #c04b38;
+$color-bittersweet-700: #973f32;
+$color-bittersweet-800: rgba(109, 52, 45, 1);
+$color-bittersweet-900: #442827;
+$color-sunflower: #f6bb43;
+$color-sunflower-100: #fdf1d9;
+$color-sunflower-200: rgba(251, 228, 180, 1);
+$color-sunflower-300: #fad68e;
+$color-sunflower-400: #f8c969;
+$color-sunflower-500: #f6bb43;
+$color-sunflower-600: #ca9b3c;
+$color-sunflower-700: #9e7b35;
+$color-sunflower-800: rgba(115, 92, 47, 1);
+$color-sunflower-900: #473c28;
+$color-grass: #8cc152;
+$color-grass-100: #e8f3dc;
+$color-grass-200: rgba(209, 230, 186, 1);
+$color-grass-300: #bada97;
+$color-grass-400: #a3cd75;
+
+$blue-100: #3d85c6;
+$blue-200: #316a9e;
+$blue-300: #27557e;
+$blue-400: #1f4465;
+$blue-500: #193651;
+$blue-600: #142b41;
+$blue-700: #102234;
+$blue-800: #0d1b2a;
+$blue-900: #0a1622;
+
+$regularСolor: $color-grass-400;
+$quickСolor: $color-grapefruit-400;
+$shuffleСolor: $color-sunflower-400;
+$retroСolor: $color-gray-700;
+$rouletteСolor: $blue-200;
 
 $itemLevel1: #3bafda;
 $itemLevel2: #4b89dc;
@@ -10,10 +71,10 @@ $itemLevel3: rgb(150, 123, 220);
 $itemLevel4: rgb(218, 69, 83);
 $itemLevel5: rgb(234, 178, 64);
 
-:export {
-  regularСolor: $regularСolor;
-  quickСolor: $quickСolor;
-  shuffleСolor: $shuffleСolor;
-  retroСolor: $retroСolor;
-  rouletteСolor: $rouletteСolor;
-}
+// :export {
+//   regularСolor: $color-grass-400;
+//   quickСolor: $color-bittersweet-500;
+//   shuffleСolor: $color-sunflower-500;
+//   retroСolor: $color-gray-500;
+//   rouletteСolor: $color-bittersweet-500;
+// }
