@@ -1,6 +1,6 @@
-import { GameDomain, user$ } from "stores/Game/User/UserModel";
+import { user$ } from "stores/Game/User/UserModel";
 import { guard, merge, sample } from "effector";
-
+import { GameDomain } from "stores/Board/BoardDomain";
 import { IInventory } from "types/types";
 import { createGate } from "effector-react";
 import { inventoryFetch } from "api/Inventory/api";

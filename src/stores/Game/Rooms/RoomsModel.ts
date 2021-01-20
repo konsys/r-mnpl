@@ -1,5 +1,6 @@
-import { GameDomain, user$ } from "../User/UserModel";
+import { user$ } from "stores/Game/User/UserModel";
 import { IApiResponceCode, IUser } from "types/types";
+import { GameDomain } from "stores/Board/BoardDomain";
 import {
   addPlayerToRoomFetch,
   createRoomFetch,

@@ -1,4 +1,5 @@
-import { GameDomain, getMyProfile, user$ } from "../User/UserModel";
+import { getMyProfile, user$ } from "../User/UserModel";
+import { GameDomain } from "stores/Board/BoardDomain";
 import { IRoom, RoomStatus, getRoomsFx, rooms$ } from "../Rooms/RoomsModel";
 import { combine, sample } from "effector";
 

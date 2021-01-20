@@ -1,5 +1,5 @@
 import { IRegistrationResponce, IUser, IUserRegistration } from "types/types";
-import { MainDomain } from "../../Board/BoardDomain";
+import { GameDomain } from "stores/Board/BoardDomain";
 import { createGate } from "effector-react";
 import {
   fetchUserProfile,
@@ -9,7 +9,7 @@ import {
   fetchRegister,
   fetchUserEmail,
 } from "api/Users/api";
-import { merge, sample } from "effector";
+import { combine, merge, sample } from "effector";
 import {
   clearToken,
   getRefreshToken,
@@ -17,8 +17,7 @@ import {
   clearRefreshToken,
 } from "../Token/TokenModel";
 import { setError } from "../Error/ErrorModel";
-
-export const GameDomain = MainDomain.domain("GameDomain");
+import { myPendingRoom$, removePlayerFromRoomFx } from "../Rooms/RoomsModel";
 
 const UserDomain = GameDomain.domain("UserDomain");
 
@@ -67,24 +66,13 @@ refreshTokenFx.done.watch(({ result }) => {
 export const getMyProfile = UserDomain.event();
 
 export const logout = UserDomain.event();
+
 // TODO test in getMyProfile call getUserFx
 sample({
   clock: merge([ProfileGate.open, getMyProfile]),
   source: ProfileGate.state,
   fn: () => undefined,
   target: getUserFx,
-});
-
-sample({
-  clock: logout,
-  source: ProfileGate.state,
-  fn: () => {
-    const token = getRefreshToken();
-    clearRefreshToken();
-    clearToken();
-    return token || "";
-  },
-  target: logoutFx,
 });
 
 ProfileGate.state.watch((v) => console.log("Profile gate update", v));
@@ -114,4 +102,23 @@ export const user$ = UserDomain.store<IUser | null>(null)
 
 getUserFx.fail.watch((v: any) => {
   setError(v);
+});
+
+sample({
+  clock: logout,
+  source: combine({
+    gate: ProfileGate.state,
+    user: user$.map((v) => v),
+    room: myPendingRoom$.map((v) => v),
+  }),
+  fn: ({ room, user }) => {
+    const token = getRefreshToken();
+    clearRefreshToken();
+    clearToken();
+    room &&
+      user &&
+      removePlayerFromRoomFx({ roomId: room.roomId, userId: user.userId });
+    return token || "";
+  },
+  target: logoutFx,
 });

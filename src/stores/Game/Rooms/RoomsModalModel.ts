@@ -1,4 +1,4 @@
-import { GameDomain } from "../User/UserModel";
+import { GameDomain } from "stores/Board/BoardDomain";
 import { resetRoomsStore } from "./RoomsModel";
 const RoomModalDomain = GameDomain.domain("GameModalDomain");
 

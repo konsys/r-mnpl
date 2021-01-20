@@ -1,9 +1,9 @@
-import { GameDomain } from "../User/UserModel";
+import { GameDomain } from "stores/Board/BoardDomain";
 import { IChatMessage } from "components/core/Game/GameChat/ChatMessage";
 import { IUser } from "types/types";
 import { createGate } from "effector-react";
 import { postChat } from "api/GameChat/api";
-import { getChatMessages } from "../../../api/Chat/api";
+import { getChatMessages } from "api/Chat/api";
 import { merge } from "lodash";
 
 const ChatDomain = GameDomain.domain("ChatDomain");
