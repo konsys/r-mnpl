@@ -1,7 +1,7 @@
 import { Grid, Typography } from "@material-ui/core";
 
 import AddIcon from "@material-ui/icons/Add";
-import { AccessAlarm } from "@material-ui/icons";
+import { EuroTwoTone } from "@material-ui/icons";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 import React from "react";
 import { createImgPath } from "utils/fields.utils";
@@ -28,7 +28,13 @@ export default function RoomAvatar({
 
   return (
     <>
-      <Grid container justify="center" alignItems="center" direction="column">
+      <Grid
+        container
+        justify="center"
+        alignItems="center"
+        direction="column"
+        style={{ maxWidth: "140px" }}
+      >
         <Grid item className="avatar">
           <Grid
             container
@@ -60,7 +66,7 @@ export default function RoomAvatar({
                       <AddIcon onClick={addPlayer} />
                     ) : (
                       <span className="noCursor">
-                        <AccessAlarm />
+                        <EuroTwoTone />
                       </span>
                     )}
                   </Grid>
@@ -69,7 +75,7 @@ export default function RoomAvatar({
             </Grid>
           </Grid>
         </Grid>
-        <Grid item>
+        <Grid item style={{ whiteSpace: "nowrap", overflow: "hidden" }}>
           {/* TODO add link to profile */}
           <Typography variant="subtitle2">
             {myRoomId ? name : t("Enter room")}

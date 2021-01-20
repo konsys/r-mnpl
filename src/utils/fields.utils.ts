@@ -89,4 +89,6 @@ export const getField = (fieldId: number): IField | undefined => {
   return f ? f.fields.find((v) => v.fieldId === fieldId) : undefined;
 };
 
-export const createImgPath = (src: string) => `${config.BASE_URL}/${src}`;
+export const createImgPath = (src: string) => {
+  return src.indexOf("http") > -1 ? src : `${config.BASE_URL}/${src}`;
+};
