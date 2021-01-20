@@ -46,12 +46,19 @@ export default function RoomAvatar({
             <Grid item>
               {avatar && name ? (
                 <>
-                  <div className="avatarWrap">
+                  <Grid
+                    container
+                    justify="center"
+                    alignItems="center"
+                    alignContent="center"
+                    direction="column"
+                    className="avatarWrap"
+                  >
                     {isMe && removePlayer && (
                       <HighlightOffIcon onClick={() => removePlayer(roomId)} />
                     )}
                     <img src={createImgPath(avatar)} alt={name} />
-                  </div>
+                  </Grid>
                 </>
               ) : (
                 <Grid
@@ -78,7 +85,7 @@ export default function RoomAvatar({
         <Grid item style={{ whiteSpace: "nowrap", overflow: "hidden" }}>
           {/* TODO add link to profile */}
           <Typography variant="subtitle2">
-            {myRoomId ? name : t("Enter room")}
+            {myRoomId ? (name ? name : t("Waiting...")) : t("Enter room")}
           </Typography>
         </Grid>
       </Grid>
